@@ -7,9 +7,6 @@ from sbam.settings.base_settings import *
 
 import environ
 
-# get root of the project
-root = environ.Path(__file__) - 3
-
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
