@@ -1,5 +1,8 @@
 # PyCharm Directory
 .idea/
 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
 # Database Files
 db.sqlite3
