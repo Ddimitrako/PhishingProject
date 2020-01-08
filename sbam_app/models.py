@@ -32,6 +32,9 @@ class Question(Model):
     created = DateTimeField(auto_now_add=True)
     updated = DateTimeField(auto_now=True)
 
+    # TODO decide if we should use question types
+    # e.g. Yes/No, Satisfaction, Percentage, etc.
+
     def __str__(self):
         return self.question_text
 
