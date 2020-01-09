@@ -29,4 +29,4 @@ class LoginRequiredMiddleware(MiddlewareMixin):
         if not request.user.is_authenticated:
             path = request.path_info.lstrip('/')
             if not any(m.match(path) for m in EXEMPT_URLS):
-                return redirect(settings.LOGIN_URL)
+                return redirect(settings.LOGIN_URL + "?next=" + str(request.path_info))
