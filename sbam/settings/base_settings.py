@@ -48,6 +48,7 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
+LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
@@ -58,7 +59,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'sbam_app.middleware.LoginRequiredMiddleware',
 ]
+
+LOGIN_EXEMPT_URLS = (
+    r'^$',
+    r'admin/',
+    r'accounts/'
+)
 
 ROOT_URLCONF = 'sbam.urls'
 
