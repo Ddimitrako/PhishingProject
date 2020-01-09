@@ -1,8 +1,11 @@
-asgiref==3.2.3
+# Django
 Django==3.0.2
-django-allauth==0.41.0
+
+# Settings (using env variables)
 django-environ==0.4.5
-environ==1.0
+
+# Database Access
 psycopg2==2.8.4
-pytz==2019.3
-sqlparse==0.3.0
+
+# Authentication
+django-allauth==0.41.0
