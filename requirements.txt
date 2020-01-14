@@ -1,8 +1,9 @@
 # Django
 Django==3.0.2
 
-# Settings (using env variables)
+# Settings
 django-environ==0.4.5
+django-settings-export==1.2.1
 
 # Database Access
 psycopg2==2.8.4

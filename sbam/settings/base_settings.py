@@ -82,6 +82,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_settings_export.settings_export',
             ],
         },
     },
@@ -132,3 +133,17 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = 'staticfiles'
+
+# Project Specific User-Defined Variables
+
+PROJECT_NAME = 'Energy Shield'
+PROJECT_URL = 'https://energy-shield.eu/'
+TOOL_NAME = 'Security Culture Tool'
+TOOL_SHORT_NAME = 'SCT'
+
+SETTINGS_EXPORT = [
+    'PROJECT_NAME',
+    'PROJECT_URL',
+    'TOOL_NAME',
+    'TOOL_SHORT_NAME',
+]
