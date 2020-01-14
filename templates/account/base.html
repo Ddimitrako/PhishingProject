@@ -24,13 +24,13 @@
     <body>
         <div class="wrapper">
             <div class="main-panel">
+                <div class="header">
+                    <img class="es_logo" src="{% static "img/es_logos/coloured_extended_es_logo.png" %}" alt="{{ settings.PROJECT_NAME }}">
+                    <h1 class="o-darkblue"><b>{{ settings.TOOL_NAME }}</b></h1>
+                </div>
+
                 <div class="content">
                     <div class="container-fluid">
-                        <div class="header">
-                            <img class="es_logo" src="{% static "img/es_logos/reference_es_logo.jpg" %}" alt="{{ settings.PROJECT_NAME }}">
-                            <h1 class="o-darkblue"><b>{{ settings.TOOL_NAME }}</b></h1>
-                        </div>
-
                         <div class="row justify-content-center">
                             <div class="box-standing-out">
                                 {% block content %}
@@ -40,12 +40,12 @@
                     </div>
                 </div>
 
-                <footer class="footer">
+                <div class="footer">
                     <div class="footer-copyright text-center"><b>&copy;
                             <script>document.write(new Date().getFullYear())</script>
                             <a href="{{ settings.PROJECT_URL }}">{{ settings.PROJECT_NAME }}</a></b></p>
                     </div>
-                </footer>
+                </div>
             </div>
         </div>
 
