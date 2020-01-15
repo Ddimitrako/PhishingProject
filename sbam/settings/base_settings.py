@@ -138,12 +138,14 @@ STATIC_ROOT = 'staticfiles'
 
 PROJECT_NAME = 'Energy Shield'
 PROJECT_URL = 'https://energy-shield.eu/'
+PROJECT_EU_CONSENT = 'This project has received funding from the European Union’s H2020 research and innovation programme under the Grant Agreement No. 832907'
 TOOL_NAME = 'Security Culture Tool'
 TOOL_SHORT_NAME = 'SCT'
 
 SETTINGS_EXPORT = [
     'PROJECT_NAME',
     'PROJECT_URL',
+    'PROJECT_EU_CONSENT',
     'TOOL_NAME',
     'TOOL_SHORT_NAME',
 ]
