@@ -18,7 +18,7 @@ you shall need to create a workplace with the below requirements:
     * Use git to **clone** sbam repository from **[github](https://github.com/angeorg83/sbam.git)** 
     * Open the project in PyCharm: `File -> Open`
     
-         **OR** 
+         **or** 
     
     * Directly in PyCharm: `VCS -> Git -> Clone`
 2. Create a new virtual environment:
@@ -31,18 +31,19 @@ you shall need to create a workplace with the below requirements:
     * Introduce the newly created virtual environment in PyCharm: `File-> Settings -> Project 
     -> Project Intepreter -> Add -> Existing Environment`
     
-         **OR** 
+         **or** 
     
     * Directly in PyCharm: `File-> Settings -> Project -> Project Intepreter -> Add -> New Environment` 
 3. Install required packages:
         
         pip install -r requirements.txt
     
-    **OR** 
+    **or** 
     
     Navigate in PyCharm to file `requirements.txt` and accept recommended automatic installation hint 
     at the top of the editor.<br>
-    **Note**: If package `psycopg2`, or any other, fail to install, download `pip` latest version from
+    
+    **_Note_**: If package `psycopg2`, or any other, fail to install, download `pip` latest version from
      _Project Intepreter_.
 4. Add Configuration:
 
@@ -62,9 +63,10 @@ you shall need to create a workplace with the below requirements:
         DATABASE_URL=psql://username:password@hostname:port/database
         SQLITE_URL=sqlite:///my-local-sqlite.db
         TIME_ZONE='UTC'
-   **Note 1**: Make sure to create a dedicated **database schema** for the project 
+   **_Note 1_**: Make sure to create a dedicated **database schema** for the project 
    (e.g. `sbam`) to your PostgreSQL DB.<br>
-   **Note 2**: DB user defined in `DATABASE_URL` needs to have proper **DML privileges**.
+   
+   **_Note 2_**: DB user defined in `DATABASE_URL` needs to have proper **DML privileges**.
 7. Migrate all committed migrations to properly update the database schema:
         
         py manage migrate
