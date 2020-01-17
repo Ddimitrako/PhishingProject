@@ -1,5 +1,6 @@
 /* Header */
 .header {
+    color: #263C91;
     text-align: center;
     padding: 40px 40px;
 }
@@ -11,7 +12,14 @@
 }
 
 /* Main Context */
+.content {
+    background-image: url("/static/img/es_background.jpg");
+    background-repeat: repeat-x;
+    background-position-y: center;
+}
+
 .box-standing-out {
+    background: white;
     padding: 80px 80px;
     box-shadow: 0 0 10px 10px #aaa;
 }
@@ -19,9 +27,8 @@
 /* Footer */
 .footer-container {
     background: #23A5E1;
-    color: white;
-    padding: 40px 0;
-    margin-top: 60px;
+    padding: 20px 0;
+    margin-top: 80px;
     display: flex;
     justify-content: space-around;
     align-items: center;
