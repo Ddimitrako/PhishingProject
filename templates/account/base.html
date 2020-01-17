@@ -6,7 +6,7 @@
         <meta charset="utf-8"/>
 
         <link rel="shortcut icon" type="image/png" href="{% static 'img/es_logos/es_logo.png' %}"/>
-        <title>Energy Shield | {% block title %}Security Culture Tool{% endblock %}</title>
+        <title>{{ settings.PROJECT_NAME }} | {% block title %}{{ settings.TOOL_NAME }}{% endblock %}</title>
 
         {% block extra_head %}
         {% endblock %}
