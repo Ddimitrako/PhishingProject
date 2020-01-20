@@ -12,12 +12,6 @@
 }
 
 /* Main Context */
-.content {
-    background-image: url("/static/img/es_background.jpg");
-    background-repeat: repeat-x;
-    background-position-y: center;
-}
-
 .box-standing-out {
     background: white;
     padding: 80px 80px;
@@ -26,7 +20,7 @@
 
 /* Footer */
 .footer-container {
-    background: #23A5E1;
+    background: #263C91;
     padding: 20px 0;
     margin-top: 80px;
     display: flex;
@@ -36,8 +30,8 @@
 }
 
 .footer-logo {
-    height: 100px;
-    width: 400px;
+    height: 60px;
+    width: 300px;
     object-fit: cover;
 }
 
@@ -46,7 +40,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 20px;
+    padding: 10px 10px;
     background-color: white;
     box-shadow: 0 0 3px 3px #aaa;
 }
@@ -64,4 +58,14 @@
 
 .eu-flag {
     width: 70px;
+}
+
+/* Bootstrap Theme */
+.main-sidebar {
+    background-color: #263C91;
+}
+
+.main-footer {
+    background-color: #23A5E1;
+    justify-content: space-around;
 }

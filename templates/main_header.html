@@ -1,0 +1,103 @@
+{% load adminlte_helpers i18n %}
+
+{% load static %}
+
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    {% block nav_bar %}
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+            </li>
+
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Home</a>
+            </li>
+        </ul>
+
+        {% block nav_bar_center %}
+            <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        {% endblock %}
+
+        {% block nav_custom_menu %}
+            <ul class="navbar-nav ml-auto">
+                <ul class="nav navbar-nav">
+                    {% block header_dropdowns %}
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <i class="fas fa-link"></i>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                                <span class="dropdown-item dropdown-header">Contact Us</span>
+
+                                <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item">
+                                    <a href="{{ settings.PROJECT_URL }}" class="link-hover-blue">{{ settings.PROJECT_NAME }} : </a>
+                                    <a href="{{ settings.PROJECT_TWITTER }}" class="nav-icon fab fa-twitter mr-2"/>
+                                    <a href="{{ settings.PROJECT_LINKEDIN }}" class="nav-icon fab fa-linkedin-in mr-2"/>
+                                </a>
+
+                                <a class="dropdown-item">
+                                    <a href="https://www.epu.ntua.gr/" class="link-hover-blue">EPU NTUA : </a>
+                                    <a href="https://gr.linkedin.com/company/ntua-dss-lab" class="fab fa-twitter mr-2"></a>
+                                    <a href="https://twitter.com/dss_lab?lang=en" class="fab fa-linkedin-in mr-2"></a>
+                                    <a href="https://www.facebook.com/epu.ntua.gr/" class="fab fa-facebook-f mr-2"></a>
+                                </a>
+                            </div>
+                        </li>
+
+                        {% block user_info %}
+                            {% if request.user.is_authenticated %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" data-toggle="dropdown" href="#">
+                                        <i class="far fa-user"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">
+                                            <div class="media">
+                                                <img src="{% avatar_url size=128 %}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                                <div class="media-body">
+                                                    <h3 class="dropdown-item-title">
+                                                        {% firstof request.user.get_short_name request.user.get_username %}
+                                                        <span class="float-right text-sm text-danger">
+                                                            <i class="fas fa-online"/>
+                                                        </span>
+                                                    </h3>
+                                                    <p class="text-sm"><small>Member since :</small></p>
+                                                    <p class="text-sm text-muted">
+                                                        <i class="far fa-clock mr-1"></i>
+                                                        <small>{{ request.user.date_joined }}</small></p>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <div class="dropdown-footer">
+                                            <!-- TODO add the proper profile link -->
+                                            <a href="" class="btn btn-info btn-sm">{% trans 'Profile' %}</a>
+                                            <a href="{% block logout_url %}{% logout_url %}{% endblock %}"
+                                               class="btn btn-danger btn-sm">{% trans 'Sign out' %}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% endblock user_info %}
+                    {% endblock header_dropdowns %}
+                </ul>
+            </ul>
+        {% endblock nav_custom_menu %}
+    {% endblock %}
+</nav>

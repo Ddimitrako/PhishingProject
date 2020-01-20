@@ -10,3 +10,6 @@ psycopg2==2.8.4
 
 # Authentication
 django-allauth==0.41.0
+
+# Bootstrap theme
+django-adminlte3==0.1.2

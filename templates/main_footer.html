@@ -1,0 +1,20 @@
+{% load adminlte_helpers i18n %}
+
+{% load static %}
+
+<footer class="main-footer d-flex">
+    <div class="float-right d-sm-block">
+        {% block footer_right %}
+            <a href="{{ settings.PROJECT_URL }}"><img class="footer-logo" src="{% static "img/es_logos/white_es_logo.png" %}" alt="{{ settings.PROJECT_NAME }}"></a>
+        {% endblock %}
+    </div>
+
+    <div class="float-left d-sm-block">
+        {% block footer_left %}
+            <div class="eu-consent">
+                <div class="flag-eu-consent"><img class="eu-flag" src="{% static "img/eu_flag.jpg" %}" alt="European Union"></div>
+                <div class="txt-eu-consent">{{ settings.PROJECT_EU_CONSENT}}</div>
+            </div>
+        {% endblock %}
+    </div>
+</footer>

@@ -35,6 +35,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    # bootstrap theme
+    'adminlte3',
+    'adminlte3_theme',
+
     # apps
     'sbam_app',
 ]
@@ -50,6 +54,7 @@ SITE_ID = 1
 
 LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_URL = '/accounts/logout'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -138,6 +143,8 @@ STATIC_ROOT = 'staticfiles'
 
 PROJECT_NAME = 'Energy Shield'
 PROJECT_URL = 'https://energy-shield.eu/'
+PROJECT_TWITTER = 'https://twitter.com/EnergyShield_'
+PROJECT_LINKEDIN = 'https://www.linkedin.com/groups/8831159/'
 PROJECT_EU_CONSENT = 'This project has received funding from the European Union’s H2020 research and innovation programme under the Grant Agreement No. 832907'
 TOOL_NAME = 'Security Culture Tool'
 TOOL_SHORT_NAME = 'SCT'
@@ -145,6 +152,8 @@ TOOL_SHORT_NAME = 'SCT'
 SETTINGS_EXPORT = [
     'PROJECT_NAME',
     'PROJECT_URL',
+    'PROJECT_TWITTER',
+    'PROJECT_LINKEDIN',
     'PROJECT_EU_CONSENT',
     'TOOL_NAME',
     'TOOL_SHORT_NAME',
