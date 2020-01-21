@@ -1,58 +1,29 @@
+{% extends "base.html" %}
+
 {% load static %}
 
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
+{% block body %}
+    <div class="wrapper">
+        <div class="main-panel">
+            <div class="header">
+                <h1><b>{{ settings.TOOL_NAME }}</b></h1>
+            </div>
 
-        <link rel="shortcut icon" type="image/png" href="{% static 'img/es_logos/es_logo.png' %}"/>
-        <title>{{ settings.PROJECT_NAME }} | {% block title %}{{ settings.TOOL_NAME }}{% endblock %}</title>
-
-        {% block extra_head %}
-        {% endblock %}
-
-        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
-        <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
-        <link href="{% static 'css/colors.css' %}" rel="stylesheet"/>
-
-        <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
-
-        {% block css %}
-        {% endblock %}
-    </head>
-
-    <body>
-        <div class="wrapper">
-            <div class="main-panel">
-                <div class="header">
-                    <h1><b>{{ settings.TOOL_NAME }}</b></h1>
-                </div>
-
-                <div class="content">
-                    <div class="container-fluid">
-                        <div class="row justify-content-center">
-                            <div class="box-standing-out">
-                                {% block content %}
-                                {% endblock %}
-                            </div>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="box-standing-out">
+                            {% block content %}
+                            {% endblock %}
                         </div>
                     </div>
                 </div>
-
-                <div class="footer-container">
-                    <a href="{{ settings.PROJECT_URL }}"><img class="footer-logo" src="{% static "img/es_logos/white_es_logo.png" %}" alt="{{ settings.PROJECT_NAME }}"></a>
-                    <div class="eu-consent">
-                        <div class="flag-eu-consent"><img class="eu-flag" src="{% static "img/eu_flag.jpg" %}" alt="European Union"></div>
-                        <div class="txt-eu-consent">{{ settings.PROJECT_EU_CONSENT}}</div>
-                    </div>
-                </div>
             </div>
+
+            {% include 'main_footer.html' %}
         </div>
+    </div>
 
-        {% block modal %}
-        {% endblock %}
-    </body>
-
-    {% block js %}
+    {% block modal %}
     {% endblock %}
-</html>
+{% endblock %}

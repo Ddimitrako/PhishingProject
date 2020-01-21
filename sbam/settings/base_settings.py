@@ -145,7 +145,10 @@ PROJECT_NAME = 'Energy Shield'
 PROJECT_URL = 'https://energy-shield.eu/'
 PROJECT_TWITTER = 'https://twitter.com/EnergyShield_'
 PROJECT_LINKEDIN = 'https://www.linkedin.com/groups/8831159/'
-PROJECT_EU_CONSENT = 'This project has received funding from the European Union’s H2020 research and innovation programme under the Grant Agreement No. 832907'
+PROJECT_EU_CONSENT = 'This project has received funding from the ' \
+                     'European Union’s H2020 research and innovation ' \
+                     'programme under the Grant Agreement No. 832907'
+
 TOOL_NAME = 'Security Culture Tool'
 TOOL_SHORT_NAME = 'SCT'
 

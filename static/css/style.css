@@ -1,28 +1,22 @@
-/* Header */
+/* Account Header */
 .header {
     color: #263C91;
     text-align: center;
-    padding: 40px 40px;
-}
-
-.header-es-logo {
-    height: 100px;
-    width: 300px;
-    object-fit: cover;
+    margin-top: 40px;
 }
 
 /* Main Context */
 .box-standing-out {
     background: white;
     padding: 80px 80px;
+    margin: 60px 0 100px 0;
     box-shadow: 0 0 10px 10px #aaa;
 }
 
-/* Footer */
+/* Main Footer */
 .footer-container {
-    background: #263C91;
+    background: #23A5E1;
     padding: 20px 0;
-    margin-top: 80px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -63,9 +57,4 @@
 /* Bootstrap Theme */
 .main-sidebar {
     background-color: #263C91;
-}
-
-.main-footer {
-    background-color: #23A5E1;
-    justify-content: space-around;
 }
