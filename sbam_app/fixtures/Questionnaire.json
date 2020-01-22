@@ -1,0 +1,92 @@
+[
+  {
+    "model": "sbam_app.Dimension",
+    "pk": 1,
+    "fields": {
+      "dimension_title": "Assets",
+      "dimension_description": "This dimension includes the designment, development, documentation and implementation of security policies and procedures that aim to protect an organisation’s assets (including people, buildings, machines, systems and information assets) by enforcing several levels of confidentiality, availability, and integrity controls.",
+      "dimension_level": "ORGANISATIONAL"
+    }
+  },
+  {
+    "model": "sbam_app.Dimension",
+    "pk": 2,
+    "fields": {
+      "dimension_title": "Continuity",
+      "dimension_description": "This dimension includes the planning, development, documentation and implementation of security policies and procedures that aim to ensure operations, services and production continuity for an organisation at predefined levels while safeguarding the reputation and interests of key stakeholders in cases of disruptive incidents.",
+      "dimension_level": "ORGANISATIONAL"
+    }
+  },
+  {
+    "model": "sbam_app.Dimension",
+    "pk": 3,
+    "fields": {
+      "dimension_title": "Access and Interactions",
+      "dimension_description": "This dimension includes the designment, development, documentation and implementation of business processes, policies and procedures that aim to ensure appropriate access to resources across the organisation while clarifying different roles and permissions. In addition, it delimits any interactions the organization has with third-party factors, such as suppliers, customers, authorities, etc.",
+      "dimension_level": "ORGANISATIONAL"
+    }
+  },
+  {
+    "model": "sbam_app.Dimension",
+    "pk": 4,
+    "fields": {
+      "dimension_title": "Operations",
+      "dimension_description": "This dimension refers to the administration of business practices to create the highest level of efficiency possible within an organisation while taking into account the security aspects that safeguard its final results.",
+      "dimension_level": "ORGANISATIONAL"
+    }
+  },
+  {
+    "model": "sbam_app.Dimension",
+    "pk": 5,
+    "fields": {
+      "dimension_title": "Security",
+      "dimension_description": " ",
+      "dimension_level": "ORGANISATIONAL"
+    }
+  },
+  {
+    "model": "sbam_app.Dimension",
+    "pk": 6,
+    "fields": {
+      "dimension_title": "Attitude",
+      "dimension_description": "This dimension refers to the feelings and beliefs employees have toward security protocols and issues.",
+      "dimension_level": "INDIVIDUAL"
+    }
+  },
+  {
+    "model": "sbam_app.Dimension",
+    "pk": 7,
+    "fields": {
+      "dimension_title": "Awareness",
+      "dimension_description": "This dimension refers to the employees’ understanding, knowledge and awareness of security issues and activities.",
+      "dimension_level": "INDIVIDUAL"
+    }
+  },
+  {
+    "model": "sbam_app.Dimension",
+    "pk": 8,
+    "fields": {
+      "dimension_title": "Behaviour",
+      "dimension_description": "This dimension refers to the actions and activities of employees that have direct or indirect impact on the security of the organization.",
+      "dimension_level": "INDIVIDUAL"
+    }
+  },
+  {
+    "model": "sbam_app.Dimension",
+    "pk": 9,
+    "fields": {
+      "dimension_title": "Competency",
+      "dimension_description": "This dimension refers to the employees’ abilities, skills, knowledge and expertise that enable them to conform with the security policies and procedures of the organisation.",
+      "dimension_level": "INDIVIDUAL"
+    }
+  },
+   {
+    "model": "sbam_app.Domain",
+    "pk": 1,
+    "fields": {
+      "dimension": 1,
+      "domain_title": "Application Software Security",
+      "domain_description": "Manage the security life cycle of all in-house developed and acquired software in order to prevent, detect, and correct security weaknesses."
+    }
+  }
+]
