@@ -1,10 +1,10 @@
 from django.urls import path
 
-from sbam_app import views
+from sbam_app.views import *
 
 app_name = 'sbam'
 
 urlpatterns = [
-    # home & signup
-    path('', views.home, name='home'),
+    path('dashboard', DashboardView, name='dashboard'),
+    path('users', PersonsView.as_view(), name='users'),
 ]

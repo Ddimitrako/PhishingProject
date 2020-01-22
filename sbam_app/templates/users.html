@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block page_name %}
+    <h1>Users</h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+    <li class="breadcrumb-item active">Users</li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="users" class="table table-bordered table-hover table-head-fixed table-responsive-lg">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                                <th>Date of Birth</th>
+                                <th>Gender</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for person in object_list %}
+                                <tr>
+                                    <td>{{ person.user.id }}</td>
+                                    <td>{{ person.user.first_name }}</td>
+                                    <td>{{ person.user.last_name }}</td>
+                                    <td>{{ person.user.username }}</td>
+                                    <td>{{ person.user.dateOfBirth }}</td>
+                                    <td>{{ person.gender.title }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block datatable_js %}
+    <script src="{% static 'admin-lte/plugins/datatables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.js' %}"></script>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(function () {
+            $('#users').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true,
+            });
+        });
+    </script>
+{% endblock %}

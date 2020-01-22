@@ -53,7 +53,7 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 
 LOGIN_URL = '/accounts/login'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/sbam/dashboard'
 LOGOUT_URL = '/accounts/logout'
 
 MIDDLEWARE = [
@@ -69,7 +69,8 @@ MIDDLEWARE = [
 ]
 
 LOGIN_EXEMPT_URLS = (
-    r'^$',
+    # TODO remove 1st line after development completion
+    r'sbam/',
     r'admin/',
     r'accounts/'
 )

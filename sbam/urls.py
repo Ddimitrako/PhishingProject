@@ -24,5 +24,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 
     # main app
-    path('', include('sbam_app.urls')),
+    path('sbam/', include('sbam_app.urls')),
 ]
