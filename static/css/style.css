@@ -5,7 +5,7 @@
     margin-top: 40px;
 }
 
-/* Main Context */
+/* Account Main Context */
 .box-standing-out {
     background: white;
     padding: 80px 80px;
@@ -54,7 +54,17 @@
     width: 70px;
 }
 
-/* Bootstrap Theme */
+/* Main Sidebar */
 .main-sidebar {
     background-color: #263C91;
+}
+
+/* Main Context */
+.page_name {
+    color: #263C91;
+}
+
+/* Datatables */
+div.dt-button-collection {
+    margin: 5px 0;
 }
