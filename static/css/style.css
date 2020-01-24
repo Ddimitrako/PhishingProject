@@ -68,3 +68,21 @@
 div.dt-button-collection {
     margin: 5px 0;
 }
+
+.dataTables_scroll {
+    position: relative
+}
+
+.dataTables_scrollHead {
+    margin-bottom: 50px;
+}
+
+.dataTables_scrollFoot {
+    position: absolute;
+    top: 50px
+}
+
+.dataTables_filter {
+    visibility: hidden;
+    height: 10px;
+}
