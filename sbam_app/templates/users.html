@@ -2,6 +2,15 @@
 
 {% load static %}
 
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/datatables/jquery.dataTables.min.js'%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/datatables-fixedheader/css/fixedHeader.bootstrap4.min.css'%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/datatables-colreorder/css/colReorder.bootstrap4.min.css'%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/datatables-keytable/css/keyTable.bootstrap4.min.css'%}"/>
+{% endblock %}
+
 {% block page_name %}
     <h1>Users</h1>
 {% endblock %}
@@ -16,7 +25,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <table id="users" class="table table-bordered table-hover table-head-fixed table-responsive-lg">
+                    <table id="users" class="table table-bordered table-hover table-head-fixed table-responsive-lg table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -25,6 +34,8 @@
                                 <th>Username</th>
                                 <th>Date of Birth</th>
                                 <th>Gender</th>
+                                <th>Telephone</th>
+                                <th>Notes</th>
                             </tr>
                         </thead>
 
@@ -37,6 +48,8 @@
                                     <td>{{ person.user.username }}</td>
                                     <td>{{ person.user.dateOfBirth }}</td>
                                     <td>{{ person.gender.title }}</td>
+                                    <td>{{ person.telephone }}</td>
+                                    <td>{{ person.notes }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -48,20 +61,25 @@
 {% endblock %}
 
 {% block datatable_js %}
-    <script src="{% static 'admin-lte/plugins/datatables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'admin-lte/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'admin-lte/plugins/datatables-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+    <script src="{% static 'admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'admin-lte/plugins/datatables-colreorder/js/dataTables.colReorder.min.js' %}"></script>
     <script src="{% static 'admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.js' %}"></script>
-{% endblock %}
+    <script src="{%  static 'admin-lte/plugins/datatables-keytable/js/dataTables.keyTable.min.js' %}"></script>
 
-{% block extra_js %}
     <script>
         $(function () {
             $('#users').DataTable({
+                "fixedHeader": true,
                 "paging": true,
-                "lengthChange": true,
                 "searching": true,
                 "ordering": true,
                 "info": true,
                 "autoWidth": true,
+                "keys": true,
+                "responsive": true,
+                "colReorder": true,
             });
         });
     </script>

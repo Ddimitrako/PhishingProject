@@ -17,11 +17,11 @@
         {% endblock %}
 
         {% block stylesheets %}
-            <link rel="stylesheet" href="{% static 'admin-lte/plugins/fontawesome-free/css/all.min.css' %}">
-            <link rel="stylesheet" href="{% static 'admin/css/vendor/ionicons.min.css'%}">
+            <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/fontawesome-free/css/all.min.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'admin/css/vendor/ionicons.min.css'%}">
             <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/adminlte.min.css' %}">
             <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
-            <link rel="stylesheet" href="{% static 'css/style.css'%}">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
         {% endblock %}
 
         {% block extra_head %}
@@ -103,7 +103,6 @@
             {% endblock %}
 
             <script src="{% static 'admin-lte/dist/js/adminlte.min.js' %}"></script>
-            <script src="{% static 'admin-lte/dist/js/demo.js' %}"></script>
         {% endblock %}
 
         {% block extra_js %}
