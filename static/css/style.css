@@ -71,19 +71,6 @@ div.dt-button-collection {
     font-size: 12px;
 }
 
-.dataTables_scroll {
-    position: relative
-}
-
-.dataTables_scrollHead {
-    margin-bottom: 50px;
-}
-
-.dataTables_scrollFoot {
-    position: absolute;
-    top: 50px
-}
-
 .dataTables_filter {
     visibility: hidden;
 }

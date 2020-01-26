@@ -29,8 +29,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
+                                <th>Full Name</th>
                                 <th>Username</th>
                                 <th>Date of Birth</th>
                                 <th>Gender</th>
@@ -43,8 +42,7 @@
                             {% for person in object_list %}
                                 <tr>
                                     <td>{{ person.user.id }}</td>
-                                    <td>{{ person.user.first_name }}</td>
-                                    <td>{{ person.user.last_name }}</td>
+                                    <td>{{ person.user.first_name }} {{ person.user.last_name }}</td>
                                     <td>{{ person.user.username }}</td>
                                     <td>{{ person.user.dateOfBirth }}</td>
                                     <td>{{ person.gender.title }}</td>
@@ -53,19 +51,6 @@
                                 </tr>
                             {% endfor %}
                         </tbody>
-
-                        <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                                <th>Date of Birth</th>
-                                <th>Gender</th>
-                                <th>Telephone</th>
-                                <th>Notes</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -92,7 +77,8 @@
 
     <script>
         $(function () {
-            $('#users tfoot th').each( function () {
+            $('#users thead tr').clone(true).appendTo( '#users thead' );
+            $('#users thead tr:eq(1) th').each( function (i) {
                 $(this).html( '<div class="input-group input-group-xs">' +
                                     '<div class="input-group-prepend">' +
                                         '<span class="input-group-text">' +
@@ -101,10 +87,20 @@
                                         '<input type="text"></input>' +
                                     '</div>' +
                                 '</div>' );
+
+                $( 'input', this ).on( 'keyup change', function () {
+                    if ( table.column(i).search() !== this.value ) {
+                        table
+                            .column(i)
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
             } );
 
             var table = $('#users').DataTable({
                 fixedHeader: true,
+                orderCellsTop: true,
                 searching: true,
                 ordering: true,
                 autoWidth: true,
@@ -153,17 +149,6 @@
                         ]
                     }
                 ]
-            });
-
-            table.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that
-                            .search(this.value)
-                            .draw();
-                    }
-                });
             });
 
             $('.buttons-copy, .buttons-print').each(function() {
