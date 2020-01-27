@@ -116,15 +116,22 @@
                 searching: true,
                 autoWidth: true,
                 select: true,
-                colReorder: {
-                    fixedColumnsLeft: 1
-                },
                 scrollY: 300,
                 scrollX: true,
                 scrollCollapse: true,
                 paging: false,
+
+                columnDefs: [
+                    {
+                        targets: 0,
+                        className: 'noVis'
+                    }
+                ],
                 fixedColumns: {
                     leftColumns: 1
+                },
+                colReorder: {
+                    fixedColumnsLeft: 1
                 },
 
                 dom: 'Bfrtip',
@@ -132,16 +139,22 @@
                     {
                         extend: 'colvis',
                         text: '<i class="fas fa-columns"></i> Columns',
-                        columns: ':gt(0)'
+                        columns: ':not(.noVis)'
                     },
                     {
                         extend: 'copy',
                         text: '<i class="far fa-copy"></i> Copy',
+                        exportOptions: {
+                            columns: ':not(.noVis):visible'
+                        },
                         titleAttr: 'Copy'
                     },
                     {
                         extend: 'print',
                         text: '<i class="fas fa-print"></i> Print',
+                        exportOptions: {
+                            columns: ':not(.noVis):visible'
+                        },
                         titleAttr: 'Print'
                     },
                     {
@@ -151,16 +164,25 @@
                             {
                                 extend: 'excel',
                                 text: '<i class="far fa-file-excel"></i>',
+                                exportOptions: {
+                                    columns: ':not(.noVis):visible'
+                                },
                                 titleAttr: 'Excel'
                             },
                             {
                                 extend: 'csv',
                                 text: '<i class="far fa-file-alt"></i>',
+                                exportOptions: {
+                                    columns: ':not(.noVis):visible'
+                                },
                                 titleAttr: 'CSV'
                             },
                             {
                                 extend: 'pdf',
                                 text: '<i class="far fa-file-pdf"></i>',
+                                exportOptions: {
+                                    columns: ':not(.noVis):visible'
+                                },
                                 titleAttr: 'PDF'
                             }
                         ]
