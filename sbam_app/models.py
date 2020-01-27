@@ -8,12 +8,13 @@ from django.utils.translation import gettext_lazy as _
 # Security Culture Model
 
 class Dimension(Model):
+    class DimensionLevel(IntegerChoices):
+        ORGANISATIONAL = 0, _('Organisational')
+        INDIVIDUAL = 1, _('Individual')
+
     dimension_title = CharField(max_length=50, help_text="Dimension title")
     dimension_description = TextField(blank=True, default='', help_text="Dimension description")
-    dimension_level = CharField(max_length=20, choices=[
-        ('ORGANISATIONAL', 'Organisational'),
-        ('INDIVIDUAL', 'Individual'),
-    ], help_text="Dimension level")
+    dimension_level = CharField(max_length=20, choices=DimensionLevel.choices, help_text="Dimension level")
 
     def __str__(self):
         return self.dimension_title
@@ -54,12 +55,13 @@ class MultipleTextChoices(Model):
 # Instantiation Model
 
 class Person(Model):
+    class Gender(IntegerChoices):
+        MALE = 0, _('Male')
+        FEMALE = 1, _('Female')
+
     user = OneToOneField(User, on_delete=CASCADE, help_text="Django User ID")
     dateOfBirth = DateField(blank=True, null=True, help_text="Person's data of birth")
-    gender = CharField(max_length=10, null=True, choices=[
-        ('MALE', 'Male'),
-        ('FEMALE', 'Female')
-    ], help_text="Person's gender")
+    gender = CharField(max_length=10, null=True, choices=Gender.choices, help_text="Person's gender")
     notes = CharField(max_length=1000, blank=True, null=True, help_text="Notes")
     telephone = CharField(max_length=20, blank=True, null=True, help_text="Person's telephone")
 
