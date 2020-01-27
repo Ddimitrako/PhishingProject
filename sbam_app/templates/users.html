@@ -44,6 +44,7 @@
                             {% for person in object_list %}
                                 <tr>
                                     <td>
+                                        <!-- TODO redirect to proper User forms (view, edit, results, delete) -->
                                         <i class="fas fa-eye mr-2"></i>
                                         <i class="far fa-edit mr-2"></i>
                                         <i class="far fa-clipboard mr-2"></i>
@@ -139,27 +140,28 @@
                     {
                         extend: 'colvis',
                         text: '<i class="fas fa-columns"></i> Columns',
-                        columns: ':not(.noVis)'
+                        columns: ':not(.noVis)',
+                        className: 'buttons-columns',
+                        titleAttr: 'Select columns'
                     },
                     {
                         extend: 'copy',
                         text: '<i class="far fa-copy"></i> Copy',
                         exportOptions: {
                             columns: ':not(.noVis):visible'
-                        },
-                        titleAttr: 'Copy'
+                        }
                     },
                     {
                         extend: 'print',
                         text: '<i class="fas fa-print"></i> Print',
                         exportOptions: {
                             columns: ':not(.noVis):visible'
-                        },
-                        titleAttr: 'Print'
+                        }
                     },
                     {
                         extend: 'collection',
                         text: '<i class="fas fa-file-export"></i> Export ',
+                        titleAttr: 'Export users to file',
                         buttons: [
                             {
                                 extend: 'excel',
@@ -186,6 +188,23 @@
                                 titleAttr: 'PDF'
                             }
                         ]
+                    },
+                    {
+                        text: '<i class="fas fa-file-upload"></i> Import',
+                        action: function ( e, dt, node, config ) {
+                            // TODO redirect to "Import Users from file" form
+                            window.location = 'dashboard';
+                        },
+                        className: 'buttons-custom',
+                        titleAttr: 'Import users from file'
+                    },
+                    {
+                        text: '<i class="fas fa-plus-circle"></i> Add new user',
+                        action: function ( e, dt, node, config ) {
+                            // TODO redirect to "Create New User" form
+                            window.location = 'dashboard';
+                        },
+                        className: 'buttons-custom'
                     }
                 ]
             });
@@ -195,7 +214,11 @@
             });
 
             $('.buttons-collection').each(function() {
-                $(this).removeClass('btn-default').addClass('btn btn-outline-info btn-sm dropdown-toggle')
+                $(this).removeClass('btn-default').addClass('btn btn-outline-info btn-sm dropdown-hover dropdown-toggle')
+            });
+
+            $('.buttons-custom').each(function() {
+                $(this).removeClass('btn-default').addClass('btn btn-outline-success btn-sm mr-1').css('float','right')
             });
         });
     </script>
