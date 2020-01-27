@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'%}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/datatables-select/css/select.bootstrap4.min.css'%}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/datatables-fixedheader/css/fixedHeader.bootstrap4.min.css'%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/datatables-fixedcolumns/css/fixedColumns.bootstrap4.min.css'%}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/datatables-colreorder/css/colReorder.bootstrap4.min.css'%}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'%}"/>
 {% endblock %}
@@ -28,6 +29,7 @@
                     <table id="users" class="table table-bordered table-hover table-head-fixed table-responsive-lg table-striped">
                         <thead>
                             <tr>
+                                <th>Actions</th>
                                 <th>ID</th>
                                 <th>Full Name</th>
                                 <th>Username</th>
@@ -41,6 +43,12 @@
                         <tbody>
                             {% for person in object_list %}
                                 <tr>
+                                    <td>
+                                        <i class="fas fa-eye mr-2"></i>
+                                        <i class="far fa-edit mr-2"></i>
+                                        <i class="far fa-clipboard mr-2"></i>
+                                        <i class="far fa-trash-alt mr-2"></i>
+                                    </td>
                                     <td>{{ person.user.id }}</td>
                                     <td>{{ person.user.first_name }} {{ person.user.last_name }}</td>
                                     <td>{{ person.user.username }}</td>
@@ -63,6 +71,7 @@
     <script src="{% static 'admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.js' %}"></script>
 
     <script src="{% static 'admin-lte/plugins/datatables-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+    <script src="{% static 'admin-lte/plugins/datatables-fixedcolumns/js/dataTables.fixedColumns.min.js' %}"></script>
     <script src="{% static 'admin-lte/plugins/datatables-colreorder/js/dataTables.colReorder.min.js' %}"></script>
     <script src="{%  static 'admin-lte/plugins/datatables-select/js/dataTables.select.min.js' %}"></script>
 
@@ -77,16 +86,20 @@
 
     <script>
         $(function () {
+            $('#users thead tr:eq(0) th:eq(0)').css('visibility', 'hidden');
             $('#users thead tr').clone(true).appendTo( '#users thead' );
-            $('#users thead tr:eq(1) th').each( function (i) {
-                $(this).html( '<div class="input-group input-group-xs">' +
-                                    '<div class="input-group-prepend">' +
+            $('#users thead tr:eq(0) th').each( function (i) {
+                var title = $(this).text();
+                $(this).html(
+                                '<div class="input-group input-group-xs">' +
+                                    '<input type="text" class="form-control" placeholder="' + title + '" />' +
+                                    '<div class="input-group-append">' +
                                         '<span class="input-group-text">' +
                                             '<i class="fas fa-filter"></i>' +
                                         '</span>' +
-                                        '<input type="text"></input>' +
                                     '</div>' +
-                                '</div>' );
+                                '</div>'
+                            );
 
                 $( 'input', this ).on( 'keyup change', function () {
                     if ( table.column(i).search() !== this.value ) {
@@ -100,22 +113,26 @@
 
             var table = $('#users').DataTable({
                 fixedHeader: true,
-                orderCellsTop: true,
                 searching: true,
-                ordering: true,
                 autoWidth: true,
                 select: true,
-                colReorder: true,
+                colReorder: {
+                    fixedColumnsLeft: 1
+                },
                 scrollY: 300,
                 scrollX: true,
                 scrollCollapse: true,
                 paging: false,
+                fixedColumns: {
+                    leftColumns: 1
+                },
 
                 dom: 'Bfrtip',
                 buttons: [
                     {
                         extend: 'colvis',
-                        text: '<i class="fas fa-columns"></i> Columns'
+                        text: '<i class="fas fa-columns"></i> Columns',
+                        columns: ':gt(0)'
                     },
                     {
                         extend: 'copy',
