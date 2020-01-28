@@ -13,8 +13,8 @@ class Dimension(Model):
         INDIVIDUAL = 1, _('Individual')
 
     dimension_title = CharField(max_length=50, help_text="Dimension title")
-    dimension_description = TextField(blank=True, default='', help_text="Dimension description")
-    dimension_level = CharField(max_length=20, choices=DimensionLevel.choices, help_text="Dimension level")
+    dimension_description = TextField(blank=True, null=True, default='', help_text="Dimension description")
+    dimension_level = SmallIntegerField(choices=DimensionLevel.choices, help_text="Dimension level")
 
     def __str__(self):
         return self.dimension_title
@@ -23,7 +23,7 @@ class Dimension(Model):
 class Domain(Model):
     dimension = ForeignKey(Dimension, on_delete=CASCADE, help_text="Dimension this domain belongs to")
     domain_title = CharField(max_length=50, help_text="Domain title")
-    domain_description = TextField(blank=True, default='', help_text="Domain description")
+    domain_description = TextField(blank=True, null=True, default='', help_text="Domain description")
 
     def __str__(self):
         return self.domain_title
@@ -61,9 +61,9 @@ class Person(Model):
 
     user = OneToOneField(User, on_delete=CASCADE, help_text="Django User ID")
     dateOfBirth = DateField(blank=True, null=True, help_text="Person's data of birth")
-    gender = CharField(max_length=10, null=True, choices=Gender.choices, help_text="Person's gender")
-    notes = CharField(max_length=1000, blank=True, null=True, help_text="Notes")
-    telephone = CharField(max_length=20, blank=True, null=True, help_text="Person's telephone")
+    gender = SmallIntegerField(blank=True, null=True, choices=Gender.choices, help_text="Person's gender")
+    notes = CharField(max_length=1000, blank=True, null=True, default='', help_text="Notes")
+    telephone = CharField(max_length=20, blank=True, null=True, default='', help_text="Person's telephone")
 
     def __str__(self):
         return self.user.get_full_name()

@@ -54,7 +54,7 @@
                                     <td>{{ person.user.first_name }} {{ person.user.last_name }}</td>
                                     <td>{{ person.user.username }}</td>
                                     <td>{{ person.user.dateOfBirth }}</td>
-                                    <td>{{ person.gender.title }}</td>
+                                    <td>{{ person.get_gender_display }}</td>
                                     <td>{{ person.telephone }}</td>
                                     <td>{{ person.notes }}</td>
                                 </tr>

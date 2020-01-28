@@ -71,6 +71,10 @@ div.dt-button-collection {
     font-size: 12px;
 }
 
+.input-group {
+    flex-wrap: nowrap;
+}
+
 .dataTables_filter {
     visibility: hidden;
 }
