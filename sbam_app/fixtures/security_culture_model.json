@@ -80,7 +80,7 @@
       "dimension_level": 1
     }
   },
-   {
+  {
     "model": "sbam_app.Domain",
     "pk": 1,
     "fields": {

@@ -29,35 +29,49 @@
                     <table id="users" class="table table-bordered table-hover table-head-fixed table-responsive-lg table-striped">
                         <thead>
                             <tr>
-                                <th>Actions</th>
-                                <th>ID</th>
-                                <th>Full Name</th>
-                                <th>Username</th>
-                                <th>Date of Birth</th>
+                                <th></th>
+                                <th>Display Name</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Employee ID</th>
+                                <th>Birth Date</th>
                                 <th>Gender</th>
+                                <th>Job Title</th>
+                                <th>Department</th>
+                                <th>Company</th>
                                 <th>Telephone</th>
+                                <th>Address</th>
                                 <th>Notes</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             {% for person in object_list %}
-                                <tr>
-                                    <td>
-                                        <!-- TODO redirect to proper User forms (view, edit, results, delete) -->
-                                        <i class="fas fa-eye mr-2"></i>
-                                        <i class="far fa-edit mr-2"></i>
-                                        <i class="far fa-clipboard mr-2"></i>
-                                        <i class="far fa-trash-alt mr-2"></i>
-                                    </td>
-                                    <td>{{ person.user.id }}</td>
-                                    <td>{{ person.user.first_name }} {{ person.user.last_name }}</td>
-                                    <td>{{ person.user.username }}</td>
-                                    <td>{{ person.user.dateOfBirth }}</td>
-                                    <td>{{ person.get_gender_display }}</td>
-                                    <td>{{ person.telephone }}</td>
-                                    <td>{{ person.notes }}</td>
-                                </tr>
+                                {% if person.user.is_active %}
+                                    <tr>
+                                        <td>
+                                            <!-- TODO redirect to proper User forms (view, edit, results, delete) -->
+                                            <i class="fas fa-eye mr-2" title="View user profile"></i>
+                                            <i class="far fa-edit mr-2" title="Edit user profile"></i>
+                                            <i class="far fa-clipboard mr-2" title="View user stats"></i>
+                                            <i class="far fa-trash-alt mr-2" title="Delete user"></i>
+                                        </td>
+                                        <td>{{ person.display_name }}</td>
+                                        <td>{{ person.user.first_name }}</td>
+                                        <td>{{ person.user.last_name }}</td>
+                                        <td>{{ person.user.email }}</td>
+                                        <td>{{ person.employee_id }}</td>
+                                        <td>{{ person.birth_date }}</td>
+                                        <td>{{ person.get_gender_display }}</td>
+                                        <td>{{ person.job_title }}</td>
+                                        <td>{{ person.department }}</td>
+                                        <td>{{ person.company }}</td>
+                                        <td>{{ person.telephone }}</td>
+                                        <td>{{ person.address }}</td>
+                                        <td>{{ person.notes }}</td>
+                                    </tr>
+                                {% endif %}
                             {% endfor %}
                         </tbody>
                     </table>
@@ -87,29 +101,30 @@
 
     <script>
         $(function () {
-            $('#users thead tr:eq(0) th:eq(0)').css('visibility', 'hidden');
             $('#users thead tr').clone(true).appendTo( '#users thead' );
             $('#users thead tr:eq(0) th').each( function (i) {
-                var title = $(this).text();
-                $(this).html(
-                                '<div class="input-group input-group-xs">' +
-                                    '<input type="text" class="form-control" placeholder="' + title + '" />' +
-                                    '<div class="input-group-append">' +
-                                        '<span class="input-group-text">' +
-                                            '<i class="fas fa-filter"></i>' +
-                                        '</span>' +
-                                    '</div>' +
-                                '</div>'
-                            );
+                if ( i !== 0 ) {
+                    var title = $(this).text();
+                    $(this).html(
+                                    '<div class="input-group input-group-xs">' +
+                                        '<input type="text" class="form-control" placeholder="' + title + '" />' +
+                                        '<div class="input-group-append">' +
+                                            '<span class="input-group-text">' +
+                                                '<i class="fas fa-filter"></i>' +
+                                            '</span>' +
+                                        '</div>' +
+                                    '</div>'
+                    );
 
-                $( 'input', this ).on( 'keyup change', function () {
-                    if ( table.column(i).search() !== this.value ) {
-                        table
-                            .column(i)
-                            .search( this.value )
-                            .draw();
-                    }
-                } );
+                    $('input', this).on('keyup change', function () {
+                        if (table.column(i).search() !== this.value) {
+                            table
+                                .column(i)
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+                }
             } );
 
             var table = $('#users').DataTable({
@@ -121,18 +136,21 @@
                 scrollX: true,
                 scrollCollapse: true,
                 paging: false,
+                order: [[1, 'desc']],
 
                 columnDefs: [
                     {
                         targets: 0,
-                        className: 'noVis'
+                        className: 'noVis',
+                        orderable: false,
+                        width: '120px'
                     }
                 ],
                 fixedColumns: {
-                    leftColumns: 1
+                    leftColumns: 2
                 },
                 colReorder: {
-                    fixedColumnsLeft: 1
+                    fixedColumnsLeft: 2
                 },
 
                 dom: 'Bfrtip',

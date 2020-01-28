@@ -52,7 +52,7 @@ class MultipleTextChoices(Model):
         return self.choice_text
 
 
-# Instantiation Model
+# Organization Model
 
 class Person(Model):
     class Gender(IntegerChoices):
@@ -60,10 +60,34 @@ class Person(Model):
         FEMALE = 1, _('Female')
 
     user = OneToOneField(User, on_delete=CASCADE, help_text="Django User ID")
-    dateOfBirth = DateField(blank=True, null=True, help_text="Person's data of birth")
+
+    # Personal Info
+    display_name = CharField(max_length=200, blank=True, null=True, default='', help_text="Person's display name")
+    employee_id = IntegerField(unique=True, blank=True, null=True,
+                               error_messages={
+                                   'unique': _("A user with that employee id already exists."),
+                               },
+                               help_text="Person's employee id")
+    birth_date = DateField(blank=True, null=True, help_text="Person's birth date")
     gender = SmallIntegerField(blank=True, null=True, choices=Gender.choices, help_text="Person's gender")
-    notes = CharField(max_length=1000, blank=True, null=True, default='', help_text="Notes")
+
+    # Organization Info
+    is_manager = BooleanField(
+        _('manager status'),
+        default=False,
+        help_text=_('Designates whether the user can have advanced business privileges within the tool.'),
+    )
+    job_title = CharField(max_length=100, blank=True, null=True, default='', help_text="Person's job title")
+    department = CharField(max_length=200, blank=True, null=True, default='',
+                           help_text="Department this user belongs to")
+    company = CharField(max_length=200, blank=True, null=True, default='', help_text="Company this user belongs to")
+
+    # Contact Details
     telephone = CharField(max_length=20, blank=True, null=True, default='', help_text="Person's telephone")
+    address = CharField(max_length=200, blank=True, null=True, default='', help_text="Person's working address")
+
+    # Generic Info
+    notes = CharField(max_length=1000, blank=True, null=True, default='', help_text="Notes")
 
     def __str__(self):
         return self.user.get_full_name()

@@ -70,7 +70,13 @@ you shall need to create a workplace with the below requirements:
 7. Migrate all committed migrations to properly update the database schema:
         
         py manage migrate
-8. Run the project:
+8. Load data to the database using django **fixtures** directory:
+
+        py manage.py loaddata sbam_app/fixtures/<json file>
+        
+   **_Note_**: File `sample_data.json` contains a number of __sample data__ used for 
+   development purposes.
+9. Run the project:
 
         py manage runserver
-9. Enjoy developing!
+10. Enjoy developing!
