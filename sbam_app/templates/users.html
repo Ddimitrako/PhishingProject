@@ -136,7 +136,7 @@
                 scrollX: true,
                 scrollCollapse: true,
                 paging: false,
-                order: [[1, 'desc']],
+                order: [[1, 'asc']],
 
                 columnDefs: [
                     {
@@ -147,7 +147,7 @@
                     }
                 ],
                 fixedColumns: {
-                    leftColumns: 2
+                    leftColumns: 1
                 },
                 colReorder: {
                     fixedColumnsLeft: 2
@@ -157,13 +157,14 @@
                 buttons: [
                     {
                         extend: 'colvis',
+                        className: 'btn btn-outline-info btn-sm dropdown-hover dropdown-toggle',
                         text: '<i class="fas fa-columns"></i> Columns',
-                        columns: ':not(.noVis)',
-                        className: 'buttons-columns',
-                        titleAttr: 'Select columns'
+                        titleAttr: 'Select columns',
+                        columns: ':not(.noVis)'
                     },
                     {
                         extend: 'copy',
+                        className: 'btn btn-outline-info btn-sm',
                         text: '<i class="far fa-copy"></i> Copy',
                         exportOptions: {
                             columns: ':not(.noVis):visible'
@@ -171,6 +172,7 @@
                     },
                     {
                         extend: 'print',
+                        className: 'btn btn-outline-info btn-sm',
                         text: '<i class="fas fa-print"></i> Print',
                         exportOptions: {
                             columns: ':not(.noVis):visible'
@@ -178,65 +180,74 @@
                     },
                     {
                         extend: 'collection',
+                        className: 'btn btn-outline-info btn-sm dropdown-hover dropdown-toggle',
                         text: '<i class="fas fa-file-export"></i> Export ',
-                        titleAttr: 'Export users to file',
+                        titleAttr: 'Export to file',
                         buttons: [
                             {
                                 extend: 'excel',
+                                className: 'btn btn-outline-info btn-sm mr-1',
                                 text: '<i class="far fa-file-excel"></i>',
+                                titleAttr: 'Excel',
                                 exportOptions: {
                                     columns: ':not(.noVis):visible'
-                                },
-                                titleAttr: 'Excel'
+                                }
                             },
                             {
                                 extend: 'csv',
+                                className: 'btn btn-outline-info btn-sm mr-1',
                                 text: '<i class="far fa-file-alt"></i>',
+                                titleAttr: 'CSV',
                                 exportOptions: {
                                     columns: ':not(.noVis):visible'
-                                },
-                                titleAttr: 'CSV'
+                                }
                             },
                             {
                                 extend: 'pdf',
+                                className: 'btn btn-outline-info btn-sm mr-1',
                                 text: '<i class="far fa-file-pdf"></i>',
+                                titleAttr: 'PDF',
                                 exportOptions: {
                                     columns: ':not(.noVis):visible'
-                                },
-                                titleAttr: 'PDF'
+                                }
                             }
                         ]
                     },
                     {
+                        className: 'btn btn-outline-success btn-sm mr-1 dt-action-button',
                         text: '<i class="fas fa-file-upload"></i> Import',
                         action: function ( e, dt, node, config ) {
                             // TODO redirect to "Import Users from file" form
                             window.location = 'dashboard';
                         },
-                        className: 'buttons-custom',
                         titleAttr: 'Import users from file'
                     },
                     {
-                        text: '<i class="fas fa-plus-circle"></i> Add new user',
-                        action: function ( e, dt, node, config ) {
-                            // TODO redirect to "Create New User" form
-                            window.location = 'dashboard';
-                        },
-                        className: 'buttons-custom'
+                        extend: 'collection',
+                        className: 'btn btn-outline-success btn-sm mr-1 dropdown-hover dropdown-toggle dt-action-button',
+                        text: '<i class="fas fa-plus-circle"></i> Add',
+                        buttons: [
+                            {
+                                className: 'btn btn-outline-success btn-sm mr-1',
+                                text: '<i class="fas fa-user"></i>',
+                                action: function (e, dt, node, config) {
+                                    // TODO redirect to "Create New User" form
+                                    window.location = 'dashboard';
+                                },
+                                titleAttr: 'New user'
+                            },
+                            {
+                                className: 'btn btn-outline-success btn-sm mr-1',
+                                text: '<i class="fas fa-users"></i>',
+                                action: function (e, dt, node, config) {
+                                    // TODO redirect to "Create New Group" form
+                                    window.location = 'dashboard';
+                                },
+                                titleAttr: 'New group'
+                            }
+                        ]
                     }
                 ]
-            });
-
-            $('.buttons-copy, .buttons-print').each(function() {
-                $(this).removeClass('btn-default').addClass('btn btn-outline-info btn-sm')
-            });
-
-            $('.buttons-collection').each(function() {
-                $(this).removeClass('btn-default').addClass('btn btn-outline-info btn-sm dropdown-hover dropdown-toggle')
-            });
-
-            $('.buttons-custom').each(function() {
-                $(this).removeClass('btn-default').addClass('btn btn-outline-success btn-sm mr-1').css('float','right')
             });
         });
     </script>

@@ -65,16 +65,27 @@
 }
 
 /* Datatables */
-div.dt-button-collection {
-    margin: 5px 0;
-    font-family: inherit;
-    font-size: 12px;
-}
-
-.input-group {
-    flex-wrap: nowrap;
+th {
+    white-space: nowrap;
 }
 
 .dataTables_filter {
-    visibility: hidden;
+    margin: 40px 4px 0;
+}
+
+.dt-button-collection {
+    margin: 5px 0;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.dt-action-button {
+    float: right;
+}
+
+.buttons-columnVisibility {
+    margin: 5px 0;
+    color: #17a2b8;
+    background: white;
+    border: 1px solid;
 }
