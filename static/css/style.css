@@ -1,3 +1,7 @@
+body {
+    font-size: 13px;
+}
+
 /* Account Header */
 .header {
     color: #263C91;
@@ -88,4 +92,8 @@ th {
     color: #17a2b8;
     background: white;
     border: 1px solid;
+}
+
+.input-group {
+    flex-wrap: nowrap;
 }
