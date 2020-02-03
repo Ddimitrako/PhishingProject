@@ -9,6 +9,5 @@ def DashboardView(request):
 
 
 class PersonsView(ListView):
-    model = Person
+    queryset = Person.objects.filter(user__is_active=True)
     template_name = 'users.html'
-    context_object_name = 'users_list'
