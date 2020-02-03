@@ -1,4 +1,4 @@
-body {
+body, .dt-button-collection {
     font-size: 13px;
 }
 
@@ -69,7 +69,7 @@ body {
 }
 
 /* Datatables */
-th {
+th, .sorting_1 {
     white-space: nowrap;
 }
 
@@ -77,10 +77,24 @@ th {
     margin: 40px 4px 0;
 }
 
+.dt-col-filter {
+    flex-wrap: nowrap;
+}
+
+.dt-col-filter > .form-control {
+    width: 100px;
+}
+
+.dt-col-filter > .form-control, .dt-col-filter > .input-group-append > .input-group-text {
+    background-color: #f2f4f6;
+    font-size: 13px;
+    padding: 0 10px 0 5px;
+    border: 0;
+}
+
 .dt-button-collection {
     margin: 5px 0;
     font-family: inherit;
-    font-size: 13px;
 }
 
 .dt-action-button {
@@ -94,6 +108,7 @@ th {
     border: 1px solid;
 }
 
-.input-group {
-    flex-wrap: nowrap;
+table.dataTable tbody tr.selected, .table-hover tbody tr:hover  {
+    color: white;
+    background-color: dodgerblue !important;
 }
