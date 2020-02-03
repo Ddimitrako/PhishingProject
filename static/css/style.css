@@ -18,18 +18,22 @@ body, .dt-button-collection {
 }
 
 /* Main Footer */
+.main-footer {
+    padding: 0.1rem
+}
+
 .footer-container {
     background: #23A5E1;
-    padding: 20px 0;
+    padding: 0.3rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
-    flex-wrap: wrap;
 }
 
 .footer-logo {
-    height: 60px;
-    width: 300px;
+    height: 50px;
+    width: 150px;
+    padding-bottom: 5px;
     object-fit: cover;
 }
 
@@ -38,13 +42,13 @@ body, .dt-button-collection {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 10px;
+    padding: 5px 5px;
     background-color: white;
     box-shadow: 0 0 3px 3px #aaa;
 }
 
 .txt-eu-consent {
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 600;
     color: #000;
 }
@@ -55,7 +59,7 @@ body, .dt-button-collection {
 }
 
 .eu-flag {
-    width: 70px;
+    width: 30px;
 }
 
 /* Main Sidebar */
