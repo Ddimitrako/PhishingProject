@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db.models import *
 from django.utils.translation import gettext_lazy as _
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # TODO decide how to handle delete/disable in model objects
@@ -54,7 +56,7 @@ class MultipleTextChoices(Model):
 
 # Organization Model
 
-class Person(Model):
+class UserProfile(Model):
     class Gender(IntegerChoices):
         MALE = 0, _('Male')
         FEMALE = 1, _('Female')
@@ -91,6 +93,15 @@ class Person(Model):
 
     def __str__(self):
         return self.user.get_full_name()
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            UserProfile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.userprofile.save()
 
 
 class UserChoice(Model):

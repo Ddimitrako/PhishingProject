@@ -32,7 +32,7 @@
     </thead>
 
     <tbody>
-        {% for person in object_list %}
+        {% for user in users_list %}
             <tr>
                 <td>
                     <!-- TODO redirect to proper User forms (view, edit, results, delete) -->
@@ -41,19 +41,19 @@
                     <i class="far fa-clipboard mr-2" title="View user stats"></i>
                     <i class="far fa-trash-alt mr-2" title="Delete user"></i>
                 </td>
-                <td>{{ person.display_name }}</td>
-                <td>{{ person.user.first_name }}</td>
-                <td>{{ person.user.last_name }}</td>
-                <td>{{ person.user.email }}</td>
-                <td>{{ person.employee_id }}</td>
-                <td>{{ person.birth_date }}</td>
-                <td>{{ person.get_gender_display }}</td>
-                <td>{{ person.job_title }}</td>
-                <td>{{ person.department }}</td>
-                <td>{{ person.company }}</td>
-                <td>{{ person.telephone }}</td>
-                <td>{{ person.address }}</td>
-                <td>{{ person.notes }}</td>
+                <td>{{ user.userprofile.display_name }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.userprofile.employee_id }}</td>
+                <td>{{ user.userprofile.birth_date }}</td>
+                <td>{{ user.userprofile.get_gender_display }}</td>
+                <td>{{ user.userprofile.job_title }}</td>
+                <td>{{ user.userprofile.department }}</td>
+                <td>{{ user.userprofile.company }}</td>
+                <td>{{ user.userprofile.telephone }}</td>
+                <td>{{ user.userprofile.address }}</td>
+                <td>{{ user.userprofile.notes }}</td>
             </tr>
         {% endfor %}
     </tbody>

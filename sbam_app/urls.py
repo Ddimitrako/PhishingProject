@@ -6,5 +6,5 @@ app_name = 'sbam'
 
 urlpatterns = [
     path('dashboard', DashboardView, name='dashboard'),
-    path('users', PersonsView.as_view(), name='users'),
+    path('users', UsersView.as_view(), name='users'),
 ]

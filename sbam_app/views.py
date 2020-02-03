@@ -8,6 +8,7 @@ def DashboardView(request):
     return render(request, 'dashboard.html')
 
 
-class PersonsView(ListView):
-    queryset = Person.objects.filter(user__is_active=True)
+class UsersView(ListView):
+    queryset = User.objects.filter(is_active=True)
     template_name = 'users.html'
+    context_object_name = 'users_list'
