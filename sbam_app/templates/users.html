@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">Home</a></li>
     <li class="breadcrumb-item active">Users</li>
 {% endblock %}
 
@@ -41,7 +41,11 @@
                     <i class="far fa-clipboard mr-2" title="View user stats"></i>
                     <i class="far fa-trash-alt mr-2" title="Delete user"></i>
                 </td>
-                <td>{{ user.userprofile.display_name }}</td>
+                <td>
+                    <a href="{% url 'sbam:user_profile' user.username %}">
+                        {{ user.userprofile.display_name }}
+                    </a>
+                </td>
                 <td>{{ user.first_name }}</td>
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.email }}</td>

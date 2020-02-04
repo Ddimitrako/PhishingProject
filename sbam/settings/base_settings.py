@@ -69,8 +69,6 @@ MIDDLEWARE = [
 ]
 
 LOGIN_EXEMPT_URLS = (
-    # TODO remove 1st line after development completion
-    r'sbam/',
     r'admin/',
     r'accounts/'
 )

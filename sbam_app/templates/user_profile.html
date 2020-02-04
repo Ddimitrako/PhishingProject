@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block page_name %}
+    <strong><i class="fas fa-address-card mr-2"></i> User Profile</strong>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:users' %}">Users</a></li>
+    <li class="breadcrumb-item active">User Profile</li>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit">Save changes</button>
+    </form>
+{% endblock %}
