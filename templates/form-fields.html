@@ -11,7 +11,7 @@
 
 {% for field in form %}
     <div class="row">
-        <div class="form-group col">
+        <div class="form-group {% if 'sbam' in request.path_info %} m-2 {% else %} col {% endif %}">
             <label class="control-label">
                 {{ field.label }}
                 {% if field.field.required %}
