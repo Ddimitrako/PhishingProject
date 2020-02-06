@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/daterangepicker/daterangepicker.css' %}"/>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'admin-lte/plugins/moment/moment.min.js' %}"></script>
+    <script src="{% static 'admin-lte/plugins/daterangepicker/daterangepicker.js' %}"></script>
+
+    <script>
+        $(function () {
+            $('input[class="form-control form-control-sm datepicker"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1930,
+                maxYear: parseInt(moment().format('YYYY'), 10),
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
+            });
+        });
+    </script>
+{% endblock %}

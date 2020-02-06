@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-
-{% load static %}
+{% extends "base_form.html" %}
 
 {% block page_name %}
     <strong><i class="fas fa-address-card mr-2"></i> User Profile</strong>
@@ -14,9 +12,113 @@
 
 {% block content %}
     <form method="post">
-        {% csrf_token %}
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-        <button type="submit">Save changes</button>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle"
+                                 src="" alt="User profile picture">
+                        </div>
+
+                        <h3 class="profile-username text-center">{{ profile_form.display_name.value }}</h3>
+                        <p class="text-muted text-center">{{ profile_form.job_title.value }}</p>
+
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Groups</b> <a class="float-right"></a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Campaigns</b> <a class="float-right"></a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Results</b> <a class="float-right"></a>
+                            </li>
+                        </ul>
+
+                        <!-- TODO add a graph with profile completeness as in mockup -->
+
+                        <button class="btn btn-outline-info btn-sm" type="submit" title="Save changes">
+                            <i class="fas fa-user-edit mr-2"></i>Save
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm float-right ml-2" title="Delete user">
+                            <i class="fas fa-user-times mr-2"></i>Delete
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm float-right" title="Disable user">
+                            <i class="fas fa-user-slash mr-2"></i>Disable
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card card-primary card-outline card-outline-tabs">
+                    <div class="card-header pb-4 border-bottom-0">
+                        <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="user-profile-personal-info-tab" data-toggle="pill"
+                                   href="#user-profile-personal-info" role="tab"
+                                   aria-controls="user-profile-personal-info"
+                                   aria-selected="true"><i class="fas fa-id-badge mr-2"></i> Personal Info</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="user-profile-status-tab" data-toggle="pill"
+                                   href="#user-profile-status" role="tab"
+                                   aria-controls="user-profile-status"
+                                   aria-selected="false"><i class="fas fa-user-shield mr-2"></i> Status</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="user-profile-evaluations-tab" data-toggle="pill"
+                                   href="#user-profile-evaluations" role="tab"
+                                   aria-controls="user-profile-evaluations"
+                                   aria-selected="false"><i class="fas fa-star mr-2"></i> Evaluations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="user-profile-messages-tab" data-toggle="pill"
+                                   href="#user-profile-messages" role="tab"
+                                   aria-controls="user-profile-messages"
+                                   aria-selected="false"><i class="fas fa-envelope mr-2"></i> Messages</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="user-profile-tips-tab" data-toggle="pill"
+                                   href="#user-profile-tips" role="tab"
+                                   aria-controls="user-profile-tips"
+                                   aria-selected="false"><i class="fas fa-glasses mr-2"></i> Tips</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="user-profile-settings-tab" data-toggle="pill"
+                                   href="#user-profile-settings" role="tab"
+                                   aria-controls="user-profile-settings"
+                                   aria-selected="false"><i class="fas fa-cogs mr-2"></i> Settings</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="custom-tabs-three-tabContent">
+                            <div class="tab-pane fade active show" id="user-profile-personal-info" role="tabpanel"
+                                 aria-labelledby="user-profile-personal-info-tab">
+                                {% csrf_token %}
+                                {% include 'form-fields.html' with form=profile_form %}
+                            </div>
+                            <div class="tab-pane fade" id="user-profile-status" role="tabpanel"
+                                 aria-labelledby="user-profile-status-tab">
+                            </div>
+                            <div class="tab-pane fade" id="user-profile-evaluations" role="tabpanel"
+                                 aria-labelledby="user-profile-evaluations-tab">
+                            </div>
+                            <div class="tab-pane fade" id="user-profile-messages" role="tabpanel"
+                                 aria-labelledby="user-profile-messages-tab">
+                            </div>
+                            <div class="tab-pane fade" id="user-profile-tips" role="tabpanel"
+                                 aria-labelledby="user-profile-tips-tab">
+                            </div>
+                            <div class="tab-pane fade" id="user-profile-settings" role="tabpanel"
+                                 aria-labelledby="user-profile-settings-tab">
+                                {% include 'form-fields.html' with form=user_form %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 {% endblock %}

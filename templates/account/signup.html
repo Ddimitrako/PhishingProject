@@ -12,11 +12,11 @@
     <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
         {% csrf_token %}
 
-        {% include "account/util/form-fields.html" %}
+        {% include "form-fields.html" %}
 
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <button class="btn btn-primary" type="submit">{% trans "Sign Up" %}</button>
+        <button class="btn btn-primary btn-sm mt-3" type="submit">{% trans "Sign Up" %}</button>
     </form>
 {% endblock %}

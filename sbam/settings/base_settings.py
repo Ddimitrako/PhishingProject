@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'adminlte3',
     'adminlte3_theme',
 
+    # form tools
+    'widget_tweaks',
+
     # apps
     'sbam_app',
 ]

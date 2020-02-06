@@ -1,0 +1,81 @@
+{% load widget_tweaks %}
+
+{% if form.non_field_errors %}
+    {% for err in form.non_field_errors %}
+        <div class="text-danger padding-vertical-3">
+            <i class="fa fa-exclamation-triangle"></i>
+            {{ err }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% for field in form %}
+    <div class="row">
+        <div class="form-group m-2">
+            <label class="control-label">
+                {{ field.label }}
+                {% if field.field.required %}
+                    <span class="text-danger">*</span>
+                {% endif %}
+            </label>
+
+            {% if field.label == "Username" %}
+                <div class="input-group">
+                    {{ field|add_class:"form-control form-control-sm" }}
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+            {% elif field|field_type == "passwordfield" %}
+                <div class="input-group">
+                    {{ field|add_class:"form-control form-control-sm" }}
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+            {% elif field|field_type == "emailfield" %}
+                <div class="input-group">
+                    {{ field|add_class:"form-control form-control-sm" }}
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+            {% elif field|field_type == 'booleanfield' %}
+                {{ field }}
+            {% elif field|field_type == 'datefield' %}
+                {{ field|add_class:"form-control form-control-sm datepicker" }}
+            {% else %}
+                {{ field|add_class:"form-control form-control-sm" }}
+            {% endif %}
+
+
+            {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+
+            {% if field.errors %}
+                {% for err in field.errors %}
+                    <div class="text-danger padding-bottom-2">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        {{ err }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+
+            {% if field.auto_id == 'id_password' %}
+                <span>
+                    <a class="o-blue" style="display: block;font-size: 12px;" href="/accounts/password/reset/">
+                        <b>Forgot Password?</b>
+                    </a>
+                </span>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

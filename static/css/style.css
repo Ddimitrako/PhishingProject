@@ -118,3 +118,13 @@ table.dataTable tbody tr.selected, .table-hover tbody tr:hover {
     color: white;
     background-color: dodgerblue !important;
 }
+
+/* Forms */
+.input-group-append > .input-group-text {
+    background-color: transparent;
+    color: #777;
+}
+
+.input-group > .form-control {
+    border-right: 0;
+}
