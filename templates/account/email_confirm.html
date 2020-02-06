@@ -6,7 +6,7 @@
 
 
 {% block content %}
-    <h1 class="o-lightblue">{% trans "Confirm Email Address" %}</h1>
+    <h2>{% trans "Confirm Email Address" %}</h2>
 
     {% if confirmation %}
         {% user_display confirmation.email_address.user as user_display %}
@@ -15,7 +15,7 @@
 
         <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
         {% csrf_token %}
-            <button  class="btn btn-primary btn-sm mt-3" type="submit">{% trans 'Confirm' %}</button>
+            <button  class="btn btn-primary btn-block btn-sm mt-3" type="submit">{% trans 'Confirm' %}</button>
         </form>
     {% else %}
         {% url 'account_email' as email_url %}
