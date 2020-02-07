@@ -3,19 +3,24 @@ body, .dt-button-collection {
 }
 
 /* Account Header */
-.header {
+.account-header {
     color: #263C91;
     text-align: center;
-    margin-top: 40px;
+    margin: 40px 0 60px 0;
 }
 
 /* Account Main Context */
+.account-content {
+    margin-left: 0 !important;
+    justify-items: center;
+    background: white;
+}
+
 .box-standing-out {
     background: white;
     padding: 40px 40px;
-    margin: 40px 0 80px 0;
     box-shadow: 0 0 10px 10px #aaa;
-    max-width: 400px;
+    width: 400px;
 }
 
 .box-standing-out > h2 {
@@ -30,10 +35,6 @@ body, .dt-button-collection {
 }
 
 /* Main Footer */
-.main-footer {
-    padding: 0.1rem
-}
-
 .footer-container {
     background: #23A5E1;
     padding: 0.3rem;
