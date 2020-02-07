@@ -146,6 +146,10 @@ table.dataTable tbody tr.selected, .table-hover tbody tr:hover {
     border-right: 0;
 }
 
+.input-group .form-control:focus ~ .input-group-append .input-group-text {
+    border-color:#80bdff
+}
+
 .user-block {
     display: flex;
     flex-wrap: wrap;
