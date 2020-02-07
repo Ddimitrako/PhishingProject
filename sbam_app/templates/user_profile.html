@@ -93,11 +93,47 @@
                         </ul>
                     </div>
                     <div class="card-body">
-                        <div class="tab-content" id="custom-tabs-three-tabContent">
+                        <div class="tab-content">
                             <div class="tab-pane fade active show" id="user-profile-personal-info" role="tabpanel"
                                  aria-labelledby="user-profile-personal-info-tab">
-                                {% csrf_token %}
-                                {% include 'form-fields.html' with form=profile_form %}
+                                <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item user-block p-0 border-0" >
+                                        {% csrf_token %}
+                                        {% include 'form-fields.html' with form=profile_form %}
+                                    </li>
+                                    <li class="list-group-item p-0">
+                                        <div class="card collapsed-card shadow-none m-0">
+                                            <div class="card-header pl-2">
+                                                <i class="far fa-address-book mr-2"></i><b> Contact Details</b>
+                                                <div class="card-tools">
+                                                    <button type="button" class="btn btn-tool"
+                                                            data-card-widget="collapse">
+                                                        <i class="fas fa-sort-down"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="card-body user-block">
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item p-0">
+                                        <div class="card collapsed-card shadow-none m-0">
+                                            <div class="card-header pl-2">
+                                                <i class="fas fa-briefcase mr-2"></i><b> Job History</b>
+                                                <div class="card-tools">
+                                                    <button type="button" class="btn btn-tool"
+                                                            data-card-widget="collapse">
+                                                        <i class="fas fa-sort-down"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="tab-pane fade" id="user-profile-status" role="tabpanel"
                                  aria-labelledby="user-profile-status-tab">

@@ -10,8 +10,8 @@
 {% endif %}
 
 {% for field in form %}
-    <div class="row">
-        <div class="form-group {% if 'sbam' in request.path_info %} col-4 {% else %} col {% endif %}">
+    <div class="{% if 'accounts' in request.path_info %}col-12 p-0{% else %}col-5 mr-3{% endif %}">
+        <div class="form-group">
             <label class="control-label">
                 {{ field.label }}
                 {% if field.field.required %}
@@ -19,41 +19,44 @@
                 {% endif %}
             </label>
 
-            {% if field.label == "Username" %}
-                <div class="input-group">
-                    {{ field|add_class:"form-control form-control-sm" }}
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
+            {% with field_class="form-control form-control-sm" %}
+                {% if field|field_type == 'booleanfield' %}
+                    {{ field }}
+                {% elif field|field_type == 'datefield' %}
+                    {{ field|add_class:"datepicker"|add_class:field_class }}
+                {% else %}
+                    {% if field.label == "Username" %}
+                        <div class="input-group">
+                            {{ field|add_class:field_class }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            {% elif field|field_type == "passwordfield" %}
-                <div class="input-group">
-                    {{ field|add_class:"form-control form-control-sm" }}
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
+                    {% elif field|widget_type == "passwordinput" %}
+                        <div class="input-group">
+                            {{ field|add_class:field_class }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            {% elif field|field_type == "emailfield" %}
-                <div class="input-group">
-                    {{ field|add_class:"form-control form-control-sm" }}
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                    {% elif field|field_type == "emailfield" %}
+                        <div class="input-group">
+                            {{ field|add_class:field_class }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            {% elif field|field_type == 'booleanfield' %}
-                {{ field }}
-            {% elif field|field_type == 'datefield' %}
-                {{ field|add_class:"form-control form-control-sm datepicker" }}
-            {% else %}
-                {{ field|add_class:"form-control form-control-sm" }}
-            {% endif %}
-
+                    {% else %}
+                        {{ field|add_class:field_class }}
+                    {% endif %}
+                {% endif %}
+            {% endwith %}
 
             {% if field.help_text %}
                 <small class="form-text text-muted">{{ field.help_text }}</small>

@@ -26,12 +26,16 @@ body, .dt-button-collection {
 .box-standing-out > h2 {
     color: #23A5E1;
     text-align: center;
-    margin: 10px 10px;
+    padding: 10px 0 30px 0;
 }
 
-.box-standing-out > h4 {
+.box-standing-out > h5 {
     color: #263C91;
     text-align: center;
+}
+
+.box-standing-out > p {
+    text-align: justify;
 }
 
 /* Main Footer */
@@ -134,10 +138,15 @@ table.dataTable tbody tr.selected, .table-hover tbody tr:hover {
 
 /* Forms */
 .input-group-append > .input-group-text {
-    background-color: transparent;
+    background: transparent;
     color: #777;
 }
 
 .input-group > .form-control {
     border-right: 0;
+}
+
+.user-block {
+    display: flex;
+    flex-wrap: wrap;
 }
