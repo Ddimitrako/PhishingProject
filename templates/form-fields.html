@@ -34,15 +34,31 @@
                                 </div>
                             </div>
                         </div>
-                    {% elif field|widget_type == "passwordinput" %}
+                    {% elif field|widget_type == "passwordinput" or field.auto_id == 'id_password' %}
                         <div class="input-group">
-                            {{ field|add_class:field_class }}
+                            {{ field|attr:"type:password"|add_class:field_class }}
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
                                 </div>
                             </div>
                         </div>
+
+                        {% if field.auto_id == 'id_password' %}
+                            {% if  not user.is_authenticated %}
+                                <span>
+                                    <a style="display: block;font-size: 12px;" href="{% url 'account_reset_password' %}">
+                                        Forgot Password?
+                                    </a>
+                                </span>
+                            {% else %}
+                                <span>
+                                    <a style="display: block;font-size: 12px;" href="{% url 'account_change_password' %}">
+                                        Change Password?
+                                    </a>
+                                </span>
+                            {% endif %}
+                        {% endif %}
                     {% elif field|field_type == "emailfield" %}
                         <div class="input-group">
                             {{ field|add_class:field_class }}
@@ -69,15 +85,6 @@
                         {{ err }}
                     </div>
                 {% endfor %}
-            {% endif %}
-
-
-            {% if field.auto_id == 'id_password' %}
-                <span>
-                    <a style="display: block;font-size: 12px;" href="/accounts/password/reset/">
-                        <b>Forgot Password?</b>
-                    </a>
-                </span>
             {% endif %}
         </div>
     </div>
