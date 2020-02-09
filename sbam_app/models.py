@@ -65,11 +65,6 @@ class UserProfile(Model):
 
     # Personal Info
     display_name = CharField(max_length=200, blank=True, null=True, default='', help_text="Person's display name")
-    employee_id = IntegerField(unique=True, blank=True, null=True,
-                               error_messages={
-                                   'unique': _("A user with that employee id already exists."),
-                               },
-                               help_text="Person's employee id")
     birth_date = DateField(blank=True, null=True, help_text="Person's birth date")
     gender = SmallIntegerField(blank=True, null=True, choices=Gender.choices, help_text="Person's gender")
 
@@ -79,6 +74,11 @@ class UserProfile(Model):
         default=False,
         help_text=_('Designates whether the user can have advanced business privileges within the tool.'),
     )
+    employee_id = IntegerField(unique=True, blank=True, null=True,
+                               error_messages={
+                                   'unique': _("A user with that employee id already exists."),
+                               },
+                               help_text="Person's employee id")
     job_title = CharField(max_length=100, blank=True, null=True, default='', help_text="Person's job title")
     department = CharField(max_length=200, blank=True, null=True, default='',
                            help_text="Department this user belongs to")

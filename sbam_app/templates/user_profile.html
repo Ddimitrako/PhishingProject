@@ -97,9 +97,10 @@
                             <div class="tab-pane fade active show" id="user-profile-personal-info" role="tabpanel"
                                  aria-labelledby="user-profile-personal-info-tab">
                                 <ul class="list-group list-group-unbordered">
-                                    <li class="list-group-item user-block p-0 border-0" >
+                                    <li class="list-group-item user-block p-0 border-0">
                                         {% csrf_token %}
-                                        {% include 'form-fields.html' with form=profile_form %}
+                                        {% include 'form-fields.html' with form=user_generic_form %}
+                                        {% include 'form-fields.html' with form=user_personal_info_form %}
                                     </li>
                                     <li class="list-group-item p-0">
                                         <div class="card collapsed-card shadow-none m-0">
@@ -112,15 +113,16 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="card-body user-block">
-
+                                            <div class="card-body">
+                                                {% csrf_token %}
+                                                {% include 'form-fields.html' with form=user_contact_details_form %}
                                             </div>
                                         </div>
                                     </li>
                                     <li class="list-group-item p-0">
                                         <div class="card collapsed-card shadow-none m-0">
                                             <div class="card-header pl-2">
-                                                <i class="fas fa-briefcase mr-2"></i><b> Job History</b>
+                                                <i class="fas fa-briefcase mr-2"></i><b> Organizational Info</b>
                                                 <div class="card-tools">
                                                     <button type="button" class="btn btn-tool"
                                                             data-card-widget="collapse">
@@ -129,7 +131,8 @@
                                                 </div>
                                             </div>
                                             <div class="card-body">
-
+                                                {% csrf_token %}
+                                                {% include 'form-fields.html' with form=user_organizational_info_form %}
                                             </div>
                                         </div>
                                     </li>
@@ -149,7 +152,29 @@
                             </div>
                             <div class="tab-pane fade" id="user-profile-settings" role="tabpanel"
                                  aria-labelledby="user-profile-settings-tab">
-                                {% include 'form-fields.html' with form=user_form %}
+                                <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item user-block p-0 border-0">
+                                        {% csrf_token %}
+                                        {% include 'form-fields.html' with form=user_credentials_form %}
+                                    </li>
+                                    <li class="list-group-item p-0">
+                                        <div class="card collapsed-card shadow-none m-0">
+                                            <div class="card-header pl-2">
+                                                <i class="far fa-address-book mr-2"></i><b> Group Membership</b>
+                                                <div class="card-tools">
+                                                    <button type="button" class="btn btn-tool"
+                                                            data-card-widget="collapse">
+                                                        <i class="fas fa-sort-down"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                {% csrf_token %}
+                                                {% include 'form-fields.html' with form=user_form %}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

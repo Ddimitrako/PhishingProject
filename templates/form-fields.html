@@ -45,7 +45,7 @@
                         </div>
 
                         {% if field.auto_id == 'id_password' %}
-                            {% if  not user.is_authenticated %}
+                            {% if not user.is_authenticated %}
                                 <span>
                                     <a style="display: block;font-size: 12px;" href="{% url 'account_reset_password' %}">
                                         Forgot Password?
