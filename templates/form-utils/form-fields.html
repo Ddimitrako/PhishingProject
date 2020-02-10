@@ -23,7 +23,7 @@
                 {% if field|field_type == 'booleanfield' %}
                     {{ field }}
                 {% elif field|field_type == 'datefield' %}
-                    {{ field|add_class:"datepicker"|add_class:field_class }}
+                    {% include "form-utils/input-group-field.html" with field=field|add_class:"datepicker" icon="fas fa-calendar-alt" %}
                 {% else %}
                     {% if field.label == "Username" %}
                         {% include "form-utils/input-group-field.html" with field=field icon="fas fa-user" %}
