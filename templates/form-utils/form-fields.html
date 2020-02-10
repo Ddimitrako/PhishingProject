@@ -26,24 +26,9 @@
                     {{ field|add_class:"datepicker"|add_class:field_class }}
                 {% else %}
                     {% if field.label == "Username" %}
-                        <div class="input-group">
-                            {{ field|add_class:field_class }}
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-user"></span>
-                                </div>
-                            </div>
-                        </div>
+                        {% include "form-utils/input-group-field.html" with field=field icon="fas fa-user" %}
                     {% elif field|widget_type == "passwordinput" or field.auto_id == 'id_password' %}
-                        <div class="input-group">
-                            {{ field|attr:"type:password"|add_class:field_class }}
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
-
+                        {% include "form-utils/input-group-field.html" with field=field|attr:"type:password" icon="fas fa-lock" %}
                         {% if field.auto_id == 'id_password' %}
                             {% if not user.is_authenticated %}
                                 <span>
@@ -60,14 +45,7 @@
                             {% endif %}
                         {% endif %}
                     {% elif field|field_type == "emailfield" %}
-                        <div class="input-group">
-                            {{ field|add_class:field_class }}
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-envelope"></span>
-                                </div>
-                            </div>
-                        </div>
+                        {% include "form-utils/input-group-field.html" with field=field icon="fas fa-envelope" %}
                     {% else %}
                         {{ field|add_class:field_class }}
                     {% endif %}

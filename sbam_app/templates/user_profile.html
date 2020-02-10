@@ -99,8 +99,8 @@
                                 <ul class="list-group list-group-unbordered">
                                     <li class="list-group-item user-block p-0 border-0">
                                         {% csrf_token %}
-                                        {% include 'form-fields.html' with form=user_generic_form %}
-                                        {% include 'form-fields.html' with form=user_personal_info_form %}
+                                        {% include 'form-utils/form-fields.html' with form=user_generic_form %}
+                                        {% include 'form-utils/form-fields.html' with form=user_personal_info_form %}
                                     </li>
                                     <li class="list-group-item p-0">
                                         <div class="card collapsed-card shadow-none m-0">
@@ -115,7 +115,7 @@
                                             </div>
                                             <div class="card-body">
                                                 {% csrf_token %}
-                                                {% include 'form-fields.html' with form=user_contact_details_form %}
+                                                {% include 'form-utils/form-fields.html' with form=user_contact_details_form %}
                                             </div>
                                         </div>
                                     </li>
@@ -132,7 +132,7 @@
                                             </div>
                                             <div class="card-body">
                                                 {% csrf_token %}
-                                                {% include 'form-fields.html' with form=user_organizational_info_form %}
+                                                {% include 'form-utils/form-fields.html' with form=user_organizational_info_form %}
                                             </div>
                                         </div>
                                     </li>
@@ -155,7 +155,7 @@
                                 <ul class="list-group list-group-unbordered">
                                     <li class="list-group-item user-block p-0 border-0">
                                         {% csrf_token %}
-                                        {% include 'form-fields.html' with form=user_credentials_form %}
+                                        {% include 'form-utils/form-fields.html' with form=user_credentials_form %}
                                     </li>
                                     <li class="list-group-item p-0">
                                         <div class="card collapsed-card shadow-none m-0">
@@ -170,7 +170,7 @@
                                             </div>
                                             <div class="card-body">
                                                 {% csrf_token %}
-                                                {% include 'form-fields.html' with form=user_form %}
+                                                {% include 'form-utils/form-fields.html' with form=user_form %}
                                             </div>
                                         </div>
                                     </li>

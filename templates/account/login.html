@@ -34,7 +34,7 @@
 
     <form class="login" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
-        {% include "form-fields.html" %}
+        {% include "form-utils/form-fields.html" %}
 
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
