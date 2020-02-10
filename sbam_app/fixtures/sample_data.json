@@ -4,24 +4,21 @@
     "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$180000$mhntScJuRO5T$t7V5v+kdtH58+tI3y8QX3cN5R/jdvSuiFrUepHL1ubI=",
-      "last_login": "2020-01-27T16:58:02.054Z",
+      "last_login": "2020-02-10T05:26:16.915Z",
       "is_superuser": true,
       "username": "angeorg",
       "first_name": "Anna",
       "last_name": "Georgiadou",
       "email": "ageorgiadou@epu.ntua.gr",
       "is_staff": true,
-      "is_active": true,
-      "date_joined": "2020-01-27T13:59:45Z",
-      "groups": [],
-      "user_permissions": []
+      "is_active": true
     }
   },
   {
     "model": "auth.user",
     "pk": 2,
     "fields": {
-      "password": "",
+      "password": "pbkdf2_sha256$180000$IGaspGSEIQmA$gdfqbIxZdgmHNQEiLvp//FT8oKXnVs6ISIcLqGAAq4A=",
       "is_superuser": false,
       "username": "mkontoulis",
       "first_name": "Michael",
@@ -49,7 +46,7 @@
     "model": "auth.user",
     "pk": 4,
     "fields": {
-      "password": "",
+      "password": "pbkdf2_sha256$180000$ZwUGXNOIta72$anplaPp0FuRrFj4CukS0ZzRCRJGHM+1ws4hT+I2/oVo=",
       "is_superuser": false,
       "username": "kbounas",
       "first_name": "Kanaris",
@@ -60,15 +57,15 @@
     }
   },
   {
-    "model": "sbam_app.person",
+    "model": "sbam_app.userprofile",
     "pk": 1,
     "fields": {
       "user": 1,
       "display_name": "\u0386\u03bd\u03bd\u03b1 \u0393\u03b5\u03c9\u03c1\u03b3\u03b9\u03ac\u03b4\u03bf\u03c5",
-      "employee_id": 501927,
       "birth_date": "1983-10-02",
       "gender": 1,
       "is_manager": true,
+      "employee_id": 501927,
       "job_title": "System Administrator",
       "department": "Information & Security",
       "company": "DSS/NTUA",
@@ -78,15 +75,14 @@
     }
   },
   {
-    "model": "sbam_app.person",
+    "model": "sbam_app.userprofile",
     "pk": 2,
     "fields": {
       "user": 2,
       "display_name": "\u039c\u03b9\u03c7\u03b1\u03ae\u03bb \u039a\u03bf\u03bd\u03c4\u03bf\u03cd\u03bb\u03b7\u03c2",
-      "employee_id": 501936,
-      "birth_date": "2003-10-28",
       "gender": 0,
       "is_manager": false,
+      "employee_id": 501936,
       "job_title": "Developer",
       "department": "Information",
       "company": "DSS/NTUA",
@@ -95,14 +91,14 @@
     }
   },
   {
-    "model": "sbam_app.person",
+    "model": "sbam_app.userprofile",
     "pk": 3,
     "fields": {
       "user": 3,
       "display_name": "\u03a3\u03c0\u03cd\u03c1\u03bf\u03c2 \u039c\u03bf\u03c5\u03b6\u03b1\u03ba\u03af\u03c4\u03b7\u03c2",
-      "employee_id": 67305,
-      "birth_date": "1973-05-12",
       "gender": 0,
+      "is_manager": false,
+      "employee_id": 67305,
       "job_title": "Project Manager",
       "company": "DSS/NTUA",
       "address": "Polytechnical University",
@@ -110,18 +106,20 @@
     }
   },
   {
-    "model": "sbam_app.person",
+    "model": "sbam_app.userprofile",
     "pk": 4,
     "fields": {
       "user": 4,
       "display_name": "\u039a\u03b1\u03bd\u03ac\u03c1\u03b7\u03c2 \u039c\u03c0\u03bf\u03cd\u03bd\u03b1\u03c2",
-      "employee_id": 600927,
-      "birth_date": "2000-01-17",
+      "birth_date": "1984-10-16",
       "gender": 0,
+      "is_manager": false,
+      "employee_id": 50621,
       "job_title": "Security Officer",
       "department": "Information & Security",
       "company": "DSS/NTUA",
-      "address": "Polytechnical University"
+      "address": "Polytechnical University",
+      "notes": "test"
     }
   }
 ]
