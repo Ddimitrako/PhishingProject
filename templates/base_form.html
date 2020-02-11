@@ -15,11 +15,28 @@
             $('.datepicker').daterangepicker({
                 singleDatePicker: true,
                 showDropdowns: true,
+                autoUpdateInput: false,
                 minYear: 1930,
                 maxYear: parseInt(moment().format('YYYY'), 10),
                 locale: {
-                    format: 'YYYY-MM-DD'
+                    format: 'YYYY-MM-DD',
+                    monthNames: [
+                        "January",
+                        "February",
+                        "March",
+                        "April",
+                        "May",
+                        "June",
+                        "July",
+                        "August",
+                        "September",
+                        "October",
+                        "November",
+                        "December"
+                    ]
                 }
+            }, function (chosen_date) {
+                $('.datepicker').val(chosen_date.format('YYYY-MM-DD'));
             });
         })
     </script>
