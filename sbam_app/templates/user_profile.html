@@ -1,7 +1,5 @@
 {% extends "base_form.html" %}
 
-{% load fieldset_tag %}
-
 {% block page_name %}
     <strong><i class="fas fa-address-card mr-2"></i> User Profile</strong>
 {% endblock %}
@@ -23,8 +21,8 @@
                                  src="" alt="User profile picture">
                         </div>
 
-                        <h3 class="profile-username text-center">{{ profile_form.display_name.value }}</h3>
-                        <p class="text-muted text-center">{{ profile_form.job_title.value }}</p>
+                        <h3 class="profile-username text-center">{{ user_personal_info_form.display_name.value }}</h3>
+                        <p class="text-muted text-center">{{ user_organizational_info_form.job_title.value }}</p>
 
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
@@ -101,11 +99,7 @@
                                 <ul class="list-group list-group-unbordered">
                                     <li class="list-group-item user-block p-0 border-0">
                                         {% csrf_token %}
-
-                                        {% get_fieldset first_name,last_name,email as user_generic_form from user_form %}
                                         {% include 'form-utils/form-fields.html' with form=user_generic_form %}
-
-                                        {% get_fieldset display_name,birth_date,gender as user_personal_info_form from profile_form %}
                                         {% include 'form-utils/form-fields.html' with form=user_personal_info_form %}
                                     </li>
                                     <li class="list-group-item p-0">
@@ -121,7 +115,6 @@
                                             </div>
                                             <div class="card-body">
                                                 {% csrf_token %}
-                                                {% get_fieldset address,telephone as user_contact_details_form from profile_form %}
                                                 {% include 'form-utils/form-fields.html' with form=user_contact_details_form %}
                                             </div>
                                         </div>
@@ -139,7 +132,6 @@
                                             </div>
                                             <div class="card-body">
                                                 {% csrf_token %}
-                                                {% get_fieldset employee_id,job_title,department,company as user_organizational_info_form from profile_form %}
                                                 {% include 'form-utils/form-fields.html' with form=user_organizational_info_form %}
                                             </div>
                                         </div>
@@ -163,7 +155,6 @@
                                 <ul class="list-group list-group-unbordered">
                                     <li class="list-group-item user-block p-0 border-0">
                                         {% csrf_token %}
-                                        {% get_fieldset username,password as user_credentials_form from user_form %}
                                         {% include 'form-utils/form-fields.html' with form=user_credentials_form %}
                                     </li>
                                     <li class="list-group-item p-0">
@@ -179,8 +170,7 @@
                                             </div>
                                             <div class="card-body">
                                                 {% csrf_token %}
-                                                {% get_fieldset groups as group_membership_form from user_form %}
-                                                {% include 'form-utils/form-fields.html' with form=group_membership_form %}
+                                                {% include 'form-utils/form-fields.html' with form=user_membership_form %}
                                             </div>
                                         </div>
                                     </li>
