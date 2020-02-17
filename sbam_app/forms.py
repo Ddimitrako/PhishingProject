@@ -1,45 +1,46 @@
+from crispy_forms.bootstrap import *
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import *
 from django.forms import *
+from django.utils.safestring import mark_safe
 
 from sbam_app.models import *
 
 
-class UserPersonalInfoForm(ModelForm):
+class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('display_name', 'birth_date', 'gender')
+        exclude = ('user',)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
 
-class UserOrganizationalInfoForm(ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ('employee_id', 'job_title', 'department', 'company')
-
-
-class UserContactDetailsForm(ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ('address', 'telephone')
-
-
-class UserProfileInfoForm(ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ('notes',)
-
-
-class UserGenericForm(ModelForm):
-    class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'email')
-
-
-class UserCredentialsForm(ModelForm):
-    class Meta:
-        model = User
-        fields = ('username', 'password')
-
-
-class UserMembershipForm(ModelForm):
-    class Meta:
-        model = User
-        fields = ('groups', )
+        self.helper.layout = Layout(
+            Row(
+                Column('employee_id', css_class='col-4'),
+                Column(AppendedText('birth_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),
+                                    css_class='datepicker'), css_class='col-4'),
+                Column('gender', css_class='col-4')
+            ),
+            Accordion(
+                AccordionGroup(
+                    'Contact Details',
+                    Row(
+                        Column('address', css_class='col-9'),
+                        Column('telephone', css_class='col-3')
+                    ),
+                    active=False
+                ),
+                AccordionGroup(
+                    'Organizational Info',
+                    Row(
+                        Column('job_title', css_class='col-6'),
+                        Column('department', css_class='col-6'),
+                    ),
+                    Row(
+                        Column('company', css_class='col-6')
+                    )
+                ),
+            ),
+        )

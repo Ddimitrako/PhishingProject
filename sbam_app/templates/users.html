@@ -49,15 +49,15 @@
                 <td>{{ user.first_name }}</td>
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.userprofile.employee_id }}</td>
-                <td>{{ user.userprofile.birth_date }}</td>
-                <td>{{ user.userprofile.get_gender_display }}</td>
-                <td>{{ user.userprofile.job_title }}</td>
-                <td>{{ user.userprofile.department }}</td>
-                <td>{{ user.userprofile.company }}</td>
-                <td>{{ user.userprofile.telephone }}</td>
-                <td>{{ user.userprofile.address }}</td>
-                <td>{{ user.userprofile.notes }}</td>
+                <td>{{ user.userprofile.employee_id|default:'' }}</td>
+                <td>{{ user.userprofile.birth_date|default:'' }}</td>
+                <td>{{ user.userprofile.get_gender_display|default:'' }}</td>
+                <td>{{ user.userprofile.job_title|default:'' }}</td>
+                <td>{{ user.userprofile.department|default:'' }}</td>
+                <td>{{ user.userprofile.company|default:'' }}</td>
+                <td>{{ user.userprofile.telephone|default:'' }}</td>
+                <td>{{ user.userprofile.address|default:'' }}</td>
+                <td>{{ user.userprofile.notes|default:'' }}</td>
             </tr>
         {% endfor %}
     </tbody>

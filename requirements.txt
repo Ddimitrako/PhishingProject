@@ -16,3 +16,4 @@ django-adminlte3==0.1.2
 
 # Django Form Tools
 django-widget-tweaks==1.4.5
+django-crispy-forms==1.8.1

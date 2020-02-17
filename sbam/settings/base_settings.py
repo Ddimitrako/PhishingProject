@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # form tools
     'widget_tweaks',
+    'crispy_forms',
 
     # apps
     'sbam_app',
@@ -94,6 +95,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 WSGI_APPLICATION = 'sbam.wsgi.application'
 

@@ -1,5 +1,7 @@
 {% extends "base_form.html" %}
 
+{% load adminlte_helpers crispy_forms_tags %}
+
 {% block page_name %}
     <strong><i class="fas fa-address-card mr-2"></i> User Profile</strong>
 {% endblock %}
@@ -17,16 +19,18 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                         <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle"
-                                 src="" alt="User profile picture">
+                            <img src="{% avatar_url size=128 %}" alt="User Avatar" class="img-size-100 mr-3 img-circle">
                         </div>
 
-                        <h3 class="profile-username text-center">{{ user_personal_info_form.display_name.value }}</h3>
-                        <p class="text-muted text-center">{{ user_organizational_info_form.job_title.value }}</p>
+                        <div class="display_name">
+                            {% include 'form-utils/input-group-field.html' with field=profile_form.display_name field_class='form-control form-control-sm' icon='fas fa-pencil-alt' %}
+                        </div>
+
+                        <p class="text-muted text-center">{{ profile_form.job_title.value }}</p>
 
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                                <b>Groups</b> <a class="float-right"></a>
+                                <b>Groups</b> <a class="float-right">{{ profile_user.groups.count }}</a>
                             </li>
                             <li class="list-group-item">
                                 <b>Campaigns</b> <a class="float-right"></a>
@@ -36,29 +40,41 @@
                             </li>
                         </ul>
 
-                        <!-- TODO add a graph with profile completeness as in mockup -->
+                        <p>
+                            <u>Member since</u> :
+                            <a class="float-right">
+                                <i class="far fa-clock ml-2 mr-1"></i> {{ profile_user.date_joined }}
+                            </a>
+                        </p>
+                        <hr>
 
-                        <button class="btn btn-outline-info btn-sm" type="submit" title="Save changes">
-                            <i class="fas fa-user-edit mr-2"></i>Save
-                        </button>
-                        <button class="btn btn-outline-danger btn-sm float-right ml-2" title="Delete user">
-                            <i class="fas fa-user-times mr-2"></i>Delete
-                        </button>
-                        <button class="btn btn-outline-danger btn-sm float-right" title="Disable user">
-                            <i class="fas fa-user-slash mr-2"></i>Disable
-                        </button>
+                        <!-- TODO add a graph with profile completeness as in mockup -->
+                        {% if request.user.is_superuser or request.user == profile_user %}
+                            <button class="btn btn-outline-info btn-sm" type="submit" title="Save changes">
+                                <i class="fas fa-user-edit mr-2"></i>Save
+                            </button>
+                            <button class="btn btn-outline-dark btn-sm float-right" type="reset" title="Cancel changes">
+                                <i class="fas fa-times-circle mr-2"></i>Cancel
+                            </button>
+                        {% endif %}
                     </div>
                 </div>
             </div>
             <div class="col-md-9">
                 <div class="card card-primary card-outline card-outline-tabs">
-                    <div class="card-header pb-4 border-bottom-0">
+                    <div class="card-header pb-2 border-bottom-0">
                         <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="user-profile-personal-info-tab" data-toggle="pill"
                                    href="#user-profile-personal-info" role="tab"
                                    aria-controls="user-profile-personal-info"
                                    aria-selected="true"><i class="fas fa-id-badge mr-2"></i> Personal Info</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="user-profile-account-tab" data-toggle="pill"
+                                   href="#user-profile-account" role="tab"
+                                   aria-controls="user-profile-account"
+                                   aria-selected="false"><i class="fas fa-user-circle mr-2"></i> Account</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="user-profile-status-tab" data-toggle="pill"
@@ -84,55 +100,151 @@
                                    aria-controls="user-profile-tips"
                                    aria-selected="false"><i class="fas fa-glasses mr-2"></i> Tips</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="user-profile-settings-tab" data-toggle="pill"
-                                   href="#user-profile-settings" role="tab"
-                                   aria-controls="user-profile-settings"
-                                   aria-selected="false"><i class="fas fa-cogs mr-2"></i> Settings</a>
-                            </li>
                         </ul>
                     </div>
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="user-profile-personal-info" role="tabpanel"
                                  aria-labelledby="user-profile-personal-info-tab">
-                                <ul class="list-group list-group-unbordered">
-                                    <li class="list-group-item user-block p-0 border-0">
-                                        {% csrf_token %}
-                                        {% include 'form-utils/form-fields.html' with form=user_generic_form %}
-                                        {% include 'form-utils/form-fields.html' with form=user_personal_info_form %}
-                                    </li>
-                                    <li class="list-group-item p-0">
-                                        <div class="card collapsed-card shadow-none m-0">
-                                            <div class="card-header pl-2">
-                                                <i class="far fa-address-book mr-2"></i><b> Contact Details</b>
-                                                <div class="card-tools">
-                                                    <button type="button" class="btn btn-tool"
-                                                            data-card-widget="collapse">
-                                                        <i class="fas fa-sort-down"></i>
-                                                    </button>
+                                <ul class="list-group list-group-unbordered user-block">
+                                    <div class="row">
+                                        <div class="col col-md-3 mb-3">
+                                            <label for="first_name">First name</label>
+                                            <input type="text" class="form-control form-control-sm" id="first_name"
+                                                   value="{{ profile_user.first_name }}" readonly/>
+                                        </div>
+                                        <div class="col col-md-4">
+                                            <label for="last_name">Last name</label>
+                                            <input type="text" class="form-control form-control-sm" id="last_name"
+                                                   value="{{ profile_user.last_name }}" readonly/>
+                                        </div>
+                                        <div class="col col-md-5">
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control form-control-sm" id="email"
+                                                           value="{{ profile_user.email }}" readonly>
+                                                    <div class="input-group-append">
+                                                        <div class="input-group-text border-left-0">
+                                                            <i class="fas fa-envelope"></i>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="card-body">
-                                                {% csrf_token %}
-                                                {% include 'form-utils/form-fields.html' with form=user_contact_details_form %}
+                                        </div>
+                                    </div>
+
+                                    {% crispy profile_form %}
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="user-profile-account" role="tabpanel"
+                                 aria-labelledby="user-profile-account-tab">
+                                <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item user-block p-0 border-0">
+                                        <div class="row">
+                                            <div class="col col-md-4">
+                                                <div class="form-group">
+                                                    <label for="username">Username</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control form-control-sm"
+                                                               id="username"
+                                                               value="{{ profile_user.username }}" readonly>
+                                                        <div class="input-group-append">
+                                                            <div class="input-group-text border-left-0">
+                                                                <i class="fas fa-user"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col col-md-4">
+                                                <div class="form-group">
+                                                    <label for="password">Password</label>
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control form-control-sm"
+                                                               id="password"
+                                                               value="{{ profile_user.password }}" readonly>
+                                                        <div class="input-group-append">
+                                                            <div class="input-group-text border-left-0">
+                                                                <i class="fas fa-lock"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <span>
+                                                        <a style="display: block;font-size: 12px;"
+                                                           href="{% url 'account_change_password' %}">
+                                                            Change Password?
+                                                        </a>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="list-group-item p-0">
-                                        <div class="card collapsed-card shadow-none m-0">
-                                            <div class="card-header pl-2">
-                                                <i class="fas fa-briefcase mr-2"></i><b> Organizational Info</b>
-                                                <div class="card-tools">
-                                                    <button type="button" class="btn btn-tool"
-                                                            data-card-widget="collapse">
-                                                        <i class="fas fa-sort-down"></i>
-                                                    </button>
+                                        <div id="accordion" role="tablist">
+                                            <div class="card mb-2">
+                                                <div class="card-header" role="tab">
+                                                    <h5 class="mb-0">
+                                                        <a data-toggle="collapse" href="#privileges"
+                                                           aria-expanded="true" aria-controls="privileges">
+                                                            Privileges
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                                <div id="privileges" class="collapse" role="tabpanel"
+                                                     aria-labelledby="privileges" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        {{ profile_form.is_manager|as_crispy_field }}
+
+                                                        <div class="form-group">
+                                                            <div id="div_id_is_superuser"
+                                                                 class="custom-control custom-checkbox">
+                                                                <input type="checkbox" name="is_superuser"
+                                                                       class="checkboxinput custom-control-input"
+                                                                       id="id_is_superuser"
+                                                                       {% if profile_user.is_superuser %}checked{% endif %} disabled>
+                                                                <label for="id_is_superuser"
+                                                                       class="custom-control-label">
+                                                                    Superuser
+                                                                </label>
+                                                                <small id="hint_id_is_superuser"
+                                                                       class="form-text text-muted">Designates whether
+                                                                    the user can have admin privileges
+                                                                    within the tool.</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="card-body">
-                                                {% csrf_token %}
-                                                {% include 'form-utils/form-fields.html' with form=user_organizational_info_form %}
+                                            <div class="card mb-2">
+                                                <div class="card-header" role="tab">
+                                                    <h5 class="mb-0">
+                                                        <a data-toggle="collapse" href="#group-membership"
+                                                           aria-expanded="true" aria-controls="group-membership">
+                                                            Group Membership
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                                <div id="group-membership" class="collapse" role="tabpanel"
+                                                     aria-labelledby="group-membership" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <div class="form-row ">
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label>Groups</label>
+                                                                    <select name="groups" id="id_groups_from"
+                                                                            multiple="" data-field-name="groups"
+                                                                            data-is-stacked="0" class="form-control"
+                                                                            disabled>
+                                                                        {% for group in profile_user.groups.values %}
+                                                                            <option value="{{ group.id }}">{{ group.name }}</option>
+                                                                        {% endfor %}
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </li>
@@ -150,36 +262,26 @@
                             <div class="tab-pane fade" id="user-profile-tips" role="tabpanel"
                                  aria-labelledby="user-profile-tips-tab">
                             </div>
-                            <div class="tab-pane fade" id="user-profile-settings" role="tabpanel"
-                                 aria-labelledby="user-profile-settings-tab">
-                                <ul class="list-group list-group-unbordered">
-                                    <li class="list-group-item user-block p-0 border-0">
-                                        {% csrf_token %}
-                                        {% include 'form-utils/form-fields.html' with form=user_credentials_form %}
-                                    </li>
-                                    <li class="list-group-item p-0">
-                                        <div class="card collapsed-card shadow-none m-0">
-                                            <div class="card-header pl-2">
-                                                <i class="far fa-address-book mr-2"></i><b> Group Membership</b>
-                                                <div class="card-tools">
-                                                    <button type="button" class="btn btn-tool"
-                                                            data-card-widget="collapse">
-                                                        <i class="fas fa-sort-down"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="card-body">
-                                                {% csrf_token %}
-                                                {% include 'form-utils/form-fields.html' with form=user_membership_form %}
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </form>
+{% endblock %}
+
+{% block template_js %}
+    <script>
+        /* Privileges should be assigned by the tool administrator.
+        *  Therefore, disabling all related checkboxes */
+        $('#privileges .checkboxinput').each(function () {
+            {% if not request.user.is_superuser %}
+                $(this).prop('disabled', 'true');
+            {% endif %}
+        });
+
+        {% if not request.user.is_superuser and request.user != profile_user %}
+            $(':input').attr('readonly', 'readonly');
+        {% endif %}
+    </script>
 {% endblock %}
