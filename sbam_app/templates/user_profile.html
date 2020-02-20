@@ -1,6 +1,6 @@
 {% extends "base_form.html" %}
 
-{% load adminlte_helpers crispy_forms_tags %}
+{% load adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
 
 {% block page_name %}
     <strong><i class="fas fa-address-card mr-2"></i> User Profile</strong>
@@ -49,6 +49,7 @@
                         <hr>
 
                         <!-- TODO add a graph with profile completeness as in mockup -->
+
                         {% if request.user.is_superuser or request.user == profile_user %}
                             <button class="btn btn-outline-info btn-sm" type="submit" title="Save changes">
                                 <i class="fas fa-user-edit mr-2"></i>Save
@@ -107,80 +108,17 @@
                             <div class="tab-pane fade active show" id="user-profile-personal-info" role="tabpanel"
                                  aria-labelledby="user-profile-personal-info-tab">
                                 <ul class="list-group list-group-unbordered user-block">
-                                    <div class="row">
-                                        <div class="col col-md-3 mb-3">
-                                            <label for="first_name">First name</label>
-                                            <input type="text" class="form-control form-control-sm" id="first_name"
-                                                   value="{{ profile_user.first_name }}" readonly/>
-                                        </div>
-                                        <div class="col col-md-4">
-                                            <label for="last_name">Last name</label>
-                                            <input type="text" class="form-control form-control-sm" id="last_name"
-                                                   value="{{ profile_user.last_name }}" readonly/>
-                                        </div>
-                                        <div class="col col-md-5">
-                                            <div class="form-group">
-                                                <label for="email">Email</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control form-control-sm" id="email"
-                                                           value="{{ profile_user.email }}" readonly>
-                                                    <div class="input-group-append">
-                                                        <div class="input-group-text border-left-0">
-                                                            <i class="fas fa-envelope"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    {% crispy user_form user_form.general_info_helper %}
                                     {% crispy profile_form %}
                                 </ul>
                             </div>
                             <div class="tab-pane fade" id="user-profile-account" role="tabpanel"
                                  aria-labelledby="user-profile-account-tab">
-                                <ul class="list-group list-group-unbordered">
-                                    <li class="list-group-item user-block p-0 border-0">
-                                        <div class="row">
-                                            <div class="col col-md-4">
-                                                <div class="form-group">
-                                                    <label for="username">Username</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control form-control-sm"
-                                                               id="username"
-                                                               value="{{ profile_user.username }}" readonly>
-                                                        <div class="input-group-append">
-                                                            <div class="input-group-text border-left-0">
-                                                                <i class="fas fa-user"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col col-md-4">
-                                                <div class="form-group">
-                                                    <label for="password">Password</label>
-                                                    <div class="input-group">
-                                                        <input type="password" class="form-control form-control-sm"
-                                                               id="password"
-                                                               value="{{ profile_user.password }}" readonly>
-                                                        <div class="input-group-append">
-                                                            <div class="input-group-text border-left-0">
-                                                                <i class="fas fa-lock"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <span>
-                                                        <a style="display: block;font-size: 12px;"
-                                                           href="{% url 'account_change_password' %}">
-                                                            Change Password?
-                                                        </a>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <ul class="list-group list-group-unbordered user-block">
+                                    <li class="list-group-item p-0 border-0">
+                                        {% crispy user_form user_form.credentials_helper %}
                                     </li>
-                                    <li class="list-group-item p-0">
+                                    <li class="list-group-item p-0 border-0">
                                         <div id="accordion" role="tablist">
                                             <div class="card mb-2">
                                                 <div class="card-header" role="tab">
@@ -194,25 +132,8 @@
                                                 <div id="privileges" class="collapse" role="tabpanel"
                                                      aria-labelledby="privileges" data-parent="#accordion">
                                                     <div class="card-body">
-                                                        {{ profile_form.is_manager|as_crispy_field }}
-
-                                                        <div class="form-group">
-                                                            <div id="div_id_is_superuser"
-                                                                 class="custom-control custom-checkbox">
-                                                                <input type="checkbox" name="is_superuser"
-                                                                       class="checkboxinput custom-control-input"
-                                                                       id="id_is_superuser"
-                                                                       {% if profile_user.is_superuser %}checked{% endif %} disabled>
-                                                                <label for="id_is_superuser"
-                                                                       class="custom-control-label">
-                                                                    Superuser
-                                                                </label>
-                                                                <small id="hint_id_is_superuser"
-                                                                       class="form-text text-muted">Designates whether
-                                                                    the user can have admin privileges
-                                                                    within the tool.</small>
-                                                            </div>
-                                                        </div>
+                                                        {{ profile_form.is_manager|as_crispy_field:'bootstrap' }}
+                                                        {{ user_form.is_superuser|as_crispy_field:'bootstrap' }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -228,21 +149,7 @@
                                                 <div id="group-membership" class="collapse" role="tabpanel"
                                                      aria-labelledby="group-membership" data-parent="#accordion">
                                                     <div class="card-body">
-                                                        <div class="form-row ">
-                                                            <div class="col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Groups</label>
-                                                                    <select name="groups" id="id_groups_from"
-                                                                            multiple="" data-field-name="groups"
-                                                                            data-is-stacked="0" class="form-control"
-                                                                            disabled>
-                                                                        {% for group in profile_user.groups.values %}
-                                                                            <option value="{{ group.id }}">{{ group.name }}</option>
-                                                                        {% endfor %}
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        {{ user_form.groups|as_crispy_field }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -272,6 +179,8 @@
 
 {% block template_js %}
     <script>
+        $('#password').attr('type', 'password').attr('readonly', 'readonly');
+
         /* Privileges should be assigned by the tool administrator.
         *  Therefore, disabling all related checkboxes */
         $('#privileges .checkboxinput').each(function () {
@@ -280,6 +189,8 @@
             {% endif %}
         });
 
+        /* Only the tool administrator and the owner shall be
+        *  able to edit the user_profile */
         {% if not request.user.is_superuser and request.user != profile_user %}
             $(':input').attr('readonly', 'readonly');
         {% endif %}

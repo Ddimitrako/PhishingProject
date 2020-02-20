@@ -155,7 +155,6 @@ th, .sorting_1 {
 }
 */
 
-/* Crispy Forms */
 #accordion .card {
     box-shadow: none;
 }
@@ -168,6 +167,17 @@ th, .sorting_1 {
     font-size: 14px;
     font-weight: 400;
 }
+
+#accordion .card .card-header > h5:after {
+    content: '\25BC';
+    color: #007bff;
+    font-size: 60%;
+    float: right;
+}
+
+/*#accordion .card .card-header > h5:after {
+  content: "\25B2";
+}*/
 
 #accordion .card .card-body {
     padding-left: 0;
@@ -192,4 +202,14 @@ div.display_name .input-group .input-group-append .input-group-text {
     padding: 2px;
     font-size: 0.75rem;
     color: #23A5E1;
+}
+
+.controls > p {
+    color: #6c757d;
+    font-size: 80%;
+    padding-left: 26px;
+}
+
+.checkboxinput {
+    margin-right: 10px;
 }

@@ -20,17 +20,21 @@ def user_profile(request, username):
     user = User.objects.get(username=username)
 
     if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=user)
         profile_form = UserProfileForm(request.POST, instance=user.userprofile)
-        if profile_form.is_valid():
+        if user_form.is_valid() & profile_form.is_valid():
+            updated_user = user_form.save()
             profile_form.save()
             messages.success(request, ('User profile was successfully updated!'))
-            return redirect('sbam:user_profile', username)
+            return redirect('sbam:user_profile', updated_user.username)
         else:
             messages.error(request, ('Please correct the errors below.'))
     else:
+        user_form = UserForm(instance=user)
         profile_form = UserProfileForm(instance=user.userprofile)
 
     return render(request, 'user_profile.html', {
         'profile_user': user,
+        'user_form': user_form,
         'profile_form': profile_form
     })
