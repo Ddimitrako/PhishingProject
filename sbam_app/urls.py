@@ -10,5 +10,8 @@ urlpatterns = [
 
     # Users
     path('users/', UsersView.as_view(), name='users'),
-    path('users/user_profile/<username>/', user_profile, name='user_profile')
+    path('users/user_profile/<username>/', user_profile, name='user_profile'),
+
+    #campaign
+    path('create_campaign/', CampaignCreation, name='create_campaign')
 ]
