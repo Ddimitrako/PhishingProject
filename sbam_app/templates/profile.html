@@ -3,17 +3,20 @@
 {% load adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
 
 {% block page_name %}
-    <strong><i class="fas fa-address-card mr-2"></i> User Profile</strong>
+    <div class="row">
+        <strong><i class="fas fa-address-card mr-2"></i> Profile:</strong>
+        <p class="ml-2">{{ user.get_full_name }}</p>
+    </div>
 {% endblock %}
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">Home</a></li>
     <li class="breadcrumb-item"><a href="{% url 'sbam:users' %}">Users</a></li>
-    <li class="breadcrumb-item active">User Profile</li>
+    <li class="breadcrumb-item active">Profile</li>
 {% endblock %}
 
 {% block content %}
-    <form method="post">
+    <form action="" method="post">
         <div class="row">
             <div class="col-md-3">
                 <div class="card card-primary card-outline">
@@ -30,7 +33,7 @@
 
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                                <b>Groups</b> <a class="float-right">{{ profile_user.groups.count }}</a>
+                                <b>Groups</b> <a class="float-right">{{ user.groups.count }}</a>
                             </li>
                             <li class="list-group-item">
                                 <b>Campaigns</b> <a class="float-right"></a>
@@ -43,14 +46,14 @@
                         <p>
                             <u>Member since</u> :
                             <a class="float-right">
-                                <i class="far fa-clock ml-2 mr-1"></i> {{ profile_user.date_joined }}
+                                <i class="far fa-clock ml-2 mr-1"></i> {{ user.date_joined }}
                             </a>
                         </p>
                         <hr>
 
                         <!-- TODO add a graph with profile completeness as in mockup -->
 
-                        {% if request.user.is_superuser or request.user == profile_user %}
+                        {% if request.user.is_superuser or request.user == user %}
                             <button class="btn btn-outline-info btn-sm" type="submit" title="Save changes">
                                 <i class="fas fa-user-edit mr-2"></i>Save
                             </button>
@@ -108,8 +111,49 @@
                             <div class="tab-pane fade active show" id="user-profile-personal-info" role="tabpanel"
                                  aria-labelledby="user-profile-personal-info-tab">
                                 <ul class="list-group list-group-unbordered user-block">
-                                    {% crispy user_form user_form.general_info_helper %}
-                                    {% crispy profile_form %}
+                                    <li class="list-group-item p-0 border-0">
+                                        {% crispy user_form user_form.general_info_helper %}
+                                    </li>
+                                    <li class="list-group-item p-0 border-0">
+                                        {% crispy profile_form profile_form.general_info_helper %}
+                                    </li>
+                                    <li class="list-group-item p-0 border-0">
+                                        <div id="accordion" role="tablist">
+                                            <div class="card mb-2">
+                                                <div class="card-header" role="tab">
+                                                    <h5 class="mb-0">
+                                                        <a data-toggle="collapse" href="#contact_details"
+                                                           aria-expanded="true" aria-controls="contact_details">
+                                                            <i class="far fa-address-book mr-2"></i>Contact Details
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                                <div id="contact_details" class="collapse" role="tabpanel"
+                                                     aria-labelledby="contact_details" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        {% crispy profile_form profile_form.contact_details_helper %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card mb-2">
+                                                <div class="card-header" role="tab">
+                                                    <h5 class="mb-0">
+                                                        <a data-toggle="collapse" href="#organizational_info"
+                                                           aria-expanded="true" aria-controls="organizational_info">
+                                                            <i class="fas fa-briefcase mr-2"></i>Organizational
+                                                            Information
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                                <div id="organizational_info" class="collapse" role="tabpanel"
+                                                     aria-labelledby="organizational_info" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        {% crispy profile_form profile_form.organizational_info_helper %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="tab-pane fade" id="user-profile-account" role="tabpanel"
@@ -125,7 +169,7 @@
                                                     <h5 class="mb-0">
                                                         <a data-toggle="collapse" href="#privileges"
                                                            aria-expanded="true" aria-controls="privileges">
-                                                            Privileges
+                                                            <i class="fas fa-tasks mr-2"></i>Privileges
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -142,7 +186,7 @@
                                                     <h5 class="mb-0">
                                                         <a data-toggle="collapse" href="#group-membership"
                                                            aria-expanded="true" aria-controls="group-membership">
-                                                            Group Membership
+                                                            <i class="fas fa-users mr-2"></i>Group Membership
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -179,20 +223,37 @@
 
 {% block template_js %}
     <script>
-        $('#password').attr('type', 'password').attr('readonly', 'readonly');
-
-        /* Privileges should be assigned by the tool administrator.
-        *  Therefore, disabling all related checkboxes */
+        /*
+        *  Privileges should be assigned by the tool administrator.
+        *  Therefore, disabling all related checkboxes
+        */
         $('#privileges .checkboxinput').each(function () {
             {% if not request.user.is_superuser %}
                 $(this).prop('disabled', 'true');
             {% endif %}
         });
 
-        /* Only the tool administrator and the owner shall be
-        *  able to edit the user_profile */
-        {% if not request.user.is_superuser and request.user != profile_user %}
+        /*
+        *  Only the tool administrator and the owner shall be
+        *  able to edit a user profile
+        */
+        {% if not request.user.is_superuser and request.user != user %}
             $(':input').attr('readonly', 'readonly');
         {% endif %}
+
+        /*
+        *  Adding a change password link for the owner of the
+        *  user profile.
+        */
+        $('#password').attr('readonly', 'readonly');
+        $('#div_id_password').append(
+            {% if request.user == user %}
+                    '<span>' +
+                    '<a style = "font-size: 12px;" href = "{% url 'account_change_password' %}" >' +
+                    'Change Password ?' +
+                    '</a>' +
+                    '</span>'
+            {% endif %}
+        );
     </script>
 {% endblock %}

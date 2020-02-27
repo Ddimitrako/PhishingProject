@@ -7,11 +7,33 @@
 {% endblock %}
 
 {% block extra_js %}
+    <script src="{% static 'js/jquery.steps.min.js' %}"></script>
     <script src="{% static 'admin-lte/plugins/moment/moment.min.js' %}"></script>
     <script src="{% static 'admin-lte/plugins/daterangepicker/daterangepicker.js' %}"></script>
 
     <script>
         $(function () {
+            $('.form-control').addClass('form-control-sm');
+
+            $('#password').attr('type', 'password');
+
+            $('.wizard-body').steps({
+                headerTag: "h2",
+                bodyTag: "section",
+                transitionEffect: "fade",
+                autoFocus: true,
+                titleTemplate: '<div class="title">#title#</div>',
+                labels: {
+                    previous: '< Back',
+                    next: 'Next >',
+                    finish: 'Finish',
+                    current: ''
+                },
+                onFinishing: function (event, currentIndex, newIndex) {
+                    return $('.wizard-form').submit();
+                }
+            });
+
             $('.datepicker').daterangepicker({
                 singleDatePicker: true,
                 showDropdowns: true,
@@ -38,8 +60,6 @@
             }, function (chosen_date) {
                 $('.datepicker').val(chosen_date.format('YYYY-MM-DD'));
             });
-
-            $('.form-control').addClass('form-control-sm');
-        })
+        });
     </script>
 {% endblock %}

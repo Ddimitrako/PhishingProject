@@ -1,0 +1,69 @@
+{% extends "base_form.html" %}
+
+{% load static i18n crispy_forms_tags %}
+
+{% block page_name %}
+    <strong><i class="fas fa-user-plus mr-2"></i> New User</strong>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:users' %}">Users</a></li>
+    <li class="breadcrumb-item active">New User</li>
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-8">
+        <div class="card card-primary card-outline align-items-center">
+            <div class="card-body">
+                <form class="wizard-form" action="" method="post">
+                    <div class="wizard-header">
+                        <h3 class="heading">Create New User</h3>
+                    </div>
+                    <div class="wizard-body">
+                        <h2>
+                            <span class="step-icon"><i class="fas fa-user-circle"></i></span>
+                            <span class="step-text">Account</span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+                                <h3>User Account:</h3>
+                                {% crispy user_form %}
+                            </div>
+                        </section>
+                        <h2>
+                            <span class="step-icon"><i class="fas fa-id-badge"></i></span>
+                            <span class="step-text">Personal</span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+                                <h3>Personal Information:</h3>
+                                {% crispy profile_form profile_form.general_info_helper %}
+                            </div>
+                        </section>
+                        <h2>
+                            <span class="step-icon"><i class="far fa-address-book"></i></span>
+                            <span class="step-text">Contact</span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+                                <h3>Contact Details:</h3>
+                                {% crispy profile_form profile_form.contact_details_helper %}
+                            </div>
+                        </section>
+                        <h2>
+                            <span class="step-icon"> <i class="fas fa-briefcase"></i></span>
+                            <span class="step-text">Organizational</span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+                                <h3>Organizational Information:</h3>
+                                {% crispy profile_form profile_form.organizational_info_helper %}
+                            </div>
+                        </section>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

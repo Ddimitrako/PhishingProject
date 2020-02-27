@@ -10,5 +10,6 @@ urlpatterns = [
 
     # Users
     path('users/', UsersView.as_view(), name='users'),
-    path('users/user_profile/<username>/', user_profile, name='user_profile')
+    path('users/profile/<username>/', profile, name='profile'),
+    path('users/create_user/', create_user, name='create_user')
 ]

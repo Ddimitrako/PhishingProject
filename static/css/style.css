@@ -149,6 +149,11 @@ th, .sorting_1 {
     background-color: #e9ecef;
 }
 
+.input-group .form-control.is-invalid ~ .input-group-append .input-group-text {
+    border-color: #dc3545;
+    border-radius: .2rem;
+}
+
 /*
 .form-control:disabled, .form-control[readonly] {
     background-color: transparent;
@@ -213,3 +218,146 @@ div.display_name .input-group .input-group-append .input-group-text {
 .checkboxinput {
     margin-right: 10px;
 }
+
+/* Wizards */
+.wizard-form .wizard-header {
+    text-align: center;
+    padding: 40px 0 20px;
+}
+
+.wizard-form .wizard-header .heading {
+    color: #23A5E1;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.wizard-body .content h2 {
+    display: none;
+}
+
+.wizard-body .content .inner h3 {
+    font-size: 22px;
+    font-weight: 700;
+    padding: 18px 0 5px 0;
+}
+
+.wizard-body .steps ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+
+.wizard-body .steps li a .title span {
+    display: block;
+}
+
+.wizard-body .steps li a .title .step-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #ccc;
+    position: relative;
+    color: #fff;
+    font-size: 24px;
+    margin-right: 2.5rem;
+}
+
+.wizard-body .steps li a .step-icon i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wizard-body .steps li .step-icon::before,
+.wizard-body .steps li:last-child .step-icon::after {
+    position: absolute;
+    content: "";
+    background: #e5e5e5;
+    width: 2.5rem;
+    height: 2px;
+    top: 50%;
+}
+
+.wizard-body .steps li .step-icon::before {
+    right: 100%;
+}
+
+.wizard-body .steps li:last-child .step-icon::after {
+    left: 100%;
+}
+
+.wizard-body .steps li.current a .step-icon,
+.wizard-body .steps li.current a:active .step-icon,
+.wizard-body .steps li.done a .step-icon,
+.wizard-body .steps li.done a:active .step-icon {
+    background: #23A5E1;
+}
+
+.wizard-body .steps .current .step-icon::before,
+.wizard-body .steps .current:last-child .step-icon::after,
+.wizard-body .steps .done .step-icon::before {
+    background: #23A5E1;
+}
+
+.wizard-body .steps li a .step-text {
+    color: grey;
+    font-size: 16px;
+    padding: 14px 0 8px;
+}
+
+.wizard-body .steps .current .step-text,
+.wizard-body .steps .done .step-text {
+    color: black;
+}
+
+.wizard-body .content {
+    margin: 0 20px;
+    box-shadow: 0px 3px 10px 0px #aaa;
+    padding: 30px;
+}
+
+.wizard ul {
+    list-style: none;
+}
+
+.wizard > .actions ul {
+    padding: 0 20px;
+    margin: 30px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wizard > .actions ul li.disabled {
+    opacity: 0;
+}
+
+.wizard > .actions ul li {
+    padding: 0;
+    border: none;
+    border-radius: 3px;
+    display: inline-flex;
+    padding: .5em 1em;
+    justify-content: center;
+    align-items: center;
+    background: #17a2b8;
+    font-size: 16px;
+}
+
+.wizard > .actions ul li:hover {
+    background: #1d97b5;
+}
+
+.wizard > .actions ul li:first-child {
+    background: #999;
+}
+
+.wizard > .actions ul li:first-child:hover {
+    background: #666;
+}
+
+.wizard > .actions ul li a {
+    color: white;
+}
+

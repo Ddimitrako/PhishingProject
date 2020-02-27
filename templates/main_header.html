@@ -41,7 +41,7 @@
                                 <span class="dropdown-item dropdown-header">Contact Us</span>
 
                                 <div class="dropdown-divider"></div>
-                                
+
                             </div>
                         </li>
 
@@ -74,7 +74,7 @@
                                         <div class="dropdown-divider"></div>
 
                                         <div class="dropdown-footer">
-                                            <a href="{% url 'sbam:user_profile' user.username %}" class="btn btn-info btn-sm">{% trans 'Profile' %}</a>
+                                            <a href="{% url 'sbam:profile' request.user.username %}" class="btn btn-info btn-sm">{% trans 'Profile' %}</a>
                                             <a href="{% block logout_url %}{% logout_url %}{% endblock %}"
                                                class="btn btn-danger btn-sm">{% trans 'Sign out' %}</a>
                                         </div>

@@ -20,17 +20,13 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-12">
-            <div class="card card-primary card-outline">
-                <div class="card-body">
-                    <table id="table"
-                           class="table table-bordered table-hover table-head-fixed table-responsive-lg table-striped">
-                        {% block table_content %}
-                        {% endblock %}
-                    </table>
-                </div>
-            </div>
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <table id="table"
+                   class="table table-bordered table-hover table-head-fixed table-responsive-lg table-striped">
+                {% block table_content %}
+                {% endblock %}
+            </table>
         </div>
     </div>
 {% endblock %}
@@ -62,12 +58,12 @@
                     var title = $(this).text();
                     $(this).html(
                         '<div class="input-group input-group-xs dt-col-filter">' +
-                        '<input type="text" class="form-control" placeholder="' + title + '" />' +
-                        '<div class="input-group-append">' +
-                        '<span class="input-group-text">' +
-                        '<i class="fas fa-filter"></i>' +
-                        '</span>' +
-                        '</div>' +
+                            '<input type="text" class="form-control" placeholder="' + title + '" />' +
+                            '<div class="input-group-append">' +
+                                '<span class="input-group-text">' +
+                                    '<i class="fas fa-filter"></i>' +
+                                '</span>' +
+                            '</div>' +
                         '</div>'
                     );
 
@@ -209,8 +205,7 @@
                                 className: 'btn btn-outline-success btn-sm mr-1',
                                 text: '<i class="fas fa-user"></i>',
                                 action: function (e, dt, node, config) {
-                                    // TODO redirect to "Create New User" form
-                                    window.location = 'dashboard';
+                                    window.location = 'create_user';
                                 },
                                 titleAttr: 'New user'
                             },
