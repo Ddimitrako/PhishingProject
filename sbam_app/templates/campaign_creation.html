@@ -1,3 +1,30 @@
-{% extends "base_form.html" %}
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
 
+{% block extra_head %}
+    {{ campaign_form.media }}
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container">
+{#        <h3>Create you campaign</h3>#}
+        <form method="post" action=".">
+            {% crispy campaign_form campaign_form.helper %}
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block  extra_js  %}
+    <script src="{% static "admin-lte/plugins/moment/moment-with-locales.js" %}"></script>
+    <script src="{% static "sbam_app/js/campaign_creation.js" %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+{% endblock %}
 

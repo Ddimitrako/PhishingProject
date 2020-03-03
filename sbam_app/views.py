@@ -16,9 +16,10 @@ class UsersView(ListView):
     template_name = 'users.html'
     context_object_name = 'users_list'
 
-@login_required
+
 def CampaignCreation(request):
-    return render(request, 'campaign_creation.html')
+    campaign_form = CampaignCreationForm()
+    return render(request, 'campaign_creation.html', {'campaign_form': campaign_form})
 
 
 @login_required
