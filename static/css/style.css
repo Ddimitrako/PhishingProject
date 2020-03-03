@@ -1,4 +1,4 @@
-body, .dt-button-collection {
+body, .dt-button-collection, .dropdown-menu {
     font-size: 13px;
 }
 
@@ -145,7 +145,8 @@ th, .sorting_1 {
     border-color: #80bdff
 }
 
-.input-group .form-control[readonly] ~ .input-group-append .input-group-text {
+.input-group .form-control[readonly] ~ .input-group-append .input-group-text,
+.input-group .form-control[disabled] ~ .input-group-append .input-group-text {
     background-color: #e9ecef;
 }
 
@@ -153,12 +154,6 @@ th, .sorting_1 {
     border-color: #dc3545;
     border-radius: .2rem;
 }
-
-/*
-.form-control:disabled, .form-control[readonly] {
-    background-color: transparent;
-}
-*/
 
 #accordion .card {
     box-shadow: none;
@@ -360,4 +355,3 @@ div.display_name .input-group .input-group-append .input-group-text {
 .wizard > .actions ul li a {
     color: white;
 }
-
