@@ -7,6 +7,23 @@ from django.utils.safestring import mark_safe
 from sbam_app.models import *
 
 
+class SignupForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
+
+    def signup(self, request, user):
+        user.save()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True
+
+        self.field_order = ['first_name', 'last_name', 'email', 'username', 'password1', 'password2']
+
+
 class UserForm(ModelForm):
     class Meta:
         model = User
@@ -70,7 +87,7 @@ class UserProfileForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['notes'].widget = Textarea(attrs={'rows':3})
+        self.fields['notes'].widget = Textarea(attrs={'rows': 3})
 
         self.general_info_helper = FormHelper()
         self.general_info_helper.form_tag = False;

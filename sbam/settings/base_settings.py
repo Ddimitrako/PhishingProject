@@ -122,6 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_SIGNUP_FORM_CLASS = 'sbam_app.forms.SignupForm'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
