@@ -6,6 +6,9 @@
     <div class="row">
         <strong><i class="fas fa-address-card mr-2"></i> Profile:</strong>
         <p class="ml-2">{{ user.get_full_name }}</p>
+        {% if not user.is_active %}
+            <p class="ml-2" style="color:indianred">(disabled) </p>
+        {% endif %}
     </div>
 {% endblock %}
 
@@ -18,8 +21,9 @@
 {% block content %}
     <form action="" method="post">
         <div class="row">
-            <div class="col-md-3">
-                <div class="card card-primary card-outline">
+            <div class="col-md-4">
+                <div class="card card-primary card-outline"
+                     {% if not user.is_active %}style="border: 5px solid indianred"{% endif %}>
                     <div class="card-body box-profile">
                         <div class="text-center">
                             <img src="{% avatar_url size=128 %}" alt="User Avatar" class="img-size-100 mr-3 img-circle">
@@ -57,6 +61,21 @@
                             <button class="btn btn-outline-info btn-sm" type="submit" title="Save changes">
                                 <i class="fas fa-user-edit mr-2"></i>Save
                             </button>
+
+                            {% if request.user != user %}
+                                {% if user.is_active %}
+                                    <button class="btn btn-outline-danger btn-sm" type="submit" formaction="disable"
+                                            title="Disable user">
+                                        <i class="fas fa-user-slash mr-2"></i>Disable
+                                    </button>
+                                {% else %}
+                                    <button class="btn btn-outline-success btn-sm" type="submit" formaction="enable"
+                                            title="Enable user">
+                                        <i class="fas fa-user-check mr-2"></i>Enable
+                                    </button>
+                                {% endif %}
+                            {% endif %}
+
                             <button class="btn btn-outline-dark btn-sm float-right" type="reset" title="Cancel changes">
                                 <i class="fas fa-times-circle mr-2"></i>Cancel
                             </button>
@@ -64,8 +83,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
-                <div class="card card-primary card-outline card-outline-tabs">
+            <div class="col-md-8">
+                <div class="card card-primary card-outline card-outline-tabs"
+                     {% if not user.is_active %}style="border: 5px solid indianred"{% endif %}>
                     <div class="card-header pb-2 border-bottom-0">
                         <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
                             <li class="nav-item">
@@ -224,36 +244,17 @@
 {% block template_js %}
     <script>
         /*
-        *  Privileges should be assigned by the tool administrator.
-        *  Therefore, disabling all related checkboxes
-        */
-        $('#privileges .checkboxinput').each(function () {
-            {% if not request.user.is_superuser %}
-                $(this).prop('disabled', 'true');
-            {% endif %}
-        });
-
-        /*
-        *  Only the tool administrator and the owner shall be
-        *  able to edit a user profile
-        */
-        {% if not request.user.is_superuser and request.user != user %}
-            $(':input').attr('readonly', 'readonly');
-        {% endif %}
-
-        /*
         *  Adding a change password link for the owner of the
         *  user profile.
         */
-        $('#password').attr('readonly', 'readonly');
-        $('#div_id_password').append(
-            {% if request.user == user %}
-                    '<span>' +
-                    '<a style = "font-size: 12px;" href = "{% url 'account_change_password' %}" >' +
-                    'Change Password ?' +
-                    '</a>' +
-                    '</span>'
-            {% endif %}
-        );
+        {% if request.user == user %}
+            $('#div_id_password').append(
+                '<span>' +
+                '<a style = "font-size: 12px;" href = "{% url 'account_change_password' %}" >' +
+                'Change Password ?' +
+                '</a>' +
+                '</span>'
+            );
+        {% endif %}
     </script>
 {% endblock %}

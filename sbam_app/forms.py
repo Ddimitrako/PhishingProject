@@ -70,6 +70,8 @@ class UserProfileForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self.fields['notes'].widget = Textarea(attrs={'rows':3})
+
         self.general_info_helper = FormHelper()
         self.general_info_helper.form_tag = False;
         self.general_info_helper.layout = Layout(
