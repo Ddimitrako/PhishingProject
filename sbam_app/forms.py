@@ -19,6 +19,10 @@ class UserForm(ModelForm):
         self.fields['last_name'].required = True
         self.fields['email'].required = True
 
+        self.fields['password'].widget = PasswordInput(render_value=True)
+        self.fields['password'].disabled = True
+        self.fields['password'].initial = 'dummy'
+
         self.general_info_helper = FormHelper()
         self.general_info_helper.form_tag = False;
         self.general_info_helper.layout = Layout(
@@ -33,18 +37,28 @@ class UserForm(ModelForm):
         self.credentials_helper.form_tag = False;
         self.credentials_helper.layout = Layout(
             Row(
-                Column(AppendedText('username', mark_safe('<i class="fas fa-user"></i>')), attrs='', css_class='col-md-6'),
+                Column(AppendedText('username', mark_safe('<i class="fas fa-user"></i>')), attrs='',
+                       css_class='col-md-6'),
                 Column(AppendedText('password', mark_safe('<i class="fas fa-lock"></i>'), id='password'),
                        css_class='col-md-6'
                        )
             )
         )
 
-        self.helper = FormHelper()
-        self.helper.form_tag = False;
-        self.helper.layout = Layout(
-            self.general_info_helper.layout,
-            self.credentials_helper.layout
+        self.new_user_helper = FormHelper()
+        self.new_user_helper.form_tag = False;
+        self.new_user_helper.layout = Layout(
+            Row(
+                Column('first_name', css_class='col-md-5'),
+                Column('last_name', css_class='col-md-7')
+            ),
+            Row(
+                Column(AppendedText('email', mark_safe('<i class="fas fa-envelope"></i>')), css_class='col-md-12')
+            ),
+            Row(
+                Column(AppendedText('username', mark_safe('<i class="fas fa-user"></i>')), attrs='',
+                       css_class='col-md-12')
+            )
         )
 
 
