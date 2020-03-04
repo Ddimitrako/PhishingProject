@@ -136,13 +136,14 @@
                                         {% crispy profile_form profile_form.general_info_helper %}
                                     </li>
                                     <li class="list-group-item p-0 border-0">
-                                        <div id="accordion" role="tablist">
+                                        <div class="accordion" id="accordion" role="tablist">
                                             <div class="card mb-2">
                                                 <div class="card-header" role="tab">
                                                     <h5 class="mb-0">
                                                         <a data-toggle="collapse" href="#contact_details"
                                                            aria-expanded="true" aria-controls="contact_details">
                                                             <i class="far fa-address-book mr-2"></i>Contact Details
+                                                            <i class="fas fa-angle-down float-right"></i>
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -158,8 +159,9 @@
                                                     <h5 class="mb-0">
                                                         <a data-toggle="collapse" href="#organizational_info"
                                                            aria-expanded="true" aria-controls="organizational_info">
-                                                            <i class="fas fa-briefcase mr-2"></i>Organizational
-                                                            Information
+                                                            <i class="fas fa-briefcase mr-2"></i>
+                                                            Organizational Information
+                                                            <i class="fas fa-angle-down float-right"></i>
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -181,13 +183,14 @@
                                         {% crispy user_form user_form.credentials_helper %}
                                     </li>
                                     <li class="list-group-item p-0 border-0">
-                                        <div id="accordion" role="tablist">
+                                        <div class="accordion" id="accordion" role="tablist">
                                             <div class="card mb-2">
                                                 <div class="card-header" role="tab">
                                                     <h5 class="mb-0">
                                                         <a data-toggle="collapse" href="#privileges"
                                                            aria-expanded="true" aria-controls="privileges">
                                                             <i class="fas fa-tasks mr-2"></i>Privileges
+                                                            <i class="fas fa-angle-down float-right"></i>
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -205,6 +208,7 @@
                                                         <a data-toggle="collapse" href="#group-membership"
                                                            aria-expanded="true" aria-controls="group-membership">
                                                             <i class="fas fa-users mr-2"></i>Group Membership
+                                                            <i class="fas fa-angle-down float-right"></i>
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -254,5 +258,9 @@
                 '</span>'
             );
         {% endif %}
+
+        $(".fa-angle-down").click(function () {
+            $(this).toggleClass('fa-rotate-180');
+        })
     </script>
 {% endblock %}
