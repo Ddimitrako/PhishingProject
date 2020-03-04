@@ -13,48 +13,70 @@
 
 {% block table_content %}
     <thead>
-    <tr>
-        <th></th>
-        <th>Full Name</th>
-        <th>Display Name</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Employee ID</th>
-        <th>Birth Date</th>
-        <th>Gender</th>
-        <th>Job Title</th>
-        <th>Department</th>
-        <th>Company</th>
-        <th>Telephone</th>
-        <th>Address</th>
-        <th>Notes</th>
-    </tr>
+        <tr>
+            <th></th>
+            <th><i class="fas fa-user" title="Status"></i></th>
+            <th><i class="fas fa-list-ul" title="Roles"></i></th>
+            <th>Full Name</th>
+            <th>Display Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Employee ID</th>
+            <th>Birth Date</th>
+            <th>Gender</th>
+            <th>Job Title</th>
+            <th>Department</th>
+            <th>Company</th>
+            <th>Telephone</th>
+            <th>Address</th>
+            <th>Notes</th>
+        </tr>
     </thead>
 
     <tbody>
-    {% for user in users_list %}
-        <tr>
-            <td></td>
-            <td>
-                <a href="{% url 'sbam:profile' user.username %}">
-                    {{ user.get_full_name }}
-                </a>
-            </td>
-            <td>{{ user.userprofile.display_name|default:'' }}</td>
-            <td>{{ user.first_name }}</td>
-            <td>{{ user.last_name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.userprofile.employee_id|default:'' }}</td>
-            <td>{{ user.userprofile.birth_date|default:'' }}</td>
-            <td>{{ user.userprofile.get_gender_display|default:'' }}</td>
-            <td>{{ user.userprofile.job_title|default:'' }}</td>
-            <td>{{ user.userprofile.department|default:'' }}</td>
-            <td>{{ user.userprofile.company|default:'' }}</td>
-            <td>{{ user.userprofile.telephone|default:'' }}</td>
-            <td>{{ user.userprofile.address|default:'' }}</td>
-            <td>{{ user.userprofile.notes|default:'' }}</td>
-        </tr>
-    {% endfor %}
+        {% for user in users_list %}
+            <tr {% if not user.is_active %} class="text-muted"{% endif %}>
+                <td></td>
+                <td>
+                    {% if user.is_active %}
+                        <i class="fas fa-check-circle" style="color: darkgreen" title="Active"></i>
+                    {% else %}
+                        <i class="fas fa-times-circle" style="color: indianred" title="Inactive"> </i>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if user.is_superuser %}
+                        <i class="fas fa-user-ninja mr-2" style="color: darkblue" title="Superuser"></i>
+                    {% elif user.userprofile.is_manager %}
+                        <i class="fas fa-user-tie mr-2" style="color: darkblue" title="Manager"></i>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'sbam:profile' user.username %}">
+                        {{ user.get_full_name }}
+                    </a>
+                </td>
+                <td>{{ user.userprofile.display_name|default:'' }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.userprofile.employee_id|default:'' }}</td>
+                <td>{{ user.userprofile.birth_date|default:'' }}</td>
+                <td>{{ user.userprofile.get_gender_display|default:'' }}</td>
+                <td>{{ user.userprofile.job_title|default:'' }}</td>
+                <td>{{ user.userprofile.department|default:'' }}</td>
+                <td>{{ user.userprofile.company|default:'' }}</td>
+                <td>{{ user.userprofile.telephone|default:'' }}</td>
+                <td>{{ user.userprofile.address|default:'' }}</td>
+                <td>{{ user.userprofile.notes|default:'' }}</td>
+            </tr>
+        {% endfor %}
     </tbody>
+{% endblock %}
+
+{% block template_js %}
+    <script>
+        datatable('#table', [0, 1, 2, 3]);
+    </script>
 {% endblock %}

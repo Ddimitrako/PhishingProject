@@ -19,7 +19,7 @@
                 {% endif %}
             </label>
 
-            {% with field_class="form-control form-control-sm" %}
+            {% with field_class="form-control" %}
                 {% if field|field_type == 'booleanfield' %}
                     {{ field }}
                 {% elif field|field_type == 'datefield' %}

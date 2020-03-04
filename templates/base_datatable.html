@@ -51,10 +51,13 @@
     <script src="{% static 'admin-lte/plugins/pdfmake/vfs_fonts.js' %}"></script>
 
     <script>
-        $(function () {
-            $('#table thead tr').clone(true).appendTo('#table thead');
-            $('#table thead tr:eq(0) th').each(function (i) {
-                if (i !== 0 & i !== 1) {
+        function datatable(tableID, noFilterList, noOrderList) {
+            /* Constructing filter row*/
+            $(tableID + ' thead tr').clone(true).appendTo('#table thead');
+            $(tableID + ' thead tr:eq(0) th').each(function (i) {
+                if (noFilterList.includes(i)) {
+                    $(this).html('');
+                } else {
                     var title = $(this).text();
                     $(this).html(
                         '<div class="input-group input-group-xs dt-col-filter">' +
@@ -66,20 +69,10 @@
                             '</div>' +
                         '</div>'
                     );
-
-                    $('input', this).on('keyup change', function () {
-                        if (table.column(i).search() !== this.value) {
-                            table
-                                .column(i)
-                                .search(this.value)
-                                .draw();
-                        }
-                    });
-                } else {
-                    $(this).html('');
                 }
             });
 
+            /* Constants used by datatable buttons */
             const now = new Date();
             const title = '{{ settings.TOOL_SHORT_NAME }}_' + '{{ request.resolver_match.view_name }}'.replace('sbam:', '');
             const filename = title + '_' + now.toLocaleDateString('en-US', {
@@ -88,7 +81,8 @@
                 year: 'numeric'
             });
 
-            $('#table').DataTable({
+            /* Constructing datatable */
+            var table = $(tableID).DataTable({
                 fixedHeader: true,
                 searching: true,
                 autoWidth: true,
@@ -96,7 +90,7 @@
                 scrollX: true,
                 scrollCollapse: true,
                 paging: false,
-                order: [[1, 'asc']],
+                order: [[noFilterList.length, 'asc']],
 
                 columnDefs: [
                     {
@@ -106,16 +100,24 @@
                         checkboxes: {
                             selectRow: true
                         }
+                    },
+                    {
+                        targets: noFilterList,
+                        className: 'noVis'
+                    },
+                    {
+                        targets: noOrderList,
+                        orderable: false
                     }
                 ],
                 select: {
                     style: 'multi'
                 },
                 fixedColumns: {
-                    leftColumns: 2
+                    leftColumns: noFilterList.length
                 },
                 colReorder: {
-                    fixedColumnsLeft: 2
+                    fixedColumnsLeft: noFilterList.length
                 },
 
                 dom: 'Bfrtip',
@@ -222,6 +224,16 @@
                     }
                 ]
             });
-        });
+
+            /* Apply column filter search */
+            table.columns().eq(0).each(function (i) {
+                $('input', $('th')[i]).on('keyup change clear', function () {
+                    table
+                        .column(i)
+                        .search(this.value)
+                        .draw();
+                });
+            });
+        }
     </script>
 {% endblock %}

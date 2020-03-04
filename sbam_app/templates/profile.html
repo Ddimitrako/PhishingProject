@@ -4,7 +4,7 @@
 
 {% block page_name %}
     <div class="row">
-        <strong><i class="fas fa-address-card mr-2"></i> Profile:</strong>
+        <strong><i class="fas fa-user-cog mr-2"></i> Profile:</strong>
         <p class="ml-2">{{ user.get_full_name }}</p>
         {% if not user.is_active %}
             <p class="ml-2" style="color:indianred">(disabled) </p>
@@ -22,8 +22,7 @@
     <form action="" method="post">
         <div class="row">
             <div class="col-md-4">
-                <div class="card card-primary card-outline"
-                     {% if not user.is_active %}style="border: 5px solid indianred"{% endif %}>
+                <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                         <div class="text-center">
                             <img src="{% avatar_url size=128 %}" alt="User Avatar" class="img-size-100 mr-3 img-circle">
@@ -84,8 +83,7 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="card card-primary card-outline card-outline-tabs"
-                     {% if not user.is_active %}style="border: 5px solid indianred"{% endif %}>
+                <div class="card card-primary card-outline card-outline-tabs">
                     <div class="card-header pb-2 border-bottom-0">
                         <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
                             <li class="nav-item">
