@@ -17,21 +17,21 @@ class Dimension(Model):
         (INDIVIDUAL, 1)
     ]
 
-    dimension_title = CharField(max_length=50, help_text="Dimension title")
-    dimension_description = TextField(blank=True, null=True, default='', help_text="Dimension description")
-    dimension_level = SmallIntegerField(choices=LEVEL, help_text="Dimension level")
+    title = CharField(max_length=50, help_text="Dimension title")
+    description = TextField(blank=True, null=True, default='', help_text="Dimension description")
+    level = SmallIntegerField(choices=LEVEL, help_text="Dimension level")
 
     def __str__(self):
-        return self.dimension_title
+        return self.title
 
 
 class Domain(Model):
     dimension = ForeignKey(Dimension, on_delete=CASCADE, help_text="Dimension this domain belongs to")
-    domain_title = CharField(max_length=50, help_text="Domain title")
-    domain_description = TextField(blank=True, null=True, default='', help_text="Domain description")
+    title = CharField(max_length=50, help_text="Domain title")
+    description = TextField(blank=True, null=True, default='', help_text="Domain description")
 
     def __str__(self):
-        return self.domain_title
+        return self.title
 
 
 class Campaign(Model):
