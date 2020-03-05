@@ -176,17 +176,6 @@ th, .sorting_1 {
     font-weight: 400;
 }
 
-#accordion .card .card-header > h5:after {
-    content: '\25BC';
-    color: #007bff;
-    font-size: 60%;
-    float: right;
-}
-
-/*#accordion .card .card-header > h5:after {
-  content: "\25B2";
-}*/
-
 #accordion .card .card-body {
     padding-left: 0;
 }
