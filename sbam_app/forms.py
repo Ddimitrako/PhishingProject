@@ -21,7 +21,7 @@ class SignupForm(ModelForm):
         self.fields['first_name'].required = True
         self.fields['last_name'].required = True
 
-        self.field_order = ['first_name', 'last_name', 'email', 'username', 'password1', 'password2']
+        self.field_order = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
 
 class UserForm(ModelForm):

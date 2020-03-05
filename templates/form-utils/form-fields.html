@@ -9,61 +9,65 @@
     {% endfor %}
 {% endif %}
 
-{% for field in form %}
-    <div class="{% if 'accounts' in request.path_info %}col-12 p-0{% else %}col-5 mr-3{% endif %}">
-        <div class="form-group">
-            <label class="control-label">
-                {{ field.label }}
-                {% if field.field.required %}
-                    <span class="text-danger">*</span>
-                {% endif %}
-            </label>
+<div class="d-flex flex-wrap justify-content-between">
+    {% for field in form %}
+        <div class="{% if 'signup' in request.path_info %}col-md-5 p-0{% elif 'accounts' in request.path_info %}col-12 p-0{% else %}col-md-5 mr-3{% endif %}">
+            <div class="form-group">
+                <label class="control-label">
+                    {{ field.label }}
+                    {% if field.field.required %}
+                        <span class="text-danger">*</span>
+                    {% endif %}
+                </label>
 
-            {% with field_class="form-control" %}
-                {% if field|field_type == 'booleanfield' %}
-                    {{ field }}
-                {% elif field|field_type == 'datefield' %}
-                    {% include "form-utils/input-group-field.html" with field=field|add_class:"datepicker" icon="fas fa-calendar-alt" %}
-                {% else %}
-                    {% if field.label == "Username" %}
-                        {% include "form-utils/input-group-field.html" with field=field icon="fas fa-user" %}
-                    {% elif field|widget_type == "passwordinput" or field.auto_id == 'id_password' %}
-                        {% include "form-utils/input-group-field.html" with field=field|attr:"type:password" icon="fas fa-lock" %}
-                        {% if field.auto_id == 'id_password' %}
-                            {% if not user.is_authenticated %}
-                                <span>
-                                    <a style="display: block;font-size: 12px;" href="{% url 'account_reset_password' %}">
+                {% with field_class="form-control" %}
+                    {% if field|field_type == 'booleanfield' %}
+                        {{ field }}
+                    {% elif field|field_type == 'datefield' %}
+                        {% include "form-utils/input-group-field.html" with field=field|add_class:"datepicker" icon="fas fa-calendar-alt" %}
+                    {% else %}
+                        {% if field.label == "Username" %}
+                            {% include "form-utils/input-group-field.html" with field=field icon="fas fa-user" %}
+                        {% elif field|widget_type == "passwordinput" or field.auto_id == 'id_password' %}
+                            {% include "form-utils/input-group-field.html" with field=field|attr:"type:password" icon="fas fa-lock" %}
+                            {% if field.auto_id == 'id_password' %}
+                                {% if not user.is_authenticated %}
+                                    <span>
+                                    <a style="display: block;font-size: 12px;"
+                                       href="{% url 'account_reset_password' %}">
                                         Forgot Password?
                                     </a>
                                 </span>
-                            {% else %}
-                                <span>
-                                    <a style="display: block;font-size: 12px;" href="{% url 'account_change_password' %}">
+                                {% else %}
+                                    <span>
+                                    <a style="display: block;font-size: 12px;"
+                                       href="{% url 'account_change_password' %}">
                                         Change Password?
                                     </a>
                                 </span>
+                                {% endif %}
                             {% endif %}
+                        {% elif field|field_type == "emailfield" %}
+                            {% include "form-utils/input-group-field.html" with field=field icon="fas fa-envelope" %}
+                        {% else %}
+                            {{ field|add_class:field_class }}
                         {% endif %}
-                    {% elif field|field_type == "emailfield" %}
-                        {% include "form-utils/input-group-field.html" with field=field icon="fas fa-envelope" %}
-                    {% else %}
-                        {{ field|add_class:field_class }}
                     {% endif %}
+                {% endwith %}
+
+                {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
                 {% endif %}
-            {% endwith %}
 
-            {% if field.help_text %}
-                <small class="form-text text-muted">{{ field.help_text }}</small>
-            {% endif %}
-
-            {% if field.errors %}
-                {% for err in field.errors %}
-                    <div class="text-danger padding-bottom-2">
-                        <i class="fa fa-exclamation-triangle"></i>
-                        {{ err }}
-                    </div>
-                {% endfor %}
-            {% endif %}
+                {% if field.errors %}
+                    {% for err in field.errors %}
+                        <div class="text-danger padding-bottom-2">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            {{ err }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
-    </div>
-{% endfor %}
+    {% endfor %}
+</div>
