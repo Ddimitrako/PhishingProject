@@ -3,6 +3,7 @@ from django import forms
 from sbam_app import models
 
 from tempus_dominus.widgets import DatePicker, TimePicker, DateTimePicker
+from django.contrib.auth.models import Group
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Row, Column, Fieldset, ButtonHolder, Submit, Field
@@ -75,6 +76,43 @@ class CampaignCreationForm(forms.Form):
 
         dimensions_dict.append(dim_dict)
 
+    users = models.User.objects.all()
+    users_groups = Group.objects.all()
 
-    print(dimensions_dict)
+    users_dict = list()
+    users_dict.append({
+                      "id": 'users',
+                      "text": 'Users',
+                      "attributes": {},
+                      "children": [],
+                      "check": "False"
+                    })
+    users_dict.append({
+        "id": 'user_groups',
+        "text": 'Users Groups',
+        "attributes": {},
+        "children": [],
+        "check": "False"
+    })
+
+    for usr in users:
+        usr_dict = {
+                      "id": 'user_' + str(usr.pk),
+                      "text": usr.first_name + ' ' + usr.last_name,
+                      "attributes": {},
+                      "children": [],
+                      "check": "False"
+                    }
+        users_dict[0]['children'].append(usr_dict)
+
+    for group in users_groups:
+        group_dict = {
+                      "id": 'group_' + str(group.pk),
+                      "text": group.name,
+                      "attributes": {},
+                      "children": [],
+                      "check": "False"
+                    }
+        users_dict[1]['children'].append(group_dict)
+
 

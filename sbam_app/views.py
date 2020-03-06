@@ -18,8 +18,11 @@ class UsersView(ListView):
 
 
 def CampaignCreation(request):
-    campaign_form = CampaignCreationForm()
-    return render(request, 'campaign_creation.html', {'campaign_form': campaign_form})
+    if request.method == 'POST':
+        campaign_form = CampaignCreationForm()
+        return HttpResponseRedirect('/sbam/dashboard/')
+    else:
+        return render(request, 'campaign_creation.html', {'campaign_form': CampaignCreationForm()})
 
 
 @login_required
