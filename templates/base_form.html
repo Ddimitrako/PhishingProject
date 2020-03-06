@@ -79,8 +79,17 @@
              *  DualListbox
              */
             $('.duallistbox').bootstrapDualListbox({
-                nonSelectedListLabel: 'Available',
-                selectedListLabel: 'Selected',
+                nonSelectedListLabel: '{% trans "Available" %}',
+                selectedListLabel: '{% trans "Selected" %}',
+                filterTextClear: '{% trans "show all" %}',
+                filterPlaceHolder: '{% trans "Filter" %}',
+                moveSelectedLabel: '{% trans "Move selected" %}',
+                moveAllLabel: '{% trans "Move all" %}',
+                removeSelectedLabel: '{% trans "Remove selected" %}',
+                removeAllLabel: '{% trans "Remove all" %}',
+                infoText: '{% trans "Showing all {0}" %}',                                                        // text when all options are visible / false for no info text
+                infoTextFiltered: '<span class="badge badge-warning">{% trans "Filtered" %}</span> {0} from {1}', // when not all of the options are visible due to the filter
+                infoTextEmpty: '{% trans "Empty list" %}',
                 moveOnSelect: false,
                 btnClass: 'btn-outline-info',
                 btnMoveText: '<i class="fas fa-angle-right"></i>',

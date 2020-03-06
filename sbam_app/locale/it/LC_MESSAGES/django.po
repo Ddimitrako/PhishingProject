@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-06 11:39+0200\n"
+"POT-Creation-Date: 2020-03-07 00:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -323,92 +323,136 @@ msgstr ""
 msgid "New Group"
 msgstr ""
 
-#: .\templates\base_form.html:26
+#: .\templates\base_form.html:29
 msgid "Back"
 msgstr ""
 
-#: .\templates\base_form.html:27
+#: .\templates\base_form.html:30
 msgid "Next"
 msgstr ""
 
-#: .\templates\base_form.html:28
+#: .\templates\base_form.html:31
 msgid "Finish"
 msgstr ""
 
-#: .\templates\base_form.html:48
+#: .\templates\base_form.html:51
 msgid "Su"
 msgstr ""
 
-#: .\templates\base_form.html:49
+#: .\templates\base_form.html:52
 msgid "Mo"
 msgstr ""
 
-#: .\templates\base_form.html:50
+#: .\templates\base_form.html:53
 msgid "Tu"
 msgstr ""
 
-#: .\templates\base_form.html:51
+#: .\templates\base_form.html:54
 msgid "We"
 msgstr ""
 
-#: .\templates\base_form.html:52
+#: .\templates\base_form.html:55
 msgid "Th"
 msgstr ""
 
-#: .\templates\base_form.html:53
+#: .\templates\base_form.html:56
 msgid "Fr"
 msgstr ""
 
-#: .\templates\base_form.html:54
+#: .\templates\base_form.html:57
 msgid "Sa"
 msgstr ""
 
-#: .\templates\base_form.html:57
+#: .\templates\base_form.html:60
 msgid "January"
 msgstr ""
 
-#: .\templates\base_form.html:58
+#: .\templates\base_form.html:61
 msgid "February"
 msgstr ""
 
-#: .\templates\base_form.html:59
+#: .\templates\base_form.html:62
 msgid "March"
 msgstr ""
 
-#: .\templates\base_form.html:60
+#: .\templates\base_form.html:63
 msgid "April"
 msgstr ""
 
-#: .\templates\base_form.html:61
+#: .\templates\base_form.html:64
 msgid "May"
 msgstr ""
 
-#: .\templates\base_form.html:62
+#: .\templates\base_form.html:65
 msgid "June"
 msgstr ""
 
-#: .\templates\base_form.html:63
+#: .\templates\base_form.html:66
 msgid "July"
 msgstr ""
 
-#: .\templates\base_form.html:64
+#: .\templates\base_form.html:67
 msgid "August"
 msgstr ""
 
-#: .\templates\base_form.html:65
+#: .\templates\base_form.html:68
 msgid "September"
 msgstr ""
 
-#: .\templates\base_form.html:66
+#: .\templates\base_form.html:69
 msgid "October"
 msgstr ""
 
-#: .\templates\base_form.html:67
+#: .\templates\base_form.html:70
 msgid "November"
 msgstr ""
 
-#: .\templates\base_form.html:68
+#: .\templates\base_form.html:71
 msgid "December"
+msgstr ""
+
+#: .\templates\base_form.html:82
+msgid "Available"
+msgstr ""
+
+#: .\templates\base_form.html:83
+msgid "Selected"
+msgstr ""
+
+#: .\templates\base_form.html:84
+msgid "show all"
+msgstr ""
+
+#: .\templates\base_form.html:85
+msgid "Filter"
+msgstr ""
+
+#: .\templates\base_form.html:86
+msgid "Move selected"
+msgstr ""
+
+#: .\templates\base_form.html:87
+msgid "Move all"
+msgstr ""
+
+#: .\templates\base_form.html:88
+msgid "Remove selected"
+msgstr ""
+
+#: .\templates\base_form.html:89
+msgid "Remove all"
+msgstr ""
+
+#: .\templates\base_form.html:90
+msgid "Showing all {0}"
+msgstr ""
+
+#: .\templates\base_form.html:91
+msgid "Filtered"
+msgstr ""
+
+#: .\templates\base_form.html:92
+msgid "Empty list"
 msgstr ""
 
 #: .\templates\form-utils\form-fields.html:38
