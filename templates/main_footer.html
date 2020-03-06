@@ -1,11 +1,13 @@
-{% load adminlte_helpers i18n %}
-
-{% load static %}
+{% load adminlte_helpers i18n static %}
 
 <div class="footer-container">
-    <a href="{{ settings.PROJECT_URL }}"><img class="footer-logo" src="{% static "img/es_logos/white_es_logo.png" %}" alt="{{ settings.PROJECT_NAME }}"></a>
+    <a href="{{ settings.PROJECT_URL }}">
+        <img class="footer-logo" src="{% static "img/es_logos/white_es_logo.png" %}" alt="{{ settings.PROJECT_NAME }}">
+    </a>
     <div class="eu-consent">
-        <div class="flag-eu-consent"><img class="eu-flag" src="{% static "img/eu_flag.jpg" %}" alt="European Union"></div>
-        <div class="txt-eu-consent">{{ settings.PROJECT_EU_CONSENT}}</div>
+        <div class="flag-eu-consent">
+            <img class="eu-flag" src="{% static "img/eu_flag.jpg" %}" alt="European Union">
+        </div>
+        <div class="txt-eu-consent">{{ settings.PROJECT_EU_CONSENT }}</div>
     </div>
 </div>

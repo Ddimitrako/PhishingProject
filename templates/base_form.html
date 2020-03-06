@@ -1,18 +1,21 @@
 {% extends "base.html" %}
 
-{% load static %}
+{% load i18n static %}
 
 {% block extra_head %}
-    <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/daterangepicker/daterangepicker.css' %}"/>
+    <link rel="stylesheet" type="text/css" href='{% static 'admin-lte/plugins/daterangepicker/daterangepicker.css' %}'/>
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'js/jquery.steps.min.js' %}"></script>
-    <script src="{% static 'admin-lte/plugins/moment/moment.min.js' %}"></script>
-    <script src="{% static 'admin-lte/plugins/daterangepicker/daterangepicker.js' %}"></script>
+    <script src='{% static 'js/jquery.steps.min.js' %}'></script>
+    <script src='{% static 'admin-lte/plugins/moment/moment.min.js' %}'></script>
+    <script src='{% static 'admin-lte/plugins/daterangepicker/daterangepicker.js' %}'></script>
 
     <script>
         $(function () {
+            /*
+            *   Wizards
+             */
             $('.wizard-body').steps({
                 headerTag: "h2",
                 bodyTag: "section",
@@ -20,9 +23,9 @@
                 autoFocus: true,
                 titleTemplate: '<div class="title">#title#</div>',
                 labels: {
-                    previous: '< Back',
-                    next: 'Next >',
-                    finish: 'Finish',
+                    previous: '< {% trans "Back" %}',
+                    next: '{% trans "Next" %} >',
+                    finish: '{% trans "Finish" %}',
                     current: ''
                 },
                 onFinishing: function (event, currentIndex, newIndex) {
@@ -30,6 +33,9 @@
                 }
             });
 
+            /*
+            *   Daterange picker
+             */
             $('.datepicker').daterangepicker({
                 singleDatePicker: true,
                 showDropdowns: true,
@@ -38,19 +44,28 @@
                 maxYear: parseInt(moment().format('YYYY'), 10),
                 locale: {
                     format: 'YYYY-MM-DD',
+                    daysOfWeek: [
+                        '{% trans "Su" %}',
+                        '{% trans "Mo" %}',
+                        '{% trans "Tu" %}',
+                        '{% trans "We" %}',
+                        '{% trans "Th" %}',
+                        '{% trans "Fr" %}',
+                        '{% trans "Sa" %}'
+                    ],
                     monthNames: [
-                        "January",
-                        "February",
-                        "March",
-                        "April",
-                        "May",
-                        "June",
-                        "July",
-                        "August",
-                        "September",
-                        "October",
-                        "November",
-                        "December"
+                        '{% trans "January" %}',
+                        '{% trans "February" %}',
+                        '{% trans "March" %}',
+                        '{% trans "April" %}',
+                        '{% trans "May" %}',
+                        '{% trans "June" %}',
+                        '{% trans "July" %}',
+                        '{% trans "August" %}',
+                        '{% trans "September" %}',
+                        '{% trans "October" %}',
+                        '{% trans "November" %}',
+                        '{% trans "December" %}'
                     ]
                 }
             }, function (chosen_date) {

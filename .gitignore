@@ -9,3 +9,6 @@ db.sqlite3
 
 # Environmental Variables File
 .env
+
+# Compiled Message Files (binary)
+*.mo

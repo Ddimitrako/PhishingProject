@@ -3,62 +3,71 @@
 {% load static i18n crispy_forms_tags %}
 
 {% block page_name %}
-    <strong><i class="fas fa-user-plus mr-2"></i> New User</strong>
+    <strong><i class="fas fa-user-plus mr-2"></i>{% trans "New User" %}</strong>
 {% endblock %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{% url 'sbam:users' %}">Users</a></li>
-    <li class="breadcrumb-item active">New User</li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:users' %}">{% trans "Users" %}</a></li>
+    <li class="breadcrumb-item active">{% trans "New User" %}</li>
 {% endblock %}
 
 {% block content %}
-    <div class="col-md-8">
+    <div class="col-md-6">
         <div class="card card-primary card-outline align-items-center">
             <div class="card-body">
                 <form class="wizard-form" action="" method="post">
                     <div class="wizard-header">
-                        <h3 class="heading">Create New User</h3>
+                        <h3 class="heading">{% trans "Create New User" %}</h3>
                     </div>
                     <div class="wizard-body">
+                        {% trans "User Account" as step1 %}
+                        {% trans "Personal Information" as step2 %}
+                        {% trans "Contact Details" as step3 %}
+                        {% trans "Organisational Information" as step4 %}
+
                         <h2>
-                            <span class="step-icon"><i class="fas fa-user-circle"></i></span>
-                            <span class="step-text">Account</span>
+                            <span class="step-icon" title="{{ step1 }}">
+                                <i class="fas fa-user-circle"></i>
+                            </span>
                         </h2>
                         <section>
                             <div class="inner">
-                                <h3>User Account:</h3>
+                                <h3>{{ step1 }}:</h3>
                                 {% crispy user_form user_form.new_user_helper %}
                             </div>
                         </section>
                         <h2>
-                            <span class="step-icon"><i class="fas fa-id-badge"></i></span>
-                            <span class="step-text">Personal</span>
+                            <span class="step-icon" title="{{ step2 }}">
+                                <i class="fas fa-id-badge"></i>
+                            </span>
                         </h2>
                         <section>
                             <div class="inner">
-                                <h3>Personal Information:</h3>
+                                <h3>{{ step2 }}:</h3>
                                 {% crispy profile_form profile_form.general_info_helper %}
                             </div>
                         </section>
                         <h2>
-                            <span class="step-icon"><i class="far fa-address-book"></i></span>
-                            <span class="step-text">Contact</span>
+                            <span class="step-icon" title="{{ step3 }}">
+                                <i class="far fa-address-book"></i>
+                            </span>
                         </h2>
                         <section>
                             <div class="inner">
-                                <h3>Contact Details:</h3>
+                                <h3>{{ step3 }}:</h3>
                                 {% crispy profile_form profile_form.contact_details_helper %}
                             </div>
                         </section>
                         <h2>
-                            <span class="step-icon"> <i class="fas fa-briefcase"></i></span>
-                            <span class="step-text">Organizational</span>
+                            <span class="step-icon" title="{{ step4 }}">
+                                <i class="fas fa-briefcase"></i>
+                            </span>
                         </h2>
                         <section>
                             <div class="inner">
-                                <h3>Organizational Information:</h3>
-                                {% crispy profile_form profile_form.organizational_info_helper %}
+                                <h3>{{ step4 }}:</h3>
+                                {% crispy profile_form profile_form.organisational_info_helper %}
                             </div>
                         </section>
                     </div>

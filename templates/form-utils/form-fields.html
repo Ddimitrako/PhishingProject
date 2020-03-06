@@ -1,4 +1,4 @@
-{% load widget_tweaks %}
+{% load widget_tweaks i18n %}
 
 {% if form.non_field_errors %}
     {% for err in form.non_field_errors %}
@@ -35,14 +35,14 @@
                                     <span>
                                     <a style="display: block;font-size: 12px;"
                                        href="{% url 'account_reset_password' %}">
-                                        Forgot Password?
+                                        {% trans "Forgot Password" %} ?
                                     </a>
                                 </span>
                                 {% else %}
                                     <span>
                                     <a style="display: block;font-size: 12px;"
                                        href="{% url 'account_change_password' %}">
-                                        Change Password?
+                                        {% trans "Change Password" %} ?
                                     </a>
                                 </span>
                                 {% endif %}

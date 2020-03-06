@@ -1,6 +1,4 @@
-{% load adminlte_helpers i18n %}
-
-{% load static %}
+{% load adminlte_helpers i18n static %}
 
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     {% block nav_bar %}
@@ -10,14 +8,14 @@
             </li>
 
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="{% url 'sbam:dashboard' %}" class="nav-link">Home</a>
+                <a href="{% url 'sbam:dashboard' %}" class="nav-link">{% trans "Home" %}</a>
             </li>
         </ul>
 
         {% block nav_bar_center %}
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                    <input class="form-control form-control-navbar" type="search" placeholder="{% trans "Search" %}"
                            aria-label="Search">
                     <div class="input-group-append">
                         <button class="btn btn-navbar" type="submit">
@@ -39,7 +37,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                <span class="dropdown-item dropdown-header">Contact Us</span>
+                                <span class="dropdown-item dropdown-header">{% trans "Contact Us" %}</span>
 
                                 <div class="dropdown-divider"></div>
 
@@ -61,39 +59,28 @@
                                                 <h3 class="dropdown-item-title">
                                                     {% firstof request.user.get_full_name request.user.get_username %}
                                                 </h3>
-                                                <p class="text-sm"><small>Member since :</small></p>
+                                                <p class="text-sm"><small>{% trans "Member since" %} :</small></p>
                                                 <p class="text-sm text-muted">
                                                     <i class="far fa-clock mr-1"></i>
                                                     <small>{{ request.user.date_joined }}</small></p>
                                             </div>
                                         </div>
                                     </a>
-
                                     <div class="dropdown-divider"></div>
-
                                     <a href="{% url 'sbam:profile' request.user.username %}" class="dropdown-item">
                                         {% trans 'Profile' %}
                                     </a>
-
                                     <div class="dropdown-divider"></div>
-
                                     <a href="{% url 'account_change_password' %}" class="dropdown-item">
                                         {% trans 'Change Password' %}
                                     </a>
-
-                                    {% comment %}<div class="dropdown-footer">
-                                            <a href="{% url 'sbam:profile' request.user.username %}"
-                                               class="btn btn-info btn-sm">{% trans 'Profile' %}</a>
-                                            <a href="{% url 'account_change_password' %}"
-                                               class="btn btn-danger btn-sm">{% trans 'Change Password' %}</a>
-                                        </div>{% endcomment %}
                                 </div>
                             </li>
                         {% endblock user_info %}
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% logout_url %}" title="Sign Out">
-                                <i class="fas fa-sign-out-alt"></i> Logout
+                            <a class="nav-link" href="{% logout_url %}" title="{% trans "Sign Out" %}">
+                                <i class="fas fa-sign-out-alt"></i> {% trans "Logout" %}
                             </a>
                         </li>
                     {% endblock header_dropdowns %}

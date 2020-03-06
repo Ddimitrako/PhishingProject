@@ -14,21 +14,66 @@ class Dimension(Model):
         ORGANISATIONAL = 0, _('Organisational')
         INDIVIDUAL = 1, _('Individual')
 
-    dimension_title = CharField(max_length=50, help_text="Dimension title")
-    dimension_description = TextField(blank=True, null=True, default='', help_text="Dimension description")
-    dimension_level = SmallIntegerField(choices=DimensionLevel.choices, help_text="Dimension level")
+    dimension_title = CharField(
+        _('dimension title'),
+        max_length=50,
+        unique=True,
+        error_messages={
+            'unique': _("A dimension with that title already exists."),
+        },
+        help_text=_('Dimension title')
+    )
+    dimension_description = TextField(
+        _('dimension description'),
+        blank=True,
+        null=True,
+        default='',
+        help_text=_('Dimension description')
+    )
+    dimension_level = SmallIntegerField(
+        _('dimension level'),
+        choices=DimensionLevel.choices,
+        help_text=_('Dimension level')
+    )
+
+    class Meta:
+        verbose_name = _('dimension')
+        verbose_name_plural = _('dimensions')
 
     def __str__(self):
         return self.dimension_title
 
 
 class Domain(Model):
-    dimension = ForeignKey(Dimension, on_delete=CASCADE, help_text="Dimension this domain belongs to")
-    domain_title = CharField(max_length=50, help_text="Domain title")
-    domain_description = TextField(blank=True, null=True, default='', help_text="Domain description")
+    dimension = ForeignKey(
+        Dimension,
+        verbose_name=_('dimension'),
+        on_delete=CASCADE,
+        help_text=_('Dimension this domain belongs to')
+    )
+    domain_title = CharField(
+        _('domain title'),
+        max_length=50,
+        unique=True,
+        error_messages={
+            'unique': _("A domain with that title already exists."),
+        },
+        help_text=_('Domain title')
+    )
+    domain_description = TextField(
+        _('domain description'),
+        blank=True,
+        null=True,
+        default='',
+        help_text=_('Domain description')
+    )
 
     def __str__(self):
         return self.domain_title
+
+    class Meta:
+        verbose_name = _('domain')
+        verbose_name_plural = _('domains')
 
 
 class Question(Model):
@@ -38,77 +83,48 @@ class Question(Model):
         PERCENTAGE = 2, _('Percentage')
         MULTIPLE_CHOICE = 3, _('Multiple Choice')
 
-    domain = ForeignKey(Domain, on_delete=CASCADE, help_text="Domain this question belongs to")
-    question_text = TextField(max_length=1000, help_text="Question text")
-    type = SmallIntegerField(choices=QuestionType.choices, default=3, help_text="Question type")
+    domain = ForeignKey(
+        Domain,
+        verbose_name=_('domain'),
+        on_delete=CASCADE,
+        help_text=_('Domain this question belongs to')
+    )
+    question_text = TextField(_('question text'), max_length=1000, help_text=_('Question text'))
+    type = SmallIntegerField(_('type'), choices=QuestionType.choices, default=3, help_text=_('Question type'))
 
     def __str__(self):
         return self.question_text
 
+    class Meta:
+        verbose_name = _('question')
+        verbose_name_plural = _('questions')
+
 
 class MultipleTextChoices(Model):
-    question = ForeignKey(Question, on_delete=CASCADE, help_text="Question this choice belongs to")
-    choice_text = TextField(max_length=1000, help_text="Choice text")
+    question = ForeignKey(
+        Question,
+        verbose_name=_('question'),
+        on_delete=CASCADE,
+        help_text=_('Question this choice belongs to')
+    )
+    choice_text = TextField(_('choice text'), max_length=1000, help_text=_('Choice text'))
 
     def __str__(self):
         return self.choice_text
 
-
-# Organization Model
-
-class UserProfile(Model):
-    class Gender(IntegerChoices):
-        MALE = 0, _('Male')
-        FEMALE = 1, _('Female')
-
-    user = OneToOneField(User, on_delete=CASCADE, help_text="Django User ID")
-
-    # Personal Info
-    display_name = CharField(max_length=200, blank=True, null=True, default='', help_text="Person's display name")
-    birth_date = DateField(blank=True, null=True, help_text="Person's birth date")
-    gender = SmallIntegerField(blank=True, null=True, choices=Gender.choices, help_text="Person's gender")
-
-    # Organization Info
-    is_manager = BooleanField(
-        _('manager status'),
-        default=False,
-        help_text=_('Designates whether the user can have advanced business privileges within the tool.'),
-    )
-    employee_id = IntegerField(unique=True, blank=True, null=True,
-                               error_messages={
-                                   'unique': _("A user with that employee id already exists."),
-                               },
-                               help_text="Person's employee id")
-    job_title = CharField(max_length=100, blank=True, null=True, default='', help_text="Person's job title")
-    department = CharField(max_length=200, blank=True, null=True, default='',
-                           help_text="Department this user belongs to")
-    company = CharField(max_length=200, blank=True, null=True, default='', help_text="Company this user belongs to")
-
-    # Contact Details
-    telephone = CharField(max_length=20, blank=True, null=True, default='', help_text="Person's telephone")
-    address = CharField(max_length=200, blank=True, null=True, default='', help_text="Person's working address")
-
-    # Generic Info
-    notes = CharField(max_length=1000, blank=True, null=True, default='', help_text="Notes")
-
-    def __str__(self):
-        return self.user.get_full_name()
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.userprofile.save()
+    class Meta:
+        verbose_name = _('multiple text choice')
+        verbose_name_plural = _('multiple text choices')
 
 
 class UserChoice(Model):
-    question = ForeignKey(Question, on_delete=CASCADE, help_text="Question this choice belongs to")
-    user = ForeignKey(User, on_delete=CASCADE, help_text="User this choice belongs to")
+    question = ForeignKey(
+        Question,
+        verbose_name=_('question'),
+        on_delete=CASCADE,
+        help_text=_('Question this choice belongs to')
+    )
+    user = ForeignKey(User, verbose_name=_('user'), on_delete=CASCADE, help_text=_('User this choice belongs to'))
 
     #
     # Answers
@@ -121,8 +137,126 @@ class UserChoice(Model):
     # 0 - Lowest , 100 - Highest
     # If question type 3:
     # Use choice in multipleChoices table leave choice null
-    choice = SmallIntegerField(blank=True, null=True, help_text="User's choice")
-    multipleChoice = ForeignKey(MultipleTextChoices, on_delete=CASCADE, help_text="User's choice (from multiple)")
+    choice = SmallIntegerField(_('choice'), blank=True, null=True, help_text=_('User choice'))
+    multipleChoice = ForeignKey(
+        MultipleTextChoices,
+        verbose_name=_('multiple choice'),
+        on_delete=CASCADE,
+        help_text=_('User choice (from multiple)')
+    )
 
     def __str__(self):
         return self.choice_text
+
+    class Meta:
+        verbose_name = _('user choice')
+        verbose_name_plural = _('user choices')
+
+
+# User Management Model
+
+class UserProfile(Model):
+    class Gender(IntegerChoices):
+        MALE = 0, _('Male')
+        FEMALE = 1, _('Female')
+
+    user = OneToOneField(User, verbose_name=_('user'), on_delete=CASCADE, help_text=_('User ID'))
+
+    # Personal Info
+    display_name = CharField(
+        _('display name'),
+        max_length=200,
+        blank=True,
+        null=True,
+        default='',
+        help_text=_('User display name')
+    )
+    birth_date = DateField(_('birth date'), blank=True, null=True, help_text=_('User birth date'))
+    gender = SmallIntegerField(_('gender'), blank=True, null=True, choices=Gender.choices, help_text=_('User gender'))
+
+    # Organisational Info
+    is_manager = BooleanField(
+        _('manager status'),
+        default=False,
+        help_text=_('Designates whether the user can have advanced business privileges within the tool.'),
+    )
+    employee_id = IntegerField(
+        _('employee id'),
+        unique=True,
+        blank=True,
+        null=True,
+        error_messages={
+            'unique': _('A user with that employee id already exists.'),
+        },
+        help_text=_('User employee id')
+    )
+    job_title = CharField(
+        _('job title'),
+        max_length=100,
+        blank=True,
+        null=True,
+        default='',
+        help_text=_('User job title')
+    )
+    department = CharField(
+        _('department'),
+        max_length=200,
+        blank=True,
+        null=True,
+        default='',
+        help_text=_('Department this user belongs to')
+    )
+    company = CharField(
+        _('company'),
+        max_length=200,
+        blank=True,
+        null=True,
+        default='',
+        help_text=_('Company this user belongs to')
+    )
+
+    # Contact Details
+    telephone = CharField(
+        _('telephone'),
+        max_length=20,
+        blank=True,
+        null=True,
+        default='',
+        help_text=_('User telephone number')
+    )
+    address = CharField(
+        _('address'),
+        max_length=200,
+        blank=True,
+        null=True,
+        default='',
+        help_text=_('User working address')
+    )
+
+    # Generic Info
+    notes = TextField(
+        _('notes'),
+        max_length=1000,
+        blank=True,
+        null=True,
+        default='',
+        help_text=_('Notes')
+    )
+
+    def __str__(self):
+        return self.user.get_full_name()
+
+    class Meta:
+        verbose_name = _('user profile')
+        verbose_name_plural = _('user profiles')
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.userprofile.save()

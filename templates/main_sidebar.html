@@ -1,10 +1,9 @@
-{% load adminlte_helpers %}
-
-{% load static %}
+{% load adminlte_helpers i18n static %}
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="/" class="brand-link">
-        <img src="{% static 'img/es_logos/es_logo.png' %}" alt="{{ settings.PROJECT_NAME }}" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{% url 'sbam:dashboard' %}" class="brand-link">
+        <img src="{% static 'img/es_logos/es_logo.png' %}" alt="{{ settings.PROJECT_NAME }}"
+             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light"><b>{{ settings.TOOL_NAME }}</b></span>
     </a>
 
@@ -15,7 +14,9 @@
                     <img src="{% avatar_url size=90 %}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="{% url 'sbam:profile' request.user.username %}" class="d-block">{% firstof request.user.get_full_name request.user.username %}</a>
+                    <a href="{% url 'sbam:profile' request.user.username %}" class="d-block">
+                        {% firstof request.user.get_full_name request.user.username %}
+                    </a>
                 </div>
             </div>
         {% endblock %}
@@ -25,51 +26,50 @@
 
         {% block nav_links_ul %}
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     {% block nav_links_outer %}
                         {% block nav_links %}
                             <li class="nav-item">
                                 <a href="{% url 'sbam:dashboard' %}" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>Dashboard</p>
+                                    <p>{% trans "Dashboard" %}</p>
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a href="{% url 'sbam:users' %}" class="nav-link">
                                     <i class="nav-icon fas fa-user"></i>
-                                    <p>Users</p>
+                                    <p>{% trans "Users" %}</p>
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-users"></i>
-                                    <p>Groups</p>
+                                    <p>{% trans "Groups" %}</p>
                                 </a>
                             </li>
 
                             <li class="nav-item has-tree-view">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-chart-line"></i>
-                                    <p>Reports</p>
-                                    <p>
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
+                                    <p>{% trans "Reports" %}</p>
+                                    <p><i class="right fas fa-angle-left"></i></p>
                                 </a>
 
                                 <ul class="nav nav-treeview menu-open">
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="nav-icon fas fa-building"></i>
-                                            <p>Organizational</p>
+                                            <p>{% trans "Organisational" %}</p>
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="nav-icon fas fa-user"></i>
-                                            <p>Individual</p>
+                                            <p>{% trans "Individual" %}</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -78,7 +78,7 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-edit"></i>
-                                    <p>Evaluations</p>
+                                    <p>{% trans "Evaluations" %}</p>
                                 </a>
                             </li>
                         {% endblock nav_links %}

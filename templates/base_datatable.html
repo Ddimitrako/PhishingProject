@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load static %}
+{% load i18n static %}
 
 {% block extra_head %}
     <link rel="stylesheet" type="text/css"
@@ -61,7 +61,7 @@
                     var title = $(this).text();
                     $(this).html(
                         '<div class="input-group input-group-xs dt-col-filter">' +
-                            '<input type="text" class="form-control" placeholder="' + title + '" />' +
+                            '<input type="text" class="form-control" placeholder="' + title +'" />' +
                             '<div class="input-group-append">' +
                                 '<span class="input-group-text">' +
                                     '<i class="fas fa-filter"></i>' +
@@ -125,14 +125,14 @@
                     {
                         extend: 'colvis',
                         className: 'btn btn-outline-info btn-sm dropdown-hover dropdown-toggle',
-                        text: '<i class="fas fa-columns"></i> Columns',
-                        titleAttr: 'Select columns',
+                        text: '<i class="fas fa-columns"></i> {% trans "Columns" %}',
+                        titleAttr: '{% trans "Select columns" %}',
                         columns: ':not(.noVis)'
                     },
                     {
                         extend: 'copy',
                         className: 'btn btn-outline-info btn-sm',
-                        text: '<i class="far fa-copy"></i> Copy',
+                        text: '<i class="far fa-copy"></i> {% trans "Copy" %}',
                         exportOptions: {
                             columns: ':not(.noVis):visible'
                         }
@@ -140,7 +140,7 @@
                     {
                         extend: 'print',
                         className: 'btn btn-outline-info btn-sm',
-                        text: '<i class="fas fa-print"></i> Print',
+                        text: '<i class="fas fa-print"></i> {% trans "Print" %}',
                         title: title,
                         exportOptions: {
                             columns: ':not(.noVis):visible'
@@ -149,8 +149,8 @@
                     {
                         extend: 'collection',
                         className: 'btn btn-outline-info btn-sm dropdown-hover dropdown-toggle',
-                        text: '<i class="fas fa-file-export"></i> Export ',
-                        titleAttr: 'Export to file',
+                        text: '<i class="fas fa-file-export"></i> {% trans "Export" %}',
+                        titleAttr: '{% trans "Export to file" %}',
                         buttons: [
                             {
                                 extend: 'excel',
@@ -191,17 +191,17 @@
                     },
                     {
                         className: 'btn btn-outline-success btn-sm mr-1 dt-action-button',
-                        text: '<i class="fas fa-file-upload"></i> Import',
+                        text: '<i class="fas fa-file-upload"></i> {% trans "Import" %}',
                         action: function (e, dt, node, config) {
                             // TODO redirect to "Import from file" form
                             window.location = 'dashboard';
                         },
-                        titleAttr: 'Import from file'
+                        titleAttr: '{% trans "Import from file" %}'
                     },
                     {
                         extend: 'collection',
                         className: 'btn btn-outline-success btn-sm mr-1 dropdown-hover dropdown-toggle dt-action-button',
-                        text: '<i class="fas fa-plus-circle"></i> Add',
+                        text: '<i class="fas fa-plus-circle"></i> {% trans "Add" %}',
                         buttons: [
                             {
                                 className: 'btn btn-outline-success btn-sm mr-1',
@@ -209,7 +209,7 @@
                                 action: function (e, dt, node, config) {
                                     window.location = 'create_user';
                                 },
-                                titleAttr: 'New user'
+                                titleAttr: '{% trans "New User" %}'
                             },
                             {
                                 className: 'btn btn-outline-success btn-sm mr-1',
@@ -218,7 +218,7 @@
                                     // TODO redirect to "Create New Group" form
                                     window.location = 'dashboard';
                                 },
-                                titleAttr: 'New group'
+                                titleAttr: '{% trans "New Group" %}'
                             }
                         ]
                     }

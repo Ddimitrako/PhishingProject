@@ -1,21 +1,21 @@
 {% extends "base_form.html" %}
 
-{% load adminlte_helpers crispy_forms_tags crispy_forms_field %}
+{% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field %}
 
 {% block page_name %}
     <div class="row">
-        <strong><i class="fas fa-user-cog mr-2"></i> Profile:</strong>
+        <strong><i class="fas fa-user-cog mr-2"></i> {% trans "Profile" %}:</strong>
         <p class="ml-2">{{ user.get_full_name }}</p>
         {% if not user.is_active %}
-            <p class="ml-2" style="color:indianred">(disabled) </p>
+            <p class="ml-2" style="color:indianred">{% trans "(disabled)" %}</p>
         {% endif %}
     </div>
 {% endblock %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{% url 'sbam:users' %}">Users</a></li>
-    <li class="breadcrumb-item active">Profile</li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:users' %}">{% trans "Users" %}</a></li>
+    <li class="breadcrumb-item active">{% trans "Profile" %}</li>
 {% endblock %}
 
 {% block content %}
@@ -29,25 +29,25 @@
                         </div>
 
                         <div class="display_name">
-                            {% include 'form-utils/input-group-field.html' with field=profile_form.display_name field_class='form-control form-control-sm' icon='fas fa-pencil-alt' %}
+                            {% include 'form-utils/input-group-field.html' with field=profile_form.display_name field_class='form-control' icon='fas fa-pencil-alt' %}
                         </div>
 
                         <p class="text-muted text-center">{{ profile_form.job_title.value }}</p>
 
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                                <b>Groups</b> <a class="float-right">{{ user.groups.count }}</a>
+                                <b>{% trans "Groups" %}</b> <a class="float-right">{{ user.groups.count }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Campaigns</b> <a class="float-right"></a>
+                                <b>{% trans "Campaigns" %}</b> <a class="float-right"></a>
                             </li>
                             <li class="list-group-item">
-                                <b>Results</b> <a class="float-right"></a>
+                                <b>{% trans "Results" %}</b> <a class="float-right"></a>
                             </li>
                         </ul>
 
                         <p>
-                            <u>Member since</u> :
+                            <u>{% trans "Member since" %}</u> :
                             <a class="float-right">
                                 <i class="far fa-clock ml-2 mr-1"></i> {{ user.date_joined }}
                             </a>
@@ -57,31 +57,34 @@
                         <!-- TODO add a graph with profile completeness as in mockup -->
 
                         {% if request.user.is_superuser or request.user == user %}
-                            <button class="btn btn-outline-info btn-sm" type="submit" title="Save changes">
-                                <i class="fas fa-user-edit mr-2"></i>Save
+                            <button class="btn btn-outline-info btn-sm" type="submit"
+                                    title="{% trans "Save changes" %}">
+                                <i class="fas fa-user-edit mr-2"></i>{% trans "Save" %}
                             </button>
 
                             {% if request.user != user %}
                                 {% if user.is_active %}
                                     <button class="btn btn-outline-danger btn-sm" type="submit" formaction="disable"
-                                            title="Disable user">
-                                        <i class="fas fa-user-slash mr-2"></i>Disable
+                                            title="{% trans "Disable user" %}">
+                                        <i class="fas fa-user-slash mr-2"></i>{% trans "Disable" %}
                                     </button>
                                 {% else %}
                                     <button class="btn btn-outline-success btn-sm" type="submit" formaction="enable"
-                                            title="Enable user">
-                                        <i class="fas fa-user-check mr-2"></i>Enable
+                                            title="{% trans "Enable user" %}">
+                                        <i class="fas fa-user-check mr-2"></i>{% trans "Enable" %}
                                     </button>
                                 {% endif %}
                             {% endif %}
 
-                            <button class="btn btn-outline-dark btn-sm float-right" type="reset" title="Cancel changes">
-                                <i class="fas fa-times-circle mr-2"></i>Cancel
+                            <button class="btn btn-outline-dark btn-sm float-right" type="reset"
+                                    title="{% trans "Cancel changes" %}">
+                                <i class="fas fa-times-circle mr-2"></i>{% trans "Cancel" %}
                             </button>
                         {% endif %}
                     </div>
                 </div>
             </div>
+
             <div class="col-md-8">
                 <div class="card card-primary card-outline card-outline-tabs">
                     <div class="card-header pb-2 border-bottom-0">
@@ -90,37 +93,44 @@
                                 <a class="nav-link active" id="user-profile-personal-info-tab" data-toggle="pill"
                                    href="#user-profile-personal-info" role="tab"
                                    aria-controls="user-profile-personal-info"
-                                   aria-selected="true"><i class="fas fa-id-badge mr-2"></i> Personal Info</a>
+                                   aria-selected="true"><i class="fas fa-id-badge mr-2"></i>
+                                    {% trans "Personal Information" %}
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="user-profile-account-tab" data-toggle="pill"
                                    href="#user-profile-account" role="tab"
                                    aria-controls="user-profile-account"
-                                   aria-selected="false"><i class="fas fa-user-circle mr-2"></i> Account</a>
+                                   aria-selected="false"><i class="fas fa-user-circle mr-2"></i> {% trans "Account" %}
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="user-profile-status-tab" data-toggle="pill"
                                    href="#user-profile-status" role="tab"
                                    aria-controls="user-profile-status"
-                                   aria-selected="false"><i class="fas fa-user-shield mr-2"></i> Status</a>
+                                   aria-selected="false"><i class="fas fa-user-shield mr-2"></i> {% trans "Status" %}
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="user-profile-evaluations-tab" data-toggle="pill"
                                    href="#user-profile-evaluations" role="tab"
                                    aria-controls="user-profile-evaluations"
-                                   aria-selected="false"><i class="fas fa-star mr-2"></i> Evaluations</a>
+                                   aria-selected="false"><i class="fas fa-star mr-2"></i> {% trans "Evaluations" %}
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="user-profile-messages-tab" data-toggle="pill"
                                    href="#user-profile-messages" role="tab"
                                    aria-controls="user-profile-messages"
-                                   aria-selected="false"><i class="fas fa-envelope mr-2"></i> Messages</a>
+                                   aria-selected="false"><i class="fas fa-envelope mr-2"></i> {% trans "Messages" %}
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="user-profile-tips-tab" data-toggle="pill"
                                    href="#user-profile-tips" role="tab"
                                    aria-controls="user-profile-tips"
-                                   aria-selected="false"><i class="fas fa-glasses mr-2"></i> Tips</a>
+                                   aria-selected="false"><i class="fas fa-glasses mr-2"></i> {% trans "Tips" %}
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -142,7 +152,8 @@
                                                     <h5 class="mb-0">
                                                         <a data-toggle="collapse" href="#contact_details"
                                                            aria-expanded="true" aria-controls="contact_details">
-                                                            <i class="far fa-address-book mr-2"></i>Contact Details
+                                                            <i class="far fa-address-book mr-2"></i>
+                                                            {% trans "Contact Details" %}
                                                             <i class="fas fa-angle-down float-right"></i>
                                                         </a>
                                                     </h5>
@@ -157,18 +168,18 @@
                                             <div class="card mb-2">
                                                 <div class="card-header" role="tab">
                                                     <h5 class="mb-0">
-                                                        <a data-toggle="collapse" href="#organizational_info"
-                                                           aria-expanded="true" aria-controls="organizational_info">
+                                                        <a data-toggle="collapse" href="#organisational_info"
+                                                           aria-expanded="true" aria-controls="organisational_info">
                                                             <i class="fas fa-briefcase mr-2"></i>
-                                                            Organizational Information
+                                                            {% trans "Organisational Information" %}
                                                             <i class="fas fa-angle-down float-right"></i>
                                                         </a>
                                                     </h5>
                                                 </div>
-                                                <div id="organizational_info" class="collapse" role="tabpanel"
-                                                     aria-labelledby="organizational_info" data-parent="#accordion">
+                                                <div id="organisational_info" class="collapse" role="tabpanel"
+                                                     aria-labelledby="organisational_info" data-parent="#accordion">
                                                     <div class="card-body">
-                                                        {% crispy profile_form profile_form.organizational_info_helper %}
+                                                        {% crispy profile_form profile_form.organisational_info_helper %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -189,7 +200,8 @@
                                                     <h5 class="mb-0">
                                                         <a data-toggle="collapse" href="#privileges"
                                                            aria-expanded="true" aria-controls="privileges">
-                                                            <i class="fas fa-tasks mr-2"></i>Privileges
+                                                            <i class="fas fa-tasks mr-2"></i>
+                                                            {% trans "Privileges" %}
                                                             <i class="fas fa-angle-down float-right"></i>
                                                         </a>
                                                     </h5>
@@ -207,7 +219,8 @@
                                                     <h5 class="mb-0">
                                                         <a data-toggle="collapse" href="#group-membership"
                                                            aria-expanded="true" aria-controls="group-membership">
-                                                            <i class="fas fa-users mr-2"></i>Group Membership
+                                                            <i class="fas fa-users mr-2"></i>
+                                                            {% trans "Group Membership" %}
                                                             <i class="fas fa-angle-down float-right"></i>
                                                         </a>
                                                     </h5>
@@ -253,12 +266,15 @@
             $('#div_id_password').append(
                 '<span>' +
                 '<a style = "font-size: 12px;" href = "{% url 'account_change_password' %}" >' +
-                'Change Password ?' +
+                '{% trans "Change Password" %} ?' +
                 '</a>' +
                 '</span>'
             );
         {% endif %}
 
+        /*
+         *  Accordion animation
+         */
         $(".fa-angle-down").click(function () {
             $(this).toggleClass('fa-rotate-180');
         })

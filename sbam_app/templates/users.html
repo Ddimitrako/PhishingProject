@@ -1,36 +1,36 @@
 {% extends "base_datatable.html" %}
 
-{% load static %}
+{% load i18n static %}
 
 {% block page_name %}
-    <strong><i class="fas fa-user mr-2"></i> Users</strong>
+    <strong><i class="fas fa-user mr-2"></i> {% trans "Users" %}</strong>
 {% endblock %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">Home</a></li>
-    <li class="breadcrumb-item active">Users</li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item active">{% trans "Users" %}</li>
 {% endblock %}
 
 {% block table_content %}
     <thead>
         <tr>
             <th></th>
-            <th><i class="fas fa-user" title="Status"></i></th>
-            <th><i class="fas fa-list-ul" title="Roles"></i></th>
-            <th>Full Name</th>
-            <th>Display Name</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Employee ID</th>
-            <th>Birth Date</th>
-            <th>Gender</th>
-            <th>Job Title</th>
-            <th>Department</th>
-            <th>Company</th>
-            <th>Telephone</th>
-            <th>Address</th>
-            <th>Notes</th>
+            <th><i class="fas fa-user" title="{% trans "Status" %}"></i></th>
+            <th><i class="fas fa-list-ul" title="{% trans "Roles" %}"></i></th>
+            <th>{% trans "Full Name" %}</th>
+            <th>{% trans "display name"|capfirst %}</th>
+            <th>{% trans "first name"|capfirst %}</th>
+            <th>{% trans "last name"|capfirst %}</th>
+            <th>{% trans "email"|capfirst %}</th>
+            <th>{% trans "employee ID"|capfirst %}</th>
+            <th>{% trans "birth date"|capfirst %}</th>
+            <th>{% trans "gender"|capfirst %}</th>
+            <th>{% trans "job title"|capfirst %}</th>
+            <th>{% trans "department"|capfirst %}</th>
+            <th>{% trans "company"|capfirst %}</th>
+            <th>{% trans "telephone"|capfirst %}</th>
+            <th>{% trans "address"|capfirst %}</th>
+            <th>{% trans "notes"|capfirst %}</th>
         </tr>
     </thead>
 
@@ -40,16 +40,16 @@
                 <td></td>
                 <td>
                     {% if user.is_active %}
-                        <i class="fas fa-check-circle" style="color: darkgreen" title="Active"></i>
+                        <i class="fas fa-check-circle" style="color: darkgreen" title="{% trans "active"|capfirst %}"></i>
                     {% else %}
-                        <i class="fas fa-times-circle" style="color: indianred" title="Inactive"> </i>
+                        <i class="fas fa-times-circle" style="color: indianred" title="{% trans "inactive"|capfirst %}"> </i>
                     {% endif %}
                 </td>
                 <td>
                     {% if user.is_superuser %}
-                        <i class="fas fa-user-ninja mr-2" style="color: darkblue" title="Superuser"></i>
+                        <i class="fas fa-user-ninja mr-2" style="color: darkblue" title="{% trans "superuser"|capfirst %}"></i>
                     {% elif user.userprofile.is_manager %}
-                        <i class="fas fa-user-tie mr-2" style="color: darkblue" title="Manager"></i>
+                        <i class="fas fa-user-tie mr-2" style="color: darkblue" title="{% trans "manager"|capfirst %}"></i>
                     {% endif %}
                 </td>
                 <td>

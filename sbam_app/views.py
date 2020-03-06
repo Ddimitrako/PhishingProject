@@ -1,8 +1,10 @@
 from allauth.account.utils import send_email_confirmation
+
 from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import *
 from django.views.generic import *
+from django.utils.translation import gettext_lazy as _
 
 from sbam_app.forms import *
 from sbam_app.models import *
@@ -14,7 +16,7 @@ from sbam_app.models import *
 def superuser_only(function):
     def _inner(request, *args, **kwargs):
         if not request.user.is_superuser:
-            messages.error(request, 'You do not have enough privileges to perform this action')
+            messages.error(request, _('You do not have enough privileges to perform this action'))
             return redirect(settings.USER_MANAGEMENT_URL)
         return function(request, *args, **kwargs)
 
@@ -61,10 +63,11 @@ def create_or_update_user(request, template, user=None, profile=None, creating=T
             if creating:
                 send_email_confirmation(request, new_user, True)
 
-            messages.success(request, 'User successfully %s' % ('created' if creating else 'updated'))
+            messages.success(request,
+                             _('User successfully %(action)s' % {'action': 'created' if creating else 'updated'}))
             return redirect('sbam:profile', new_user.username)
         else:
-            messages.error(request, 'Please correct the errors below')
+            messages.error(request, _('Please correct the errors below'))
     else:
         user_form = UserForm(instance=user)
         profile_form = UserProfileForm(instance=profile)
@@ -82,7 +85,7 @@ def activate_user(request, username, status):
     user.is_active = status;
     user.save()
 
-    messages.success(request, 'User successfully %s' % ('enabled' if status else 'disabled'))
+    messages.success(request, _('User successfully %(action)s' % {'action': 'enabled' if status else 'disabled'}))
     return redirect('sbam:profile', username)
 
 

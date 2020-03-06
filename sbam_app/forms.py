@@ -112,9 +112,9 @@ class UserProfileForm(ModelForm):
             )
         )
 
-        self.organizational_info_helper = FormHelper()
-        self.organizational_info_helper.form_tag = False;
-        self.organizational_info_helper.layout = Layout(
+        self.organisational_info_helper = FormHelper()
+        self.organisational_info_helper.form_tag = False;
+        self.organisational_info_helper.layout = Layout(
             Row(
                 Column('job_title', css_class='col-md-6'),
                 Column('department', css_class='col-md-6'),
