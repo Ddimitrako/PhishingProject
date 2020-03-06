@@ -4,12 +4,15 @@
 
 {% block extra_head %}
     <link rel="stylesheet" type="text/css" href='{% static 'admin-lte/plugins/daterangepicker/daterangepicker.css' %}'/>
+    <link rel="stylesheet" type="text/css"
+          href='{% static 'admin-lte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css' %}'/>
 {% endblock %}
 
 {% block extra_js %}
     <script src='{% static 'js/jquery.steps.min.js' %}'></script>
     <script src='{% static 'admin-lte/plugins/moment/moment.min.js' %}'></script>
     <script src='{% static 'admin-lte/plugins/daterangepicker/daterangepicker.js' %}'></script>
+    <script src='{% static 'admin-lte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js' %}'></script>
 
     <script>
         $(function () {
@@ -70,6 +73,20 @@
                 }
             }, function (chosen_date) {
                 $('.datepicker').val(chosen_date.format('YYYY-MM-DD'));
+            });
+
+            /*
+             *  DualListbox
+             */
+            $('.duallistbox').bootstrapDualListbox({
+                nonSelectedListLabel: 'Available',
+                selectedListLabel: 'Selected',
+                moveOnSelect: false,
+                btnClass: 'btn-outline-info',
+                btnMoveText: '<i class="fas fa-angle-right"></i>',
+                btnRemoveText: '<i class="fas fa-angle-left"></i>',
+                btnMoveAllText: '<i class="fas fa-angle-double-right"></i>',
+                btnRemoveAllText: '<i class="fas fa-angle-double-left"></i>'
             });
         });
     </script>

@@ -1,6 +1,6 @@
 {% extends "base_form.html" %}
 
-{% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field %}
+{% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
 
 {% block page_name %}
     <div class="row">
@@ -228,7 +228,7 @@
                                                 <div id="group-membership" class="collapse" role="tabpanel"
                                                      aria-labelledby="group-membership" data-parent="#accordion">
                                                     <div class="card-body">
-                                                        {{ user_form.groups|as_crispy_field }}
+                                                        {{ user_form.groups|add_class:"duallistbox" }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -275,8 +275,8 @@
         /*
          *  Accordion animation
          */
-        $(".fa-angle-down").click(function () {
+        $('.fa-angle-down').click(function () {
             $(this).toggleClass('fa-rotate-180');
-        })
+        });
     </script>
 {% endblock %}

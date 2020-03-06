@@ -343,3 +343,10 @@ div.display_name .input-group .input-group-append .input-group-text {
 .wizard > .actions ul li a {
     color: white;
 }
+
+/* DualBoxList */
+.bootstrap-duallistbox-container .box1 .buttons .btn,
+.bootstrap-duallistbox-container .box2 .buttons .btn {
+    font-size: 0.5rem;
+    line-height: 0.5;
+}
