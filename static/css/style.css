@@ -94,8 +94,33 @@ th, .sorting_1 {
     white-space: nowrap;
 }
 
-.dataTables_filter {
-    margin: 40px 4px 0;
+.dt-button.buttons-columnVisibility,
+.dt-button.buttons-colvisRestore {
+    border: none;
+    background-color: transparent;
+}
+
+.dt-button.buttons-colvisRestore {
+    padding: 10px 20px;
+    font-weight: 600;
+}
+
+.dt-button.buttons-columnVisibility:before {
+    font-family: FontAwesome;
+    padding-right: 4px;
+    content: "\f14a";
+}
+
+.dt-button.buttons-columnVisibility.active:before {
+    content: "\2611";
+}
+
+.dt-button-collection {
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .175);
 }
 
 .dt-col-filter {
@@ -113,22 +138,6 @@ th, .sorting_1 {
     font-size: 13px;
     padding: 0 10px 0 5px;
     border: 0;
-}
-
-.dt-button-collection {
-    margin: 5px 0;
-    font-family: inherit;
-}
-
-.dt-action-button {
-    float: right;
-}
-
-.buttons-columnVisibility {
-    margin: 5px 0;
-    color: #17a2b8;
-    background: white;
-    border: 1px solid;
 }
 
 /* Forms */

@@ -51,7 +51,7 @@
     <script src="{% static 'admin-lte/plugins/pdfmake/vfs_fonts.js' %}"></script>
 
     <script>
-        function datatable(tableID, noFilterList, noOrderList) {
+        function datatable(tableID, noFilterList, noOrderList, hiddenCol, buttonsVisibility) {
             /* Constructing filter row*/
             $(tableID + ' thead tr').clone(true).appendTo('#table thead');
             $(tableID + ' thead tr:eq(0) th').each(function (i) {
@@ -61,12 +61,12 @@
                     var title = $(this).text();
                     $(this).html(
                         '<div class="input-group input-group-xs dt-col-filter">' +
-                            '<input type="text" class="form-control" placeholder="' + title +'" />' +
-                            '<div class="input-group-append">' +
-                                '<span class="input-group-text">' +
-                                    '<i class="fas fa-filter"></i>' +
-                                '</span>' +
-                            '</div>' +
+                        '<input type="text" class="form-control" placeholder="' + title + '" />' +
+                        '<div class="input-group-append">' +
+                        '<span class="input-group-text">' +
+                        '<i class="fas fa-filter"></i>' +
+                        '</span>' +
+                        '</div>' +
                         '</div>'
                     );
                 }
@@ -83,147 +83,164 @@
 
             /* Constructing datatable */
             var table = $(tableID).DataTable({
-                fixedHeader: true,
-                searching: true,
-                autoWidth: true,
-                scrollY: 300,
-                scrollX: true,
-                scrollCollapse: true,
-                paging: false,
-                order: [[noFilterList.length, 'asc']],
-
-                columnDefs: [
-                    {
-                        targets: 0,
-                        className: 'noVis',
-                        orderable: false,
-                        checkboxes: {
-                            selectRow: true
-                        }
-                    },
-                    {
-                        targets: noFilterList,
-                        className: 'noVis'
-                    },
-                    {
-                        targets: noOrderList,
-                        orderable: false
-                    }
-                ],
-                select: {
-                    style: 'multi'
-                },
-                fixedColumns: {
-                    leftColumns: noFilterList.length
-                },
-                colReorder: {
-                    fixedColumnsLeft: noFilterList.length
-                },
-
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        extend: 'colvis',
-                        className: 'btn btn-outline-info btn-sm dropdown-hover dropdown-toggle',
-                        text: '<i class="fas fa-columns"></i> {% trans "Columns" %}',
-                        titleAttr: '{% trans "Select columns" %}',
-                        columns: ':not(.noVis)'
-                    },
-                    {
-                        extend: 'copy',
-                        className: 'btn btn-outline-info btn-sm',
-                        text: '<i class="far fa-copy"></i> {% trans "Copy" %}',
-                        exportOptions: {
-                            columns: ':not(.noVis):visible'
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        className: 'btn btn-outline-info btn-sm',
-                        text: '<i class="fas fa-print"></i> {% trans "Print" %}',
-                        title: title,
-                        exportOptions: {
-                            columns: ':not(.noVis):visible'
-                        }
-                    },
-                    {
-                        extend: 'collection',
-                        className: 'btn btn-outline-info btn-sm dropdown-hover dropdown-toggle',
-                        text: '<i class="fas fa-file-export"></i> {% trans "Export" %}',
-                        titleAttr: '{% trans "Export to file" %}',
-                        buttons: [
-                            {
-                                extend: 'excel',
-                                className: 'btn btn-outline-info btn-sm mr-1',
-                                text: '<i class="far fa-file-excel"></i>',
-                                filename: filename,
-                                title: title,
-                                titleAttr: 'Excel',
-                                exportOptions: {
-                                    columns: ':not(.noVis):visible'
-                                }
-                            },
-                            {
-                                extend: 'csv',
-                                className: 'btn btn-outline-info btn-sm mr-1',
-                                text: '<i class="far fa-file-alt"></i>',
-                                filename: filename,
-                                title: title,
-                                titleAttr: 'CSV',
-                                exportOptions: {
-                                    columns: ':not(.noVis):visible'
-                                }
-                            },
-                            {
-                                extend: 'pdf',
-                                className: 'btn btn-outline-info btn-sm mr-1',
-                                text: '<i class="far fa-file-pdf"></i>',
-                                filename: filename,
-                                title: title,
-                                titleAttr: 'PDF',
-                                exportOptions: {
-                                    columns: ':not(.noVis):visible'
-                                },
-                                orientation: 'landscape',
-                                pageSize: 'LEGAL'
+                    fixedHeader: true,
+                    searching: true,
+                    autoWidth: true,
+                    scrollY: 300,
+                    scrollX: true,
+                    scrollCollapse: true,
+                    paging: false,
+                    order: [[noFilterList.length, 'asc']],
+                    columnDefs: [
+                        {
+                            targets: 0,
+                            className: 'noVis',
+                            orderable: false,
+                            checkboxes: {
+                                selectRow: true
                             }
-                        ]
-                    },
-                    {
-                        className: 'btn btn-outline-success btn-sm mr-1 dt-action-button',
-                        text: '<i class="fas fa-file-upload"></i> {% trans "Import" %}',
-                        action: function (e, dt, node, config) {
-                            // TODO redirect to "Import from file" form
-                            window.location = 'dashboard';
                         },
-                        titleAttr: '{% trans "Import from file" %}'
+                        {
+                            targets: noFilterList,
+                            className: 'noVis'
+                        },
+                        {
+                            targets: noOrderList,
+                            orderable: false
+                        },
+                        {
+                            targets: hiddenCol,
+                            className: 'noVis',
+                            searchable: false,
+                            visible: false
+                        }
+                    ],
+                    select: {
+                        style: 'multi'
                     },
-                    {
-                        extend: 'collection',
-                        className: 'btn btn-outline-success btn-sm mr-1 dropdown-hover dropdown-toggle dt-action-button',
-                        text: '<i class="fas fa-plus-circle"></i> {% trans "Add" %}',
-                        buttons: [
-                            {
-                                className: 'btn btn-outline-success btn-sm mr-1',
-                                text: '<i class="fas fa-user"></i>',
-                                action: function (e, dt, node, config) {
-                                    window.location = 'create_user';
+                    fixedColumns: {
+                        leftColumns: noFilterList.length
+                    },
+                    colReorder: {
+                        fixedColumnsLeft: noFilterList.length
+                    },
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                            extend: 'collection',
+                            className: 'btn btn-outline-info btn-sm',
+                            text: '<i class="fas fa-plus-circle"></i>',
+                            titleAttr: '{% trans "Add" %}',
+                            buttons: [
+                                {
+                                    className: 'dropdown-item',
+                                    text: '<i class="fas fa-user mr-2"></i> {% trans "Add User" %}',
+                                    action: function (e, dt, node, config) {
+                                        window.location = "{% url 'sbam:create_user' %}";
+                                    }
                                 },
-                                titleAttr: '{% trans "New User" %}'
+                                {
+                                    className: 'dropdown-item',
+                                    text: '<i class="fas fa-users mr-1"></i> {% trans "Add Group" %}',
+                                    action: function (e, dt, node, config) {
+                                        // TODO redirect to "Create New Group" form
+                                        window.location = "{% url 'sbam:create_group' %}";
+                                    }
+                                }
+                            ]
+                        },
+                        {% comment %}{
+                            className: 'btn btn-outline-info btn-sm',
+                            text: '<i class="fas fa-file-upload"></i>',
+                            titleAttr: '{% trans "Import from file" %}',
+                            action: function (e, dt, node, config) {
+                                // TODO redirect to "Import from file" form
+                                window.location = 'dashboard';
                             },
-                            {
-                                className: 'btn btn-outline-success btn-sm mr-1',
-                                text: '<i class="fas fa-users"></i>',
-                                action: function (e, dt, node, config) {
-                                    // TODO redirect to "Create New Group" form
-                                    window.location = 'dashboard';
-                                },
-                                titleAttr: '{% trans "New Group" %}'
+                            titleAttr: '{% trans "Import from file" %}'
+                        },{% endcomment %}
+                        {
+                            extend: 'colvis',
+                            className: 'btn btn-outline-info btn-sm',
+                            text: '<i class="fas fa-columns"></i>',
+                            titleAttr: '{% trans "Show/Hide Columns" %}',
+                            columns: ':not(.noVis)',
+                            postfixButtons: [
+                                {
+                                    extend: 'colvisRestore',
+                                    text: '{% trans "Select All" %}'
+                                }
+                            ]
+                        },
+                        {
+                            extend: 'copy',
+                            className: 'btn btn-outline-info btn-sm',
+                            text: '<i class="far fa-copy"></i>',
+                            titleAttr: '{% trans "Copy" %}',
+                            exportOptions: {
+                                columns: ':not(.noVis):visible'
                             }
-                        ]
-                    }
-                ]
-            });
+                        },
+                        {
+                            extend: 'print',
+                            className: 'btn btn-outline-info btn-sm',
+                            text: '<i class="fas fa-print"></i>',
+                            title: title,
+                            titleAttr: '{% trans "Print" %}',
+                            exportOptions: {
+                                columns: ':not(.noVis):visible'
+                            }
+                        },
+                        {
+                            extend: 'collection',
+                            className: 'btn btn-outline-info btn-sm',
+                            text: '<i class="fas fa-file-export"></i>',
+                            titleAttr: '{% trans "Export to file" %}',
+                            buttons: [
+                                {
+                                    extend: 'excel',
+                                    className: 'dropdown-item',
+                                    text: '<i class="far fa-file-excel mr-2"></i> {% trans "Export to Excel" %}',
+                                    filename: filename,
+                                    title: title,
+                                    exportOptions: {
+                                        columns: ':not(.noVis):visible'
+                                    }
+                                },
+                                {
+                                    extend: 'csv',
+                                    className: 'dropdown-item',
+                                    text: '<i class="far fa-file-alt mr-2"></i> {% trans "Export to CSV" %}',
+                                    filename: filename,
+                                    title: title,
+                                    exportOptions: {
+                                        columns: ':not(.noVis):visible'
+                                    }
+                                },
+                                {
+                                    extend: 'pdf',
+                                    className: 'dropdown-item',
+                                    text: '<i class="far fa-file-pdf mr-2"></i> {% trans "Export to PDF" %}',
+                                    filename: filename,
+                                    title: title,
+                                    exportOptions: {
+                                        columns: ':not(.noVis):visible'
+                                    },
+                                    orientation: 'landscape',
+                                    pageSize: 'LEGAL'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            );
+
+            /* Toogling buttons visibility */
+            var btn_group_class = 'btn-group float-left';
+            if (!buttonsVisibility) {
+                btn_group_class = btn_group_class + ' invisible';
+            }
+            $('.dt-buttons').addClass(btn_group_class);
 
             /* Apply column filter search */
             table.columns().eq(0).each(function (i) {
@@ -233,6 +250,21 @@
                         .search(this.value)
                         .draw();
                 });
+            });
+
+            /* Add event listener for opening and closing row details */
+            $('#table tbody').on('click', '.fa-plus-circle', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    row.child.hide();
+                    tr.removeClass('shown');
+                } else {
+                    var data = row.data();
+                    row.child(data[hiddenCol]).show();
+                    tr.addClass('shown');
+                }
             });
         }
     </script>
