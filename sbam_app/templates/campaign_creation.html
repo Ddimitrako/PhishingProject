@@ -13,33 +13,47 @@
 
 {% block content %}
     <div class="container campaign_creation_form">
-        <h3 class="legend">Create your campaign</h3>
-{#        <hr>#}
         <form method="post" action=".">
-             {% csrf_token %}
+            {% csrf_token %}
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col col-md-10">
+                    <h3 class="legend">Create your campaign</h3>
+                </div>
+                <div class="form-group col col-md-2">
+                    <button type="button" class="btn btn-outline-primary" id="create_campaign_btn">Create Campaign</button>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col col-md-6">
                     <label for="id_start_date">Campaign Start</label>
                     {{ campaign_form.start_date}}
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col col-md-6">
                     <label for="id_end_date">Campaign End</label>
                     {{ campaign_form.end_date}}
                 </div>
             </div>
             <hr>
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col col-md-4 questionnaiers">
                     <label>Questionnaires</label>
                     <div id="dim_tree_container"></div>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col col-md-4 tests">
+                    <label>Tests</label>
+                    <div id="tests_tree_container"></div>
+                </div>
+                <div class="form-group col col-md-4 users">
                     <label>Users</label>
                     <div id="user_tree_container"></div>
                 </div>
-                <div class="form-group col-md-4">
+
+            </div>
+             <hr>
+            <div class="form-row">
+                <div class="form-group col col-md-4 sel_domains">
                     <label>Selected Domains</label>
-{#                    <div id="container">#}
                     <div class="table-responsive-sm">
                         <table id="selected_domains" class="table table-striped">
                             <caption>List of selected domains</caption>
@@ -47,33 +61,25 @@
                         </table>
                     </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label>Tests</label>
-                    <div id="tests_tree_container"></div>
+                <div class="form-group col col-md-4 sel_tests">
+                    <label>Selected Tests</label>
+                    <div class="table-responsive-sm">
+                        <table id="selected_tests" class="table table-striped">
+                            <caption>List of selected tests</caption>
+                            <tbody></tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="form-group col align-self-end">
-                    <div class="row justify-content-end">
-                        <div class="col-4">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-primary">Create Campaign</button>
-                        </div>
+                <div class="form-group col col-md-4 sel_users">
+                    <label>Selected Users</label>
+                    <div class="table-responsive-sm">
+                        <table id="selected_users" class="table table-striped">
+                            <caption>List of selected users and groups</caption>
+                            <tbody></tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-{#            <hr>#}
-{#            <div class="form-row">#}
-{#                <div class="form-group col align-self-end">#}
-{#                    <div class="row justify-content-end">#}
-{#                        <div class="col-4">#}
-{#                            {% csrf_token %}#}
-{#                            <button type="submit" class="btn btn-outline-primary">Create Campaign</button>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-
         </form>
     </div>
 
@@ -88,6 +94,7 @@
     <script type="application/javascript">
         const domainstreeData = {{ campaign_form.dimensions_dict | safe }};
         const usertreeData = {{ campaign_form.users_dict | safe }};
+        const testTreeData = {{ campaign_form.tests_dict | safe }};
     </script>
 
     <script src="{% static "sbam_app/js/campaign_creation.js" %}"></script>

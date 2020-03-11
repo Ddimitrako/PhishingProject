@@ -45,8 +45,11 @@ class Campaign(Model):
     ]
     start_date = DateField()
     end_date = DateField()
-    user_owner = ForeignKey(User, on_delete=CASCADE, help_text="The user who created the campaign")
+    owner = ForeignKey(User, on_delete=CASCADE, help_text="The user who created the campaign")
     status = IntegerField(choices=STATUSES, default=1, help_text="Status of a Campaign")
+
+    def __str__(self):
+        return self.owner.get_full_name() + ' ' + self.start_date + ' - ' + self.end_date
 
 
 class Assignment(Model):
@@ -141,6 +144,7 @@ class Test(Model):
         (INACTIVE, 0)
     ]
     domain = ForeignKey(Domain, on_delete=CASCADE)
+    title = CharField(max_length=100, help_text="Test title")
     is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a question if it is used")
 
 

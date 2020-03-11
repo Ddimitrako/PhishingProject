@@ -22,16 +22,10 @@ class UserProfileForm(forms.ModelForm):
         exclude = ('user',)
 
 
-TYPES = (
-    ('', 'Choose...'),
-    ('Q', 'Questionnaire'),
-    ('T', 'Test'),
-)
-
 
 class CampaignCreationForm(forms.Form):
     start_date = forms.DateField(
-        input_formats=['%d/%m/%Y'],
+        input_formats=['%Y-%m-%d'],
         widget=DatePicker(
             attrs={
                 'append': 'fa fa-calendar',
@@ -41,7 +35,7 @@ class CampaignCreationForm(forms.Form):
         ),
     )
     end_date = forms.DateField(
-        input_formats=['%d/%m/%Y'],
+        input_formats=['%Y-%m-%d'],
         widget=DatePicker(
             attrs={
                 'append': 'fa fa-calendar',
@@ -51,19 +45,17 @@ class CampaignCreationForm(forms.Form):
         ),
     )
 
-    type = forms.ChoiceField(choices=TYPES, widget=forms.Select(attrs={'class': 'form-control campaign-type'}))
-
     dimensions_dict = list()
 
     dimensions = models.Dimension.objects.all()
     for dim in dimensions:
         dim_dict = {
-                      "id": 'dimension_' + str(dim.pk),
-                      "text": dim.title,
-                      "attributes": {},
-                      "children": [],
-                      "check": "False"
-                    }
+          "id": 'dimension_' + str(dim.pk),
+          "text": dim.title,
+          "attributes": {},
+          "children": [],
+          "check": "False"
+        }
         for dom in dim.domain_set.all():
             dom_dict = {
                 "id": 'domain_' + str(dom.pk),
@@ -81,38 +73,49 @@ class CampaignCreationForm(forms.Form):
 
     users_dict = list()
     users_dict.append({
-                      "id": 'users',
-                      "text": 'Users',
-                      "attributes": {},
-                      "children": [],
-                      "check": "False"
-                    })
-    users_dict.append({
-        "id": 'user_groups',
+        "id": 'users_groups',
         "text": 'Users Groups',
         "attributes": {},
         "children": [],
         "check": "False"
     })
-
-    for usr in users:
-        usr_dict = {
-                      "id": 'user_' + str(usr.pk),
-                      "text": usr.first_name + ' ' + usr.last_name,
-                      "attributes": {},
-                      "children": [],
-                      "check": "False"
-                    }
-        users_dict[0]['children'].append(usr_dict)
+    users_dict.append({
+      "id": 'users',
+      "text": 'Users',
+      "attributes": {},
+      "children": [],
+      "check": "False"
+    })
 
     for group in users_groups:
         group_dict = {
-                      "id": 'group_' + str(group.pk),
-                      "text": group.name,
-                      "attributes": {},
-                      "children": [],
-                      "check": "False"
-                    }
-        users_dict[1]['children'].append(group_dict)
+            "id": 'group_' + str(group.pk),
+            "text": group.name,
+            "attributes": {},
+            "children": [],
+            "check": "False"
+        }
+        users_dict[0]['children'].append(group_dict)
 
+    for usr in users:
+        usr_dict = {
+          "id": 'user_' + str(usr.pk),
+          "text": usr.first_name + ' ' + usr.last_name,
+          "attributes": {},
+          "children": [],
+          "check": "False"
+        }
+        users_dict[1]['children'].append(usr_dict)
 
+    tests_dict = list()
+    tests = models.Test.objects.all()
+    for test in tests:
+        print(test.title)
+        test_dict = {
+            "id": 'user_' + str(test.pk),
+            "text": test.title,
+            "attributes": {},
+            "children": [],
+            "check": "False"
+        }
+        tests_dict.append(test_dict)

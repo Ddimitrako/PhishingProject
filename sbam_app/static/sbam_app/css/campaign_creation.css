@@ -1,7 +1,48 @@
 .campaign_creation_form{
-    margin-left: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+    max-width: 90%;
 }
 
 .legend{
     margin-bottom: 2%;
+}
+
+.questionnaiers{
+    height: 20vh;
+    overflow: auto;
+}
+
+.tests{
+    height: 20vh;
+    overflow: auto;
+}
+
+.users{
+    height: 20vh;
+    overflow: auto;
+}
+
+.sel_domains{
+    height: 20vh;
+    overflow: auto;
+}
+
+.sel_tests{
+    height: 20vh;
+    overflow: auto;
+}
+
+.sel_users{
+    height: 20vh;
+    overflow: auto;
+}
+
+.btn{
+    position: absolute;
+    bottom: 0;
+}
+
+.content-header{
+    padding-top: 8px;
 }
