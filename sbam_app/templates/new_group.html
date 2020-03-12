@@ -1,0 +1,55 @@
+{% extends "base_form.html" %}
+
+{% load static i18n crispy_forms_tags crispy_forms_field widget_tweaks %}
+
+{% block page_name %}
+    <strong><i class="fas fa-users mr-2"></i>{% trans "New Group" %}</strong>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:groups' %}">{% trans "Groups" %}</a></li>
+    <li class="breadcrumb-item active">{% trans "New Group" %}</li>
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-6">
+        <div class="card card-primary card-outline align-items-center">
+            <div class="card-body">
+                <form class="wizard-form" action="" method="post">
+                    <div class="wizard-header">
+                        <h3 class="heading">{% trans "Create New Group" %}</h3>
+                    </div>
+                    <div class="wizard-body">
+                        {% trans "General Information" as step1 %}
+                        {% trans "members"|capfirst as step2 %}
+
+                        <h2>
+                            <span class="step-icon" title="{{ step1 }}">
+                                <i class="fas fa-info"></i>
+                            </span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+                                <h3>{{ step1 }}:</h3>
+                                {{ group_form.name|as_crispy_field }}
+                                {% crispy profile_form  profile_form.general_info_helper %}
+                            </div>
+                        </section>
+                        <h2>
+                            <span class="step-icon" title="{{ step2 }}">
+                                <i class="fas fa-user-friends"></i>
+                            </span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+                                <h3>{{ step2 }}<span>*</span>:</h3>
+                                {{ group_form.members|add_class:"duallistbox" }}
+                            </div>
+                        </section>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

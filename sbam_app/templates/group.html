@@ -1,0 +1,153 @@
+{% extends "base_form.html" %}
+
+{% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
+
+{% block page_name %}
+    <div class="row">
+        <strong><i class="fas fa-users-cog mr-2"></i> {% trans "group"|capfirst %}:</strong>
+        <p class="ml-2">{{ group.name }}</p>
+        {% if not group.groupprofile.is_active %}
+            <p class="ml-2" style="color:indianred">{% trans "(disabled)" %}</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:groups' %}">{% trans "Groups" %}</a></li>
+    <li class="breadcrumb-item active">{% trans "group"|capfirst %}</li>
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post" novalidate>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="display_name">
+                            {% include 'form-utils/input-group-field.html' with field=profile_form.display_name field_class='form-control' icon='fas fa-pencil-alt' %}
+                        </div>
+
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>{% trans "members"|capfirst %}</b> <a class="float-right">{{ group.user_set.count }}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>{% trans "Campaigns" %}</b> <a class="float-right"></a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>{% trans "Results" %}</b> <a class="float-right"></a>
+                            </li>
+                        </ul>
+
+                        <p>
+                            <u>{% trans "Created on" %}</u> :
+                            <a class="float-right">
+                                <i class="far fa-clock ml-2 mr-1"></i> {{ group.groupprofile.creation_timestamp }}
+                            </a>
+                        </p>
+                        <p>
+                            <u>{% trans "Owner" %}</u> :
+                            <a class="float-right">
+                                {{ group.groupprofile.creator.get_full_name }}
+                            </a>
+                        </p>
+                        <hr>
+
+                        <!-- TODO add a graph with profile completeness as in mockup -->
+
+                        {% if request.user.is_superuser or request.user == group.groupprofile.creator %}
+                            <button class="btn btn-outline-info btn-sm" type="submit"
+                                    title="{% trans "Save changes" %}">
+                                <i class="fas fa-save mr-2"></i>{% trans "Save" %}
+                            </button>
+
+                            {% if request.user.is_superuser %}
+                                {% if group.groupprofile.is_active %}
+                                    <button class="btn btn-outline-danger btn-sm" type="submit" formaction="disable"
+                                            title="{% trans "Disable group" %}">
+                                        <i class="fas fa-slash mr-2"></i>{% trans "Disable" %}
+                                    </button>
+                                {% else %}
+                                    <button class="btn btn-outline-success btn-sm" type="submit" formaction="enable"
+                                            title="{% trans "Enable group" %}">
+                                        <i class="fas fa-check mr-2"></i>{% trans "Enable" %}
+                                    </button>
+                                {% endif %}
+                            {% endif %}
+
+                            <button class="btn btn-outline-dark btn-sm float-right" type="reset"
+                                    title="{% trans "Cancel changes" %}">
+                                <i class="fas fa-times-circle mr-2"></i>{% trans "Cancel" %}
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card card-primary card-outline card-outline-tabs">
+                    <div class="card-header pb-2 border-bottom-0">
+                        <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="group-profile-general-info-tab" data-toggle="pill"
+                                   href="#group-profile-general-info" role="tab"
+                                   aria-controls="group-profile-general-info"
+                                   aria-selected="true"><i class="fas fa-info-circle mr-2"></i>
+                                    {% trans "General Information" %}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="group-status-tab" data-toggle="pill"
+                                   href="#group-status" role="tab"
+                                   aria-controls="group-status"
+                                   aria-selected="false"><i class="fas fa-shield-alt mr-2"></i> {% trans "Status" %}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="group-profile-general-info" role="tabpanel"
+                                 aria-labelledby="group-profile-general-info-tab">
+                                <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item p-0 border-0">
+                                        {{ group_form.name|as_crispy_field }}
+                                    </li>
+                                    <li class="list-group-item p-0 border-0">
+                                        {% crispy profile_form profile_form.general_info_helper %}
+                                    </li>
+                                    <li class="list-group-item p-0 border-0">
+                                        <div class="accordion" id="accordion" role="tablist">
+                                            <div class="card mb-2">
+                                                <div class="card-header" role="tab">
+                                                    <h5 class="mb-0">
+                                                        <a data-toggle="collapse" href="#members"
+                                                           aria-expanded="true" aria-controls="members">
+                                                            <i class="fas fa-user-friends mr-2"></i>
+                                                            {% trans "members"|capfirst %}
+                                                            <i class="fas fa-angle-down float-right"></i>
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                                <div id="members" class="collapse" role="tabpanel"
+                                                     aria-labelledby="members" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        {{ group_form.members|add_class:"duallistbox" }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="group-status" role="tabpanel"
+                                 aria-labelledby="group-status-tab">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

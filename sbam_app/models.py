@@ -1,4 +1,5 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
+from django.utils import timezone
 from django.db.models import *
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -260,3 +261,74 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
+
+
+class GroupProfile(Model):
+    group = OneToOneField(
+        Group,
+        verbose_name=_('group'),
+        on_delete=CASCADE,
+        help_text=_('Group ID')
+    )
+    creator = ForeignKey(
+        User,
+        verbose_name=_('creator'),
+        on_delete=SET_NULL,
+        null=True,
+        blank=True,
+        help_text=_('Creator User ID')
+    )
+
+    # General Info
+    display_name = CharField(
+        _('display name'),
+        max_length=200,
+        blank=True,
+        null=True,
+        default='',
+        help_text=_('Group display name')
+    )
+    description = CharField(
+        _('description'),
+        max_length=200,
+        blank=True,
+        null=True,
+        default='',
+        help_text=_('Group description')
+    )
+    notes = TextField(
+        _('notes'),
+        max_length=1000,
+        blank=True,
+        null=True,
+        default='',
+        help_text=_('Notes')
+    )
+
+    is_active = BooleanField(
+        _('active'),
+        default=True,
+        help_text=_(
+            'Designates whether this group should be treated as active. '
+            'Unselect this instead of deleting groups.'
+        ),
+    )
+    creation_timestamp = DateTimeField(_('creation timestamp'), default=timezone.now)
+
+    def __str__(self):
+        return self.group.name
+
+    class Meta:
+        verbose_name = _('group profile')
+        verbose_name_plural = _('group profiles')
+
+
+@receiver(post_save, sender=Group)
+def create_group_profile(sender, instance, created, **kwargs):
+    if created:
+        GroupProfile.objects.create(group=instance)
+
+
+@receiver(post_save, sender=Group)
+def save_group_profile(sender, instance, **kwargs):
+    instance.groupprofile.save()

@@ -1,0 +1,73 @@
+{% extends "base_datatable.html" %}
+
+{% load i18n static %}
+
+{% block page_name %}
+    <strong><i class="fas fa-users mr-2"></i> {% trans "Groups" %}</strong>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item active">{% trans "Groups" %}</li>
+{% endblock %}
+
+{% block table_content %}
+    <thead>
+        <tr>
+            <th></th>
+            <th><i class="fas fa-users" title="{% trans "Status" %}"></i></th>
+            <th>{% trans "name"|capfirst %}</th>
+            <th>{% trans "display name"|capfirst %}</th>
+            <th>{% trans "description"|capfirst %}</th>
+            <th>{% trans "members"|capfirst %}</th>
+            <th></th>
+            <th>{% trans "creation timestamp"|capfirst %}</th>
+            <th>{% trans "creator"|capfirst %}</th>
+            <th>{% trans "notes"|capfirst %}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for group in groups_list %}
+            <tr {% if not group.groupprofile.is_active %} class="text-muted"{% endif %}>
+                <td></td>
+                <td>
+                    {% if group.groupprofile.is_active %}
+                        <i class="fas fa-check-circle" style="color: darkgreen" title="{% trans "active"|capfirst %}"></i>
+                    {% else %}
+                        <i class="fas fa-times-circle" style="color: indianred"
+                           title="{% trans "inactive"|capfirst %}"> </i>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'sbam:group' group.name %}">
+                        {{ group.name }}
+                    </a>
+                </td>
+                <td>{{ group.groupprofile.display_name|default:'' }}</td>
+                <td>{{ group.groupprofile.description|default:'' }}</td>
+                <td>
+                    {{ group.user_set.count }}
+                    {% if group.user_set.count > 0 %}
+                        <i class="fas fa-plus-circle ml-2" style="color: darkgreen" title="{% trans "Show Members" %}"></i>
+                    {% endif %}
+                </td>
+                <td>
+                    <label>{% trans "members"|capfirst %}:</label>
+                    {% for user in group.user_set.all %}
+                        <li>{{ user.get_full_name }}</li>
+                    {% endfor %}
+                </td>
+                <td>{{ group.groupprofile.creation_timestamp|default:'' }}</td>
+                <td>{{ group.groupprofile.creator.get_full_name|default:'' }}</td>
+                <td>{{ group.groupprofile.notes|default:'' }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+{% endblock %}
+
+{% block template_js %}
+    <script>
+        datatable('#table', [0, 1, 2], [], [6], true);
+    </script>
+{% endblock %}

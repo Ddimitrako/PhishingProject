@@ -97,6 +97,17 @@
                 btnMoveAllText: '<i class="fas fa-angle-double-right"></i>',
                 btnRemoveAllText: '<i class="fas fa-angle-double-left"></i>'
             });
+
+            if ($('.duallistbox').prop('disabled')) {
+                $('.bootstrap-duallistbox-container').find('*').prop('disabled', true);
+            };
+
+            /*
+             *  Accordion animation
+             */
+            $('.fa-angle-down').click(function () {
+                $(this).toggleClass('fa-rotate-180');
+            });
         });
     </script>
 {% endblock %}

@@ -7,6 +7,11 @@ from django.utils.safestring import mark_safe
 from sbam_app.models import *
 
 
+class UserMultipleChoiceField(ModelMultipleChoiceField):
+    def label_from_instance(self, obj):
+        return obj.get_full_name()
+
+
 class SignupForm(ModelForm):
     class Meta:
         model = User
@@ -121,5 +126,49 @@ class UserProfileForm(ModelForm):
             ),
             Row(
                 Column('company', css_class='col-md-6')
+            )
+        )
+
+
+class GroupForm(ModelForm):
+    members = UserMultipleChoiceField(
+        queryset=User.objects.filter(is_active=True).order_by('first_name'),
+        required=True
+    )
+
+    class Meta:
+        model = Group
+        exclude = ('permissions',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance.pk:
+            self.fields['members'].initial = self.instance.user_set.all()
+
+    def save(self, *args, **kwargs):
+        super().save()
+        self.instance.user_set.set(self.cleaned_data['members'])
+
+        return self.instance
+
+
+class GroupProfileForm(ModelForm):
+    class Meta:
+        model = GroupProfile
+        fields = ('display_name', 'description', 'notes')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['notes'].widget = Textarea(attrs={'rows': 3})
+
+        self.general_info_helper = FormHelper()
+        self.general_info_helper.form_tag = False;
+        self.general_info_helper.layout = Layout(
+            Row(
+                Column('description', css_class='col-md-12')
+            ),
+            Row(
+                Column('notes', css_class='col-md-12')
             )
         )
