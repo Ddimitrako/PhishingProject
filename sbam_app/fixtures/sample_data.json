@@ -11,49 +11,126 @@
       "last_name": "Georgiadou",
       "email": "ageorgiadou@epu.ntua.gr",
       "is_staff": true,
-      "is_active": true
+      "is_active": true,
+      "date_joined": "2020-02-10T11:51:34Z",
+      "groups": [
+        1,
+        2,
+        3
+      ]
     }
   },
   {
     "model": "auth.user",
     "pk": 2,
     "fields": {
-      "password": "pbkdf2_sha256$180000$IGaspGSEIQmA$gdfqbIxZdgmHNQEiLvp//FT8oKXnVs6ISIcLqGAAq4A=",
+      "password": "pbkdf2_sha256$180000$K0IJkCNWEzel$1iulniVLAvaIKWv+Y2Rq7lOplMnhHv4uA+Jq5wW/gfE=",
+      "last_login": "2020-02-10T05:26:16.915Z",
       "is_superuser": false,
       "username": "mkontoulis",
       "first_name": "Michael",
       "last_name": "Kontoulis",
       "email": "mkontoulis@epu.ntua.gr",
       "is_staff": true,
-      "is_active": false
+      "is_active": true,
+      "date_joined": "2020-02-10T11:51:34Z",
+      "groups": [
+        1
+      ]
     }
   },
   {
     "model": "auth.user",
     "pk": 3,
     "fields": {
-      "password": "",
-      "is_superuser": false,
+      "password": "pbkdf2_sha256$180000$8Ixobdtm7IY3$MusdbYjtxVPKeUF5hBRArHBLdHxr1qntz1OGBSdG6A8=",
+      "last_login": "2020-02-10T05:26:16.915Z",
+      "is_superuser": true,
       "username": "smouzakitis",
       "first_name": "Spyros",
       "last_name": "Mouzakitis",
       "email": "smouzakitis@epu.ntua.gr",
       "is_staff": true,
-      "is_active": true
+      "is_active": true,
+      "date_joined": "2020-02-10T11:51:34Z",
+      "groups": [
+        1,
+        3,
+        4
+      ]
     }
   },
   {
     "model": "auth.user",
     "pk": 4,
     "fields": {
-      "password": "pbkdf2_sha256$180000$ZwUGXNOIta72$anplaPp0FuRrFj4CukS0ZzRCRJGHM+1ws4hT+I2/oVo=",
+      "password": "pbkdf2_sha256$180000$W4m6Ihb858ih$DnVLF3Z4+U+rjoovfgkSaGnBgprcVbteoLAJjZIKR9w=",
+      "last_login": "2020-02-10T05:26:16.915Z",
       "is_superuser": false,
       "username": "kbounas",
       "first_name": "Kanaris",
       "last_name": "Bounas",
       "email": "kbounas@epu.ntua.gr",
       "is_staff": true,
-      "is_active": true
+      "is_active": true,
+      "date_joined": "2020-02-10T11:51:34Z",
+      "groups": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "Administrators",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+      "name": "Testers",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 3,
+    "fields": {
+      "name": "Managers",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 4,
+    "fields": {
+      "name": "Random",
+      "permissions": []
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "email": "mkontoulis@epu.ntua.gr",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "email": "ageorgiadou@epu.ntua.gr",
+      "verified": true,
+      "primary": true
     }
   },
   {
@@ -70,8 +147,8 @@
       "department": "Information & Security",
       "company": "DSS/NTUA",
       "telephone": "+306976435860",
-      "address": "Polytechnical University",
-      "notes": "superuser"
+      "address": "Polytechnical University of Athens",
+      "notes": "SuperUser"
     }
   },
   {
@@ -80,14 +157,16 @@
     "fields": {
       "user": 2,
       "display_name": "\u039c\u03b9\u03c7\u03b1\u03ae\u03bb \u039a\u03bf\u03bd\u03c4\u03bf\u03cd\u03bb\u03b7\u03c2",
+      "birth_date": "1980-06-13",
       "gender": 0,
-      "is_manager": false,
+      "is_manager": true,
       "employee_id": 501936,
       "job_title": "Developer",
-      "department": "Information",
+      "department": "Information & Security",
       "company": "DSS/NTUA",
+      "telephone": "+3021066788595",
       "address": "Polytechnical University",
-      "notes": "dev"
+      "notes": "Developer"
     }
   },
   {
@@ -96,11 +175,14 @@
     "fields": {
       "user": 3,
       "display_name": "\u03a3\u03c0\u03cd\u03c1\u03bf\u03c2 \u039c\u03bf\u03c5\u03b6\u03b1\u03ba\u03af\u03c4\u03b7\u03c2",
+      "birth_date": "1965-01-19",
       "gender": 0,
-      "is_manager": false,
+      "is_manager": true,
       "employee_id": 67305,
       "job_title": "Project Manager",
+      "department": null,
       "company": "DSS/NTUA",
+      "telephone": null,
       "address": "Polytechnical University",
       "notes": "boss"
     }
@@ -118,8 +200,61 @@
       "job_title": "Security Officer",
       "department": "Information & Security",
       "company": "DSS/NTUA",
+      "telephone": "+302106679856",
       "address": "Polytechnical University",
-      "notes": "test"
+      "notes": "I can do everything."
+    }
+  },
+  {
+    "model": "sbam_app.groupprofile",
+    "pk": 1,
+    "fields": {
+      "group": 1,
+      "creator": 1,
+      "display_name": "\u0394\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ad\u03c2",
+      "description": "Privileged Users",
+      "notes": "",
+      "is_active": true,
+      "creation_timestamp": "2020-03-12T17:07:12.191Z"
+    }
+  },
+  {
+    "model": "sbam_app.groupprofile",
+    "pk": 2,
+    "fields": {
+      "group": 2,
+      "creator": 1,
+      "display_name": "\u0394\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03ad\u03c2",
+      "description": "Trying...",
+      "notes": "",
+      "is_active": true,
+      "creation_timestamp": "2020-03-12T17:08:41.655Z"
+    }
+  },
+  {
+    "model": "sbam_app.groupprofile",
+    "pk": 3,
+    "fields": {
+      "group": 3,
+      "creator": 2,
+      "display_name": "\u0391\u03c6\u03b5\u03bd\u03c4\u03b9\u03ba\u03ac",
+      "description": "People in charge",
+      "notes": "Bosses",
+      "is_active": true,
+      "creation_timestamp": "2020-03-12T18:37:05.637Z"
+    }
+  },
+  {
+    "model": "sbam_app.groupprofile",
+    "pk": 4,
+    "fields": {
+      "group": 4,
+      "creator": 2,
+      "display_name": "\u03a4\u03c5\u03c7\u03ac\u03c1\u03c0\u03b1\u03c3\u03c4\u03bf\u03b9",
+      "description": null,
+      "notes": "",
+      "is_active": true,
+      "creation_timestamp": "2020-03-12T18:55:09.436Z"
     }
   }
 ]
