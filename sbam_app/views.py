@@ -200,7 +200,14 @@ class GroupsView(ListView):
         if self.request.user.is_superuser:
             return Group.objects.all().select_related('groupprofile')
         else:
-            return Group.objects.filter(groupprofile__is_active=True).select_related('groupprofile')
+            groups = Group.objects.filter(groupprofile__is_active=True).select_related('groupprofile')
+
+            excludes = []
+            for group in groups:
+                if not (group.groupprofile.is_global or group.groupprofile.creator == self.request.user):
+                    excludes.append(group.name)
+
+            return groups.exclude(name__in=excludes)
 
 
 def group(request, name):

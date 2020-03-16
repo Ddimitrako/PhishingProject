@@ -318,6 +318,10 @@ class GroupProfile(Model):
     def __str__(self):
         return self.group.name
 
+    @property
+    def is_global(self):
+        return self.creator.is_superuser
+
     class Meta:
         verbose_name = _('group profile')
         verbose_name_plural = _('group profiles')
