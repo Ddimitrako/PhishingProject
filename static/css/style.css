@@ -149,6 +149,10 @@ th, .sorting_1 {
     border-radius: .2rem;
 }
 
+.asteriskField {
+    color: red;
+}
+
 .input-group-append > .input-group-text {
     background: transparent;
     color: #777;
