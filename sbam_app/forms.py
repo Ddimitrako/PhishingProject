@@ -60,7 +60,9 @@ class CampaignCreationForm(forms.Form):
             dom_dict = {
                 "id": 'domain_' + str(dom.pk),
                 "text": dom.title,
-                "attributes": {},
+                "attributes": {
+                    'level': dim.level
+                },
                 "children": [],
                 "check": "False"
             }

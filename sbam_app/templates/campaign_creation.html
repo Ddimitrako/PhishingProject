@@ -15,68 +15,75 @@
     <div class="container campaign_creation_form">
         <form method="post" action=".">
             {% csrf_token %}
-            <div class="form-row">
-                <div class="form-group col col-md-10">
-                    <h3 class="legend">Create your campaign</h3>
+            <div class="input-fields">
+                <div class="form-row">
+                    <div class="form-group col col-md-10">
+                        <h3 class="legend">Create your campaign</h3>
+                    </div>
+                    <div class="form-group col col-md-2">
+                        <button type="button" class="btn btn-outline-primary" id="create_campaign_btn">Create Campaign</button>
+                    </div>
                 </div>
-                <div class="form-group col col-md-2">
-                    <button type="button" class="btn btn-outline-primary" id="create_campaign_btn">Create Campaign</button>
-                </div>
-            </div>
 
-            <div class="form-row">
-                <div class="form-group col col-md-6">
-                    <label for="id_start_date">Campaign Start</label>
-                    {{ campaign_form.start_date}}
+                <div class="form-row">
+                    <div class="form-group col col-md-6">
+                        <label for="id_start_date">Campaign Start</label>
+                        {{ campaign_form.start_date}}
+                    </div>
+                    <div class="form-group col col-md-6">
+                        <label for="id_end_date">Campaign End</label>
+                        {{ campaign_form.end_date}}
+                    </div>
                 </div>
-                <div class="form-group col col-md-6">
-                    <label for="id_end_date">Campaign End</label>
-                    {{ campaign_form.end_date}}
+                <hr>
+                <div class="form-row">
+                    <div class="form-group col col-md-4 questionnaiers">
+                        <label>Questionnaires</label>
+                        <div id="dim_tree_container"></div>
+                    </div>
+                    <div class="form-group col col-md-4 tests">
+                        <label>Tests</label>
+                        <div id="tests_tree_container"></div>
+                    </div>
+                    <div class="form-group col col-md-4 users">
+                        <label>Users</label>
+                        <div id="user_tree_container"></div>
+                    </div>
                 </div>
             </div>
             <hr>
             <div class="form-row">
-                <div class="form-group col col-md-4 questionnaiers">
-                    <label>Questionnaires</label>
-                    <div id="dim_tree_container"></div>
-                </div>
-                <div class="form-group col col-md-4 tests">
-                    <label>Tests</label>
-                    <div id="tests_tree_container"></div>
-                </div>
-                <div class="form-group col col-md-4 users">
-                    <label>Users</label>
-                    <div id="user_tree_container"></div>
-                </div>
-
-            </div>
-             <hr>
-            <div class="form-row">
                 <div class="form-group col col-md-4 sel_domains">
                     <label>Selected Domains</label>
                     <div class="table-responsive-sm">
-                        <table id="selected_domains" class="table table-striped">
-                            <caption>List of selected domains</caption>
-                            <tbody></tbody>
-                        </table>
+                        <div class="container selected-items">
+                            <table id="selected_domains" class="table table-striped table-responsive-sm">
+{#                                <caption>List of selected domains</caption>#}
+                                <tbody></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group col col-md-4 sel_tests">
                     <label>Selected Tests</label>
                     <div class="table-responsive-sm">
-                        <table id="selected_tests" class="table table-striped">
-                            <caption>List of selected tests</caption>
-                            <tbody></tbody>
-                        </table>
+                        <div class="container selected-items">
+                            <table id="selected_tests" class="table table-striped table-responsive-sm">
+{#                                <caption>List of selected tests</caption>#}
+                                <tbody></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group col col-md-4 sel_users">
                     <label>Selected Users</label>
                     <div class="table-responsive-sm">
-                        <table id="selected_users" class="table table-striped">
-                            <caption>List of selected users and groups</caption>
-                            <tbody></tbody>
-                        </table>
+                        <div class="container selected-items">
+                            <table id="selected_users" class="table table-striped table-responsive-sm">
+{#                                <caption>List of selected users and groups</caption>#}
+                                <tbody></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

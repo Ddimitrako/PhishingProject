@@ -1,7 +1,7 @@
 .campaign_creation_form{
-    margin-left: 3%;
-    margin-right: 3%;
-    max-width: 90%;
+    margin-left: 1%;
+    margin-right: 1%;
+    max-width: 95%;
 }
 
 .legend{
@@ -44,5 +44,28 @@
 }
 
 .content-header{
-    padding-top: 8px;
+    padding: 0px;
+}
+
+.input-fields{
+    box-shadow: 1px 1px 3px 1px #a3a3a3;
+    padding: 0.4%;
+    background-color: #ffffff;
+}
+
+.selected-items{
+    margin-top: 1%;
+    width:90%;
+}
+
+.sel_index {
+   width: 10%;
+}
+
+.table td {
+   text-align: center;
+}
+
+.table th {
+   text-align: center;
 }
