@@ -1,6 +1,7 @@
 $(document).ready(function(){
     console.log(domainstreeData);
     console.log(usertreeData);
+    console.log(testTreeData);
 
     const domainsTree = new Tree('#dim_tree_container', {
         data: domainstreeData,
@@ -81,8 +82,9 @@ $(document).ready(function(){
     });
 
     console.log(testTreeData.length);
+    let testsTree;
     if (testTreeData.length > 1) {
-        const testsTree = new Tree('#tests_tree_container', {
+        testsTree = new Tree('#tests_tree_container', {
             data: testTreeData,
             closeDepth: 1,
 
@@ -91,11 +93,10 @@ $(document).ready(function(){
                 $("#selected_tests tr").remove();
                 var len = this.selectedNodes.length;
                 if(len > 0) {
-                    $("#selected_users").append("<thead class=\"thead-dark\">\n" +
+                    $("#selected_tests").append("<thead class=\"thead-dark\">\n" +
                         "    <tr>\n" +
                         "      <th class='sel_index'>#</th>\n" +
                         "      <th class='sel_index'>Name</th>\n" +
-                        "      <th class='sel_index'>Type</th>\n" +
                         "    </tr>\n" +
                         "  </thead>");
 
