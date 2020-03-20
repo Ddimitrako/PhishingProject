@@ -45,6 +45,12 @@ INSTALLED_APPS = [
 
     # apps
     'sbam_app',
+
+    #Tempus Dominus DateTimepicker
+    'tempus_dominus',
+
+    #crispy_forms
+    'crispy_forms',
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -166,3 +172,7 @@ SETTINGS_EXPORT = [
     'TOOL_NAME',
     'TOOL_SHORT_NAME',
 ]
+
+#Tempus Dominus Settings
+TEMPUS_DOMINUS_LOCALIZE = False
+TEMPUS_DOMINUS_INCLUDE_ASSETS = False

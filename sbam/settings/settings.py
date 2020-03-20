@@ -29,3 +29,9 @@ DATABASES = {
 }
 
 TIME_ZONE = env('TIME_ZONE')
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]

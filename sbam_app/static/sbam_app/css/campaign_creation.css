@@ -1,0 +1,83 @@
+.campaign_creation_form{
+    margin-left: 1%;
+    margin-right: 1%;
+    max-width: 95%;
+}
+
+/*.legend{*/
+/*    margin-bottom: 2%;*/
+/*}*/
+
+.questionnaiers{
+    height: 20vh;
+    overflow: auto;
+}
+
+.tests{
+    height: 20vh;
+    overflow: auto;
+}
+
+.users{
+    height: 20vh;
+    overflow: auto;
+}
+
+.sel_domains{
+    height: 20vh;
+    overflow: auto;
+}
+
+.sel_tests{
+    height: 20vh;
+    overflow: auto;
+}
+
+.sel_users{
+    height: 20vh;
+    overflow: auto;
+}
+
+#create_campaign_btn{
+    position: absolute;
+    bottom: 0;
+}
+
+.content-header{
+    padding: 0px;
+}
+
+.input-fields{
+    box-shadow: 1px 1px 3px 1px #a3a3a3;
+    padding: 0.4%;
+    background-color: #ffffff;
+    border-radius: 25px;
+    margin-top: 1%;
+}
+
+.selected-items{
+    margin-top: 1%;
+    width:90%;
+}
+
+.sel_index {
+   width: 10%;
+}
+
+.table td {
+   text-align: center;
+}
+
+.table th {
+   text-align: center;
+}
+
+.selected-row{
+    height: 30vh;
+}
+
+.labels{
+    text-align: center;
+    box-shadow: 0px 2px 1px 0px #b7b0b030;
+    margin-bottom: 7px;
+}
