@@ -45,14 +45,14 @@ body, .dt-button-collection {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 30px;
+    height: 40px;
 }
 
 .footer-logo {
-    height: 15px;
+    height: 60px;
     width: 150px;
     padding-bottom: 0.5%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* EU Consent */
