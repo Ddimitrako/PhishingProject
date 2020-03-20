@@ -11,147 +11,146 @@ from django.utils.translation import gettext_lazy as _
 # Security Culture Model
 
 class Dimension(Model):
-    class DimensionLevel(IntegerChoices):
-        ORGANISATIONAL = 0, _('Organisational')
-        INDIVIDUAL = 1, _('Individual')
+    ORGANISATIONAL = 'ORGANISTATIONAL'
+    INDIVIDUAL = 'INDIVIDUAL'
+    LEVEL = [
+        (ORGANISATIONAL, 0),
+        (INDIVIDUAL, 1)
+    ]
 
-    dimension_title = CharField(
-        _('dimension title'),
-        max_length=50,
-        unique=True,
-        error_messages={
-            'unique': _("A dimension with that title already exists."),
-        },
-        help_text=_('Dimension title')
-    )
-    dimension_description = TextField(
-        _('dimension description'),
-        blank=True,
-        null=True,
-        default='',
-        help_text=_('Dimension description')
-    )
-    dimension_level = SmallIntegerField(
-        _('dimension level'),
-        choices=DimensionLevel.choices,
-        help_text=_('Dimension level')
-    )
-
-    class Meta:
-        verbose_name = _('dimension')
-        verbose_name_plural = _('dimensions')
+    title = CharField(max_length=50, help_text="Dimension title")
+    description = TextField(blank=True, null=True, default='', help_text="Dimension description")
+    level = SmallIntegerField(choices=LEVEL, help_text="Dimension level")
 
     def __str__(self):
-        return self.dimension_title
+        return self.title
 
 
 class Domain(Model):
-    dimension = ForeignKey(
-        Dimension,
-        verbose_name=_('dimension'),
-        on_delete=CASCADE,
-        help_text=_('Dimension this domain belongs to')
-    )
-    domain_title = CharField(
-        _('domain title'),
-        max_length=50,
-        unique=True,
-        error_messages={
-            'unique': _("A domain with that title already exists."),
-        },
-        help_text=_('Domain title')
-    )
-    domain_description = TextField(
-        _('domain description'),
-        blank=True,
-        null=True,
-        default='',
-        help_text=_('Domain description')
-    )
+    dimension = ForeignKey(Dimension, on_delete=CASCADE, help_text="Dimension this domain belongs to")
+    title = CharField(max_length=50, help_text="Domain title")
+    description = TextField(blank=True, null=True, default='', help_text="Domain description")
 
     def __str__(self):
-        return self.domain_title
+        return self.title
 
-    class Meta:
-        verbose_name = _('domain')
-        verbose_name_plural = _('domains')
+
+class Campaign(Model):
+    ACTIVE = 'ACTIVE'           #To campaign einai energo kai mporoyn na apanthsoun oi xrhstes
+    FINISHED = 'FINISHED'       #Sto campaign apanthsan oloi h perase to end_date
+    CANCELLED = 'CANCELLED'     #Gia kapoio logo o owner apofasise na akurwsei ena campaign
+    STATUSES = [
+        (FINISHED, 0),
+        (ACTIVE, 1),
+        (CANCELLED, 2)
+    ]
+    start_date = DateField()
+    end_date = DateField()
+    owner = ForeignKey(User, on_delete=CASCADE, help_text="The user who created the campaign")
+    status = IntegerField(choices=STATUSES, default=1, help_text="Status of a Campaign")
+
+    def __str__(self):
+        return self.owner.get_full_name() + ' ' + self.start_date + ' - ' + self.end_date
+
+
+class Assignment(Model):
+    COMPLETED = 'COMPLETED'    #O xrhsths ston opoio anaferetai to assignment oloklhrwse tis erwthseis
+    OPEN = 'OPEN'              #To sugkekrimeno assignment einai energo kai den exei apanthsei oles tis erwthseis o user
+    CANCELLED = 'CANCELLED'    #To assignment o admin h o manager(?) to akurwse
+    STATUSES = [
+        (OPEN, 0),
+        (COMPLETED, 1),
+        (CANCELLED, 2)
+    ]
+    QUESTIONNAIRE = 'QUESTIONNAIRE'
+    TEST = 'TEST'
+    TYPES = [
+        (QUESTIONNAIRE, 0),
+        (TEST, 1)
+    ]
+    campaign = ForeignKey(Campaign, on_delete=CASCADE)
+    user = ForeignKey(User, on_delete=CASCADE)
+    status = IntegerField(choices=STATUSES, default=0, help_text="Status of an assignment if it is completed or not")
+    type = IntegerField(choices=TYPES, help_text="Type of assignment ")
+
+
+class AssignmentResult(Model):
+    assignment = ForeignKey(Assignment, on_delete=CASCADE)
+    answer_time = DateTimeField()
+    score = FloatField()
+
+
+class Questionnaire(Model):
+    ACTIVE = 'ACTIVE'        #An to domain pou anaferetai uparxei to questionnaire einai active, diaforetika oxi
+    INACTIVE = 'INACTIVE'
+    STATUSES = [
+        (ACTIVE, 1),
+        (INACTIVE, 0)
+    ]
+    domain = ForeignKey(Domain, on_delete=CASCADE)
+    is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a questionnaire if it is used")
+
+
+class QuestionnaireAssignment(Assignment):
+    questionnaire = ForeignKey(Questionnaire, on_delete=CASCADE)
+
+
+class QuestionType(Model):
+
+    class Qtype(TextChoices):
+        BOOLEAN = 'BL', _('boolean')
+        LIKERTTEXT = 'LT', _('likert_text')
+        LIKERTPERC = 'LP', _('likert_percentage')
+
+    type = CharField(max_length=3, choices=Qtype.choices)
+
+
+class QuestionOption(Model):
+    ACTIVE = 'ACTIVE'        #An h sugkekrimenh epilogh einai diathesim
+    INACTIVE = 'INACTIVE'
+    STATUSES = [
+        (ACTIVE, 1),
+        (INACTIVE, 0)
+    ]
+    question_type = ForeignKey(QuestionType, on_delete=CASCADE)
+    text = TextField(help_text="question's option text")
+    value = FloatField()
+    is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a questionnaire if it is used")
 
 
 class Question(Model):
-    class QuestionType(IntegerChoices):
-        YES_NO_QUESTION = 0, _('Yes/No Question')
-        FIVE_WEIGHT_SCALE = 1, _('Five Weight Scale')
-        PERCENTAGE = 2, _('Percentage')
-        MULTIPLE_CHOICE = 3, _('Multiple Choice')
-
-    domain = ForeignKey(
-        Domain,
-        verbose_name=_('domain'),
-        on_delete=CASCADE,
-        help_text=_('Domain this question belongs to')
-    )
-    question_text = TextField(_('question text'), max_length=1000, help_text=_('Question text'))
-    type = SmallIntegerField(_('type'), choices=QuestionType.choices, default=3, help_text=_('Question type'))
-
-    def __str__(self):
-        return self.question_text
-
-    class Meta:
-        verbose_name = _('question')
-        verbose_name_plural = _('questions')
+    ACTIVE = 'ACTIVE'         #An h erwthsh uparxei an, h to domain uparxei(?)
+    INACTIVE = 'INACTIVE'
+    STATUSES = [
+        (ACTIVE, 1),
+        (INACTIVE, 0)
+    ]
+    questionnaire = ForeignKey(Questionnaire, on_delete=CASCADE)
+    question_type = ForeignKey(QuestionType, on_delete=CASCADE)
+    text = TextField(help_text="question's text")
+    is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a question if it is used")
 
 
-class MultipleTextChoices(Model):
-    question = ForeignKey(
-        Question,
-        verbose_name=_('question'),
-        on_delete=CASCADE,
-        help_text=_('Question this choice belongs to')
-    )
-    choice_text = TextField(_('choice text'), max_length=1000, help_text=_('Choice text'))
-
-    def __str__(self):
-        return self.choice_text
-
-    class Meta:
-        verbose_name = _('multiple text choice')
-        verbose_name_plural = _('multiple text choices')
+class CampaignQuestionAnswer(Model):
+    question = ForeignKey(Question, on_delete=CASCADE)
+    assignment = ForeignKey(Assignment, on_delete=CASCADE)
+    question_option = ForeignKey(QuestionOption, on_delete=CASCADE)
 
 
-class UserChoice(Model):
-    question = ForeignKey(
-        Question,
-        verbose_name=_('question'),
-        on_delete=CASCADE,
-        help_text=_('Question this choice belongs to')
-    )
-    user = ForeignKey(User, verbose_name=_('user'), on_delete=CASCADE, help_text=_('User this choice belongs to'))
+class Test(Model):
+    ACTIVE = 'ACTIVE'       #if the domain of the test exists or the test is available
+    INACTIVE = 'INACTIVE'
+    STATUSES = [
+        (ACTIVE, 1),
+        (INACTIVE, 0)
+    ]
+    domain = ForeignKey(Domain, on_delete=CASCADE)
+    title = CharField(max_length=100, help_text="Test title")
+    is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a question if it is used")
 
-    #
-    # Answers
-    #
-    # If question type 0:
-    # 0 - No , 1 - Yes
-    # If question type 1:
-    # 0 - Lowest , 5 - Highest
-    # If question type 2:
-    # 0 - Lowest , 100 - Highest
-    # If question type 3:
-    # Use choice in multipleChoices table leave choice null
-    choice = SmallIntegerField(_('choice'), blank=True, null=True, help_text=_('User choice'))
-    multipleChoice = ForeignKey(
-        MultipleTextChoices,
-        verbose_name=_('multiple choice'),
-        on_delete=CASCADE,
-        help_text=_('User choice (from multiple)')
-    )
 
-    def __str__(self):
-        return self.choice_text
-
-    class Meta:
-        verbose_name = _('user choice')
-        verbose_name_plural = _('user choices')
+class TestAssignment(Assignment):
+    test = ForeignKey(Test, on_delete=CASCADE)
 
 
 # User Management Model

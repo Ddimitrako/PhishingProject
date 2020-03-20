@@ -41,17 +41,18 @@ body, .dt-button-collection, .dropdown-menu {
 /* Main Footer */
 .footer-container {
     background: #23A5E1;
-    padding: 0.3rem;
+    padding: 0.1rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    height: 40px;
 }
 
 .footer-logo {
-    height: 50px;
+    height: 60px;
     width: 150px;
-    padding-bottom: 5px;
-    object-fit: cover;
+    padding-bottom: 0.5%;
+    object-fit: contain;
 }
 
 /* EU Consent */
@@ -59,9 +60,9 @@ body, .dt-button-collection, .dropdown-menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 5px;
+    padding: 1px 1px;
     background-color: white;
-    box-shadow: 0 0 3px 3px #aaa;
+    box-shadow: 0 0 1px 1px #aaa;
 }
 
 .txt-eu-consent {
@@ -140,6 +141,27 @@ th, .sorting_1 {
     border: 0;
 }
 
+.dt-button-collection {
+    margin: 5px 0;
+    font-family: inherit;
+}
+
+.dt-action-button {
+    float: right;
+}
+
+.buttons-columnVisibility {
+    margin: 5px 0;
+    color: #17a2b8;
+    background: white;
+    border: 1px solid;
+}
+
+table.dataTable tbody tr.selected, .table-hover tbody tr:hover {
+    color: white;
+    background-color: dodgerblue !important;
+}
+
 /* Forms */
 .form-control {
     height: calc(1.8125rem + 2px);
@@ -158,12 +180,12 @@ th, .sorting_1 {
     color: #777;
 }
 
-.input-group .form-control {
+.input-group > .form-control {
     border-right: 0;
 }
 
 .input-group .form-control:focus ~ .input-group-append .input-group-text {
-    border-color: #80bdff
+    border-color:#80bdff
 }
 
 .input-group .form-control[readonly] ~ .input-group-append .input-group-text,
@@ -178,6 +200,11 @@ th, .sorting_1 {
 
 #accordion .card {
     box-shadow: none;
+}
+
+.user-block {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #accordion .card .card-header {
@@ -222,6 +249,10 @@ div.display_name .input-group .input-group-append .input-group-text {
 
 .checkboxinput {
     margin-right: 10px;
+}
+
+.content-wrapper{
+    background-color: white;
 }
 
 /* Wizards */

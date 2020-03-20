@@ -1,20 +1,23 @@
-from crispy_forms.bootstrap import *
+from django import forms
+
+from sbam_app import models
+
+from tempus_dominus.widgets import DatePicker
+from django.contrib.auth.models import Group
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import *
-from django.forms import *
+from crispy_forms.bootstrap import *
 from django.utils.safestring import mark_safe
 
-from sbam_app.models import *
 
-
-class UserMultipleChoiceField(ModelMultipleChoiceField):
+class UserMultipleChoiceField(forms.ModelMultipleChoiceField):
     def label_from_instance(self, obj):
         return obj.get_full_name()
 
 
-class SignupForm(ModelForm):
+class SignupForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = models.User
         fields = ['first_name', 'last_name']
 
     def signup(self, request, user):
@@ -29,9 +32,9 @@ class SignupForm(ModelForm):
         self.field_order = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
 
-class UserForm(ModelForm):
+class UserForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = models.User
         fields = ('first_name', 'last_name', 'email', 'username', 'password', 'is_superuser', 'groups')
 
     def __init__(self, *args, **kwargs):
@@ -41,7 +44,7 @@ class UserForm(ModelForm):
         self.fields['last_name'].required = True
         self.fields['email'].required = True
 
-        self.fields['password'].widget = PasswordInput(render_value=True)
+        self.fields['password'].widget = forms.PasswordInput(render_value=True)
         self.fields['password'].disabled = True
         self.fields['password'].initial = 'dummy'
 
@@ -84,15 +87,15 @@ class UserForm(ModelForm):
         )
 
 
-class UserProfileForm(ModelForm):
+class UserProfileForm(forms.ModelForm):
     class Meta:
-        model = UserProfile
+        model = models.UserProfile
         exclude = ('user',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['notes'].widget = Textarea(attrs={'rows': 3})
+        self.fields['notes'].widget = forms.Textarea(attrs={'rows': 3})
 
         self.general_info_helper = FormHelper()
         self.general_info_helper.form_tag = False;
@@ -100,7 +103,7 @@ class UserProfileForm(ModelForm):
             Row(
                 Column('employee_id', css_class='col-md-4'),
                 Column(AppendedText('birth_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),
-                                    css_class='datepicker'), css_class='col-md-4'),
+                                          css_class='datepicker'), css_class='col-md-4'),
                 Column('gender', css_class='col-md-4')
             ),
             Row(
@@ -130,9 +133,9 @@ class UserProfileForm(ModelForm):
         )
 
 
-class GroupForm(ModelForm):
+class GroupForm(forms.ModelForm):
     members = UserMultipleChoiceField(
-        queryset=User.objects.filter(is_active=True).order_by('first_name'),
+        queryset=models.User.objects.filter(is_active=True).order_by('first_name'),
         required=True
     )
 
@@ -152,15 +155,15 @@ class GroupForm(ModelForm):
         return self.instance
 
 
-class GroupProfileForm(ModelForm):
+class GroupProfileForm(forms.ModelForm):
     class Meta:
-        model = GroupProfile
+        model = models.GroupProfile
         fields = ('display_name', 'description', 'notes')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['notes'].widget = Textarea(attrs={'rows': 3})
+        self.fields['notes'].widget = forms.Textarea(attrs={'rows': 3})
 
         self.general_info_helper = FormHelper()
         self.general_info_helper.form_tag = False;
@@ -172,3 +175,103 @@ class GroupProfileForm(ModelForm):
                 Column('notes', css_class='col-md-12')
             )
         )
+
+
+class CampaignCreationForm(forms.Form):
+    start_date = forms.DateField(
+        input_formats=['%Y-%m-%d'],
+        widget=DatePicker(
+            attrs={
+                'append': 'fa fa-calendar',
+                'input_toggle': True,
+                'autocomplete': "off"
+            }
+        ),
+    )
+    end_date = forms.DateField(
+        input_formats=['%Y-%m-%d'],
+        widget=DatePicker(
+            attrs={
+                'append': 'fa fa-calendar',
+                'input_toggle': True,
+                'autocomplete': "off"
+            }
+        ),
+    )
+
+    dimensions_dict = list()
+
+    dimensions = models.Dimension.objects.all()
+    for dim in dimensions:
+        dim_dict = {
+          "id": 'dimension_' + str(dim.pk),
+          "text": dim.title,
+          "attributes": {},
+          "children": [],
+          "check": "False"
+        }
+        for dom in dim.domain_set.all():
+            dom_dict = {
+                "id": 'domain_' + str(dom.pk),
+                "text": dom.title,
+                "attributes": {
+                    'level': dim.level
+                },
+                "children": [],
+                "check": "False"
+            }
+            dim_dict['children'].append(dom_dict)
+
+        dimensions_dict.append(dim_dict)
+
+    users = models.User.objects.all()
+    users_groups = Group.objects.all()
+
+    users_dict = list()
+    users_dict.append({
+        "id": 'users_groups',
+        "text": 'Users Groups',
+        "attributes": {},
+        "children": [],
+        "check": "False"
+    })
+    users_dict.append({
+      "id": 'users',
+      "text": 'Users',
+      "attributes": {},
+      "children": [],
+      "check": "False"
+    })
+
+    for group in users_groups:
+        group_dict = {
+            "id": 'group_' + str(group.pk),
+            "text": group.name,
+            "attributes": {},
+            "children": [],
+            "check": "False"
+        }
+        users_dict[0]['children'].append(group_dict)
+
+    for usr in users:
+        usr_dict = {
+          "id": 'user_' + str(usr.pk),
+          "text": usr.first_name + ' ' + usr.last_name,
+          "attributes": {},
+          "children": [],
+          "check": "False"
+        }
+        users_dict[1]['children'].append(usr_dict)
+
+    tests_dict = list()
+    tests = models.Test.objects.all()
+    for test in tests:
+        print(test.title)
+        test_dict = {
+            "id": 'user_' + str(test.pk),
+            "text": test.title,
+            "attributes": {},
+            "children": [],
+            "check": "False"
+        }
+        tests_dict.append(test_dict)

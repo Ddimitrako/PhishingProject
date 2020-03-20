@@ -1,3 +1,4 @@
+django-crispy-forms
 # Django
 Django==3.0.2
 
@@ -16,4 +17,6 @@ django-adminlte3==0.1.2
 
 # Django Form Tools
 django-widget-tweaks==1.4.5
-django-crispy-forms==1.8.1
+
+# Django Tempus Dominus DateTimepicker
+ django-tempus-dominus==5.1.2.13
