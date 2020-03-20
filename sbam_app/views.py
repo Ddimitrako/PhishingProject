@@ -9,6 +9,8 @@ from sbam_app.models import *
 
 import json
 
+from django.http import JsonResponse
+
 
 def DashboardView(request):
     return render(request, 'dashboard.html')
@@ -31,7 +33,9 @@ def CampaignCreation(request):
         end_date = request.POST['end_date']
 
         new_campaign = Campaign(start_date=start_date, end_date=end_date, owner=current_user, status=1)
+        # try:
         new_campaign.save()
+        # except V
         print(new_campaign.id)
 
         # Getting the selected users to ass
@@ -47,7 +51,7 @@ def CampaignCreation(request):
                 sel_user = User.objects.get(pk=sel_id)
                 sel_users.add(sel_user)
 
-        print(sel_users)
+        # print(sel_users)
 
         for dom in domains:
             domain_id = int(dom['id'][dom['id'].find('_')+1:len(dom['id'])])
@@ -71,10 +75,7 @@ def CampaignCreation(request):
                 new_assignment = TestAssignment(status=0, type=0, campaign_id=new_campaign.id, user=sel_user, test=assigned_test)
                 new_assignment.save()
 
-
-
-
-        return HttpResponseRedirect('/sbam/dashboard/')
+        return JsonResponse({'result': 'Success'})
     else:
         return render(request, 'campaign_creation.html', {'campaign_form': CampaignCreationForm()})
 

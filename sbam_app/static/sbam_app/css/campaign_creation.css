@@ -4,9 +4,9 @@
     max-width: 95%;
 }
 
-.legend{
-    margin-bottom: 2%;
-}
+/*.legend{*/
+/*    margin-bottom: 2%;*/
+/*}*/
 
 .questionnaiers{
     height: 20vh;
@@ -38,7 +38,7 @@
     overflow: auto;
 }
 
-.btn{
+#create_campaign_btn{
     position: absolute;
     bottom: 0;
 }
@@ -51,6 +51,8 @@
     box-shadow: 1px 1px 3px 1px #a3a3a3;
     padding: 0.4%;
     background-color: #ffffff;
+    border-radius: 25px;
+    margin-top: 1%;
 }
 
 .selected-items{
@@ -68,4 +70,14 @@
 
 .table th {
    text-align: center;
+}
+
+.selected-row{
+    height: 30vh;
+}
+
+.labels{
+    text-align: center;
+    box-shadow: 0px 2px 1px 0px #b7b0b030;
+    margin-bottom: 7px;
 }

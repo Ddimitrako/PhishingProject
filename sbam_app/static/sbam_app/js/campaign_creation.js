@@ -20,14 +20,19 @@ $(document).ready(function(){
                     "      <th class='sel_index'>Type</th>\n" +
                     "    </tr>\n" +
                     "  </thead>");
+                $('.sel-quest-par').hide();
             }
+            else
+                $('.sel-quest-par').show();
+
+
             var parent_dimension = '';
             for(var i=0; i < len; i++){
-                const table_row = "<tr><th class='sel_index'>"+i+"</th><td>"+this.selectedNodes[i].text+"</td>";
+                const table_row = "<tr><th class='sel_index'>"+i+"</th><td style='width: 70%'>"+this.selectedNodes[i].text+"</td>";
 
                 if (this.selectedNodes[i].id.includes('domain')) {
                     if(this.selectedNodes[i].attributes.level === 0)
-                        $("#selected_domains tbody").append(table_row + '<td>' + parent_dimension + '</td><td>Indiv</td></tr>');
+                        $("#selected_domains tbody").append(table_row + '<td>' + parent_dimension + '</td><td style=\'width: 30%\'>Indiv</td></tr>');
                     else
                         $("#selected_domains tbody").append(table_row + '<td>' + parent_dimension + '</td><td>Org</td></tr>');
                 }
@@ -57,7 +62,13 @@ $(document).ready(function(){
                     "      <th class='sel_index'>Type</th>\n" +
                     "    </tr>\n" +
                     "  </thead>");
+
+                $('.sel-usr-par').hide();
             }
+            else
+                $('.sel-usr-par').show();
+
+
             for(var i=0; i < len; i++){
                 if (!this.selectedNodes[i].id.includes('users')) {
                     if(this.selectedNodes[i].id.includes('user'))
@@ -76,7 +87,23 @@ $(document).ready(function(){
             closeDepth: 1,
 
             onChange: function () {
+                document.getElementById("selected_tests").deleteTHead();
                 $("#selected_tests tr").remove();
+                var len = this.selectedNodes.length;
+                if(len > 0) {
+                    $("#selected_users").append("<thead class=\"thead-dark\">\n" +
+                        "    <tr>\n" +
+                        "      <th class='sel_index'>#</th>\n" +
+                        "      <th class='sel_index'>Name</th>\n" +
+                        "      <th class='sel_index'>Type</th>\n" +
+                        "    </tr>\n" +
+                        "  </thead>");
+
+                    $('.sel-tests-par').hide();
+                }
+                else
+                    $('.sel-tests-par').show();
+
                 console.log(this.selectedNodes);
                 var len = this.selectedNodes.length;
                 for (var i = 0; i < len; i++) {
@@ -110,6 +137,10 @@ $(document).ready(function(){
     function check_campaign_dates(){
         const start_date = $('#id_start_date').val();
         const end_date = $('#id_end_date').val();
+        if(end_date === '' || start_date === ''){
+            alert("Please fill the date inputs");
+            return 0;
+        }
         if(end_date < start_date) {
             alert("Incorrect date input");
             return 0;
@@ -135,6 +166,8 @@ $(document).ready(function(){
     $('#create_campaign_btn').click(function () {
 
         if(check_campaign_dates() && check_selected_items()){
+            const start_date = $('#id_start_date').val();
+            const end_date = $('#id_end_date').val();
             const ajax_data = {};
             var csrftoken = getCookie('csrftoken');
             const domain_len = domainsTree.selectedNodes.length;
@@ -153,11 +186,14 @@ $(document).ready(function(){
                     users.push(userTree.selectedNodes[i]);
             }
 
-            const test_len = testsTree.selectedNodes.length;
             const tests = [];
-            for(var i=0; i < test_len; i++){
-                // if (!userTree.selectedNodes[i].id.includes('users'))
+            if (testTreeData.length > 1) {
+                const test_len = testsTree.selectedNodes.length;
+
+                for (var i = 0; i < test_len; i++) {
+                    // if (!userTree.selectedNodes[i].id.includes('users'))
                     tests.push(testsTree.selectedNodes[i]);
+                }
             }
 
 
@@ -166,7 +202,7 @@ $(document).ready(function(){
             ajax_data["domains"] = JSON.stringify(domains);
             ajax_data["users"] =  JSON.stringify(users);
             ajax_data["tests"] =  JSON.stringify(tests);
-            // data = JSON.stringify(ajax_data);
+
             console.log('Sto Ajax call');
             // console.log(data);
             $.ajax({
@@ -176,7 +212,9 @@ $(document).ready(function(){
                 // 'url': 'create_campaign/',
                 'data': ajax_data,
                 success: function(result){
-                    console.log(result)
+                    console.log(result);
+                    if(result['result'] === 'Success')
+                        $('#campaignSuccessModal').modal('toggle');
                 }
             })
         }
