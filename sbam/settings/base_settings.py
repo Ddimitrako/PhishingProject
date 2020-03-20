@@ -48,9 +48,6 @@ INSTALLED_APPS = [
 
     #Tempus Dominus DateTimepicker
     'tempus_dominus',
-
-    #crispy_forms
-    'crispy_forms',
 ]
 
 AUTHENTICATION_BACKENDS = (
