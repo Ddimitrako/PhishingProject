@@ -10,6 +10,8 @@ class Migration(migrations.Migration):
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('sbam_app', '0005_auto_20200203_1320'),
+        ('sbam_app', '0006_auto_20200305_1011'),
+
     ]
 
     operations = [
