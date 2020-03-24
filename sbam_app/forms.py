@@ -199,8 +199,10 @@ class CampaignCreationForm(forms.Form):
         ),
     )
 
-    dimensions_dict = list()
 
+
+def get_campaign_form_trees():
+    dimensions_dict = list()
     dimensions = models.Dimension.objects.all()
     for dim in dimensions:
         dim_dict = {
@@ -276,3 +278,14 @@ class CampaignCreationForm(forms.Form):
             "check": "False"
         }
         tests_dict.append(test_dict)
+    
+    
+    tree = {
+        'dimensions_dict': dimensions_dict,
+        'users_dict': users_dict,
+        'tests_dict': tests_dict,
+    }
+    return tree
+    
+    
+    

@@ -139,9 +139,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
 
     <script type="application/javascript">
-        const domainstreeData = {{ campaign_form.dimensions_dict | safe }};
-        const usertreeData = {{ campaign_form.users_dict | safe }};
-        const testTreeData = {{ campaign_form.tests_dict | safe }};
+        const domainstreeData = {{ campaign_form_trees.dimensions_dict | safe }};
+        const usertreeData = {{ campaign_form_trees.users_dict | safe }};
+        const testTreeData = {{ campaign_form_trees.tests_dict | safe }};
     </script>
 
     <script src="{% static "sbam_app/js/campaign_creation.js" %}"></script>
