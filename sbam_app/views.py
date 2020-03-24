@@ -77,7 +77,10 @@ def CampaignCreation(request):
 
         return JsonResponse({'result': 'Success'})
     else:
-        return render(request, 'campaign_creation.html', {'campaign_form': CampaignCreationForm()})
+        campaign_form_trees = get_campaign_form_trees()
+        return render(request, 'campaign_creation.html', 
+                        {'campaign_form': CampaignCreationForm(),
+                         'campaign_form_trees': campaign_form_trees})
 
 
 @login_required
