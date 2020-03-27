@@ -265,7 +265,6 @@ def get_campaign_form_trees():
         }
         users_dict[1]['children'].append(usr_dict)
 
-    print('Tupwnw ta tests')
     tests_dict = list()
     tests = models.Test.objects.all()
     for test in tests:
@@ -286,6 +285,3 @@ def get_campaign_form_trees():
         'tests_dict': tests_dict,
     }
     return tree
-    
-    
-    

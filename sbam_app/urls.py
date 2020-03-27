@@ -24,5 +24,5 @@ urlpatterns = [
     path('users/user_profile/<username>/', user_profile, name='user_profile'),
 
     #campaign
-    path(r'create_campaign/', CampaignCreation, name='create_campaign')
+    path(r'evaluations/', CampaignCreation, name='evaluations')
 ]
