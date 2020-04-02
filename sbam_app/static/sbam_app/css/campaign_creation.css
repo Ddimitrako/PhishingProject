@@ -9,36 +9,6 @@
     margin-top: 15px;
 }
 
-.questionnaiers{
-    height: 25vh;
-    overflow: auto;
-}
-
-.tests{
-    height: 25vh;
-    overflow: auto;
-}
-
-.users{
-    height: 25vh;
-    overflow: auto;
-}
-
-.sel_domains{
-    max-height: 32vh;
-    overflow: auto;
-}
-
-.sel_tests{
-    max-height: 32vh;
-    overflow: auto;
-}
-
-.sel_users{
-    max-height: 32vh;
-    overflow: auto;
-}
-
 .content-header{
     /*padding: 2px;*/
 }
@@ -60,21 +30,39 @@
    width: 10%;
 }
 
-.table td {
+/* .table td {
    text-align: center;
 }
 
 .table th {
    text-align: center;
-}
+} */
 
 .selected-row{
-    max-height: 32vh;
+    height: 37vh;
+    background-color: #d6d6d626;
+    padding-top: 5px;
 }
 
 .labels{
     text-align: center;
-    box-shadow: 0px 2px 1px 0px #5c4f4f30;
+    box-shadow: 0px 1px 0px 0px #5c4f4f30;
     margin-bottom: 7px;
-    border-radius: 15px;
+    color: #263c91;
+    height: 3vh;
+}
+
+.campaign_creation_form .form-row{
+    height: 30vh;
+}
+
+
+.tree_container{
+    height: 28vh;
+    overflow: auto;
+}
+
+.selected-items{
+    height: 32vh;
+    overflow: auto;
 }
