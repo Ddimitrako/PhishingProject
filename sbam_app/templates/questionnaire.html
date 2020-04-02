@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+{% endblock %}
+
+{% block page_name %}
+    <div class="row">
+        <strong><i class="nav-icon fas fa-edit mr-2"></i> {% trans "Assignment" %}</strong>
+    </div>
+{% endblock %}
+
+{% block extra_head %}
+    <link href="{% static "sbam_app/css/dashboard.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+    <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+    <div id="surveyResult"></div>
+{% block  extra_js  %}
+
+    <script type="application/javascript">
+        let questData = {{ questionnaire | safe }};
+        {#console.log(questData);#}
+    </script>
+
+    <script src="{% static "sbam_app/js/questionnaire_compl.js" %}"></script>
+
+{% endblock %}

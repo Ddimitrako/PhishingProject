@@ -14,6 +14,7 @@ import json
 
 from django.http import JsonResponse
 
+from django.forms.models import model_to_dict
 
 #
 # Custom Decorator used to grant permission to superusers only
@@ -46,13 +47,13 @@ def disable_field(form, field):
     form.fields[field].disabled = True
 
 @login_required
-def CampaignCreation(request):
+def campaignCreation(request):
     if request.method == 'POST':
 
         current_user = request.user
         users = json.loads(request.POST['users'])
         domains = json.loads(request.POST['domains'])
-        tests = json.loads(request.POST['domains'])
+        tests = json.loads(request.POST['tests'])
         start_date = request.POST['start_date']
         end_date = request.POST['end_date']
 
@@ -96,7 +97,7 @@ def CampaignCreation(request):
             # type -> 1 = Test, 0 -> Questionnaire
             # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
             for sel_user in sel_users:
-                new_assignment = TestAssignment(status=0, type=0, campaign_id=new_campaign.id, user=sel_user, test=assigned_test)
+                new_assignment = TestAssignment(status=0, type=1, campaign_id=new_campaign.id, user=sel_user, test=assigned_test)
                 new_assignment.save()
 
         return JsonResponse({'result': 'Success'})
@@ -110,6 +111,7 @@ def CampaignCreation(request):
 @login_required
 def user_profile(request, username):
     user = User.objects.get(username=username)
+
 
 def disable_form(form):
     for field in form.fields:
@@ -227,9 +229,29 @@ def activate_group(request, name, status):
 #
 # Views
 #
+@login_required
+def dashboardView(request):
+    # fetching active assignments
+    active_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=0).order_by('campaign__end_date')
+    active_tests = models.TestAssignment.objects.filter(user_id=request.user, status=0).order_by('campaign__end_date')
 
-def DashboardView(request):
-    return render(request, 'dashboard.html')
+    # fetching completed assignmets
+    completed_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=1).order_by('campaign__end_date')
+    completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1).order_by('campaign__end_date')
+
+    for quest in active_questionnaires:
+        print(quest.questionnaire.pk)
+    return render(request, 'dashboard.html', {'active_questionnaires': active_questionnaires,
+                                              'active_tests': active_tests,
+                                              'completed_questionnaires': completed_questionnaires,
+                                              'completed_tests': completed_tests})
+
+
+@login_required
+def assignmentCompletion(request, assignment_id):
+    questionnaire = get_questionnaire(request.user, assignment_id)
+    print(questionnaire)
+    return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
 
 
 class UsersView(ListView):
@@ -299,3 +321,19 @@ def enable_group(request, name):
 @superuser_only
 def disable_group(request, name):
     return activate_group(request, name, False)
+
+
+def get_questionnaire(user, questionnaire_id):
+    quest = models.QuestionnaireAssignment.objects.get(user=user, questionnaire=questionnaire_id)
+    # print('edwwwww', quest)
+    questions_dict = {}
+    questions = models.Question.objects.filter(questionnaire=quest.questionnaire).values()
+    # print(questions)
+    for question in questions:
+
+        question_type = models.QuestionType.objects.get(pk=question['question_type_id'])
+        question_options = models.QuestionOption.objects.filter(question_type=question_type).values()
+        questions_dict[question['id']] = [question, model_to_dict(question_type), [option for option in question_options]]
+        # print((question, model_to_dict(question_type), [option for option in question_options]))
+
+    return questions_dict

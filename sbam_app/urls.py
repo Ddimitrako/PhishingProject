@@ -6,7 +6,11 @@ app_name = 'sbam'
 
 urlpatterns = [
     # Dashboard
-    path('dashboard/', DashboardView, name='dashboard'),
+
+    path('dashboard/', dashboardView, name='dashboard'),
+
+    # Assignments
+    path('assignments/<assignment_id>/', assignmentCompletion, name='assignments'),
 
     # Users
     path('users/', UsersView.as_view(), name='users'),
@@ -24,5 +28,5 @@ urlpatterns = [
     path('users/user_profile/<username>/', user_profile, name='user_profile'),
 
     #campaign
-    path(r'evaluations/', CampaignCreation, name='evaluations')
+    path(r'evaluations/', campaignCreation, name='evaluations')
 ]
