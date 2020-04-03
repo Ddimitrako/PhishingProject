@@ -249,10 +249,15 @@ def dashboardView(request):
 
 @login_required
 def assignmentCompletion(request, assignment_id):
-    questionnaire = get_questionnaire(request.user, assignment_id)
-    print(questionnaire)
-    return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
-
+    # print(request)
+    if request.method == 'GET':
+        questionnaire = get_questionnaire(request.user, assignment_id)
+        print(questionnaire)
+        return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
+    else:
+        answers = json.loads(request.POST['users'])
+        print('----------------------------------', answers)
+        return redirect('sbam:dashboard')
 
 class UsersView(ListView):
     template_name = 'users.html'
@@ -327,6 +332,7 @@ def get_questionnaire(user, questionnaire_id):
     quest = models.QuestionnaireAssignment.objects.get(user=user, questionnaire=questionnaire_id)
     questions_dict = {}
     questions_dict['title'] = quest.questionnaire.domain.title
+    questions_dict['id'] = quest.questionnaire.pk
     questions = models.Question.objects.filter(questionnaire=quest.questionnaire).values()
     # print(questions)
     for question in questions:

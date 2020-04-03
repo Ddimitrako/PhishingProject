@@ -1,6 +1,8 @@
 $(document).ready(function(){
      console.log(questData);
-
+    // Survey
+    // .StylesManager
+    // .applyTheme("bootstrap");
     //  function responsible for creating boolean questions json for survey
     function create_bool_quest(text, quest_id){
         question_obj = {};
@@ -48,12 +50,23 @@ $(document).ready(function(){
                     }
 
                     if (questData[quest_obj][obj].hasOwnProperty('type')) {
-                        if(questData[quest_obj][obj].type === 'BL') {
-                            bool_obj = {};
-                            bool_obj['questions'] = create_bool_quest(text, quest_id);
-                            questions.push(bool_obj);
+                        switch (questData[quest_obj][obj].type) {
+                            case 'BL':
+                                bool_obj = {};
+                                bool_obj['questions'] = create_bool_quest(text, quest_id);
+                                questions.push(bool_obj);
+                                break;
+                            case 'AG':
+                                break;
+                            default:
+
                         }
 
+                        // if(questData[quest_obj][obj].type === 'BL') {
+                        //     bool_obj = {};
+                        //     bool_obj['questions'] = create_bool_quest(text, quest_id);
+                        //     questions.push(bool_obj);
+                        // }
                     }
                 }
             }
@@ -71,16 +84,38 @@ $(document).ready(function(){
 
     //inserting all questions of questionnaire in survey
     surveyjson['pages'] = create_questions_list();
-
+    let survey_results;
     console.log(surveyjson);
      window.survey = new Survey.Model(surveyjson);
      survey
          .onComplete
          .add(function (result) {
-             document
-                 .querySelector('#surveyResult')
-                 .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3);
+             // document
+             //     .querySelector('#surveyResult').innerHTML = '' +
+                 // '<div class="row>" ' +
+                 // '<a class="btn btn-primary" href="{% url \'sbam:dashboard\' %}" role="button">{% trans "Start!" %}</a>' +
+                 // '';
+                 // .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3);
+             survey_results = JSON.stringify(result.data, null, 3);
+
+                $('.row-compl').show();
          });
 
      $("#surveyElement").Survey({model: survey});
+     // console.log(survey_results);
+    $('.btn-compl').click(function () {
+        alert(survey_results);
+        $.ajax({
+                "type": "POST",
+                headers: { "X-CSRFToken": csrftoken },
+                dataType: 'json',
+                'url': 'assignments/'+ass_id,
+                'data': survey_results,
+                // success: function(result){
+                //     console.log(result);
+                //     if(result['result'] === 'Success')
+                //         $('#campaignSuccessModal').modal('toggle');
+                // }
+            })
+    });
 });

@@ -6,3 +6,35 @@
     margin-top: 3%;
     margin-left: 3%;
 }
+
+.sv_body{
+    border-top: 2px solid #016fcd !important;
+}
+
+.sv_start_btn{
+    background-color: #016fcd !important;
+}
+
+.sv_next_btn{
+    background-color: #016fcd !important;
+}
+
+.sv_prev_btn{
+    background-color: #016fcd !important;
+}
+
+.sv_complete_btn{
+    background-color: #016fcd !important;
+}
+
+.sv-boolean__switch{
+    background-color: #016fcd !important;
+}
+
+.sv_progress_bar{
+    background-color: #016fcd !important;
+}
+
+.row-compl{
+    display: none;
+}

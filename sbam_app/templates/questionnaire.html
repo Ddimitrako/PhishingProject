@@ -10,7 +10,9 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item active"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Assignments" %}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:assignments' questionnaire.id %}">{{ questionnaire.id }}</a></li>
 {% endblock %}
 
 {% block page_name %}
@@ -26,7 +28,14 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body">
                         <div id="surveyElement" style="display:inline-block;width:100%;"></div>
-                        <div id="surveyResult"></div>
+                        <div id="surveyResult">
+                            <div class="row row-compl">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <p></p>
+                                    <a class="btn btn-primary btn-compl" href="{% url 'sbam:dashboard' %}" role="button">{% trans "Return to Dashboard" %}</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,7 +50,8 @@
 
     <script type="application/javascript">
         let questData = {{ questionnaire | safe }};
-        {#console.log(questData);#}
+        let ass_id = {{ questionnaire | safe }};
+        console.log(ass_id);
     </script>
 
     <script src="{% static "sbam_app/js/questionnaire_compl.js" %}"></script>
