@@ -325,15 +325,15 @@ def disable_group(request, name):
 
 def get_questionnaire(user, questionnaire_id):
     quest = models.QuestionnaireAssignment.objects.get(user=user, questionnaire=questionnaire_id)
-    # print('edwwwww', quest)
     questions_dict = {}
+    questions_dict['title'] = quest.questionnaire.domain.title
     questions = models.Question.objects.filter(questionnaire=quest.questionnaire).values()
     # print(questions)
     for question in questions:
 
         question_type = models.QuestionType.objects.get(pk=question['question_type_id'])
         question_options = models.QuestionOption.objects.filter(question_type=question_type).values()
-        questions_dict[question['id']] = [question, model_to_dict(question_type), [option for option in question_options]]
+        questions_dict['questiion_'+str(question['id'])] = [question, model_to_dict(question_type), [option for option in question_options]]
         # print((question, model_to_dict(question_type), [option for option in question_options]))
 
     return questions_dict

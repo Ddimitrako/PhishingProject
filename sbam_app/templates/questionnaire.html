@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
+{% load i18n adminlte_helpers widget_tweaks %}
+
+{% block extra_head %}
+    <link href="{% static "vendor/survey-jquery/survey.css" %}" rel="stylesheet">
+    <link href="{% static "sbam_app/css/questionnaire_compl.css" %}" rel="stylesheet">
+
+{% endblock %}
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item active"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
@@ -13,16 +19,25 @@
     </div>
 {% endblock %}
 
-{% block extra_head %}
-    <link href="{% static "sbam_app/css/dashboard.css" %}" rel="stylesheet">
-{% endblock %}
-
 {% block content %}
-
+    <div class="container quest-container">
+        <div class="row">
+            <div class="col col-md-9">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+                        <div id="surveyResult"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
-    <div id="surveyElement" style="display:inline-block;width:100%;"></div>
-    <div id="surveyResult"></div>
+
+
 {% block  extra_js  %}
+
+    <script src="{% static "vendor/survey-jquery/survey.jquery.js" %}"></script>
 
     <script type="application/javascript">
         let questData = {{ questionnaire | safe }};
