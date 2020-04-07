@@ -141,27 +141,6 @@ th, .sorting_1 {
     border: 0;
 }
 
-.dt-button-collection {
-    margin: 5px 0;
-    font-family: inherit;
-}
-
-.dt-action-button {
-    float: right;
-}
-
-.buttons-columnVisibility {
-    margin: 5px 0;
-    color: #17a2b8;
-    background: white;
-    border: 1px solid;
-}
-
-table.dataTable tbody tr.selected, .table-hover tbody tr:hover {
-    color: white;
-    background-color: dodgerblue !important;
-}
-
 /* Forms */
 .form-control {
     height: calc(1.8125rem + 2px);
@@ -180,12 +159,12 @@ table.dataTable tbody tr.selected, .table-hover tbody tr:hover {
     color: #777;
 }
 
-.input-group > .form-control {
+.input-group .form-control {
     border-right: 0;
 }
 
 .input-group .form-control:focus ~ .input-group-append .input-group-text {
-    border-color:#80bdff
+    border-color: #80bdff
 }
 
 .input-group .form-control[readonly] ~ .input-group-append .input-group-text,
@@ -200,11 +179,6 @@ table.dataTable tbody tr.selected, .table-hover tbody tr:hover {
 
 #accordion .card {
     box-shadow: none;
-}
-
-.user-block {
-    display: flex;
-    flex-wrap: wrap;
 }
 
 #accordion .card .card-header {
@@ -249,10 +223,6 @@ div.display_name .input-group .input-group-append .input-group-text {
 
 .checkboxinput {
     margin-right: 10px;
-}
-
-.content-wrapper{
-    background-color: white;
 }
 
 /* Wizards */
