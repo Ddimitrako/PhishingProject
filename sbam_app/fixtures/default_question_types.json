@@ -1,0 +1,26 @@
+[
+    {
+      "model": "sbam_app.QuestionType",
+      "fields": {
+        "type": "BOOL"
+      }
+    },
+    {
+        "model": "sbam_app.QuestionType",
+        "fields": {
+          "type": "PERC10"
+        }
+      },
+      {
+        "model": "sbam_app.QuestionType",
+        "fields": {
+          "type": "PERC20"
+        }
+      },
+      {
+        "model": "sbam_app.QuestionType",
+        "fields": {
+          "type": "AGR5"
+        }
+    }
+  ]
