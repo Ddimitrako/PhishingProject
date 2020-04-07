@@ -98,11 +98,16 @@ class QuestionnaireAssignment(Assignment):
 class QuestionType(Model):
 
     class Qtype(TextChoices):
-        BOOLEAN = 'BL', _('boolean')
-        LIKERTTEXT = 'LT', _('likert_text')
-        LIKERTPERC = 'LP', _('likert_percentage')
+        BOOLEAN = 'BOOL', _('boolean') # Yes/No
+        PERCENTAGE_10 = 'PERC10', _('percentage_step_10') # [0-10)% - [10-20)% - ... - [90-100] %
+        PERCENTAGE_20 = 'PERC20', _('percentage_step_20') # [0-20)% - [20-40)% - ... - [80-100] %
+        AGREEMENT_5 = 'AGR5', _('agreement_scale_5_options') # Strongly Disagree - DIsagree - Neutral - Agree - Strongly Agree
+        CUSTOM_RADIO = 'CUSTOM_R', _('custom_question') # Custom radio question type with custom options
 
-    type = CharField(max_length=3, choices=Qtype.choices)
+    type = CharField(max_length=23, choices=Qtype.choices)
+
+    def get_by_natural_key(q_type):
+        return self.objects.get(q_type=type)
 
 
 class QuestionOption(Model):
