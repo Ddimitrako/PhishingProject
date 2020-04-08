@@ -11,6 +11,7 @@ urlpatterns = [
 
     # Assignments
     path('assignments/<assignment_id>/', assignmentCompletion, name='assignments'),
+    path('survey_submit/', surveySumbission, name='survey_submit'),
 
     # Users
     path('users/', UsersView.as_view(), name='users'),

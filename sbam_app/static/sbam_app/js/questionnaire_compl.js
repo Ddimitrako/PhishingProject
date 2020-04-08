@@ -1,17 +1,29 @@
 $(document).ready(function(){
-     console.log(questData);
+     // console.log(questData);
     // Survey
     // .StylesManager
     // .applyTheme("bootstrap");
+
+
+    Survey
+    .Serializer
+    .addProperty("question", {
+        option_id: "tag:number",
+        default: 0,
+        category: "general"
+    });
+
     //  function responsible for creating boolean questions json for survey
-    function create_bool_quest(text, quest_id){
+    function create_bool_quest(text, quest_id, question_opt_ids){
         question_obj = {};
         question_obj = {
             type: "boolean",
             name: "question_"+quest_id,
             title: 'Please answer the question',
             label: text,
-            isRequired: true
+            isRequired: true,
+            valueTrue: question_opt_ids[0],
+            valueFalse: question_opt_ids[1]
 
         };
         return [question_obj];
@@ -38,12 +50,12 @@ $(document).ready(function(){
         questions.push(question_obj);
 
         for(let quest_obj in questData){
-            console.log(quest_obj, questData[quest_obj]);
+            // console.log(quest_obj, questData[quest_obj]);
             if(quest_obj !== 'title') {
                 for (let obj in questData[quest_obj]) {
                     var text;
                     var quest_id;
-
+                    // console.log(obj, questData[quest_obj][obj]);
                     if (questData[quest_obj][obj].hasOwnProperty('text')) {
                         text = questData[quest_obj][obj].text;
                         quest_id = questData[quest_obj][obj].id;
@@ -52,8 +64,16 @@ $(document).ready(function(){
                     if (questData[quest_obj][obj].hasOwnProperty('type')) {
                         switch (questData[quest_obj][obj].type) {
                             case 'BL':
+                                question_opt_ids = [];
+                                for(opt in questData[quest_obj][2]){
+
+                                    // console.log(opt, questData[quest_obj][2][opt]);
+                                    question_opt_ids.push(questData[quest_obj][2][opt].id);
+                                }
+                                console.log('Edwwww', question_opt_ids);
+
                                 bool_obj = {};
-                                bool_obj['questions'] = create_bool_quest(text, quest_id);
+                                bool_obj['questions'] = create_bool_quest(text, quest_id, question_opt_ids);
                                 questions.push(bool_obj);
                                 break;
                             case 'AG':
@@ -82,9 +102,25 @@ $(document).ready(function(){
           startSurveyText: "Start Quiz",
      };
 
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+    return cookieValue;
+    }
+
     //inserting all questions of questionnaire in survey
     surveyjson['pages'] = create_questions_list();
-    let survey_results;
+    let survey_results = {};
     console.log(surveyjson);
      window.survey = new Survey.Model(surveyjson);
      survey
@@ -96,7 +132,8 @@ $(document).ready(function(){
                  // '<a class="btn btn-primary" href="{% url \'sbam:dashboard\' %}" role="button">{% trans "Start!" %}</a>' +
                  // '';
                  // .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3);
-             survey_results = JSON.stringify(result.data, null, 3);
+             survey_results['data'] = JSON.stringify(result.data);
+             console.log(survey_results);
 
                 $('.row-compl').show();
          });
@@ -104,18 +141,22 @@ $(document).ready(function(){
      $("#surveyElement").Survey({model: survey});
      // console.log(survey_results);
     $('.btn-compl').click(function () {
-        alert(survey_results);
+        // alert(survey_results);
+        survey_results['ass_id'] = ass_id;
+        var csrftoken = getCookie('csrftoken');
         $.ajax({
-                "type": "POST",
+                type: "POST",
                 headers: { "X-CSRFToken": csrftoken },
                 dataType: 'json',
-                'url': 'assignments/'+ass_id,
-                'data': survey_results,
-                // success: function(result){
-                //     console.log(result);
-                //     if(result['result'] === 'Success')
-                //         $('#campaignSuccessModal').modal('toggle');
-                // }
+                url: '/sbam/survey_submit/',
+                data: survey_results,
+                success: function(result){
+
+                    if(result['result'] === 'Success') {
+                        alert('Ola good');
+                        console.log(result);
+                    }
+                }
             })
     });
 });

@@ -24,6 +24,7 @@
 {% block content %}
     <div class="container quest-container">
         <div class="row">
+            {% csrf_token %}
             <div class="col col-md-9">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
@@ -50,7 +51,7 @@
 
     <script type="application/javascript">
         let questData = {{ questionnaire | safe }};
-        let ass_id = {{ questionnaire | safe }};
+        let ass_id = {{ questionnaire.id | safe }};
         console.log(ass_id);
     </script>
 

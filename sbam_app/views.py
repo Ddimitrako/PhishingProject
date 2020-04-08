@@ -46,6 +46,7 @@ def advanced_users_only(function):
 def disable_field(form, field):
     form.fields[field].disabled = True
 
+
 @login_required
 def campaignCreation(request):
     if request.method == 'POST':
@@ -239,8 +240,8 @@ def dashboardView(request):
     completed_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=1).order_by('campaign__end_date')
     completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1).order_by('campaign__end_date')
 
-    for quest in active_questionnaires:
-        print(quest.questionnaire.pk)
+    # for quest in active_questionnaires:
+    #     print(quest.questionnaire.pk)
     return render(request, 'dashboard.html', {'active_questionnaires': active_questionnaires,
                                               'active_tests': active_tests,
                                               'completed_questionnaires': completed_questionnaires,
@@ -250,14 +251,21 @@ def dashboardView(request):
 @login_required
 def assignmentCompletion(request, assignment_id):
     # print(request)
-    if request.method == 'GET':
-        questionnaire = get_questionnaire(request.user, assignment_id)
-        print(questionnaire)
-        return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
-    else:
-        answers = json.loads(request.POST['users'])
-        print('----------------------------------', answers)
-        return redirect('sbam:dashboard')
+    questionnaire = get_questionnaire(request.user, assignment_id)
+    print(questionnaire)
+    return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
+
+
+
+@login_required
+def surveySumbission(request):
+    print(request.POST)
+    print('----------------------------------', 'εδωωωωωωωω')
+    answers = json.loads(request.POST['data'])
+    for question in answers:
+        print(question, answers[question])
+    return JsonResponse({'result': 'success'})
+
 
 class UsersView(ListView):
     template_name = 'users.html'
