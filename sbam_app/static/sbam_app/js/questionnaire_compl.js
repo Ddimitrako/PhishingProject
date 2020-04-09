@@ -1,5 +1,5 @@
 $(document).ready(function(){
-     // console.log(questData);
+     console.log(questData);
     // Survey
     // .StylesManager
     // .applyTheme("bootstrap");
@@ -33,6 +33,22 @@ $(document).ready(function(){
     //*** HERE IMPLEMENT ALL FUNCTIONS FOR DIFFERENT TYPES OF QUESTIONS  ***
     //**********************************************************************
 
+    //  function responsible for creating boolean questions json for survey
+    function create_perc_quest(text, quest_id, question_opt, colnum){
+        question_obj = {};
+        question_obj = {
+            type: "radiogroup",
+            name: "question_"+quest_id,
+            title: text,
+            // description: text,
+            colCount: colnum,
+            isRequired: true,
+            choices: question_opt
+
+        };
+        return [question_obj];
+    }
+
 
     //Gathers all questions of survey and creates appropriate json object for each question
     function create_questions_list(){
@@ -63,21 +79,36 @@ $(document).ready(function(){
 
                     if (questData[quest_obj][obj].hasOwnProperty('type')) {
                         switch (questData[quest_obj][obj].type) {
-                            case 'BL':
+                            case 'BOOL':
                                 question_opt_ids = [];
                                 for(opt in questData[quest_obj][2]){
 
                                     // console.log(opt, questData[quest_obj][2][opt]);
                                     question_opt_ids.push(questData[quest_obj][2][opt].id);
                                 }
-                                console.log('Edwwww', question_opt_ids);
+                                // console.log('Edwwww', question_opt_ids);
 
                                 bool_obj = {};
                                 bool_obj['questions'] = create_bool_quest(text, quest_id, question_opt_ids);
                                 questions.push(bool_obj);
                                 break;
-                            case 'AG':
+                            case 'PERC10':
+                                question_opt = [];
+                                for(opt in questData[quest_obj][2])
+                                    question_opt.push(questData[quest_obj][2][opt]);
+
+                                bool_obj = {};
+                                bool_obj['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
+                                questions.push(bool_obj);
                                 break;
+                            case 'PERC20':
+                                question_opt = [];
+                                for(opt in questData[quest_obj][2])
+                                    question_opt.push(questData[quest_obj][2][opt]);
+
+                                bool_obj = {};
+                                bool_obj['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
+                                questions.push(bool_obj);
                             default:
 
                         }
