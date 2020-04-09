@@ -21,71 +21,7 @@
 {% block content %}
     <form action="" method="post" novalidate>
         <div class="row">
-            <div class="col-md-4">
-                <div class="card card-primary card-outline">
-                    <div class="card-body box-profile">
-                        <div class="display_name">
-                            {% include 'form-utils/input-group-field.html' with field=profile_form.display_name field_class='form-control' icon='fas fa-pencil-alt' %}
-                        </div>
-
-                        <ul class="list-group list-group-unbordered mb-3">
-                            <li class="list-group-item">
-                                <b>{% trans "members"|capfirst %}</b> <a class="float-right">{{ group.user_set.count }}</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>{% trans "Campaigns" %}</b> <a class="float-right"></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>{% trans "Results" %}</b> <a class="float-right"></a>
-                            </li>
-                        </ul>
-
-                        <p>
-                            <u>{% trans "Created on" %}</u> :
-                            <a class="float-right">
-                                <i class="far fa-clock ml-2 mr-1"></i> {{ group.groupprofile.creation_timestamp }}
-                            </a>
-                        </p>
-                        <p>
-                            <u>{% trans "Owner" %}</u> :
-                            <a class="float-right">
-                                {{ group.groupprofile.creator.get_full_name }}
-                            </a>
-                        </p>
-                        <hr>
-
-                        <!-- TODO add a graph with profile completeness as in mockup -->
-
-                        {% if request.user.is_superuser or request.user == group.groupprofile.creator %}
-                            <button class="btn btn-outline-info btn-sm" type="submit"
-                                    title="{% trans "Save changes" %}">
-                                <i class="fas fa-save mr-2"></i>{% trans "Save" %}
-                            </button>
-
-                            {% if request.user.is_superuser %}
-                                {% if group.groupprofile.is_active %}
-                                    <button class="btn btn-outline-danger btn-sm" type="submit" formaction="disable"
-                                            title="{% trans "Disable group" %}">
-                                        <i class="fas fa-slash mr-2"></i>{% trans "Disable" %}
-                                    </button>
-                                {% else %}
-                                    <button class="btn btn-outline-success btn-sm" type="submit" formaction="enable"
-                                            title="{% trans "Enable group" %}">
-                                        <i class="fas fa-check mr-2"></i>{% trans "Enable" %}
-                                    </button>
-                                {% endif %}
-                            {% endif %}
-
-                            <button class="btn btn-outline-dark btn-sm float-right" type="reset"
-                                    title="{% trans "Cancel changes" %}">
-                                <i class="fas fa-times-circle mr-2"></i>{% trans "Cancel" %}
-                            </button>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card card-primary card-outline card-outline-tabs">
                     <div class="card-header pb-2 border-bottom-0">
                         <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
@@ -98,10 +34,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="group-status-tab" data-toggle="pill"
-                                   href="#group-status" role="tab"
-                                   aria-controls="group-status"
-                                   aria-selected="false"><i class="fas fa-shield-alt mr-2"></i> {% trans "Status" %}
+                                <a class="nav-link" id="group-members-tab" data-toggle="pill"
+                                   href="#group-members" role="tab"
+                                   aria-controls="group-members"
+                                   aria-selected="false"><i class="fas fa-user-friends mr-2"></i>
+                                    {% trans "members"|capfirst %}
                                 </a>
                             </li>
                         </ul>
@@ -112,38 +49,82 @@
                                  aria-labelledby="group-profile-general-info-tab">
                                 <ul class="list-group list-group-unbordered">
                                     <li class="list-group-item p-0 border-0">
-                                        {{ group_form.name|as_crispy_field }}
+                                        <div class="row">
+                                            <div class="col">
+                                                {{ group_form.name|as_crispy_field }}
+                                            </div>
+                                            <div class="col">
+                                                {{ profile_form.display_name|as_crispy_field }}
+                                            </div>
+                                        </div>
                                     </li>
                                     <li class="list-group-item p-0 border-0">
-                                        {% crispy profile_form profile_form.general_info_helper %}
-                                    </li>
-                                    <li class="list-group-item p-0 border-0">
-                                        <div class="accordion" id="accordion" role="tablist">
-                                            <div class="card mb-2">
-                                                <div class="card-header" role="tab">
-                                                    <h5 class="mb-0">
-                                                        <a data-toggle="collapse" href="#members"
-                                                           aria-expanded="true" aria-controls="members">
-                                                            <i class="fas fa-user-friends mr-2"></i>
-                                                            {% trans "members"|capfirst %}
-                                                            <i class="fas fa-angle-down float-right"></i>
-                                                        </a>
-                                                    </h5>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div id="div_id_creator" class="form-group">
+                                                    <label for="id_creator" class="">
+                                                        {% trans "creator"|capfirst %}
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="text" name="creator"
+                                                               value="{{ group.groupprofile.creator.get_full_name }}"
+                                                               class="textinput form-control" disabled=""
+                                                               id="id_creator">
+                                                    </div>
                                                 </div>
-                                                <div id="members" class="collapse" role="tabpanel"
-                                                     aria-labelledby="members" data-parent="#accordion">
-                                                    <div class="card-body">
-                                                        {{ group_form.members|add_class:"duallistbox" }}
+                                            </div>
+
+                                            <div class="col">
+                                                <div id="div_id_creation_tmp" class="form-group">
+                                                    <label for="id_creation_tmp" class="">
+                                                        {% trans "creation timestamp"|capfirst %}
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="text" name="creation_tmp"
+                                                               value="{{ group.groupprofile.creation_timestamp }}"
+                                                               class="textinput form-control" disabled=""
+                                                               id="id_creation_tmp">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        {% crispy profile_form profile_form.general_info_helper %}
                                     </li>
                                 </ul>
                             </div>
-                            <div class="tab-pane fade" id="group-status" role="tabpanel"
-                                 aria-labelledby="group-status-tab">
+                            <div class="tab-pane fade" id="group-members" role="tabpanel"
+                                 aria-labelledby="group-members-tab">
+                                {{ group_form.members|add_class:"duallistbox" }}
                             </div>
+                        </div>
+                        <div class="float-right">
+                            {% if request.user.is_superuser or request.user == group.groupprofile.creator %}
+                                <button class="btn btn-outline-info btn-sm mt-4" type="submit"
+                                        title="{% trans "Save changes" %}">
+                                    <i class="fas fa-save mr-2"></i>{% trans "Save" %}
+                                </button>
+
+                                {% if request.user.is_superuser %}
+                                    {% if group.groupprofile.is_active %}
+                                        <button class="btn btn-outline-danger btn-sm mt-4" type="submit"
+                                                formaction="disable"
+                                                title="{% trans "Disable group" %}">
+                                            <i class="fas fa-slash mr-2"></i>{% trans "Disable" %}
+                                        </button>
+                                    {% else %}
+                                        <button class="btn btn-outline-success btn-sm mt-4" type="submit"
+                                                formaction="enable"
+                                                title="{% trans "Enable group" %}">
+                                            <i class="fas fa-check mr-2"></i>{% trans "Enable" %}
+                                        </button>
+                                    {% endif %}
+                                {% endif %}
+
+                                <button class="btn btn-outline-dark btn-sm mt-4" type="reset"
+                                        title="{% trans "Cancel changes" %}">
+                                    <i class="fas fa-times-circle mr-2"></i>{% trans "Cancel" %}
+                                </button>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

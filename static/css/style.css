@@ -194,11 +194,11 @@ th, .sorting_1 {
     padding-left: 0;
 }
 
-div.display_name > .input-group {
+div.display_name_styled > .input-group {
     padding: 10px;
 }
 
-#id_display_name {
+div.display_name_styled > .input-group .form-control {
     text-align: center;
     font-size: 1rem;
     font-weight: 500;
@@ -207,7 +207,7 @@ div.display_name > .input-group {
     border-right: 0;
 }
 
-div.display_name .input-group .input-group-append .input-group-text {
+div.display_name_styled .input-group .input-group-append .input-group-text {
     border: 1px dashed;
     border-left: 0;
     padding: 2px;

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-09 15:15+0300\n"
+"POT-Creation-Date: 2020-04-09 23:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -488,36 +488,36 @@ msgstr "Προφίλ"
 msgid "Logout"
 msgstr "Αποσύνδεση"
 
-#: .\templates\main_sidebar.html:36
+#: .\templates\main_sidebar.html:23
 msgid "Dashboard"
 msgstr ""
 
-#: .\templates\main_sidebar.html:43 .\sbam_app\templates\new_user.html:11
+#: .\templates\main_sidebar.html:30 .\sbam_app\templates\new_user.html:11
 #: .\sbam_app\templates\profile.html:17 .\sbam_app\templates\users.html:6
 #: .\sbam_app\templates\users.html:11
 msgid "Users"
 msgstr "Χρήστες"
 
-#: .\templates\main_sidebar.html:50 .\sbam_app\templates\group.html:17
+#: .\templates\main_sidebar.html:37 .\sbam_app\templates\group.html:17
 #: .\sbam_app\templates\groups.html:6 .\sbam_app\templates\groups.html:11
 #: .\sbam_app\templates\new_group.html:11 .\sbam_app\templates\profile.html:39
 #: .\sbam_app\templates\users.html:25 .\sbam_app\templates\users.html:71
 msgid "Groups"
 msgstr "Ομάδες"
 
-#: .\templates\main_sidebar.html:57
+#: .\templates\main_sidebar.html:44
 msgid "Reports"
 msgstr "Αναφορές"
 
-#: .\templates\main_sidebar.html:65
+#: .\templates\main_sidebar.html:52
 msgid "Organisational"
 msgstr "Επιχειρησιακά"
 
-#: .\templates\main_sidebar.html:72
+#: .\templates\main_sidebar.html:59
 msgid "Individual"
 msgstr "Ατομικά"
 
-#: .\templates\main_sidebar.html:81
+#: .\templates\main_sidebar.html:68
 #: .\sbam_app\templates\campaign_creation.html:14
 #: .\sbam_app\templates\profile.html:118
 msgid "Evaluations"
@@ -672,7 +672,8 @@ msgstr "ομάδα"
 msgid "Group ID"
 msgstr ""
 
-#: .\sbam_app\models.py:279 .\sbam_app\templates\groups.html:25
+#: .\sbam_app\models.py:279 .\sbam_app\templates\group.html:66
+#: .\sbam_app\templates\groups.html:25
 msgid "creator"
 msgstr "δημιουργός"
 
@@ -703,7 +704,8 @@ msgid ""
 "instead of deleting groups."
 msgstr ""
 
-#: .\sbam_app\models.py:320 .\sbam_app\templates\groups.html:24
+#: .\sbam_app\models.py:320 .\sbam_app\templates\group.html:80
+#: .\sbam_app\templates\groups.html:24
 msgid "creation timestamp"
 msgstr ""
 
@@ -724,66 +726,48 @@ msgstr ""
 msgid "(disabled)"
 msgstr ""
 
-#: .\sbam_app\templates\group.html:33 .\sbam_app\templates\group.html:128
-#: .\sbam_app\templates\groups.html:22 .\sbam_app\templates\groups.html:56
-#: .\sbam_app\templates\new_group.html:25
-msgid "members"
-msgstr "μέλη"
-
-#: .\sbam_app\templates\group.html:36 .\sbam_app\templates\profile.html:42
-msgid "Campaigns"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:39 .\sbam_app\templates\profile.html:45
-msgid "Results"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:44
-msgid "Created on"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:50
-msgid "Owner"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:61 .\sbam_app\templates\profile.html:61
-msgid "Save changes"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:62 .\sbam_app\templates\profile.html:62
-msgid "Save"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:68
-msgid "Disable group"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:69 .\sbam_app\templates\profile.html:69
-msgid "Disable"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:73
-msgid "Enable group"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:74 .\sbam_app\templates\profile.html:74
-msgid "Enable"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:80 .\sbam_app\templates\profile.html:80
-msgid "Cancel changes"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:81 .\sbam_app\templates\profile.html:81
-msgid "Cancel"
-msgstr "Ακύρωση"
-
-#: .\sbam_app\templates\group.html:97 .\sbam_app\templates\new_group.html:24
+#: .\sbam_app\templates\group.html:33 .\sbam_app\templates\new_group.html:24
 msgid "General Information"
 msgstr "Γενικές Πληροφορίες"
 
-#: .\sbam_app\templates\group.html:104 .\sbam_app\templates\groups.html:18
-#: .\sbam_app\templates\profile.html:111
+#: .\sbam_app\templates\group.html:41 .\sbam_app\templates\groups.html:22
+#: .\sbam_app\templates\groups.html:56 .\sbam_app\templates\new_group.html:25
+msgid "members"
+msgstr "μέλη"
+
+#: .\sbam_app\templates\group.html:103 .\sbam_app\templates\profile.html:61
+msgid "Save changes"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:104 .\sbam_app\templates\profile.html:62
+msgid "Save"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:111
+msgid "Disable group"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:112 .\sbam_app\templates\profile.html:69
+msgid "Disable"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:117
+msgid "Enable group"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:118 .\sbam_app\templates\profile.html:74
+msgid "Enable"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:124 .\sbam_app\templates\profile.html:80
+msgid "Cancel changes"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:125 .\sbam_app\templates\profile.html:81
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: .\sbam_app\templates\groups.html:18 .\sbam_app\templates\profile.html:111
 msgid "Status"
 msgstr "Κατάσταση"
 
@@ -831,6 +815,14 @@ msgstr "Στοιχεία επικοινωνίας"
 #: .\sbam_app\templates\new_user.html:27 .\sbam_app\templates\profile.html:174
 msgid "Organisational Information"
 msgstr "Επιχειρησιακά Δεδομένα"
+
+#: .\sbam_app\templates\profile.html:42
+msgid "Campaigns"
+msgstr ""
+
+#: .\sbam_app\templates\profile.html:45
+msgid "Results"
+msgstr ""
 
 #: .\sbam_app\templates\profile.html:68
 msgid "Disable user"
