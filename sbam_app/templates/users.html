@@ -15,7 +15,7 @@
     <thead>
         <tr>
             <th></th>
-            <th><i class="fas fa-user" title="{% trans "Status" %}"></i></th>
+            <th>{% trans "active"|capfirst %}</th>
             <th><i class="fas fa-list-ul" title="{% trans "Roles" %}"></i></th>
             <th>{% trans "Full Name" %}</th>
             <th>{% trans "display name"|capfirst %}</th>
@@ -48,9 +48,7 @@
                     {% endif %}
                 </td>
                 <td>
-                    {% if user.is_superuser %}
-                        <i class="fas fa-user-ninja mr-2" style="color: darkblue" title="{% trans "superuser"|capfirst %}"></i>
-                    {% elif user.userprofile.is_manager %}
+                    {% if user.userprofile.is_manager %}
                         <i class="fas fa-user-tie mr-2" style="color: darkblue" title="{% trans "manager"|capfirst %}"></i>
                     {% endif %}
                 </td>

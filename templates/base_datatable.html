@@ -126,12 +126,16 @@
                     },
                     dom: 'Bfrtip',
                     buttons: [
+                        /* Buttons visible only to advanced users (superusers and managers) */
+                        {% if request.user.is_superuser or request.user.userprofile.is_manager %}
                         {
                             extend: 'collection',
                             className: 'btn btn-outline-info btn-sm',
                             text: '<i class="fas fa-plus-circle"></i>',
                             titleAttr: '{% trans "Add" %}',
                             buttons: [
+                                /* Button visible only to superusers */
+                                {% if request.user.is_superuser %}
                                 {
                                     className: 'dropdown-item',
                                     text: '<i class="fas fa-user mr-2"></i> {% trans "Add User" %}',
@@ -139,26 +143,17 @@
                                         window.location = "{% url 'sbam:create_user' %}";
                                     }
                                 },
+                                {% endif %}
                                 {
                                     className: 'dropdown-item',
                                     text: '<i class="fas fa-users mr-1"></i> {% trans "Add Group" %}',
                                     action: function (e, dt, node, config) {
-                                        // TODO redirect to "Create New Group" form
                                         window.location = "{% url 'sbam:create_group' %}";
                                     }
                                 }
                             ]
                         },
-                        {% comment %}{
-                            className: 'btn btn-outline-info btn-sm',
-                            text: '<i class="fas fa-file-upload"></i>',
-                            titleAttr: '{% trans "Import from file" %}',
-                            action: function (e, dt, node, config) {
-                                // TODO redirect to "Import from file" form
-                                window.location = 'dashboard';
-                            },
-                            titleAttr: '{% trans "Import from file" %}'
-                        },{% endcomment %}
+                        {% endif %}
                         {
                             extend: 'colvis',
                             className: 'btn btn-outline-info btn-sm',
