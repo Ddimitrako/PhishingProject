@@ -4,7 +4,7 @@
 
 {% block page_name %}
     <div class="row">
-        <strong><i class="fas fa-user-cog mr-2"></i> {% trans "Profile" %}:</strong>
+        <strong>{% trans "Profile" %}:</strong>
         <p class="ml-2">{{ user.get_full_name }}</p>
         {% if not user.is_active %}
             <p class="ml-2" style="color:indianred">{% trans "(disabled)" %}</p>
