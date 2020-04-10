@@ -1,8 +1,8 @@
 $(document).ready(function(){
      console.log(questData);
-    // Survey
-    // .StylesManager
-    // .applyTheme("bootstrap");
+    Survey
+    .StylesManager
+    .applyTheme("modern");
 
 
     Survey
@@ -12,6 +12,7 @@ $(document).ready(function(){
         default: 0,
         category: "general"
     });
+
 
     //  function responsible for creating boolean questions json for survey
     function create_bool_quest(text, quest_id, question_opt_ids){
@@ -35,6 +36,17 @@ $(document).ready(function(){
 
     //  function responsible for creating boolean questions json for survey
     function create_perc_quest(text, quest_id, question_opt, colnum){
+        choices_list = [];
+        let i = 0;
+        for(opt in question_opt){
+
+            choices_list.push({
+                text: question_opt[opt].text,
+                value:question_opt[opt].id
+            });
+            i++;
+        }
+        console.log(choices_list);
         question_obj = {};
         question_obj = {
             type: "radiogroup",
@@ -43,7 +55,7 @@ $(document).ready(function(){
             // description: text,
             colCount: colnum,
             isRequired: true,
-            choices: question_opt
+            choices: choices_list
 
         };
         return [question_obj];
@@ -78,46 +90,30 @@ $(document).ready(function(){
                     }
 
                     if (questData[quest_obj][obj].hasOwnProperty('type')) {
-                        switch (questData[quest_obj][obj].type) {
-                            case 'BOOL':
-                                question_opt_ids = [];
-                                for(opt in questData[quest_obj][2]){
+                        survey_quest = {};
+                        if(questData[quest_obj][obj].type === 'BOOL'){
+                            question_opt_ids = [];
+                            for(opt in questData[quest_obj][2])
+                                question_opt_ids.push(questData[quest_obj][2][opt].id);
 
-                                    // console.log(opt, questData[quest_obj][2][opt]);
-                                    question_opt_ids.push(questData[quest_obj][2][opt].id);
-                                }
-                                // console.log('Edwwww', question_opt_ids);
+                            survey_quest['questions'] = create_bool_quest(text, quest_id, question_opt_ids);
+                        }
+                        else if(questData[quest_obj][obj].type === 'PERC10' || questData[quest_obj][obj].type === 'PERC20'){
+                            question_opt = [];
+                            for(opt in questData[quest_obj][2])
+                                question_opt.push(questData[quest_obj][2][opt]);
 
-                                bool_obj = {};
-                                bool_obj['questions'] = create_bool_quest(text, quest_id, question_opt_ids);
-                                questions.push(bool_obj);
-                                break;
-                            case 'PERC10':
-                                question_opt = [];
-                                for(opt in questData[quest_obj][2])
-                                    question_opt.push(questData[quest_obj][2][opt]);
+                            survey_quest['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
+                        }
+                        else if(questData[quest_obj][obj].type === 'AGR5'){
+                            question_opt = [];
+                            for(opt in questData[quest_obj][2])
+                                question_opt.push(questData[quest_obj][2][opt]);
 
-                                bool_obj = {};
-                                bool_obj['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
-                                questions.push(bool_obj);
-                                break;
-                            case 'PERC20':
-                                question_opt = [];
-                                for(opt in questData[quest_obj][2])
-                                    question_opt.push(questData[quest_obj][2][opt]);
-
-                                bool_obj = {};
-                                bool_obj['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
-                                questions.push(bool_obj);
-                            default:
-
+                            survey_quest['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
                         }
 
-                        // if(questData[quest_obj][obj].type === 'BL') {
-                        //     bool_obj = {};
-                        //     bool_obj['questions'] = create_bool_quest(text, quest_id);
-                        //     questions.push(bool_obj);
-                        // }
+                        questions.push(survey_quest);
                     }
                 }
             }
@@ -153,41 +149,43 @@ $(document).ready(function(){
     surveyjson['pages'] = create_questions_list();
     let survey_results = {};
     console.log(surveyjson);
-     window.survey = new Survey.Model(surveyjson);
-     survey
-         .onComplete
-         .add(function (result) {
-             // document
-             //     .querySelector('#surveyResult').innerHTML = '' +
-                 // '<div class="row>" ' +
-                 // '<a class="btn btn-primary" href="{% url \'sbam:dashboard\' %}" role="button">{% trans "Start!" %}</a>' +
-                 // '';
-                 // .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3);
+    window.survey = new Survey.Model(surveyjson);
+    survey
+        .onComplete
+        .add(function (result) {
              survey_results['data'] = JSON.stringify(result.data);
              console.log(survey_results);
-
                 $('.row-compl').show();
-         });
+        });
 
-     $("#surveyElement").Survey({model: survey});
+    survey.onUpdateQuestionCssClasses.add(function (survey, options) {
+        var classes = options.cssClasses
+        if (options.question.getType() === "radiogroup") {
+            // classes.classes.root += " icheckbox_square-blue";
+            // alert('mpaa')
+            console.log('mpaa');
+        }
+    })
+
+    $("#surveyElement").Survey({model: survey});
      // console.log(survey_results);
     $('.btn-compl').click(function () {
         // alert(survey_results);
         survey_results['ass_id'] = ass_id;
         var csrftoken = getCookie('csrftoken');
         $.ajax({
-                type: "POST",
-                headers: { "X-CSRFToken": csrftoken },
-                dataType: 'json',
-                url: '/sbam/survey_submit/',
-                data: survey_results,
-                success: function(result){
+            type: "POST",
+            headers: { "X-CSRFToken": csrftoken },
+            dataType: 'json',
+            url: '/sbam/survey_submit/',
+            data: survey_results,
+            success: function(result){
 
-                    if(result['result'] === 'Success') {
-                        alert('Ola good');
-                        console.log(result);
-                    }
+                if(result['result'] === 'Success') {
+                    alert('Ola good');
+                    console.log(result);
                 }
-            })
+            }
+        })
     });
 });
