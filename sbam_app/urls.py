@@ -6,7 +6,7 @@ app_name = 'sbam'
 
 urlpatterns = [
     # Dashboard
-    path('dashboard/', DashboardView, name='dashboard'),
+    path('', DashboardView, name='dashboard'),
 
     # Users
     path('users/', UsersView.as_view(), name='users'),
