@@ -36,13 +36,12 @@
 
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                                <b>{% trans "Groups" %}</b> <a class="float-right">{{ user.groups.count }}</a>
+                                <b>{% trans "department"|capfirst %}</b>
+                                <a class="float-right">{{ profile_form.department.value }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>{% trans "Campaigns" %}</b> <a class="float-right"></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>{% trans "Results" %}</b> <a class="float-right"></a>
+                                <b>{% trans "company"|capfirst %}</b>
+                                <a class="float-right">{{ profile_form.company.value }}</a>
                             </li>
                         </ul>
 
@@ -76,8 +75,8 @@
                                 {% endif %}
                             {% endif %}
 
-                            <button class="btn btn-outline-dark btn-sm float-right" type="reset"
-                                    title="{% trans "Cancel changes" %}">
+                            <button class="btn btn-outline-secondary btn-sm float-right" type="reset"
+                                    title="{% trans "Discard changes" %}">
                                 <i class="fas fa-times-circle mr-2"></i>{% trans "Cancel" %}
                             </button>
                         {% endif %}
@@ -265,9 +264,9 @@
         {% if request.user == user %}
             $('#div_id_password').append(
                 '<span>' +
-                '<a style = "font-size: 12px;" href = "{% url 'account_change_password' %}" >' +
-                '{% trans "Change Password" %} ?' +
-                '</a>' +
+                    '<a style = "font-size: 12px;" href = "{% url 'account_change_password' %}" >' +
+                        '{% trans "Change Password" %} ?' +
+                    '</a>' +
                 '</span>'
             );
         {% endif %}

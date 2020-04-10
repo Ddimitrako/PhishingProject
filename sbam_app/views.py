@@ -1,18 +1,16 @@
+import json
+
 from allauth.account.utils import send_email_confirmation
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group
+from django.http import JsonResponse
 from django.shortcuts import *
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import *
 
 from sbam_app.forms import *
 from sbam_app.models import *
-
-import json
-
-from django.http import JsonResponse
 
 
 #
@@ -44,6 +42,7 @@ def advanced_users_only(function):
 
 def disable_field(form, field):
     form.fields[field].disabled = True
+
 
 @login_required
 def CampaignCreation(request):
@@ -78,38 +77,41 @@ def CampaignCreation(request):
         # print(sel_users)
 
         for dom in domains:
-            domain_id = int(dom['id'][dom['id'].find('_')+1:len(dom['id'])])
+            domain_id = int(dom['id'][dom['id'].find('_') + 1:len(dom['id'])])
             questionnaire = Questionnaire(domain_id=domain_id, is_active=True)
             questionnaire.save()
 
             # type -> 1 = Test, 0 -> Questionnaire
             # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
             for sel_user in sel_users:
-                new_assignment = QuestionnaireAssignment(status=0, type=0, campaign_id=new_campaign.id, user=sel_user, questionnaire=questionnaire)
+                new_assignment = QuestionnaireAssignment(status=0, type=0, campaign_id=new_campaign.id, user=sel_user,
+                                                         questionnaire=questionnaire)
                 new_assignment.save()
 
         for test in tests:
-            test_id = int(test['id'][test['id'].find('_')+1:len(test['id'])])
+            test_id = int(test['id'][test['id'].find('_') + 1:len(test['id'])])
             assigned_test = Test(domain_id=test_id, is_active=True)
             assigned_test.save()
 
             # type -> 1 = Test, 0 -> Questionnaire
             # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
             for sel_user in sel_users:
-                new_assignment = TestAssignment(status=0, type=0, campaign_id=new_campaign.id, user=sel_user, test=assigned_test)
+                new_assignment = TestAssignment(status=0, type=0, campaign_id=new_campaign.id, user=sel_user,
+                                                test=assigned_test)
                 new_assignment.save()
 
         return JsonResponse({'result': 'Success'})
     else:
         campaign_form_trees = get_campaign_form_trees()
-        return render(request, 'campaign_creation.html', 
-                        {'campaign_form': CampaignCreationForm(),
-                         'campaign_form_trees': campaign_form_trees})
+        return render(request, 'campaign_creation.html',
+                      {'campaign_form': CampaignCreationForm(),
+                       'campaign_form_trees': campaign_form_trees})
 
 
 @login_required
 def user_profile(request, username):
     user = User.objects.get(username=username)
+
 
 def disable_form(form):
     for field in form.fields:
@@ -155,7 +157,7 @@ def create_or_update_user(request, template, user=None, profile=None, creating=T
             request,
             user,
             [user_form, profile_form],
-            [(user_form, 'is_superuser'), (profile_form, 'is_manager')]
+            [(user_form, 'is_superuser'), (user_form, 'groups'), (profile_form, 'is_manager'), ]
         )
 
     return render(request, template, {
