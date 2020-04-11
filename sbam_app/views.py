@@ -261,9 +261,24 @@ def assignmentCompletion(request, assignment_id):
 def surveySumbission(request):
     print(request.POST)
     print('----------------------------------', 'εδωωωωωωωω')
+    assignment = models.QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
     answers = json.loads(request.POST['data'])
-    for question in answers:
-        print(question, answers[question])
+    for ques in answers:
+        question = models.Question.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
+        if isinstance(answers[ques], list):
+            answers_options = [option_id for option_id in answers[ques]]
+            for option_id in answers_options:
+                answer = models.QuestionOption.objects.get(pk=option_id)
+                assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question_id=question,
+                                                                   question_option_id=answer)
+                assignment_answer.save()
+                print(assignment.questionnaire.domain.title, question.text, answer.text)
+        else:
+            answer = models.QuestionOption.objects.get(pk=answers[ques])
+            print(assignment.questionnaire.domain.title, question.text, answer.text)
+
+            assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question, question_option=answer)
+            assignment_answer.save()
     return JsonResponse({'result': 'success'})
 
 
@@ -337,10 +352,10 @@ def disable_group(request, name):
 
 
 def get_questionnaire(user, questionnaire_id):
-    quest = models.QuestionnaireAssignment.objects.get(user=user, questionnaire=questionnaire_id)
+    quest = models.QuestionnaireAssignment.objects.get(user=user, pk=questionnaire_id)
     questions_dict = {}
     questions_dict['title'] = quest.questionnaire.domain.title
-    questions_dict['id'] = quest.questionnaire.pk
+    questions_dict['id'] = quest.pk
     questions = models.Question.objects.filter(questionnaire=quest.questionnaire).values()
     # print(questions)
     for question in questions:
