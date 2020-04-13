@@ -18,7 +18,6 @@
             <th>{% trans "active"|capfirst %}</th>
             <th><i class="fas fa-list-ul" title="{% trans "Roles" %}"></i></th>
             <th>{% trans "Full Name" %}</th>
-            <th>{% trans "display name"|capfirst %}</th>
             <th>{% trans "first name"|capfirst %}</th>
             <th>{% trans "last name"|capfirst %}</th>
             <th>{% trans "email"|capfirst %}</th>
@@ -57,7 +56,6 @@
                         {{ user.get_full_name }}
                     </a>
                 </td>
-                <td>{{ user.userprofile.display_name|default:'' }}</td>
                 <td>{{ user.first_name }}</td>
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.email }}</td>
@@ -89,6 +87,6 @@
 
 {% block template_js %}
     <script>
-        datatable('#table', [0, 1, 2, 3], [], [9], true);
+        datatable('#table', [0, 1, 2, 3], [], [8], true);
     </script>
 {% endblock %}

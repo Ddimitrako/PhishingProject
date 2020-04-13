@@ -17,7 +17,6 @@
             <th></th>
             <th><i class="fas fa-users" title="{% trans "Status" %}"></i></th>
             <th>{% trans "name"|capfirst %}</th>
-            <th>{% trans "display name"|capfirst %}</th>
             <th>{% trans "description"|capfirst %}</th>
             <th>{% trans "members"|capfirst %}</th>
             <th></th>
@@ -44,7 +43,6 @@
                         {{ group.name }}
                     </a>
                 </td>
-                <td>{{ group.groupprofile.display_name|default:'' }}</td>
                 <td>{{ group.groupprofile.description|default:'' }}</td>
                 <td>
                     {{ group.user_set.count }}
@@ -68,6 +66,6 @@
 
 {% block template_js %}
     <script>
-        datatable('#table', [0, 1, 2], [], [6], true);
+        datatable('#table', [0, 1, 2], [], [5], true);
     </script>
 {% endblock %}

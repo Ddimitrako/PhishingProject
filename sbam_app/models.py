@@ -168,14 +168,6 @@ class UserProfile(Model):
     user = OneToOneField(User, verbose_name=_('user'), on_delete=CASCADE, help_text=_('User ID'))
 
     # Personal Info
-    display_name = CharField(
-        _('display name'),
-        max_length=200,
-        blank=True,
-        null=True,
-        default='',
-        help_text=_('User display name')
-    )
     birth_date = DateField(_('birth date'), blank=True, null=True, help_text=_('User birth date'))
     gender = SmallIntegerField(_('gender'), blank=True, null=True, choices=Gender.choices, help_text=_('User gender'))
 
@@ -284,14 +276,6 @@ class GroupProfile(Model):
     )
 
     # General Info
-    display_name = CharField(
-        _('display name'),
-        max_length=200,
-        blank=True,
-        null=True,
-        default='',
-        help_text=_('Group display name')
-    )
     description = CharField(
         _('description'),
         max_length=200,

@@ -158,7 +158,7 @@ class GroupForm(forms.ModelForm):
 class GroupProfileForm(forms.ModelForm):
     class Meta:
         model = models.GroupProfile
-        fields = ('display_name', 'description', 'notes')
+        fields = ('description', 'notes')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

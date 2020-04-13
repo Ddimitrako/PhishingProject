@@ -28,10 +28,7 @@
                             <img src="{% avatar_url size=128 %}" alt="User Avatar" class="img-size-100 mr-3 img-circle">
                         </div>
 
-                        <div class="display_name_styled">
-                            {% include 'form-utils/input-group-field.html' with field=profile_form.display_name field_class='form-control' icon='fas fa-pencil-alt' %}
-                        </div>
-
+                        <p class="text-bold text-center" style="font-size: 20px">{{ user.get_full_name }}</p>
                         <p class="text-muted text-center">{{ profile_form.job_title.value }}</p>
 
                         <ul class="list-group list-group-unbordered mb-3">
@@ -264,9 +261,9 @@
         {% if request.user == user %}
             $('#div_id_password').append(
                 '<span>' +
-                    '<a style = "font-size: 12px;" href = "{% url 'account_change_password' %}" >' +
-                        '{% trans "Change Password" %} ?' +
-                    '</a>' +
+                '<a style = "font-size: 12px;" href = "{% url 'account_change_password' %}" >' +
+                '{% trans "Change Password" %} ?' +
+                '</a>' +
                 '</span>'
             );
         {% endif %}
