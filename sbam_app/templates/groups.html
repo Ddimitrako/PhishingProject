@@ -52,9 +52,14 @@
                 </td>
                 <td>
                     <label>{% trans "members"|capfirst %}:</label>
-                    {% for user in group.user_set.all %}
+                    {% for user in group.user_set.all|slice:":10" %}
                         <li>{{ user.get_full_name }}</li>
                     {% endfor %}
+                    {% if group.user_set.all|length > 10 %}
+                        <a href="{% url 'sbam:group' group.name %}">
+                            ... more
+                        </a>
+                    {% endif %}
                 </td>
                 <td>{{ group.groupprofile.creation_timestamp|default:'' }}</td>
                 <td>{{ group.groupprofile.creator.get_full_name|default:'' }}</td>
