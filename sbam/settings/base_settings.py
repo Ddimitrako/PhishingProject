@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 import os
 
+from django.utils.translation import gettext_lazy as _
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -46,7 +48,7 @@ INSTALLED_APPS = [
     # apps
     'sbam_app',
 
-    #Tempus Dominus DateTimepicker
+    # Tempus Dominus DateTimepicker
     'tempus_dominus',
 ]
 
@@ -67,6 +69,7 @@ USER_MANAGEMENT_URL = '/users'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -143,6 +146,13 @@ LOCALE_PATHS = [
     'sbam_app/locale',
 ]
 
+LANGUAGES = [
+    ('el', _('Greek')),
+    ('en', _('English')),
+    ('it', _('Italian')),
+    ('ro', _('Romanian')),
+]
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -177,6 +187,6 @@ SETTINGS_EXPORT = [
     'TOOL_SHORT_NAME',
 ]
 
-#Tempus Dominus Settings
+# Tempus Dominus Settings
 TEMPUS_DOMINUS_LOCALIZE = False
 TEMPUS_DOMINUS_INCLUDE_ASSETS = False
