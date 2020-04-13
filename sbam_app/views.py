@@ -11,6 +11,7 @@ from sbam_app.forms import *
 from sbam_app.models import *
 
 import json
+from datetime import date
 
 from django.http import JsonResponse
 
@@ -233,12 +234,18 @@ def activate_group(request, name, status):
 @login_required
 def dashboardView(request):
     # fetching active assignments
-    active_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=0).order_by('campaign__end_date')
-    active_tests = models.TestAssignment.objects.filter(user_id=request.user, status=0).order_by('campaign__end_date')
+    active_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=0
+                                                                          ).filter(campaign__end_date__gte=date.today()
+                                                                                   ).order_by('campaign__end_date')
+    active_tests = models.TestAssignment.objects.filter(user_id=request.user, status=0
+                                                        ).filter(campaign__end_date__gte=date.today()
+                                                                 ).order_by('campaign__end_date')
 
     # fetching completed assignmets
-    completed_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=1).order_by('campaign__end_date')
-    completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1).order_by('campaign__end_date')
+    completed_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=1
+                                                                             ).order_by('campaign__end_date')
+    completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1
+                                                           ).order_by('campaign__end_date')
 
     # for quest in active_questionnaires:
     #     print(quest.questionnaire.pk)
@@ -260,7 +267,7 @@ def assignmentCompletion(request, assignment_id):
 @login_required
 def surveySumbission(request):
     print(request.POST)
-    print('----------------------------------', 'εδωωωωωωωω')
+    # print('----------------------------------', 'εδωωωωωωωω')
     assignment = models.QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
     answers = json.loads(request.POST['data'])
     for ques in answers:
@@ -271,6 +278,8 @@ def surveySumbission(request):
                 answer = models.QuestionOption.objects.get(pk=option_id)
                 assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question_id=question,
                                                                    question_option_id=answer)
+                assignment.status = 1
+                assignment.save()
                 assignment_answer.save()
                 print(assignment.questionnaire.domain.title, question.text, answer.text)
         else:
@@ -278,6 +287,8 @@ def surveySumbission(request):
             print(assignment.questionnaire.domain.title, question.text, answer.text)
 
             assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question, question_option=answer)
+            assignment.status = 1
+            assignment.save()
             assignment_answer.save()
     return JsonResponse({'result': 'success'})
 
