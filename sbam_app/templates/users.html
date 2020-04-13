@@ -21,8 +21,6 @@
             <th>{% trans "first name"|capfirst %}</th>
             <th>{% trans "last name"|capfirst %}</th>
             <th>{% trans "email"|capfirst %}</th>
-            <th>{% trans "Groups" %}</th>
-            <th></th>
             <th>{% trans "employee ID"|capfirst %}</th>
             <th>{% trans "birth date"|capfirst %}</th>
             <th>{% trans "gender"|capfirst %}</th>
@@ -59,18 +57,6 @@
                 <td>{{ user.first_name }}</td>
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.email }}</td>
-                <td>
-                    {{ user.groups.count }}
-                    {% if user.groups.count > 0 %}
-                        <i class="fas fa-plus-circle ml-2" style="color: darkgreen" title="{% trans "Show Groups" %}"></i>
-                    {% endif %}
-                </td>
-                <td>
-                    <label>{% trans "Groups" %}:</label>
-                    {% for group in user.groups.all %}
-                        <li>{{ group }}</li>
-                    {% endfor %}
-                </td>
                 <td>{{ user.userprofile.employee_id|default:'' }}</td>
                 <td>{{ user.userprofile.birth_date|default:'' }}</td>
                 <td>{{ user.userprofile.get_gender_display|default:'' }}</td>
@@ -87,6 +73,6 @@
 
 {% block template_js %}
     <script>
-        datatable('#table', [0, 1, 2, 3], [], [8], true);
+        datatable('#table', [0, 1, 2, 3], [], [], true);
     </script>
 {% endblock %}

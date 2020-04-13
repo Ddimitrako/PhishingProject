@@ -93,7 +93,7 @@
                         </div>
                         <div class="float-right">
                             {% if request.user.is_superuser or request.user == group.groupprofile.creator %}
-                                <button class="btn btn-outline-info btn-sm mt-4" type="submit"
+                                <button id="save"  class="btn btn-outline-info btn-sm mt-4" type="submit"
                                         title="{% trans "Save changes" %}">
                                     <i class="fas fa-save mr-2"></i>{% trans "Save" %}
                                 </button>
@@ -114,9 +114,9 @@
                                     {% endif %}
                                 {% endif %}
 
-                                <button class="btn btn-outline-secondary btn-sm mt-4" type="reset"
+                                <button id="reset" class="btn btn-outline-secondary btn-sm mt-4" type="reset"
                                         title="{% trans "Discard changes" %}">
-                                    <i class="fas fa-times-circle mr-2"></i>{% trans "Cancel" %}
+                                    <i class="fas fa-times-circle mr-2"></i>{% trans "Reset" %}
                                 </button>
                             {% endif %}
                         </div>

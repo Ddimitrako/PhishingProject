@@ -108,6 +108,18 @@
             $('.fa-angle-down').click(function () {
                 $(this).toggleClass('fa-rotate-180');
             });
+
+            /*
+             *  Enabling buttons only on form alteration
+             */
+            $('#save').hide();
+            $('#reset').hide();
+
+            $('form :input').on('keyup change', function() {
+                $('#save').show();
+                $('#reset').show();
+            });
+
         });
     </script>
 {% endblock %}
