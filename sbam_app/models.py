@@ -110,6 +110,7 @@ class QuestionType(Model):
         CUSTOM_RADIO = 'CUSTOM_R', _('custom_question') # Custom radio question type with custom options
 
     type = CharField(max_length=23, choices=Qtype.choices)
+    takes_multiple = BooleanField(default=False)
 
     def get_by_natural_key(q_type):
         return self.objects.get(q_type=type)

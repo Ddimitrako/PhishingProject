@@ -61,6 +61,32 @@ $(document).ready(function(){
         return [question_obj];
     }
 
+    function create_multiple_opt_quest(text, quest_id, question_opt, colnum){
+        choices_list = [];
+        let i = 0;
+        for(opt in question_opt){
+
+            choices_list.push({
+                text: question_opt[opt].text,
+                value:question_opt[opt].id
+            });
+            i++;
+        }
+        console.log(choices_list);
+        question_obj = {};
+        question_obj = {
+            type: "checkbox",
+            name: "question_"+quest_id,
+            title: text,
+            // description: text,
+            colCount: colnum,
+            isRequired: true,
+            choices: choices_list
+
+        };
+        return [question_obj];
+    }
+
 
     //Gathers all questions of survey and creates appropriate json object for each question
     function create_questions_list(){
@@ -111,6 +137,16 @@ $(document).ready(function(){
                                 question_opt.push(questData[quest_obj][2][opt]);
 
                             survey_quest['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
+                        }
+                        else{           //case for custom options
+                            question_opt = [];
+                            for(opt in questData[quest_obj][2])
+                                question_opt.push(questData[quest_obj][2][opt]);
+
+                            if(questData[quest_obj][1].takes_multiple)
+                                survey_quest['questions'] = create_multiple_opt_quest(text, quest_id, question_opt, 5);
+                            else
+                                survey_quest['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
                         }
 
                         questions.push(survey_quest);

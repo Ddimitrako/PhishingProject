@@ -266,7 +266,7 @@ def assignmentCompletion(request, assignment_id):
 
 @login_required
 def surveySumbission(request):
-    print(request.POST)
+    # print(request.POST)
     # print('----------------------------------', 'εδωωωωωωωω')
     assignment = models.QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
     answers = json.loads(request.POST['data'])
@@ -276,15 +276,15 @@ def surveySumbission(request):
             answers_options = [option_id for option_id in answers[ques]]
             for option_id in answers_options:
                 answer = models.QuestionOption.objects.get(pk=option_id)
-                assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question_id=question,
-                                                                   question_option_id=answer)
+                assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question,
+                                                                   question_option=answer)
                 assignment.status = 1
                 assignment.save()
                 assignment_answer.save()
-                print(assignment.questionnaire.domain.title, question.text, answer.text)
+                # print(assignment.questionnaire.domain.title, question.text, answer.text)
         else:
             answer = models.QuestionOption.objects.get(pk=answers[ques])
-            print(assignment.questionnaire.domain.title, question.text, answer.text)
+            # print(assignment.questionnaire.domain.title, question.text, answer.text)
 
             assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question, question_option=answer)
             assignment.status = 1
@@ -373,7 +373,9 @@ def get_questionnaire(user, questionnaire_id):
 
         question_type = models.QuestionType.objects.get(pk=question['question_type_id'])
         question_options = models.QuestionOption.objects.filter(question_type=question_type).values()
-        questions_dict['questiion_'+str(question['id'])] = [question, model_to_dict(question_type), [option for option in question_options]]
+        quest_type = model_to_dict(question_type)
+        quest_type['takes_multiple'] = 'true' if quest_type['takes_multiple'] else 'false'
+        questions_dict['questiion_'+str(question['id'])] = [question, quest_type, [option for option in question_options]]
         # print((question, model_to_dict(question_type), [option for option in question_options]))
 
     return questions_dict
