@@ -95,6 +95,11 @@ th, .sorting_1 {
     white-space: nowrap;
 }
 
+.dataTables_wrapper tbody tr.hover {
+    color: #212529;
+    background-color: rgba(0,0,0,.075);
+}
+
 .dt-button.buttons-columnVisibility,
 .dt-button.buttons-colvisRestore {
     border: none;
