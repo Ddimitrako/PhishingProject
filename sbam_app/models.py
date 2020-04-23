@@ -1,5 +1,3 @@
-from datetime import date
-
 from django.contrib.auth.models import User, Group
 from django.utils import timezone
 from django.db.models import *
@@ -53,9 +51,6 @@ class Campaign(Model):
 
     def __str__(self):
         return self.owner.get_full_name() + ' ' + self.start_date + ' - ' + self.end_date
-
-    def ends_within_week(self):
-        return (self.end_date - date.today()).days <= 15
 
 
 class Assignment(Model):
