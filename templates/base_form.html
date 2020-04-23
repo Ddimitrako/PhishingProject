@@ -99,8 +99,10 @@
             });
 
             if ($('.duallistbox').prop('disabled')) {
-                $('.bootstrap-duallistbox-container').find('*').prop('disabled', true);
-            };
+                $('.box1').remove();
+                $('.box2 .btn-group').remove('');
+                $('label[for="bootstrap-duallistbox-selected-list_members"]').hide();
+            }
 
             /*
              *  Accordion animation
@@ -115,7 +117,7 @@
             $('#save').hide();
             $('#reset').hide();
 
-            $('form :input').on('keyup change', function() {
+            $('form :input').on('keyup change', function () {
                 $('#save').show();
                 $('#reset').show();
             });

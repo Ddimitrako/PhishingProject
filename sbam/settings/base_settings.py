@@ -177,6 +177,8 @@ PROJECT_EU_CONSENT = 'This project has received funding from the ' \
 TOOL_NAME = 'Security Culture Tool'
 TOOL_SHORT_NAME = 'SCT'
 
+CONTACT_EMAIL = 'eshield@epu.ntua.gr'
+
 SETTINGS_EXPORT = [
     'PROJECT_NAME',
     'PROJECT_URL',
@@ -185,6 +187,7 @@ SETTINGS_EXPORT = [
     'PROJECT_EU_CONSENT',
     'TOOL_NAME',
     'TOOL_SHORT_NAME',
+    'CONTACT_EMAIL'
 ]
 
 # Tempus Dominus Settings
