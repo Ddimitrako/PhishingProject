@@ -247,8 +247,6 @@ def dashboardView(request):
     completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1
                                                            ).order_by('campaign__end_date')
 
-    # for quest in active_questionnaires:
-    #     print(quest.questionnaire.pk)
     return render(request, 'dashboard.html', {'active_questionnaires': active_questionnaires,
                                               'active_tests': active_tests,
                                               'completed_questionnaires': completed_questionnaires,
@@ -257,17 +255,14 @@ def dashboardView(request):
 
 @login_required
 def assignmentCompletion(request, assignment_id):
-    # print(request)
     questionnaire = get_questionnaire(request.user, assignment_id)
-    print(questionnaire)
+    # print(questionnaire)
     return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
 
 
 
 @login_required
 def surveySumbission(request):
-    # print(request.POST)
-    # print('----------------------------------', 'εδωωωωωωωω')
     assignment = models.QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
     answers = json.loads(request.POST['data'])
     for ques in answers:
