@@ -99,6 +99,9 @@ class Questionnaire(Model):
 class QuestionnaireAssignment(Assignment):
     questionnaire = ForeignKey(Questionnaire, on_delete=CASCADE)
 
+    def get_answer_time(self):
+        return self.assignmentresult_set.get(assignment=self).answer_time.date()
+
 
 class QuestionType(Model):
 
@@ -162,6 +165,9 @@ class Test(Model):
 
 class TestAssignment(Assignment):
     test = ForeignKey(Test, on_delete=CASCADE)
+
+    def get_answer_time(self):
+        return self.assignmentresult_set.get(assignment=self).answer_time.date()
 
 
 # User Management Model

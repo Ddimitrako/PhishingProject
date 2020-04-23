@@ -232,7 +232,7 @@ def activate_group(request, name, status):
 # Views
 #
 @login_required
-def dashboardView(request):
+def dashboardView(request, compl_time=None):
     # fetching active assignments
     active_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=0
                                                                           ).filter(campaign__end_date__gte=date.today()
@@ -243,9 +243,11 @@ def dashboardView(request):
 
     # fetching completed assignmets
     completed_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=1
-                                                                             ).order_by('campaign__end_date')
+                                                                             ).order_by('assignmentresult__answer_time')
+
     completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1
-                                                           ).order_by('campaign__end_date')
+                                                           ).order_by('assignmentresult__answer_time')
+
 
     return render(request, 'dashboard.html', {'active_questionnaires': active_questionnaires,
                                               'active_tests': active_tests,
@@ -276,6 +278,7 @@ def surveySumbission(request):
                 assignment.status = 1
                 assignment.save()
                 assignment_answer.save()
+
                 # print(assignment.questionnaire.domain.title, question.text, answer.text)
         else:
             answer = models.QuestionOption.objects.get(pk=answers[ques])
@@ -285,6 +288,10 @@ def surveySumbission(request):
             assignment.status = 1
             assignment.save()
             assignment_answer.save()
+
+    assignment_result = models.AssignmentResult(assignment=assignment, score=0.97, answer_time=date.today())
+    assignment_result.save()
+
     return JsonResponse({'result': 'success'})
 
 
@@ -359,9 +366,7 @@ def disable_group(request, name):
 
 def get_questionnaire(user, questionnaire_id):
     quest = models.QuestionnaireAssignment.objects.get(user=user, pk=questionnaire_id)
-    questions_dict = {}
-    questions_dict['title'] = quest.questionnaire.domain.title
-    questions_dict['id'] = quest.pk
+    questions_dict = {'title': quest.questionnaire.domain.title, 'id': quest.pk}
     questions = models.Question.objects.filter(questionnaire=quest.questionnaire).values()
     # print(questions)
     for question in questions:

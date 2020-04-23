@@ -63,14 +63,12 @@ $(document).ready(function(){
 
     function create_multiple_opt_quest(text, quest_id, question_opt, colnum){
         choices_list = [];
-        let i = 0;
         for(opt in question_opt){
 
             choices_list.push({
                 text: question_opt[opt].text,
                 value:question_opt[opt].id
             });
-            i++;
         }
         console.log(choices_list);
         question_obj = {};
@@ -182,39 +180,25 @@ $(document).ready(function(){
     survey
         .onComplete
         .add(function (result) {
-             survey_results['data'] = JSON.stringify(result.data);
-             console.log(survey_results);
-                $('.row-compl').show();
+            survey_results['data'] = JSON.stringify(result.data);
+            console.log(survey_results);
+            $('.row-compl').show();
+            survey_results['ass_id'] = ass_id;
+            var csrftoken = getCookie('csrftoken');
+            $.ajax({
+                type: "POST",
+                headers: { "X-CSRFToken": csrftoken },
+                dataType: 'json',
+                url: '/sbam/survey_submit/',
+                data: survey_results,
+                success: function(result){
+                    if(result['result'] === 'Success') {
+                        console.log(result);
+                    }
+                }
+            })
         });
 
-    survey.onUpdateQuestionCssClasses.add(function (survey, options) {
-        var classes = options.cssClasses
-        if (options.question.getType() === "radiogroup") {
-            // classes.classes.root += " icheckbox_square-blue";
-            // alert('mpaa')
-            console.log('mpaa');
-        }
-    })
-
     $("#surveyElement").Survey({model: survey});
-     // console.log(survey_results);
-    $('.btn-compl').click(function () {
-        // alert(survey_results);
-        survey_results['ass_id'] = ass_id;
-        var csrftoken = getCookie('csrftoken');
-        $.ajax({
-            type: "POST",
-            headers: { "X-CSRFToken": csrftoken },
-            dataType: 'json',
-            url: '/sbam/survey_submit/',
-            data: survey_results,
-            success: function(result){
 
-                if(result['result'] === 'Success') {
-                    alert('Ola good');
-                    console.log(result);
-                }
-            }
-        })
-    });
 });
