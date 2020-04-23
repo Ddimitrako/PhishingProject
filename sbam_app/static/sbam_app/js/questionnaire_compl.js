@@ -153,7 +153,7 @@ $(document).ready(function(){
           title: questData.title,
           showProgressBar: "bottom",
           firstPageIsStarted: true,
-          startSurveyText: "Start Quiz",
+          startSurveyText: "Start",
      };
 
     function getCookie(name) {
