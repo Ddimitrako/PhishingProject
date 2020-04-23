@@ -29,16 +29,16 @@
                         </div>
 
                         <p class="text-bold text-center" style="font-size: 20px">{{ user.get_full_name }}</p>
-                        <p class="text-muted text-center">{{ profile_form.job_title.value }}</p>
+                        <p class="text-muted text-center">{{ profile_form.job_title.value|default:'' }}</p>
 
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
                                 <b>{% trans "department"|capfirst %}</b>
-                                <a class="float-right">{{ profile_form.department.value }}</a>
+                                <a class="float-right">{{ profile_form.department.value|default:'' }}</a>
                             </li>
                             <li class="list-group-item">
                                 <b>{% trans "company"|capfirst %}</b>
-                                <a class="float-right">{{ profile_form.company.value }}</a>
+                                <a class="float-right">{{ profile_form.company.value|default:'' }}</a>
                             </li>
                         </ul>
 
@@ -165,9 +165,15 @@
                             </div>
                             <div class="tab-pane fade" id="user-profile-status" role="tabpanel"
                                  aria-labelledby="user-profile-status-tab">
+                                <div class="callout callout-warning">
+                                    <p>{% trans "Status currently unavailable!" %}</p>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="user-profile-evaluations" role="tabpanel"
                                  aria-labelledby="user-profile-evaluations-tab">
+                                <div class="callout callout-warning">
+                                    <p>{% trans "Evaluations currently unavailable!" %}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
