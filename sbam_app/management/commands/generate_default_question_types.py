@@ -25,8 +25,11 @@ class Command(BaseCommand):
                 if qo['fields']['question_type'] == qt_obj.type:
                     try:
                         qo_obj = QuestionOption.objects.get(question_type=qt_obj, value=qo['fields']['value'])
+                        # print('eimai sto try')
                     except QuestionOption.DoesNotExist:
                         qo_obj = QuestionOption(question_type=qt_obj)
+                        print('eimai sto except')
+                    # print(qo_obj.text)
                     qo_obj.text = qo['fields']['text']
                     qo_obj.value = qo['fields']['value']
                     qo_obj.is_active = qo['fields']['is_active']

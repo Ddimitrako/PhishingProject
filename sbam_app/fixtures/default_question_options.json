@@ -166,7 +166,7 @@
     "fields": {
       "question_type": "AGR5",
       "text": "Strongly Disagree",
-      "value": 1,
+      "value": -2,
       "is_active": 1
     }
   },
@@ -175,7 +175,7 @@
     "fields": {
       "question_type": "AGR5",
       "text": "Disagree",
-      "value": 1.0,
+      "value": -1,
       "is_active": 1
     }
   },
@@ -184,7 +184,7 @@
     "fields": {
       "question_type": "AGR5",
       "text": "Neutral",
-      "value": 1.0,
+      "value": 0,
       "is_active": 1
     }
   },
@@ -202,7 +202,7 @@
     "fields": {
       "question_type": "AGR5",
       "text": "Strongly Agree",
-      "value": 1.0,
+      "value": 2.0,
       "is_active": 1
     }
   }

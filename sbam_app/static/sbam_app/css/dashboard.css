@@ -24,3 +24,17 @@
 .ass-btn{
     line-height: 1.0rem;
 }
+
+.assignmets .tab-content{
+    height: 25vh;
+}
+
+.assignmets .tab-content .list-group-item{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.assignment_title{
+    font-size: large;
+}

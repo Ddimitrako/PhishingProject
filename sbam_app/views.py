@@ -11,6 +11,7 @@ from sbam_app.forms import *
 from sbam_app.models import *
 
 import json
+from datetime import date
 
 from django.http import JsonResponse
 
@@ -231,17 +232,23 @@ def activate_group(request, name, status):
 # Views
 #
 @login_required
-def dashboardView(request):
+def dashboardView(request, compl_time=None):
     # fetching active assignments
-    active_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=0).order_by('campaign__end_date')
-    active_tests = models.TestAssignment.objects.filter(user_id=request.user, status=0).order_by('campaign__end_date')
+    active_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=0
+                                                                          ).filter(campaign__end_date__gte=date.today()
+                                                                                   ).order_by('campaign__end_date')
+    active_tests = models.TestAssignment.objects.filter(user_id=request.user, status=0
+                                                        ).filter(campaign__end_date__gte=date.today()
+                                                                 ).order_by('campaign__end_date')
 
     # fetching completed assignmets
-    completed_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=1).order_by('campaign__end_date')
-    completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1).order_by('campaign__end_date')
+    completed_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=1
+                                                                             ).order_by('assignmentresult__answer_time')
 
-    # for quest in active_questionnaires:
-    #     print(quest.questionnaire.pk)
+    completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1
+                                                           ).order_by('assignmentresult__answer_time')
+
+
     return render(request, 'dashboard.html', {'active_questionnaires': active_questionnaires,
                                               'active_tests': active_tests,
                                               'completed_questionnaires': completed_questionnaires,
@@ -250,20 +257,41 @@ def dashboardView(request):
 
 @login_required
 def assignmentCompletion(request, assignment_id):
-    # print(request)
     questionnaire = get_questionnaire(request.user, assignment_id)
-    print(questionnaire)
+    # print(questionnaire)
     return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
 
 
 
 @login_required
 def surveySumbission(request):
-    print(request.POST)
-    print('----------------------------------', 'εδωωωωωωωω')
+    assignment = models.QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
     answers = json.loads(request.POST['data'])
-    for question in answers:
-        print(question, answers[question])
+    for ques in answers:
+        question = models.Question.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
+        if isinstance(answers[ques], list):
+            answers_options = [option_id for option_id in answers[ques]]
+            for option_id in answers_options:
+                answer = models.QuestionOption.objects.get(pk=option_id)
+                assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question,
+                                                                   question_option=answer)
+                assignment.status = 1
+                assignment.save()
+                assignment_answer.save()
+
+                # print(assignment.questionnaire.domain.title, question.text, answer.text)
+        else:
+            answer = models.QuestionOption.objects.get(pk=answers[ques])
+            # print(assignment.questionnaire.domain.title, question.text, answer.text)
+
+            assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question, question_option=answer)
+            assignment.status = 1
+            assignment.save()
+            assignment_answer.save()
+
+    assignment_result = models.AssignmentResult(assignment=assignment, score=0.97, answer_time=date.today())
+    assignment_result.save()
+
     return JsonResponse({'result': 'success'})
 
 
@@ -337,17 +365,17 @@ def disable_group(request, name):
 
 
 def get_questionnaire(user, questionnaire_id):
-    quest = models.QuestionnaireAssignment.objects.get(user=user, questionnaire=questionnaire_id)
-    questions_dict = {}
-    questions_dict['title'] = quest.questionnaire.domain.title
-    questions_dict['id'] = quest.questionnaire.pk
+    quest = models.QuestionnaireAssignment.objects.get(user=user, pk=questionnaire_id)
+    questions_dict = {'title': quest.questionnaire.domain.title, 'id': quest.pk}
     questions = models.Question.objects.filter(questionnaire=quest.questionnaire).values()
     # print(questions)
     for question in questions:
 
         question_type = models.QuestionType.objects.get(pk=question['question_type_id'])
         question_options = models.QuestionOption.objects.filter(question_type=question_type).values()
-        questions_dict['questiion_'+str(question['id'])] = [question, model_to_dict(question_type), [option for option in question_options]]
+        quest_type = model_to_dict(question_type)
+        quest_type['takes_multiple'] = 'true' if quest_type['takes_multiple'] else 'false'
+        questions_dict['questiion_'+str(question['id'])] = [question, quest_type, [option for option in question_options]]
         # print((question, model_to_dict(question_type), [option for option in question_options]))
 
     return questions_dict

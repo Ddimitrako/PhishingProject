@@ -48,7 +48,7 @@
                                     {% for quest in active_questionnaires %}
                                         <li  class="list-group-item  flex-column align-items-start">
                                             <div class="d-flex w-100 justify-content-between">
-                                                <h5>{{ quest.questionnaire.domain }}</h5>
+                                                <strong class="assignment_title">{{ quest.questionnaire.domain }}</strong>
                                                 {% if quest.campaign.ends_within_week %}
                                                     <div class="col-xs-5 col-xs-offset-7">
                                                         <div class="alert alert-warning text-center" role="alert">
@@ -58,15 +58,15 @@
                                                 {% endif %}
                                             </div>
                                             <div class="d-flex w-100 justify-content-between">
-                                                <div class="align-self-end"><strong>{% trans "End Date" %}: </strong> {{ quest.campaign.end_date }}</div>
-                                                <a class="btn btn-primary ass-btn" href="{% url 'sbam:assignments' quest.questionnaire_id %}" role="button">{% trans "Start!" %}</a>
+                                                <div class="align-self-end"><strong>{% trans "Due Date" %}: </strong> {{ quest.campaign.end_date }}</div>
+                                                <a class="btn btn-primary ass-btn" href="{% url 'sbam:assignments' quest.id %}" role="button">{% trans "Start!" %}</a>
                                             </div>
                                         </li>
                                     {% endfor %}
                                     {% for test in active_tests %}
                                         <li  class="list-group-item  flex-column align-items-start">
                                             <div class="d-flex w-100 justify-content-between">
-                                                <h5>{{ test.test.domain }}</h5>
+                                                <strong class="assignment_title">{{ test.test.domain }}</strong>
                                                 {% if quest.campaign.ends_within_week %}
                                                     <div class="col-xs-5 col-xs-offset-7">
                                                         <div class="alert alert-warning text-center" role="alert">
@@ -76,12 +76,15 @@
                                                 {% endif %}
                                             </div>
                                             <div class="d-flex w-100 justify-content-between">
-                                                <div class="align-self-end"><strong>{% trans "End Date" %}: </strong> {{ test.campaign.end_date }}</div>
+                                                <div class="align-self-end"><strong>{% trans "Due Date" %}: </strong> {{ test.campaign.end_date }}</div>
                                                 <a class="btn btn-primary" href="#" role="button">Start!</a>
                                             </div>
                                         </li>
                                     {% endfor %}
                                 </ul>
+                                {% if active_questionnaires|length == 0 and active_tests|length == 0 %}
+                                    <p>No active assignments</p>
+                                {% endif %}
                             </div>
                             <div class="tab-pane fade" id="compl-ass" role="tabpanel"
                                  aria-labelledby="compl-ass-tab">
@@ -89,22 +92,25 @@
                                     {% for quest in completed_questionnaires %}
                                         <li  class="list-group-item  flex-column align-items-start">
                                             <div class="d-flex w-100 justify-content-between">
-                                                <h5>{{ quest.questionnaire.domain }}</h5>
-                                                <div class="align-self-end"><strong>{% trans "End Date" %}: </strong> {{ quest.campaign.end_date }}</div>
+                                                <strong class="assignment_title">{{ quest.questionnaire.domain }}</strong>
+                                                <div class="align-self-end"><strong>{% trans "Completed at" %}: </strong> {{ quest.get_answer_time }}</div>
                                             </div>
                                         </li>
                                     {% endfor %}
                                     {% for test in completed_tests %}
                                         <li  class="list-group-item  flex-column align-items-start">
                                             <div class="d-flex w-100 justify-content-between">
-                                                <h5>{{ test.test.domain }}</h5>
+                                                <strong class="assignment_title">{{ test.test.domain }}</strong>
                                             </div>
                                             <div class="d-flex w-100 justify-content-between">
-                                                <div class="align-self-end"><strong>{% trans "End Date" %}: </strong> {{ test.campaign.end_date }}</div>
+                                                <div class="align-self-end"><strong>{% trans "Completed at" %}: </strong> {{ test.get_answer_time }}</div>
                                             </div>
                                         </li>
                                     {% endfor %}
                                 </ul>
+                            {% if completed_questionnaires|length == 0 and completed_tests|length == 0 %}
+                                <p>No completed assignments</p>
+                            {% endif %}
                             </div>
                         </div>
                     </div>

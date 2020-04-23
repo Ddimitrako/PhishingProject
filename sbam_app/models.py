@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.contrib.auth.models import User, Group
 from django.utils import timezone
 from django.db.models import *
@@ -52,6 +54,9 @@ class Campaign(Model):
     def __str__(self):
         return self.owner.get_full_name() + ' ' + self.start_date + ' - ' + self.end_date
 
+    def ends_within_week(self):
+        return (self.end_date - date.today()).days <= 15
+
 
 class Assignment(Model):
     COMPLETED = 'COMPLETED'    #O xrhsths ston opoio anaferetai to assignment oloklhrwse tis erwthseis
@@ -94,6 +99,9 @@ class Questionnaire(Model):
 class QuestionnaireAssignment(Assignment):
     questionnaire = ForeignKey(Questionnaire, on_delete=CASCADE)
 
+    def get_answer_time(self):
+        return self.assignmentresult_set.get(assignment=self).answer_time.date()
+
 
 class QuestionType(Model):
 
@@ -105,9 +113,8 @@ class QuestionType(Model):
         CUSTOM_RADIO = 'CUSTOM_R', _('custom_question') # Custom radio question type with custom options
 
     type = CharField(max_length=23, choices=Qtype.choices)
+    takes_multiple = BooleanField(default=False)
 
-    def get_by_natural_key(q_type):
-        return self.objects.get(q_type=type)
 
 
 class QuestionOption(Model):
@@ -156,6 +163,9 @@ class Test(Model):
 
 class TestAssignment(Assignment):
     test = ForeignKey(Test, on_delete=CASCADE)
+
+    def get_answer_time(self):
+        return self.assignmentresult_set.get(assignment=self).answer_time.date()
 
 
 # User Management Model

@@ -7,34 +7,56 @@
     margin-left: 3%;
 }
 
+.sv-btn{
+    background-color: #016fcd !important;
+}
+
 .sv_body{
     border-top: 2px solid #016fcd !important;
 }
 
-.sv_start_btn{
-    background-color: #016fcd !important;
-}
+/*.sv_start_btn{*/
+/*    background-color: #016fcd !important;*/
+/*}*/
 
-.sv_next_btn{
-    background-color: #016fcd !important;
-}
+/*.sv_next_btn{*/
+/*    background-color: #016fcd !important;*/
+/*}*/
 
-.sv_prev_btn{
-    background-color: #016fcd !important;
-}
+/*.sv_prev_btn{*/
+/*    background-color: #016fcd !important;*/
+/*}*/
 
-.sv_complete_btn{
-    background-color: #016fcd !important;
-}
+/*.sv_complete_btn{*/
+/*    background-color: #016fcd !important;*/
+/*}*/
 
 .sv-boolean__switch{
     background-color: #016fcd !important;
 }
 
-.sv_progress_bar{
+.sv-progress__bar{
     background-color: #016fcd !important;
 }
 
 .row-compl{
     display: none;
+}
+
+.sv-root-modern .sv-container-modern__title{
+    color: #016fcd !important;
+}
+
+.sv-root-modern .sv-question__title--answer{
+    background-color: rgba(89, 167, 239, 0.11) !important;
+}
+
+.sv-root-modern .sv-completedpage{
+    height: 10em;
+    margin-bottom: 2%;
+    padding-top: 3em;
+}
+
+.sv-checkbox--checked .sv-checkbox__svg{
+    background-color: #016fcd !important;
 }

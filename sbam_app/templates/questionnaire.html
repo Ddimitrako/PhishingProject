@@ -5,6 +5,7 @@
 
 {% block extra_head %}
     <link href="{% static "vendor/survey-jquery/survey.css" %}" rel="stylesheet">
+    <link href="{% static "vendor/survey-jquery/modern.css" %}" rel="stylesheet">
     <link href="{% static "sbam_app/css/questionnaire_compl.css" %}" rel="stylesheet">
 
 {% endblock %}
@@ -25,7 +26,7 @@
     <div class="container quest-container">
         <div class="row">
             {% csrf_token %}
-            <div class="col col-md-9">
+            <div class="col col-md-12">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
                         <div id="surveyElement" style="display:inline-block;width:100%;"></div>
@@ -33,7 +34,7 @@
                             <div class="row row-compl">
                                 <div class="d-flex w-100 justify-content-between">
                                     <p></p>
-                                    <a class="btn btn-primary btn-compl" href="{% url 'sbam:dashboard' %}" role="button">{% trans "Return to Dashboard" %}</a>
+                                    <a class="btn btn-primary btn-compl sv-btn" href="{% url 'sbam:dashboard' %}" role="button">{% trans "Return to Dashboard" %}</a>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +49,6 @@
 {% block  extra_js  %}
 
     <script src="{% static "vendor/survey-jquery/survey.jquery.js" %}"></script>
-
     <script type="application/javascript">
         let questData = {{ questionnaire | safe }};
         let ass_id = {{ questionnaire.id | safe }};

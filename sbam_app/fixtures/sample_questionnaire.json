@@ -1,0 +1,55 @@
+[
+  {
+    "model": "sbam_app.Questionnaire",
+    "pk": 1,
+    "fields": {
+      "domain": 1,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.Question",
+    "fields": {
+      "is_active": 1,
+      "text": "Demo Binary question for false answer",
+      "question_type_id": 1,
+      "questionnaire_id": 1
+    }
+  },
+  {
+    "model": "sbam_app.Question",
+    "fields": {
+      "is_active": 1,
+      "text": "Demo Binary question 2 for false answer",
+      "question_type_id": 1,
+      "questionnaire_id": 1
+    }
+  },
+  {
+    "model": "sbam_app.Question",
+    "fields": {
+      "is_active": 1,
+      "text": "Demo for percentage 10 question",
+      "question_type_id": 2,
+      "questionnaire_id": 1
+    }
+  },
+  {
+    "model": "sbam_app.Question",
+    "fields": {
+      "is_active": 1,
+      "text": "Εδω βλεπουμε ενα demo για percentage 20 ερωτηση ",
+      "question_type_id": 3,
+      "questionnaire_id": 1
+    }
+  },
+  {
+    "model": "sbam_app.Question",
+    "fields": {
+      "is_active": 1,
+      "text": "This is an AGR5 question in the questionnaire",
+      "question_type_id": 4,
+      "questionnaire_id": 1
+    }
+  }
+]
