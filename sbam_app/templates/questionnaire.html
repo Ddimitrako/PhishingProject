@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load i18n adminlte_helpers widget_tweaks %}
+
+{% block extra_head %}
+    <link href="{% static "vendor/survey-jquery/survey.css" %}" rel="stylesheet">
+    <link href="{% static "vendor/survey-jquery/modern.css" %}" rel="stylesheet">
+    <link href="{% static "sbam_app/css/questionnaire_compl.css" %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Assignments" %}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:assignments' questionnaire.id %}">{{ questionnaire.id }}</a></li>
+{% endblock %}
+
+{% block page_name %}
+    <div class="row">
+        <strong><i class="nav-icon fas fa-edit mr-2"></i> {% trans "Assignment" %}</strong>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container quest-container">
+        <div class="row">
+            {% csrf_token %}
+            <div class="col col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+                        <div id="surveyResult">
+                            <div class="row row-compl">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <p></p>
+                                    <a class="btn btn-primary btn-compl sv-btn" href="{% url 'sbam:dashboard' %}" role="button">{% trans "Return to Dashboard" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block  extra_js  %}
+
+    <script src="{% static "vendor/survey-jquery/survey.jquery.js" %}"></script>
+    <script type="application/javascript">
+        let questData = {{ questionnaire | safe }};
+        let ass_id = {{ questionnaire.id | safe }};
+        console.log(ass_id);
+    </script>
+
+    <script src="{% static "sbam_app/js/questionnaire_compl.js" %}"></script>
+
+{% endblock %}

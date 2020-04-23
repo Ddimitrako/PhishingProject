@@ -11,9 +11,11 @@ from sbam_app.forms import *
 from sbam_app.models import *
 
 import json
+from datetime import date
 
 from django.http import JsonResponse
 
+from django.forms.models import model_to_dict
 
 #
 # Custom Decorator used to grant permission to superusers only
@@ -45,14 +47,15 @@ def advanced_users_only(function):
 def disable_field(form, field):
     form.fields[field].disabled = True
 
+
 @login_required
-def CampaignCreation(request):
+def campaignCreation(request):
     if request.method == 'POST':
 
         current_user = request.user
         users = json.loads(request.POST['users'])
         domains = json.loads(request.POST['domains'])
-        tests = json.loads(request.POST['domains'])
+        tests = json.loads(request.POST['tests'])
         start_date = request.POST['start_date']
         end_date = request.POST['end_date']
 
@@ -96,7 +99,7 @@ def CampaignCreation(request):
             # type -> 1 = Test, 0 -> Questionnaire
             # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
             for sel_user in sel_users:
-                new_assignment = TestAssignment(status=0, type=0, campaign_id=new_campaign.id, user=sel_user, test=assigned_test)
+                new_assignment = TestAssignment(status=0, type=1, campaign_id=new_campaign.id, user=sel_user, test=assigned_test)
                 new_assignment.save()
 
         return JsonResponse({'result': 'Success'})
@@ -110,6 +113,7 @@ def CampaignCreation(request):
 @login_required
 def user_profile(request, username):
     user = User.objects.get(username=username)
+
 
 def disable_form(form):
     for field in form.fields:
@@ -227,9 +231,68 @@ def activate_group(request, name, status):
 #
 # Views
 #
+@login_required
+def dashboardView(request, compl_time=None):
+    # fetching active assignments
+    active_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=0
+                                                                          ).filter(campaign__end_date__gte=date.today()
+                                                                                   ).order_by('campaign__end_date')
+    active_tests = models.TestAssignment.objects.filter(user_id=request.user, status=0
+                                                        ).filter(campaign__end_date__gte=date.today()
+                                                                 ).order_by('campaign__end_date')
 
-def DashboardView(request):
-    return render(request, 'dashboard.html')
+    # fetching completed assignmets
+    completed_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=1
+                                                                             ).order_by('assignmentresult__answer_time')
+
+    completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1
+                                                           ).order_by('assignmentresult__answer_time')
+
+
+    return render(request, 'dashboard.html', {'active_questionnaires': active_questionnaires,
+                                              'active_tests': active_tests,
+                                              'completed_questionnaires': completed_questionnaires,
+                                              'completed_tests': completed_tests})
+
+
+@login_required
+def assignmentCompletion(request, assignment_id):
+    questionnaire = get_questionnaire(request.user, assignment_id)
+    # print(questionnaire)
+    return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
+
+
+
+@login_required
+def surveySumbission(request):
+    assignment = models.QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
+    answers = json.loads(request.POST['data'])
+    for ques in answers:
+        question = models.Question.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
+        if isinstance(answers[ques], list):
+            answers_options = [option_id for option_id in answers[ques]]
+            for option_id in answers_options:
+                answer = models.QuestionOption.objects.get(pk=option_id)
+                assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question,
+                                                                   question_option=answer)
+                assignment.status = 1
+                assignment.save()
+                assignment_answer.save()
+
+                # print(assignment.questionnaire.domain.title, question.text, answer.text)
+        else:
+            answer = models.QuestionOption.objects.get(pk=answers[ques])
+            # print(assignment.questionnaire.domain.title, question.text, answer.text)
+
+            assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question, question_option=answer)
+            assignment.status = 1
+            assignment.save()
+            assignment_answer.save()
+
+    assignment_result = models.AssignmentResult(assignment=assignment, score=0.97, answer_time=date.today())
+    assignment_result.save()
+
+    return JsonResponse({'result': 'success'})
 
 
 class UsersView(ListView):
@@ -299,3 +362,20 @@ def enable_group(request, name):
 @superuser_only
 def disable_group(request, name):
     return activate_group(request, name, False)
+
+
+def get_questionnaire(user, questionnaire_id):
+    quest = models.QuestionnaireAssignment.objects.get(user=user, pk=questionnaire_id)
+    questions_dict = {'title': quest.questionnaire.domain.title, 'id': quest.pk}
+    questions = models.Question.objects.filter(questionnaire=quest.questionnaire).values()
+    # print(questions)
+    for question in questions:
+
+        question_type = models.QuestionType.objects.get(pk=question['question_type_id'])
+        question_options = models.QuestionOption.objects.filter(question_type=question_type).values()
+        quest_type = model_to_dict(question_type)
+        quest_type['takes_multiple'] = 'true' if quest_type['takes_multiple'] else 'false'
+        questions_dict['questiion_'+str(question['id'])] = [question, quest_type, [option for option in question_options]]
+        # print((question, model_to_dict(question_type), [option for option in question_options]))
+
+    return questions_dict

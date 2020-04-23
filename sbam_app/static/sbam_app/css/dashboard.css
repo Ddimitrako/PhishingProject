@@ -1,0 +1,40 @@
+.alert-warning{
+  margin-bottom: 3px;
+  height: 30px;
+  line-height:30px;
+  padding:0px 15px;
+}
+
+.assignmets{
+    max-width: 100%;
+    padding: 0;
+    /*overflow: auto;*/
+    /*max-height: 30vh;*/
+}
+
+.active-assignments{
+    max-height: 35vh;
+    overflow: auto;
+}
+
+.list-group-item{
+    padding-bottom: 0.25rem;
+}
+
+.ass-btn{
+    line-height: 1.0rem;
+}
+
+.assignmets .tab-content{
+    height: 25vh;
+}
+
+.assignmets .tab-content .list-group-item{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.assignment_title{
+    font-size: large;
+}
