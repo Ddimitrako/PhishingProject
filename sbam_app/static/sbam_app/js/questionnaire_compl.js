@@ -92,15 +92,8 @@ $(document).ready(function(){
     function create_questions_list(){
         questions = [];
         question_obj = {};
-        start = [{
-            type: "html",
-            html: "You are about to start quiz by history. <br/>" +
-            "You have 10 seconds for every page and 25 seconds for the whole survey of 3 questions.<br/>" +
-            "Please click on <b>'Start Quiz'</b> " +
-            "button when you are ready."
-        }];
 
-        question_obj['questions'] = start;
+        question_obj['questions'] = [];
         questions.push(question_obj);
 
         for(let quest_obj in questData){
