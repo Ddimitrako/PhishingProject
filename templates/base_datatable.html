@@ -61,12 +61,12 @@
                     var title = $(this).text();
                     $(this).html(
                         '<div class="input-group input-group-xs dt-col-filter">' +
-                        '<input type="text" class="form-control" placeholder="' + title + '" />' +
-                        '<div class="input-group-append">' +
-                        '<span class="input-group-text">' +
-                        '<i class="fas fa-filter"></i>' +
-                        '</span>' +
-                        '</div>' +
+                            '<input type="text" class="form-control" placeholder="' + title + '" />' +
+                            '<div class="input-group-append">' +
+                                '<span class="input-group-text">' +
+                                    '<i class="fas fa-filter"></i>' +
+                                '</span>' +
+                            '</div>' +
                         '</div>'
                     );
                 }
@@ -90,7 +90,7 @@
                     scrollX: true,
                     scrollCollapse: true,
                     paging: false,
-                    order: [[noFilterList.length-1, 'asc']],
+                    order: [[noFilterList.length - 1, 'asc']],
                     columnDefs: [
                         {
                             targets: 0,
@@ -126,39 +126,34 @@
                     },
                     dom: 'Bfrtip',
                     buttons: [
-                        {
-                            extend: 'collection',
-                            className: 'btn btn-outline-info btn-sm',
-                            text: '<i class="fas fa-plus-circle"></i>',
-                            titleAttr: '{% trans "Add" %}',
-                            buttons: [
-                                {
-                                    className: 'dropdown-item',
-                                    text: '<i class="fas fa-user mr-2"></i> {% trans "Add User" %}',
-                                    action: function (e, dt, node, config) {
-                                        window.location = "{% url 'sbam:create_user' %}";
+                        /* Buttons visible only to advanced users (superusers and managers) */
+                        {% if request.user.is_superuser or request.user.userprofile.is_manager %}
+                            {
+                                extend: 'collection',
+                                className: 'btn btn-outline-info btn-sm',
+                                text: '<i class="fas fa-plus-circle"></i>',
+                                titleAttr: '{% trans "Add" %}',
+                                buttons: [
+                                    /* Button visible only to superusers */
+                                    {% if request.user.is_superuser %}
+                                        {
+                                            className: 'dropdown-item',
+                                            text: '<i class="fas fa-user mr-2"></i> {% trans "Add User" %}',
+                                            action: function (e, dt, node, config) {
+                                                window.location = "{% url 'sbam:create_user' %}";
+                                            }
+                                        },
+                                    {% endif %}
+                                    {
+                                        className: 'dropdown-item',
+                                        text: '<i class="fas fa-users mr-1"></i> {% trans "Add Group" %}',
+                                        action: function (e, dt, node, config) {
+                                            window.location = "{% url 'sbam:create_group' %}";
+                                        }
                                     }
-                                },
-                                {
-                                    className: 'dropdown-item',
-                                    text: '<i class="fas fa-users mr-1"></i> {% trans "Add Group" %}',
-                                    action: function (e, dt, node, config) {
-                                        // TODO redirect to "Create New Group" form
-                                        window.location = "{% url 'sbam:create_group' %}";
-                                    }
-                                }
-                            ]
-                        },
-                        {% comment %}{
-                            className: 'btn btn-outline-info btn-sm',
-                            text: '<i class="fas fa-file-upload"></i>',
-                            titleAttr: '{% trans "Import from file" %}',
-                            action: function (e, dt, node, config) {
-                                // TODO redirect to "Import from file" form
-                                window.location = 'dashboard';
+                                ]
                             },
-                            titleAttr: '{% trans "Import from file" %}'
-                        },{% endcomment %}
+                        {% endif %}
                         {
                             extend: 'colvis',
                             className: 'btn btn-outline-info btn-sm',
@@ -267,5 +262,19 @@
                 }
             });
         }
+
+        $(document).on({
+            mouseenter: function (event) {
+                var table = $(event.target).parents('.dataTables_wrapper').find('table.dataTable');
+                trIndex = $(this).index() + 2;
+                table.find("tr:eq(" + trIndex + ")").addClass("hover");
+            },
+            mouseleave: function (event) {
+                var table = $(event.target).parents('.dataTables_wrapper').find('table.dataTable');
+                trIndex = $(this).index() + 2;
+                table.find("tr:eq(" + trIndex + ")").removeClass("hover");
+            }
+        }, ".dataTables_wrapper tbody tr");
+
     </script>
 {% endblock %}

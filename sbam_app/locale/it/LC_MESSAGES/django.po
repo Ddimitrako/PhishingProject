@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-16 13:55+0200\n"
+"POT-Creation-Date: 2020-04-23 21:01+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\sbam\settings\base_settings.py:150
+msgid "Greek"
+msgstr ""
+
+#: .\sbam\settings\base_settings.py:151
+msgid "English"
+msgstr ""
+
+#: .\sbam\settings\base_settings.py:152
+msgid "Italian"
+msgstr ""
+
+#: .\sbam\settings\base_settings.py:153
+msgid "Romanian"
+msgstr ""
 
 #: .\templates\account\account_inactive.html:5
 #: .\templates\account\account_inactive.html:8
@@ -32,7 +48,7 @@ msgstr ""
 msgid "Return to Log-In Page"
 msgstr ""
 
-#: .\templates\account\email.html:5 .\sbam_app\templates\profile.html:104
+#: .\templates\account\email.html:5
 msgid "Account"
 msgstr ""
 
@@ -140,7 +156,7 @@ msgid ""
 msgstr ""
 
 #: .\templates\account\logout.html:4 .\templates\account\logout.html:7
-#: .\templates\account\logout.html:16 .\templates\main_header.html:82
+#: .\templates\account\logout.html:16 .\templates\main_header.html:90
 msgid "Sign Out"
 msgstr ""
 
@@ -155,8 +171,7 @@ msgstr ""
 #: .\templates\account\password_reset_from_key.html:7
 #: .\templates\account\password_reset_from_key.html:17
 #: .\templates\account\password_reset_from_key_done.html:4
-#: .\templates\form-utils\form-fields.html:45 .\templates\main_header.html:75
-#: .\sbam_app\templates\profile.html:269
+#: .\templates\form-utils\form-fields.html:45 .\templates\main_header.html:86
 msgid "Change Password"
 msgstr ""
 
@@ -278,47 +293,47 @@ msgid ""
 "mail address</a>."
 msgstr ""
 
-#: .\templates\base_datatable.html:133
+#: .\templates\base_datatable.html:135
 msgid "Add"
 msgstr ""
 
-#: .\templates\base_datatable.html:137
+#: .\templates\base_datatable.html:141
 msgid "Add User"
 msgstr ""
 
-#: .\templates\base_datatable.html:144
+#: .\templates\base_datatable.html:149
 msgid "Add Group"
 msgstr ""
 
-#: .\templates\base_datatable.html:167
+#: .\templates\base_datatable.html:161
 msgid "Show/Hide Columns"
 msgstr ""
 
-#: .\templates\base_datatable.html:172
+#: .\templates\base_datatable.html:166
 msgid "Select All"
 msgstr ""
 
-#: .\templates\base_datatable.html:180
+#: .\templates\base_datatable.html:174
 msgid "Copy"
 msgstr ""
 
-#: .\templates\base_datatable.html:190
+#: .\templates\base_datatable.html:184
 msgid "Print"
 msgstr ""
 
-#: .\templates\base_datatable.html:199
+#: .\templates\base_datatable.html:193
 msgid "Export to file"
 msgstr ""
 
-#: .\templates\base_datatable.html:204
+#: .\templates\base_datatable.html:198
 msgid "Export to Excel"
 msgstr ""
 
-#: .\templates\base_datatable.html:214
+#: .\templates\base_datatable.html:208
 msgid "Export to CSV"
 msgstr ""
 
-#: .\templates\base_datatable.html:224
+#: .\templates\base_datatable.html:218
 msgid "Export to PDF"
 msgstr ""
 
@@ -458,463 +473,296 @@ msgstr ""
 msgid "Forgot Password"
 msgstr ""
 
-#: .\templates\main_header.html:11 .\sbam_app\templates\group.html:16
-#: .\sbam_app\templates\groups.html:10 .\sbam_app\templates\new_group.html:10
+#: .\templates\main_header.html:11
+#: .\sbam_app\templates\campaign_creation.html:13
+#: .\sbam_app\templates\group.html:16 .\sbam_app\templates\groups.html:10
+#: .\sbam_app\templates\new_group.html:10
 #: .\sbam_app\templates\new_user.html:10 .\sbam_app\templates\profile.html:16
 #: .\sbam_app\templates\users.html:10
 msgid "Home"
 msgstr ""
 
-#: .\templates\main_header.html:18
-msgid "Search"
+#: .\templates\main_header.html:54
+msgid "Contact"
 msgstr ""
 
-#: .\templates\main_header.html:40
-msgid "Contact Us"
-msgstr ""
-
-#: .\templates\main_header.html:62 .\sbam_app\templates\profile.html:50
+#: .\templates\main_header.html:73 .\sbam_app\templates\profile.html:46
 msgid "Member since"
 msgstr ""
 
-#: .\templates\main_header.html:71 .\sbam_app\templates\profile.html:7
+#: .\templates\main_header.html:82 .\sbam_app\templates\profile.html:7
 #: .\sbam_app\templates\profile.html:18
 msgid "Profile"
 msgstr ""
 
-#: .\templates\main_header.html:83
-msgid "Logout"
-msgstr ""
-
-#: .\templates\main_sidebar.html:36
+#: .\templates\main_sidebar.html:23
 msgid "Dashboard"
 msgstr ""
 
-#: .\templates\main_sidebar.html:43 .\sbam_app\templates\new_user.html:11
+#: .\templates\main_sidebar.html:30 .\sbam_app\templates\new_user.html:11
 #: .\sbam_app\templates\profile.html:17 .\sbam_app\templates\users.html:6
 #: .\sbam_app\templates\users.html:11
 msgid "Users"
 msgstr ""
 
-#: .\templates\main_sidebar.html:50 .\sbam_app\templates\group.html:17
+#: .\templates\main_sidebar.html:37 .\sbam_app\templates\group.html:17
 #: .\sbam_app\templates\groups.html:6 .\sbam_app\templates\groups.html:11
-#: .\sbam_app\templates\new_group.html:11 .\sbam_app\templates\profile.html:39
-#: .\sbam_app\templates\users.html:25 .\sbam_app\templates\users.html:73
+#: .\sbam_app\templates\new_group.html:11
 msgid "Groups"
 msgstr ""
 
-#: .\templates\main_sidebar.html:57
+#: .\templates\main_sidebar.html:44
 msgid "Reports"
 msgstr ""
 
-#: .\templates\main_sidebar.html:65 .\sbam_app\models.py:15
+#: .\templates\main_sidebar.html:52
 msgid "Organisational"
 msgstr ""
 
-#: .\templates\main_sidebar.html:72 .\sbam_app\models.py:16
+#: .\templates\main_sidebar.html:59
 msgid "Individual"
 msgstr ""
 
-#: .\templates\main_sidebar.html:81 .\sbam_app\templates\profile.html:118
+#: .\templates\main_sidebar.html:68
+#: .\sbam_app\templates\campaign_creation.html:14
+#: .\sbam_app\templates\profile.html:107
 msgid "Evaluations"
 msgstr ""
 
-#: .\sbam_app\models.py:19
-msgid "dimension title"
-msgstr ""
-
-#: .\sbam_app\models.py:23
-msgid "A dimension with that title already exists."
-msgstr ""
-
-#: .\sbam_app\models.py:25
-msgid "Dimension title"
-msgstr ""
-
-#: .\sbam_app\models.py:28
-msgid "dimension description"
-msgstr ""
-
-#: .\sbam_app\models.py:32
-msgid "Dimension description"
-msgstr ""
-
-#: .\sbam_app\models.py:35
-msgid "dimension level"
-msgstr ""
-
-#: .\sbam_app\models.py:37
-msgid "Dimension level"
-msgstr ""
-
-#: .\sbam_app\models.py:41 .\sbam_app\models.py:51
-msgid "dimension"
-msgstr ""
-
-#: .\sbam_app\models.py:42
-msgid "dimensions"
-msgstr ""
-
-#: .\sbam_app\models.py:53
-msgid "Dimension this domain belongs to"
-msgstr ""
-
-#: .\sbam_app\models.py:56
-msgid "domain title"
-msgstr ""
-
-#: .\sbam_app\models.py:60
-msgid "A domain with that title already exists."
-msgstr ""
-
-#: .\sbam_app\models.py:62
-msgid "Domain title"
-msgstr ""
-
-#: .\sbam_app\models.py:65
-msgid "domain description"
-msgstr ""
-
-#: .\sbam_app\models.py:69
-msgid "Domain description"
-msgstr ""
-
-#: .\sbam_app\models.py:76 .\sbam_app\models.py:89
-msgid "domain"
-msgstr ""
-
-#: .\sbam_app\models.py:77
-msgid "domains"
-msgstr ""
-
-#: .\sbam_app\models.py:82
-msgid "Yes/No Question"
-msgstr ""
-
-#: .\sbam_app\models.py:83
-msgid "Five Weight Scale"
-msgstr ""
-
-#: .\sbam_app\models.py:84
-msgid "Percentage"
-msgstr ""
-
-#: .\sbam_app\models.py:85
-msgid "Multiple Choice"
-msgstr ""
-
-#: .\sbam_app\models.py:91
-msgid "Domain this question belongs to"
-msgstr ""
-
-#: .\sbam_app\models.py:93
-msgid "question text"
-msgstr ""
-
-#: .\sbam_app\models.py:93
-msgid "Question text"
-msgstr ""
-
-#: .\sbam_app\models.py:94
-msgid "type"
-msgstr ""
-
-#: .\sbam_app\models.py:94
-msgid "Question type"
-msgstr ""
-
-#: .\sbam_app\models.py:100 .\sbam_app\models.py:107 .\sbam_app\models.py:124
-msgid "question"
-msgstr ""
-
 #: .\sbam_app\models.py:101
-msgid "questions"
+msgid "boolean"
 msgstr ""
 
-#: .\sbam_app\models.py:109 .\sbam_app\models.py:126
-msgid "Question this choice belongs to"
+#: .\sbam_app\models.py:102
+msgid "percentage_step_10"
 msgstr ""
 
-#: .\sbam_app\models.py:111
-msgid "choice text"
+#: .\sbam_app\models.py:103
+msgid "percentage_step_20"
 msgstr ""
 
-#: .\sbam_app\models.py:111
-msgid "Choice text"
+#: .\sbam_app\models.py:104
+msgid "agreement_scale_5_options"
 msgstr ""
 
-#: .\sbam_app\models.py:117
-msgid "multiple text choice"
+#: .\sbam_app\models.py:105
+msgid "custom_question"
 msgstr ""
 
-#: .\sbam_app\models.py:118
-msgid "multiple text choices"
-msgstr ""
-
-#: .\sbam_app\models.py:128 .\sbam_app\models.py:164
-msgid "user"
-msgstr ""
-
-#: .\sbam_app\models.py:128
-msgid "User this choice belongs to"
-msgstr ""
-
-#: .\sbam_app\models.py:141
-msgid "choice"
-msgstr ""
-
-#: .\sbam_app\models.py:141
-msgid "User choice"
-msgstr ""
-
-#: .\sbam_app\models.py:144
-msgid "multiple choice"
-msgstr ""
-
-#: .\sbam_app\models.py:146
-msgid "User choice (from multiple)"
-msgstr ""
-
-#: .\sbam_app\models.py:153
-msgid "user choice"
-msgstr ""
-
-#: .\sbam_app\models.py:154
-msgid "user choices"
-msgstr ""
-
-#: .\sbam_app\models.py:161
+#: .\sbam_app\models.py:165
 msgid "Male"
 msgstr ""
 
-#: .\sbam_app\models.py:162
+#: .\sbam_app\models.py:166
 msgid "Female"
 msgstr ""
 
-#: .\sbam_app\models.py:164
+#: .\sbam_app\models.py:168
+msgid "user"
+msgstr ""
+
+#: .\sbam_app\models.py:168
 msgid "User ID"
 msgstr ""
 
-#: .\sbam_app\models.py:168 .\sbam_app\models.py:284
-#: .\sbam_app\templates\groups.html:20 .\sbam_app\templates\users.html:21
-msgid "display name"
-msgstr ""
-
-#: .\sbam_app\models.py:173
-msgid "User display name"
-msgstr ""
-
-#: .\sbam_app\models.py:175 .\sbam_app\templates\users.html:28
+#: .\sbam_app\models.py:171 .\sbam_app\templates\users.html:25
 msgid "birth date"
 msgstr ""
 
-#: .\sbam_app\models.py:175
+#: .\sbam_app\models.py:171
 msgid "User birth date"
 msgstr ""
 
-#: .\sbam_app\models.py:176 .\sbam_app\templates\users.html:29
+#: .\sbam_app\models.py:172 .\sbam_app\templates\users.html:26
 msgid "gender"
 msgstr ""
 
-#: .\sbam_app\models.py:176
+#: .\sbam_app\models.py:172
 msgid "User gender"
 msgstr ""
 
-#: .\sbam_app\models.py:180
+#: .\sbam_app\models.py:176
 msgid "manager status"
 msgstr ""
 
-#: .\sbam_app\models.py:182
+#: .\sbam_app\models.py:178
 msgid ""
 "Designates whether the user can have advanced business privileges within the "
 "tool."
 msgstr ""
 
-#: .\sbam_app\models.py:185
+#: .\sbam_app\models.py:181
 msgid "employee id"
 msgstr ""
 
-#: .\sbam_app\models.py:190
+#: .\sbam_app\models.py:186
 msgid "A user with that employee id already exists."
 msgstr ""
 
-#: .\sbam_app\models.py:192
+#: .\sbam_app\models.py:188
 msgid "User employee id"
 msgstr ""
 
-#: .\sbam_app\models.py:195 .\sbam_app\templates\users.html:30
+#: .\sbam_app\models.py:191 .\sbam_app\templates\users.html:27
 msgid "job title"
 msgstr ""
 
-#: .\sbam_app\models.py:200
+#: .\sbam_app\models.py:196
 msgid "User job title"
 msgstr ""
 
-#: .\sbam_app\models.py:203 .\sbam_app\templates\users.html:31
+#: .\sbam_app\models.py:199 .\sbam_app\templates\profile.html:36
+#: .\sbam_app\templates\users.html:28
 msgid "department"
 msgstr ""
 
-#: .\sbam_app\models.py:208
+#: .\sbam_app\models.py:204
 msgid "Department this user belongs to"
 msgstr ""
 
-#: .\sbam_app\models.py:211 .\sbam_app\templates\users.html:32
+#: .\sbam_app\models.py:207 .\sbam_app\templates\profile.html:40
+#: .\sbam_app\templates\users.html:29
 msgid "company"
 msgstr ""
 
-#: .\sbam_app\models.py:216
+#: .\sbam_app\models.py:212
 msgid "Company this user belongs to"
 msgstr ""
 
-#: .\sbam_app\models.py:221 .\sbam_app\templates\users.html:33
+#: .\sbam_app\models.py:217 .\sbam_app\templates\users.html:30
 msgid "telephone"
 msgstr ""
 
-#: .\sbam_app\models.py:226
+#: .\sbam_app\models.py:222
 msgid "User telephone number"
 msgstr ""
 
-#: .\sbam_app\models.py:229 .\sbam_app\templates\users.html:34
+#: .\sbam_app\models.py:225 .\sbam_app\templates\users.html:31
 msgid "address"
 msgstr ""
 
-#: .\sbam_app\models.py:234
+#: .\sbam_app\models.py:230
 msgid "User working address"
 msgstr ""
 
-#: .\sbam_app\models.py:239 .\sbam_app\models.py:300
-#: .\sbam_app\templates\groups.html:26 .\sbam_app\templates\users.html:35
+#: .\sbam_app\models.py:235 .\sbam_app\models.py:288
+#: .\sbam_app\templates\groups.html:25 .\sbam_app\templates\users.html:32
 msgid "notes"
 msgstr ""
 
-#: .\sbam_app\models.py:244 .\sbam_app\models.py:305
+#: .\sbam_app\models.py:240 .\sbam_app\models.py:293
 msgid "Notes"
 msgstr ""
 
-#: .\sbam_app\models.py:251
+#: .\sbam_app\models.py:247
 msgid "user profile"
 msgstr ""
 
-#: .\sbam_app\models.py:252
+#: .\sbam_app\models.py:248
 msgid "user profiles"
 msgstr ""
 
-#: .\sbam_app\models.py:269 .\sbam_app\templates\group.html:7
+#: .\sbam_app\models.py:265 .\sbam_app\templates\group.html:7
 #: .\sbam_app\templates\group.html:18
 msgid "group"
 msgstr ""
 
-#: .\sbam_app\models.py:271
+#: .\sbam_app\models.py:267
 msgid "Group ID"
 msgstr ""
 
-#: .\sbam_app\models.py:275 .\sbam_app\templates\groups.html:25
+#: .\sbam_app\models.py:271 .\sbam_app\templates\group.html:60
+#: .\sbam_app\templates\groups.html:24
 msgid "creator"
 msgstr ""
 
-#: .\sbam_app\models.py:279
+#: .\sbam_app\models.py:275
 msgid "Creator User ID"
 msgstr ""
 
-#: .\sbam_app\models.py:289
-msgid "Group display name"
-msgstr ""
-
-#: .\sbam_app\models.py:292 .\sbam_app\templates\groups.html:21
+#: .\sbam_app\models.py:280 .\sbam_app\templates\groups.html:20
 msgid "description"
 msgstr ""
 
-#: .\sbam_app\models.py:297
+#: .\sbam_app\models.py:285
 msgid "Group description"
 msgstr ""
 
-#: .\sbam_app\models.py:309 .\sbam_app\templates\groups.html:36
-#: .\sbam_app\templates\users.html:45
+#: .\sbam_app\models.py:297 .\sbam_app\templates\groups.html:35
+#: .\sbam_app\templates\users.html:18 .\sbam_app\templates\users.html:42
 msgid "active"
 msgstr ""
 
-#: .\sbam_app\models.py:312
+#: .\sbam_app\models.py:300
 msgid ""
 "Designates whether this group should be treated as active. Unselect this "
 "instead of deleting groups."
 msgstr ""
 
-#: .\sbam_app\models.py:316 .\sbam_app\templates\groups.html:24
+#: .\sbam_app\models.py:304 .\sbam_app\templates\group.html:74
+#: .\sbam_app\templates\groups.html:23
 msgid "creation timestamp"
 msgstr ""
 
-#: .\sbam_app\models.py:322
+#: .\sbam_app\models.py:314
 msgid "group profile"
 msgstr ""
 
-#: .\sbam_app\models.py:323
+#: .\sbam_app\models.py:315
 msgid "group profiles"
+msgstr ""
+
+#: .\sbam_app\templates\campaign_creation.html:19
+#: .\sbam_app\templates\campaign_creation.html:112
+msgid "Create your campaign"
 msgstr ""
 
 #: .\sbam_app\templates\group.html:10 .\sbam_app\templates\profile.html:10
 msgid "(disabled)"
 msgstr ""
 
-#: .\sbam_app\templates\group.html:33 .\sbam_app\templates\group.html:128
-#: .\sbam_app\templates\groups.html:22 .\sbam_app\templates\groups.html:56
-#: .\sbam_app\templates\new_group.html:25
-msgid "members"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:36 .\sbam_app\templates\profile.html:42
-msgid "Campaigns"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:39 .\sbam_app\templates\profile.html:45
-msgid "Results"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:44
-msgid "Created on"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:50
-msgid "Owner"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:61 .\sbam_app\templates\profile.html:61
-msgid "Save changes"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:62 .\sbam_app\templates\profile.html:62
-msgid "Save"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:68
-msgid "Disable group"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:69 .\sbam_app\templates\profile.html:69
-msgid "Disable"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:73
-msgid "Enable group"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:74 .\sbam_app\templates\profile.html:74
-msgid "Enable"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:80 .\sbam_app\templates\profile.html:80
-msgid "Cancel changes"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:81 .\sbam_app\templates\profile.html:81
-msgid "Cancel"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:97 .\sbam_app\templates\new_group.html:24
+#: .\sbam_app\templates\group.html:33 .\sbam_app\templates\new_group.html:24
 msgid "General Information"
 msgstr ""
 
-#: .\sbam_app\templates\group.html:104 .\sbam_app\templates\groups.html:18
-#: .\sbam_app\templates\profile.html:111 .\sbam_app\templates\users.html:18
+#: .\sbam_app\templates\group.html:41 .\sbam_app\templates\groups.html:21
+#: .\sbam_app\templates\groups.html:54 .\sbam_app\templates\new_group.html:25
+msgid "members"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:97 .\sbam_app\templates\profile.html:57
+msgid "Save changes"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:98 .\sbam_app\templates\profile.html:58
+msgid "Save"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:105
+msgid "Disable group"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:106 .\sbam_app\templates\profile.html:65
+msgid "Disable"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:111
+msgid "Enable group"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:112 .\sbam_app\templates\profile.html:70
+msgid "Enable"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:118 .\sbam_app\templates\profile.html:76
+msgid "Discard changes"
+msgstr ""
+
+#: .\sbam_app\templates\group.html:119 .\sbam_app\templates\profile.html:77
+msgid "Reset"
+msgstr ""
+
+#: .\sbam_app\templates\groups.html:18 .\sbam_app\templates\profile.html:100
 msgid "Status"
 msgstr ""
 
@@ -922,11 +770,11 @@ msgstr ""
 msgid "name"
 msgstr ""
 
-#: .\sbam_app\templates\groups.html:39 .\sbam_app\templates\users.html:47
+#: .\sbam_app\templates\groups.html:38 .\sbam_app\templates\users.html:44
 msgid "inactive"
 msgstr ""
 
-#: .\sbam_app\templates\groups.html:52
+#: .\sbam_app\templates\groups.html:50
 msgid "Show Members"
 msgstr ""
 
@@ -951,40 +799,32 @@ msgstr ""
 msgid "User Account"
 msgstr ""
 
-#: .\sbam_app\templates\new_user.html:25 .\sbam_app\templates\profile.html:97
+#: .\sbam_app\templates\new_user.html:25 .\sbam_app\templates\profile.html:93
 msgid "Personal Information"
 msgstr ""
 
-#: .\sbam_app\templates\new_user.html:26 .\sbam_app\templates\profile.html:156
+#: .\sbam_app\templates\new_user.html:26 .\sbam_app\templates\profile.html:131
 msgid "Contact Details"
 msgstr ""
 
-#: .\sbam_app\templates\new_user.html:27 .\sbam_app\templates\profile.html:174
+#: .\sbam_app\templates\new_user.html:27 .\sbam_app\templates\profile.html:150
 msgid "Organisational Information"
 msgstr ""
 
-#: .\sbam_app\templates\profile.html:68
+#: .\sbam_app\templates\profile.html:64
 msgid "Disable user"
 msgstr ""
 
-#: .\sbam_app\templates\profile.html:73
+#: .\sbam_app\templates\profile.html:69
 msgid "Enable user"
 msgstr ""
 
-#: .\sbam_app\templates\profile.html:125
-msgid "Messages"
+#: .\sbam_app\templates\profile.html:169
+msgid "Status currently unavailable!"
 msgstr ""
 
-#: .\sbam_app\templates\profile.html:132
-msgid "Tips"
-msgstr ""
-
-#: .\sbam_app\templates\profile.html:204
-msgid "Privileges"
-msgstr ""
-
-#: .\sbam_app\templates\profile.html:223
-msgid "Group Membership"
+#: .\sbam_app\templates\profile.html:175
+msgid "Evaluations currently unavailable!"
 msgstr ""
 
 #: .\sbam_app\templates\users.html:19
@@ -995,52 +835,44 @@ msgstr ""
 msgid "Full Name"
 msgstr ""
 
-#: .\sbam_app\templates\users.html:22
+#: .\sbam_app\templates\users.html:21
 msgid "first name"
 msgstr ""
 
-#: .\sbam_app\templates\users.html:23
+#: .\sbam_app\templates\users.html:22
 msgid "last name"
 msgstr ""
 
-#: .\sbam_app\templates\users.html:24
+#: .\sbam_app\templates\users.html:23
 msgid "email"
 msgstr ""
 
-#: .\sbam_app\templates\users.html:27
+#: .\sbam_app\templates\users.html:24
 msgid "employee ID"
 msgstr ""
 
-#: .\sbam_app\templates\users.html:52
-msgid "superuser"
-msgstr ""
-
-#: .\sbam_app\templates\users.html:54
+#: .\sbam_app\templates\users.html:49
 msgid "manager"
 msgstr ""
 
-#: .\sbam_app\templates\users.html:69
-msgid "Show Groups"
-msgstr ""
-
-#: .\sbam_app\views.py:18 .\sbam_app\views.py:32
+#: .\sbam_app\views.py:22 .\sbam_app\views.py:36
 msgid "You do not have enough privileges to perform this action"
 msgstr ""
 
-#: .\sbam_app\views.py:76 .\sbam_app\views.py:143
+#: .\sbam_app\views.py:149 .\sbam_app\views.py:216
 #, python-format
 msgid "User successfully %(action)s"
 msgstr ""
 
-#: .\sbam_app\views.py:79 .\sbam_app\views.py:120
+#: .\sbam_app\views.py:152 .\sbam_app\views.py:193
 msgid "Please correct the errors below"
 msgstr ""
 
-#: .\sbam_app\views.py:114 .\sbam_app\views.py:152
+#: .\sbam_app\views.py:187 .\sbam_app\views.py:225
 #, python-format
 msgid "Group successfully %(action)s"
 msgstr ""
 
-#: .\sbam_app\views.py:118
+#: .\sbam_app\views.py:191
 msgid "Please add at least one group member"
 msgstr ""

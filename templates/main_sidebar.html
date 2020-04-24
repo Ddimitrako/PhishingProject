@@ -8,19 +8,6 @@
     </a>
 
     <div class="sidebar">
-        {% block user_panel %}
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="{% avatar_url size=90 %}" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="{% url 'sbam:profile' request.user.username %}" class="d-block">
-                        {% firstof request.user.get_full_name request.user.username %}
-                    </a>
-                </div>
-            </div>
-        {% endblock %}
-
         {% block form %}
         {% endblock %}
 

@@ -4,7 +4,7 @@
 
 {% block page_name %}
     <div class="row">
-        <strong><i class="fas fa-user-cog mr-2"></i> {% trans "Profile" %}:</strong>
+        <strong>{% trans "Profile" %}:</strong>
         <p class="ml-2">{{ user.get_full_name }}</p>
         {% if not user.is_active %}
             <p class="ml-2" style="color:indianred">{% trans "(disabled)" %}</p>
@@ -28,21 +28,17 @@
                             <img src="{% avatar_url size=128 %}" alt="User Avatar" class="img-size-100 mr-3 img-circle">
                         </div>
 
-                        <div class="display_name">
-                            {% include 'form-utils/input-group-field.html' with field=profile_form.display_name field_class='form-control' icon='fas fa-pencil-alt' %}
-                        </div>
-
-                        <p class="text-muted text-center">{{ profile_form.job_title.value }}</p>
+                        <p class="text-bold text-center" style="font-size: 20px">{{ user.get_full_name }}</p>
+                        <p class="text-muted text-center">{{ profile_form.job_title.value|default:'' }}</p>
 
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                                <b>{% trans "Groups" %}</b> <a class="float-right">{{ user.groups.count }}</a>
+                                <b>{% trans "department"|capfirst %}</b>
+                                <a class="float-right">{{ profile_form.department.value|default:'' }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>{% trans "Campaigns" %}</b> <a class="float-right"></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>{% trans "Results" %}</b> <a class="float-right"></a>
+                                <b>{% trans "company"|capfirst %}</b>
+                                <a class="float-right">{{ profile_form.company.value|default:'' }}</a>
                             </li>
                         </ul>
 
@@ -57,7 +53,7 @@
                         <!-- TODO add a graph with profile completeness as in mockup -->
 
                         {% if request.user.is_superuser or request.user == user %}
-                            <button class="btn btn-outline-info btn-sm" type="submit"
+                            <button id="save" class="btn btn-outline-info btn-sm" type="submit"
                                     title="{% trans "Save changes" %}">
                                 <i class="fas fa-user-edit mr-2"></i>{% trans "Save" %}
                             </button>
@@ -76,9 +72,9 @@
                                 {% endif %}
                             {% endif %}
 
-                            <button class="btn btn-outline-dark btn-sm float-right" type="reset"
-                                    title="{% trans "Cancel changes" %}">
-                                <i class="fas fa-times-circle mr-2"></i>{% trans "Cancel" %}
+                            <button id="reset" class="btn btn-outline-secondary btn-sm float-right" type="reset"
+                                    title="{% trans "Discard changes" %}">
+                                <i class="fas fa-times-circle mr-2"></i>{% trans "Reset" %}
                             </button>
                         {% endif %}
                     </div>
@@ -97,13 +93,16 @@
                                     {% trans "Personal Information" %}
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="user-profile-account-tab" data-toggle="pill"
-                                   href="#user-profile-account" role="tab"
-                                   aria-controls="user-profile-account"
-                                   aria-selected="false"><i class="fas fa-user-circle mr-2"></i> {% trans "Account" %}
-                                </a>
-                            </li>
+                            {% if request.user.is_superuser %}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="user-profile-account-tab" data-toggle="pill"
+                                       href="#user-profile-account" role="tab"
+                                       aria-controls="user-profile-account"
+                                       aria-selected="false"><i
+                                            class="fas fa-user-circle mr-2"></i> {% trans "Account" %}
+                                    </a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" id="user-profile-status-tab" data-toggle="pill"
                                    href="#user-profile-status" role="tab"
@@ -116,20 +115,6 @@
                                    href="#user-profile-evaluations" role="tab"
                                    aria-controls="user-profile-evaluations"
                                    aria-selected="false"><i class="fas fa-star mr-2"></i> {% trans "Evaluations" %}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="user-profile-messages-tab" data-toggle="pill"
-                                   href="#user-profile-messages" role="tab"
-                                   aria-controls="user-profile-messages"
-                                   aria-selected="false"><i class="fas fa-envelope mr-2"></i> {% trans "Messages" %}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="user-profile-tips-tab" data-toggle="pill"
-                                   href="#user-profile-tips" role="tab"
-                                   aria-controls="user-profile-tips"
-                                   aria-selected="false"><i class="fas fa-glasses mr-2"></i> {% trans "Tips" %}
                                 </a>
                             </li>
                         </ul>
@@ -162,6 +147,7 @@
                                                      aria-labelledby="contact_details" data-parent="#accordion">
                                                     <div class="card-body">
                                                         {% crispy profile_form profile_form.contact_details_helper %}
+                                                        {% crispy user_form user_form.email_helper %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -189,31 +175,13 @@
                             </div>
                             <div class="tab-pane fade" id="user-profile-account" role="tabpanel"
                                  aria-labelledby="user-profile-account-tab">
-                                <ul class="list-group list-group-unbordered user-block">
+                                <ul class="list-group list-group-unbordered">
                                     <li class="list-group-item p-0 border-0">
-                                        {% crispy user_form user_form.credentials_helper %}
+                                        {{ profile_form.is_manager|as_crispy_field:'bootstrap' }}
+                                        {{ user_form.is_superuser|as_crispy_field:'bootstrap' }}
                                     </li>
                                     <li class="list-group-item p-0 border-0">
                                         <div class="accordion" id="accordion" role="tablist">
-                                            <div class="card mb-2">
-                                                <div class="card-header" role="tab">
-                                                    <h5 class="mb-0">
-                                                        <a data-toggle="collapse" href="#privileges"
-                                                           aria-expanded="true" aria-controls="privileges">
-                                                            <i class="fas fa-tasks mr-2"></i>
-                                                            {% trans "Privileges" %}
-                                                            <i class="fas fa-angle-down float-right"></i>
-                                                        </a>
-                                                    </h5>
-                                                </div>
-                                                <div id="privileges" class="collapse" role="tabpanel"
-                                                     aria-labelledby="privileges" data-parent="#accordion">
-                                                    <div class="card-body">
-                                                        {{ profile_form.is_manager|as_crispy_field:'bootstrap' }}
-                                                        {{ user_form.is_superuser|as_crispy_field:'bootstrap' }}
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div class="card mb-2">
                                                 <div class="card-header" role="tab">
                                                     <h5 class="mb-0">
@@ -238,15 +206,15 @@
                             </div>
                             <div class="tab-pane fade" id="user-profile-status" role="tabpanel"
                                  aria-labelledby="user-profile-status-tab">
+                                <div class="callout callout-warning">
+                                    <p>{% trans "Status currently unavailable!" %}</p>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="user-profile-evaluations" role="tabpanel"
                                  aria-labelledby="user-profile-evaluations-tab">
-                            </div>
-                            <div class="tab-pane fade" id="user-profile-messages" role="tabpanel"
-                                 aria-labelledby="user-profile-messages-tab">
-                            </div>
-                            <div class="tab-pane fade" id="user-profile-tips" role="tabpanel"
-                                 aria-labelledby="user-profile-tips-tab">
+                                <div class="callout callout-warning">
+                                    <p>{% trans "Evaluations currently unavailable!" %}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -258,18 +226,6 @@
 
 {% block template_js %}
     <script>
-        /*
-        *  Adding a change password link for the owner of the
-        *  user profile.
-        */
-        {% if request.user == user %}
-            $('#div_id_password').append(
-                '<span>' +
-                '<a style = "font-size: 12px;" href = "{% url 'account_change_password' %}" >' +
-                '{% trans "Change Password" %} ?' +
-                '</a>' +
-                '</span>'
-            );
-        {% endif %}
+        $('#id_username').prop('readonly', true);
     </script>
 {% endblock %}

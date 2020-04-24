@@ -23,6 +23,9 @@ urlpatterns = [
     # authentication
     path('accounts/', include('allauth.urls')),
 
+    # internationalization
+    path('i18n/', include('django.conf.urls.i18n')),
+
     # main app
-    path('sbam/', include('sbam_app.urls')),
+    path('', include('sbam_app.urls')),
 ]

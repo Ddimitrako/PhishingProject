@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 import os
 
+from django.utils.translation import gettext_lazy as _
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -46,7 +48,7 @@ INSTALLED_APPS = [
     # apps
     'sbam_app',
 
-    #Tempus Dominus DateTimepicker
+    # Tempus Dominus DateTimepicker
     'tempus_dominus',
 ]
 
@@ -60,13 +62,14 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 
 LOGIN_URL = '/accounts/login'
-LOGIN_REDIRECT_URL = '/sbam/dashboard'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_URL = '/accounts/logout'
-USER_MANAGEMENT_URL = '/sbam/users'
+USER_MANAGEMENT_URL = '/users'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -122,9 +125,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_FORM_CLASS = 'sbam_app.forms.SignupForm'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -141,6 +144,13 @@ USE_TZ = True
 
 LOCALE_PATHS = [
     'sbam_app/locale',
+]
+
+LANGUAGES = [
+    ('el', _('Greek')),
+    ('en', _('English')),
+    ('it', _('Italian')),
+    ('ro', _('Romanian')),
 ]
 
 # Static files (CSS, JavaScript, Images)
@@ -167,6 +177,8 @@ PROJECT_EU_CONSENT = 'This project has received funding from the ' \
 TOOL_NAME = 'Security Culture Tool'
 TOOL_SHORT_NAME = 'SCT'
 
+CONTACT_EMAIL = 'eshield@epu.ntua.gr'
+
 SETTINGS_EXPORT = [
     'PROJECT_NAME',
     'PROJECT_URL',
@@ -175,8 +187,9 @@ SETTINGS_EXPORT = [
     'PROJECT_EU_CONSENT',
     'TOOL_NAME',
     'TOOL_SHORT_NAME',
+    'CONTACT_EMAIL'
 ]
 
-#Tempus Dominus Settings
+# Tempus Dominus Settings
 TEMPUS_DOMINUS_LOCALIZE = False
 TEMPUS_DOMINUS_INCLUDE_ASSETS = False

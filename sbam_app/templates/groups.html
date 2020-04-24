@@ -3,7 +3,7 @@
 {% load i18n static %}
 
 {% block page_name %}
-    <strong><i class="fas fa-users mr-2"></i> {% trans "Groups" %}</strong>
+    <strong>{% trans "Groups" %}</strong>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -17,7 +17,6 @@
             <th></th>
             <th><i class="fas fa-users" title="{% trans "Status" %}"></i></th>
             <th>{% trans "name"|capfirst %}</th>
-            <th>{% trans "display name"|capfirst %}</th>
             <th>{% trans "description"|capfirst %}</th>
             <th>{% trans "members"|capfirst %}</th>
             <th></th>
@@ -44,7 +43,6 @@
                         {{ group.name }}
                     </a>
                 </td>
-                <td>{{ group.groupprofile.display_name|default:'' }}</td>
                 <td>{{ group.groupprofile.description|default:'' }}</td>
                 <td>
                     {{ group.user_set.count }}
@@ -54,9 +52,14 @@
                 </td>
                 <td>
                     <label>{% trans "members"|capfirst %}:</label>
-                    {% for user in group.user_set.all %}
+                    {% for user in group.user_set.all|slice:":10" %}
                         <li>{{ user.get_full_name }}</li>
                     {% endfor %}
+                    {% if group.user_set.all|length > 10 %}
+                        <a href="{% url 'sbam:group' group.name %}">
+                            ... more
+                        </a>
+                    {% endif %}
                 </td>
                 <td>{{ group.groupprofile.creation_timestamp|default:'' }}</td>
                 <td>{{ group.groupprofile.creator.get_full_name|default:'' }}</td>
@@ -68,6 +71,6 @@
 
 {% block template_js %}
     <script>
-        datatable('#table', [0, 1, 2], [], [6], true);
+        datatable('#table', [0, 1, 2], [], [5], true);
     </script>
 {% endblock %}
