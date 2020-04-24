@@ -35,7 +35,7 @@ class SignupForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model = models.User
-        fields = ('first_name', 'last_name', 'email', 'username')
+        fields = ('first_name', 'last_name', 'email', 'username', 'is_superuser', 'groups')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

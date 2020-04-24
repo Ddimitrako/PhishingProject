@@ -93,6 +93,16 @@
                                     {% trans "Personal Information" %}
                                 </a>
                             </li>
+                            {% if request.user.is_superuser %}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="user-profile-account-tab" data-toggle="pill"
+                                       href="#user-profile-account" role="tab"
+                                       aria-controls="user-profile-account"
+                                       aria-selected="false"><i
+                                            class="fas fa-user-circle mr-2"></i> {% trans "Account" %}
+                                    </a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" id="user-profile-status-tab" data-toggle="pill"
                                    href="#user-profile-status" role="tab"
@@ -156,6 +166,37 @@
                                                      aria-labelledby="organisational_info" data-parent="#accordion">
                                                     <div class="card-body">
                                                         {% crispy profile_form profile_form.organisational_info_helper %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="user-profile-account" role="tabpanel"
+                                 aria-labelledby="user-profile-account-tab">
+                                <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item p-0 border-0">
+                                        {{ profile_form.is_manager|as_crispy_field:'bootstrap' }}
+                                        {{ user_form.is_superuser|as_crispy_field:'bootstrap' }}
+                                    </li>
+                                    <li class="list-group-item p-0 border-0">
+                                        <div class="accordion" id="accordion" role="tablist">
+                                            <div class="card mb-2">
+                                                <div class="card-header" role="tab">
+                                                    <h5 class="mb-0">
+                                                        <a data-toggle="collapse" href="#group-membership"
+                                                           aria-expanded="true" aria-controls="group-membership">
+                                                            <i class="fas fa-users mr-2"></i>
+                                                            {% trans "Group Membership" %}
+                                                            <i class="fas fa-angle-down float-right"></i>
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                                <div id="group-membership" class="collapse" role="tabpanel"
+                                                     aria-labelledby="group-membership" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        {{ user_form.groups|add_class:"duallistbox" }}
                                                     </div>
                                                 </div>
                                             </div>
