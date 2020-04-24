@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('sbam_app', '0012_auto_20200407_1943'),
+        ('sbam_app', '0013_questiontype_takes_multiple'),
     ]
 
     operations = [
