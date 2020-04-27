@@ -189,7 +189,7 @@ $(document).ready(function(){
                 type: "POST",
                 headers: { "X-CSRFToken": csrftoken },
                 dataType: 'json',
-                url: '/sbam/survey_submit/',
+                url: '/survey_submit/',
                 data: survey_results,
                 success: function(result){
                     if(result['result'] === 'Success') {
