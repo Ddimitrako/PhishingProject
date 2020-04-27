@@ -35,7 +35,7 @@ class SignupForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model = models.User
-        fields = ('first_name', 'last_name', 'email', 'username', 'password', 'is_superuser', 'groups')
+        fields = ('first_name', 'last_name', 'email', 'username', 'is_superuser', 'groups')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -44,29 +44,21 @@ class UserForm(forms.ModelForm):
         self.fields['last_name'].required = True
         self.fields['email'].required = True
 
-        self.fields['password'].widget = forms.PasswordInput(render_value=True)
-        self.fields['password'].disabled = True
-        self.fields['password'].initial = 'dummy'
-
         self.general_info_helper = FormHelper()
         self.general_info_helper.form_tag = False;
         self.general_info_helper.layout = Layout(
             Row(
                 Column('first_name', css_class='col-md-3'),
                 Column('last_name', css_class='col-md-4'),
-                Column(AppendedText('email', mark_safe('<i class="fas fa-envelope"></i>')), css_class='col-md-5')
+                Column('username', css_class='col-md-5')
             )
         )
 
-        self.credentials_helper = FormHelper()
-        self.credentials_helper.form_tag = False;
-        self.credentials_helper.layout = Layout(
+        self.email_helper = FormHelper()
+        self.email_helper.form_tag = False;
+        self.email_helper.layout = Layout(
             Row(
-                Column(AppendedText('username', mark_safe('<i class="fas fa-user"></i>')), attrs='',
-                       css_class='col-md-6'),
-                Column(AppendedText('password', mark_safe('<i class="fas fa-lock"></i>'), id='password'),
-                       css_class='col-md-6'
-                       )
+                Column(AppendedText('email', mark_safe('<i class="fas fa-envelope"></i>')), css_class='col-md-6')
             )
         )
 
@@ -158,7 +150,7 @@ class GroupForm(forms.ModelForm):
 class GroupProfileForm(forms.ModelForm):
     class Meta:
         model = models.GroupProfile
-        fields = ('display_name', 'description', 'notes')
+        fields = ('description', 'notes')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

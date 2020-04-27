@@ -6,8 +6,7 @@ app_name = 'sbam'
 
 urlpatterns = [
     # Dashboard
-
-    path('dashboard/', dashboardView, name='dashboard'),
+    path('', dashboardView, name='dashboard'),
 
     # Assignments
     path('assignments/<assignment_id>/', assignmentCompletion, name='assignments'),

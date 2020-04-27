@@ -159,7 +159,7 @@ def create_or_update_user(request, template, user=None, profile=None, creating=T
             request,
             user,
             [user_form, profile_form],
-            [(user_form, 'is_superuser'), (profile_form, 'is_manager')]
+            []
         )
 
     return render(request, template, {

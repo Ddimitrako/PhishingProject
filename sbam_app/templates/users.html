@@ -3,7 +3,7 @@
 {% load i18n static %}
 
 {% block page_name %}
-    <strong><i class="fas fa-user mr-2"></i> {% trans "Users" %}</strong>
+    <strong>{% trans "Users" %}</strong>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -15,15 +15,12 @@
     <thead>
         <tr>
             <th></th>
-            <th><i class="fas fa-user" title="{% trans "Status" %}"></i></th>
+            <th>{% trans "active"|capfirst %}</th>
             <th><i class="fas fa-list-ul" title="{% trans "Roles" %}"></i></th>
             <th>{% trans "Full Name" %}</th>
-            <th>{% trans "display name"|capfirst %}</th>
             <th>{% trans "first name"|capfirst %}</th>
             <th>{% trans "last name"|capfirst %}</th>
             <th>{% trans "email"|capfirst %}</th>
-            <th>{% trans "Groups" %}</th>
-            <th></th>
             <th>{% trans "employee ID"|capfirst %}</th>
             <th>{% trans "birth date"|capfirst %}</th>
             <th>{% trans "gender"|capfirst %}</th>
@@ -48,9 +45,7 @@
                     {% endif %}
                 </td>
                 <td>
-                    {% if user.is_superuser %}
-                        <i class="fas fa-user-ninja mr-2" style="color: darkblue" title="{% trans "superuser"|capfirst %}"></i>
-                    {% elif user.userprofile.is_manager %}
+                    {% if user.userprofile.is_manager %}
                         <i class="fas fa-user-tie mr-2" style="color: darkblue" title="{% trans "manager"|capfirst %}"></i>
                     {% endif %}
                 </td>
@@ -59,22 +54,9 @@
                         {{ user.get_full_name }}
                     </a>
                 </td>
-                <td>{{ user.userprofile.display_name|default:'' }}</td>
                 <td>{{ user.first_name }}</td>
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.email }}</td>
-                <td>
-                    {{ user.groups.count }}
-                    {% if user.groups.count > 0 %}
-                        <i class="fas fa-plus-circle ml-2" style="color: darkgreen" title="{% trans "Show Groups" %}"></i>
-                    {% endif %}
-                </td>
-                <td>
-                    <label>{% trans "Groups" %}:</label>
-                    {% for group in user.groups.all %}
-                        <li>{{ group }}</li>
-                    {% endfor %}
-                </td>
                 <td>{{ user.userprofile.employee_id|default:'' }}</td>
                 <td>{{ user.userprofile.birth_date|default:'' }}</td>
                 <td>{{ user.userprofile.get_gender_display|default:'' }}</td>
@@ -91,6 +73,6 @@
 
 {% block template_js %}
     <script>
-        datatable('#table', [0, 1, 2, 3], [], [9], true);
+        datatable('#table', [0, 1, 2, 3], [], [], true);
     </script>
 {% endblock %}
