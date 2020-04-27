@@ -24,20 +24,9 @@ $(document).ready(function(){
             else
                 $('.sel-quest-par').show();
 
-
-            var parent_dimension = '';
             for(var i=0; i < len; i++){
                 if (this.selectedNodes[i].id.includes('quest'))
-                    const table_row = "<tr><th class='sel_index'>"+i+"</th><td style='width: 70%'>"+this.selectedNodes[i].text+"</td>";
-
-                // if (this.selectedNodes[i].id.includes('quest')) {
-                //     if(this.selectedNodes[i].attributes.level === 0)
-                //         $("#selected_domains tbody").append(table_row + '<td>' + parent_dimension + '</td><td style=\'width: 30%\'>Indiv</td></tr>');
-                //     else
-                //         $("#selected_domains tbody").append(table_row + '<td>' + parent_dimension + '</td><td>Org</td></tr>');
-                // }
-                // else
-                //     parent_dimension = this.selectedNodes[i].text;
+                    $("#selected_domains tbody").append("<tr><th class='sel_index'>"+i+"</th><td style='width: 80%'>"+this.selectedNodes[i].text+"</td>");
             }
         },
     });
@@ -173,7 +162,7 @@ $(document).ready(function(){
             const domain_len = questTree.selectedNodes.length;
             const domains = [];
             for(var i=0; i < domain_len; i++){
-                if (questTree.selectedNodes[i].id.includes('domain')) {
+                if (questTree.selectedNodes[i].id.includes('quest')) {
                     // console.log(domainsTree.selectedNodes[i]);
                     domains.push(questTree.selectedNodes[i]);
                 }
@@ -199,12 +188,12 @@ $(document).ready(function(){
 
             ajax_data["start_date"] = start_date;
             ajax_data["end_date"] = end_date;
-            ajax_data["domains"] = JSON.stringify(domains);
+            ajax_data["quests"] = JSON.stringify(domains);
             ajax_data["users"] =  JSON.stringify(users);
             ajax_data["tests"] =  JSON.stringify(tests);
 
             console.log('Sto Ajax call');
-            // console.log(data);
+            console.log(ajax_data);
             $.ajax({
                 "type": "POST",
                 headers: { "X-CSRFToken": csrftoken },

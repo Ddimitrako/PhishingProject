@@ -54,16 +54,16 @@ def campaignCreation(request):
 
         current_user = request.user
         users = json.loads(request.POST['users'])
-        domains = json.loads(request.POST['domains'])
+        questionnaires = json.loads(request.POST['quests'])
         tests = json.loads(request.POST['tests'])
         start_date = request.POST['start_date']
         end_date = request.POST['end_date']
-
+        # print(questionnaires)
         new_campaign = Campaign(start_date=start_date, end_date=end_date, owner=current_user, status=1)
         # try:
         new_campaign.save()
         # except V
-        print(new_campaign.id)
+        # print(new_campaign.id)
 
         # Getting the selected users to ass
         sel_users = set()
@@ -80,26 +80,22 @@ def campaignCreation(request):
 
         # print(sel_users)
 
-        for dom in domains:
-            domain_id = int(dom['id'][dom['id'].find('_')+1:len(dom['id'])])
-            questionnaire = Questionnaire(domain_id=domain_id, is_active=True)
-            questionnaire.save()
+        for quest in questionnaires:
+            quest_id = int(quest['id'][quest['id'].find('_')+1:len(quest['id'])])
 
             # type -> 1 = Test, 0 -> Questionnaire
             # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
             for sel_user in sel_users:
-                new_assignment = QuestionnaireAssignment(status=0, campaign_id=new_campaign.id, user=sel_user, questionnaire=questionnaire)
+                new_assignment = QuestionnaireAssignment(status=0, campaign_id=new_campaign.id, user=sel_user, questionnaire_id=quest_id)
                 new_assignment.save()
 
         for test in tests:
             test_id = int(test['id'][test['id'].find('_')+1:len(test['id'])])
-            assigned_test = Test(domain_id=test_id, is_active=True)
-            assigned_test.save()
 
             # type -> 1 = Test, 0 -> Questionnaire
             # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
             for sel_user in sel_users:
-                new_assignment = TestAssignment(status=0, campaign_id=new_campaign.id, user=sel_user, test=assigned_test)
+                new_assignment = TestAssignment(status=0, campaign_id=new_campaign.id, user=sel_user, test=test_id)
                 new_assignment.save()
 
         return JsonResponse({'result': 'Success'})
@@ -366,7 +362,7 @@ def disable_group(request, name):
 
 def get_questionnaire(user, questionnaire_id):
     quest = models.QuestionnaireAssignment.objects.get(user=user, pk=questionnaire_id)
-    questions_dict = {'title': quest.questionnaire.domain.title, 'id': quest.pk}
+    questions_dict = {'title': quest.questionnaire.title, 'id': quest.pk}
     questions = models.Question.objects.filter(questionnaire=quest.questionnaire).values()
     # print(questions)
     for question in questions:
