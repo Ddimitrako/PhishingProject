@@ -88,7 +88,7 @@ def campaignCreation(request):
             # type -> 1 = Test, 0 -> Questionnaire
             # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
             for sel_user in sel_users:
-                new_assignment = QuestionnaireAssignment(status=0, type=0, campaign_id=new_campaign.id, user=sel_user, questionnaire=questionnaire)
+                new_assignment = QuestionnaireAssignment(status=0, campaign_id=new_campaign.id, user=sel_user, questionnaire=questionnaire)
                 new_assignment.save()
 
         for test in tests:
@@ -99,7 +99,7 @@ def campaignCreation(request):
             # type -> 1 = Test, 0 -> Questionnaire
             # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
             for sel_user in sel_users:
-                new_assignment = TestAssignment(status=0, type=1, campaign_id=new_campaign.id, user=sel_user, test=assigned_test)
+                new_assignment = TestAssignment(status=0, campaign_id=new_campaign.id, user=sel_user, test=assigned_test)
                 new_assignment.save()
 
         return JsonResponse({'result': 'Success'})

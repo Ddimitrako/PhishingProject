@@ -1,10 +1,10 @@
 $(document).ready(function(){
-    console.log(domainstreeData);
+    console.log(questtreeData);
     console.log(usertreeData);
     console.log(testTreeData);
 
-    const domainsTree = new Tree('#dim_tree_container', {
-        data: domainstreeData,
+    const questTree = new Tree('#dim_tree_container', {
+        data: questtreeData,
         closeDepth: 1,
 
         onChange: function() {
@@ -17,8 +17,6 @@ $(document).ready(function(){
                     "    <tr>\n" +
                     "      <th class='sel_index'>#</th>\n" +
                     "      <th class='sel_index'>Name</th>\n" +
-                    "      <th class='sel_index'>Dimension</th>\n" +
-                    "      <th class='sel_index'>Type</th>\n" +
                     "    </tr>\n" +
                     "  </thead>");
                 $('.sel-quest-par').hide();
@@ -29,16 +27,17 @@ $(document).ready(function(){
 
             var parent_dimension = '';
             for(var i=0; i < len; i++){
-                const table_row = "<tr><th class='sel_index'>"+i+"</th><td style='width: 70%'>"+this.selectedNodes[i].text+"</td>";
+                if (this.selectedNodes[i].id.includes('quest'))
+                    const table_row = "<tr><th class='sel_index'>"+i+"</th><td style='width: 70%'>"+this.selectedNodes[i].text+"</td>";
 
-                if (this.selectedNodes[i].id.includes('domain')) {
-                    if(this.selectedNodes[i].attributes.level === 0)
-                        $("#selected_domains tbody").append(table_row + '<td>' + parent_dimension + '</td><td style=\'width: 30%\'>Indiv</td></tr>');
-                    else
-                        $("#selected_domains tbody").append(table_row + '<td>' + parent_dimension + '</td><td>Org</td></tr>');
-                }
-                else
-                    parent_dimension = this.selectedNodes[i].text;
+                // if (this.selectedNodes[i].id.includes('quest')) {
+                //     if(this.selectedNodes[i].attributes.level === 0)
+                //         $("#selected_domains tbody").append(table_row + '<td>' + parent_dimension + '</td><td style=\'width: 30%\'>Indiv</td></tr>');
+                //     else
+                //         $("#selected_domains tbody").append(table_row + '<td>' + parent_dimension + '</td><td>Org</td></tr>');
+                // }
+                // else
+                //     parent_dimension = this.selectedNodes[i].text;
             }
         },
     });
@@ -151,7 +150,7 @@ $(document).ready(function(){
 
     //    Function to validate that a questionnaire or a test is selected
     function check_selected_items(){
-        if(domainsTree.selectedNodes.length === 0 ){            //----> Thumisou oti prepei na baleis kai to if kai gia ta test
+        if(questTree.selectedNodes.length === 0 ){            //----> Thumisou oti prepei na baleis kai to if kai gia ta test
             alert('Please select a Questionnaire or a Test');
             return 0;
         }
@@ -171,12 +170,12 @@ $(document).ready(function(){
             const end_date = $('#id_end_date').val();
             const ajax_data = {};
             var csrftoken = getCookie('csrftoken');
-            const domain_len = domainsTree.selectedNodes.length;
+            const domain_len = questTree.selectedNodes.length;
             const domains = [];
             for(var i=0; i < domain_len; i++){
-                if (domainsTree.selectedNodes[i].id.includes('domain')) {
+                if (questTree.selectedNodes[i].id.includes('domain')) {
                     // console.log(domainsTree.selectedNodes[i]);
-                    domains.push(domainsTree.selectedNodes[i]);
+                    domains.push(questTree.selectedNodes[i]);
                 }
             }
 

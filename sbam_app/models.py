@@ -55,7 +55,7 @@ class Campaign(Model):
         return self.owner.get_full_name() + ' ' + self.start_date + ' - ' + self.end_date
 
     def ends_within_week(self):
-        return (self.end_date - date.today()).days <= 15
+        return (self.end_date - date.today()).days <= 7
 
 
 class Assignment(Model):

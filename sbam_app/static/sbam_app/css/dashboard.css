@@ -27,6 +27,7 @@
 
 .assignmets .tab-content{
     height: 25vh;
+    overflow: auto;
 }
 
 .assignmets .tab-content .list-group-item{

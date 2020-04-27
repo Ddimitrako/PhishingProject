@@ -192,10 +192,9 @@ class CampaignCreationForm(forms.Form):
     )
 
 
-
 def get_campaign_form_trees():
     dimensions_dict = list()
-    dimensions = models.Dimension.objects.all()
+    dimensions = models.Dimension.objects.filter(level=0)
     for dim in dimensions:
         dim_dict = {
           "id": 'dimension_' + str(dim.pk),
@@ -214,8 +213,16 @@ def get_campaign_form_trees():
                 "children": [],
                 "check": "False"
             }
+            for quest in dom.questionnaire_set.all():
+                quest_dict = {
+                    'id': 'quest_' + str(quest.pk),
+                    "text": quest.title,
+                    "attributes": {},
+                    "children": [],
+                    "check": "False"
+                }
+                dom_dict['children'].append(quest_dict)
             dim_dict['children'].append(dom_dict)
-
         dimensions_dict.append(dim_dict)
 
     users = models.User.objects.all()
