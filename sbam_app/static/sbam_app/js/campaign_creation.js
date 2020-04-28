@@ -180,7 +180,6 @@ $(document).ready(function(){
                 const test_len = testsTree.selectedNodes.length;
 
                 for (var i = 0; i < test_len; i++) {
-                    // if (!userTree.selectedNodes[i].id.includes('users'))
                     tests.push(testsTree.selectedNodes[i]);
                 }
             }
@@ -192,18 +191,21 @@ $(document).ready(function(){
             ajax_data["users"] =  JSON.stringify(users);
             ajax_data["tests"] =  JSON.stringify(tests);
 
-            console.log('Sto Ajax call');
-            console.log(ajax_data);
+            // console.log('Sto Ajax call');
+            // console.log(ajax_data);
             $.ajax({
                 "type": "POST",
                 headers: { "X-CSRFToken": csrftoken },
                 dataType: 'json',
                 // 'url': 'create_campaign/',
                 'data': ajax_data,
-                success: function(result){
-                    console.log(result);
-                    if(result['result'] === 'Success')
-                        $('#campaignSuccessModal').modal('toggle');
+                success: function(response){
+                    console.log(response);
+                    $('#campaignSuccessModal').modal('toggle');
+                },
+                error : function(response){
+                    console.log(response);
+                    $('#campaignErrorModal').modal('toggle');
                 }
             })
         }
