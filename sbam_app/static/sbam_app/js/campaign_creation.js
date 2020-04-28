@@ -119,19 +119,23 @@ $(document).ready(function(){
         return cookieValue;
     }
 
-    $('#id_start_date').datetimepicker('minDate', [''+new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new  Date().getDate()+'']);
-    $('#id_end_date').datetimepicker('minDate', [''+new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new  Date().getDate()+'']);
+    $('#id_start_date').datetimepicker('minDate', [''+new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()+'']);
+    $('#id_end_date').datetimepicker('minDate', [''+new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()+'']);
 
     //    Function to check if the dates are valid -> end_date > start_date
     function check_campaign_dates(){
         const start_date = $('#id_start_date').val();
         const end_date = $('#id_end_date').val();
-        if(end_date === '' || start_date === ''){
-            alert("Please fill the date inputs");
+        if(start_date === ''){
+            alert("Please enter your campaign start date");
+            return 0;
+        }
+        if(end_date === ''){
+            alert("Please enter your campaign end date");
             return 0;
         }
         if(end_date < start_date) {
-            alert("Incorrect date input");
+            alert("End date should be greater than the start date of your campaign");
             return 0;
         }
         return 1;

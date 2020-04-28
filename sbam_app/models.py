@@ -55,7 +55,7 @@ class Campaign(Model):
         return self.owner.get_full_name() + ' ' + self.start_date + ' - ' + self.end_date
 
     def ends_within_week(self):
-        return (self.end_date - date.today()).days <= 100
+        return (self.end_date - date.today()).days <= 7
 
 
 class Assignment(Model):
@@ -89,7 +89,7 @@ class QuestionnaireAssignment(Assignment):
     questionnaire = ForeignKey(Questionnaire, on_delete=CASCADE)
 
     def get_answer_time(self):
-        return self.assignmentresult_set.get(assignment=self).answer_time.date()
+        return self.assignmentresult_set.get(assignment=self).answer_time
 
 
 class QuestionType(Model):
@@ -159,7 +159,7 @@ class TestAssignment(Assignment):
 
 class AssignmentResult(Model):
     assignment = ForeignKey(Assignment, on_delete=CASCADE)
-    answer_time = DateTimeField()
+    answer_time = DateField()
     score = FloatField()
 
 # User Management Model

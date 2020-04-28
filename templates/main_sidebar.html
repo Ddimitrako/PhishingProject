@@ -61,13 +61,14 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            <li class="nav-item">
-                                <a href="{% url 'sbam:evaluations' %}" class="nav-link">
-                                    <i class="nav-icon fas fa-edit"></i>
-                                    <p>{% trans "Evaluations" %}</p>
-                                </a>
-                            </li>
+                            {% if request.user.userprofile.is_manager %}
+                                <li class="nav-item">
+                                    <a href="{% url 'sbam:evaluations' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-edit"></i>
+                                        <p>{% trans "Evaluations" %}</p>
+                                    </a>
+                                </li>
+                            {% endif %}
                         {% endblock nav_links %}
                     {% endblock nav_links_outer %}
                 </ul>

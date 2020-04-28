@@ -1,52 +1,61 @@
 [
   {
-    "model": "sbam_app.Dimension",
+    "model": "sbam_app.dimension",
     "pk": 1,
     "fields": {
       "title": "Assets",
-      "description": "This dimension includes the designment, development, documentation and implementation of security policies and procedures that aim to protect an organisation’s assets (including people, buildings, machines, systems and information assets) by enforcing several levels of confidentiality, availability, and integrity controls.",
+      "description": "This dimension refers to organization's assets (including people, buildings, machines, systems and information assets) and includes policies that enforce several levels of confidentiality, availability, and integrity controls.",
       "level": 0
     }
   },
   {
-    "model": "sbam_app.Dimension",
+    "model": "sbam_app.dimension",
     "pk": 2,
     "fields": {
       "title": "Continuity",
-      "description": "This dimension includes the planning, development, documentation and implementation of security policies and procedures that aim to ensure operations, services and production continuity for an organisation at predefined levels while safeguarding the reputation and interests of key stakeholders in cases of disruptive incidents.",
+      "description": "This dimension is meant to ensure operations, services and production continuity for an organization at predefined levels while safeguarding the reputation and interests of key stakeholders in cases of disruptive incidents.",
       "level": 0
     }
   },
   {
-    "model": "sbam_app.Dimension",
+    "model": "sbam_app.dimension",
     "pk": 3,
     "fields": {
-      "title": "Access and Interactions",
-      "description": "This dimension includes the designment, development, documentation and implementation of business processes, policies and procedures that aim to ensure appropriate access to resources across the organisation while clarifying different roles and permissions. In addition, it delimits any interactions the organization has with third-party factors, such as suppliers, customers, authorities, etc.",
+      "title": "Access and Trust",
+      "description": "This dimension focuses on appropriate access to resources across the organization while clarifying different roles and permissions. In addition, it delimits any interactions the organization has with third-party factors, such as suppliers, customers, authorities, and so on.",
       "level": 0
     }
   },
   {
-    "model": "sbam_app.Dimension",
+    "model": "sbam_app.dimension",
     "pk": 4,
     "fields": {
       "title": "Operations",
-      "description": "This dimension refers to the administration of business practices to create the highest level of efficiency possible within an organisation while taking into account the security aspects that safeguard its final results.",
+      "description": "This dimension refers to the administration of business practices to create the highest level of efficiency possible within an organization while taking into account the security aspects that safeguard its final results.",
       "level": 0
     }
   },
   {
-    "model": "sbam_app.Dimension",
+    "model": "sbam_app.dimension",
     "pk": 5,
     "fields": {
-      "title": "Security",
-      "description": "",
+      "title": "Defense",
+      "description": "This dimension focuses on the foresight to have planned, acquired and properly configured all technical assets necessary for the improvement and efficient operation of its information security.",
       "level": 0
     }
   },
   {
-    "model": "sbam_app.Dimension",
+    "model": "sbam_app.dimension",
     "pk": 6,
+    "fields": {
+      "title": "Security Governance",
+      "description": "This dimension refers to the measures taken to effectively plan, manage and improve its information security.",
+      "level": 0
+    }
+  },
+  {
+    "model": "sbam_app.dimension",
+    "pk": 7,
     "fields": {
       "title": "Attitude",
       "description": "This dimension refers to the feelings and beliefs employees have toward security protocols and issues.",
@@ -54,39 +63,498 @@
     }
   },
   {
-    "model": "sbam_app.Dimension",
-    "pk": 7,
-    "fields": {
-      "title": "Awareness",
-      "description": "This dimension refers to the employees’ understanding, knowledge and awareness of security issues and activities.",
-      "level": 1
-    }
-  },
-  {
-    "model": "sbam_app.Dimension",
+    "model": "sbam_app.dimension",
     "pk": 8,
     "fields": {
-      "title": "Behaviour",
-      "description": "This dimension refers to the actions and activities of employees that have direct or indirect impact on the security of the organization.",
+      "title": "Awareness",
+      "description": "This dimension examines employees' understanding, knowledge and awareness of security issues and activities.",
       "level": 1
     }
   },
   {
-    "model": "sbam_app.Dimension",
+    "model": "sbam_app.dimension",
     "pk": 9,
     "fields": {
-      "title": "Competency",
-      "description": "This dimension refers to the employees’ abilities, skills, knowledge and expertise that enable them to conform with the security policies and procedures of the organisation.",
+      "title": "Behaviour",
+      "description": "This dimension assists in studying the security-conscious behaviour exhibited on a day-to-day basis in an individual's workplace.",
       "level": 1
     }
   },
   {
-    "model": "sbam_app.Domain",
+    "model": "sbam_app.dimension",
+    "pk": 10,
+    "fields": {
+      "title": "Competency",
+      "description": "This dimension refers to evaluating the employees' abilities, skills, knowledge and expertise that enable them to conform with the security policies and procedures of the organization.",
+      "level": 1
+    }
+  },
+  {
+    "model": "sbam_app.domain",
     "pk": 1,
     "fields": {
       "dimension": 1,
       "title": "Application Software Security",
-      "description": "Manage the security life cycle of all in-house developed and acquired software in order to prevent, detect, and correct security weaknesses."
+      "description": ""
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 2,
+    "fields": {
+      "dimension": 1,
+      "title": "Data Security and Privacy",
+      "description": ""
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 3,
+    "fields": {
+      "dimension": 1,
+      "title": "Hardware Assets Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 4,
+    "fields": {
+      "dimension": 1,
+      "title": "Hardware Configuration Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 5,
+    "fields": {
+      "dimension": 1,
+      "title": "Information Resources Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 6,
+    "fields": {
+      "dimension": 1,
+      "title": "Network Configuration Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 7,
+    "fields": {
+      "dimension": 1,
+      "title": "Network Infrastructure Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 8,
+    "fields": {
+      "dimension": 1,
+      "title": "Software Assets Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 9,
+    "fields": {
+      "dimension": 2,
+      "title": "Backup Mechanisms",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 10,
+    "fields": {
+      "dimension": 2,
+      "title": "Business Continuity & Disaster Recovery",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 11,
+    "fields": {
+      "dimension": 2,
+      "title": "Capacity Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 12,
+    "fields": {
+      "dimension": 2,
+      "title": "Change Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 13,
+    "fields": {
+      "dimension": 2,
+      "title": "Continuous Vulnerability Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 14,
+    "fields": {
+      "dimension": 3,
+      "title": "Access Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 15,
+    "fields": {
+      "dimension": 3,
+      "title": "Account Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 16,
+    "fields": {
+      "dimension": 3,
+      "title": "Communication",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 17,
+    "fields": {
+      "dimension": 3,
+      "title": "External Environment Connections",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 18,
+    "fields": {
+      "dimension": 3,
+      "title": "Password Robustness and Exposure",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 19,
+    "fields": {
+      "dimension": 3,
+      "title": "Privileged Account Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 20,
+    "fields": {
+      "dimension": 3,
+      "title": "Role Segregation",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 21,
+    "fields": {
+      "dimension": 3,
+      "title": "Third-Party Relationships",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 22,
+    "fields": {
+      "dimension": 3,
+      "title": "Wireless Access Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 23,
+    "fields": {
+      "dimension": 4,
+      "title": "Compliance Review",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 24,
+    "fields": {
+      "dimension": 4,
+      "title": "Documentation Fulfilness",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 25,
+    "fields": {
+      "dimension": 4,
+      "title": "Efficient Distinction of Development, Testing and ",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 26,
+    "fields": {
+      "dimension": 4,
+      "title": "Operating Procedures",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 27,
+    "fields": {
+      "dimension": 4,
+      "title": "Organizational Culture and Top Management Support",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 28,
+    "fields": {
+      "dimension": 4,
+      "title": "Risk Assessment",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 29,
+    "fields": {
+      "dimension": 5,
+      "title": "Boundary Defense",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 30,
+    "fields": {
+      "dimension": 5,
+      "title": "Cryptography",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 31,
+    "fields": {
+      "dimension": 5,
+      "title": "Email and Web Browser Resilience",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 32,
+    "fields": {
+      "dimension": 5,
+      "title": "Information Security Policy and Compliance",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 33,
+    "fields": {
+      "dimension": 5,
+      "title": "Malware Defense",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 34,
+    "fields": {
+      "dimension": 5,
+      "title": "Security Awareness and Training Program",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 35,
+    "fields": {
+      "dimension": 6,
+      "title": "Audit Logs Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 36,
+    "fields": {
+      "dimension": 6,
+      "title": "Incident Response and Management",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 37,
+    "fields": {
+      "dimension": 6,
+      "title": "Penetration Tests and Red Team Exercises",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 38,
+    "fields": {
+      "dimension": 6,
+      "title": "Personnel Security",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 39,
+    "fields": {
+      "dimension": 6,
+      "title": "Physical Safety and Security",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 40,
+    "fields": {
+      "dimension": 6,
+      "title": "Reporting Mechanisms",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 41,
+    "fields": {
+      "dimension": 6,
+      "title": "Security Management Maturity",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 42,
+    "fields": {
+      "dimension": 7,
+      "title": "Employee Climate",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 43,
+    "fields": {
+      "dimension": 7,
+      "title": "Employee Profiling",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 44,
+    "fields": {
+      "dimension": 7,
+      "title": "Employee Satisfaction",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 45,
+    "fields": {
+      "dimension": 8,
+      "title": "Policies and Procedures Awareness",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 46,
+    "fields": {
+      "dimension": 8,
+      "title": "Roles and Responsibilities Awareness",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 47,
+    "fields": {
+      "dimension": 9,
+      "title": "Policies and Procedures Compliance",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 48,
+    "fields": {
+      "dimension": 9,
+      "title": "Security Agent Persona",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 49,
+    "fields": {
+      "dimension": 9,
+      "title": "Security Behaviour",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 50,
+    "fields": {
+      "dimension": 10,
+      "title": "Employee Competency",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 51,
+    "fields": {
+      "dimension": 10,
+      "title": "Security Skills Evaluation",
+      "description": null
+    }
+  },
+  {
+    "model": "sbam_app.domain",
+    "pk": 52,
+    "fields": {
+      "dimension": 10,
+      "title": "Training Completion and Scoring",
+      "description": null
     }
   }
 ]
