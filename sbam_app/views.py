@@ -2,7 +2,6 @@ from allauth.account.utils import send_email_confirmation
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group
 from django.shortcuts import *
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import *
@@ -108,11 +107,6 @@ def campaignCreation(request):
         return render(request, 'campaign_creation.html', 
                         {'campaign_form': CampaignCreationForm(),
                          'campaign_form_trees': campaign_form_trees})
-
-
-@login_required
-def user_profile(request, username):
-    user = User.objects.get(username=username)
 
 
 def disable_form(form):
