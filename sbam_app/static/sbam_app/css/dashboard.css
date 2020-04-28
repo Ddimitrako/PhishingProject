@@ -1,8 +1,6 @@
 .alert-warning{
-  margin-bottom: 3px;
-  height: 30px;
-  line-height:30px;
-  padding:0px 15px;
+    padding: .25rem;
+    margin-bottom: .35rem;
 }
 
 .assignmets{
@@ -14,7 +12,7 @@
 
 .active-assignments{
     max-height: 35vh;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 .list-group-item{
@@ -27,6 +25,7 @@
 
 .assignmets .tab-content{
     height: 25vh;
+    overflow: auto;
 }
 
 .assignmets .tab-content .list-group-item{

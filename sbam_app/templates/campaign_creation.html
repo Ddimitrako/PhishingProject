@@ -39,7 +39,9 @@
                                     <div class="labels">
                                         <label>Tests</label>
                                     </div>
-                                    <div class="tree_container" id="tests_tree_container"></div>
+                                    <div class="tree_container" id="tests_tree_container">
+                                        <p class="tests_avail">No tests available currently</p>
+                                    </div>
                                 </div>
                                 <div class="form-group col col-md-4 users">
                                     <div class="labels">
@@ -140,6 +142,27 @@
         </div>
     </div>
 
+    <div class="modal fade bd-example-modal-lg" id="campaignErrorModal" tabindex="-1" role="dialog" aria-labelledby="campaignErrorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="campaignErrorModalLabel">Error!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" role="alert">
+                        Could not create a campaign. Please try again
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'sbam:evaluations' %}" class="btn btn-outline-primary" role="button" >Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 
@@ -149,7 +172,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
 
     <script type="application/javascript">
-        let domainstreeData = {{ campaign_form_trees.dimensions_dict | safe }};
+        let questtreeData = {{ campaign_form_trees.dimensions_dict | safe }};
         let usertreeData = {{ campaign_form_trees.users_dict | safe }};
         let testTreeData = {{ campaign_form_trees.tests_dict | safe }};
     </script>
