@@ -122,6 +122,9 @@ $(document).ready(function(){
     $('#id_start_date').datetimepicker('minDate', [''+new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()+'']);
     $('#id_end_date').datetimepicker('minDate', [''+new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()+'']);
 
+    //    controlling the expansion level of the tree one level at a time
+    $('#dim_tree_container li').addClass('treejs-node__close');
+
     //    Function to check if the dates are valid -> end_date > start_date
     function check_campaign_dates(){
         const start_date = $('#id_start_date').val();

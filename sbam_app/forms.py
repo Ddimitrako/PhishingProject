@@ -194,8 +194,25 @@ class CampaignCreationForm(forms.Form):
 
 def get_campaign_form_trees():
     dimensions_dict = list()
-    dimensions = models.Dimension.objects.all().order_by('title')
+    dimensions = models.Dimension.objects.all().order_by('level', 'title')
+    org_dict = {
+        "id": 'org',
+        "text": 'Organizational',
+        "attributes": {},
+        "children": [],
+        "check": "False"
+    }
+    indv_dict = {
+        "id": 'indv',
+        "text": 'Individual',
+        "attributes": {},
+        "children": [],
+        "check": "False"
+    }
+    temp_dict = org_dict
     for dim in dimensions:
+        if dim.level == 1:
+            temp_dict = indv_dict
         dim_dict = {
           "id": 'dimension_' + str(dim.pk),
           "text": dim.title,
@@ -223,7 +240,10 @@ def get_campaign_form_trees():
                 }
                 dom_dict['children'].append(quest_dict)
             dim_dict['children'].append(dom_dict)
-        dimensions_dict.append(dim_dict)
+        temp_dict['children'].append(dim_dict)
+
+    dimensions_dict.append(indv_dict)
+    dimensions_dict.append(org_dict)
 
     users = models.User.objects.all()
     users_groups = Group.objects.all()
