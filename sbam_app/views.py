@@ -259,7 +259,7 @@ def dashboardView(request, compl_time=None):
 
 @login_required
 def assignmentCompletion(request, assignment_id):
-    if assignment_id in request.user.assignment_set.all():
+    if request.user.assignment_set.filter(pk=assignment_id):
         questionnaire = get_questionnaire(request.user, assignment_id)
         return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
     else:
