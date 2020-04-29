@@ -17,6 +17,7 @@ $(document).ready(function(){
                     "    <tr>\n" +
                     "      <th class='sel_index'>#</th>\n" +
                     "      <th class='sel_index'>Name</th>\n" +
+                    "      <th class='sel_index'>Type</th>\n" +
                     "    </tr>\n" +
                     "  </thead>");
                 $('.sel-quest-par').hide();
@@ -24,9 +25,26 @@ $(document).ready(function(){
             else
                 $('.sel-quest-par').show();
 
+            let quest_level = '';
+            let idx = 1;
             for(var i=0; i < len; i++){
-                if (this.selectedNodes[i].id.includes('quest'))
-                    $("#selected_domains tbody").append("<tr><th class='sel_index'>"+i+"</th><td style='width: 80%'>"+this.selectedNodes[i].text+"</td>");
+                if (this.selectedNodes[i].id.includes('quest')) {
+                    $("#selected_domains tbody").append("<tr><th class='sel_index'>" + idx + "</th><td style='width: 80%'>" + this.selectedNodes[i].text + "" +
+                        "</td><td>" + quest_level + "</td></tr>");
+                    idx++;
+                }
+
+
+                if (this.selectedNodes[i].id.includes('indv') || this.selectedNodes[i].id.includes('org')) {
+                    if (this.selectedNodes[i].attributes.level === 0)
+                        quest_level = 'Org';
+                    else
+                        quest_level = 'Indiv';
+                }
+
+                // if (this.selectedNodes[i].id.includes('quest'))
+                //         $("#selected_domains tbody").append("<tr><th class='sel_index'>"+i+"</th><td style='width: 80%'>"+this.selectedNodes[i].text+"" +
+                //             "</td>"+ quest_level +"<td></td></tr>");
             }
         },
     });

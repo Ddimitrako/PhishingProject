@@ -198,14 +198,18 @@ def get_campaign_form_trees():
     org_dict = {
         "id": 'org',
         "text": 'Organizational',
-        "attributes": {},
+        "attributes": {
+            'level': 0
+        },
         "children": [],
         "check": "False"
     }
     indv_dict = {
         "id": 'indv',
         "text": 'Individual',
-        "attributes": {},
+        "attributes": {
+            'level': 1
+        },
         "children": [],
         "check": "False"
     }
