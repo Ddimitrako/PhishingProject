@@ -234,7 +234,7 @@ def get_campaign_form_trees():
                 "children": [],
                 "check": "False"
             }
-            for quest in dom.questionnaire_set.all().order_by('title'):
+            for quest in dom.questionnaire_set.filter(is_active=1).order_by('title'):
                 quest_dict = {
                     'id': 'quest_' + str(quest.pk),
                     "text": quest.title,
@@ -289,7 +289,7 @@ def get_campaign_form_trees():
         users_dict[1]['children'].append(usr_dict)
 
     tests_dict = list()
-    tests = models.Test.objects.all()
+    tests = models.Test.objects.filter(is_active=1)
     for test in tests:
         print(test.title)
         test_dict = {

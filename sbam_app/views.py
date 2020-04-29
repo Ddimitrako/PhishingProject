@@ -250,7 +250,6 @@ def dashboardView(request, compl_time=None):
     completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1
                                                            ).order_by('assignmentresult__answer_time')
 
-
     return render(request, 'dashboard.html', {'active_questionnaires': active_questionnaires,
                                               'active_tests': active_tests,
                                               'completed_questionnaires': completed_questionnaires,
@@ -278,7 +277,7 @@ def surveySumbission(request):
             for option_id in answers_options:
                 answer = models.QuestionOption.objects.get(pk=option_id)
                 assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question,
-                                                                   question_option=answer)
+                                                                  question_option=answer)
                 assignment.status = 1
                 assignment.save()
                 assignment_answer.save()
@@ -371,12 +370,12 @@ def disable_group(request, name):
 def get_questionnaire(user, questionnaire_id):
     quest = models.QuestionnaireAssignment.objects.get(user=user, pk=questionnaire_id)
     questions_dict = {'title': quest.questionnaire.title, 'id': quest.pk}
-    questions = models.Question.objects.filter(questionnaire=quest.questionnaire).values()
+    questions = models.Question.objects.filter(questionnaire=quest.questionnaire, is_active=1).values()
     # print(questions)
     for question in questions:
 
         question_type = models.QuestionType.objects.get(pk=question['question_type_id'])
-        question_options = models.QuestionOption.objects.filter(question_type=question_type).values()
+        question_options = models.QuestionOption.objects.filter(question_type=question_type, is_active=1).values()
         quest_type = model_to_dict(question_type)
         quest_type['takes_multiple'] = 'true' if quest_type['takes_multiple'] else 'false'
         questions_dict['questiion_'+str(question['id'])] = [question, quest_type, [option for option in question_options]]
