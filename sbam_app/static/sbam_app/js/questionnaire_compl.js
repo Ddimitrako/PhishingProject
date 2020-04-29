@@ -134,7 +134,7 @@ $(document).ready(function(){
                             for(opt in questData[quest_obj][2])
                                 question_opt.push(questData[quest_obj][2][opt]);
 
-                            if(questData[quest_obj][1].takes_multiple)
+                            if(questData[quest_obj][1].takes_multiple === 'true')
                                 survey_quest['questions'] = create_multiple_opt_quest(text, quest_id, question_opt, 5);
                             else
                                 survey_quest['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
