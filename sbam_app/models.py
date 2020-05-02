@@ -13,7 +13,7 @@ from django.utils.translation import gettext_lazy as _
 # Security Culture Model
 
 class Dimension(Model):
-    ORGANISATIONAL = 'ORGANISTATIONAL'
+    ORGANISATIONAL = 'ORGANISATIONAL'
     INDIVIDUAL = 'INDIVIDUAL'
     LEVEL = [
         (ORGANISATIONAL, 0),
@@ -55,7 +55,7 @@ class Campaign(Model):
         return self.owner.get_full_name() + ' ' + self.start_date + ' - ' + self.end_date
 
     def ends_within_week(self):
-        return (self.end_date - date.today()).days <= 15
+        return (self.end_date - date.today()).days <= 7
 
 
 class Assignment(Model):
@@ -67,22 +67,10 @@ class Assignment(Model):
         (COMPLETED, 1),
         (CANCELLED, 2)
     ]
-    QUESTIONNAIRE = 'QUESTIONNAIRE'
-    TEST = 'TEST'
-    TYPES = [
-        (QUESTIONNAIRE, 0),
-        (TEST, 1)
-    ]
+    
     campaign = ForeignKey(Campaign, on_delete=CASCADE)
     user = ForeignKey(User, on_delete=CASCADE)
     status = IntegerField(choices=STATUSES, default=0, help_text="Status of an assignment if it is completed or not")
-    type = IntegerField(choices=TYPES, help_text="Type of assignment ")
-
-
-class AssignmentResult(Model):
-    assignment = ForeignKey(Assignment, on_delete=CASCADE)
-    answer_time = DateTimeField()
-    score = FloatField()
 
 
 class Questionnaire(Model):
@@ -92,6 +80,7 @@ class Questionnaire(Model):
         (ACTIVE, 1),
         (INACTIVE, 0)
     ]
+    title = CharField(max_length=200, help_text="Questionnaire title")
     domain = ForeignKey(Domain, on_delete=CASCADE)
     is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a questionnaire if it is used")
 
@@ -100,7 +89,7 @@ class QuestionnaireAssignment(Assignment):
     questionnaire = ForeignKey(Questionnaire, on_delete=CASCADE)
 
     def get_answer_time(self):
-        return self.assignmentresult_set.get(assignment=self).answer_time.date()
+        return self.assignmentresult_set.get(assignment=self).answer_time
 
 
 class QuestionType(Model):
@@ -145,7 +134,7 @@ class Question(Model):
 
 class CampaignQuestionAnswer(Model):
     question = ForeignKey(Question, on_delete=CASCADE)
-    assignment = ForeignKey(Assignment, on_delete=CASCADE)
+    assignment = ForeignKey(QuestionnaireAssignment, on_delete=CASCADE)
     question_option = ForeignKey(QuestionOption, on_delete=CASCADE)
 
 
@@ -167,6 +156,11 @@ class TestAssignment(Assignment):
     def get_answer_time(self):
         return self.assignmentresult_set.get(assignment=self).answer_time.date()
 
+
+class AssignmentResult(Model):
+    assignment = ForeignKey(Assignment, on_delete=CASCADE)
+    answer_time = DateField()
+    score = FloatField()
 
 # User Management Model
 

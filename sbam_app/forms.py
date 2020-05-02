@@ -192,11 +192,31 @@ class CampaignCreationForm(forms.Form):
     )
 
 
-
 def get_campaign_form_trees():
     dimensions_dict = list()
-    dimensions = models.Dimension.objects.all()
+    dimensions = models.Dimension.objects.all().order_by('level', 'title')
+    org_dict = {
+        "id": 'org',
+        "text": 'Organizational',
+        "attributes": {
+            'level': 0
+        },
+        "children": [],
+        "check": "False"
+    }
+    indv_dict = {
+        "id": 'indv',
+        "text": 'Individual',
+        "attributes": {
+            'level': 1
+        },
+        "children": [],
+        "check": "False"
+    }
+    temp_dict = org_dict
     for dim in dimensions:
+        if dim.level == 1:
+            temp_dict = indv_dict
         dim_dict = {
           "id": 'dimension_' + str(dim.pk),
           "text": dim.title,
@@ -204,7 +224,7 @@ def get_campaign_form_trees():
           "children": [],
           "check": "False"
         }
-        for dom in dim.domain_set.all():
+        for dom in dim.domain_set.all().order_by('title'):
             dom_dict = {
                 "id": 'domain_' + str(dom.pk),
                 "text": dom.title,
@@ -214,9 +234,20 @@ def get_campaign_form_trees():
                 "children": [],
                 "check": "False"
             }
+            for quest in dom.questionnaire_set.filter(is_active=1).order_by('title'):
+                quest_dict = {
+                    'id': 'quest_' + str(quest.pk),
+                    "text": quest.title,
+                    "attributes": {},
+                    "children": [],
+                    "check": "False"
+                }
+                dom_dict['children'].append(quest_dict)
             dim_dict['children'].append(dom_dict)
+        temp_dict['children'].append(dim_dict)
 
-        dimensions_dict.append(dim_dict)
+    dimensions_dict.append(indv_dict)
+    dimensions_dict.append(org_dict)
 
     users = models.User.objects.all()
     users_groups = Group.objects.all()
@@ -258,7 +289,7 @@ def get_campaign_form_trees():
         users_dict[1]['children'].append(usr_dict)
 
     tests_dict = list()
-    tests = models.Test.objects.all()
+    tests = models.Test.objects.filter(is_active=1)
     for test in tests:
         print(test.title)
         test_dict = {

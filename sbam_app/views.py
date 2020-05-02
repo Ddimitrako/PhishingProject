@@ -13,8 +13,11 @@ import json
 from datetime import date
 
 from django.http import JsonResponse
+from django.http import HttpResponseForbidden
 
 from django.forms.models import model_to_dict
+
+from django.db import transaction, Error
 
 #
 # Custom Decorator used to grant permission to superusers only
@@ -49,64 +52,63 @@ def disable_field(form, field):
 
 @login_required
 def campaignCreation(request):
-    if request.method == 'POST':
+    if request.user.userprofile.is_manager:
+        if request.method == 'POST':
 
-        current_user = request.user
-        users = json.loads(request.POST['users'])
-        domains = json.loads(request.POST['domains'])
-        tests = json.loads(request.POST['tests'])
-        start_date = request.POST['start_date']
-        end_date = request.POST['end_date']
+            current_user = request.user
+            users = json.loads(request.POST['users'])
+            questionnaires = json.loads(request.POST['quests'])
+            tests = json.loads(request.POST['tests'])
+            start_date = request.POST['start_date']
+            end_date = request.POST['end_date']
+            # print(questionnaires)
+            try:
+                with transaction.atomic():
+                    new_campaign = Campaign(start_date=start_date, end_date=end_date, owner=current_user, status=1)
+                    new_campaign.save()
 
-        new_campaign = Campaign(start_date=start_date, end_date=end_date, owner=current_user, status=1)
-        # try:
-        new_campaign.save()
-        # except V
-        print(new_campaign.id)
 
-        # Getting the selected users to ass
-        sel_users = set()
-        for usr in users:
-            usr_type = usr['id'][:usr['id'].find('_')]
-            sel_id = int(usr['id'][usr['id'].find('_') + 1:len(usr['id'])])
-            if usr_type == 'group':
-                group_users = Group.objects.get(pk=sel_id).user_set.all()
-                for sel_user in group_users:
-                    sel_users.add(sel_user)
-            else:
-                sel_user = User.objects.get(pk=sel_id)
-                sel_users.add(sel_user)
+                    # Getting the selected users to ass
+                    sel_users = set()
+                    for usr in users:
+                        usr_type = usr['id'][:usr['id'].find('_')]
+                        sel_id = int(usr['id'][usr['id'].find('_') + 1:len(usr['id'])])
+                        if usr_type == 'group':
+                            group_users = Group.objects.get(pk=sel_id).user_set.all()
+                            for sel_user in group_users:
+                                sel_users.add(sel_user)
+                        else:
+                            sel_user = User.objects.get(pk=sel_id)
+                            sel_users.add(sel_user)
 
-        # print(sel_users)
+                    # print(sel_users)
 
-        for dom in domains:
-            domain_id = int(dom['id'][dom['id'].find('_')+1:len(dom['id'])])
-            questionnaire = Questionnaire(domain_id=domain_id, is_active=True)
-            questionnaire.save()
+                    for quest in questionnaires:
+                        quest_id = int(quest['id'][quest['id'].find('_')+1:len(quest['id'])])
 
-            # type -> 1 = Test, 0 -> Questionnaire
-            # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
-            for sel_user in sel_users:
-                new_assignment = QuestionnaireAssignment(status=0, type=0, campaign_id=new_campaign.id, user=sel_user, questionnaire=questionnaire)
-                new_assignment.save()
+                        # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
+                        for sel_user in sel_users:
+                            new_assignment = QuestionnaireAssignment(status=0, campaign_id=new_campaign.id, user=sel_user, questionnaire_id=quest_id)
+                            new_assignment.save()
 
-        for test in tests:
-            test_id = int(test['id'][test['id'].find('_')+1:len(test['id'])])
-            assigned_test = Test(domain_id=test_id, is_active=True)
-            assigned_test.save()
+                    for test in tests:
+                        test_id = int(test['id'][test['id'].find('_')+1:len(test['id'])])
 
-            # type -> 1 = Test, 0 -> Questionnaire
-            # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
-            for sel_user in sel_users:
-                new_assignment = TestAssignment(status=0, type=1, campaign_id=new_campaign.id, user=sel_user, test=assigned_test)
-                new_assignment.save()
+                        # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
+                        for sel_user in sel_users:
+                            new_assignment = TestAssignment(status=0, campaign_id=new_campaign.id, user=sel_user, test=test_id)
+                            new_assignment.save()
 
-        return JsonResponse({'result': 'Success'})
+                return JsonResponse({'success': 'True'}, status=200)
+            except Error:
+                return JsonResponse({'success': 'False'}, status=400)
+        else:
+            campaign_form_trees = get_campaign_form_trees()
+            return render(request, 'campaign_creation.html',
+                            {'campaign_form': CampaignCreationForm(),
+                             'campaign_form_trees': campaign_form_trees})
     else:
-        campaign_form_trees = get_campaign_form_trees()
-        return render(request, 'campaign_creation.html', 
-                        {'campaign_form': CampaignCreationForm(),
-                         'campaign_form_trees': campaign_form_trees})
+        return HttpResponseForbidden()
 
 
 def disable_form(form):
@@ -242,7 +244,6 @@ def dashboardView(request, compl_time=None):
     completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1
                                                            ).order_by('assignmentresult__answer_time')
 
-
     return render(request, 'dashboard.html', {'active_questionnaires': active_questionnaires,
                                               'active_tests': active_tests,
                                               'completed_questionnaires': completed_questionnaires,
@@ -251,9 +252,11 @@ def dashboardView(request, compl_time=None):
 
 @login_required
 def assignmentCompletion(request, assignment_id):
-    questionnaire = get_questionnaire(request.user, assignment_id)
-    # print(questionnaire)
-    return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
+    if request.user.assignment_set.filter(pk=assignment_id):
+        questionnaire = get_questionnaire(request.user, assignment_id)
+        return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
+    else:
+        return HttpResponseForbidden()
 
 
 
@@ -268,7 +271,7 @@ def surveySumbission(request):
             for option_id in answers_options:
                 answer = models.QuestionOption.objects.get(pk=option_id)
                 assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question,
-                                                                   question_option=answer)
+                                                                  question_option=answer)
                 assignment.status = 1
                 assignment.save()
                 assignment_answer.save()
@@ -360,13 +363,13 @@ def disable_group(request, name):
 
 def get_questionnaire(user, questionnaire_id):
     quest = models.QuestionnaireAssignment.objects.get(user=user, pk=questionnaire_id)
-    questions_dict = {'title': quest.questionnaire.domain.title, 'id': quest.pk}
-    questions = models.Question.objects.filter(questionnaire=quest.questionnaire).values()
+    questions_dict = {'title': quest.questionnaire.title, 'id': quest.pk}
+    questions = models.Question.objects.filter(questionnaire=quest.questionnaire, is_active=1).values()
     # print(questions)
     for question in questions:
 
         question_type = models.QuestionType.objects.get(pk=question['question_type_id'])
-        question_options = models.QuestionOption.objects.filter(question_type=question_type).values()
+        question_options = models.QuestionOption.objects.filter(question_type=question_type, is_active=1).values()
         quest_type = model_to_dict(question_type)
         quest_type['takes_multiple'] = 'true' if quest_type['takes_multiple'] else 'false'
         questions_dict['questiion_'+str(question['id'])] = [question, quest_type, [option for option in question_options]]
