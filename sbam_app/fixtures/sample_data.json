@@ -115,6 +115,16 @@
   },
   {
     "model": "account.emailaddress",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "email": "ageorgiadou@epu.ntua.gr",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
     "pk": 2,
     "fields": {
       "user": 2,
@@ -127,8 +137,18 @@
     "model": "account.emailaddress",
     "pk": 3,
     "fields": {
-      "user": 1,
-      "email": "ageorgiadou@epu.ntua.gr",
+      "user": 3,
+      "email": "smouzakitis@epu.ntua.gr",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "email": "kbounas@epu.ntua.gr",
       "verified": true,
       "primary": true
     }
@@ -247,6 +267,491 @@
       "notes": "",
       "is_active": true,
       "creation_timestamp": "2020-03-12T18:55:09.436Z"
+    }
+  },
+  {
+    "model": "sbam_app.questionnaire",
+    "pk": 10001,
+    "fields": {
+      "title": "Hardware Configuration Management",
+      "domain": 4,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionnaire",
+    "pk": 10002,
+    "fields": {
+      "title": "Sample Questionnaire",
+      "domain": 4,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionnaire",
+    "pk": 10003,
+    "fields": {
+      "title": "Big Five Personality Test ",
+      "domain": 48,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionnaire",
+    "pk": 10004,
+    "fields": {
+      "title": "Inactive Questionnaire",
+      "domain": 48,
+      "is_active": 0
+    }
+  },
+  {
+    "model": "sbam_app.questionnaire",
+    "pk": 10005,
+    "fields": {
+      "title": "Security Agent Survey ",
+      "domain": 48,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 10001,
+    "fields": {
+      "type": "CUSTOM_R",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 10002,
+    "fields": {
+      "type": "CUSTOM_R",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 10003,
+    "fields": {
+      "type": "CUSTOM_R",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 10004,
+    "fields": {
+      "type": "CUSTOM_R",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 10005,
+    "fields": {
+      "type": "CUSTOM_R",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10001,
+    "fields": {
+      "question_type": 10001,
+      "text": "Approach them immediately, point out that they\u2019re not wearing their pass and ask them to put it on. It is policy after all!",
+      "value": 4.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10002,
+    "fields": {
+      "question_type": 10001,
+      "text": "Ask the person if they have been issued with a security pass and either take them to be issued with one, or offer them a helpful tip so they don\u2019t forget to wear it again.",
+      "value": 3.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10003,
+    "fields": {
+      "question_type": 10001,
+      "text": "Check if they wear their pass tomorrow, this may have been just a temporary lapse. If it happens again, you may need to approach them or inform their manager.",
+      "value": 2.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10004,
+    "fields": {
+      "question_type": 10001,
+      "text": "Ask them if they\u2019re aware of the security pass policy",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10005,
+    "fields": {
+      "question_type": 10002,
+      "text": "Stop them immediately and alert them to the fact they\u2019ve left their computer unlocked, or laptop open.",
+      "value": 4.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10006,
+    "fields": {
+      "question_type": 10002,
+      "text": "Close or lock the device for them and leave them a note to say that you\u2019ve done this.",
+      "value": 3.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10007,
+    "fields": {
+      "question_type": 10002,
+      "text": "Make note of the incident and let a line manager or colleague know if you see this happen repeatedly; it might be time for a policy reminder about locking computers/laptops.",
+      "value": 2.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10008,
+    "fields": {
+      "question_type": 10002,
+      "text": "Close or lock the device for them and then follow up with an email",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10009,
+    "fields": {
+      "question_type": 10003,
+      "text": "Approach the individuals and ask them to stop the discussion immediately \u2013 they risk compromising the security of highly sensitive information.",
+      "value": 4.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10010,
+    "fields": {
+      "question_type": 10003,
+      "text": "Point out where the nearest vacant meeting room is and politely suggest they continue their conversation privately in there.",
+      "value": 3.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10011,
+    "fields": {
+      "question_type": 10003,
+      "text": "Not say anything at the time, but make a note of the individuals involved, what they discussed, before informing either your line manager, their line manager or a security representative.",
+      "value": 2.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10012,
+    "fields": {
+      "question_type": 10003,
+      "text": "Remind the individuals that visitors frequent the corridor and suggest they continue their discussion elsewhere or at another time.",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10013,
+    "fields": {
+      "question_type": 10004,
+      "text": "Pick them up and confront the owner of the documents as soon as you can \u2013 their negligence could have caused a security breach.",
+      "value": 4.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10014,
+    "fields": {
+      "question_type": 10004,
+      "text": "Pick them up and either clear them away or destroy them appropriately \u2013 you\u2019re often the one tidying things up in the office when other people forget.",
+      "value": 3.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10015,
+    "fields": {
+      "question_type": 10004,
+      "text": "Pick them up and make your line manager or your local security representative aware \u2013 you\u2019ve spotted a number of \u201cnear miss\u201d security incidents lately and the office has become noticeably less security-focused.",
+      "value": 2.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10016,
+    "fields": {
+      "question_type": 10004,
+      "text": "Pick them up and then explain to the owner why the material must be kept secure. If the perpetrator cannot be identified, suggest to a line manager that a reminder is circulated to the department.",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10017,
+    "fields": {
+      "question_type": 10005,
+      "text": "Contact your colleague and inform them that they have breached security policy by disclosing information that isn\u2019t publically available, and request they delete the post immediately.",
+      "value": 4.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10018,
+    "fields": {
+      "question_type": 10005,
+      "text": "Look into whether you can delete, hide or amend the post yourself. Then contact your colleague to let them know the post has been amended, or that they need to take it down, and why.",
+      "value": 3.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10019,
+    "fields": {
+      "question_type": 10005,
+      "text": "Look elsewhere on the site to see if your colleague or others working on the project have disclosed further sensitive information. Then share your observations with your line manager or the project lead.",
+      "value": 2.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10020,
+    "fields": {
+      "question_type": 10005,
+      "text": "Speak to your colleague and explain what you saw, why the information poses a security risk to the organisation, and why it shouldn\u2019t be shared on social media.",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10001,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 1,
+      "text": "Do you maintain documented security configuration standards for all authorized operating systems and software?",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10002,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 1,
+      "text": "Do you maintain secure images or templates for all systems in the enterprise based on the organization\u2019s approved configuration standards? \r\nNote: Any new system deployment or existing system that becomes compromised should be imaged using one of those images or templates.",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10003,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 1,
+      "text": "Do you store the master images and templates on securely configured servers, validated with integrity monitoring tools, to ensure that only authorized changes to the images are possible?",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10004,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 1,
+      "text": "Have you deployed system configuration management tools that will automatically enforce and redeploy configuration settings to systems at regularly scheduled intervals?",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10005,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 1,
+      "text": "Have you utilized a Security Content Automation Protocol (SCAP) compliant configuration monitoring system to verify all security configuration elements, catalog approved exceptions, and alert when unauthorized changes occur?",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10006,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 2,
+      "text": "An inactive question...",
+      "is_active": 0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10007,
+    "fields": {
+      "questionnaire": 10002,
+      "question_type": 4,
+      "text": "Active but belongs to another questionnaire...",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10008,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 4,
+      "text": "Number of systems without implemented password policy/Total number of systems.",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10009,
+    "fields": {
+      "questionnaire": 10002,
+      "question_type": 6,
+      "text": "Another inactive question belonging to another questionnaire...",
+      "is_active": 0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10010,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 1,
+      "text": "Have you established and do you maintain secure configuration management processes (e.g. when servicing field devices or updating their firmware)?",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10011,
+    "fields": {
+      "questionnaire": 10003,
+      "question_type": 7,
+      "text": "I have a kind word for everyone.",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10012,
+    "fields": {
+      "questionnaire": 10003,
+      "question_type": 7,
+      "text": "I am always prepared.",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10013,
+    "fields": {
+      "questionnaire": 10003,
+      "question_type": 2,
+      "text": "An inactive question...",
+      "is_active": 0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10014,
+    "fields": {
+      "questionnaire": 10003,
+      "question_type": 7,
+      "text": "I feel comfortable around people.",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10015,
+    "fields": {
+      "questionnaire": 10003,
+      "question_type": 8,
+      "text": "I often feel blue.",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10016,
+    "fields": {
+      "questionnaire": 10005,
+      "question_type": 10001,
+      "text": "What would you do if you saw a colleague not wearing their security pass around the office?",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10017,
+    "fields": {
+      "questionnaire": 10005,
+      "question_type": 10002,
+      "text": "What would you do if you saw a colleague rush off to an important meeting and leave their computer unlocked, or laptop open?",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10018,
+    "fields": {
+      "questionnaire": 10005,
+      "question_type": 10003,
+      "text": "What would you do if you overheard a discussion, which you knew to be about some highly sensitive and confidential information, being held in a corridor where external visitors often pass through?",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10019,
+    "fields": {
+      "questionnaire": 10005,
+      "question_type": 10004,
+      "text": "You notice that some sensitive work documents have been left for all to see on top of the printers at the end of the day, when they should have been locked away for the night. What do you do?",
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10020,
+    "fields": {
+      "questionnaire": 10005,
+      "question_type": 10005,
+      "text": "What would you do if you noticed a colleague had posted something on social media that related to a sensitive work project (i.e. information which you know should not be shared outside the organisation)?",
+      "is_active": 1
     }
   }
 ]

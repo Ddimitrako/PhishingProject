@@ -1,26 +1,50 @@
 [
-    {
-      "model": "sbam_app.QuestionType",
-      "fields": {
-        "type": "BOOL"
-      }
-    },
-    {
-        "model": "sbam_app.QuestionType",
-        "fields": {
-          "type": "PERC10"
-        }
-      },
-      {
-        "model": "sbam_app.QuestionType",
-        "fields": {
-          "type": "PERC20"
-        }
-      },
-      {
-        "model": "sbam_app.QuestionType",
-        "fields": {
-          "type": "AGR5"
-        }
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "BOOL_P"
     }
-  ]
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "BOOL_N"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "PERC10_P"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "PERC10_N"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "PERC20_P"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "PERC20_N"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "AGR5_P"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "AGR5_N"
+    }
+  }
+]

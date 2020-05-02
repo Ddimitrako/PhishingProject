@@ -38,9 +38,9 @@ class Domain(Model):
 
 
 class Campaign(Model):
-    ACTIVE = 'ACTIVE'           #To campaign einai energo kai mporoyn na apanthsoun oi xrhstes
-    FINISHED = 'FINISHED'       #Sto campaign apanthsan oloi h perase to end_date
-    CANCELLED = 'CANCELLED'     #Gia kapoio logo o owner apofasise na akurwsei ena campaign
+    ACTIVE = 'ACTIVE'  # To campaign einai energo kai mporoyn na apanthsoun oi xrhstes
+    FINISHED = 'FINISHED'  # Sto campaign apanthsan oloi h perase to end_date
+    CANCELLED = 'CANCELLED'  # Gia kapoio logo o owner apofasise na akurwsei ena campaign
     STATUSES = [
         (FINISHED, 0),
         (ACTIVE, 1),
@@ -59,22 +59,22 @@ class Campaign(Model):
 
 
 class Assignment(Model):
-    COMPLETED = 'COMPLETED'    #O xrhsths ston opoio anaferetai to assignment oloklhrwse tis erwthseis
-    OPEN = 'OPEN'              #To sugkekrimeno assignment einai energo kai den exei apanthsei oles tis erwthseis o user
-    CANCELLED = 'CANCELLED'    #To assignment o admin h o manager(?) to akurwse
+    COMPLETED = 'COMPLETED'  # O xrhsths ston opoio anaferetai to assignment oloklhrwse tis erwthseis
+    OPEN = 'OPEN'  # To sugkekrimeno assignment einai energo kai den exei apanthsei oles tis erwthseis o user
+    CANCELLED = 'CANCELLED'  # To assignment o admin h o manager(?) to akurwse
     STATUSES = [
         (OPEN, 0),
         (COMPLETED, 1),
         (CANCELLED, 2)
     ]
-    
+
     campaign = ForeignKey(Campaign, on_delete=CASCADE)
     user = ForeignKey(User, on_delete=CASCADE)
     status = IntegerField(choices=STATUSES, default=0, help_text="Status of an assignment if it is completed or not")
 
 
 class Questionnaire(Model):
-    ACTIVE = 'ACTIVE'        #An to domain pou anaferetai uparxei to questionnaire einai active, diaforetika oxi
+    ACTIVE = 'ACTIVE'  # An to domain pou anaferetai uparxei to questionnaire einai active, diaforetika oxi
     INACTIVE = 'INACTIVE'
     STATUSES = [
         (ACTIVE, 1),
@@ -93,21 +93,28 @@ class QuestionnaireAssignment(Assignment):
 
 
 class QuestionType(Model):
-
     class Qtype(TextChoices):
-        BOOLEAN = 'BOOL', _('boolean') # Yes/No
-        PERCENTAGE_10 = 'PERC10', _('percentage_step_10') # [0-10)% - [10-20)% - ... - [90-100] %
-        PERCENTAGE_20 = 'PERC20', _('percentage_step_20') # [0-20)% - [20-40)% - ... - [80-100] %
-        AGREEMENT_5 = 'AGR5', _('agreement_scale_5_options') # Strongly Disagree - DIsagree - Neutral - Agree - Strongly Agree
-        CUSTOM_RADIO = 'CUSTOM_R', _('custom_question') # Custom radio question type with custom options
+        # Question types ending in _N bear a negative notion whereas those ending in _P
+        # bear a positive one. Their notion affects the value escalation of the available
+        # question options.
+        BOOLEAN_P = 'BOOL_P', _('boolean_positive')  # Yes/No
+        BOOLEAN_N = 'BOOL_N', _('boolean_negative')  # Yes/No
+        PERCENTAGE_10_P = 'PERC10_P', _('percentage_step_10_positive')  # [0-10)% - [10-20)% - ... - [90-100] %
+        PERCENTAGE_10_N = 'PERC10_N', _('percentage_step_10_negative')  # [0-10)% - [10-20)% - ... - [90-100] %
+        PERCENTAGE_20_P = 'PERC20_P', _('percentage_step_20_positive')  # [0-20)% - [20-40)% - ... - [80-100] %
+        PERCENTAGE_20_N = 'PERC20_N', _('percentage_step_20_negative')  # [0-20)% - [20-40)% - ... - [80-100] %
+        AGREEMENT_5_P = 'AGR5_P', _(
+            'agreement_scale_5_positive')  # Strongly Disagree - Disagree - Neutral - Agree - Strongly Agree
+        AGREEMENT_5_N = 'AGR5_N', _(
+            'agreement_scale_5_negative')  # Strongly Disagree - Disagree - Neutral - Agree - Strongly Agree
+        CUSTOM_RADIO = 'CUSTOM_R', _('custom_question')  # Custom radio question type with custom options
 
     type = CharField(max_length=23, choices=Qtype.choices)
     takes_multiple = BooleanField(default=False)
 
 
-
 class QuestionOption(Model):
-    ACTIVE = 'ACTIVE'        #An h sugkekrimenh epilogh einai diathesim
+    ACTIVE = 'ACTIVE'  # An h sugkekrimenh epilogh einai diathesim
     INACTIVE = 'INACTIVE'
     STATUSES = [
         (ACTIVE, 1),
@@ -120,7 +127,7 @@ class QuestionOption(Model):
 
 
 class Question(Model):
-    ACTIVE = 'ACTIVE'         #An h erwthsh uparxei an, h to domain uparxei(?)
+    ACTIVE = 'ACTIVE'  # An h erwthsh uparxei an, h to domain uparxei(?)
     INACTIVE = 'INACTIVE'
     STATUSES = [
         (ACTIVE, 1),
@@ -139,7 +146,7 @@ class CampaignQuestionAnswer(Model):
 
 
 class Test(Model):
-    ACTIVE = 'ACTIVE'       #if the domain of the test exists or the test is available
+    ACTIVE = 'ACTIVE'  # if the domain of the test exists or the test is available
     INACTIVE = 'INACTIVE'
     STATUSES = [
         (ACTIVE, 1),
@@ -161,6 +168,7 @@ class AssignmentResult(Model):
     assignment = ForeignKey(Assignment, on_delete=CASCADE)
     answer_time = DateField()
     score = FloatField()
+
 
 # User Management Model
 

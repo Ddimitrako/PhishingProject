@@ -1,7 +1,13 @@
+import json
+
 from allauth.account.utils import send_email_confirmation
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db import transaction, Error
+from django.forms.models import model_to_dict
+from django.http import HttpResponseForbidden
+from django.http import JsonResponse
 from django.shortcuts import *
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import *
@@ -9,15 +15,6 @@ from django.views.generic import *
 from sbam_app.forms import *
 from sbam_app.models import *
 
-import json
-from datetime import date
-
-from django.http import JsonResponse
-from django.http import HttpResponseForbidden
-
-from django.forms.models import model_to_dict
-
-from django.db import transaction, Error
 
 #
 # Custom Decorator used to grant permission to superusers only
@@ -48,67 +45,6 @@ def advanced_users_only(function):
 
 def disable_field(form, field):
     form.fields[field].disabled = True
-
-
-@login_required
-def campaignCreation(request):
-    if request.user.userprofile.is_manager:
-        if request.method == 'POST':
-
-            current_user = request.user
-            users = json.loads(request.POST['users'])
-            questionnaires = json.loads(request.POST['quests'])
-            tests = json.loads(request.POST['tests'])
-            start_date = request.POST['start_date']
-            end_date = request.POST['end_date']
-            # print(questionnaires)
-            try:
-                with transaction.atomic():
-                    new_campaign = Campaign(start_date=start_date, end_date=end_date, owner=current_user, status=1)
-                    new_campaign.save()
-
-
-                    # Getting the selected users to ass
-                    sel_users = set()
-                    for usr in users:
-                        usr_type = usr['id'][:usr['id'].find('_')]
-                        sel_id = int(usr['id'][usr['id'].find('_') + 1:len(usr['id'])])
-                        if usr_type == 'group':
-                            group_users = Group.objects.get(pk=sel_id).user_set.all()
-                            for sel_user in group_users:
-                                sel_users.add(sel_user)
-                        else:
-                            sel_user = User.objects.get(pk=sel_id)
-                            sel_users.add(sel_user)
-
-                    # print(sel_users)
-
-                    for quest in questionnaires:
-                        quest_id = int(quest['id'][quest['id'].find('_')+1:len(quest['id'])])
-
-                        # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
-                        for sel_user in sel_users:
-                            new_assignment = QuestionnaireAssignment(status=0, campaign_id=new_campaign.id, user=sel_user, questionnaire_id=quest_id)
-                            new_assignment.save()
-
-                    for test in tests:
-                        test_id = int(test['id'][test['id'].find('_')+1:len(test['id'])])
-
-                        # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
-                        for sel_user in sel_users:
-                            new_assignment = TestAssignment(status=0, campaign_id=new_campaign.id, user=sel_user, test=test_id)
-                            new_assignment.save()
-
-                return JsonResponse({'success': 'True'}, status=200)
-            except Error:
-                return JsonResponse({'success': 'False'}, status=400)
-        else:
-            campaign_form_trees = get_campaign_form_trees()
-            return render(request, 'campaign_creation.html',
-                            {'campaign_form': CampaignCreationForm(),
-                             'campaign_form_trees': campaign_form_trees})
-    else:
-        return HttpResponseForbidden()
 
 
 def disable_form(form):
@@ -224,6 +160,44 @@ def activate_group(request, name, status):
     return redirect('sbam:group', name)
 
 
+def get_questionnaire(user, questionnaire_id):
+    quest = models.QuestionnaireAssignment.objects.get(user=user, pk=questionnaire_id)
+    questions_dict = {'title': quest.questionnaire.title, 'id': quest.pk}
+    questions = models.Question.objects.filter(questionnaire=quest.questionnaire, is_active=1).values()
+    # print(questions)
+    for question in questions:
+        question_type = models.QuestionType.objects.get(pk=question['question_type_id'])
+        question_options = models.QuestionOption.objects.filter(question_type=question_type, is_active=1).values()
+        quest_type = model_to_dict(question_type)
+        quest_type['takes_multiple'] = 'true' if quest_type['takes_multiple'] else 'false'
+        questions_dict['questiion_' + str(question['id'])] = [question, quest_type,
+                                                              [option for option in question_options]]
+        # print((question, model_to_dict(question_type), [option for option in question_options]))
+
+    return questions_dict
+
+
+def calculate_assignment_result(assignment):
+    total = 0.0
+
+    try:
+        answer_sum = models.CampaignQuestionAnswer.objects.filter(assignment=assignment).aggregate(
+            answer_sum=Sum('question_option__value'))['answer_sum']
+
+        question_answer_types = models.CampaignQuestionAnswer.objects.filter(assignment=assignment). \
+            select_related('question__question_type').values_list('question__question_type')
+
+        question_type_maxs = models.QuestionOption.objects.filter(question_type__in=question_answer_types.distinct()). \
+            values('question_type').annotate(question_type_max=Max('value'))
+
+        for question_answer_type in question_answer_types:
+            total += question_type_maxs.get(question_type=question_answer_type)['question_type_max']
+    finally:
+        score = (answer_sum / total) if total != 0.0 else total
+
+    return models.AssignmentResult(assignment=assignment, score=score, answer_time=date.today())
+
+
 #
 # Views
 #
@@ -259,7 +233,6 @@ def assignmentCompletion(request, assignment_id):
         return HttpResponseForbidden()
 
 
-
 @login_required
 def surveySumbission(request):
     assignment = models.QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
@@ -281,12 +254,13 @@ def surveySumbission(request):
             answer = models.QuestionOption.objects.get(pk=answers[ques])
             # print(assignment.questionnaire.domain.title, question.text, answer.text)
 
-            assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question, question_option=answer)
+            assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question,
+                                                              question_option=answer)
             assignment.status = 1
             assignment.save()
             assignment_answer.save()
 
-    assignment_result = models.AssignmentResult(assignment=assignment, score=0.97, answer_time=date.today())
+    assignment_result = calculate_assignment_result(assignment)
     assignment_result.save()
 
     return JsonResponse({'result': 'success'})
@@ -309,11 +283,6 @@ def profile(request, username):
 
 
 @superuser_only
-def create_user(request):
-    return create_or_update_user(request, 'new_user.html')
-
-
-@superuser_only
 def enable_user(request, username):
     return activate_user(request, username, True)
 
@@ -321,6 +290,11 @@ def enable_user(request, username):
 @superuser_only
 def disable_user(request, username):
     return activate_user(request, username, False)
+
+
+@superuser_only
+def create_user(request):
+    return create_or_update_user(request, 'new_user.html')
 
 
 class GroupsView(ListView):
@@ -346,11 +320,6 @@ def group(request, name):
     return create_or_update_group(request, 'group.html', group, group.groupprofile, False)
 
 
-@advanced_users_only
-def create_group(request):
-    return create_or_update_group(request, 'new_group.html')
-
-
 @superuser_only
 def enable_group(request, name):
     return activate_group(request, name, True)
@@ -361,18 +330,68 @@ def disable_group(request, name):
     return activate_group(request, name, False)
 
 
-def get_questionnaire(user, questionnaire_id):
-    quest = models.QuestionnaireAssignment.objects.get(user=user, pk=questionnaire_id)
-    questions_dict = {'title': quest.questionnaire.title, 'id': quest.pk}
-    questions = models.Question.objects.filter(questionnaire=quest.questionnaire, is_active=1).values()
-    # print(questions)
-    for question in questions:
+@advanced_users_only
+def create_group(request):
+    return create_or_update_group(request, 'new_group.html')
 
-        question_type = models.QuestionType.objects.get(pk=question['question_type_id'])
-        question_options = models.QuestionOption.objects.filter(question_type=question_type, is_active=1).values()
-        quest_type = model_to_dict(question_type)
-        quest_type['takes_multiple'] = 'true' if quest_type['takes_multiple'] else 'false'
-        questions_dict['questiion_'+str(question['id'])] = [question, quest_type, [option for option in question_options]]
-        # print((question, model_to_dict(question_type), [option for option in question_options]))
 
-    return questions_dict
+@login_required
+def campaignCreation(request):
+    if request.user.userprofile.is_manager:
+        if request.method == 'POST':
+
+            current_user = request.user
+            users = json.loads(request.POST['users'])
+            questionnaires = json.loads(request.POST['quests'])
+            tests = json.loads(request.POST['tests'])
+            start_date = request.POST['start_date']
+            end_date = request.POST['end_date']
+            # print(questionnaires)
+            try:
+                with transaction.atomic():
+                    new_campaign = Campaign(start_date=start_date, end_date=end_date, owner=current_user, status=1)
+                    new_campaign.save()
+
+                    # Getting the selected users to ass
+                    sel_users = set()
+                    for usr in users:
+                        usr_type = usr['id'][:usr['id'].find('_')]
+                        sel_id = int(usr['id'][usr['id'].find('_') + 1:len(usr['id'])])
+                        if usr_type == 'group':
+                            group_users = Group.objects.get(pk=sel_id).user_set.all()
+                            for sel_user in group_users:
+                                sel_users.add(sel_user)
+                        else:
+                            sel_user = User.objects.get(pk=sel_id)
+                            sel_users.add(sel_user)
+
+                    # print(sel_users)
+
+                    for quest in questionnaires:
+                        quest_id = int(quest['id'][quest['id'].find('_') + 1:len(quest['id'])])
+
+                        # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
+                        for sel_user in sel_users:
+                            new_assignment = QuestionnaireAssignment(status=0, campaign_id=new_campaign.id,
+                                                                     user=sel_user, questionnaire_id=quest_id)
+                            new_assignment.save()
+
+                    for test in tests:
+                        test_id = int(test['id'][test['id'].find('_') + 1:len(test['id'])])
+
+                        # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
+                        for sel_user in sel_users:
+                            new_assignment = TestAssignment(status=0, campaign_id=new_campaign.id, user=sel_user,
+                                                            test=test_id)
+                            new_assignment.save()
+
+                return JsonResponse({'success': 'True'}, status=200)
+            except Error:
+                return JsonResponse({'success': 'False'}, status=400)
+        else:
+            campaign_form_trees = get_campaign_form_trees()
+            return render(request, 'campaign_creation.html',
+                          {'campaign_form': CampaignCreationForm(),
+                           'campaign_form_trees': campaign_form_trees})
+    else:
+        return HttpResponseForbidden()

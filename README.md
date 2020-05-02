@@ -74,8 +74,17 @@ you shall need to create a workplace with the below requirements:
 
         py manage.py loaddata sbam_app/fixtures/<json file>
         
-   **_Note_**: File `sample_data.json` contains a number of __sample data__ used for 
-   development purposes.
+   **_Note_**: Below you may find a brief presentation of the available fixtures. In 
+   order to successfully import part or all of them, follow the suggested priority.
+      
+   | Priority | Fixture | Contents | 
+   |---	|--- |--- |
+   | 1 | `sbam_app/fixtures/security_culture_model.json` | **_Security Culture Model_** containing levels, dimensions & domains |
+   | 2 | `sbam_app/fixtures/default_question_types.json` | Default question types (e.g. Yes/No, percentages) |
+   | 3 | `py manage.py generate_default_question_types`| Command that generates default question options based on previously inserted question types |
+   | 4 | `sbam_app/fixtures/sample_questionnaire.json` | Sample questionnaire (dummy) |
+   | 5 | `sbam_app/fixtures/sample_data.json` | Sample data (including users, groups, questionnaires, questions types, etc.) |
+
 9. Run the project:
 
         py manage runserver

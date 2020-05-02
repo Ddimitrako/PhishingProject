@@ -31,15 +31,6 @@
     "fields": {
       "is_active": 1,
       "text": "Demo for percentage 10 question",
-      "question_type_id": 2,
-      "questionnaire_id": 1
-    }
-  },
-  {
-    "model": "sbam_app.Question",
-    "fields": {
-      "is_active": 1,
-      "text": "Εδω βλεπουμε ενα demo για percentage 20 ερωτηση ",
       "question_type_id": 3,
       "questionnaire_id": 1
     }
@@ -48,8 +39,17 @@
     "model": "sbam_app.Question",
     "fields": {
       "is_active": 1,
+      "text": "Εδω βλεπουμε ενα demo για percentage 20 ερωτηση ",
+      "question_type_id": 5,
+      "questionnaire_id": 1
+    }
+  },
+  {
+    "model": "sbam_app.Question",
+    "fields": {
+      "is_active": 1,
       "text": "This is an AGR5 question in the questionnaire",
-      "question_type_id": 4,
+      "question_type_id": 7,
       "questionnaire_id": 1
     }
   }
