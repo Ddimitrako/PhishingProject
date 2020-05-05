@@ -1,0 +1,1866 @@
+[
+  {
+    "model": "sbam_app.questionnaire",
+    "pk": 10001,
+    "fields": {
+      "title": "Hardware Configuration Management",
+      "domain": 4,
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.questionnaire",
+    "pk": 10002,
+    "fields": {
+      "title": "Sample Questionnaire",
+      "domain": 4,
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.questionnaire",
+    "pk": 10003,
+    "fields": {
+      "title": "Big Five Personality Test ",
+      "domain": 48,
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.questionnaire",
+    "pk": 10004,
+    "fields": {
+      "title": "Inactive Questionnaire",
+      "domain": 48,
+      "is_active": 0,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.questionnaire",
+    "pk": 10005,
+    "fields": {
+      "title": "Security Agent Survey ",
+      "domain": 48,
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 1,
+    "fields": {
+      "type": "BOOL_P",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 2,
+    "fields": {
+      "type": "BOOL_N",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 3,
+    "fields": {
+      "type": "PERC10_P",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 4,
+    "fields": {
+      "type": "PERC10_N",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 5,
+    "fields": {
+      "type": "PERC20_P",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 6,
+    "fields": {
+      "type": "PERC20_N",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 7,
+    "fields": {
+      "type": "AGR5_P",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 8,
+    "fields": {
+      "type": "AGR5_N",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 10001,
+    "fields": {
+      "type": "CUSTOM_R",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 10002,
+    "fields": {
+      "type": "CUSTOM_R",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 10003,
+    "fields": {
+      "type": "CUSTOM_R",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 10004,
+    "fields": {
+      "type": "CUSTOM_R",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questiontype",
+    "pk": 10005,
+    "fields": {
+      "type": "CUSTOM_R",
+      "takes_multiple": false
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 1,
+    "fields": {
+      "question_type": 1,
+      "text": "Yes",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 2,
+    "fields": {
+      "question_type": 1,
+      "text": "No",
+      "value": 0.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 3,
+    "fields": {
+      "question_type": 2,
+      "text": "Yes",
+      "value": 0.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 4,
+    "fields": {
+      "question_type": 2,
+      "text": "No",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 5,
+    "fields": {
+      "question_type": 3,
+      "text": "0-9 %",
+      "value": 0.1,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 6,
+    "fields": {
+      "question_type": 3,
+      "text": "10-19 %",
+      "value": 0.2,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 7,
+    "fields": {
+      "question_type": 3,
+      "text": "20-29 %",
+      "value": 0.3,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 8,
+    "fields": {
+      "question_type": 3,
+      "text": "30-39 %",
+      "value": 0.4,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 9,
+    "fields": {
+      "question_type": 3,
+      "text": "40-49 %",
+      "value": 0.5,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10,
+    "fields": {
+      "question_type": 3,
+      "text": "50-59 %",
+      "value": 0.6,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 11,
+    "fields": {
+      "question_type": 3,
+      "text": "60-69 %",
+      "value": 0.7,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 12,
+    "fields": {
+      "question_type": 3,
+      "text": "70-79 %",
+      "value": 0.8,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 13,
+    "fields": {
+      "question_type": 3,
+      "text": "80-89 %",
+      "value": 0.9,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 14,
+    "fields": {
+      "question_type": 3,
+      "text": "90-100 %",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 15,
+    "fields": {
+      "question_type": 4,
+      "text": "0-9 %",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 16,
+    "fields": {
+      "question_type": 4,
+      "text": "10-19 %",
+      "value": 0.9,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 17,
+    "fields": {
+      "question_type": 4,
+      "text": "20-29 %",
+      "value": 0.8,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 18,
+    "fields": {
+      "question_type": 4,
+      "text": "30-39 %",
+      "value": 0.7,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 19,
+    "fields": {
+      "question_type": 4,
+      "text": "40-49 %",
+      "value": 0.6,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 20,
+    "fields": {
+      "question_type": 4,
+      "text": "50-59 %",
+      "value": 0.5,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 21,
+    "fields": {
+      "question_type": 4,
+      "text": "60-69 %",
+      "value": 0.4,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 22,
+    "fields": {
+      "question_type": 4,
+      "text": "70-79 %",
+      "value": 0.3,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 23,
+    "fields": {
+      "question_type": 4,
+      "text": "80-89 %",
+      "value": 0.2,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 24,
+    "fields": {
+      "question_type": 4,
+      "text": "90-100 %",
+      "value": 0.1,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 25,
+    "fields": {
+      "question_type": 5,
+      "text": "0-19 %",
+      "value": 0.2,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 26,
+    "fields": {
+      "question_type": 5,
+      "text": "20-39 %",
+      "value": 0.4,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 27,
+    "fields": {
+      "question_type": 5,
+      "text": "40-59 %",
+      "value": 0.6,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 28,
+    "fields": {
+      "question_type": 5,
+      "text": "60-79 %",
+      "value": 0.8,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 29,
+    "fields": {
+      "question_type": 5,
+      "text": "80-100 %",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 30,
+    "fields": {
+      "question_type": 6,
+      "text": "0-19 %",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 31,
+    "fields": {
+      "question_type": 6,
+      "text": "20-39 %",
+      "value": 0.8,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 32,
+    "fields": {
+      "question_type": 6,
+      "text": "40-59 %",
+      "value": 0.6,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 33,
+    "fields": {
+      "question_type": 6,
+      "text": "60-79 %",
+      "value": 0.4,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 34,
+    "fields": {
+      "question_type": 6,
+      "text": "80-100 %",
+      "value": 0.2,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 35,
+    "fields": {
+      "question_type": 7,
+      "text": "Strongly Disagree",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 36,
+    "fields": {
+      "question_type": 7,
+      "text": "Disagree",
+      "value": 2.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 37,
+    "fields": {
+      "question_type": 7,
+      "text": "Neutral",
+      "value": 3.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 38,
+    "fields": {
+      "question_type": 7,
+      "text": "Agree",
+      "value": 4.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 39,
+    "fields": {
+      "question_type": 7,
+      "text": "Strongly Agree",
+      "value": 5.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 40,
+    "fields": {
+      "question_type": 8,
+      "text": "Strongly Disagree",
+      "value": 5.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 41,
+    "fields": {
+      "question_type": 8,
+      "text": "Disagree",
+      "value": 4.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 42,
+    "fields": {
+      "question_type": 8,
+      "text": "Neutral",
+      "value": 3.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 43,
+    "fields": {
+      "question_type": 8,
+      "text": "Agree",
+      "value": 2.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 44,
+    "fields": {
+      "question_type": 8,
+      "text": "Strongly Agree",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10001,
+    "fields": {
+      "question_type": 10001,
+      "text": "Approach them immediately, point out that they\u2019re not wearing their pass and ask them to put it on. It is policy after all!",
+      "value": 4.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10002,
+    "fields": {
+      "question_type": 10001,
+      "text": "Ask the person if they have been issued with a security pass and either take them to be issued with one, or offer them a helpful tip so they don\u2019t forget to wear it again.",
+      "value": 3.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10003,
+    "fields": {
+      "question_type": 10001,
+      "text": "Check if they wear their pass tomorrow, this may have been just a temporary lapse. If it happens again, you may need to approach them or inform their manager.",
+      "value": 2.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10004,
+    "fields": {
+      "question_type": 10001,
+      "text": "Ask them if they\u2019re aware of the security pass policy",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10005,
+    "fields": {
+      "question_type": 10002,
+      "text": "Stop them immediately and alert them to the fact they\u2019ve left their computer unlocked, or laptop open.",
+      "value": 4.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10006,
+    "fields": {
+      "question_type": 10002,
+      "text": "Close or lock the device for them and leave them a note to say that you\u2019ve done this.",
+      "value": 3.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10007,
+    "fields": {
+      "question_type": 10002,
+      "text": "Make note of the incident and let a line manager or colleague know if you see this happen repeatedly; it might be time for a policy reminder about locking computers/laptops.",
+      "value": 2.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10008,
+    "fields": {
+      "question_type": 10002,
+      "text": "Close or lock the device for them and then follow up with an email",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10009,
+    "fields": {
+      "question_type": 10003,
+      "text": "Approach the individuals and ask them to stop the discussion immediately \u2013 they risk compromising the security of highly sensitive information.",
+      "value": 4.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10010,
+    "fields": {
+      "question_type": 10003,
+      "text": "Point out where the nearest vacant meeting room is and politely suggest they continue their conversation privately in there.",
+      "value": 3.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10011,
+    "fields": {
+      "question_type": 10003,
+      "text": "Not say anything at the time, but make a note of the individuals involved, what they discussed, before informing either your line manager, their line manager or a security representative.",
+      "value": 2.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10012,
+    "fields": {
+      "question_type": 10003,
+      "text": "Remind the individuals that visitors frequent the corridor and suggest they continue their discussion elsewhere or at another time.",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10013,
+    "fields": {
+      "question_type": 10004,
+      "text": "Pick them up and confront the owner of the documents as soon as you can \u2013 their negligence could have caused a security breach.",
+      "value": 4.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10014,
+    "fields": {
+      "question_type": 10004,
+      "text": "Pick them up and either clear them away or destroy them appropriately \u2013 you\u2019re often the one tidying things up in the office when other people forget.",
+      "value": 3.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10015,
+    "fields": {
+      "question_type": 10004,
+      "text": "Pick them up and make your line manager or your local security representative aware \u2013 you\u2019ve spotted a number of \u201cnear miss\u201d security incidents lately and the office has become noticeably less security-focused.",
+      "value": 2.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10016,
+    "fields": {
+      "question_type": 10004,
+      "text": "Pick them up and then explain to the owner why the material must be kept secure. If the perpetrator cannot be identified, suggest to a line manager that a reminder is circulated to the department.",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10017,
+    "fields": {
+      "question_type": 10005,
+      "text": "Contact your colleague and inform them that they have breached security policy by disclosing information that isn\u2019t publically available, and request they delete the post immediately.",
+      "value": 4.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10018,
+    "fields": {
+      "question_type": 10005,
+      "text": "Look into whether you can delete, hide or amend the post yourself. Then contact your colleague to let them know the post has been amended, or that they need to take it down, and why.",
+      "value": 3.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10019,
+    "fields": {
+      "question_type": 10005,
+      "text": "Look elsewhere on the site to see if your colleague or others working on the project have disclosed further sensitive information. Then share your observations with your line manager or the project lead.",
+      "value": 2.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionoption",
+    "pk": 10020,
+    "fields": {
+      "question_type": 10005,
+      "text": "Speak to your colleague and explain what you saw, why the information poses a security risk to the organisation, and why it shouldn\u2019t be shared on social media.",
+      "value": 1.0,
+      "is_active": 1
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10001,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 1,
+      "text": "Do you maintain documented security configuration standards for all authorized operating systems and software?",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10002,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 1,
+      "text": "Do you maintain secure images or templates for all systems in the enterprise based on the organization\u2019s approved configuration standards? \r\nNote: Any new system deployment or existing system that becomes compromised should be imaged using one of those images or templates.",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10003,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 1,
+      "text": "Do you store the master images and templates on securely configured servers, validated with integrity monitoring tools, to ensure that only authorized changes to the images are possible?",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10004,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 1,
+      "text": "Have you deployed system configuration management tools that will automatically enforce and redeploy configuration settings to systems at regularly scheduled intervals?",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10005,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 1,
+      "text": "Have you utilized a Security Content Automation Protocol (SCAP) compliant configuration monitoring system to verify all security configuration elements, catalog approved exceptions, and alert when unauthorized changes occur?",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10006,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 2,
+      "text": "An inactive question...",
+      "is_active": 0,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10007,
+    "fields": {
+      "questionnaire": 10002,
+      "question_type": 4,
+      "text": "Active but belongs to another questionnaire...",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10008,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 4,
+      "text": "Number of systems without implemented password policy/Total number of systems.",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10009,
+    "fields": {
+      "questionnaire": 10002,
+      "question_type": 6,
+      "text": "Another inactive question belonging to another questionnaire...",
+      "is_active": 0,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10010,
+    "fields": {
+      "questionnaire": 10001,
+      "question_type": 1,
+      "text": "Have you established and do you maintain secure configuration management processes (e.g. when servicing field devices or updating their firmware)?",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10011,
+    "fields": {
+      "questionnaire": 10003,
+      "question_type": 7,
+      "text": "I have a kind word for everyone.",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10012,
+    "fields": {
+      "questionnaire": 10003,
+      "question_type": 7,
+      "text": "I am always prepared.",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10013,
+    "fields": {
+      "questionnaire": 10003,
+      "question_type": 2,
+      "text": "An inactive question...",
+      "is_active": 0,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10014,
+    "fields": {
+      "questionnaire": 10003,
+      "question_type": 7,
+      "text": "I feel comfortable around people.",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10015,
+    "fields": {
+      "questionnaire": 10003,
+      "question_type": 8,
+      "text": "I often feel blue.",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10016,
+    "fields": {
+      "questionnaire": 10005,
+      "question_type": 10001,
+      "text": "What would you do if you saw a colleague not wearing their security pass around the office?",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10017,
+    "fields": {
+      "questionnaire": 10005,
+      "question_type": 10002,
+      "text": "What would you do if you saw a colleague rush off to an important meeting and leave their computer unlocked, or laptop open?",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10018,
+    "fields": {
+      "questionnaire": 10005,
+      "question_type": 10003,
+      "text": "What would you do if you overheard a discussion, which you knew to be about some highly sensitive and confidential information, being held in a corridor where external visitors often pass through?",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10019,
+    "fields": {
+      "questionnaire": 10005,
+      "question_type": 10004,
+      "text": "You notice that some sensitive work documents have been left for all to see on top of the printers at the end of the day, when they should have been locked away for the night. What do you do?",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.question",
+    "pk": 10020,
+    "fields": {
+      "questionnaire": 10005,
+      "question_type": 10005,
+      "text": "What would you do if you noticed a colleague had posted something on social media that related to a sensitive work project (i.e. information which you know should not be shared outside the organisation)?",
+      "is_active": 1,
+      "weight": 1.0
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 1,
+    "fields": {
+      "question": 10011,
+      "assignment": 1,
+      "question_option": 35
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 2,
+    "fields": {
+      "question": 10012,
+      "assignment": 1,
+      "question_option": 39
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 3,
+    "fields": {
+      "question": 10014,
+      "assignment": 1,
+      "question_option": 36
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 4,
+    "fields": {
+      "question": 10015,
+      "assignment": 1,
+      "question_option": 43
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 5,
+    "fields": {
+      "question": 10016,
+      "assignment": 5,
+      "question_option": 10001
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 6,
+    "fields": {
+      "question": 10017,
+      "assignment": 5,
+      "question_option": 10008
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 7,
+    "fields": {
+      "question": 10018,
+      "assignment": 5,
+      "question_option": 10010
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 8,
+    "fields": {
+      "question": 10019,
+      "assignment": 5,
+      "question_option": 10015
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 9,
+    "fields": {
+      "question": 10020,
+      "assignment": 5,
+      "question_option": 10017
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 10,
+    "fields": {
+      "question": 10001,
+      "assignment": 9,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 11,
+    "fields": {
+      "question": 10002,
+      "assignment": 9,
+      "question_option": 2
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 12,
+    "fields": {
+      "question": 10003,
+      "assignment": 9,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 13,
+    "fields": {
+      "question": 10004,
+      "assignment": 9,
+      "question_option": 2
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 14,
+    "fields": {
+      "question": 10005,
+      "assignment": 9,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 15,
+    "fields": {
+      "question": 10008,
+      "assignment": 9,
+      "question_option": 23
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 16,
+    "fields": {
+      "question": 10010,
+      "assignment": 9,
+      "question_option": 2
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 17,
+    "fields": {
+      "question": 10011,
+      "assignment": 4,
+      "question_option": 39
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 18,
+    "fields": {
+      "question": 10012,
+      "assignment": 4,
+      "question_option": 37
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 19,
+    "fields": {
+      "question": 10014,
+      "assignment": 4,
+      "question_option": 35
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 20,
+    "fields": {
+      "question": 10015,
+      "assignment": 4,
+      "question_option": 41
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 21,
+    "fields": {
+      "question": 10016,
+      "assignment": 8,
+      "question_option": 10001
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 22,
+    "fields": {
+      "question": 10017,
+      "assignment": 8,
+      "question_option": 10007
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 23,
+    "fields": {
+      "question": 10018,
+      "assignment": 8,
+      "question_option": 10012
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 24,
+    "fields": {
+      "question": 10019,
+      "assignment": 8,
+      "question_option": 10014
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 25,
+    "fields": {
+      "question": 10020,
+      "assignment": 8,
+      "question_option": 10018
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 26,
+    "fields": {
+      "question": 10001,
+      "assignment": 12,
+      "question_option": 2
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 27,
+    "fields": {
+      "question": 10002,
+      "assignment": 12,
+      "question_option": 2
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 28,
+    "fields": {
+      "question": 10003,
+      "assignment": 12,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 29,
+    "fields": {
+      "question": 10004,
+      "assignment": 12,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 30,
+    "fields": {
+      "question": 10005,
+      "assignment": 12,
+      "question_option": 2
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 31,
+    "fields": {
+      "question": 10008,
+      "assignment": 12,
+      "question_option": 21
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 32,
+    "fields": {
+      "question": 10010,
+      "assignment": 12,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 33,
+    "fields": {
+      "question": 10011,
+      "assignment": 2,
+      "question_option": 36
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 34,
+    "fields": {
+      "question": 10012,
+      "assignment": 2,
+      "question_option": 36
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 35,
+    "fields": {
+      "question": 10014,
+      "assignment": 2,
+      "question_option": 37
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 36,
+    "fields": {
+      "question": 10015,
+      "assignment": 2,
+      "question_option": 42
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 37,
+    "fields": {
+      "question": 10016,
+      "assignment": 6,
+      "question_option": 10001
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 38,
+    "fields": {
+      "question": 10017,
+      "assignment": 6,
+      "question_option": 10005
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 39,
+    "fields": {
+      "question": 10018,
+      "assignment": 6,
+      "question_option": 10012
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 40,
+    "fields": {
+      "question": 10019,
+      "assignment": 6,
+      "question_option": 10015
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 41,
+    "fields": {
+      "question": 10020,
+      "assignment": 6,
+      "question_option": 10019
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 42,
+    "fields": {
+      "question": 10001,
+      "assignment": 10,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 43,
+    "fields": {
+      "question": 10002,
+      "assignment": 10,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 44,
+    "fields": {
+      "question": 10003,
+      "assignment": 10,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 45,
+    "fields": {
+      "question": 10004,
+      "assignment": 10,
+      "question_option": 2
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 46,
+    "fields": {
+      "question": 10005,
+      "assignment": 10,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 47,
+    "fields": {
+      "question": 10008,
+      "assignment": 10,
+      "question_option": 17
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 48,
+    "fields": {
+      "question": 10010,
+      "assignment": 10,
+      "question_option": 2
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 49,
+    "fields": {
+      "question": 10011,
+      "assignment": 3,
+      "question_option": 36
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 50,
+    "fields": {
+      "question": 10012,
+      "assignment": 3,
+      "question_option": 35
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 51,
+    "fields": {
+      "question": 10014,
+      "assignment": 3,
+      "question_option": 39
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 52,
+    "fields": {
+      "question": 10015,
+      "assignment": 3,
+      "question_option": 43
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 53,
+    "fields": {
+      "question": 10016,
+      "assignment": 7,
+      "question_option": 10004
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 54,
+    "fields": {
+      "question": 10017,
+      "assignment": 7,
+      "question_option": 10008
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 55,
+    "fields": {
+      "question": 10018,
+      "assignment": 7,
+      "question_option": 10012
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 56,
+    "fields": {
+      "question": 10019,
+      "assignment": 7,
+      "question_option": 10016
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 57,
+    "fields": {
+      "question": 10020,
+      "assignment": 7,
+      "question_option": 10020
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 58,
+    "fields": {
+      "question": 10001,
+      "assignment": 11,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 59,
+    "fields": {
+      "question": 10002,
+      "assignment": 11,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 60,
+    "fields": {
+      "question": 10003,
+      "assignment": 11,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 61,
+    "fields": {
+      "question": 10004,
+      "assignment": 11,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 62,
+    "fields": {
+      "question": 10005,
+      "assignment": 11,
+      "question_option": 1
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 63,
+    "fields": {
+      "question": 10008,
+      "assignment": 11,
+      "question_option": 19
+    }
+  },
+  {
+    "model": "sbam_app.campaignquestionanswer",
+    "pk": 64,
+    "fields": {
+      "question": 10010,
+      "assignment": 11,
+      "question_option": 2
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$mhntScJuRO5T$t7V5v+kdtH58+tI3y8QX3cN5R/jdvSuiFrUepHL1ubI=",
+      "last_login": "2020-05-04T21:44:04.348Z",
+      "is_superuser": true,
+      "username": "user01",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "email01@test.gr",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-02-10T11:51:34Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$mhntScJuRO5T$t7V5v+kdtH58+tI3y8QX3cN5R/jdvSuiFrUepHL1ubI=",
+      "last_login": "2020-05-04T21:44:04.348Z",
+      "is_superuser": true,
+      "username": "user02",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "email02@test.gr",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-02-10T11:51:34Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$mhntScJuRO5T$t7V5v+kdtH58+tI3y8QX3cN5R/jdvSuiFrUepHL1ubI=",
+      "last_login": "2020-05-04T21:44:04.348Z",
+      "is_superuser": true,
+      "username": "user03",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "email03@test.gr",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-02-10T11:51:34Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$mhntScJuRO5T$t7V5v+kdtH58+tI3y8QX3cN5R/jdvSuiFrUepHL1ubI=",
+      "last_login": "2020-05-04T21:44:04.348Z",
+      "is_superuser": true,
+      "username": "user04",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "email04@test.gr",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-02-10T11:51:34Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "sbam_app.campaign",
+    "pk": 1,
+    "fields": {
+      "start_date": "2020-05-05",
+      "end_date": "2020-05-23",
+      "owner": 1,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.assignment",
+    "pk": 1,
+    "fields": {
+      "campaign": 1,
+      "user": 1,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.assignment",
+    "pk": 2,
+    "fields": {
+      "campaign": 1,
+      "user": 2,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.assignment",
+    "pk": 3,
+    "fields": {
+      "campaign": 1,
+      "user": 3,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.assignment",
+    "pk": 4,
+    "fields": {
+      "campaign": 1,
+      "user": 4,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.assignment",
+    "pk": 5,
+    "fields": {
+      "campaign": 1,
+      "user": 1,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.assignment",
+    "pk": 6,
+    "fields": {
+      "campaign": 1,
+      "user": 2,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.assignment",
+    "pk": 7,
+    "fields": {
+      "campaign": 1,
+      "user": 3,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.assignment",
+    "pk": 8,
+    "fields": {
+      "campaign": 1,
+      "user": 4,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.assignment",
+    "pk": 9,
+    "fields": {
+      "campaign": 1,
+      "user": 1,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.assignment",
+    "pk": 10,
+    "fields": {
+      "campaign": 1,
+      "user": 2,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.assignment",
+    "pk": 11,
+    "fields": {
+      "campaign": 1,
+      "user": 3,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.assignment",
+    "pk": 12,
+    "fields": {
+      "campaign": 1,
+      "user": 4,
+      "status": 1
+    }
+  },
+  {
+    "model": "sbam_app.questionnaireassignment",
+    "pk": 1,
+    "fields": {
+      "questionnaire": 10003
+    }
+  },
+  {
+    "model": "sbam_app.questionnaireassignment",
+    "pk": 2,
+    "fields": {
+      "questionnaire": 10003
+    }
+  },
+  {
+    "model": "sbam_app.questionnaireassignment",
+    "pk": 3,
+    "fields": {
+      "questionnaire": 10003
+    }
+  },
+  {
+    "model": "sbam_app.questionnaireassignment",
+    "pk": 4,
+    "fields": {
+      "questionnaire": 10003
+    }
+  },
+  {
+    "model": "sbam_app.questionnaireassignment",
+    "pk": 5,
+    "fields": {
+      "questionnaire": 10005
+    }
+  },
+  {
+    "model": "sbam_app.questionnaireassignment",
+    "pk": 6,
+    "fields": {
+      "questionnaire": 10005
+    }
+  },
+  {
+    "model": "sbam_app.questionnaireassignment",
+    "pk": 7,
+    "fields": {
+      "questionnaire": 10005
+    }
+  },
+  {
+    "model": "sbam_app.questionnaireassignment",
+    "pk": 8,
+    "fields": {
+      "questionnaire": 10005
+    }
+  },
+  {
+    "model": "sbam_app.questionnaireassignment",
+    "pk": 9,
+    "fields": {
+      "questionnaire": 10001
+    }
+  },
+  {
+    "model": "sbam_app.questionnaireassignment",
+    "pk": 10,
+    "fields": {
+      "questionnaire": 10001
+    }
+  },
+  {
+    "model": "sbam_app.questionnaireassignment",
+    "pk": 11,
+    "fields": {
+      "questionnaire": 10001
+    }
+  },
+  {
+    "model": "sbam_app.questionnaireassignment",
+    "pk": 12,
+    "fields": {
+      "questionnaire": 10001
+    }
+  }
+]

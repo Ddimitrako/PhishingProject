@@ -178,20 +178,21 @@ def get_questionnaire(user, questionnaire_id):
 
 
 def calculate_assignment_result(assignment):
-    total = 0.0
-
     try:
         answer_sum = models.CampaignQuestionAnswer.objects.filter(assignment=assignment).aggregate(
-            answer_sum=Sum('question_option__value'))['answer_sum']
+            answer_sum=Sum(F('question_option__value') * F('question__weight')))['answer_sum']
 
-        question_answer_types = models.CampaignQuestionAnswer.objects.filter(assignment=assignment). \
-            select_related('question__question_type').values_list('question__question_type')
+        question_type_weights = models.CampaignQuestionAnswer.objects.filter(assignment=assignment). \
+            select_related('question__question_type').values('question__question_type', 'question__weight')
 
-        question_type_maxs = models.QuestionOption.objects.filter(question_type__in=question_answer_types.distinct()). \
+        question_type_maxs = models.QuestionOption.objects.filter(
+            question_type__in=question_type_weights.values_list('question__question_type').distinct()). \
             values('question_type').annotate(question_type_max=Max('value'))
 
-        for question_answer_type in question_answer_types:
-            total += question_type_maxs.get(question_type=question_answer_type)['question_type_max']
+        total = 0.0
+        for question_type_weight in question_type_weights:
+            total += question_type_maxs.get(question_type=question_type_weight['question__question_type'])[
+                         'question_type_max'] * question_type_weight['question__weight']
     finally:
         score = (answer_sum / total) if total != 0.0 else total
 
