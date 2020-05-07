@@ -24,6 +24,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # model translation (If you want to use the admin integration must be put before django.contrib.admin)
+    'modeltranslation',
+
+    # django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -152,6 +156,10 @@ LANGUAGES = [
     ('it', _('Italian')),
     ('ro', _('Romanian')),
 ]
+
+
+# Default lang of modeltranslation
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
