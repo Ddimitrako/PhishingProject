@@ -55,7 +55,6 @@ def disable_field(form, field):
 def campaignCreation(request):
     if request.user.userprofile.is_manager:
         if request.method == 'POST':
-
             current_user = request.user
             users = json.loads(request.POST['users'])
             questionnaires = json.loads(request.POST['quests'])
