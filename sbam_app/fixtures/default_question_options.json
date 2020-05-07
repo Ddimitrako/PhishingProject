@@ -3,18 +3,28 @@
     "model": "sbam_app.QuestionOption",
     "fields": {
       "question_type": "BOOL",
-      "text": "Yes",
+      "text_en": "Yes",
+      "text_el": "Ναι",
+      "text_it": "Si",
+      "text_ro": "Da",
       "value": 1,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
     "model": "sbam_app.QuestionOption",
     "fields": {
       "question_type": "BOOL",
-      "text": "No",
+      "text_en": "No",
+      "text_el": "Όχι",
+      "text_it": "No",
+      "text_ro": "Nu",
       "value": 0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -23,16 +33,9 @@
       "question_type": "PERC10",
       "text": "0-9 %",
       "value": 0.1,
-      "is_active": 1
-    }
-  },
-  {
-    "model": "sbam_app.QuestionOption",
-    "fields": {
-      "question_type": "PERC10",
-      "text": "0-9 %",
-      "value": 0.1,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -41,7 +44,9 @@
       "question_type": "PERC10",
       "text": "10-19 %",
       "value": 0.2,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -50,7 +55,9 @@
       "question_type": "PERC10",
       "text": "20-29 %",
       "value": 0.3,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -59,7 +66,9 @@
       "question_type": "PERC10",
       "text": "30-39 %",
       "value": 0.4,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -68,7 +77,9 @@
       "question_type": "PERC10",
       "text": "40-49 %",
       "value": 0.5,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
     }
   },
   {
@@ -77,7 +88,9 @@
       "question_type": "PERC10",
       "text": "50-59 %",
       "value": 0.6,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 6,
+      "order": 6
     }
   },
   {
@@ -86,7 +99,9 @@
       "question_type": "PERC10",
       "text": "60-69 %",
       "value": 0.7,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 7,
+      "order": 7
     }
   },
   {
@@ -95,7 +110,9 @@
       "question_type": "PERC10",
       "text": "70-79 %",
       "value": 0.8,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 8,
+      "order": 8
     }
   },
   {
@@ -104,7 +121,9 @@
       "question_type": "PERC10",
       "text": "80-89 %",
       "value": 0.9,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 9,
+      "order": 9
     }
   },
   {
@@ -113,7 +132,9 @@
       "question_type": "PERC10",
       "text": "90-100 %",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 10,
+      "order": 10
     }
   },
   {
@@ -122,7 +143,9 @@
       "question_type": "PERC20",
       "text": "0-19 %",
       "value": 0.2,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -131,7 +154,9 @@
       "question_type": "PERC20",
       "text": "20-39 %",
       "value": 0.4,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -140,7 +165,9 @@
       "question_type": "PERC20",
       "text": "40-59 %",
       "value": 0.5,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -149,7 +176,9 @@
       "question_type": "PERC20",
       "text": "60-79 %",
       "value": 0.8,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -158,52 +187,74 @@
       "question_type": "PERC20",
       "text": "80-100 %",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
     }
   },
   {
     "model": "sbam_app.QuestionOption",
     "fields": {
       "question_type": "AGR5",
-      "text": "Strongly Disagree",
+      "text_en": "Strongly Disagree",
+      "text_el": "Διαφωνώ πλήρως",
+      "text_it": "In forte disaccordo",
       "value": -2,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
     "model": "sbam_app.QuestionOption",
     "fields": {
       "question_type": "AGR5",
-      "text": "Disagree",
+      "text_en": "Disagree",
+      "text_el": "Διαφωνώ",
+      "text_it": "Disaccordo",
       "value": -1,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
     "model": "sbam_app.QuestionOption",
     "fields": {
       "question_type": "AGR5",
-      "text": "Neutral",
+      "text_en": "Neutral",
+      "text_el": "Ουδέτερος",
+      "text_it": "Neutro",      
       "value": 0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
     "model": "sbam_app.QuestionOption",
     "fields": {
       "question_type": "AGR5",
-      "text": "Agree",
+      "text_en": "Agree",
+      "text_el": "Συμφωνώ",
+      "text_it": "Accordo",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
     "model": "sbam_app.QuestionOption",
     "fields": {
       "question_type": "AGR5",
-      "text": "Strongly Agree",
+      "text_en": "Strongly Agree",
+      "text_el": "Συμφωνώ πλήρως",
+      "text_it": "In forte accordo",
       "value": 2.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
     }
   }
 ]
