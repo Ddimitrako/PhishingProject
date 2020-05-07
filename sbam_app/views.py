@@ -1,4 +1,5 @@
 import json
+from itertools import chain
 
 from allauth.account.utils import send_email_confirmation
 from django.conf import settings
@@ -94,8 +95,15 @@ def create_or_update_user(request, template, user=None, profile=None, creating=T
             []
         )
 
+    questionnaires = models.QuestionnaireAssignment.objects.filter(user=user, status__in=[0, 1]). \
+        select_related('campaign', 'questionnaire').order_by('questionnaire__title')
+    tests = models.TestAssignment.objects.filter(user=user, status__in=[0, 1]). \
+        select_related('campaign', 'test').order_by('test__title')
+    assignments = chain(questionnaires, tests)
+
     return render(request, template, {
         'user': user,
+        'assignments': assignments,
         'user_form': user_form,
         'profile_form': profile_form
     })

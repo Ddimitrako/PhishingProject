@@ -1,0 +1,59 @@
+{% load i18n custom_tags %}
+
+<table id="table"
+       class="table table-bordered table-hover table-head-fixed table-striped table-responsive"
+       style="height: 410px;">
+    <thead>
+        <tr>
+            <th>{% trans "status"|capfirst %}</th>
+            <th>{% trans "questionnaire"|capfirst %}</th>
+            <th>{% trans "score"|capfirst %}</th>
+            <th>{% trans "Completion Date" %}</th>
+            <th>{% trans "Expiration Date" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for assignment in assignments %}
+            <tr {% if assignment.status == 0 and assignment.campaign.expired %} class="text-muted" {% endif %}>
+                <td style="text-align:center">
+                    {% if assignment.status == 1 %}
+                        <i class="fas fa-check-circle" style="color: darkgreen"
+                           title="{% trans "Completed" %}"></i>
+                    {% elif assignment.campaign.expired %}
+                        <i class="fas fa-minus-circle" style="color: darkred"
+                           title="{% trans "Expired" %}"></i>
+                    {% elif assignment.campaign.ends_within_week %}
+                        <i class="fas fa-exclamation-circle" style="color: darkorange"
+                           title="{% trans "Expires in less than 7 days" %}"></i>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if assignment.status == 0 and not assignment.campaign.expired %}
+                        <a href="{% url 'sbam:assignments' assignment.id %}">
+                            {{ assignment.questionnaire.title }}
+                            {{ assignment.test.title }}
+                        </a>
+                    {% else %}
+                        {{ assignment.questionnaire.title }}
+                        {{ assignment.test.title }}
+                    {% endif %}
+                </td>
+                <td style="text-align:right">
+                    {% with score=assignment.get_result %}
+                        {% get_badge score as badge_type %}
+                        <span {% if badge_type != '' %}class="badge {{ badge_type }}"{% endif %}>
+                                    {{ score }}
+                                </span>
+                    {% endwith %}
+                </td>
+                <td style="text-align:right">{{ assignment.get_answer_time|default:'' }}</td>
+                <td style="text-align:right">{{ assignment.campaign.end_date|default:'' }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5" class="text-muted">{% trans "No evaluations available!" %}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+

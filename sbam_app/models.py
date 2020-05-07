@@ -74,6 +74,10 @@ class Campaign(Model):
     def ends_within_week(self):
         return (self.end_date - date.today()).days <= 7
 
+    @property
+    def expired(self):
+        return self.end_date < date.today()
+
     class Meta:
         verbose_name = _('campaign')
         verbose_name_plural = _('campaigns')
@@ -142,6 +146,9 @@ class QuestionnaireAssignment(Assignment):
 
     def get_answer_time(self):
         return self.assignmentresult_set.get(assignment=self).answer_time
+
+    def get_result(self):
+        return '{0:.2%}'.format(self.assignmentresult_set.get(assignment=self).score)
 
     def __str__(self):
         return self.questionnaire.title + ' has been assigned to ' + self.user.username
@@ -299,6 +306,9 @@ class TestAssignment(Assignment):
 
     def get_answer_time(self):
         return self.assignmentresult_set.get(assignment=self).answer_time.date()
+
+    def get_result(self):
+        return '{0:.2%}'.format(self.assignmentresult_set.get(assignment=self).score)
 
     def __str__(self):
         return self.test + ' has been assigned to ' + self.user
