@@ -160,8 +160,7 @@ def activate_group(request, name, status):
     return redirect('sbam:group', name)
 
 
-def get_questionnaire(user, questionnaire_id):
-    quest = models.QuestionnaireAssignment.objects.get(user=user, pk=questionnaire_id)
+def get_questionnaire(quest):
     questions_dict = {'title': quest.questionnaire.title, 'id': quest.pk}
     questions = models.Question.objects.filter(questionnaire=quest.questionnaire, is_active=1).values()
     # print(questions)
@@ -228,8 +227,15 @@ def dashboardView(request, compl_time=None):
 @login_required
 def assignmentCompletion(request, assignment_id):
     if request.user.assignment_set.filter(pk=assignment_id):
-        questionnaire = get_questionnaire(request.user, assignment_id)
-        return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
+        quest = models.QuestionnaireAssignment.objects.get(user=request.user, pk=assignment_id)
+        if quest.status == Assignment.Statuses.OPEN:
+            questionnaire = get_questionnaire(quest)
+            return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
+        else:
+            messages.error(request, _('Assignment \"%(title)s\" is no longer active for completion! '
+                                      'Please select an active assignment from the ones presented in your dashboard...'
+                                      % {'title': quest.questionnaire.title}))
+            return redirect('sbam:dashboard')
     else:
         return HttpResponseForbidden()
 

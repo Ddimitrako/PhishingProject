@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-05 13:29+0300\n"
+"POT-Creation-Date: 2020-05-07 11:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1287,4 +1287,11 @@ msgstr ""
 
 #: .\sbam_app\views.py:125
 msgid "Please add at least one group member"
+msgstr ""
+
+#: .\sbam_app\views.py:235
+#, python-format
+msgid ""
+"Assignment \"%(title)s\" is no longer active for completion! Please select "
+"an active assignment from the ones presented in your dashboard..."
 msgstr ""
