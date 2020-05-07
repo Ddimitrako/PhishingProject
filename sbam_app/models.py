@@ -76,7 +76,7 @@ class Assignment(Model):
     campaign = ForeignKey(Campaign, on_delete=CASCADE)
     user = ForeignKey(User, on_delete=CASCADE)
     status = IntegerField(choices=STATUSES, default=0, help_text="Status of an assignment if it is completed or not")
-    type = IntegerField(choices=TYPES, help_text="Type of assignment ")
+    # type = IntegerField(choices=TYPES, help_text="Type of assignment ")
 
 
 class AssignmentResult(Model):
@@ -94,6 +94,7 @@ class Questionnaire(Model):
     ]
     domain = ForeignKey(Domain, on_delete=CASCADE)
     is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a questionnaire if it is used")
+    title = CharField(max_length=100, help_text="Questionnaire title")
 
 
 class QuestionnaireAssignment(Assignment):
@@ -128,6 +129,8 @@ class QuestionOption(Model):
     text = TextField(help_text="question's option text")
     value = FloatField()
     is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a questionnaire if it is used")
+    id_in_question = IntegerField()
+    order = IntegerField()
 
 
 class Question(Model):
@@ -141,6 +144,8 @@ class Question(Model):
     question_type = ForeignKey(QuestionType, on_delete=CASCADE)
     text = TextField(help_text="question's text")
     is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a question if it is used")
+    id_in_questionnaire = IntegerField()
+    order = IntegerField()
 
 
 class CampaignQuestionAnswer(Model):

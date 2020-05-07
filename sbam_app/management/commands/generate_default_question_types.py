@@ -9,11 +9,13 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        with open('sbam_app/fixtures/default_question_types.json') as f:
+        with open('sbam_app/fixtures/default_question_types.json', encoding="utf8") as f:
             question_types = json.load(f)
 
-        with open('sbam_app/fixtures/default_question_options.json') as f:
+        with open('sbam_app/fixtures/default_question_options.json', encoding="utf8") as f:
             question_options = json.load(f)
+
+        languages = ['en', 'el', 'it', 'ro']
 
         for qt in question_types:
             try:
@@ -30,9 +32,15 @@ class Command(BaseCommand):
                         qo_obj = QuestionOption(question_type=qt_obj)
                         print('eimai sto except')
                     # print(qo_obj.text)
-                    qo_obj.text = qo['fields']['text']
+                    for l in languages:
+                        try:
+                            qo_obj.text = qo['fields']['text_'+str(l)]
+                        except:
+                            pass
                     qo_obj.value = qo['fields']['value']
                     qo_obj.is_active = qo['fields']['is_active']
+                    qo_obj.id_in_question = qo['fields']['id_in_question']
+                    qo_obj.order = qo['fields']['order']
                     qo_obj.save()
         self.stdout.write('Successfully created the default question types and their options')
 
