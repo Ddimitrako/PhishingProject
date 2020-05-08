@@ -38,46 +38,61 @@ class Domain(Model):
 
 
 class Campaign(Model):
-    ACTIVE = 'ACTIVE'           #To campaign einai energo kai mporoyn na apanthsoun oi xrhstes
-    FINISHED = 'FINISHED'       #Sto campaign apanthsan oloi h perase to end_date
-    CANCELLED = 'CANCELLED'     #Gia kapoio logo o owner apofasise na akurwsei ena campaign
-    STATUSES = [
-        (FINISHED, 0),
-        (ACTIVE, 1),
-        (CANCELLED, 2)
-    ]
     start_date = DateField()
     end_date = DateField()
     owner = ForeignKey(User, on_delete=CASCADE, help_text="The user who created the campaign")
-    status = IntegerField(choices=STATUSES, default=1, help_text="Status of a Campaign")
+    is_cancelled = BooleanField(default=False, help_text="Is the campaign cancelled?")
+    title = CharField(max_length=10, help_text="Campaign title")
+
+    @property
+    def status(self):
+        if self.is_cancelled:
+            return 'CANCELLED'
+        elif self.start_date > date.today():
+            return 'NOT_STARTED'
+        elif self.is_expired or int(self.completion_rate) == 1:
+            return 'FINISHED'
+        else:
+            return 'ACTIVE'
 
     def __str__(self):
-        return self.owner.get_full_name() + ' ' + self.start_date + ' - ' + self.end_date
+        return self.owner.get_full_name() + ' ' + str(self.start_date) + ' - ' + str(self.end_date)
 
     def ends_within_week(self):
         return (self.end_date - date.today()).days <= 7
 
+    def is_expired(self):
+        return self.end_date < date.today()
+
+    def num_of_assignments(self):
+        return QuestionnaireAssignment.objects.filter(campaign=self).count() + TestAssignment.objects.filter(campaign=self).count()
+
+    def num_of_completed_assignments(self):
+        return QuestionnaireAssignment.objects.filter(campaign=self, status='COMPLETED').count() + TestAssignment.objects.filter(campaign=self, status='COMPLETED').count()
+
+    def completion_rate(self):
+        return self.num_of_completed_assignments / self.num_of_assignments
+
 
 class Assignment(Model):
-    COMPLETED = 'COMPLETED'    #O xrhsths ston opoio anaferetai to assignment oloklhrwse tis erwthseis
-    OPEN = 'OPEN'              #To sugkekrimeno assignment einai energo kai den exei apanthsei oles tis erwthseis o user
-    CANCELLED = 'CANCELLED'    #To assignment o admin h o manager(?) to akurwse
-    STATUSES = [
-        (OPEN, 0),
-        (COMPLETED, 1),
-        (CANCELLED, 2)
-    ]
-    
     campaign = ForeignKey(Campaign, on_delete=CASCADE)
     user = ForeignKey(User, on_delete=CASCADE)
-    status = IntegerField(choices=STATUSES, default=0, help_text="Status of an assignment if it is completed or not")
-    # type = IntegerField(choices=TYPES, help_text="Type of assignment ")
-
-
-class AssignmentResult(Model):
-    assignment = ForeignKey(Assignment, on_delete=CASCADE)
-    answer_time = DateTimeField()
-    score = FloatField()
+    
+    def is_completed(self):
+        return AssignmentResult.objects.filter(assignment=self).count() > 0
+    
+    @property
+    def status(self):
+        if self.campaign.status == 'CANCELLED':
+            return 'CANCELLED'
+        elif self.campaign.status == 'NOT_STARTED':
+            return 'NOT_STARTED'
+        elif self.is_completed:
+            return 'COMPLETED'
+        elif self.campaign.is_expired:
+            return 'EXPIRED'
+        else:
+            return 'OPEN'
 
 
 class Questionnaire(Model):
@@ -90,7 +105,6 @@ class Questionnaire(Model):
     title = CharField(max_length=200, help_text="Questionnaire title")
     domain = ForeignKey(Domain, on_delete=CASCADE)
     is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a questionnaire if it is used")
-    title = CharField(max_length=100, help_text="Questionnaire title")
 
 
 class QuestionnaireAssignment(Assignment):
@@ -171,7 +185,7 @@ class TestAssignment(Assignment):
 
 class AssignmentResult(Model):
     assignment = ForeignKey(Assignment, on_delete=CASCADE)
-    answer_time = DateField()
+    answer_time = DateTimeField()
     score = FloatField()
 
 # User Management Model
