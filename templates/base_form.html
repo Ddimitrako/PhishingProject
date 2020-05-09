@@ -121,6 +121,11 @@
                 $('#save').show();
                 $('#reset').show();
             });
+            $('form .datepicker').on('apply.daterangepicker', function () {
+                //do something, like clearing an input
+                $('#save').show();
+                $('#reset').show();
+            });
 
         });
     </script>
