@@ -176,7 +176,7 @@ def get_questionnaire(quest):
     # print(questions)
     for question in questions:
         question_type = QuestionType.objects.get(pk=question['question_type_id'])
-        question_options = QuestionOption.objects.filter(question_type=question_type, is_active=1).values()
+        question_options = QuestionOption.objects.filter(question_type=question_type, is_active=Status.ACTIVE).values()
         quest_type = model_to_dict(question_type)
         quest_type['takes_multiple'] = 'true' if quest_type['takes_multiple'] else 'false'
         questions_dict['questiion_' + str(question['id'])] = [question, quest_type,
@@ -266,7 +266,7 @@ def surveySumbission(request):
                 answer = QuestionOption.objects.get(pk=option_id)
                 assignment_answer = CampaignQuestionAnswer(assignment=assignment, question=question,
                                                            question_option=answer)
-                assignment.status = 1
+                assignment.status = Assignment.Statuses.COMPLETED
                 assignment.save()
                 assignment_answer.save()
 
@@ -277,7 +277,7 @@ def surveySumbission(request):
 
             assignment_answer = CampaignQuestionAnswer(assignment=assignment, question=question,
                                                        question_option=answer)
-            assignment.status = 1
+            assignment.status = Assignment.Statuses.COMPLETED
             assignment.save()
             assignment_answer.save()
 
@@ -370,7 +370,8 @@ def campaignCreation(request):
             # print(questionnaires)
             try:
                 with transaction.atomic():
-                    new_campaign = Campaign(start_date=start_date, end_date=end_date, owner=current_user, status=1)
+                    new_campaign = Campaign(start_date=start_date, end_date=end_date, owner=current_user,
+                                            status=Campaign.Statuses.ACTIVE)
                     new_campaign.save()
 
                     # Getting the selected users to ass
@@ -393,8 +394,9 @@ def campaignCreation(request):
 
                         # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
                         for sel_user in sel_users:
-                            new_assignment = QuestionnaireAssignment(status=0, campaign_id=new_campaign.id,
-                                                                     user=sel_user, questionnaire_id=quest_id)
+                            new_assignment = QuestionnaireAssignment(status=Assignment.Statuses.OPEN,
+                                                                     campaign_id=new_campaign.id, user=sel_user,
+                                                                     questionnaire_id=quest_id)
                             new_assignment.save()
 
                     for test in tests:
@@ -402,7 +404,8 @@ def campaignCreation(request):
 
                         # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
                         for sel_user in sel_users:
-                            new_assignment = TestAssignment(status=0, campaign_id=new_campaign.id, user=sel_user,
+                            new_assignment = TestAssignment(status=Assignment.Statuses.OPEN,
+                                                            campaign_id=new_campaign.id, user=sel_user,
                                                             test=test_id)
                             new_assignment.save()
 
