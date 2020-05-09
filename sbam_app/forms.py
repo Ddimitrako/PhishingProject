@@ -148,12 +148,18 @@ class GroupForm(forms.ModelForm):
 
 
 class GroupProfileForm(forms.ModelForm):
+    creator_ = forms.CharField()
+
     class Meta:
         model = models.GroupProfile
-        fields = ('description', 'notes')
+        fields = ('creation_timestamp', 'description', 'notes')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self.fields['creator_'].disabled = True
+        self.fields['creator_'].initial = self.instance.creator.get_full_name()
+        self.fields['creation_timestamp'].disabled = True
 
         self.fields['notes'].widget = forms.Textarea(attrs={'rows': 3})
 
