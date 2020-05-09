@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-09 23:06+0300\n"
+"POT-Creation-Date: 2020-05-10 00:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -474,10 +474,12 @@ msgstr ""
 msgid "Forgot Password"
 msgstr ""
 
-#: .\templates\main_header.html:11
-#: .\sbam_app\templates\campaign_creation.html:13
+#: .\templates\main_header.html:11 .\sbam_app\templates\campaign.html:16
+#: .\sbam_app\templates\campaigns.html:10
 #: .\sbam_app\templates\dashboard.html:7 .\sbam_app\templates\group.html:16
-#: .\sbam_app\templates\groups.html:10 .\sbam_app\templates\new_group.html:10
+#: .\sbam_app\templates\groups.html:10
+#: .\sbam_app\templates\new_campaign.html:15
+#: .\sbam_app\templates\new_group.html:10
 #: .\sbam_app\templates\new_user.html:10 .\sbam_app\templates\profile.html:16
 #: .\sbam_app\templates\questionnaire.html:14
 #: .\sbam_app\templates\users.html:10
@@ -525,10 +527,15 @@ msgstr ""
 msgid "Individual"
 msgstr ""
 
-#: .\templates\main_sidebar.html:68
-#: .\sbam_app\templates\campaign_creation.html:14
-#: .\sbam_app\templates\profile.html:118
-msgid "Evaluations"
+#: .\templates\main_sidebar.html:68 .\sbam_app\models.py:88
+#: .\sbam_app\templates\campaign.html:17 .\sbam_app\templates\campaigns.html:6
+#: .\sbam_app\templates\campaigns.html:11
+#: .\sbam_app\templates\new_campaign.html:16
+msgid "campaigns"
+msgstr ""
+
+#: .\sbam_app\forms.py:179 .\sbam_app\models.py:68
+msgid "The user who created the campaign"
 msgstr ""
 
 #: .\sbam_app\models.py:14
@@ -541,6 +548,7 @@ msgstr ""
 
 #: .\sbam_app\models.py:25 .\sbam_app\models.py:44 .\sbam_app\models.py:61
 #: .\sbam_app\models.py:117 .\sbam_app\models.py:288
+#: .\sbam_app\templates\campaigns.html:27
 msgid "title"
 msgstr ""
 
@@ -605,7 +613,7 @@ msgstr ""
 msgid "Campaign title"
 msgstr ""
 
-#: .\sbam_app\models.py:62
+#: .\sbam_app\models.py:62 .\sbam_app\templates\campaigns.html:28
 msgid "start date"
 msgstr ""
 
@@ -613,7 +621,7 @@ msgstr ""
 msgid "Campaign start date"
 msgstr ""
 
-#: .\sbam_app\models.py:63
+#: .\sbam_app\models.py:63 .\sbam_app\templates\campaigns.html:29
 msgid "end date"
 msgstr ""
 
@@ -621,16 +629,13 @@ msgstr ""
 msgid "Campaign end date"
 msgstr ""
 
-#: .\sbam_app\models.py:66
+#: .\sbam_app\models.py:66 .\sbam_app\templates\campaigns.html:30
 msgid "owner"
 msgstr ""
 
-#: .\sbam_app\models.py:68
-msgid "The user who created the campaign"
-msgstr ""
-
 #: .\sbam_app\models.py:70 .\sbam_app\models.py:105
-#: .\sbam_app\templates\evaluations.html:8
+#: .\sbam_app\templates\assignments.html:8
+#: .\sbam_app\templates\campaigns.html:26
 msgid "status"
 msgstr ""
 
@@ -639,18 +644,15 @@ msgid "Campaign status"
 msgstr ""
 
 #: .\sbam_app\models.py:87 .\sbam_app\models.py:99
+#: .\sbam_app\templates\campaign.html:7 .\sbam_app\templates\campaign.html:18
 msgid "campaign"
-msgstr ""
-
-#: .\sbam_app\models.py:88
-msgid "campaigns"
 msgstr ""
 
 #: .\sbam_app\models.py:93
 msgid "Open"
 msgstr ""
 
-#: .\sbam_app\models.py:94 .\sbam_app\templates\evaluations.html:21
+#: .\sbam_app\models.py:94 .\sbam_app\templates\assignments.html:21
 msgid "Completed"
 msgstr ""
 
@@ -674,7 +676,8 @@ msgstr ""
 msgid "assignment"
 msgstr ""
 
-#: .\sbam_app\models.py:113
+#: .\sbam_app\models.py:113 .\sbam_app\templates\profile.html:118
+#: .\sbam_app\templates\questionnaire.html:15
 msgid "assignments"
 msgstr ""
 
@@ -708,7 +711,7 @@ msgid "Multiplier indicating questionnaire's significance"
 msgstr ""
 
 #: .\sbam_app\models.py:140 .\sbam_app\models.py:147 .\sbam_app\models.py:225
-#: .\sbam_app\templates\evaluations.html:9
+#: .\sbam_app\templates\assignments.html:9
 msgid "questionnaire"
 msgstr ""
 
@@ -921,7 +924,7 @@ msgstr ""
 msgid "The date this assignment result was achieved"
 msgstr ""
 
-#: .\sbam_app\models.py:334 .\sbam_app\templates\evaluations.html:10
+#: .\sbam_app\models.py:334 .\sbam_app\templates\assignments.html:10
 msgid "score"
 msgstr ""
 
@@ -1085,9 +1088,64 @@ msgstr ""
 msgid "group profiles"
 msgstr ""
 
-#: .\sbam_app\templates\campaign_creation.html:19
-#: .\sbam_app\templates\campaign_creation.html:114
-msgid "Create your campaign"
+#: .\sbam_app\templates\assignments.html:11
+msgid "Completion Date"
+msgstr ""
+
+#: .\sbam_app\templates\assignments.html:12
+msgid "Expiration Date"
+msgstr ""
+
+#: .\sbam_app\templates\assignments.html:24
+msgid "Expired"
+msgstr ""
+
+#: .\sbam_app\templates\assignments.html:27
+msgid "Expires in less than 7 days"
+msgstr ""
+
+#: .\sbam_app\templates\assignments.html:54
+msgid "No assignments available!"
+msgstr ""
+
+#: .\sbam_app\templates\campaign.html:10
+msgid "(cancelled)"
+msgstr ""
+
+#: .\sbam_app\templates\campaign.html:31 .\sbam_app\templates\group.html:75
+#: .\sbam_app\templates\profile.html:57
+msgid "Save changes"
+msgstr ""
+
+#: .\sbam_app\templates\campaign.html:32 .\sbam_app\templates\group.html:76
+#: .\sbam_app\templates\profile.html:58
+msgid "Save"
+msgstr ""
+
+#: .\sbam_app\templates\campaign.html:36 .\sbam_app\templates\group.html:96
+#: .\sbam_app\templates\profile.html:76
+msgid "Discard changes"
+msgstr ""
+
+#: .\sbam_app\templates\campaign.html:37 .\sbam_app\templates\group.html:97
+#: .\sbam_app\templates\profile.html:77
+msgid "Reset"
+msgstr ""
+
+#: .\sbam_app\templates\campaigns.html:19
+#: .\sbam_app\templates\campaigns.html:20
+#: .\sbam_app\templates\new_campaign.html:22
+#: .\sbam_app\templates\new_campaign.html:125
+msgid "Create new campaign"
+msgstr ""
+
+#: .\sbam_app\templates\campaigns.html:39
+#: .\sbam_app\templates\campaigns.html:42
+msgid "Finished "
+msgstr ""
+
+#: .\sbam_app\templates\campaigns.html:45
+msgid "In progress"
 msgstr ""
 
 #: .\sbam_app\templates\dashboard.html:32
@@ -1117,26 +1175,6 @@ msgstr ""
 msgid "Completed at"
 msgstr ""
 
-#: .\sbam_app\templates\evaluations.html:11
-msgid "Completion Date"
-msgstr ""
-
-#: .\sbam_app\templates\evaluations.html:12
-msgid "Expiration Date"
-msgstr ""
-
-#: .\sbam_app\templates\evaluations.html:24
-msgid "Expired"
-msgstr ""
-
-#: .\sbam_app\templates\evaluations.html:27
-msgid "Expires in less than 7 days"
-msgstr ""
-
-#: .\sbam_app\templates\evaluations.html:54
-msgid "No evaluations available!"
-msgstr ""
-
 #: .\sbam_app\templates\group.html:10 .\sbam_app\templates\profile.html:10
 msgid "(disabled)"
 msgstr ""
@@ -1150,36 +1188,20 @@ msgstr ""
 msgid "members"
 msgstr ""
 
-#: .\sbam_app\templates\group.html:76 .\sbam_app\templates\profile.html:57
-msgid "Save changes"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:77 .\sbam_app\templates\profile.html:58
-msgid "Save"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:84
+#: .\sbam_app\templates\group.html:83
 msgid "Disable group"
 msgstr ""
 
-#: .\sbam_app\templates\group.html:85 .\sbam_app\templates\profile.html:65
+#: .\sbam_app\templates\group.html:84 .\sbam_app\templates\profile.html:65
 msgid "Disable"
 msgstr ""
 
-#: .\sbam_app\templates\group.html:90
+#: .\sbam_app\templates\group.html:89
 msgid "Enable group"
 msgstr ""
 
-#: .\sbam_app\templates\group.html:91 .\sbam_app\templates\profile.html:70
+#: .\sbam_app\templates\group.html:90 .\sbam_app\templates\profile.html:70
 msgid "Enable"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:97 .\sbam_app\templates\profile.html:76
-msgid "Discard changes"
-msgstr ""
-
-#: .\sbam_app\templates\group.html:98 .\sbam_app\templates\profile.html:77
-msgid "Reset"
 msgstr ""
 
 #: .\sbam_app\templates\groups.html:18 .\sbam_app\templates\profile.html:110
@@ -1196,6 +1218,10 @@ msgstr ""
 
 #: .\sbam_app\templates\groups.html:50
 msgid "Show Members"
+msgstr ""
+
+#: .\sbam_app\templates\new_campaign.html:17
+msgid "New Campaign"
 msgstr ""
 
 #: .\sbam_app\templates\new_group.html:6
@@ -1247,10 +1273,6 @@ msgstr ""
 msgid "Status currently unavailable!"
 msgstr ""
 
-#: .\sbam_app\templates\questionnaire.html:15
-msgid "Assignments"
-msgstr ""
-
 #: .\sbam_app\templates\questionnaire.html:21
 msgid "Assignment"
 msgstr ""
@@ -1296,7 +1318,7 @@ msgstr ""
 msgid "User successfully %(action)s"
 msgstr ""
 
-#: .\sbam_app\views.py:87 .\sbam_app\views.py:137
+#: .\sbam_app\views.py:87 .\sbam_app\views.py:137 .\sbam_app\views.py:387
 msgid "Please correct the errors below"
 msgstr ""
 
@@ -1314,4 +1336,8 @@ msgstr ""
 msgid ""
 "Assignment \"%(title)s\" is no longer active for completion! Please select "
 "an active assignment from the ones presented in your dashboard..."
+msgstr ""
+
+#: .\sbam_app\views.py:384
+msgid "Campaign successfully updated"
 msgstr ""

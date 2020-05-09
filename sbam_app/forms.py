@@ -1,13 +1,13 @@
-from django import forms
-
-from sbam_app import models
-
-from tempus_dominus.widgets import DatePicker
-from django.contrib.auth.models import Group
+from crispy_forms.bootstrap import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import *
-from crispy_forms.bootstrap import *
+from django import forms
+from django.contrib.auth.models import Group
 from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _
+from tempus_dominus.widgets import DatePicker
+
+from sbam_app import models
 
 
 class UserMultipleChoiceField(forms.ModelMultipleChoiceField):
@@ -95,7 +95,7 @@ class UserProfileForm(forms.ModelForm):
             Row(
                 Column('employee_id', css_class='col-md-4'),
                 Column(AppendedText('birth_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),
-                                          css_class='datepicker'), css_class='col-md-4'),
+                                    css_class='datepicker'), css_class='col-md-4'),
                 Column('gender', css_class='col-md-4')
             ),
             Row(
@@ -175,6 +175,34 @@ class GroupProfileForm(forms.ModelForm):
         )
 
 
+class CampaignForm(forms.ModelForm):
+    creator = forms.CharField(help_text=_('The user who created the campaign'))
+
+    class Meta:
+        model = models.Campaign
+        fields = ('title', 'start_date', 'end_date')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['start_date'].disabled = True
+        self.fields['creator'].disabled = True
+        self.fields['creator'].initial = self.instance.owner.get_full_name()
+
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column('title', css_class='col-md-3'),
+                Column('creator', css_class='col-md-3')
+            ),
+            Row(
+                Column('start_date', css_class='col-md-3'),
+                Column(AppendedText('end_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),
+                                    css_class='datepicker'), css_class='col-md-3'),
+            )
+        )
+
+
 class CampaignCreationForm(forms.Form):
     title = forms.CharField()
     start_date = forms.DateField(
@@ -225,11 +253,11 @@ def get_campaign_form_trees():
         if dim.level == 1:
             temp_dict = indv_dict
         dim_dict = {
-          "id": 'dimension_' + str(dim.pk),
-          "text": dim.title,
-          "attributes": {},
-          "children": [],
-          "check": "False"
+            "id": 'dimension_' + str(dim.pk),
+            "text": dim.title,
+            "attributes": {},
+            "children": [],
+            "check": "False"
         }
         for dom in dim.domain_set.all().order_by('title'):
             dom_dict = {
@@ -268,11 +296,11 @@ def get_campaign_form_trees():
         "check": "False"
     })
     users_dict.append({
-      "id": 'users',
-      "text": 'Users',
-      "attributes": {},
-      "children": [],
-      "check": "False"
+        "id": 'users',
+        "text": 'Users',
+        "attributes": {},
+        "children": [],
+        "check": "False"
     })
 
     for group in users_groups:
@@ -287,11 +315,11 @@ def get_campaign_form_trees():
 
     for usr in users:
         usr_dict = {
-          "id": 'user_' + str(usr.pk),
-          "text": usr.first_name + ' ' + usr.last_name,
-          "attributes": {},
-          "children": [],
-          "check": "False"
+            "id": 'user_' + str(usr.pk),
+            "text": usr.first_name + ' ' + usr.last_name,
+            "attributes": {},
+            "children": [],
+            "check": "False"
         }
         users_dict[1]['children'].append(usr_dict)
 
@@ -307,12 +335,10 @@ def get_campaign_form_trees():
             "check": "False"
         }
         tests_dict.append(test_dict)
-    
-    
+
     tree = {
         'dimensions_dict': dimensions_dict,
         'users_dict': users_dict,
         'tests_dict': tests_dict,
     }
     return tree
-

@@ -112,10 +112,10 @@
                             </li>
                             {% if request.user.is_superuser or request.user.profile.is_manager or request.user == user %}
                                 <li class="nav-item">
-                                    <a class="nav-link" id="user-profile-evaluations-tab" data-toggle="pill"
-                                       href="#user-profile-evaluations" role="tab"
-                                       aria-controls="user-profile-evaluations"
-                                       aria-selected="false"><i class="fas fa-star mr-2"></i> {% trans "Evaluations" %}
+                                    <a class="nav-link" id="user-profile-assignments-tab" data-toggle="pill"
+                                       href="#user-profile-assignments" role="tab"
+                                       aria-controls="user-profile-assignments"
+                                       aria-selected="false"><i class="fas fa-star mr-2"></i> {% trans "assignments"|capfirst %}
                                     </a>
                                 </li>
                             {% endif %}
@@ -212,9 +212,9 @@
                                     <p>{% trans "Status currently unavailable!" %}</p>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="user-profile-evaluations" role="tabpanel"
-                                 aria-labelledby="user-profile-evaluations-tab">
-                                {% include "evaluations.html" with assignments=assignments %}
+                            <div class="tab-pane fade" id="user-profile-assignments" role="tabpanel"
+                                 aria-labelledby="user-profile-assignments-tab">
+                                {% include "assignments.html" with assignments=assignments %}
                             </div>
                         </div>
                     </div>

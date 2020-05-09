@@ -13,12 +13,13 @@
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
-    <li class="breadcrumb-item active">{% trans "Evaluations" %}</li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:campaigns' %}">{% trans "campaigns"|capfirst %}</a></li>
+    <li class="breadcrumb-item active">{% trans "New Campaign" %}</li>
 {% endblock %}
 
 {% block page_name %}
     <div class="row">
-        <strong>{% trans "Create your campaign" %}</strong>
+        <strong>{% trans "Create new campaign" %}</strong>
     </div>
 {% endblock %}
 
@@ -120,8 +121,8 @@
                                     {{ campaign_form.end_date }}
                                 </li>
                                 <li class="list-group-item p-0 border-0 mb-3">
-                                    <button type="button" class="btn btn-primary" id="create_campaign_btn"
-                                            title="{% trans "Create your campaign" %}">Create Campaign
+                                    <button type="button" class="btn btn-info btn-sm" id="create_campaign_btn"
+                                            title="{% trans "Create new campaign" %}">Create Campaign
                                     </button>
                                 </li>
                             </ul>
@@ -170,7 +171,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="{% url 'sbam:evaluations' %}" class="btn btn-outline-primary" role="button">Close</a>
+                    <a href="{% url 'sbam:campaigns' %}" class="btn btn-outline-primary" role="button">Close</a>
                 </div>
             </div>
         </div>

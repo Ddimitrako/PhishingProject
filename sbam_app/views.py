@@ -356,8 +356,55 @@ def create_group(request):
     return create_or_update_group(request, 'new_group.html')
 
 
+class CampaignsView(ListView):
+    template_name = 'campaigns.html'
+    context_object_name = 'campaigns_list'
+
+    def get_queryset(self):
+        campaigns = Campaign.objects.all()
+        if self.request.user.is_superuser:
+            return campaigns
+        else:
+            excludes = []
+            for campaign in campaigns:
+                if not (campaign.is_global or campaign.owner == self.request.user):
+                    excludes.append(campaign.id)
+
+            return campaigns.exclude(id__in=excludes)
+
+
+def campaign(request, id):
+    campaign = Campaign.objects.get(pk=id)
+
+    if request.method == 'POST':
+        campaign_form = CampaignForm(request.POST, instance=campaign)
+
+        if campaign_form.is_valid():
+            campaign_form.save()
+            messages.success(request, _('Campaign successfully updated'))
+            return redirect('sbam:campaign', campaign.pk)
+        else:
+            messages.error(request, _('Please correct the errors below'))
+    else:
+        campaign_form = CampaignForm(instance=campaign)
+        if (campaign.status == Campaign.Statuses.ACTIVE):
+            check_permissions(
+                request,
+                campaign.owner,
+                [campaign_form],
+                ['start_date']
+            )
+        else:
+            disable_form(campaign_form)
+
+    return render(request, 'campaign.html', {
+        'campaign': campaign,
+        'campaign_form': campaign_form
+    })
+
+
 @advanced_users_only
-def campaignCreation(request):
+def create_campaign(request):
     if request.method == 'POST':
         current_user = request.user
         users = json.loads(request.POST['users'])
@@ -413,6 +460,6 @@ def campaignCreation(request):
             return JsonResponse({'success': 'False'}, status=400)
     else:
         campaign_form_trees = get_campaign_form_trees()
-        return render(request, 'campaign_creation.html',
+        return render(request, 'new_campaign.html',
                       {'campaign_form': CampaignCreationForm(),
                        'campaign_form_trees': campaign_form_trees})

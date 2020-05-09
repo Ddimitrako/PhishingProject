@@ -26,6 +26,8 @@ urlpatterns = [
     path('groups/group/<name>/disable', disable_group, name='disable_group'),
     path('groups/create_group/', create_group, name='create_group'),
 
-    # Campaign
-    path(r'evaluations/', campaignCreation, name='evaluations')
+    # Campaigns
+    path('campaigns/', CampaignsView.as_view(), name='campaigns'),
+    path('campaigns/campaign/<id>/', campaign, name='campaign'),
+    path('campaigns/create_campaign/', create_campaign, name='create_campaign')
 ]
