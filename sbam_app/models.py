@@ -58,6 +58,7 @@ class Campaign(Model):
         ACTIVE = 1, _('Active')  # The campaign is active and assignees are able to participate
         CANCELLED = 2, _('Cancelled')  # The owner has cancelled the campaign for some reason
 
+    title = CharField(_('title'), max_length=20, help_text=_('Campaign title'))
     start_date = DateField(_('start date'), help_text=_('Campaign start date'))
     end_date = DateField(_('end date'), help_text=_('Campaign end date'))
     owner = ForeignKey(
@@ -77,6 +78,10 @@ class Campaign(Model):
     @property
     def expired(self):
         return self.end_date < date.today()
+
+    @property
+    def is_global(self):
+        return self.owner.is_superuser
 
     class Meta:
         verbose_name = _('campaign')

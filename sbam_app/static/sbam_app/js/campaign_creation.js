@@ -180,6 +180,7 @@ $(document).ready(function(){
     $('#create_campaign_btn').click(function () {
 
         if(check_campaign_dates() && check_selected_items()){
+            const title = $('#id_title').val();
             const start_date = $('#id_start_date').val();
             const end_date = $('#id_end_date').val();
             const ajax_data = {};
@@ -209,7 +210,7 @@ $(document).ready(function(){
                 }
             }
 
-
+            ajax_data["title"] = title;
             ajax_data["start_date"] = start_date;
             ajax_data["end_date"] = end_date;
             ajax_data["quests"] = JSON.stringify(domains);

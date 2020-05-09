@@ -356,66 +356,63 @@ def create_group(request):
     return create_or_update_group(request, 'new_group.html')
 
 
-@login_required
+@advanced_users_only
 def campaignCreation(request):
-    if request.user.userprofile.is_manager:
-        if request.method == 'POST':
+    if request.method == 'POST':
+        current_user = request.user
+        users = json.loads(request.POST['users'])
+        questionnaires = json.loads(request.POST['quests'])
+        tests = json.loads(request.POST['tests'])
+        title = request.POST['title']
+        start_date = request.POST['start_date']
+        end_date = request.POST['end_date']
+        # print(questionnaires)
+        try:
+            with transaction.atomic():
+                new_campaign = Campaign(title=title, start_date=start_date, end_date=end_date, owner=current_user,
+                                        status=Campaign.Statuses.ACTIVE)
+                new_campaign.save()
 
-            current_user = request.user
-            users = json.loads(request.POST['users'])
-            questionnaires = json.loads(request.POST['quests'])
-            tests = json.loads(request.POST['tests'])
-            start_date = request.POST['start_date']
-            end_date = request.POST['end_date']
-            # print(questionnaires)
-            try:
-                with transaction.atomic():
-                    new_campaign = Campaign(start_date=start_date, end_date=end_date, owner=current_user,
-                                            status=Campaign.Statuses.ACTIVE)
-                    new_campaign.save()
-
-                    # Getting the selected users to ass
-                    sel_users = set()
-                    for usr in users:
-                        usr_type = usr['id'][:usr['id'].find('_')]
-                        sel_id = int(usr['id'][usr['id'].find('_') + 1:len(usr['id'])])
-                        if usr_type == 'group':
-                            group_users = Group.objects.get(pk=sel_id).user_set.all()
-                            for sel_user in group_users:
-                                sel_users.add(sel_user)
-                        else:
-                            sel_user = User.objects.get(pk=sel_id)
+                # Getting the selected users to ass
+                sel_users = set()
+                for usr in users:
+                    usr_type = usr['id'][:usr['id'].find('_')]
+                    sel_id = int(usr['id'][usr['id'].find('_') + 1:len(usr['id'])])
+                    if usr_type == 'group':
+                        group_users = Group.objects.get(pk=sel_id).user_set.all()
+                        for sel_user in group_users:
                             sel_users.add(sel_user)
+                    else:
+                        sel_user = User.objects.get(pk=sel_id)
+                        sel_users.add(sel_user)
 
-                    # print(sel_users)
+                # print(sel_users)
 
-                    for quest in questionnaires:
-                        quest_id = int(quest['id'][quest['id'].find('_') + 1:len(quest['id'])])
+                for quest in questionnaires:
+                    quest_id = int(quest['id'][quest['id'].find('_') + 1:len(quest['id'])])
 
-                        # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
-                        for sel_user in sel_users:
-                            new_assignment = QuestionnaireAssignment(status=Assignment.Statuses.OPEN,
-                                                                     campaign_id=new_campaign.id, user=sel_user,
-                                                                     questionnaire_id=quest_id)
-                            new_assignment.save()
+                    # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
+                    for sel_user in sel_users:
+                        new_assignment = QuestionnaireAssignment(status=Assignment.Statuses.OPEN,
+                                                                 campaign_id=new_campaign.id, user=sel_user,
+                                                                 questionnaire_id=quest_id)
+                        new_assignment.save()
 
-                    for test in tests:
-                        test_id = int(test['id'][test['id'].find('_') + 1:len(test['id'])])
+                for test in tests:
+                    test_id = int(test['id'][test['id'].find('_') + 1:len(test['id'])])
 
-                        # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
-                        for sel_user in sel_users:
-                            new_assignment = TestAssignment(status=Assignment.Statuses.OPEN,
-                                                            campaign_id=new_campaign.id, user=sel_user,
-                                                            test=test_id)
-                            new_assignment.save()
+                    # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
+                    for sel_user in sel_users:
+                        new_assignment = TestAssignment(status=Assignment.Statuses.OPEN,
+                                                        campaign_id=new_campaign.id, user=sel_user,
+                                                        test=test_id)
+                        new_assignment.save()
 
-                return JsonResponse({'success': 'True'}, status=200)
-            except Error:
-                return JsonResponse({'success': 'False'}, status=400)
-        else:
-            campaign_form_trees = get_campaign_form_trees()
-            return render(request, 'campaign_creation.html',
-                          {'campaign_form': CampaignCreationForm(),
-                           'campaign_form_trees': campaign_form_trees})
+            return JsonResponse({'success': 'True'}, status=200)
+        except Error:
+            return JsonResponse({'success': 'False'}, status=400)
     else:
-        return HttpResponseForbidden()
+        campaign_form_trees = get_campaign_form_trees()
+        return render(request, 'campaign_creation.html',
+                      {'campaign_form': CampaignCreationForm(),
+                       'campaign_form_trees': campaign_form_trees})

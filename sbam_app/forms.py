@@ -176,8 +176,9 @@ class GroupProfileForm(forms.ModelForm):
 
 
 class CampaignCreationForm(forms.Form):
+    title = forms.CharField()
     start_date = forms.DateField(
-        input_formats=['%Y-%m-%d'],
+        input_formats=['%YYYY-%m-%dd'],
         widget=DatePicker(
             attrs={
                 'append': 'fa fa-calendar',
@@ -187,7 +188,7 @@ class CampaignCreationForm(forms.Form):
         ),
     )
     end_date = forms.DateField(
-        input_formats=['%Y-%m-%d'],
+        input_formats=['%YYYY-%m-%dd'],
         widget=DatePicker(
             attrs={
                 'append': 'fa fa-calendar',
