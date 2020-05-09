@@ -32,6 +32,16 @@
                                 <i class="fas fa-save mr-2"></i>{% trans "Save" %}
                             </button>
 
+                            {% if request.user.is_superuser or request.user == campaign.owner %}
+                                {% if campaign.status == 1 %}
+                                    <button class="btn btn-outline-danger btn-sm mt-4" type="submit"
+                                            formaction="cancel"
+                                            title="{% trans "Cancel campaign" %}">
+                                        <i class="fas fa-slash mr-2"></i>{% trans "Cancel" %}
+                                    </button>
+                                {% endif %}
+                            {% endif %}
+
                             <button id="reset" class="btn btn-outline-secondary btn-sm mt-4" type="reset"
                                     title="{% trans "Discard changes" %}">
                                 <i class="fas fa-times-circle mr-2"></i>{% trans "Reset" %}

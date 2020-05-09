@@ -392,7 +392,7 @@ def campaign(request, id):
                 request,
                 campaign.owner,
                 [campaign_form],
-                ['start_date']
+                []
             )
         else:
             disable_form(campaign_form)
@@ -401,6 +401,20 @@ def campaign(request, id):
         'campaign': campaign,
         'campaign_form': campaign_form
     })
+
+
+@advanced_users_only
+def cancel_campaign(request, id):
+    campaign = Campaign.objects.get(pk=id)
+    if (request.user.is_superuser or request.user == campaign.owner):
+        campaign.status = Campaign.Statuses.CANCELLED;
+        campaign.save()
+
+        messages.success(request, _('Campaign successfully cancelled.'))
+    else:
+        messages.error(request, _('Campaign has been created by another user. Therefore, you cannot cancel it.'))
+
+    return redirect('sbam:campaign', id)
 
 
 @advanced_users_only
