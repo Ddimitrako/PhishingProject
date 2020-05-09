@@ -95,9 +95,11 @@ def create_or_update_user(request, template, user=None, profile=None, creating=T
             []
         )
 
-    questionnaires = models.QuestionnaireAssignment.objects.filter(user=user, status__in=[0, 1]). \
+    questionnaires = QuestionnaireAssignment.objects. \
+        filter(user=user, status__in=[Assignment.Statuses.OPEN, Assignment.Statuses.COMPLETED]). \
         select_related('campaign', 'questionnaire').order_by('questionnaire__title')
-    tests = models.TestAssignment.objects.filter(user=user, status__in=[0, 1]). \
+    tests = TestAssignment.objects. \
+        filter(user=user, status__in=[Assignment.Statuses.OPEN, Assignment.Statuses.COMPLETED]). \
         select_related('campaign', 'test').order_by('test__title')
     assignments = chain(questionnaires, tests)
 
@@ -170,11 +172,11 @@ def activate_group(request, name, status):
 
 def get_questionnaire(quest):
     questions_dict = {'title': quest.questionnaire.title, 'id': quest.pk}
-    questions = models.Question.objects.filter(questionnaire=quest.questionnaire, is_active=1).values()
+    questions = Question.objects.filter(questionnaire=quest.questionnaire, is_active=Status.ACTIVE).values()
     # print(questions)
     for question in questions:
-        question_type = models.QuestionType.objects.get(pk=question['question_type_id'])
-        question_options = models.QuestionOption.objects.filter(question_type=question_type, is_active=1).values()
+        question_type = QuestionType.objects.get(pk=question['question_type_id'])
+        question_options = QuestionOption.objects.filter(question_type=question_type, is_active=1).values()
         quest_type = model_to_dict(question_type)
         quest_type['takes_multiple'] = 'true' if quest_type['takes_multiple'] else 'false'
         questions_dict['questiion_' + str(question['id'])] = [question, quest_type,
@@ -186,13 +188,13 @@ def get_questionnaire(quest):
 
 def calculate_assignment_result(assignment):
     try:
-        answer_sum = models.CampaignQuestionAnswer.objects.filter(assignment=assignment).aggregate(
+        answer_sum = CampaignQuestionAnswer.objects.filter(assignment=assignment).aggregate(
             answer_sum=Sum(F('question_option__value') * F('question__weight')))['answer_sum']
 
-        question_type_weights = models.CampaignQuestionAnswer.objects.filter(assignment=assignment). \
+        question_type_weights = CampaignQuestionAnswer.objects.filter(assignment=assignment). \
             select_related('question__question_type').values('question__question_type', 'question__weight')
 
-        question_type_maxs = models.QuestionOption.objects.filter(
+        question_type_maxs = QuestionOption.objects.filter(
             question_type__in=question_type_weights.values_list('question__question_type').distinct()). \
             values('question_type').annotate(question_type_max=Max('value'))
 
@@ -203,7 +205,7 @@ def calculate_assignment_result(assignment):
     finally:
         score = (answer_sum / total) if total != 0.0 else total
 
-    return models.AssignmentResult(assignment=assignment, score=score, answer_time=date.today())
+    return AssignmentResult(assignment=assignment, score=score, answer_time=date.today())
 
 
 #
@@ -212,19 +214,23 @@ def calculate_assignment_result(assignment):
 @login_required
 def dashboardView(request, compl_time=None):
     # fetching active assignments
-    active_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=0
-                                                                          ).filter(campaign__end_date__gte=date.today()
-                                                                                   ).order_by('campaign__end_date')
-    active_tests = models.TestAssignment.objects.filter(user_id=request.user, status=0
-                                                        ).filter(campaign__end_date__gte=date.today()
-                                                                 ).order_by('campaign__end_date')
+    active_questionnaires = QuestionnaireAssignment.objects. \
+        filter(user_id=request.user, status=Assignment.Statuses.OPEN). \
+        filter(campaign__end_date__gte=date.today()). \
+        order_by('campaign__end_date')
+    active_tests = TestAssignment.objects. \
+        filter(user_id=request.user, status=Assignment.Statuses.OPEN). \
+        filter(campaign__end_date__gte=date.today()). \
+        order_by('campaign__end_date')
 
     # fetching completed assignmets
-    completed_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=1
-                                                                             ).order_by('assignmentresult__answer_time')
+    completed_questionnaires = QuestionnaireAssignment.objects. \
+        filter(user_id=request.user, status=Assignment.Statuses.COMPLETED). \
+        order_by('assignmentresult__answer_time')
 
-    completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1
-                                                           ).order_by('assignmentresult__answer_time')
+    completed_tests = TestAssignment.objects. \
+        filter(user_id=request.user, status=Assignment.Statuses.COMPLETED). \
+        order_by('assignmentresult__answer_time')
 
     return render(request, 'dashboard.html', {'active_questionnaires': active_questionnaires,
                                               'active_tests': active_tests,
@@ -235,7 +241,7 @@ def dashboardView(request, compl_time=None):
 @login_required
 def assignmentCompletion(request, assignment_id):
     if request.user.assignment_set.filter(pk=assignment_id):
-        quest = models.QuestionnaireAssignment.objects.get(user=request.user, pk=assignment_id)
+        quest = QuestionnaireAssignment.objects.get(user=request.user, pk=assignment_id)
         if quest.status == Assignment.Statuses.OPEN:
             questionnaire = get_questionnaire(quest)
             return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
@@ -250,27 +256,27 @@ def assignmentCompletion(request, assignment_id):
 
 @login_required
 def surveySumbission(request):
-    assignment = models.QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
+    assignment = QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
     answers = json.loads(request.POST['data'])
     for ques in answers:
-        question = models.Question.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
+        question = Question.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
         if isinstance(answers[ques], list):
             answers_options = [option_id for option_id in answers[ques]]
             for option_id in answers_options:
-                answer = models.QuestionOption.objects.get(pk=option_id)
-                assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question,
-                                                                  question_option=answer)
+                answer = QuestionOption.objects.get(pk=option_id)
+                assignment_answer = CampaignQuestionAnswer(assignment=assignment, question=question,
+                                                           question_option=answer)
                 assignment.status = 1
                 assignment.save()
                 assignment_answer.save()
 
                 # print(assignment.questionnaire.domain.title, question.text, answer.text)
         else:
-            answer = models.QuestionOption.objects.get(pk=answers[ques])
+            answer = QuestionOption.objects.get(pk=answers[ques])
             # print(assignment.questionnaire.domain.title, question.text, answer.text)
 
-            assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question,
-                                                              question_option=answer)
+            assignment_answer = CampaignQuestionAnswer(assignment=assignment, question=question,
+                                                       question_option=answer)
             assignment.status = 1
             assignment.save()
             assignment_answer.save()
