@@ -6,6 +6,7 @@ from django.contrib.auth.models import Group
 from django.shortcuts import *
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import *
+from itertools import chain
 
 from sbam_app.forms import *
 from sbam_app.models import *
@@ -53,7 +54,7 @@ def disable_field(form, field):
 
 @login_required
 def campaignCreation(request):
-    if request.user.userprofile.is_manager:
+    if request.user.userprofile.is_manager or request.user.is_superuser:
         if request.method == 'POST':
             current_user = request.user
             users = json.loads(request.POST['users'])
@@ -81,7 +82,6 @@ def campaignCreation(request):
                             sel_user = User.objects.get(pk=sel_id, is_active=1)
                             sel_users.add(sel_user)
 
-
                     for quest in questionnaires:
                         quest_id = int(quest['id'][quest['id'].find('_')+1:len(quest['id'])])
 
@@ -95,14 +95,18 @@ def campaignCreation(request):
 
                         # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
                         for sel_user in sel_users:
-                            new_assignment = TestAssignment(campaign_id=new_campaign.id, user=sel_user, test=test_id)
+                            new_assignment = TestAssignment(campaign_id=new_campaign.id, user=sel_user, test_id=test_id)
                             new_assignment.save()
 
                 return JsonResponse({'success': 'True'}, status=200)
             except Error:
                 return JsonResponse({'success': 'False'}, status=400)
         else:
-            campaign_form_trees = get_campaign_form_trees()
+            if request.user.is_superuser:
+                campaign_form_trees = get_campaign_form_trees(-1)
+            else:
+                campaign_form_trees = get_campaign_form_trees(request.user.id)
+
             return render(request, 'campaign_creation.html',
                             {'campaign_form': CampaignCreationForm(),
                              'campaign_form_trees': campaign_form_trees})
@@ -246,26 +250,39 @@ def dashboardView(request, compl_time=None):
                                  ).filter(campaign__start_date__lte=date.today()
                                           ).order_by('campaign__end_date') if a_test.status == 'OPEN']
 
-    # fetching completed assignmets
+
+    active_assignments = sorted(
+        chain(active_questionnaires, active_tests),
+        key=lambda instance:
+        (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+
+    # fetching completed assignments
     completed_questionnaires = [c_quest for c_quest in models.QuestionnaireAssignment.objects.filter(user_id=request.user)
                                     .order_by('assignmentresult__answer_time') if c_quest.status == 'COMPLETED']
 
     completed_tests = [c_test for c_test in models.TestAssignment.objects.filter(user_id=request.user)
                                     .order_by('assignmentresult__answer_time') if c_test.status == 'COMPLETED']
 
-    # fetching expired assignmets
+    completed_assignments = sorted(
+        chain(completed_questionnaires, completed_tests),
+        key=lambda instance:
+        (instance.get_answer_time(), instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+
+    # fetching expired assignments
     expired_questionnaires = [c_quest for c_quest in models.QuestionnaireAssignment.objects.filter(user_id=request.user)
                               if c_quest.status == 'EXPIRED']
 
     expired_tests = [c_test for c_test in models.TestAssignment.objects.filter(user_id=request.user)
                               if c_test.status == 'EXPIRED']
 
-    return render(request, 'dashboard.html', {'active_questionnaires': active_questionnaires,
-                                              'active_tests': active_tests,
-                                              'completed_questionnaires': completed_questionnaires,
-                                              'expired_questionnaires': expired_questionnaires,
-                                              'exipred_tests':expired_tests,
-                                              'completed_tests': completed_tests})
+    expired_assignments = sorted(
+        chain(expired_questionnaires, expired_tests),
+        key=lambda instance:
+        (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+
+    return render(request, 'dashboard.html', {'active_assignments': active_assignments,
+                                              'completed_assignments': completed_assignments,
+                                              'expired_assignments': expired_assignments})
 
 
 @login_required

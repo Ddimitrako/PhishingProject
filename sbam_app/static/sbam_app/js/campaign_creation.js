@@ -114,8 +114,8 @@ $(document).ready(function(){
                 console.log(this.selectedNodes);
                 var len = this.selectedNodes.length;
                 for (var i = 0; i < len; i++) {
-                    // if (this.selectedNodes[i].id.includes('domain'))
-                    $("#selected_tests tbody").append("<tr><th class='sel_index'>" + i + "</th><td>" + this.selectedNodes[i].text + "</td></tr>");
+                    if (this.selectedNodes[i].id.includes('test'))
+                        $("#selected_tests tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 70%'>" + this.selectedNodes[i].text + "</td></tr>");
                 }
             },
         });
