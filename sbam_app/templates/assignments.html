@@ -14,12 +14,12 @@
     </thead>
     <tbody>
         {% for assignment in assignments %}
-            <tr {% if assignment.status == 0 and assignment.campaign.expired %} class="text-muted" {% endif %}>
+            <tr {% if assignment.status == 0 and assignment.campaign.is_expired %} class="text-muted" {% endif %}>
                 <td style="text-align:center">
                     {% if assignment.status == 1 %}
                         <i class="fas fa-check-circle" style="color: darkgreen"
                            title="{% trans "Completed" %}"></i>
-                    {% elif assignment.campaign.expired %}
+                    {% elif assignment.campaign.is_expired %}
                         <i class="fas fa-minus-circle" style="color: darkred"
                            title="{% trans "Expired" %}"></i>
                     {% elif assignment.campaign.ends_within_week %}
@@ -28,7 +28,7 @@
                     {% endif %}
                 </td>
                 <td>
-                    {% if assignment.status == 0 and not assignment.campaign.expired %}
+                    {% if assignment.status == 0 and not assignment.campaign.is_expired %}
                         <a href="{% url 'sbam:assignments' assignment.id %}">
                             {{ assignment.questionnaire.title }}
                             {{ assignment.test.title }}

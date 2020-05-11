@@ -180,12 +180,13 @@ class CampaignForm(forms.ModelForm):
 
     class Meta:
         model = models.Campaign
-        fields = ('title', 'start_date', 'end_date')
+        fields = ('title', 'start_date', 'end_date', 'status')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.fields['start_date'].disabled = True
+        self.fields['status'].disabled = True
         self.fields['creator'].disabled = True
         self.fields['creator'].initial = self.instance.owner.get_full_name()
 
@@ -193,7 +194,8 @@ class CampaignForm(forms.ModelForm):
         self.helper.layout = Layout(
             Row(
                 Column('title', css_class='col-md-3'),
-                Column('creator', css_class='col-md-3')
+                Column('creator', css_class='col-md-3'),
+                Column('status', css_class='col-md-2'),
             ),
             Row(
                 Column('start_date', css_class='col-md-3'),

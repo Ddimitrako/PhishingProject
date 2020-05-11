@@ -397,8 +397,20 @@ def campaign(request, id):
         else:
             disable_form(campaign_form)
 
+    assignments = Assignment.objects.filter(campaign=campaign)
+    assignees = assignments.values_list('user__last_name', 'user__first_name').distinct().order_by('user__last_name')
+    questionnaires = assignments.values_list('questionnaireassignment__questionnaire__title',
+                                             'questionnaireassignment__questionnaire__domain__dimension__level'). \
+        distinct().order_by('questionnaireassignment__questionnaire__title')
+    tests = assignments.values_list('testassignment__test__title',
+                                    'testassignment__test__domain__dimension__level'). \
+        distinct().order_by('testassignment__test__title')
+
     return render(request, 'campaign.html', {
         'campaign': campaign,
+        'assignees': assignees,
+        'questionnaires': questionnaires,
+        'tests': tests,
         'campaign_form': campaign_form
     })
 
