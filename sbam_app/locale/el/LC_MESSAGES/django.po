@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-11 09:46+0300\n"
+"POT-Creation-Date: 2020-05-11 10:55+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -719,7 +719,7 @@ msgstr ""
 msgid "questionnaire"
 msgstr ""
 
-#: .\sbam_app\models.py:147
+#: .\sbam_app\models.py:147 .\sbam_app\templates\campaign.html:54
 msgid "questionnaires"
 msgstr ""
 
@@ -1126,10 +1126,6 @@ msgstr "Γενικές Πληροφορίες"
 msgid "results"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:54
-msgid "auestionnaires"
-msgstr ""
-
 #: .\sbam_app\templates\campaign.html:59 .\sbam_app\templates\campaign.html:90
 #: .\sbam_app\templates\groups.html:19
 msgid "name"
@@ -1364,7 +1360,7 @@ msgstr ""
 msgid "User successfully %(action)s"
 msgstr ""
 
-#: .\sbam_app\views.py:87 .\sbam_app\views.py:137 .\sbam_app\views.py:387
+#: .\sbam_app\views.py:87 .\sbam_app\views.py:137 .\sbam_app\views.py:421
 msgid "Please correct the errors below"
 msgstr ""
 
@@ -1377,22 +1373,22 @@ msgstr ""
 msgid "Please add at least one group member"
 msgstr ""
 
-#: .\sbam_app\views.py:249
+#: .\sbam_app\views.py:283
 #, python-format
 msgid ""
 "Assignment \"%(title)s\" is no longer active for completion! Please select "
 "an active assignment from the ones presented in your dashboard..."
 msgstr ""
 
-#: .\sbam_app\views.py:384
+#: .\sbam_app\views.py:418
 msgid "Campaign successfully updated"
 msgstr ""
 
-#: .\sbam_app\views.py:425
+#: .\sbam_app\views.py:462
 msgid "Campaign successfully cancelled."
 msgstr ""
 
-#: .\sbam_app\views.py:427
+#: .\sbam_app\views.py:464
 msgid ""
 "Campaign has been created by another user. Therefore, you cannot cancel it."
 msgstr ""
