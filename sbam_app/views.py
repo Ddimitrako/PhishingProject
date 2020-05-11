@@ -16,6 +16,8 @@ from django.views.generic import *
 from sbam_app.forms import *
 from sbam_app.models import *
 
+from datetime import date
+
 
 #
 # Custom Decorator used to grant permission to superusers only
@@ -256,27 +258,37 @@ def calculate_campaign_result(campaign, assignments):
 @login_required
 def dashboardView(request, compl_time=None):
     # fetching active assignments
-    active_questionnaires = QuestionnaireAssignment.objects. \
-        filter(user_id=request.user, status=Assignment.Statuses.OPEN). \
-        filter(campaign__end_date__gte=date.today()). \
-        order_by('campaign__end_date')
-    active_tests = TestAssignment.objects. \
-        filter(user_id=request.user, status=Assignment.Statuses.OPEN). \
-        filter(campaign__end_date__gte=date.today()). \
-        order_by('campaign__end_date')
+    active_questionnaires = [a_quest for a_quest in
+                             models.QuestionnaireAssignment.objects.filter(user_id=request.user).filter(
+                             campaign__end_date__gte=date.today()
+                                ).filter(campaign__start_date__lte=date.today()
+                                    ).order_by('campaign__end_date') if a_quest.status == 'OPEN']
+
+    active_tests = [a_test for a_test in
+                    models.TestAssignment.objects.filter(user_id=request.user).filter(
+                                 campaign__end_date__gte=date.today()
+                                 ).filter(campaign__start_date__lte=date.today()
+                                          ).order_by('campaign__end_date') if a_test.status == 'OPEN']
 
     # fetching completed assignmets
-    completed_questionnaires = QuestionnaireAssignment.objects. \
-        filter(user_id=request.user, status=Assignment.Statuses.COMPLETED). \
-        order_by('assignmentresult__answer_time')
+    completed_questionnaires = [c_quest for c_quest in models.QuestionnaireAssignment.objects.filter(user_id=request.user)
+                                    .order_by('assignmentresult__answer_time') if c_quest.status == 'COMPLETED']
 
-    completed_tests = TestAssignment.objects. \
-        filter(user_id=request.user, status=Assignment.Statuses.COMPLETED). \
-        order_by('assignmentresult__answer_time')
+    completed_tests = [c_test for c_test in models.TestAssignment.objects.filter(user_id=request.user)
+                                    .order_by('assignmentresult__answer_time') if c_test.status == 'COMPLETED']
+
+    # fetching expired assignmets
+    expired_questionnaires = [c_quest for c_quest in models.QuestionnaireAssignment.objects.filter(user_id=request.user)
+                              if c_quest.status == 'EXPIRED']
+
+    expired_tests = [c_test for c_test in models.TestAssignment.objects.filter(user_id=request.user)
+                              if c_test.status == 'EXPIRED']
 
     return render(request, 'dashboard.html', {'active_questionnaires': active_questionnaires,
                                               'active_tests': active_tests,
                                               'completed_questionnaires': completed_questionnaires,
+                                              'expired_questionnaires': expired_questionnaires,
+                                              'exipred_tests':expired_tests,
                                               'completed_tests': completed_tests})
 
 
@@ -284,7 +296,7 @@ def dashboardView(request, compl_time=None):
 def assignmentCompletion(request, assignment_id):
     if request.user.assignment_set.filter(pk=assignment_id):
         quest = QuestionnaireAssignment.objects.get(user=request.user, pk=assignment_id)
-        if quest.status == Assignment.Statuses.OPEN:
+        if quest.status == 'OPEN':
             questionnaire = get_questionnaire(quest)
             return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
         else:
@@ -296,34 +308,32 @@ def assignmentCompletion(request, assignment_id):
         return HttpResponseForbidden()
 
 
+
 @login_required
 def surveySumbission(request):
-    assignment = QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
+    assignment = models.QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
     answers = json.loads(request.POST['data'])
     for ques in answers:
-        question = Question.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
+        question = models.Question.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
         if isinstance(answers[ques], list):
             answers_options = [option_id for option_id in answers[ques]]
             for option_id in answers_options:
-                answer = QuestionOption.objects.get(pk=option_id)
-                assignment_answer = CampaignQuestionAnswer(assignment=assignment, question=question,
-                                                           question_option=answer)
-                assignment.status = Assignment.Statuses.COMPLETED
+                answer = models.QuestionOption.objects.get(pk=option_id)
+                assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question,
+                                                                  question_option=answer)
                 assignment.save()
                 assignment_answer.save()
 
                 # print(assignment.questionnaire.domain.title, question.text, answer.text)
         else:
-            answer = QuestionOption.objects.get(pk=answers[ques])
+            answer = models.QuestionOption.objects.get(pk=answers[ques])
             # print(assignment.questionnaire.domain.title, question.text, answer.text)
 
-            assignment_answer = CampaignQuestionAnswer(assignment=assignment, question=question,
-                                                       question_option=answer)
-            assignment.status = Assignment.Statuses.COMPLETED
+            assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question, question_option=answer)
             assignment.save()
             assignment_answer.save()
 
-    assignment_result = calculate_assignment_result(assignment)
+    assignment_result = models.AssignmentResult(assignment=assignment, score=0.97, answer_time=date.today())
     assignment_result.save()
 
     return JsonResponse({'result': 'success'})
@@ -484,14 +494,12 @@ def create_campaign(request):
         users = json.loads(request.POST['users'])
         questionnaires = json.loads(request.POST['quests'])
         tests = json.loads(request.POST['tests'])
-        title = request.POST['title']
         start_date = request.POST['start_date']
         end_date = request.POST['end_date']
         # print(questionnaires)
         try:
             with transaction.atomic():
-                new_campaign = Campaign(title=title, start_date=start_date, end_date=end_date, owner=current_user,
-                                        status=Campaign.Statuses.ACTIVE)
+                new_campaign = Campaign(start_date=start_date, end_date=end_date, owner=current_user)
                 new_campaign.save()
 
                 # Getting the selected users to ass
@@ -500,33 +508,27 @@ def create_campaign(request):
                     usr_type = usr['id'][:usr['id'].find('_')]
                     sel_id = int(usr['id'][usr['id'].find('_') + 1:len(usr['id'])])
                     if usr_type == 'group':
-                        group_users = Group.objects.get(pk=sel_id).user_set.all()
+                        group_users = Group.objects.get(pk=sel_id).user_set.filter(is_active=1)
                         for sel_user in group_users:
                             sel_users.add(sel_user)
                     else:
-                        sel_user = User.objects.get(pk=sel_id)
+                        sel_user = User.objects.get(pk=sel_id, is_active=1)
                         sel_users.add(sel_user)
 
-                # print(sel_users)
-
                 for quest in questionnaires:
-                    quest_id = int(quest['id'][quest['id'].find('_') + 1:len(quest['id'])])
+                    quest_id = int(quest['id'][quest['id'].find('_')+1:len(quest['id'])])
 
                     # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
                     for sel_user in sel_users:
-                        new_assignment = QuestionnaireAssignment(status=Assignment.Statuses.OPEN,
-                                                                 campaign_id=new_campaign.id, user=sel_user,
-                                                                 questionnaire_id=quest_id)
+                        new_assignment = QuestionnaireAssignment(campaign_id=new_campaign.id, user=sel_user, questionnaire_id=quest_id)
                         new_assignment.save()
 
                 for test in tests:
-                    test_id = int(test['id'][test['id'].find('_') + 1:len(test['id'])])
+                    test_id = int(test['id'][test['id'].find('_')+1:len(test['id'])])
 
                     # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
                     for sel_user in sel_users:
-                        new_assignment = TestAssignment(status=Assignment.Statuses.OPEN,
-                                                        campaign_id=new_campaign.id, user=sel_user,
-                                                        test=test_id)
+                        new_assignment = TestAssignment(campaign_id=new_campaign.id, user=sel_user, test=test_id)
                         new_assignment.save()
 
             return JsonResponse({'success': 'True'}, status=200)
@@ -535,5 +537,5 @@ def create_campaign(request):
     else:
         campaign_form_trees = get_campaign_form_trees()
         return render(request, 'new_campaign.html',
-                      {'campaign_form': CampaignCreationForm(),
-                       'campaign_form_trees': campaign_form_trees})
+                        {'campaign_form': CampaignCreationForm(),
+                         'campaign_form_trees': campaign_form_trees})

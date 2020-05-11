@@ -8,7 +8,6 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
-# TODO decide how to handle delete/disable in model objects
 
 class Status(IntegerChoices):
     INACTIVE = 0, _('Inactive')
@@ -53,11 +52,6 @@ class Domain(Model):
 
 
 class Campaign(Model):
-    class Statuses(IntegerChoices):
-        FINISHED = 0, _('Finished')  # Either all assignees have answered or end_date has been reached
-        ACTIVE = 1, _('Active')  # The campaign is active and assignees are able to participate
-        CANCELLED = 2, _('Cancelled')  # The owner has cancelled the campaign for some reason
-
     title = CharField(_('title'), max_length=20, help_text=_('Campaign title'))
     start_date = DateField(_('start date'), help_text=_('Campaign start date'))
     end_date = DateField(_('end date'), help_text=_('Campaign end date'))
@@ -67,7 +61,21 @@ class Campaign(Model):
         on_delete=CASCADE,
         help_text=_('The user who created the campaign')
     )
-    status = IntegerField(_('status'), choices=Statuses.choices, default=1, help_text=_('Campaign status'))
+    is_cancelled = BooleanField(
+        _('cancelled'),
+        default=False,
+        help_text=_('Designates whether this campaign has been cancelled.'))
+
+    @property
+    def status(self):
+        if self.is_cancelled:
+            return 'CANCELLED'
+        elif self.start_date > date.today():
+            return 'NOT_STARTED'
+        elif self.is_expired or int(self.completion_rate) == 1:
+            return 'FINISHED'
+        else:
+            return 'ACTIVE'
 
     def __str__(self):
         return self.owner.get_full_name() + ' ' + str(self.start_date) + ' - ' + str(self.end_date)
@@ -75,11 +83,18 @@ class Campaign(Model):
     def ends_within_week(self):
         return (self.end_date - date.today()).days <= 7
 
-    @property
     def is_expired(self):
         return self.end_date < date.today()
 
-    @property
+    def num_of_assignments(self):
+        return QuestionnaireAssignment.objects.filter(campaign=self).count() + TestAssignment.objects.filter(campaign=self).count()
+
+    def num_of_completed_assignments(self):
+        return QuestionnaireAssignment.objects.filter(campaign=self, status='COMPLETED').count() + TestAssignment.objects.filter(campaign=self, status='COMPLETED').count()
+
+    def completion_rate(self):
+        return self.num_of_completed_assignments / self.num_of_assignments
+
     def is_global(self):
         return self.owner.is_superuser
 
@@ -89,11 +104,6 @@ class Campaign(Model):
 
 
 class Assignment(Model):
-    class Statuses(IntegerChoices):
-        OPEN = 0, _('Open')  # Assignee has not completed the assignment yet
-        COMPLETED = 1, _('Completed')  # Assignee has completed the assignment
-        CANCELLED = 2, _('Cancelled')  # Assignment has been cancelled by either the owner or the administrator
-
     campaign = ForeignKey(
         Campaign,
         verbose_name=_('campaign'),
@@ -101,12 +111,23 @@ class Assignment(Model):
         help_text=_('The campaign this assignment derives from')
     )
     user = ForeignKey(User, verbose_name=_('user'), on_delete=CASCADE, help_text=_('Assignee'))
-    status = IntegerField(
-        _('status'),
-        choices=Statuses.choices,
-        default=0,
-        help_text=_('Status of an assignment indicating if it has been completed or not')
-    )
+
+    def is_completed(self):
+        return AssignmentResult.objects.filter(assignment=self).filter(assignment__user=self.user).count() > 0 \
+               and AssignmentResult.objects.all().count() > 0
+
+    @property
+    def status(self):
+        if self.campaign.status == 'CANCELLED':
+            return 'CANCELLED'
+        elif self.campaign.status == 'NOT_STARTED':
+            return 'NOT_STARTED'
+        elif self.is_completed():
+            return 'COMPLETED'
+        elif self.campaign.is_expired():
+            return 'EXPIRED'
+        else:
+            return 'OPEN'
 
     def get_answer_time(self):
         return self.assignmentresult_set.get(assignment=self).answer_time
@@ -210,6 +231,8 @@ class QuestionOption(Model):
         default=1,
         help_text=_('Designates whether this question option is being offered by a specific question type')
     )
+    id_in_question = IntegerField(_('id in question'))
+    order = IntegerField(_('order'))
 
     def __str__(self):
         return self.text
@@ -244,6 +267,8 @@ class Question(Model):
         default=1,
         help_text=_('Multiplier indicating question\'s significance')
     )
+    id_in_questionnaire = IntegerField(_('id in questionnaire'))
+    order = IntegerField(_('order'))
 
     def __str__(self):
         return self.text
