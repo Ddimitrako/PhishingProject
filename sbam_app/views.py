@@ -81,7 +81,6 @@ def campaignCreation(request):
                             sel_user = User.objects.get(pk=sel_id, is_active=1)
                             sel_users.add(sel_user)
 
-                    print(sel_users)
 
                     for quest in questionnaires:
                         quest_id = int(quest['id'][quest['id'].find('_')+1:len(quest['id'])])
