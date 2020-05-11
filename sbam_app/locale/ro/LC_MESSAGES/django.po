@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-11 10:55+0300\n"
+"POT-Creation-Date: 2020-05-11 21:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -520,14 +520,14 @@ msgid "Reports"
 msgstr ""
 
 #: .\templates\main_sidebar.html:52 .\sbam_app\models.py:22
-#: .\sbam_app\templates\campaign.html:70
-#: .\sbam_app\templates\campaign.html:101
+#: .\sbam_app\templates\campaign.html:69
+#: .\sbam_app\templates\campaign.html:100
 msgid "Organisational"
 msgstr ""
 
 #: .\templates\main_sidebar.html:59 .\sbam_app\models.py:23
-#: .\sbam_app\templates\campaign.html:72
-#: .\sbam_app\templates\campaign.html:103
+#: .\sbam_app\templates\campaign.html:71
+#: .\sbam_app\templates\campaign.html:102
 msgid "Individual"
 msgstr ""
 
@@ -678,6 +678,7 @@ msgid "Status of an assignment indicating if it has been completed or not"
 msgstr ""
 
 #: .\sbam_app\models.py:118 .\sbam_app\models.py:265 .\sbam_app\models.py:323
+#: .\sbam_app\templates\assignments.html:9
 msgid "assignment"
 msgstr ""
 
@@ -716,7 +717,6 @@ msgid "Multiplier indicating questionnaire's significance"
 msgstr ""
 
 #: .\sbam_app\models.py:146 .\sbam_app\models.py:153 .\sbam_app\models.py:225
-#: .\sbam_app\templates\assignments.html:9
 msgid "questionnaire"
 msgstr ""
 
@@ -931,6 +931,7 @@ msgid "The date this assignment result was achieved"
 msgstr ""
 
 #: .\sbam_app\models.py:328 .\sbam_app\templates\assignments.html:10
+#: .\sbam_app\templates\campaign_results.html:13
 msgid "score"
 msgstr ""
 
@@ -1111,6 +1112,7 @@ msgid "Expires in less than 7 days"
 msgstr ""
 
 #: .\sbam_app\templates\assignments.html:54
+#: .\sbam_app\templates\campaign_results.html:39
 msgid "No assignments available!"
 msgstr ""
 
@@ -1132,7 +1134,7 @@ msgstr ""
 msgid "name"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:77
+#: .\sbam_app\templates\campaign.html:78
 msgid "No selected Questionnaires"
 msgstr ""
 
@@ -1140,48 +1142,50 @@ msgstr ""
 msgid "Tests"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:108
+#: .\sbam_app\templates\campaign.html:109
 msgid "No selected Tests"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:121 .\sbam_app\templates\users.html:20
+#: .\sbam_app\templates\campaign.html:121
+#: .\sbam_app\templates\campaign_results.html:12
+#: .\sbam_app\templates\users.html:20
 msgid "Full Name"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:130
-msgid "No selected Users"
-msgstr ""
-
-#: .\sbam_app\templates\campaign.html:142
-msgid "Results currently unavailable!"
-msgstr ""
-
-#: .\sbam_app\templates\campaign.html:149 .\sbam_app\templates\group.html:75
+#: .\sbam_app\templates\campaign.html:143 .\sbam_app\templates\group.html:75
 #: .\sbam_app\templates\profile.html:57
 msgid "Save changes"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:150 .\sbam_app\templates\group.html:76
+#: .\sbam_app\templates\campaign.html:144 .\sbam_app\templates\group.html:76
 #: .\sbam_app\templates\profile.html:58
 msgid "Save"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:157
+#: .\sbam_app\templates\campaign.html:151
 msgid "Cancel campaign"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:158
+#: .\sbam_app\templates\campaign.html:152
 msgid "Cancel"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:164 .\sbam_app\templates\group.html:96
+#: .\sbam_app\templates\campaign.html:158 .\sbam_app\templates\group.html:96
 #: .\sbam_app\templates\profile.html:76
 msgid "Discard changes"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:165 .\sbam_app\templates\group.html:97
+#: .\sbam_app\templates\campaign.html:159 .\sbam_app\templates\group.html:97
 #: .\sbam_app\templates\profile.html:77
 msgid "Reset"
+msgstr ""
+
+#: .\sbam_app\templates\campaign_results.html:5
+msgid "Results Per User"
+msgstr ""
+
+#: .\sbam_app\templates\campaign_results.html:11
+msgid "Completion Rate"
 msgstr ""
 
 #: .\sbam_app\templates\campaigns.html:19
@@ -1361,7 +1365,7 @@ msgstr ""
 msgid "User successfully %(action)s"
 msgstr ""
 
-#: .\sbam_app\views.py:87 .\sbam_app\views.py:137 .\sbam_app\views.py:421
+#: .\sbam_app\views.py:87 .\sbam_app\views.py:137 .\sbam_app\views.py:435
 msgid "Please correct the errors below"
 msgstr ""
 
@@ -1374,22 +1378,22 @@ msgstr ""
 msgid "Please add at least one group member"
 msgstr ""
 
-#: .\sbam_app\views.py:283
+#: .\sbam_app\views.py:297
 #, python-format
 msgid ""
 "Assignment \"%(title)s\" is no longer active for completion! Please select "
 "an active assignment from the ones presented in your dashboard..."
 msgstr ""
 
-#: .\sbam_app\views.py:418
+#: .\sbam_app\views.py:432
 msgid "Campaign successfully updated"
 msgstr ""
 
-#: .\sbam_app\views.py:462
+#: .\sbam_app\views.py:479
 msgid "Campaign successfully cancelled."
 msgstr ""
 
-#: .\sbam_app\views.py:464
+#: .\sbam_app\views.py:481
 msgid ""
 "Campaign has been created by another user. Therefore, you cannot cancel it."
 msgstr ""

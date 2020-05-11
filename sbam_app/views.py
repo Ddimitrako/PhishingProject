@@ -208,6 +208,48 @@ def calculate_assignment_result(assignment):
     return AssignmentResult(assignment=assignment, score=score, answer_time=date.today())
 
 
+def calculate_campaign_result(campaign, assignments):
+    results = list()
+
+    users = User.objects.filter(assignment__campaign=campaign).distinct().order_by('first_name')
+    user_quest_sums = QuestionnaireAssignment.objects.filter(campaign=campaign,
+                                                             status=Assignment.Statuses.COMPLETED). \
+        values('user').annotate(assignment_sum=Sum(F('assignmentresult__score') * F('questionnaire__weight')),
+                                assignment_total=Sum('questionnaire__weight'),
+                                completed_assignments=Count('assignmentresult'))
+    user_test_sums = TestAssignment.objects.filter(campaign=campaign, status=Assignment.Statuses.COMPLETED). \
+        values('user').annotate(assignment_sum=Sum(F('assignmentresult__score') * F('test__weight')),
+                                assignment_total=Sum('test__weight'),
+                                completed_assignments=Count('assignmentresult'))
+
+    for user in users:
+        sum = 0
+        total = 0
+        no_assignments = 0
+
+        try:
+            user_quest_sum = user_quest_sums.get(user=user)
+            sum += user_quest_sum['assignment_sum']
+            total += user_quest_sum['assignment_total']
+            no_assignments += user_quest_sum['completed_assignments']
+        except ObjectDoesNotExist:
+            pass
+
+        try:
+            user_test_sum = user_test_sums.get(user=user)
+            sum += user_test_sum['assignment_sum']
+            total += user_test_sum['assignment_total']
+            no_assignments += user_test_sum['completed_assignments']
+        except ObjectDoesNotExist:
+            pass
+
+        score = (sum / total) if total != 0.0 else total
+        result = (user, '{0:.2%}'.format(score), '{0:.0%}'.format(no_assignments/assignments))
+        results.append(result)
+
+    return results
+
+
 #
 # Views
 #
@@ -397,20 +439,26 @@ def campaign(request, id):
         else:
             disable_form(campaign_form)
 
-    assignments = Assignment.objects.filter(campaign=campaign)
-    assignees = assignments.values_list('user__last_name', 'user__first_name').distinct().order_by('user__last_name')
-    questionnaires = assignments.values_list('questionnaireassignment__questionnaire__title',
-                                             'questionnaireassignment__questionnaire__domain__dimension__level'). \
-        distinct().order_by('questionnaireassignment__questionnaire__title')
-    tests = assignments.values_list('testassignment__test__title',
-                                    'testassignment__test__domain__dimension__level'). \
-        distinct().order_by('testassignment__test__title')
+    assignees = Assignment.objects.filter(campaign=campaign). \
+        values_list('user__last_name', 'user__first_name'). \
+        distinct().order_by('user__last_name')
+    questionnaires = QuestionnaireAssignment.objects.filter(campaign=campaign). \
+        values_list('questionnaire__title', 'questionnaire__domain__dimension__level'). \
+        distinct().order_by('questionnaire__title')
+    tests = TestAssignment.objects.filter(campaign=campaign). \
+        values_list('test__title', 'test__domain__dimension__level'). \
+        distinct().order_by('test__title')
+
+    assignments = questionnaires.count() + tests.count()
+    results = calculate_campaign_result(campaign, assignments)
 
     return render(request, 'campaign.html', {
         'campaign': campaign,
         'assignees': assignees,
         'questionnaires': questionnaires,
         'tests': tests,
+        'assignments': assignments,
+        'results': results,
         'campaign_form': campaign_form
     })
 

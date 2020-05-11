@@ -63,19 +63,19 @@
                                             <tbody>
                                                 {% for name, type in questionnaires %}
                                                     <tr>
-                                                        {% if name != None %}
-                                                            <td>{{ name }}</td>
-                                                            <td>
-                                                                {% if type == 0 %}
-                                                                    {% trans "Organisational" %}
-                                                                {% else %}
-                                                                    {% trans "Individual" %}
-                                                                {% endif %}
-                                                            </td>
-                                                        {% else %}
-                                                            <td colspan="2"
-                                                                class="text-muted">{% trans "No selected Questionnaires" %}</td>
-                                                        {% endif %}
+                                                        <td>{{ name }}</td>
+                                                        <td>
+                                                            {% if type == 0 %}
+                                                                {% trans "Organisational" %}
+                                                            {% else %}
+                                                                {% trans "Individual" %}
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                {% empty %}
+                                                    <tr>
+                                                        <td colspan="2"
+                                                            class="text-muted">{% trans "No selected Questionnaires" %}</td>
                                                     </tr>
                                                 {% endfor %}
                                             </tbody>
@@ -94,19 +94,19 @@
                                             <tbody>
                                                 {% for name, type in tests %}
                                                     <tr>
-                                                        {% if name != None %}
-                                                            <td>{{ name }}</td>
-                                                            <td>
-                                                                {% if type == 0 %}
-                                                                    {% trans "Organisational" %}
-                                                                {% else %}
-                                                                    {% trans "Individual" %}
-                                                                {% endif %}
-                                                            </td>
-                                                        {% else %}
-                                                            <td colspan="2"
-                                                                class="text-muted">{% trans "No selected Tests" %}</td>
-                                                        {% endif %}
+                                                        <td>{{ name }}</td>
+                                                        <td>
+                                                            {% if type == 0 %}
+                                                                {% trans "Organisational" %}
+                                                            {% else %}
+                                                                {% trans "Individual" %}
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                {% empty %}
+                                                    <tr>
+                                                        <td colspan="2"
+                                                            class="text-muted">{% trans "No selected Tests" %}</td>
                                                     </tr>
                                                 {% endfor %}
                                             </tbody>
@@ -117,20 +117,16 @@
                                         <table id="users"
                                                class="table table-hover table-head-fixed table-striped table-responsive">
                                             <thead>
-                                            <tr>
-                                                <th>{% trans "Full Name" %}</th>
-                                            </tr>
+                                                <tr>
+                                                    <th>{% trans "Full Name" %}</th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            {% for last_name, first_name in assignees %}
-                                                <tr>
-                                                    {% if last_name != None %}
+                                                {% for last_name, first_name in assignees %}
+                                                    <tr>
                                                         <td>{{ last_name }} {{ first_name }}</td>
-                                                    {% else %}
-                                                        <td class="text-muted">{% trans "No selected Users" %}</td>
-                                                    {% endif %}
-                                                </tr>
-                                            {% endfor %}
+                                                    </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>
@@ -138,9 +134,7 @@
                             </div>
                             <div class="tab-pane fade" id="campaign-results" role="tabpanel"
                                  aria-labelledby="campaign-results-tab">
-                                <div class="callout callout-warning">
-                                    <p>{% trans "Results currently unavailable!" %}</p>
-                                </div>
+                                {% include "campaign_results.html" with results=results %}
                             </div>
                         </div>
 
