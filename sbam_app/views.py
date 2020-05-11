@@ -64,7 +64,7 @@ def campaignCreation(request):
             # print(questionnaires)
             try:
                 with transaction.atomic():
-                    new_campaign = Campaign(start_date=start_date, end_date=end_date, owner=current_user, status=1)
+                    new_campaign = Campaign(start_date=start_date, end_date=end_date, owner=current_user)
                     new_campaign.save()
 
 
@@ -74,21 +74,21 @@ def campaignCreation(request):
                         usr_type = usr['id'][:usr['id'].find('_')]
                         sel_id = int(usr['id'][usr['id'].find('_') + 1:len(usr['id'])])
                         if usr_type == 'group':
-                            group_users = Group.objects.get(pk=sel_id).user_set.all()
+                            group_users = Group.objects.get(pk=sel_id).user_set.filter(is_active=1)
                             for sel_user in group_users:
                                 sel_users.add(sel_user)
                         else:
-                            sel_user = User.objects.get(pk=sel_id)
+                            sel_user = User.objects.get(pk=sel_id, is_active=1)
                             sel_users.add(sel_user)
 
-                    # print(sel_users)
+                    print(sel_users)
 
                     for quest in questionnaires:
                         quest_id = int(quest['id'][quest['id'].find('_')+1:len(quest['id'])])
 
                         # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
                         for sel_user in sel_users:
-                            new_assignment = QuestionnaireAssignment(status=0, campaign_id=new_campaign.id, user=sel_user, questionnaire_id=quest_id)
+                            new_assignment = QuestionnaireAssignment(campaign_id=new_campaign.id, user=sel_user, questionnaire_id=quest_id)
                             new_assignment.save()
 
                     for test in tests:
@@ -96,7 +96,7 @@ def campaignCreation(request):
 
                         # status -> 0 = Open, 1 -> Completed, 2 -> Cancelled
                         for sel_user in sel_users:
-                            new_assignment = TestAssignment(status=0, campaign_id=new_campaign.id, user=sel_user, test=test_id)
+                            new_assignment = TestAssignment(campaign_id=new_campaign.id, user=sel_user, test=test_id)
                             new_assignment.save()
 
                 return JsonResponse({'success': 'True'}, status=200)
@@ -235,23 +235,37 @@ def activate_group(request, name, status):
 @login_required
 def dashboardView(request, compl_time=None):
     # fetching active assignments
-    active_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=0
-                                                                          ).filter(campaign__end_date__gte=date.today()
-                                                                                   ).order_by('campaign__end_date')
-    active_tests = models.TestAssignment.objects.filter(user_id=request.user, status=0
-                                                        ).filter(campaign__end_date__gte=date.today()
-                                                                 ).order_by('campaign__end_date')
+    active_questionnaires = [a_quest for a_quest in
+                             models.QuestionnaireAssignment.objects.filter(user_id=request.user).filter(
+                             campaign__end_date__gte=date.today()
+                                ).filter(campaign__start_date__lte=date.today()
+                                    ).order_by('campaign__end_date') if a_quest.status == 'OPEN']
+
+    active_tests = [a_test for a_test in
+                    models.TestAssignment.objects.filter(user_id=request.user).filter(
+                                 campaign__end_date__gte=date.today()
+                                 ).filter(campaign__start_date__lte=date.today()
+                                          ).order_by('campaign__end_date') if a_test.status == 'OPEN']
 
     # fetching completed assignmets
-    completed_questionnaires = models.QuestionnaireAssignment.objects.filter(user_id=request.user, status=1
-                                                                             ).order_by('assignmentresult__answer_time')
+    completed_questionnaires = [c_quest for c_quest in models.QuestionnaireAssignment.objects.filter(user_id=request.user)
+                                    .order_by('assignmentresult__answer_time') if c_quest.status == 'COMPLETED']
 
-    completed_tests = models.TestAssignment.objects.filter(user_id=request.user, status=1
-                                                           ).order_by('assignmentresult__answer_time')
+    completed_tests = [c_test for c_test in models.TestAssignment.objects.filter(user_id=request.user)
+                                    .order_by('assignmentresult__answer_time') if c_test.status == 'COMPLETED']
+
+    # fetching expired assignmets
+    expired_questionnaires = [c_quest for c_quest in models.QuestionnaireAssignment.objects.filter(user_id=request.user)
+                              if c_quest.status == 'EXPIRED']
+
+    expired_tests = [c_test for c_test in models.TestAssignment.objects.filter(user_id=request.user)
+                              if c_test.status == 'EXPIRED']
 
     return render(request, 'dashboard.html', {'active_questionnaires': active_questionnaires,
                                               'active_tests': active_tests,
                                               'completed_questionnaires': completed_questionnaires,
+                                              'expired_questionnaires': expired_questionnaires,
+                                              'exipred_tests':expired_tests,
                                               'completed_tests': completed_tests})
 
 
@@ -277,7 +291,6 @@ def surveySumbission(request):
                 answer = models.QuestionOption.objects.get(pk=option_id)
                 assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question,
                                                                   question_option=answer)
-                assignment.status = 1
                 assignment.save()
                 assignment_answer.save()
 
@@ -287,7 +300,6 @@ def surveySumbission(request):
             # print(assignment.questionnaire.domain.title, question.text, answer.text)
 
             assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question, question_option=answer)
-            assignment.status = 1
             assignment.save()
             assignment_answer.save()
 

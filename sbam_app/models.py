@@ -79,7 +79,7 @@ class Assignment(Model):
     user = ForeignKey(User, on_delete=CASCADE)
     
     def is_completed(self):
-        return AssignmentResult.objects.filter(assignment=self).count() > 0
+        return AssignmentResult.objects.filter(assignment=self).filter(assignment__user=self.user).count() > 0 and AssignmentResult.objects.all().count() > 0
     
     @property
     def status(self):
@@ -87,9 +87,9 @@ class Assignment(Model):
             return 'CANCELLED'
         elif self.campaign.status == 'NOT_STARTED':
             return 'NOT_STARTED'
-        elif self.is_completed:
+        elif self.is_completed():
             return 'COMPLETED'
-        elif self.campaign.is_expired:
+        elif self.campaign.is_expired():
             return 'EXPIRED'
         else:
             return 'OPEN'
@@ -185,7 +185,7 @@ class TestAssignment(Assignment):
 
 class AssignmentResult(Model):
     assignment = ForeignKey(Assignment, on_delete=CASCADE)
-    answer_time = DateTimeField()
+    answer_time = DateField()
     score = FloatField()
 
 # User Management Model

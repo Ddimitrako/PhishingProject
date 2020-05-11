@@ -137,8 +137,8 @@ $(document).ready(function(){
         return cookieValue;
     }
 
-    $('#id_start_date').datetimepicker('minDate', [''+new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()+'']);
-    $('#id_end_date').datetimepicker('minDate', [''+new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()+'']);
+    $('#id_start_date').datetimepicker('minDate', [new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()]);
+    $('#id_end_date').datetimepicker('minDate', [new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()]);
 
     //    controlling the expansion level of the tree one level at a time
     $('#dim_tree_container li').addClass('treejs-node__close');

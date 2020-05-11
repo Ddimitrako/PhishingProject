@@ -249,8 +249,8 @@ def get_campaign_form_trees():
     dimensions_dict.append(indv_dict)
     dimensions_dict.append(org_dict)
 
-    users = models.User.objects.all()
-    users_groups = Group.objects.all()
+    users = models.User.objects.filter(is_active=True)
+    users_groups = Group.objects.filter(groupprofile__is_active=1)
 
     users_dict = list()
     users_dict.append({
