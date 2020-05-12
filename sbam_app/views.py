@@ -176,7 +176,7 @@ def get_questionnaire(quest):
     # print(questions)
     for question in questions:
         question_type = QuestionType.objects.get(pk=question['question_type_id'])
-        question_options = QuestionOption.objects.filter(question_type=question_type, is_active=Status.ACTIVE).values()
+        question_options = QuestionOption.objects.filter(question_type=question_type, is_active=Status.ACTIVE).order_by('order').values()
         quest_type = model_to_dict(question_type)
         quest_type['takes_multiple'] = 'true' if quest_type['takes_multiple'] else 'false'
         questions_dict['questiion_' + str(question['id'])] = [question, quest_type,
