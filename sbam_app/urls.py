@@ -25,8 +25,10 @@ urlpatterns = [
     path('groups/group/<name>/enable', enable_group, name='enable_group'),
     path('groups/group/<name>/disable', disable_group, name='disable_group'),
     path('groups/create_group/', create_group, name='create_group'),
-    path('users/user_profile/<username>/', user_profile, name='user_profile'),
 
-    #campaign
-    path(r'evaluations/', campaignCreation, name='evaluations')
+    # Campaigns
+    path('campaigns/', CampaignsView.as_view(), name='campaigns'),
+    path('campaigns/campaign/<id>/', campaign, name='campaign'),
+    path('campaigns/campaign/<id>/cancel', cancel_campaign, name='cancel_campaign'),
+    path('campaigns/create_campaign/', create_campaign, name='create_campaign')
 ]

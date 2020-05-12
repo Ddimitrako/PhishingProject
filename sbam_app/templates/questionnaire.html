@@ -12,7 +12,7 @@
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
-    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Assignments" %}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "assignments"|capfirst %}</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'sbam:assignments' questionnaire.id %}">{{ questionnaire.id }}</a></li>
 {% endblock %}
 

@@ -72,7 +72,7 @@
                     ]
                 }
             }, function (chosen_date) {
-                $('.datepicker').val(chosen_date.format('YYYY-MM-DD'));
+                $(this.element[0]).val(chosen_date.format('YYYY-MM-DD'));
             });
 
             /*
@@ -118,6 +118,11 @@
             $('#reset').hide();
 
             $('form :input').on('keyup change', function () {
+                $('#save').show();
+                $('#reset').show();
+            });
+            $('form .datepicker').on('apply.daterangepicker', function () {
+                //do something, like clearing an input
                 $('#save').show();
                 $('#reset').show();
             });

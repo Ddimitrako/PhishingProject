@@ -1,0 +1,69 @@
+{% extends "base_form.html" %}
+
+{% load i18n static %}
+
+{% block page_name %}
+    <strong>{% trans "campaigns"|capfirst %}</strong>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item active">{% trans "campaigns"|capfirst %}</li>
+{% endblock %}
+
+{% block content %}
+<div class="card card-primary card-outline">
+    <div class="card-body">
+        <a class="btn btn-outline-info btn-sm mb-4 float-right"
+           href="{% url 'sbam:create_campaign' %}" role="button"
+           title="{% trans "Create new campaign" %}">
+            <i class="fas fa-plus-circle mr-2"></i>{% trans "Create new campaign" %}
+        </a>
+        <table id="table"
+               class="table table-bordered table-hover table-head-fixed table-responsive-md table-striped">
+            <thead>
+                <tr>
+                    <th style="text-align:center">{% trans "Status" %}</th>
+                    <th>{% trans "title"|capfirst %}</th>
+                    <th>{% trans "start date"|capfirst %}</th>
+                    <th>{% trans "end date"|capfirst %}</th>
+                    <th>{% trans "owner"|capfirst %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for campaign in campaigns_list %}
+                    <tr {% if campaign.status == 'CANCELLED' %} class="text-muted"{% endif %}>
+                        <td style="text-align:center">
+                            {% if campaign.status == 'FINISHED' %}
+                                <i class="fas fa-check-circle" style="color: darkgreen"
+                                   title="{% trans "Finished " %}"></i>
+                            {% elif campaign.status == 'ACTIVE' %}
+                                <i class="fas fa-spinner" style="color: darkblue"
+                                   title="{% trans "In progress " %}"></i>
+                            {% elif campaign.status == 'CANCELLED' %}
+                                <i class="fas fa-minus-circle" style="color: darkred"
+                                   title="{% trans "cancelled"|capfirst %}"></i>
+                            {% elif campaign.status == 'NOT_STARTED' %}
+                                <i class="far fa-clock" style="color: darkgrey"
+                                title="{% trans "Scheduled" %}"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'sbam:campaign' campaign.pk %}">
+                                {{ campaign.title }}
+                            </a>
+                        </td>
+                        <td>{{ campaign.start_date }}</td>
+                        <td>{{ campaign.end_date }}</td>
+                        <td>{{ campaign.owner.get_full_name }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-muted">{% trans "No campaigns available!" %}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

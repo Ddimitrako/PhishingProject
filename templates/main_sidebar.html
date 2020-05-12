@@ -61,11 +61,11 @@
                                     </li>
                                 </ul>
                             </li>
-                            {% if request.user.userprofile.is_manager %}
+                            {% if request.user.is_superuser or request.user.userprofile.is_manager %}
                                 <li class="nav-item">
-                                    <a href="{% url 'sbam:evaluations' %}" class="nav-link">
+                                    <a href="{% url 'sbam:campaigns' %}" class="nav-link">
                                         <i class="nav-icon fas fa-edit"></i>
-                                        <p>{% trans "Evaluations" %}</p>
+                                        <p>{% trans "campaigns"|capfirst %}</p>
                                     </a>
                                 </li>
                             {% endif %}

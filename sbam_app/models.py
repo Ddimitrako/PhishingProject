@@ -1,48 +1,69 @@
 from datetime import date
 
 from django.contrib.auth.models import User, Group
-from django.utils import timezone
 from django.db.models import *
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
-# TODO decide how to handle delete/disable in model objects
+class Status(IntegerChoices):
+    INACTIVE = 0, _('Inactive')
+    ACTIVE = 1, _('Active')
+
 
 # Security Culture Model
 
 class Dimension(Model):
-    ORGANISATIONAL = 'ORGANISATIONAL'
-    INDIVIDUAL = 'INDIVIDUAL'
-    LEVEL = [
-        (ORGANISATIONAL, 0),
-        (INDIVIDUAL, 1)
-    ]
+    class Level(IntegerChoices):
+        ORGANISATIONAL = 0, _('Organisational')
+        INDIVIDUAL = 1, _('Individual')
 
-    title = CharField(max_length=50, help_text="Dimension title")
-    description = TextField(blank=True, null=True, default='', help_text="Dimension description")
-    level = SmallIntegerField(choices=LEVEL, help_text="Dimension level")
+    title = CharField(_('title'), max_length=50, help_text=_('Dimension title'))
+    description = TextField(_('description'), blank=True, null=True, default='', help_text=_('Dimension description'))
+    level = SmallIntegerField(_('level'), choices=Level.choices, help_text=_('Dimension level'))
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = _('dimension')
+        verbose_name_plural = _('dimensions')
 
 
 class Domain(Model):
-    dimension = ForeignKey(Dimension, on_delete=CASCADE, help_text="Dimension this domain belongs to")
-    title = CharField(max_length=50, help_text="Domain title")
-    description = TextField(blank=True, null=True, default='', help_text="Domain description")
+    dimension = ForeignKey(
+        Dimension,
+        verbose_name=_('dimension'),
+        on_delete=CASCADE,
+        help_text=_('Dimension this domain belongs to')
+    )
+    title = CharField(_('title'), max_length=50, help_text=_('Domain title'))
+    description = TextField(_('description'), blank=True, null=True, default='', help_text=_('Domain description'))
 
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = _('domain')
+        verbose_name_plural = _('domains')
+
 
 class Campaign(Model):
-    start_date = DateField()
-    end_date = DateField()
-    owner = ForeignKey(User, on_delete=CASCADE, help_text="The user who created the campaign")
-    is_cancelled = BooleanField(default=False, help_text="Is the campaign cancelled?")
-    title = CharField(max_length=10, help_text="Campaign title")
+    title = CharField(_('title'), max_length=20, help_text=_('Campaign title'))
+    start_date = DateField(_('start date'), help_text=_('Campaign start date'))
+    end_date = DateField(_('end date'), help_text=_('Campaign end date'))
+    owner = ForeignKey(
+        User,
+        verbose_name=_('owner'),
+        on_delete=CASCADE,
+        help_text=_('The user who created the campaign')
+    )
+    is_cancelled = BooleanField(
+        _('cancelled'),
+        default=False,
+        help_text=_('Designates whether this campaign has been cancelled.'))
 
     @property
     def status(self):
@@ -50,7 +71,7 @@ class Campaign(Model):
             return 'CANCELLED'
         elif self.start_date > date.today():
             return 'NOT_STARTED'
-        elif self.is_expired or int(self.completion_rate) == 1:
+        elif self.is_expired() or int(self.completion_rate()) == 1:
             return 'FINISHED'
         else:
             return 'ACTIVE'
@@ -65,22 +86,37 @@ class Campaign(Model):
         return self.end_date < date.today()
 
     def num_of_assignments(self):
-        return QuestionnaireAssignment.objects.filter(campaign=self).count() + TestAssignment.objects.filter(campaign=self).count()
+        return QuestionnaireAssignment.objects.filter(campaign=self).count() \
+               + TestAssignment.objects.filter(campaign=self).count()
 
     def num_of_completed_assignments(self):
-        return QuestionnaireAssignment.objects.filter(campaign=self, status='COMPLETED').count() + TestAssignment.objects.filter(campaign=self, status='COMPLETED').count()
+        return QuestionnaireAssignment.objects.filter(campaign=self, assignmentresult__isnull=False).count() \
+               + TestAssignment.objects.filter(campaign=self, assignmentresult__isnull=False).count()
 
     def completion_rate(self):
-        return self.num_of_completed_assignments / self.num_of_assignments
+        return self.num_of_completed_assignments() / self.num_of_assignments()
+
+    def is_global(self):
+        return self.owner.is_superuser
+
+    class Meta:
+        verbose_name = _('campaign')
+        verbose_name_plural = _('campaigns')
 
 
 class Assignment(Model):
-    campaign = ForeignKey(Campaign, on_delete=CASCADE)
-    user = ForeignKey(User, on_delete=CASCADE)
-    
+    campaign = ForeignKey(
+        Campaign,
+        verbose_name=_('campaign'),
+        on_delete=CASCADE,
+        help_text=_('The campaign this assignment derives from')
+    )
+    user = ForeignKey(User, verbose_name=_('user'), on_delete=CASCADE, help_text=_('Assignee'))
+
     def is_completed(self):
-        return AssignmentResult.objects.filter(assignment=self).filter(assignment__user=self.user).count() > 0 and AssignmentResult.objects.all().count() > 0
-    
+        return AssignmentResult.objects.filter(assignment=self).filter(assignment__user=self.user).count() > 0 \
+               and AssignmentResult.objects.all().count() > 0
+
     @property
     def status(self):
         if self.campaign.status == 'CANCELLED':
@@ -94,99 +130,233 @@ class Assignment(Model):
         else:
             return 'OPEN'
 
-
-class Questionnaire(Model):
-    ACTIVE = 'ACTIVE'        #An to domain pou anaferetai uparxei to questionnaire einai active, diaforetika oxi
-    INACTIVE = 'INACTIVE'
-    STATUSES = [
-        (ACTIVE, 1),
-        (INACTIVE, 0)
-    ]
-    title = CharField(max_length=200, help_text="Questionnaire title")
-    domain = ForeignKey(Domain, on_delete=CASCADE)
-    is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a questionnaire if it is used")
-
-
-class QuestionnaireAssignment(Assignment):
-    questionnaire = ForeignKey(Questionnaire, on_delete=CASCADE)
-
     def get_answer_time(self):
         return self.assignmentresult_set.get(assignment=self).answer_time
 
+    def get_result(self):
+        return '{0:.2%}'.format(self.assignmentresult_set.get(assignment=self).score)
+
+    class Meta:
+        verbose_name = _('assignment')
+        verbose_name_plural = _('assignments')
+
+
+class Questionnaire(Model):
+    title = CharField(_('title'), max_length=200, help_text=_('Questionnaire title'))
+    domain = ForeignKey(
+        Domain,
+        verbose_name=_('domain'),
+        on_delete=CASCADE,
+        help_text=_('The domain this questionnaire belongs to')
+    )
+    is_active = IntegerField(
+        _('active'),
+        choices=Status.choices,
+        default=1,
+        help_text=_('Designates whether this questionnaire is being used for the evaluation of a specific domain')
+    )
+    weight = FloatField(
+        _('weight'),
+        default=1,
+        help_text=_('Multiplier indicating questionnaire\'s significance')
+    )
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('questionnaire')
+        verbose_name_plural = _('questionnaires')
+
+
+class QuestionnaireAssignment(Assignment):
+    questionnaire = ForeignKey(
+        Questionnaire,
+        verbose_name=_('questionnaire'),
+        on_delete=CASCADE,
+        help_text=_('Questionnaire assigned')
+    )
+
+    def __str__(self):
+        return self.questionnaire.title + ' has been assigned to ' + self.user.username
+
+    class Meta:
+        verbose_name = _('questionnaire assignment')
+        verbose_name_plural = _('questionnaire assignments')
+
 
 class QuestionType(Model):
-
     class Qtype(TextChoices):
-        BOOLEAN = 'BOOL', _('boolean') # Yes/No
-        PERCENTAGE_10 = 'PERC10', _('percentage_step_10') # [0-10)% - [10-20)% - ... - [90-100] %
-        PERCENTAGE_20 = 'PERC20', _('percentage_step_20') # [0-20)% - [20-40)% - ... - [80-100] %
-        AGREEMENT_5 = 'AGR5', _('agreement_scale_5_options') # Strongly Disagree - DIsagree - Neutral - Agree - Strongly Agree
-        CUSTOM_RADIO = 'CUSTOM_R', _('custom_question') # Custom radio question type with custom options
+        # Question types ending in _N bear a negative notion whereas those ending in _P
+        # bear a positive one. Their notion affects the value escalation of the available
+        # question options.
+        BOOLEAN_P = 'BOOL_P', _('boolean_positive')  # Yes/No
+        BOOLEAN_N = 'BOOL_N', _('boolean_negative')  # Yes/No
+        PERCENTAGE_10_P = 'PERC10_P', _('percentage_step_10_positive')  # [0-10)% - [10-20)% - ... - [90-100] %
+        PERCENTAGE_10_N = 'PERC10_N', _('percentage_step_10_negative')  # [0-10)% - [10-20)% - ... - [90-100] %
+        PERCENTAGE_20_P = 'PERC20_P', _('percentage_step_20_positive')  # [0-20)% - [20-40)% - ... - [80-100] %
+        PERCENTAGE_20_N = 'PERC20_N', _('percentage_step_20_negative')  # [0-20)% - [20-40)% - ... - [80-100] %
+        AGREEMENT_5_P = \
+            'AGR5_P', _('agreement_scale_5_positive')  # Strongly Disagree - Disagree - Neutral - Agree - Strongly Agree
+        AGREEMENT_5_N = \
+            'AGR5_N', _('agreement_scale_5_negative')  # Strongly Disagree - Disagree - Neutral - Agree - Strongly Agree
+        CUSTOM_RADIO = 'CUSTOM_R', _('custom_question')  # Custom radio question type with custom options
 
-    type = CharField(max_length=23, choices=Qtype.choices)
-    takes_multiple = BooleanField(default=False)
+    type = CharField(_('type'), max_length=23, choices=Qtype.choices, help_text=_('Question type'))
+    takes_multiple = BooleanField(
+        _('takes multiple'),
+        default=False,
+        help_text=_('Designates if specific question type accepts multiple answers')
+    )
 
+    def __str__(self):
+        return self.type
+
+    class Meta:
+        verbose_name = _('question type')
+        verbose_name_plural = _('question types')
 
 
 class QuestionOption(Model):
-    ACTIVE = 'ACTIVE'        #An h sugkekrimenh epilogh einai diathesim
-    INACTIVE = 'INACTIVE'
-    STATUSES = [
-        (ACTIVE, 1),
-        (INACTIVE, 0)
-    ]
-    question_type = ForeignKey(QuestionType, on_delete=CASCADE)
-    text = TextField(help_text="question's option text")
-    value = FloatField()
-    is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a questionnaire if it is used")
-    id_in_question = IntegerField()
-    order = IntegerField()
+    question_type = ForeignKey(
+        QuestionType,
+        verbose_name=_('question type'),
+        on_delete=CASCADE,
+        help_text=_('Question type this option refers to')
+    )
+    text = TextField(_('text'), help_text=_('Question\'s option text'))
+    value = FloatField(_('value'), help_text=_('Value corresponding to specific option'))
+    is_active = IntegerField(
+        _('active'),
+        choices=Status.choices,
+        default=1,
+        help_text=_('Designates whether this question option is being offered by a specific question type')
+    )
+    id_in_question = IntegerField(_('id in question'))
+    order = IntegerField(_('order'))
+
+    def __str__(self):
+        return self.text
+
+    class Meta:
+        verbose_name = _('question option')
+        verbose_name_plural = _('question options')
 
 
 class Question(Model):
-    ACTIVE = 'ACTIVE'         #An h erwthsh uparxei an, h to domain uparxei(?)
-    INACTIVE = 'INACTIVE'
-    STATUSES = [
-        (ACTIVE, 1),
-        (INACTIVE, 0)
-    ]
-    questionnaire = ForeignKey(Questionnaire, on_delete=CASCADE)
-    question_type = ForeignKey(QuestionType, on_delete=CASCADE)
-    text = TextField(help_text="question's text")
-    is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a question if it is used")
-    id_in_questionnaire = IntegerField()
-    order = IntegerField()
+    questionnaire = ForeignKey(
+        Questionnaire,
+        verbose_name=_('questionnaire'),
+        on_delete=CASCADE,
+        help_text=_('The questionnaire this question belongs to')
+    )
+    question_type = ForeignKey(
+        QuestionType,
+        verbose_name=_('question_type'),
+        on_delete=CASCADE,
+        help_text=_('Question type')
+    )
+    text = TextField(_('text'), help_text=_('Question text'))
+    is_active = IntegerField(
+        _('active'),
+        choices=Status.choices,
+        default=1,
+        help_text=_('Designates whether this question is being used by a specific questionnaire')
+    )
+    weight = FloatField(
+        _('weight'),
+        default=1,
+        help_text=_('Multiplier indicating question\'s significance')
+    )
+    id_in_questionnaire = IntegerField(_('id in questionnaire'))
+    order = IntegerField(_('order'))
+
+    def __str__(self):
+        return self.text
+
+    class Meta:
+        verbose_name = _('question')
+        verbose_name_plural = _('questions')
 
 
 class CampaignQuestionAnswer(Model):
-    question = ForeignKey(Question, on_delete=CASCADE)
-    assignment = ForeignKey(QuestionnaireAssignment, on_delete=CASCADE)
-    question_option = ForeignKey(QuestionOption, on_delete=CASCADE)
+    question = ForeignKey(
+        Question,
+        verbose_name=_('question'),
+        on_delete=CASCADE,
+        help_text=_('The question this answer refers to')
+    )
+    assignment = ForeignKey(
+        QuestionnaireAssignment,
+        verbose_name=_('assignment'),
+        on_delete=CASCADE,
+        help_text=_('The assignment this answer belongs to')
+    )
+    question_option = ForeignKey(
+        QuestionOption,
+        verbose_name=_('question option'),
+        on_delete=CASCADE,
+        help_text=_('The option selected by the assignee')
+    )
+
+    class Meta:
+        verbose_name = _('campaign question answer')
+        verbose_name_plural = _('campaign question answers')
 
 
 class Test(Model):
-    ACTIVE = 'ACTIVE'       #if the domain of the test exists or the test is available
-    INACTIVE = 'INACTIVE'
-    STATUSES = [
-        (ACTIVE, 1),
-        (INACTIVE, 0)
-    ]
-    domain = ForeignKey(Domain, on_delete=CASCADE)
-    title = CharField(max_length=100, help_text="Test title")
-    is_active = IntegerField(choices=STATUSES, default=1, help_text="status of a question if it is used")
+    domain = ForeignKey(
+        Domain,
+        verbose_name=_('domain'),
+        on_delete=CASCADE,
+        help_text=_('The domain this test belongs to')
+    )
+    title = CharField(_('title'), max_length=100, help_text=_('Test title'))
+    is_active = IntegerField(
+        _('active'),
+        choices=Status.choices,
+        default=1,
+        help_text=_('Designates whether this test is being used for the evaluation of a specific domain')
+    )
+    weight = FloatField(
+        _('weight'),
+        default=1,
+        help_text=_('Multiplier indicating test\'s significance')
+    )
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('test')
+        verbose_name_plural = _('tests')
 
 
 class TestAssignment(Assignment):
-    test = ForeignKey(Test, on_delete=CASCADE)
+    test = ForeignKey(Test, verbose_name=_('test'), on_delete=CASCADE, help_text=_('Test assigned'))
 
-    def get_answer_time(self):
-        return self.assignmentresult_set.get(assignment=self).answer_time.date()
+    def __str__(self):
+        return self.test + ' has been assigned to ' + self.user
+
+    class Meta:
+        verbose_name = _('test assignment')
+        verbose_name_plural = _('test assignments')
 
 
 class AssignmentResult(Model):
-    assignment = ForeignKey(Assignment, on_delete=CASCADE)
-    answer_time = DateField()
-    score = FloatField()
+    assignment = ForeignKey(
+        Assignment,
+        verbose_name=_('assignment'),
+        on_delete=CASCADE,
+        help_text=_('Assignment this result refers to')
+    )
+    answer_time = DateField(_('answer time'), help_text=_('The date this assignment result was achieved'))
+    score = FloatField(_('score'), help_text=_('Achieved assignment score'))
+
+    class Meta:
+        verbose_name = _('assignment result')
+        verbose_name_plural = _('assignment results')
+
 
 # User Management Model
 

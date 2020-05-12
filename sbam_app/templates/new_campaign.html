@@ -5,18 +5,21 @@
 
 {% block extra_head %}
     {{ campaign_form.media }}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css"
+          integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous"/>
     <link href="{% static "sbam_app/css/campaign_creation.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
-    <li class="breadcrumb-item active">{% trans "Evaluations" %}</li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:campaigns' %}">{% trans "campaigns"|capfirst %}</a></li>
+    <li class="breadcrumb-item active">{% trans "New Campaign" %}</li>
 {% endblock %}
 
 {% block page_name %}
     <div class="row">
-        <strong>{% trans "Create your campaign" %}</strong>
+        <strong>{% trans "Create new campaign" %}</strong>
     </div>
 {% endblock %}
 
@@ -31,7 +34,7 @@
                             <div class="form-row">
                                 <div class="form-group col col-md-4 questionnaiers">
                                     <div class="labels">
-                                        <label >Questionnaires</label>
+                                        <label>Questionnaires</label>
                                     </div>
                                     <div class="tree_container" id="dim_tree_container"></div>
                                 </div>
@@ -59,7 +62,8 @@
                                         </div>
                                         <div class="table-responsive-sm">
                                             <div class="container selected-items">
-                                                <table id="selected_domains" class="table table-striped table-responsive-sm">
+                                                <table id="selected_domains"
+                                                       class="table table-striped table-responsive-sm">
                                                     <tbody></tbody>
                                                 </table>
                                                 <p class="sel-quest-par">No selected Questionnaires</p>
@@ -72,7 +76,8 @@
                                         </div>
                                         <div class="table-responsive-sm">
                                             <div class="container selected-items">
-                                                <table id="selected_tests" class="table table-striped table-responsive-sm">
+                                                <table id="selected_tests"
+                                                       class="table table-striped table-responsive-sm">
                                                     <tbody></tbody>
                                                 </table>
                                                 <p class="sel-tests-par">No selected Tests</p>
@@ -85,7 +90,8 @@
                                         </div>
                                         <div class="table-responsive-sm">
                                             <div class="container selected-items">
-                                                <table id="selected_users" class="table table-striped table-responsive-sm">
+                                                <table id="selected_users"
+                                                       class="table table-striped table-responsive-sm">
                                                     <tbody></tbody>
                                                 </table>
                                                 <p class="sel-usr-par">No selected Users or User Groups</p>
@@ -99,36 +105,43 @@
                 </div>
                 <div class="col col-md-3">
                     <div class="card card-primary card-outline">
-                        <h4 class="legend">Campaign dates</h4>
+                        <h4 class="legend">Campaign details</h4>
                         <div class="card-body">
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item p-0 border-0 mb-3">
-                                <label for="id_start_date" >Campaign Start</label>
-                                {{ campaign_form.start_date}}
-                            </li>
-                            <li class="list-group-item p-0 border-0 mb-3">
-                                <label for="id_end_date" >Campaign End</label>
-                                {{ campaign_form.end_date}}
-                            </li>
-                            <li class="list-group-item p-0 border-0 mb-3">
-                                <button type="button" class="btn btn-primary" id="create_campaign_btn" title="{% trans "Create your campaign" %}">Create Campaign</button>
-                            </li>
-                        </ul>
-                    </div>
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item p-0 border-0 mb-3">
+                                    <label for="id_title">Campaign Title</label>
+                                    {{ campaign_form.title|add_class:"form-control" }}
+                                </li>
+                                <li class="list-group-item p-0 border-0 mb-3">
+                                    <label for="id_start_date">Campaign Start</label>
+                                    {{ campaign_form.start_date }}
+                                </li>
+                                <li class="list-group-item p-0 border-0 mb-3">
+                                    <label for="id_end_date">Campaign End</label>
+                                    {{ campaign_form.end_date }}
+                                </li>
+                                <li class="list-group-item p-0 border-0 mb-3">
+                                    <button type="button" class="btn btn-info btn-sm" id="create_campaign_btn"
+                                            title="{% trans "Create new campaign" %}">Create Campaign
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                </div>
-            </form>
+            </div>
+        </form>
     </div>
 
-    <div class="modal fade bd-example-modal-lg" id="campaignSuccessModal" tabindex="-1" role="dialog" aria-labelledby="campaignSuccessModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" >
+    <div class="modal fade bd-example-modal-lg" id="campaignSuccessModal" tabindex="-1" role="dialog"
+         aria-labelledby="campaignSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="campaignSuccessModalLabel">Well Done!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-info" role="alert">
@@ -136,20 +149,21 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="{% url 'sbam:dashboard' %}" class="btn btn-outline-info" role="button" >Close</a>
+                    <a href="{% url 'sbam:dashboard' %}" class="btn btn-outline-info" role="button">Close</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade bd-example-modal-lg" id="campaignErrorModal" tabindex="-1" role="dialog" aria-labelledby="campaignErrorModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" >
+    <div class="modal fade bd-example-modal-lg" id="campaignErrorModal" tabindex="-1" role="dialog"
+         aria-labelledby="campaignErrorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="campaignErrorModalLabel">Error!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-danger" role="alert">
@@ -157,7 +171,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="{% url 'sbam:evaluations' %}" class="btn btn-outline-primary" role="button" >Close</a>
+                    <a href="{% url 'sbam:campaigns' %}" class="btn btn-outline-primary" role="button">Close</a>
                 </div>
             </div>
         </div>
@@ -166,10 +180,11 @@
 {% endblock %}
 
 
-{% block  extra_js  %}
+{% block  extra_js %}
     <script src="{% static "admin-lte/plugins/moment/moment-with-locales.js" %}"></script>
     <script src="{% static "sbam_app/js/tree.min.js" %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"
+            integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
 
     <script type="application/javascript">
         let questtreeData = {{ campaign_form_trees.dimensions_dict | safe }};

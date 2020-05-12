@@ -1,0 +1,167 @@
+{% extends "base_form.html" %}
+
+{% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
+
+{% block page_name %}
+    <div class="row">
+        <strong>{% trans "campaign"|capfirst %}:</strong>
+        <p class="ml-2">{{ campaign.title }}</p>
+        {% if campaign.status == 'CANCELLED' %}
+            <p class="ml-2" style="color:indianred">{% trans "(cancelled)" %}</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:campaigns' %}">{% trans "campaigns"|capfirst %}</a></li>
+    <li class="breadcrumb-item active">{% trans "campaign"|capfirst %}</li>
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post" novalidate>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline card-outline-tabs">
+                    <div class="card-header pb-2 border-bottom-0">
+                        <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="campaign-general-info-tab" data-toggle="pill"
+                                   href="#campaign-general-info" role="tab"
+                                   aria-controls="campaign-general-info"
+                                   aria-selected="true"><i class="fas fa-info-circle mr-2"></i>
+                                    {% trans "General Information" %}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="campaign-results-tab" data-toggle="pill"
+                                   href="#campaign-results" role="tab"
+                                   aria-controls="campaign-results"
+                                   aria-selected="false"><i class="far fa-chart-bar mr-2"></i>
+                                    {% trans "results"|capfirst %}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="campaign-general-info" role="tabpanel"
+                                 aria-labelledby="campaign-general-info-tab">
+                                {% crispy campaign_form %}
+
+                                <div class="row">
+                                    <div class="col col-md-4">
+                                        <label>{% trans "questionnaires"|capfirst %}</label>
+                                        <table id="questionnaires"
+                                               class="table table-hover table-head-fixed table-striped table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>{% trans "name"|capfirst %}</th>
+                                                    <th>{% trans "type"|capfirst %}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for name, type in questionnaires %}
+                                                    <tr>
+                                                        <td>{{ name }}</td>
+                                                        <td>
+                                                            {% if type == 0 %}
+                                                                {% trans "Organisational" %}
+                                                            {% else %}
+                                                                {% trans "Individual" %}
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                {% empty %}
+                                                    <tr>
+                                                        <td colspan="2"
+                                                            class="text-muted">{% trans "No selected Questionnaires" %}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col col-md-4">
+                                        <label>{% trans "Tests" %}</label>
+                                        <table id="tests"
+                                               class="table table-hover table-head-fixed table-striped table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>{% trans "name"|capfirst %}</th>
+                                                    <th>{% trans "type"|capfirst %}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for name, type in tests %}
+                                                    <tr>
+                                                        <td>{{ name }}</td>
+                                                        <td>
+                                                            {% if type == 0 %}
+                                                                {% trans "Organisational" %}
+                                                            {% else %}
+                                                                {% trans "Individual" %}
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                {% empty %}
+                                                    <tr>
+                                                        <td colspan="2"
+                                                            class="text-muted">{% trans "No selected Tests" %}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col col-md-4">
+                                        <label>{% trans "Users" %}</label>
+                                        <table id="users"
+                                               class="table table-hover table-head-fixed table-striped table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>{% trans "Full Name" %}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for last_name, first_name in assignees %}
+                                                    <tr>
+                                                        <td>{{ last_name }} {{ first_name }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="campaign-results" role="tabpanel"
+                                 aria-labelledby="campaign-results-tab">
+                                {% include "campaign_results.html" with results=results %}
+                            </div>
+                        </div>
+
+                        <div class="float-right">
+                            <button id="save" class="btn btn-outline-info btn-sm mt-4" type="submit"
+                                    title="{% trans "Save changes" %}">
+                                <i class="fas fa-save mr-2"></i>{% trans "Save" %}
+                            </button>
+
+                            {% if request.user.is_superuser or request.user == campaign.owner %}
+                                {% if campaign.status in 'NOT_STARTED, ACTIVE' %}
+                                    <button class="btn btn-outline-danger btn-sm mt-4" type="submit"
+                                            formaction="cancel"
+                                            title="{% trans "Cancel campaign" %}">
+                                        <i class="fas fa-slash mr-2"></i>{% trans "Cancel" %}
+                                    </button>
+                                {% endif %}
+                            {% endif %}
+
+                            <button id="reset" class="btn btn-outline-secondary btn-sm mt-4" type="reset"
+                                    title="{% trans "Discard changes" %}">
+                                <i class="fas fa-times-circle mr-2"></i>{% trans "Reset" %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

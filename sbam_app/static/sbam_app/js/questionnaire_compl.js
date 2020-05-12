@@ -108,28 +108,13 @@ $(document).ready(function(){
 
                     if (questData[quest_obj][obj].hasOwnProperty('type')) {
                         survey_quest = {};
-                        if(questData[quest_obj][obj].type === 'BOOL'){
+                        if(questData[quest_obj][obj].type.startsWith('BOOL')) {
                             question_opt_ids = [];
                             for(opt in questData[quest_obj][2])
                                 question_opt_ids.push(questData[quest_obj][2][opt].id);
 
                             survey_quest['questions'] = create_bool_quest(text, quest_id, question_opt_ids);
-                        }
-                        else if(questData[quest_obj][obj].type === 'PERC10' || questData[quest_obj][obj].type === 'PERC20'){
-                            question_opt = [];
-                            for(opt in questData[quest_obj][2])
-                                question_opt.push(questData[quest_obj][2][opt]);
-
-                            survey_quest['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
-                        }
-                        else if(questData[quest_obj][obj].type === 'AGR5'){
-                            question_opt = [];
-                            for(opt in questData[quest_obj][2])
-                                question_opt.push(questData[quest_obj][2][opt]);
-
-                            survey_quest['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
-                        }
-                        else{           //case for custom options
+                        } else {
                             question_opt = [];
                             for(opt in questData[quest_obj][2])
                                 question_opt.push(questData[quest_obj][2][opt]);
