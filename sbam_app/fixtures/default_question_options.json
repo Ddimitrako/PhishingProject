@@ -83,7 +83,7 @@
       "question_type": "PERC10_P",
       "text": "20-29 %",
       "value": 0.22,
-      "is_active": 1
+      "is_active": 1,
       "id_in_question": 3,
       "order": 3
     }
@@ -193,7 +193,7 @@
       "question_type": "PERC10_N",
       "text": "20-29 %",
       "value": 0.77,
-      "is_active": 1
+      "is_active": 1,
       "id_in_question": 3,
       "order": 3
     }
@@ -330,7 +330,7 @@
       "order": 5
     }
   },
-    {
+  {
     "model": "sbam_app.QuestionOption",
     "fields": {
       "question_type": "PERC20_N",

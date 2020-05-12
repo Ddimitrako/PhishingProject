@@ -72,7 +72,7 @@
                     ]
                 }
             }, function (chosen_date) {
-                $('.datepicker').val(chosen_date.format('YYYY-MM-DD'));
+                $(this.element[0]).val(chosen_date.format('YYYY-MM-DD'));
             });
 
             /*

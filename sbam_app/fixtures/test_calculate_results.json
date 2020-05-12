@@ -153,14 +153,19 @@
       "takes_multiple": false
     }
   },
-  {
+    {
     "model": "sbam_app.questionoption",
     "pk": 1,
     "fields": {
       "question_type": 1,
-      "text": "Yes",
-      "value": 1.0,
-      "is_active": 1
+      "text_en": "Yes",
+      "text_el": "Ναι",
+      "text_it": "Si",
+      "text_ro": "Da",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -168,9 +173,14 @@
     "pk": 2,
     "fields": {
       "question_type": 1,
-      "text": "No",
-      "value": 0.0,
-      "is_active": 1
+      "text_en": "No",
+      "text_el": "Όχι",
+      "text_it": "No",
+      "text_ro": "Nu",
+      "value": 0,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -178,9 +188,14 @@
     "pk": 3,
     "fields": {
       "question_type": 2,
-      "text": "Yes",
-      "value": 0.0,
-      "is_active": 1
+      "text_en": "Yes",
+      "text_el": "Ναι",
+      "text_it": "Si",
+      "text_ro": "Da",
+      "value": 0,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -188,9 +203,14 @@
     "pk": 4,
     "fields": {
       "question_type": 2,
-      "text": "No",
-      "value": 1.0,
-      "is_active": 1
+      "text_en": "No",
+      "text_el": "Όχι",
+      "text_it": "No",
+      "text_ro": "Nu",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -200,7 +220,9 @@
       "question_type": 3,
       "text": "0-9 %",
       "value": 0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -210,7 +232,9 @@
       "question_type": 3,
       "text": "10-19 %",
       "value": 0.11,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -220,7 +244,9 @@
       "question_type": 3,
       "text": "20-29 %",
       "value": 0.22,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -230,7 +256,9 @@
       "question_type": 3,
       "text": "30-39 %",
       "value": 0.33,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -240,7 +268,9 @@
       "question_type": 3,
       "text": "40-49 %",
       "value": 0.44,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
     }
   },
   {
@@ -250,7 +280,9 @@
       "question_type": 3,
       "text": "50-59 %",
       "value": 0.55,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 6,
+      "order": 6
     }
   },
   {
@@ -260,7 +292,9 @@
       "question_type": 3,
       "text": "60-69 %",
       "value": 0.66,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 7,
+      "order": 7
     }
   },
   {
@@ -270,7 +304,9 @@
       "question_type": 3,
       "text": "70-79 %",
       "value": 0.77,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 8,
+      "order": 8
     }
   },
   {
@@ -280,7 +316,9 @@
       "question_type": 3,
       "text": "80-89 %",
       "value": 0.88,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 9,
+      "order": 9
     }
   },
   {
@@ -290,7 +328,9 @@
       "question_type": 3,
       "text": "90-100 %",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 10,
+      "order": 10
     }
   },
   {
@@ -300,7 +340,9 @@
       "question_type": 4,
       "text": "0-9 %",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -310,7 +352,9 @@
       "question_type": 4,
       "text": "10-19 %",
       "value": 0.88,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -320,7 +364,9 @@
       "question_type": 4,
       "text": "20-29 %",
       "value": 0.77,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -330,7 +376,9 @@
       "question_type": 4,
       "text": "30-39 %",
       "value": 0.66,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -340,7 +388,9 @@
       "question_type": 4,
       "text": "40-49 %",
       "value": 0.55,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
     }
   },
   {
@@ -350,7 +400,9 @@
       "question_type": 4,
       "text": "50-59 %",
       "value": 0.44,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 6,
+      "order": 6
     }
   },
   {
@@ -360,7 +412,9 @@
       "question_type": 4,
       "text": "60-69 %",
       "value": 0.33,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 7,
+      "order": 7
     }
   },
   {
@@ -370,7 +424,9 @@
       "question_type": 4,
       "text": "70-79 %",
       "value": 0.22,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 8,
+      "order": 8
     }
   },
   {
@@ -380,7 +436,9 @@
       "question_type": 4,
       "text": "80-89 %",
       "value": 0.11,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 9,
+      "order": 9
     }
   },
   {
@@ -389,8 +447,10 @@
     "fields": {
       "question_type": 4,
       "text": "90-100 %",
-      "value": 0.0,
-      "is_active": 1
+      "value": 0,
+      "is_active": 1,
+      "id_in_question": 10,
+      "order": 10
     }
   },
   {
@@ -399,8 +459,10 @@
     "fields": {
       "question_type": 5,
       "text": "0-19 %",
-      "value": 0.0,
-      "is_active": 1
+      "value": 0,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -410,7 +472,9 @@
       "question_type": 5,
       "text": "20-39 %",
       "value": 0.25,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -420,7 +484,9 @@
       "question_type": 5,
       "text": "40-59 %",
       "value": 0.5,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -430,7 +496,9 @@
       "question_type": 5,
       "text": "60-79 %",
       "value": 0.75,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -440,7 +508,9 @@
       "question_type": 5,
       "text": "80-100 %",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
     }
   },
   {
@@ -450,7 +520,9 @@
       "question_type": 6,
       "text": "0-19 %",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -460,7 +532,9 @@
       "question_type": 6,
       "text": "20-39 %",
       "value": 0.75,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -470,7 +544,9 @@
       "question_type": 6,
       "text": "40-59 %",
       "value": 0.5,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -480,7 +556,9 @@
       "question_type": 6,
       "text": "60-79 %",
       "value": 0.25,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -489,8 +567,10 @@
     "fields": {
       "question_type": 6,
       "text": "80-100 %",
-      "value": 0.0,
-      "is_active": 1
+      "value": 0,
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
     }
   },
   {
@@ -498,9 +578,13 @@
     "pk": 35,
     "fields": {
       "question_type": 7,
-      "text": "Strongly Disagree",
-      "value": 0.0,
-      "is_active": 1
+      "text_en": "Strongly Disagree",
+      "text_el": "Διαφωνώ πλήρως",
+      "text_it": "In forte disaccordo",
+      "value": 0,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -508,9 +592,13 @@
     "pk": 36,
     "fields": {
       "question_type": 7,
-      "text": "Disagree",
+      "text_en": "Disagree",
+      "text_el": "Διαφωνώ",
+      "text_it": "Disaccordo",
       "value": 0.25,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -518,9 +606,13 @@
     "pk": 37,
     "fields": {
       "question_type": 7,
-      "text": "Neutral",
+      "text_en": "Neutral",
+      "text_el": "Ουδέτερος",
+      "text_it": "Neutro",
       "value": 0.5,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -528,9 +620,13 @@
     "pk": 38,
     "fields": {
       "question_type": 7,
-      "text": "Agree",
+      "text_en": "Agree",
+      "text_el": "Συμφωνώ",
+      "text_it": "Accordo",
       "value": 0.75,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -538,9 +634,13 @@
     "pk": 39,
     "fields": {
       "question_type": 7,
-      "text": "Strongly Agree",
+      "text_en": "Strongly Agree",
+      "text_el": "Συμφωνώ πλήρως",
+      "text_it": "In forte accordo",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
     }
   },
   {
@@ -548,9 +648,13 @@
     "pk": 40,
     "fields": {
       "question_type": 8,
-      "text": "Strongly Disagree",
-      "value": 1.0,
-      "is_active": 1
+      "text_en": "Strongly Disagree",
+      "text_el": "Διαφωνώ πλήρως",
+      "text_it": "In forte disaccordo",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -558,9 +662,13 @@
     "pk": 41,
     "fields": {
       "question_type": 8,
-      "text": "Disagree",
+      "text_en": "Disagree",
+      "text_el": "Διαφωνώ",
+      "text_it": "Disaccordo",
       "value": 0.75,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -568,9 +676,13 @@
     "pk": 42,
     "fields": {
       "question_type": 8,
-      "text": "Neutral",
+      "text_en": "Neutral",
+      "text_el": "Ουδέτερος",
+      "text_it": "Neutro",
       "value": 0.5,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -578,9 +690,13 @@
     "pk": 43,
     "fields": {
       "question_type": 8,
-      "text": "Agree",
+      "text_en": "Agree",
+      "text_el": "Συμφωνώ",
+      "text_it": "Accordo",
       "value": 0.25,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -588,9 +704,13 @@
     "pk": 44,
     "fields": {
       "question_type": 8,
-      "text": "Strongly Agree",
-      "value": 0.0,
-      "is_active": 1
+      "text_en": "Strongly Agree",
+      "text_el": "Συμφωνώ πλήρως",
+      "text_it": "In forte accordo",
+      "value": 0,
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
     }
   },
   {
@@ -600,7 +720,9 @@
       "question_type": 10001,
       "text": "Approach them immediately, point out that they\u2019re not wearing their pass and ask them to put it on. It is policy after all!",
       "value": 4.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -610,7 +732,9 @@
       "question_type": 10001,
       "text": "Ask the person if they have been issued with a security pass and either take them to be issued with one, or offer them a helpful tip so they don\u2019t forget to wear it again.",
       "value": 3.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -620,7 +744,9 @@
       "question_type": 10001,
       "text": "Check if they wear their pass tomorrow, this may have been just a temporary lapse. If it happens again, you may need to approach them or inform their manager.",
       "value": 2.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -630,7 +756,9 @@
       "question_type": 10001,
       "text": "Ask them if they\u2019re aware of the security pass policy",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -640,7 +768,9 @@
       "question_type": 10002,
       "text": "Stop them immediately and alert them to the fact they\u2019ve left their computer unlocked, or laptop open.",
       "value": 4.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -650,7 +780,9 @@
       "question_type": 10002,
       "text": "Close or lock the device for them and leave them a note to say that you\u2019ve done this.",
       "value": 3.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -660,7 +792,9 @@
       "question_type": 10002,
       "text": "Make note of the incident and let a line manager or colleague know if you see this happen repeatedly; it might be time for a policy reminder about locking computers/laptops.",
       "value": 2.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -670,7 +804,9 @@
       "question_type": 10002,
       "text": "Close or lock the device for them and then follow up with an email",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -680,7 +816,9 @@
       "question_type": 10003,
       "text": "Approach the individuals and ask them to stop the discussion immediately \u2013 they risk compromising the security of highly sensitive information.",
       "value": 4.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -690,7 +828,9 @@
       "question_type": 10003,
       "text": "Point out where the nearest vacant meeting room is and politely suggest they continue their conversation privately in there.",
       "value": 3.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -700,7 +840,9 @@
       "question_type": 10003,
       "text": "Not say anything at the time, but make a note of the individuals involved, what they discussed, before informing either your line manager, their line manager or a security representative.",
       "value": 2.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -710,7 +852,9 @@
       "question_type": 10003,
       "text": "Remind the individuals that visitors frequent the corridor and suggest they continue their discussion elsewhere or at another time.",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -720,7 +864,9 @@
       "question_type": 10004,
       "text": "Pick them up and confront the owner of the documents as soon as you can \u2013 their negligence could have caused a security breach.",
       "value": 4.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -730,7 +876,9 @@
       "question_type": 10004,
       "text": "Pick them up and either clear them away or destroy them appropriately \u2013 you\u2019re often the one tidying things up in the office when other people forget.",
       "value": 3.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -740,7 +888,9 @@
       "question_type": 10004,
       "text": "Pick them up and make your line manager or your local security representative aware \u2013 you\u2019ve spotted a number of \u201cnear miss\u201d security incidents lately and the office has become noticeably less security-focused.",
       "value": 2.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -750,7 +900,9 @@
       "question_type": 10004,
       "text": "Pick them up and then explain to the owner why the material must be kept secure. If the perpetrator cannot be identified, suggest to a line manager that a reminder is circulated to the department.",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -760,7 +912,9 @@
       "question_type": 10005,
       "text": "Contact your colleague and inform them that they have breached security policy by disclosing information that isn\u2019t publically available, and request they delete the post immediately.",
       "value": 4.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
     }
   },
   {
@@ -770,7 +924,9 @@
       "question_type": 10005,
       "text": "Look into whether you can delete, hide or amend the post yourself. Then contact your colleague to let them know the post has been amended, or that they need to take it down, and why.",
       "value": 3.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
     }
   },
   {
@@ -780,7 +936,9 @@
       "question_type": 10005,
       "text": "Look elsewhere on the site to see if your colleague or others working on the project have disclosed further sensitive information. Then share your observations with your line manager or the project lead.",
       "value": 2.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
     }
   },
   {
@@ -790,7 +948,9 @@
       "question_type": 10005,
       "text": "Speak to your colleague and explain what you saw, why the information poses a security risk to the organisation, and why it shouldn\u2019t be shared on social media.",
       "value": 1.0,
-      "is_active": 1
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
     }
   },
   {
@@ -801,7 +961,9 @@
       "question_type": 1,
       "text": "Do you maintain documented security configuration standards for all authorized operating systems and software?",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 1,
+      "order": 1
     }
   },
   {
@@ -812,7 +974,9 @@
       "question_type": 1,
       "text": "Do you maintain secure images or templates for all systems in the enterprise based on the organization\u2019s approved configuration standards? \r\nNote: Any new system deployment or existing system that becomes compromised should be imaged using one of those images or templates.",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 2,
+      "order": 2
     }
   },
   {
@@ -823,7 +987,9 @@
       "question_type": 1,
       "text": "Do you store the master images and templates on securely configured servers, validated with integrity monitoring tools, to ensure that only authorized changes to the images are possible?",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 3,
+      "order": 3
     }
   },
   {
@@ -834,7 +1000,9 @@
       "question_type": 1,
       "text": "Have you deployed system configuration management tools that will automatically enforce and redeploy configuration settings to systems at regularly scheduled intervals?",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 4,
+      "order": 4
     }
   },
   {
@@ -845,7 +1013,9 @@
       "question_type": 1,
       "text": "Have you utilized a Security Content Automation Protocol (SCAP) compliant configuration monitoring system to verify all security configuration elements, catalog approved exceptions, and alert when unauthorized changes occur?",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 5,
+      "order": 5
     }
   },
   {
@@ -856,7 +1026,9 @@
       "question_type": 2,
       "text": "An inactive question...",
       "is_active": 0,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 6,
+      "order": 6
     }
   },
   {
@@ -867,7 +1039,9 @@
       "question_type": 4,
       "text": "Active but belongs to another questionnaire...",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 1,
+      "order": 1
     }
   },
   {
@@ -878,7 +1052,9 @@
       "question_type": 4,
       "text": "Number of systems without implemented password policy/Total number of systems.",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 7,
+      "order": 7
     }
   },
   {
@@ -889,7 +1065,9 @@
       "question_type": 6,
       "text": "Another inactive question belonging to another questionnaire...",
       "is_active": 0,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 2,
+      "order": 2
     }
   },
   {
@@ -900,7 +1078,9 @@
       "question_type": 1,
       "text": "Have you established and do you maintain secure configuration management processes (e.g. when servicing field devices or updating their firmware)?",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 8,
+      "order": 8
     }
   },
   {
@@ -911,7 +1091,9 @@
       "question_type": 7,
       "text": "I have a kind word for everyone.",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 1,
+      "order": 1
     }
   },
   {
@@ -922,7 +1104,9 @@
       "question_type": 7,
       "text": "I am always prepared.",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 2,
+      "order": 2
     }
   },
   {
@@ -933,7 +1117,9 @@
       "question_type": 2,
       "text": "An inactive question...",
       "is_active": 0,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 3,
+      "order": 3
     }
   },
   {
@@ -944,7 +1130,9 @@
       "question_type": 7,
       "text": "I feel comfortable around people.",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 4,
+      "order": 4
     }
   },
   {
@@ -955,7 +1143,9 @@
       "question_type": 8,
       "text": "I often feel blue.",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 5,
+      "order": 5
     }
   },
   {
@@ -966,7 +1156,9 @@
       "question_type": 10001,
       "text": "What would you do if you saw a colleague not wearing their security pass around the office?",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 1,
+      "order": 1
     }
   },
   {
@@ -977,7 +1169,9 @@
       "question_type": 10002,
       "text": "What would you do if you saw a colleague rush off to an important meeting and leave their computer unlocked, or laptop open?",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 2,
+      "order": 2
     }
   },
   {
@@ -988,7 +1182,9 @@
       "question_type": 10003,
       "text": "What would you do if you overheard a discussion, which you knew to be about some highly sensitive and confidential information, being held in a corridor where external visitors often pass through?",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 3,
+      "order": 3
     }
   },
   {
@@ -999,7 +1195,9 @@
       "question_type": 10004,
       "text": "You notice that some sensitive work documents have been left for all to see on top of the printers at the end of the day, when they should have been locked away for the night. What do you do?",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 4,
+      "order": 4
     }
   },
   {
@@ -1010,7 +1208,9 @@
       "question_type": 10005,
       "text": "What would you do if you noticed a colleague had posted something on social media that related to a sensitive work project (i.e. information which you know should not be shared outside the organisation)?",
       "is_active": 1,
-      "weight": 1.0
+      "weight": 1.0,
+      "id_in_questionnaire": 5,
+      "order": 5
     }
   },
   {
@@ -1667,8 +1867,7 @@
     "fields": {
       "start_date": "2020-05-05",
       "end_date": "2020-05-23",
-      "owner": 1,
-      "status": 1
+      "owner": 1
     }
   },
   {
@@ -1676,8 +1875,7 @@
     "pk": 1,
     "fields": {
       "campaign": 1,
-      "user": 1,
-      "status": 1
+      "user": 1
     }
   },
   {
@@ -1685,8 +1883,7 @@
     "pk": 2,
     "fields": {
       "campaign": 1,
-      "user": 2,
-      "status": 1
+      "user": 2
     }
   },
   {
@@ -1694,8 +1891,7 @@
     "pk": 3,
     "fields": {
       "campaign": 1,
-      "user": 3,
-      "status": 1
+      "user": 3
     }
   },
   {
@@ -1703,8 +1899,7 @@
     "pk": 4,
     "fields": {
       "campaign": 1,
-      "user": 4,
-      "status": 1
+      "user": 4
     }
   },
   {
@@ -1712,8 +1907,7 @@
     "pk": 5,
     "fields": {
       "campaign": 1,
-      "user": 1,
-      "status": 1
+      "user": 1
     }
   },
   {
@@ -1721,8 +1915,7 @@
     "pk": 6,
     "fields": {
       "campaign": 1,
-      "user": 2,
-      "status": 1
+      "user": 2
     }
   },
   {
@@ -1730,8 +1923,7 @@
     "pk": 7,
     "fields": {
       "campaign": 1,
-      "user": 3,
-      "status": 1
+      "user": 3
     }
   },
   {
@@ -1739,8 +1931,7 @@
     "pk": 8,
     "fields": {
       "campaign": 1,
-      "user": 4,
-      "status": 1
+      "user": 4
     }
   },
   {
@@ -1748,8 +1939,7 @@
     "pk": 9,
     "fields": {
       "campaign": 1,
-      "user": 1,
-      "status": 1
+      "user": 1
     }
   },
   {
@@ -1757,8 +1947,7 @@
     "pk": 10,
     "fields": {
       "campaign": 1,
-      "user": 2,
-      "status": 1
+      "user": 2
     }
   },
   {
@@ -1766,8 +1955,7 @@
     "pk": 11,
     "fields": {
       "campaign": 1,
-      "user": 3,
-      "status": 1
+      "user": 3
     }
   },
   {
@@ -1775,8 +1963,7 @@
     "pk": 12,
     "fields": {
       "campaign": 1,
-      "user": 4,
-      "status": 1
+      "user": 4
     }
   },
   {

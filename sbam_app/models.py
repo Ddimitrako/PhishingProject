@@ -8,7 +8,6 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
-
 class Status(IntegerChoices):
     INACTIVE = 0, _('Inactive')
     ACTIVE = 1, _('Active')
@@ -72,7 +71,7 @@ class Campaign(Model):
             return 'CANCELLED'
         elif self.start_date > date.today():
             return 'NOT_STARTED'
-        elif self.is_expired or int(self.completion_rate) == 1:
+        elif self.is_expired() or int(self.completion_rate()) == 1:
             return 'FINISHED'
         else:
             return 'ACTIVE'
@@ -87,13 +86,15 @@ class Campaign(Model):
         return self.end_date < date.today()
 
     def num_of_assignments(self):
-        return QuestionnaireAssignment.objects.filter(campaign=self).count() + TestAssignment.objects.filter(campaign=self).count()
+        return QuestionnaireAssignment.objects.filter(campaign=self).count() \
+               + TestAssignment.objects.filter(campaign=self).count()
 
     def num_of_completed_assignments(self):
-        return QuestionnaireAssignment.objects.filter(campaign=self, status='COMPLETED').count() + TestAssignment.objects.filter(campaign=self, status='COMPLETED').count()
+        return QuestionnaireAssignment.objects.filter(campaign=self, assignmentresult__isnull=False).count() \
+               + TestAssignment.objects.filter(campaign=self, assignmentresult__isnull=False).count()
 
     def completion_rate(self):
-        return self.num_of_completed_assignments / self.num_of_assignments
+        return self.num_of_completed_assignments() / self.num_of_assignments()
 
     def is_global(self):
         return self.owner.is_superuser

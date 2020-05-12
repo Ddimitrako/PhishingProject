@@ -6,7 +6,7 @@
     <div class="row">
         <strong>{% trans "campaign"|capfirst %}:</strong>
         <p class="ml-2">{{ campaign.title }}</p>
-        {% if campaign.status == 2 %}
+        {% if campaign.status == 'CANCELLED' %}
             <p class="ml-2" style="color:indianred">{% trans "(cancelled)" %}</p>
         {% endif %}
     </div>
@@ -145,7 +145,7 @@
                             </button>
 
                             {% if request.user.is_superuser or request.user == campaign.owner %}
-                                {% if campaign.status == 1 %}
+                                {% if campaign.status in 'NOT_STARTED, ACTIVE' %}
                                     <button class="btn btn-outline-danger btn-sm mt-4" type="submit"
                                             formaction="cancel"
                                             title="{% trans "Cancel campaign" %}">

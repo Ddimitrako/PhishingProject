@@ -14,7 +14,9 @@
       "is_active": 1,
       "text": "Demo Binary question for false answer",
       "question_type_id": 1,
-      "questionnaire_id": 1
+      "questionnaire_id": 1,
+      "id_in_questionnaire": 1,
+      "order": 1
     }
   },
   {
@@ -23,7 +25,9 @@
       "is_active": 1,
       "text": "Demo Binary question 2 for false answer",
       "question_type_id": 1,
-      "questionnaire_id": 1
+      "questionnaire_id": 1,
+      "id_in_questionnaire": 2,
+      "order": 2
     }
   },
   {
@@ -32,7 +36,9 @@
       "is_active": 1,
       "text": "Demo for percentage 10 question",
       "question_type_id": 3,
-      "questionnaire_id": 1
+      "questionnaire_id": 1,
+      "id_in_questionnaire": 3,
+      "order": 3
     }
   },
   {
@@ -41,7 +47,9 @@
       "is_active": 1,
       "text": "Εδω βλεπουμε ενα demo για percentage 20 ερωτηση ",
       "question_type_id": 5,
-      "questionnaire_id": 1
+      "questionnaire_id": 1,
+      "id_in_questionnaire": 4,
+      "order": 4
     }
   },
   {
@@ -50,7 +58,9 @@
       "is_active": 1,
       "text": "This is an AGR5 question in the questionnaire",
       "question_type_id": 7,
-      "questionnaire_id": 1
+      "questionnaire_id": 1,
+      "id_in_questionnaire": 5,
+      "order": 5
     }
   }
 ]

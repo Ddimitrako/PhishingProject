@@ -23,7 +23,7 @@
                class="table table-bordered table-hover table-head-fixed table-responsive-md table-striped">
             <thead>
                 <tr>
-                    <th style="text-align:center">{% trans "status"|capfirst %}</th>
+                    <th style="text-align:center">{% trans "Status" %}</th>
                     <th>{% trans "title"|capfirst %}</th>
                     <th>{% trans "start date"|capfirst %}</th>
                     <th>{% trans "end date"|capfirst %}</th>
@@ -32,17 +32,20 @@
             </thead>
             <tbody>
                 {% for campaign in campaigns_list %}
-                    <tr {% if campaign.status == 2 %} class="text-muted"{% endif %}>
+                    <tr {% if campaign.status == 'CANCELLED' %} class="text-muted"{% endif %}>
                         <td style="text-align:center">
-                            {% if campaign.status == 0 %}
+                            {% if campaign.status == 'FINISHED' %}
                                 <i class="fas fa-check-circle" style="color: darkgreen"
                                    title="{% trans "Finished " %}"></i>
-                            {% elif campaign.status == 1 %}
+                            {% elif campaign.status == 'ACTIVE' %}
                                 <i class="fas fa-spinner" style="color: darkblue"
                                    title="{% trans "In progress " %}"></i>
-                            {% elif campaign.status == 2 %}
+                            {% elif campaign.status == 'CANCELLED' %}
                                 <i class="fas fa-minus-circle" style="color: darkred"
-                                   title="{% trans "Cancelled" %}"></i>
+                                   title="{% trans "cancelled"|capfirst %}"></i>
+                            {% elif campaign.status == 'NOT_STARTED' %}
+                                <i class="far fa-clock" style="color: darkgrey"
+                                title="{% trans "Scheduled" %}"></i>
                             {% endif %}
                         </td>
                         <td>
