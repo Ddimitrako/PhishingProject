@@ -196,9 +196,10 @@ class CampaignForm(forms.ModelForm):
                 Column('creator', css_class='col-md-3'),
             ),
             Row(
-                Column('start_date', css_class='col-md-3'),
-                Column(AppendedText('end_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),
+                Column(AppendedText('start_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),
                                     css_class='datepicker'), css_class='col-md-3'),
+                Column(AppendedText('end_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),
+                                    css_class='datepicker'), css_class='col-md-3')
             )
         )
 

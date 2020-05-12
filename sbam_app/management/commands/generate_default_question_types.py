@@ -1,12 +1,12 @@
-from django.core.management.base import BaseCommand, CommandError
-from sbam_app.models import QuestionType, QuestionOption
-from django.conf import settings
 import json
+
+from django.core.management.base import BaseCommand
+
+from sbam_app.models import QuestionType, QuestionOption
 
 
 class Command(BaseCommand):
     help = 'generate_default_question_types'
-
 
     def handle(self, *args, **options):
         with open('sbam_app/fixtures/default_question_types.json', encoding="utf8") as f:
@@ -34,7 +34,7 @@ class Command(BaseCommand):
                     # print(qo_obj.text)
                     for l in languages:
                         try:
-                            qo_obj.text = qo['fields']['text_'+str(l)]
+                            setattr(qo_obj, 'text_' + str(l), qo['fields']['text_' + str(l)])
                         except:
                             pass
                     qo_obj.value = qo['fields']['value']
@@ -43,4 +43,3 @@ class Command(BaseCommand):
                     qo_obj.order = qo['fields']['order']
                     qo_obj.save()
         self.stdout.write('Successfully created the default question types and their options')
-
