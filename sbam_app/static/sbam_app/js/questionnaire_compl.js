@@ -15,17 +15,18 @@ $(document).ready(function(){
 
 
     //  function responsible for creating boolean questions json for survey
-    function create_bool_quest(text, quest_id, question_opt_ids){
+    function create_bool_quest(text, quest_id, question_opt){
         question_obj = {};
         question_obj = {
             type: "boolean",
             name: "question_"+quest_id,
             title: 'Please answer the question',
             label: text,
+            labelTrue: question_opt[0].text,
+            labelFalse: question_opt[1].text,
             isRequired: true,
-            valueTrue: question_opt_ids[0],
-            valueFalse: question_opt_ids[1]
-
+            valueTrue: question_opt[0].id,
+            valueFalse: question_opt[1].id
         };
         return [question_obj];
     }
@@ -108,22 +109,24 @@ $(document).ready(function(){
 
                     if (questData[quest_obj][obj].hasOwnProperty('type')) {
                         survey_quest = {};
-                        if(questData[quest_obj][obj].type.startsWith('BOOL')) {
-                            question_opt_ids = [];
-                            for(opt in questData[quest_obj][2])
-                                question_opt_ids.push(questData[quest_obj][2][opt].id);
+                        // if(questData[quest_obj][obj].type.startsWith('BOOL')) {
+                        //     question_opt_ids = [];
+                        //     for(opt in questData[quest_obj][2])
+                        //         question_opt_ids.push(questData[quest_obj][2][opt].id);
 
-                            survey_quest['questions'] = create_bool_quest(text, quest_id, question_opt_ids);
-                        } else {
-                            question_opt = [];
-                            for(opt in questData[quest_obj][2])
-                                question_opt.push(questData[quest_obj][2][opt]);
+                        //     survey_quest['questions'] = create_bool_quest(text, quest_id, question_opt_ids);
+                        // } else {
+                        question_opt = [];
+                        for(opt in questData[quest_obj][2])
+                            question_opt.push(questData[quest_obj][2][opt]);
 
-                            if(questData[quest_obj][1].takes_multiple === 'true')
-                                survey_quest['questions'] = create_multiple_opt_quest(text, quest_id, question_opt, 5);
-                            else
-                                survey_quest['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
-                        }
+                        if(questData[quest_obj][obj].type.startsWith('BOOL'))
+                            survey_quest['questions'] = create_bool_quest(text, quest_id, question_opt);
+                        else if(questData[quest_obj][1].takes_multiple === 'true')
+                            survey_quest['questions'] = create_multiple_opt_quest(text, quest_id, question_opt, 5);
+                        else
+                            survey_quest['questions'] = create_perc_quest(text, quest_id, question_opt, 5);
+                        // }
 
                         questions.push(survey_quest);
                     }
@@ -134,8 +137,10 @@ $(document).ready(function(){
     }
 
      //basic json object for survey creation
+     console.log(current_lang);
      var surveyjson = {
           title: questData.title,
+          locale: current_lang,
           showProgressBar: "bottom",
           firstPageIsStarted: true,
           startSurveyText: "Start",

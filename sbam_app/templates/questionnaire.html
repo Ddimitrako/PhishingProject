@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 {% load i18n adminlte_helpers widget_tweaks %}
 
 {% block extra_head %}
@@ -52,6 +53,7 @@
     <script type="application/javascript">
         let questData = {{ questionnaire | safe }};
         let ass_id = {{ questionnaire.id | safe }};
+        let current_lang = "{{ current_lang }}";
         console.log(ass_id);
     </script>
 

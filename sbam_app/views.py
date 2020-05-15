@@ -309,7 +309,10 @@ def assignmentCompletion(request, assignment_id):
         quest = QuestionnaireAssignment.objects.get(user=request.user, pk=assignment_id)
         if quest.status == 'OPEN':
             questionnaire = get_questionnaire(quest)
-            return render(request, 'questionnaire.html', {'questionnaire': questionnaire})
+            current_lang = request.LANGUAGE_CODE
+            if current_lang == 'el':
+                current_lang = 'gr'
+            return render(request, 'questionnaire.html', {'questionnaire': questionnaire, 'current_lang': current_lang})
         else:
             messages.error(request, _('Assignment \"%(title)s\" is not active for completion! '
                                       'Please select an active assignment from the ones presented in your dashboard...'
