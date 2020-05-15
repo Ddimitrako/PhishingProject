@@ -46,6 +46,8 @@ class Command(BaseCommand):
             # Iterate over each row after the header in the csv
             for i, row in enumerate(rd):
                 print(row)
+                if len([x for x in row if x.strip() != '']) == 0:
+                    continue
                 q_id_in_questionnaire = int(row[0])
                 try:
                     question = Question.objects.get(
