@@ -2,6 +2,17 @@ body, .dt-button-collection, .dropdown-menu {
     font-size: 13px;
 }
 
+.main-footer {
+    background: #23a5e1;
+    color: #869099;
+    box-shadow: 0px -1px 11px 1px #3e37374a;
+    border: none;
+}
+
+.card {
+    margin-bottom: unset;
+}
+
 /* Account Header */
 .account-header {
     color: #263C91;

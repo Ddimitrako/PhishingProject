@@ -253,7 +253,14 @@ def calculate_campaign_result(campaign, assignments):
 # Views
 #
 @login_required
-def dashboardView(request, compl_time=None):
+def dashboardView(request):
+    if UserProfile.objects.get(user=request.user).is_manager:
+        return manager_dashboard(request)
+    else:
+        return user_dashboard(request)
+
+
+def user_dashboard(request):
     # fetching active assignments
     active_questionnaires = [a_quest for a_quest in
                              models.QuestionnaireAssignment.objects.filter(user_id=request.user).filter(
@@ -301,6 +308,61 @@ def dashboardView(request, compl_time=None):
     return render(request, 'dashboard.html', {'active_assignments': active_assignments,
                                               'completed_assignments': completed_assignments,
                                               'expired_assignments': expired_assignments})
+
+
+def manager_dashboard(request):
+    # fetching active assignments
+    active_questionnaires = [a_quest for a_quest in
+                             models.QuestionnaireAssignment.objects.filter(user_id=request.user).filter(
+                                 campaign__end_date__gte=date.today()
+                             ).filter(campaign__start_date__lte=date.today()
+                                      ).order_by('campaign__end_date') if a_quest.status == 'OPEN']
+
+    active_tests = [a_test for a_test in
+                    models.TestAssignment.objects.filter(user_id=request.user).filter(
+                        campaign__end_date__gte=date.today()
+                    ).filter(campaign__start_date__lte=date.today()
+                             ).order_by('campaign__end_date') if a_test.status == 'OPEN']
+
+
+    active_assignments = sorted(
+        chain(active_questionnaires, active_tests),
+        key=lambda instance:
+        (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+
+    # fetching completed assignmets
+    completed_questionnaires = [c_quest for c_quest in
+                                models.QuestionnaireAssignment.objects.filter(user_id=request.user)
+                                    .order_by('assignmentresult__answer_time') if c_quest.status == 'COMPLETED']
+
+    completed_tests = [c_test for c_test in models.TestAssignment.objects.filter(user_id=request.user)
+        .order_by('assignmentresult__answer_time') if c_test.status == 'COMPLETED']
+
+    completed_assignments = sorted(
+        chain(completed_questionnaires, completed_tests),
+        key=lambda instance:
+        (instance.get_answer_time(), instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+
+    # fetching expired assignments
+    expired_questionnaires = [c_quest for c_quest in models.QuestionnaireAssignment.objects.filter(user_id=request.user)
+                              if c_quest.status == 'EXPIRED']
+
+    expired_tests = [c_test for c_test in models.TestAssignment.objects.filter(user_id=request.user)
+                     if c_test.status == 'EXPIRED']
+
+    expired_assignments = sorted(
+        chain(expired_questionnaires, expired_tests),
+        key=lambda instance:
+        (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+
+
+    active_campaigns = [c for c in Campaign.objects.filter(owner=request.user) if c.status=='ACTIVE']
+ 
+    return render(request, 'manager_dashboard.html', {'active_assignments': active_assignments,
+                                                      'completed_assignments': completed_assignments,
+                                                      'expired_assignments': expired_assignments,
+                                                      'active_campaigns': active_campaigns})
+
 
 
 @login_required

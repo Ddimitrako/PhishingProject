@@ -9,12 +9,18 @@
 
 {% block page_name %}
     <div class="row">
-        <strong><i class="nav-icon fas fa-tachometer-alt mr-2"></i> {% trans "Dashboard" %}</strong>
+        <strong><i class="nav-icon fas fa-tachometer-alt mr-2"></i> {% trans " Dashboard" %}</strong>
     </div>
 {% endblock %}
 
 {% block extra_head %}
     <link href="{% static "sbam_app/css/dashboard.css" %}" rel="stylesheet">
+
+    <!-- Resources -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
 {% endblock %}
 
 {% block content %}
@@ -123,9 +129,146 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="col col-md-6">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <h3> {% trans "Active Campaigns" %} </h3>
+                        <ul class="list-group active-campaigns">
+                            {% for camp in active_campaigns %}
+                                <li  class="list-group-item  flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <strong class="assignment_title">{{ camp.title }}</strong>
+                                        <a class="btn btn-sm btn-primary ass-btn" href="{% url 'sbam:campaign' camp.id %}" role="button">{% trans "Details" %}</a>
+                                    </div>
+                                </li>
+                            {% empty %}
+                                <li>No active campaigns</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="row" style='height: 35vh; margin-top: 1vh;'>
+            <div class="col col-md-6">
+                <div class='text-center' style='height: 100%;'>
+                    <h3> {% trans "Organisational Status" %} </h3>
+                    <div id='chartdiv1' class='chartdiv'> </div>
+                </div>             
+            </div>
+
+            <div class="col col-md-6">
+                <div class='text-center' style='height: 100%;'>
+                    <h3> {% trans "Individual Status" %} </h3>
+                    <div id='chartdiv2' class='chartdiv'> </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 {% endblock %}
 
 
+{% block extra_js %}
+    <!-- Chart code -->
+    <script>
+        am4core.ready(function() {
+
+            // Themes begin
+            am4core.useTheme(am4themes_animated);
+            // Themes end
+
+            /* Create chart instance */
+            var chart = am4core.create("chartdiv1", am4charts.RadarChart);
+
+            /* Add data */
+            chart.data = [{
+            "dimension": "Assets",
+            "value": 65
+            }, {
+            "dimension": "Continuity",
+            "value": 45
+            }, {
+            "dimension": "Access and Trust",
+            "value": 70
+            }, {
+            "dimension": "Operations",
+            "value": 37
+            }, {
+            "dimension": "Defense",
+            "value": 80
+            }, {
+            "dimension": "Security Governance",
+            "value": 30
+            }];
+
+
+            /* Create axes */
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "dimension";
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.axisFills.template.fill = chart.colors.getIndex(2);
+            valueAxis.renderer.axisFills.template.fillOpacity = 0.05;
+
+            /* Create and configure series */
+            var series = chart.series.push(new am4charts.RadarSeries());
+            series.dataFields.valueY = "value";
+            series.dataFields.categoryX = "dimension";
+            series.name = "Organisational Status";
+            series.strokeWidth = 3;
+
+        }); // end am4core.ready()
+    </script>
+
+
+
+    <!-- Chart code -->
+    <script>
+        am4core.ready(function() {
+
+            // Themes begin
+            am4core.useTheme(am4themes_animated);
+            // Themes end
+
+            /* Create chart instance */
+            var chart = am4core.create("chartdiv2", am4charts.RadarChart);
+
+            chart.data = [{
+            "dimension": "Attitude",
+            "value": 45
+            }, {
+            "dimension": "Awareness",
+            "value": 60
+            }, {
+            "dimension": "Behaviour",
+            "value": 70
+            }, {
+            "dimension": "Competency",
+            "value": 40
+            }];
+
+
+            /* Create axes */
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "dimension";
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.axisFills.template.fill = chart.colors.getIndex(2);
+            valueAxis.renderer.axisFills.template.fillOpacity = 0.05;
+
+            /* Create and configure series */
+            var series = chart.series.push(new am4charts.RadarSeries());
+            series.dataFields.valueY = "value";
+            series.dataFields.categoryX = "dimension";
+            series.name = "Indivudual Status";
+            series.strokeWidth = 3;
+
+        }); // end am4core.ready()
+    </script>
+
+{% endblock %}
