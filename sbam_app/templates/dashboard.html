@@ -15,6 +15,12 @@
 
 {% block extra_head %}
     <link href="{% static "sbam_app/css/dashboard.css" %}" rel="stylesheet">
+
+    <!-- Resources -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
 {% endblock %}
 
 {% block content %}
@@ -123,9 +129,108 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col col-md-6">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <h3 style="display: inline-block; width: 100%;"> {% trans "My Self-Evaluations" %} </h3>
+                        <a class="btn btn-sm btn-success" href='#'  role"button" style='color: white; position: absolute; right: 1.25rem;'> Start </a>
+                        <ul class="list-group active-campaigns">
+                            {# {% for eval in 'xxxx' %} #}
+                                <li  class="list-group-item  flex-column align-items-start">
+                                    <div style="position: relative;">
+                                        <strong class="assignment_title">Password protection </strong>
+                                        <strong class="label text-warning" style="position: absolute; top: 5px; right: 0;"> 28% </strong>
+                                    </div>
+                                </li>
+                                <li  class="list-group-item  flex-column align-items-start">
+                                    <div style="position: relative;">
+                                        <strong class="assignment_title">Email fraud prevention  </strong>
+                                        <strong class="label text-info" style="position: absolute; top: 5px; right: 0;"> 72% </strong>
+                                    </div>
+                                </li>
+                                <li  class="list-group-item  flex-column align-items-start">
+                                    <div style="position: relative;">
+                                        <strong class="assignment_title">Security Awareness </strong>
+                                        <strong class="label text-success" style="position: absolute; top: 5px; right: 0;"> 90% </strong>
+                                    </div>
+                                </li>
+                           {# {% empty %} #}
+                             {#   <li>No self-evaluations</li> #}
+                           {# {% endfor %} #}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style='height: 35vh; margin-top: 1vh;'>
+            <div class="col col-md-6">
+                <div class='text-center' style='height: 100%;'>
+                    <h3> {% trans "My Security Culture Status" %} </h3>
+                    <div id='chartdiv1' class='chartdiv'> </div>
+                </div>             
+            </div>
+
+            <div class="col col-md-6">
+                <div id='recommendations' class='text-center' style='height: 100%;'>
+                    <h3> {% trans "Recommendations/Tips" %} </h3>
+                    <ul class="list-group" style='padding: 1rem;'>
+                        <li class="list-group-item"> Apply stronger passwords on your accounts. </li>
+                        <li class="list-group-item"> Avoid sharing your phone number. </li>
+                        <li class="list-group-item"> Do not reply to 'suspicious' emails. </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
 {% endblock %}
 
 
+{% block extra_js %}
+    <!-- Chart code -->
+    <script>
+        am4core.ready(function() {
+
+            // Themes begin
+            am4core.useTheme(am4themes_animated);
+            // Themes end
+
+            /* Create chart instance */
+            var chart = am4core.create("chartdiv1", am4charts.RadarChart);
+
+            /* Add data */
+            chart.data = [{
+            "dimension": "Attitude",
+            "value": 45
+            }, {
+            "dimension": "Awareness",
+            "value": 60
+            }, {
+            "dimension": "Behaviour",
+            "value": 70
+            }, {
+            "dimension": "Competency",
+            "value": 40
+            }];
+
+
+            /* Create axes */
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "dimension";
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.axisFills.template.fill = chart.colors.getIndex(2);
+            valueAxis.renderer.axisFills.template.fillOpacity = 0.05;
+
+            /* Create and configure series */
+            var series = chart.series.push(new am4charts.RadarSeries());
+            series.dataFields.valueY = "value";
+            series.dataFields.categoryX = "dimension";
+            series.name = "My Security Culture Status";
+            series.strokeWidth = 3;
+
+        }); // end am4core.ready()
+    </script>
+{% endblock %}

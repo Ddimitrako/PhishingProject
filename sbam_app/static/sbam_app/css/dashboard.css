@@ -87,3 +87,7 @@
 .chartdiv{
     height: 100%;
 }
+
+#recommendations .list-group-item{
+    background-color: #e9f1f7c7;
+}
