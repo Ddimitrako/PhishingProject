@@ -358,6 +358,73 @@ class AssignmentResult(Model):
         verbose_name_plural = _('assignment results')
 
 
+class SelfAssessment(Model):
+    user = ForeignKey(User, verbose_name=_('user'), on_delete=CASCADE, help_text=_('Assignee'))
+
+
+class QuestionnaireSelfAssessment(SelfAssessment):
+    questionnaire = ForeignKey(
+        Questionnaire,
+        verbose_name=_('questionnaire'),
+        on_delete=CASCADE,
+        help_text=_('Questionnaire assigned')
+    )
+
+    def __str__(self):
+        return self.questionnaire.title + ' has been assigned to ' + self.user.username
+
+    class Meta:
+        verbose_name = _('questionnaire assignment')
+        verbose_name_plural = _('questionnaire assignments')
+
+
+class TestSelfAssessment(SelfAssessment):
+    test = ForeignKey(Test, verbose_name=_('test'), on_delete=CASCADE, help_text=_('Test assigned'))
+
+    def __str__(self):
+        return self.test + ' has been assigned to ' + self.user
+
+    class Meta:
+        verbose_name = _('test assignment')
+        verbose_name_plural = _('test assignments')
+
+
+class SelfAssessmentResult(Model):
+    selfassessment = ForeignKey(
+        SelfAssessment,
+        verbose_name=_('self assessment'),
+        on_delete=CASCADE,
+        help_text=_('self assessment survey this result refers to')
+    )
+    answer_time = DateField(_('answer time'), help_text=_('The date this self assessment survey result was achieved'))
+    score = FloatField(_('score'), help_text=_('Achieved self assessment survey score'))
+
+
+class SelfAssessmentQuestionAnswer(Model):
+    question = ForeignKey(
+        Question,
+        verbose_name=_('question'),
+        on_delete=CASCADE,
+        help_text=_('The question this answer refers to')
+    )
+    selfassessment = ForeignKey(
+        QuestionnaireSelfAssessment,
+        verbose_name=_('assignment'),
+        on_delete=CASCADE,
+        help_text=_('The self assessment survey this answer belongs to')
+    )
+    question_option = ForeignKey(
+        QuestionOption,
+        verbose_name=_('question option'),
+        on_delete=CASCADE,
+        help_text=_('The option selected by the assignee')
+    )
+
+    class Meta:
+        verbose_name = _('self assessment question answer')
+        verbose_name_plural = _('self assessment question answers')
+
+
 # User Management Model
 
 class UserProfile(Model):

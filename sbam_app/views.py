@@ -171,7 +171,9 @@ def activate_group(request, name, status):
 
 
 def get_questionnaire(quest):
-    questions_dict = {'title': quest.questionnaire.title, 'id': quest.pk}
+    questions_dict = {}
+    quest_title = quest.questionnaire.title
+    quest_id = quest.pk
     questions = Question.objects.filter(questionnaire=quest.questionnaire, is_active=Status.ACTIVE).values()
     # print(questions)
     for question in questions:
@@ -179,11 +181,14 @@ def get_questionnaire(quest):
         question_options = QuestionOption.objects.filter(question_type=question_type, is_active=Status.ACTIVE).order_by('order').values()
         quest_type = model_to_dict(question_type)
         quest_type['takes_multiple'] = 'true' if quest_type['takes_multiple'] else 'false'
-        questions_dict['questiion_' + str(question['id'])] = [question, quest_type,
-                                                              [option for option in question_options]]
+        questions_dict['question_' + str(question['id'])] = {
+            'question': question,
+            'question_type': quest_type,
+            'question_options': [option for option in question_options]
+        }
         # print((question, model_to_dict(question_type), [option for option in question_options]))
 
-    return questions_dict
+    return quest_title, quest_id, questions_dict
 
 
 def calculate_assignment_result(assignment):
@@ -274,13 +279,12 @@ def user_dashboard(request):
                     ).filter(campaign__start_date__lte=date.today()
                              ).order_by('campaign__end_date') if a_test.status == 'OPEN']
 
-
     active_assignments = sorted(
         chain(active_questionnaires, active_tests),
         key=lambda instance:
         (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
 
-    # fetching completed assignmets
+    # fetching completed assignments
     completed_questionnaires = [c_quest for c_quest in
                                 models.QuestionnaireAssignment.objects.filter(user_id=request.user)
                                     .order_by('assignmentresult__answer_time') if c_quest.status == 'COMPLETED']
@@ -323,7 +327,6 @@ def manager_dashboard(request):
                         campaign__end_date__gte=date.today()
                     ).filter(campaign__start_date__lte=date.today()
                              ).order_by('campaign__end_date') if a_test.status == 'OPEN']
-
 
     active_assignments = sorted(
         chain(active_questionnaires, active_tests),
@@ -370,11 +373,14 @@ def assignmentCompletion(request, assignment_id):
     if request.user.assignment_set.filter(pk=assignment_id):
         quest = QuestionnaireAssignment.objects.get(user=request.user, pk=assignment_id)
         if quest.status == 'OPEN':
-            questionnaire = get_questionnaire(quest)
+            quest_title, quest_id, questionnaire = get_questionnaire(quest)
             current_lang = request.LANGUAGE_CODE
             if current_lang == 'el':
                 current_lang = 'gr'
-            return render(request, 'questionnaire.html', {'questionnaire': questionnaire, 'current_lang': current_lang})
+            return render(request, 'questionnaire.html', {'questionnaire': questionnaire,
+                                                          'quest_title': quest_title,
+                                                          'quest_id': quest_id,
+                                                          'current_lang': current_lang})
         else:
             messages.error(request, _('Assignment \"%(title)s\" is not active for completion! '
                                       'Please select an active assignment from the ones presented in your dashboard...'
