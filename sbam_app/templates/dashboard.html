@@ -134,7 +134,7 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body">
                         <h3 style="display: inline-block; width: 100%;"> {% trans "My Self-Evaluations" %} </h3>
-                        <a class="btn btn-sm btn-success" href='#'  role="button" style='color: white; position: absolute; right: 1.25rem;'> Start </a>
+                        <a class="btn btn-sm btn-success" href='{% url 'sbam:self_assessment' %}'  role="button" style='color: white; position: absolute; right: 1.25rem;'> Start </a>
                         <ul class="list-group active-campaigns">
                             {# {% for eval in 'xxxx' %} #}
                                 <li  class="list-group-item  flex-column align-items-start">

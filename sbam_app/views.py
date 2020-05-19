@@ -367,6 +367,13 @@ def manager_dashboard(request):
                                                       'active_campaigns': active_campaigns})
 
 
+class SelfEvaluation(ListView):
+    template_name = 'self_assessment.html'
+    context_object_name = 'self_assessment_list'
+
+    def get_queryset(self):
+        return Questionnaire.objects.filter(domain__dimension__level=1)
+
 
 @login_required
 def assignmentCompletion(request, assignment_id):

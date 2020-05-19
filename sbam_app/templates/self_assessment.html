@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load i18n adminlte_helpers widget_tweaks %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:self_assessment' %}">{% trans "Self Evaluation" %}</a></li>
+{% endblock %}
+
+{% block page_name %}
+    <div class="row">
+        <strong><i class="nav-icon fas fa-chalkboard-teacher mr-2"></i> {% trans "Self Evaluation" %}</strong>
+    </div>
+    <ul>
+    {% for questionnaire in self_assessment_list %}
+        <li>{{ questionnaire.title }}</li>
+    {% empty %}
+        <li>No questionnaire available</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block  extra_js  %}
+{% endblock %}
