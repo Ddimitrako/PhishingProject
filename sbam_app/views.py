@@ -495,7 +495,7 @@ class CampaignsView(ListView):
         else:
             excludes = []
             for campaign in campaigns:
-                if not (campaign.is_global or campaign.owner == self.request.user):
+                if not (campaign.is_global() or campaign.owner == self.request.user):
                     excludes.append(campaign.id)
 
             return campaigns.exclude(id__in=excludes)
