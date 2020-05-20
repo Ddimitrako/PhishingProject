@@ -13,13 +13,22 @@
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
-    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "assignments"|capfirst %}</a></li>
-    <li class="breadcrumb-item active"><a href="{% url 'sbam:assignments' quest_id  %}">{{ quest_id }}</a></li>
+    {% if is_assignment == 'true' %}
+        <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "assignments"|capfirst %}</a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'sbam:assignments' quest_id  %}">{{ quest_id }}</a></li>
+    {% else %}
+        <li class="breadcrumb-item"><a href="{% url 'sbam:self_assessment' %}">{% trans "self Assessment"|capfirst %}</a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'sbam:self_assessment_completion' quest_id  %}">{{ quest_id }}</a></li>
+    {% endif %}
 {% endblock %}
 
 {% block page_name %}
     <div class="row">
-        <strong><i class="nav-icon fas fa-edit mr-2"></i> {% trans "Assignment" %}</strong>
+        {% if is_assignment == 'true' %}
+            <strong><i class="nav-icon fas fa-edit mr-2"></i> {% trans "Assignment" %}</strong>
+        {% else %}
+            <strong><i class="nav-icon fas fa-chalkboard-teacher mr-2"></i> {% trans "Self Evaluation" %}</strong>
+        {% endif %}
     </div>
 {% endblock %}
 
@@ -55,6 +64,7 @@
         let ass_id = {{ quest_id  | safe }};
         let quest_title = "{{ quest_title | safe }}";
         let current_lang = "{{ current_lang }}";
+        let is_assignment = "{{ is_assignment|safe }}";
         console.log(ass_id);
     </script>
 

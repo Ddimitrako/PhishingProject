@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_datatable.html" %}
 {% load static %}
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
@@ -16,16 +16,45 @@
     <div class="row">
         <strong><i class="nav-icon fas fa-chalkboard-teacher mr-2"></i> {% trans "Self Evaluation" %}</strong>
     </div>
-    <ul>
-    {% for questionnaire in self_assessment_list %}
-        <li>{{ questionnaire.title }}</li>
-    {% empty %}
-        <li>No questionnaire available</li>
-    {% endfor %}
-    </ul>
 {% endblock %}
 
-{% block content %}
+{% block table_content %}
+    <thead>
+        <tr>
+            <th>{% trans "title"|capfirst %}</th>
+            <th>{% trans "Domain"|capfirst %}</th>
+            <th>{% trans "Domain Description"|capfirst %}</th>
+            <th>{% trans "Dimension"|capfirst %}</th>
+            <th>{% trans "Dimension Description"|capfirst %}</th>
+            <th>{% trans "No. Questions"|capfirst %}</th>
+            <th>{% trans "Weight"|capfirst %}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for questionnaire in self_assessment_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'sbam:self_assessment_completion' questionnaire.id %}">
+                        {{ questionnaire.title|default:'Not Available' }}
+                    </a>
+                </td>
+                <td>{{ questionnaire.domain|default:'Not Available' }}</td>
+                <td>{{ questionnaire.domain.description|default:'Not Available' }}</td>
+                <td>{{ questionnaire.domain.dimension|default:'Not Available' }}</td>
+                <td>{{ questionnaire.domain.dimension.description|default:'Not Available' }}</td>
+                <td>{{ questionnaire.get_questions_count}}</td>
+                <td>{{ questionnaire.weight }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+
+{% endblock %}
+
+{% block template_js %}
+    <script>
+        datatable('#table', [], [], [7], true);
+    </script>
 {% endblock %}
 
 {% block  extra_js  %}

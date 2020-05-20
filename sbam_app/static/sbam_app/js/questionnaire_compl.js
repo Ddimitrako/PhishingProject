@@ -153,18 +153,34 @@ $(document).ready(function(){
             $('.row-compl').show();
             survey_results['ass_id'] = ass_id;
             var csrftoken = getCookie('csrftoken');
-            $.ajax({
-                type: "POST",
-                headers: { "X-CSRFToken": csrftoken },
-                dataType: 'json',
-                url: '/survey_submit/',
-                data: survey_results,
-                success: function(result){
-                    if(result['result'] === 'Success') {
-                        console.log(result);
+            if (is_assignment === 'true') {
+                $.ajax({
+                    type: "POST",
+                    headers: {"X-CSRFToken": csrftoken},
+                    dataType: 'json',
+                    url: '/survey_submit/',
+                    data: survey_results,
+                    success: function (result) {
+                        if (result['result'] === 'Success') {
+                            console.log(result);
+                        }
                     }
-                }
-            })
+                })
+            }
+            else{
+                $.ajax({
+                    type: "POST",
+                    headers: {"X-CSRFToken": csrftoken},
+                    dataType: 'json',
+                    url: '/self_assessment_submit/',
+                    data: survey_results,
+                    success: function (result) {
+                        if (result['result'] === 'Success') {
+                            console.log(result);
+                        }
+                    }
+                })
+            }
         });
 
     $("#surveyElement").Survey({model: survey});

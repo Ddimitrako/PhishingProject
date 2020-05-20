@@ -164,6 +164,9 @@ class Questionnaire(Model):
     def __str__(self):
         return self.title
 
+    def get_questions_count(self):
+        return self.question_set.all().count()
+
     class Meta:
         verbose_name = _('questionnaire')
         verbose_name_plural = _('questionnaires')

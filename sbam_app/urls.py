@@ -10,10 +10,12 @@ urlpatterns = [
 
     # Self-Assessment
     path('selfassessment/', SelfEvaluation.as_view(), name='self_assessment'),
+    path('selfassessment/<quest_id>/', selfAssessmentCompletion, name='self_assessment_completion'),
+    path('self_assessment_submit/', selfAssessmentSubmission, name='self_assessment_submit'),
 
     # Assignments
     path('assignments/<assignment_id>/', assignmentCompletion, name='assignments'),
-    path('survey_submit/', surveySumbission, name='survey_submit'),
+    path('survey_submit/', surveySubmission, name='survey_submit'),
 
     # Users
     path('users/', UsersView.as_view(), name='users'),

@@ -170,11 +170,10 @@ def activate_group(request, name, status):
     return redirect('sbam:group', name)
 
 
-def get_questionnaire(quest):
+def get_questionnaire(questionnaire):
     questions_dict = {}
-    quest_title = quest.questionnaire.title
-    quest_id = quest.pk
-    questions = Question.objects.filter(questionnaire=quest.questionnaire, is_active=Status.ACTIVE).values()
+    quest_title = questionnaire.title
+    questions = Question.objects.filter(questionnaire=questionnaire, is_active=Status.ACTIVE).values()
     # print(questions)
     for question in questions:
         question_type = QuestionType.objects.get(pk=question['question_type_id'])
@@ -186,9 +185,37 @@ def get_questionnaire(quest):
             'question_type': quest_type,
             'question_options': [option for option in question_options]
         }
-        # print((question, model_to_dict(question_type), [option for option in question_options]))
 
-    return quest_title, quest_id, questions_dict
+    return quest_title, questions_dict
+
+
+def calculate_questionnaire_total_score(question_type_weights):
+
+    question_type_maxs = QuestionOption.objects.filter(
+        question_type__in=question_type_weights.values_list('question__question_type').distinct()). \
+        values('question_type').annotate(question_type_max=Max('value'))
+
+    total = 0.0
+    for question_type_weight in question_type_weights:
+        total += question_type_maxs.get(question_type=question_type_weight['question__question_type'])[
+                     'question_type_max'] * question_type_weight['question__weight']
+
+    return total
+
+
+def calculate_self_assessment_result(self_assessment):
+    try:
+        answer_sum = SelfAssessmentQuestionAnswer.objects.filter(selfassessment=self_assessment).aggregate(
+            answer_sum=Sum(F('question_option__value') * F('question__weight')))['answer_sum']
+
+        question_type_weights = SelfAssessmentQuestionAnswer.objects.filter(selfassessment=self_assessment). \
+            select_related('question__question_type').values('question__question_type', 'question__weight')
+
+    finally:
+        score = (answer_sum / calculate_questionnaire_total_score(question_type_weights)) if \
+            calculate_questionnaire_total_score(question_type_weights) != 0.0 else \
+            calculate_questionnaire_total_score(question_type_weights)
+    return SelfAssessmentResult(selfassessment=self_assessment, score=score, answer_time=date.today())
 
 
 def calculate_assignment_result(assignment):
@@ -199,16 +226,18 @@ def calculate_assignment_result(assignment):
         question_type_weights = CampaignQuestionAnswer.objects.filter(assignment=assignment). \
             select_related('question__question_type').values('question__question_type', 'question__weight')
 
-        question_type_maxs = QuestionOption.objects.filter(
-            question_type__in=question_type_weights.values_list('question__question_type').distinct()). \
-            values('question_type').annotate(question_type_max=Max('value'))
-
-        total = 0.0
-        for question_type_weight in question_type_weights:
-            total += question_type_maxs.get(question_type=question_type_weight['question__question_type'])[
-                         'question_type_max'] * question_type_weight['question__weight']
+        # question_type_maxs = QuestionOption.objects.filter(
+        #     question_type__in=question_type_weights.values_list('question__question_type').distinct()). \
+        #     values('question_type').annotate(question_type_max=Max('value'))
+        #
+        # total = 0.0
+        # for question_type_weight in question_type_weights:
+        #     total += question_type_maxs.get(question_type=question_type_weight['question__question_type'])[
+        #                  'question_type_max'] * question_type_weight['question__weight']
     finally:
-        score = (answer_sum / total) if total != 0.0 else total
+        score = (answer_sum / calculate_questionnaire_total_score(question_type_weights)) if \
+            calculate_questionnaire_total_score(question_type_weights) != 0.0 else \
+            calculate_questionnaire_total_score(question_type_weights)
 
     return AssignmentResult(assignment=assignment, score=score, answer_time=date.today())
 
@@ -358,7 +387,6 @@ def manager_dashboard(request):
         key=lambda instance:
         (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
 
-
     active_campaigns = [c for c in Campaign.objects.filter(owner=request.user) if c.status=='ACTIVE']
  
     return render(request, 'manager_dashboard.html', {'active_assignments': active_assignments,
@@ -372,7 +400,23 @@ class SelfEvaluation(ListView):
     context_object_name = 'self_assessment_list'
 
     def get_queryset(self):
-        return Questionnaire.objects.filter(domain__dimension__level=1)
+        return Questionnaire.objects.filter(domain__dimension__level=1, is_active=1)
+
+
+def selfAssessmentCompletion(request, quest_id):
+    quest = Questionnaire.objects.get(pk=quest_id)
+    if quest.domain.dimension.level == 1:
+        quest_title, questionnaire = get_questionnaire(quest)
+        current_lang = request.LANGUAGE_CODE
+        if current_lang == 'el':
+            current_lang = 'gr'
+        return render(request, 'questionnaire.html', {'questionnaire': questionnaire,
+                                                      'quest_title': quest_title,
+                                                      'quest_id': quest.pk,
+                                                      'is_assignment': 'false',
+                                                      'current_lang': current_lang})
+    else:
+        return HttpResponseForbidden()
 
 
 @login_required
@@ -380,13 +424,14 @@ def assignmentCompletion(request, assignment_id):
     if request.user.assignment_set.filter(pk=assignment_id):
         quest = QuestionnaireAssignment.objects.get(user=request.user, pk=assignment_id)
         if quest.status == 'OPEN':
-            quest_title, quest_id, questionnaire = get_questionnaire(quest)
+            quest_title, questionnaire = get_questionnaire(quest.questionnaire)
             current_lang = request.LANGUAGE_CODE
             if current_lang == 'el':
                 current_lang = 'gr'
             return render(request, 'questionnaire.html', {'questionnaire': questionnaire,
                                                           'quest_title': quest_title,
-                                                          'quest_id': quest_id,
+                                                          'quest_id': quest.pk,
+                                                          'is_assignment': 'true',
                                                           'current_lang': current_lang})
         else:
             messages.error(request, _('Assignment \"%(title)s\" is not active for completion! '
@@ -398,7 +443,36 @@ def assignmentCompletion(request, assignment_id):
 
 
 @login_required
-def surveySumbission(request):
+def selfAssessmentSubmission(request):
+    print('self assessment')
+    answers = json.loads(request.POST['data'])
+    questionnaire = models.Questionnaire.objects.get(pk=int(request.POST['ass_id']))
+    print(request.user.id)
+    self_assessment = models.QuestionnaireSelfAssessment(questionnaire=questionnaire, user_id=request.user.id)
+    self_assessment.save()
+    for ques in answers:
+        question = models.Question.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
+        if isinstance(answers[ques], list):
+            answers_options = [option_id for option_id in answers[ques]]
+            for option_id in answers_options:
+                answer = models.QuestionOption.objects.get(pk=option_id)
+                self_assessment_answer = models.SelfAssessmentQuestionAnswer(selfassessment=self_assessment,
+                                                                             question=question, question_option=answer)
+                self_assessment_answer.save()
+        else:
+            answer = models.QuestionOption.objects.get(pk=answers[ques])
+            self_assessment_answer = models.SelfAssessmentQuestionAnswer(selfassessment=self_assessment,
+                                                                         question=question, question_option=answer)
+            self_assessment_answer.save()
+
+    self_assessment_result = calculate_self_assessment_result(self_assessment)
+    self_assessment_result.save()
+
+    return JsonResponse({'result': 'success'})
+
+
+@login_required
+def surveySubmission(request):
     assignment = models.QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
     answers = json.loads(request.POST['data'])
     for ques in answers:
