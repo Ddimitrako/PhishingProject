@@ -3,6 +3,7 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% load i18n adminlte_helpers widget_tweaks %}
+{% load i18n custom_tags %}
 
 {% block extra_head %}
 {% endblock %}
@@ -27,7 +28,7 @@
             <th>{% trans "Dimension"|capfirst %}</th>
             <th>{% trans "Dimension Description"|capfirst %}</th>
             <th>{% trans "No. Questions"|capfirst %}</th>
-            <th>{% trans "Weight"|capfirst %}</th>
+            <th>{% trans "Best Score"|capfirst %}</th>
         </tr>
     </thead>
 
@@ -44,7 +45,14 @@
                 <td>{{ questionnaire.domain.dimension|default:'Not Available' }}</td>
                 <td>{{ questionnaire.domain.dimension.description|default:'Not Available' }}</td>
                 <td>{{ questionnaire.get_questions_count}}</td>
-                <td>{{ questionnaire.weight }}</td>
+                <td>
+                    {% with score=questionnaire.best_score %}
+                        {% get_badge score as badge_type %}
+                        <span {% if badge_type != 'Not Completed Yet' %}class="badge {{ badge_type }}"{% endif %}>
+                            {{ score }}
+                        </span>
+                    {% endwith %}
+                </td>
             </tr>
         {% endfor %}
     </tbody>

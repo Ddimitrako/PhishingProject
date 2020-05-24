@@ -61,6 +61,12 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="nav-item">
+                                <a href="{% url 'sbam:self_assessment' %}" class="nav-link">
+                                    <i class="nav-icon fas fa-chalkboard-teacher mr-2"></i>
+                                    <p>{% trans "Self Evaluation" %}</p>
+                                </a>
+                            </li>
                             {% if request.user.is_superuser or request.user.userprofile.is_manager %}
                                 <li class="nav-item">
                                     <a href="{% url 'sbam:campaigns' %}" class="nav-link">

@@ -283,6 +283,13 @@ def calculate_campaign_result(campaign, assignments):
     return results
 
 
+def get_best_self_assessment_score(questionnaire, user):
+    self_assessments = QuestionnaireSelfAssessment.objects.filter(questionnaire=questionnaire, user=user)
+    print(SelfAssessmentResult.objects.filter(selfassessment__in=self_assessments).aggregate(Max('score')))
+    score = SelfAssessmentResult.objects.filter(selfassessment__in=self_assessments).aggregate(Max('score'))['score__max']
+    return '{0:.0%}'.format(score) if score != None else ''
+
+
 #
 # Views
 #
@@ -400,7 +407,21 @@ class SelfEvaluation(ListView):
     context_object_name = 'self_assessment_list'
 
     def get_queryset(self):
-        return Questionnaire.objects.filter(domain__dimension__level=1, is_active=1)
+        questionnaires = Questionnaire.objects.filter(domain__dimension__level=1, is_active=1)
+        for quest in questionnaires:
+            quest.best_score = get_best_self_assessment_score(quest, self.request.user)
+        return questionnaires
+
+
+class SelfEvaluationHistory(ListView):
+    template_name = 'self_assessment.html'
+    context_object_name = 'self_assessment_list'
+
+    def get_queryset(self):
+        questionnaires = Questionnaire.objects.filter(domain__dimension__level=1, is_active=1)
+        for quest in questionnaires:
+            quest.best_score = get_best_self_assessment_score(quest, self.request.user)
+        return questionnaires
 
 
 def selfAssessmentCompletion(request, quest_id):

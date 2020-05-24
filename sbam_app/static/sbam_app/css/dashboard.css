@@ -43,6 +43,10 @@
     padding: 5px 10px;
 }
 
+.main_cols{
+    padding-bottom: 1%;
+}
+
 .assignmets .tab-content{
     height: 25vh;
     overflow: auto;
@@ -55,7 +59,7 @@
 }
 
 .assignment_title{
-    font-size: large;
+    font-size: medium;
 }
 
 .card{
@@ -63,18 +67,16 @@
 }
 
 .row h3{
-    height: 15%;
-    margin: 0;
     border-bottom: 1px;
     border-bottom-style: solid;
     border-bottom-color: #e0e4e8;
     color: #3f5082;
 }
 
-.card-body .nav{
-    height: 5vh;
-    margin: 0;
-}
+/*.card-body .nav{*/
+/*    height: 5vh;*/
+/*    margin: 0;*/
+/*}*/
 
 .alert-warning{
     background: none;
