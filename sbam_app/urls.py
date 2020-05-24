@@ -10,6 +10,7 @@ urlpatterns = [
 
     # Self-Assessment
     path('selfassessment/', SelfEvaluation.as_view(), name='self_assessment'),
+    path('selfassessment/history', SelfEvaluationHistory.as_view(), name='self_assessment_history'),
     path('selfassessment/<quest_id>/', selfAssessmentCompletion, name='self_assessment_completion'),
     path('self_assessment_submit/', selfAssessmentSubmission, name='self_assessment_submit'),
 

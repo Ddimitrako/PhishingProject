@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n custom_tags %}
 
 {% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
 
@@ -86,6 +87,7 @@
                                     <p>No active assignments</p>
                                 {% endif %}
                             </div>
+
                             <div class="tab-pane fade" id="compl-ass" role="tabpanel"
                                  aria-labelledby="compl-ass-tab">
                                 <ul class="list-group active-assignments">
@@ -100,11 +102,10 @@
                                                 <div class="align-self-end"><strong>{% trans "Completed at" %}: </strong> {{ compl_ass.get_answer_time }}</div>
                                             </div>
                                         </li>
+                                    {% empty %}
+                                        <p>No completed assignments</p>
                                     {% endfor %}
-                                </ul>
-                            {% if completed_assignments|length == 0 %}
-                                <p>No completed assignments</p>
-                            {% endif %}
+                                 </ul>
                             </div>
                             <div class="tab-pane fade" id="expired-ass" role="tabpanel"
                                  aria-labelledby="expired-ass-tab">
@@ -120,11 +121,10 @@
                                                 <div class="align-self-end"><strong>{% trans "Ended at" %}: </strong> {{ exp_ass.campaign.end_date }}</div>
                                             </div>
                                         </li>
+                                    {% empty %}
+                                        <p>No expired assignments</p>
                                     {% endfor %}
                                 </ul>
-                            {% if expired_assignments|length == 0 %}
-                                <p>No expired assignments</p>
-                            {% endif %}
                             </div>
                         </div>
                     </div>
@@ -134,32 +134,40 @@
             <div class="col-lg-6 main_cols">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
-                        <h3 style="display: inline-block; width: 100%;"> {% trans "My Self-Evaluations" %} </h3>
-                        <a class="btn btn-sm btn-success" href='{% url 'sbam:self_assessment' %}'  role="button" style='color: white; position: absolute; right: 1.25rem;'> Start </a>
-                        <ul class="list-group active-campaigns">
-                            {# {% for eval in 'xxxx' %} #}
+                        <div class="d-sm-inline-flex w-100 justify-content-between">
+                            <div class="align-self-start">
+                                <h4> {% trans "My Self-Evaluations" %} </h4>
+                            </div>
+                            <div class="align-self-end">
+                                <a class="btn btn-xs btn-success" href='{% url 'sbam:self_assessment_history' %}'  role="button" style='color: white; '> {% trans "View More" %} </a>
+                            </div>
+
+                        </div>
+                        <ul class="list-group active-assignments">
+                            {% for self_ass in self_assessment %}
                                 <li  class="list-group-item  flex-column align-items-start">
-                                    <div style="position: relative;">
-                                        <strong class="assignment_title">Password protection </strong>
-                                        <strong class="label text-warning" style="position: absolute; top: 5px; right: 0;"> 28% </strong>
+                                    <div class="d-sm-inline-flex w-100 justify-content-between">
+                                        <div class="align-self-start">
+                                            {% if self_ass.questionnaire %}
+                                                <strong class="assignment_title">{{ self_ass.questionnaire.title }}</strong>
+                                            {% else %}
+                                                <strong class="assignment_title">{{ self_ass.test.title }}</strong>
+                                            {% endif %}
+                                        </div>
+                                        <div class="align-self-center"><strong>{% trans "Completed at" %}: </strong> {{ self_ass.get_answer_time }}</div>
+                                        <div class="align-self-end"><strong>{% trans "Score" %}: </strong> {% with score=self_ass.get_result %}
+                                                {% get_badge score as badge_type %}
+                                                <span {% if badge_type != 'Not Completed Yet' %}class="badge {{ badge_type }}"{% endif %}>
+                                                    {{ score }}
+                                                </span>
+                                            {% endwith %}
+                                        </div>
                                     </div>
                                 </li>
-                                <li  class="list-group-item  flex-column align-items-start">
-                                    <div style="position: relative;">
-                                        <strong class="assignment_title">Email fraud prevention  </strong>
-                                        <strong class="label text-info" style="position: absolute; top: 5px; right: 0;"> 72% </strong>
-                                    </div>
-                                </li>
-                                <li  class="list-group-item  flex-column align-items-start">
-                                    <div style="position: relative;">
-                                        <strong class="assignment_title">Security Awareness </strong>
-                                        <strong class="label text-success" style="position: absolute; top: 5px; right: 0;"> 90% </strong>
-                                    </div>
-                                </li>
-                           {# {% empty %} #}
-                             {#   <li>No self-evaluations</li> #}
-                           {# {% endfor %} #}
-                        </ul>
+                            {% empty %}
+                                <p>No completed assignments</p>
+                            {% endfor %}
+                         </ul>
                     </div>
                 </div>
             </div>

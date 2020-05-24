@@ -364,6 +364,12 @@ class AssignmentResult(Model):
 class SelfAssessment(Model):
     user = ForeignKey(User, verbose_name=_('user'), on_delete=CASCADE, help_text=_('Assignee'))
 
+    def get_answer_time(self):
+        return self.selfassessmentresult_set.get(selfassessment=self).answer_time
+
+    def get_result(self):
+        return '{0:.2%}'.format(self.selfassessmentresult_set.get(selfassessment=self).score)
+
 
 class QuestionnaireSelfAssessment(SelfAssessment):
     questionnaire = ForeignKey(

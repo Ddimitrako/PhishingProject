@@ -287,7 +287,7 @@ def get_best_self_assessment_score(questionnaire, user):
     self_assessments = QuestionnaireSelfAssessment.objects.filter(questionnaire=questionnaire, user=user)
     print(SelfAssessmentResult.objects.filter(selfassessment__in=self_assessments).aggregate(Max('score')))
     score = SelfAssessmentResult.objects.filter(selfassessment__in=self_assessments).aggregate(Max('score'))['score__max']
-    return '{0:.0%}'.format(score) if score != None else ''
+    return '{0:.2%}'.format(score) if score != None else ''
 
 
 #
@@ -345,9 +345,24 @@ def user_dashboard(request):
         key=lambda instance:
         (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
 
+    self_assessment_questionnaires = [self_quest for self_quest in
+                                      models.QuestionnaireSelfAssessment.objects.filter(user_id=request.user)
+                                      .order_by('-selfassessmentresult__answer_time')[:5]]
+
+    self_assessment_tests = [self_quest for self_quest in
+                             models.TestSelfAssessment.objects.filter(user_id=request.user)
+                                 .order_by('-selfassessmentresult__answer_time')[:5]]
+
+    self_assessment = sorted(
+        chain(self_assessment_questionnaires, self_assessment_tests),
+        key=lambda instance:
+        (instance.get_answer_time(),
+         instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title), reverse=True)
+
     return render(request, 'dashboard.html', {'active_assignments': active_assignments,
                                               'completed_assignments': completed_assignments,
-                                              'expired_assignments': expired_assignments})
+                                              'expired_assignments': expired_assignments,
+                                              'self_assessment': self_assessment})
 
 
 def manager_dashboard(request):
@@ -414,14 +429,25 @@ class SelfEvaluation(ListView):
 
 
 class SelfEvaluationHistory(ListView):
-    template_name = 'self_assessment.html'
-    context_object_name = 'self_assessment_list'
+    template_name = 'self_assessment_history.html'
+    context_object_name = 'self_assessment_history_list'
 
     def get_queryset(self):
-        questionnaires = Questionnaire.objects.filter(domain__dimension__level=1, is_active=1)
-        for quest in questionnaires:
-            quest.best_score = get_best_self_assessment_score(quest, self.request.user)
-        return questionnaires
+        self_assessment_questionnaires = [self_quest for self_quest in
+                                          models.QuestionnaireSelfAssessment.objects.filter(user_id=self.request.user)
+                                              .order_by('-selfassessmentresult__answer_time')]
+
+        self_assessment_tests = [self_quest for self_quest in
+                                 models.TestSelfAssessment.objects.filter(user_id=self.request.user)
+                                     .order_by('-selfassessmentresult__answer_time')]
+
+        self_assessment = sorted(
+            chain(self_assessment_questionnaires, self_assessment_tests),
+            key=lambda instance:
+            (instance.get_answer_time(),
+             instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title), reverse=True)
+
+        return self_assessment
 
 
 def selfAssessmentCompletion(request, quest_id):
