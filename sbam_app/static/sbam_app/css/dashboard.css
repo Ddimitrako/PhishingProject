@@ -48,7 +48,6 @@
 }
 
 .assignmets .tab-content{
-    height: 25vh;
     overflow: auto;
 }
 
@@ -73,10 +72,25 @@
     color: #3f5082;
 }
 
-/*.card-body .nav{*/
-/*    height: 5vh;*/
-/*    margin: 0;*/
-/*}*/
+.new_assessment_btn{
+    margin-bottom: 15%;
+}
+
+.self_assessm_item{
+    padding: 5px;
+}
+
+.card-body{
+    padding-bottom: 0.5rem;
+}
+
+.assessment_history_row{
+    padding-top: 0.5rem;
+}
+
+.scores{
+    text-align: end;
+}
 
 .alert-warning{
     background: none;

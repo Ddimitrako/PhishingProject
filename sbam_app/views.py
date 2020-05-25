@@ -363,7 +363,7 @@ def user_dashboard(request):
     return render(request, 'dashboard.html', {'active_assignments': active_assignments,
                                               'completed_assignments': completed_assignments,
                                               'expired_assignments': expired_assignments,
-                                              'self_assessment': self_assessment})
+                                              'self_assessment': self_assessment[:5]})
 
 
 def manager_dashboard(request):
