@@ -3,7 +3,7 @@
     padding: 0;
     /*overflow: auto;*/
     /*max-height: 30vh;*/
-    margin-top: 3%;
+    margin-top: 2%;
     margin-left: 3%;
 }
 
@@ -13,6 +13,19 @@
 
 .sv_body{
     border-top: 2px solid #016fcd !important;
+}
+
+#selfAssessmentCompletionLongTitle{
+    font-weight: 400;
+}
+
+.modal_text{
+    display: inline;
+    font-size: medium;
+}
+
+.badge{
+    font-size: 115%;
 }
 
 /*.sv_start_btn{*/

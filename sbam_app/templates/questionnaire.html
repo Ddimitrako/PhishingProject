@@ -3,6 +3,7 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% load i18n adminlte_helpers widget_tweaks %}
+{% load i18n custom_tags %}
 
 {% block extra_head %}
     <link href="{% static "vendor/survey-jquery/survey.css" %}" rel="stylesheet">
@@ -53,6 +54,54 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade bd-example-modal-lg" id="selfAssessmentCompletion" tabindex="-1" role="dialog" aria-labelledby="selfAssessmentCompletionTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    {% if is_assignment == 'true' %}
+                        <h5 class="modal-title" id="selfAssessmentCompletionLongTitle">{% trans "Assignment Completed!" %}</h5>
+                    {% else %}
+                        <h5 class="modal-title" id="selfAssessmentCompletionLongTitle">{% trans "Self Evaluation Completed!" %}</h5>
+                    {% endif %}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {% if is_assignment == 'true' %}
+                                <p class="modal_text">{% trans "You successfuly completed an assignment on:" %}</p>
+                            {% else %}
+                                <p class="modal_text">{% trans "You successfuly completed a self evaluation on:" %}</p>
+                            {% endif %}
+
+                        </div>
+                        <div class="col-sm-6">
+                            <strong><p class="font-italic modal_text">{{ quest_title | safe | capfirst}}</p></strong>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="modal_text">{% trans "Your score was: " %}</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="badge"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
+                    <a href="{% url 'sbam:dashboard' %}" class="btn btn-primary" role="button">{% trans "Return to Dashboard" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
 
 

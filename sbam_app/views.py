@@ -1,5 +1,6 @@
 import json
 from itertools import chain
+from sbam_app.templatetags import custom_tags
 
 from allauth.account.utils import send_email_confirmation
 from django.conf import settings
@@ -515,7 +516,9 @@ def selfAssessmentSubmission(request):
     self_assessment_result = calculate_self_assessment_result(self_assessment)
     self_assessment_result.save()
 
-    return JsonResponse({'result': 'success'})
+    return JsonResponse({'result': 'success',
+                         'badge': custom_tags.get_badge(str(self_assessment_result.score * 100)),
+                         'score': '{0:.1%}'.format(self_assessment_result.score)})
 
 
 @login_required
@@ -546,7 +549,10 @@ def surveySubmission(request):
     assignment_result = calculate_assignment_result(assignment)
     assignment_result.save()
 
-    return JsonResponse({'result': 'success'})
+    return JsonResponse({'result': 'success',
+                         'badge': custom_tags.get_badge(str(assignment_result.score * 100)),
+                         'score': '{0:.1%}'.format(assignment_result.score)
+                         })
 
 
 class UsersView(ListView):

@@ -161,13 +161,16 @@ $(document).ready(function(){
                     url: '/survey_submit/',
                     data: survey_results,
                     success: function (result) {
-                        if (result['result'] === 'Success') {
-                            console.log(result);
+                        if (result['result'] === 'success') {
+                            $('.badge').addClass(result['badge']);
+                            $('.badge').text(result['score']);
+                            $('#selfAssessmentCompletion').modal('toggle')
                         }
                     }
                 })
             }
             else{
+
                 $.ajax({
                     type: "POST",
                     headers: {"X-CSRFToken": csrftoken},
@@ -175,8 +178,10 @@ $(document).ready(function(){
                     url: '/self_assessment_submit/',
                     data: survey_results,
                     success: function (result) {
-                        if (result['result'] === 'Success') {
-                            console.log(result);
+                        if (result['result'] === 'success') {
+                            $('.badge').addClass(result['badge']);
+                            $('.badge').text(result['score']);
+                            $('#selfAssessmentCompletion').modal('toggle')
                         }
                     }
                 })
