@@ -91,6 +91,12 @@
                                         <p>{% trans "campaigns"|capfirst %}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'sbam:questionnaires_list' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-clipboard"></i>
+                                        <p>{% trans "Questionnaires"|capfirst %}</p>
+                                    </a>
+                                </li>
                             {% endif %}
                         {% endblock nav_links %}
                     {% endblock nav_links_outer %}

@@ -14,6 +14,9 @@ urlpatterns = [
     path('selfassessment/<quest_id>/', selfAssessmentCompletion, name='self_assessment_completion'),
     path('self_assessment_submit/', selfAssessmentSubmission, name='self_assessment_submit'),
 
+    # Questionnaires
+    path('questionnaires/', QuestionnairesList.as_view(), name='questionnaires_list'),
+
     # Assignments
     path('assignments/<assignment_id>/', assignmentCompletion, name='assignments'),
     path('survey_submit/', surveySubmission, name='survey_submit'),

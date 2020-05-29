@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load i18n adminlte_helpers widget_tweaks %}
+{% load i18n custom_tags %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    {% if is_assignment == 'true' %}
+        <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "assignments"|capfirst %}</a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'sbam:assignments' quest_id  %}">{{ quest_id }}</a></li>
+    {% else %}
+        <li class="breadcrumb-item"><a href="{% url 'sbam:self_assessment' %}">{% trans "self Assessment"|capfirst %}</a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'sbam:self_assessment_completion' quest_id  %}">{{ quest_id }}</a></li>
+    {% endif %}
+{% endblock %}
+
+{% block page_name %}
+    <div class="row">
+        {% if is_assignment == 'true' %}
+            <strong><i class="nav-icon fas fa-edit mr-2"></i> {% trans "Assignment" %}</strong>
+        {% else %}
+            <strong><i class="nav-icon fas fa-chalkboard-teacher mr-2"></i> {% trans "Self Evaluation" %}</strong>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
