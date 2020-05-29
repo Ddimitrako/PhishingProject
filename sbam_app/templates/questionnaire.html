@@ -111,9 +111,10 @@
     <script type="application/javascript">
         let questData = {{ questionnaire | safe }};
         let ass_id = {{ quest_id  | safe }};
-        let quest_title = "{{ quest_title | safe }}";
+        let quest_title = "{{ quest_title | safe | capfirst }}";
         let current_lang = "{{ current_lang }}";
         let is_assignment = "{{ is_assignment|safe }}";
+        let assignment_info = {{ assignment|safe }};
         console.log(ass_id);
     </script>
 

@@ -154,7 +154,7 @@
                                                 <strong class="assignment_title">{{ self_ass.test.title }}</strong>
                                             {% endif %}
                                         </div>
-                                        <div class="col-sm-4 auto"><strong>{% trans "On" %}: </strong> {{ self_ass.get_answer_time }}</div>
+                                        <div class="col-sm-4 auto scores"><strong>{% trans "On" %}: </strong> {{ self_ass.get_answer_time }}</div>
                                         <div class="col-sm-3 auto scores"><strong>{% trans "Score" %}: </strong> {% with score=self_ass.get_result %}
                                                 {% get_badge score as badge_type %}
                                                 <span {% if badge_type != 'Not Completed Yet' %}class="badge {{ badge_type }}"{% endif %}>
@@ -170,7 +170,7 @@
                         </ul>
                         <div class="row assessment_history_row">
                             <div class="col-sm-4">
-                                <a class="btn btn-xs btn-primary assessment_history_btn" href='{% url 'sbam:self_assessment_history' %}'  role="button" style='color: white; '> {% trans "View More.." %} </a>
+                                <a class="btn btn-xs btn-primary assessment_history_btn" href='{% url 'sbam:self_assessment_history' %}'  role="button" style='color: white; '> {% trans "View More" %} </a>
                             </div>
                         </div>
                     </div>

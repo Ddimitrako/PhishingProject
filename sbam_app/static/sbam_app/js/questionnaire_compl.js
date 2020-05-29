@@ -13,6 +13,7 @@ $(document).ready(function(){
         category: "general"
     });
 
+    console.log(assignment_info);
 
     //  function responsible for creating boolean questions json for survey
     function create_bool_quest(text, quest_id, question_opt){
@@ -114,15 +115,22 @@ $(document).ready(function(){
         return questions;
     }
 
+    function create_survey_description(assignment_info){
+        return 'Campign title: ' +assignment_info['campaign_title']+'\n'+
+            'Domain: '+assignment_info['domain']+'\n'+
+            'Dimension: '+assignment_info['dimension']+'\n' +
+            'Descrption: '+assignment_info['domain_descr']
+    }
+
      //basic json object for survey creation
      console.log(current_lang);
-     var surveyjson = {
-          title: quest_title,
-          locale: current_lang,
-          showProgressBar: "bottom",
-          firstPageIsStarted: true,
-          startSurveyText: "Start",
-     };
+    var surveyjson = {
+        title: quest_title,
+        locale: current_lang,
+        showProgressBar: "bottom",
+        firstPageIsStarted: true,
+        startSurveyText: "Start",
+    };
 
     function getCookie(name) {
         var cookieValue = null;
@@ -145,6 +153,64 @@ $(document).ready(function(){
     let survey_results = {};
     console.log(surveyjson);
     window.survey = new Survey.Model(surveyjson);
+    console.log(survey);
+
+    // This event is fired up when the survey is rendered and hides the SurveyJS built in title and shows a custom jumbotron about survey info
+    survey.onAfterRenderSurvey.add(function () {
+        $('.sv-title').hide();
+
+        let jumbotron = '<div data-bind="css: css.header" class="sv-title sv-container-modern__title" style="margin-left: 0px;margin-right: 0px;">'
+        +'<div class="row">'
+        +    '<div class="jumbotron infos" style="font-weight: 400; color: #dae1e7 !important; '
+        +            'background-color: #004895; padding:    1.5rem 1.5rem; margin-bottom: 0;">'
+        +        '<div class="row" style="margin-bottom: 1%;">'
+        +            '<h2 class="display-4">'+quest_title+'</h2>'
+        +        '</div>';
+
+        let campaign_info ='<div class="row" style="margin-bottom: 1%;">'
+        +            '<div class="col-md-2">'
+        +                'Campaign: '
+        +            '</div>'
+        +            '<div class="col-md-10" style="font-weight: 500;">'
+        +                assignment_info.campaign_title
+        +             '</div>'
+        +        '</div>';
+
+        let quest_info = '<div class="row" style="margin-bottom: 1%;">'
+        +            '<div class="col-md-2">'
+        +                'Dimension: '
+        +            '</div>'
+        +            '<div class="col-md-10" style="font-weight: 500;">'
+        +                assignment_info.dimension
+        +            '</div>'
+        +        '</div>'
+        +        '<div class="row" style="margin-bottom: 1%;">'
+        +            '<div class="col-md-2">'
+        +                'Domain: '
+        +            '</div>'
+        +            '<div class="col-md-10" style="font-weight: 500;">'
+        +                assignment_info.domain
+        +            '</div>'
+        +        '</div>'
+        +        '<hr class="my-4">'
+        +        '<h4>Description</h4>'
+        +        '<p style="font-weight: 400;">'+assignment_info.domain_descr+'</p> '
+        +    '</div>'
+        +'</div>'
+        +'</div>';
+
+        jumbotron = (is_assignment === 'true') ? jumbotron + campaign_info + quest_info : jumbotron + quest_info
+
+        $('.sv-container-modern').prepend(jumbotron)
+    })
+
+
+    //When the survey starts the infos jumbotron is hidden and the default title is shown
+    survey.onStarted.add(function () {
+        $('.infos').hide();
+        $('.sv-title').show();
+    })
+
     survey
         .onComplete
         .add(function (result) {

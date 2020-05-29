@@ -3,7 +3,7 @@
     padding: 0;
     /*overflow: auto;*/
     /*max-height: 30vh;*/
-    margin-top: 2%;
+    /*margin-top: 2%;*/
     margin-left: 3%;
 }
 
@@ -58,6 +58,7 @@
 
 .sv-root-modern .sv-container-modern__title{
     color: #016fcd !important;
+    padding-top: 1rem;
 }
 
 .sv-root-modern .sv-question__title--answer{
@@ -72,4 +73,20 @@
 
 .sv-checkbox--checked .sv-checkbox__svg{
     background-color: #016fcd !important;
+}
+
+.sv-footer{
+    padding-top: 0.5rem;
+    /*float: right;*/
+}
+
+.sv-footer__next-btn{
+    float: left;
+    margin-left: 15px;
+}
+
+.sv-footer__prev-btn{
+    background-color: white !important;
+    border: 1px solid #016fcd !important;
+    color: #016fcd !important;
 }

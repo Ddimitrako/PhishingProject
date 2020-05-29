@@ -291,6 +291,20 @@ def get_best_self_assessment_score(questionnaire, user):
     return '{0:.2%}'.format(score) if score != None else ''
 
 
+def get_assignment_info(assignment):
+    if isinstance(assignment, QuestionnaireAssignment):
+        assignment_dict = {'campaign_title': assignment.campaign.title,
+                           'domain': assignment.questionnaire.domain.title,
+                           'dimension': assignment.questionnaire.domain.dimension.title,
+                           'domain_descr': assignment.questionnaire.domain.description}
+    else:
+        assignment_dict = {'domain': assignment.domain.title,
+                           'dimension': assignment.domain.dimension.title,
+                           'domain_descr': assignment.domain.description}
+
+    return assignment_dict
+
+
 #
 # Views
 #
@@ -462,7 +476,8 @@ def selfAssessmentCompletion(request, quest_id):
                                                       'quest_title': quest_title,
                                                       'quest_id': quest.pk,
                                                       'is_assignment': 'false',
-                                                      'current_lang': current_lang})
+                                                      'current_lang': current_lang,
+                                                      'assignment': get_assignment_info(quest)})
     else:
         return HttpResponseForbidden()
 
@@ -480,7 +495,8 @@ def assignmentCompletion(request, assignment_id):
                                                           'quest_title': quest_title,
                                                           'quest_id': quest.pk,
                                                           'is_assignment': 'true',
-                                                          'current_lang': current_lang})
+                                                          'current_lang': current_lang,
+                                                          'assignment': get_assignment_info(quest)})
         else:
             messages.error(request, _('Assignment \"%(title)s\" is not active for completion! '
                                       'Please select an active assignment from the ones presented in your dashboard...'
