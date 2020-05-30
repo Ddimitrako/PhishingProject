@@ -16,6 +16,7 @@ urlpatterns = [
 
     # Questionnaires
     path('questionnaires/', QuestionnairesList.as_view(), name='questionnaires_list'),
+    path('questionnaires/<quest_id>/', questionnaireInfo, name='questionnaire_info'),
 
     # Assignments
     path('assignments/<assignment_id>/', assignmentCompletion, name='assignments'),

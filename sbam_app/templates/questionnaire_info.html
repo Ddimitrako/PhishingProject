@@ -10,22 +10,13 @@
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
-    {% if is_assignment == 'true' %}
-        <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "assignments"|capfirst %}</a></li>
-        <li class="breadcrumb-item active"><a href="{% url 'sbam:assignments' quest_id  %}">{{ quest_id }}</a></li>
-    {% else %}
-        <li class="breadcrumb-item"><a href="{% url 'sbam:self_assessment' %}">{% trans "self Assessment"|capfirst %}</a></li>
-        <li class="breadcrumb-item active"><a href="{% url 'sbam:self_assessment_completion' quest_id  %}">{{ quest_id }}</a></li>
-    {% endif %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:questionnaires_list' %}">{% trans "Questionnaires"|capfirst %}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:questionnaire_info' quest.id  %}">{{ quest.id }}</a></li>
 {% endblock %}
 
 {% block page_name %}
     <div class="row">
-        {% if is_assignment == 'true' %}
-            <strong><i class="nav-icon fas fa-edit mr-2"></i> {% trans "Assignment" %}</strong>
-        {% else %}
-            <strong><i class="nav-icon fas fa-chalkboard-teacher mr-2"></i> {% trans "Self Evaluation" %}</strong>
-        {% endif %}
+        <strong>{% trans "Questionnaire Details" %}</strong>
     </div>
 {% endblock %}
 

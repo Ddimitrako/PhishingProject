@@ -167,6 +167,9 @@ class Questionnaire(Model):
     def get_questions_count(self):
         return self.question_set.all().count()
 
+    def get_status(self):
+        return 'Active' if self.is_active else 'Inactive'
+
     class Meta:
         verbose_name = _('questionnaire')
         verbose_name_plural = _('questionnaires')

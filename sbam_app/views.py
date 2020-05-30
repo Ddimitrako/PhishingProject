@@ -466,14 +466,19 @@ class SelfEvaluationHistory(ListView):
 
 
 class QuestionnairesList(ListView):
-    template_name = '.html'
-    context_object_name = 'self_assessment_list'
+    template_name = 'questionnaires_list.html'
+    context_object_name = 'questionnaires'
 
     def get_queryset(self):
-        questionnaires = Questionnaire.objects.filter(domain__dimension__level=1, is_active=1)
-        for quest in questionnaires:
-            quest.best_score = get_best_self_assessment_score(quest, self.request.user)
+        questionnaires = Questionnaire.objects.all()
+        # for quest in questionnaires:
+        #     quest.best_score = get_best_self_assessment_score(quest, self.request.user)
         return questionnaires
+
+
+def questionnaireInfo(request, quest_id):
+    questionnaire = Questionnaire.objects.get(pk=quest_id)
+    return render(request, 'questionnaire_info.html', {'quest':questionnaire})
 
 
 def selfAssessmentCompletion(request, quest_id):
