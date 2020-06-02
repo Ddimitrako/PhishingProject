@@ -615,3 +615,9 @@ def create_campaign(request):
         return render(request, 'new_campaign.html',
                       {'campaign_form': CampaignCreationForm(),
                        'campaign_form_trees': campaign_form_trees})
+
+
+
+@advanced_users_only
+def reports(request):
+    return render(request, 'reports.html', {}) 

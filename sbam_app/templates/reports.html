@@ -1,0 +1,123 @@
+{% extends "base_form.html" %}
+
+{% load i18n static %}
+
+{% block page_name %}
+    <strong>{% trans "Reports"|capfirst %}</strong>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item active">{% trans "reports"|capfirst %}</li>
+{% endblock %}
+
+
+{% block extra_head %}
+    <link href="{% static "/admin-lte/plugins/ion-rangeslider/css/ion.rangeSlider.min.css" %}" rel="stylesheet">
+    <link href="{% static "/admin-lte/plugins/select2/css/select2.min.css" %}" rel="stylesheet">
+
+
+    <!-- Resources -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <style>
+        select option{
+            cursor: pointer;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: inherit;
+        }
+    </style>
+
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-fluid pb-4">
+        <div class="row">
+            <div id='filter_container' class="col-md-3 container">
+                <div class='card' style='min-height: unset; 
+                                         /*background-color: #266691; 
+                                         color: white;*/'> 
+                    <div class='card-body'>
+                        <form>
+                            <div class="form-group">
+                                <label style='display: block;'>Level</label>
+                                <select class="form-control">
+                                    <option>Organisation</option>
+                                    <option>Campaign</option>
+                                    <option>Group</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group clearfix">
+                                <label style='display: block;'>Type</label>
+                                <div class="icheck-primary d-inline">
+                                    <input type="checkbox" id="organisational_check" checked="">
+                                    <label for="organisational_check">
+                                        Organisational
+                                    </label>
+                                </div>
+                                <div class="icheck-primary d-inline ml-4" >
+                                    <input type="checkbox" id="individual_check" checked="">
+                                    <label for="individual_check">
+                                        Individual
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="time_period">Time period considered</label>
+                                <input type="range" class="custom-range" id="time_period">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id='charts_container'class="col-md-9 container">
+                <div class='card mb-1' style='height: 35vh;'> 
+                    <div id='chartdiv1' class='chartdiv' style='height: 100%; '> </div>
+                </div>
+
+                <div class='card mb-1' style='height: 50vh;'> 
+                    <div id='chartdiv2' class='chartdiv' style='height: 100%; '> </div>
+                </div>
+
+                <div class='card' style='height: 35vh;'> 
+                    <div id='chartdiv3' class='chartdiv' style='height: 100%; '> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block extra_js %}
+    <script src="{% static "/admin-lte/plugins/ion-rangeslider/js/ion.rangeSlider.min.js" %}"></script>
+    <script src="{% static "/admin-lte/plugins/select2/js/select2.min.js" %}"></script>
+
+    <script>
+        $("#time_period").ionRangeSlider({
+            skin: "round",
+            min: 0,
+            max: 24,
+            from: 24,
+            prefix: 'last ',
+            postfix: ' months',
+            hide_min_max: true,
+        });
+    
+        $('#filter_container select').select2();
+
+    </script>
+
+    <!-- Chart code -->
+    <script src="{% static "sbam_app/js/dimensions_chart_report.js" %}"></script>
+    <script src="{% static "sbam_app/js/domains_chart_report.js" %}"></script>
+    <script src="{% static "sbam_app/js/dim_dom_time_chart_report.js" %}"></script>
+
+{% endblock %}
