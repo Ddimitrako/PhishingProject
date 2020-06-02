@@ -296,11 +296,11 @@ def get_assignment_info(assignment):
         assignment_dict = {'campaign_title': assignment.campaign.title,
                            'domain': assignment.questionnaire.domain.title,
                            'dimension': assignment.questionnaire.domain.dimension.title,
-                           'domain_descr': assignment.questionnaire.domain.description}
+                           'domain_descr': assignment.questionnaire.domain.description if assignment.questionnaire.domain.description != None else 'Description not Available'}
     else:
         assignment_dict = {'domain': assignment.domain.title,
                            'dimension': assignment.domain.dimension.title,
-                           'domain_descr': assignment.domain.description}
+                           'domain_descr': assignment.questionnaire.domain.description if assignment.questionnaire.domain.description != None else 'Description not Available'}
 
     return assignment_dict
 
