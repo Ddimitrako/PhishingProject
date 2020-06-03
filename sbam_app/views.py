@@ -300,7 +300,7 @@ def get_assignment_info(assignment):
     else:
         assignment_dict = {'domain': assignment.domain.title,
                            'dimension': assignment.domain.dimension.title,
-                           'domain_descr': assignment.questionnaire.domain.description if assignment.questionnaire.domain.description != None else 'Description not Available'}
+                           'domain_descr': assignment.domain.description if assignment.domain.description != None else 'Description not Available'}
 
     return assignment_dict
 
@@ -741,7 +741,7 @@ def create_campaign(request):
         title = request.POST['title']
         start_date = request.POST['start_date']
         end_date = request.POST['end_date']
-        # print(questionnaires)
+        print(questionnaires, users, current_user, tests, title, start_date, end_date)
         try:
             with transaction.atomic():
                 new_campaign = Campaign(title=title, start_date=start_date, end_date=end_date, owner=current_user)
