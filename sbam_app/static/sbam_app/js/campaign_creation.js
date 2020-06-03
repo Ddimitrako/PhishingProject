@@ -89,37 +89,36 @@ $(document).ready(function(){
 
     console.log(testTreeData.length);
     let testsTree;
-    if (testTreeData.length > 1) {
-        testsTree = new Tree('#tests_tree_container', {
-            data: testTreeData,
-            closeDepth: 1,
 
-            onChange: function () {
-                document.getElementById("selected_tests").deleteTHead();
-                $("#selected_tests tr").remove();
-                var len = this.selectedNodes.length;
-                if(len > 0) {
-                    $("#selected_tests").append("<thead class=\"thead-dark\">\n" +
-                        "    <tr>\n" +
-                        "      <th class='sel_index'>#</th>\n" +
-                        "      <th class='sel_index'>Name</th>\n" +
-                        "    </tr>\n" +
-                        "  </thead>");
+    testsTree = new Tree('#tests_tree_container', {
+        data: testTreeData,
+        closeDepth: 1,
 
-                    $('.sel-tests-par').hide();
-                }
-                else
-                    $('.sel-tests-par').show();
+        onChange: function () {
+            document.getElementById("selected_tests").deleteTHead();
+            $("#selected_tests tr").remove();
+            var len = this.selectedNodes.length;
+            if(len > 0) {
+                $("#selected_tests").append("<thead class=\"thead-dark\">\n" +
+                    "    <tr>\n" +
+                    "      <th class='sel_index'>#</th>\n" +
+                    "      <th class='sel_index'>Name</th>\n" +
+                    "    </tr>\n" +
+                    "  </thead>");
 
-                console.log(this.selectedNodes);
-                var len = this.selectedNodes.length;
-                for (var i = 0; i < len; i++) {
-                    if (this.selectedNodes[i].id.includes('test'))
-                        $("#selected_tests tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 70%'>" + this.selectedNodes[i].text + "</td></tr>");
-                }
-            },
-        });
-    }
+                $('.sel-tests-par').hide();
+            }
+            else
+                $('.sel-tests-par').show();
+
+            console.log(this.selectedNodes);
+            var len = this.selectedNodes.length;
+            for (var i = 0; i < len; i++) {
+                if (this.selectedNodes[i].id.includes('test'))
+                    $("#selected_tests tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 70%'>" + this.selectedNodes[i].text + "</td></tr>");
+            }
+        },
+    });
 
     function getCookie(name) {
         var cookieValue = null;
