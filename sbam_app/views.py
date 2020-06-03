@@ -620,4 +620,40 @@ def create_campaign(request):
 
 @advanced_users_only
 def reports(request):
-    return render(request, 'reports.html', {}) 
+    import random
+    graph_data = dict()
+    graph_data['dimensions'] = list()
+    for dim in Dimension.objects.all():
+        dim_dict = dict()
+        dim_dict['title'] = dim.title
+        dim_dict['value'] = random.randint(0, 100)
+        dim_dict['domains'] = list()
+        for dom in Domain.objects.filter(dimension=dim):
+            dom_dict = dict()
+            dom_dict['title'] = dom.title
+            dom_dict['value'] = random.randint(0, 100)
+            dim_dict['domains'].append(dom_dict)
+        graph_data['dimensions'].append(dim_dict)
+    
+    return render(request, 'reports.html', {'graph_data': graph_data}) 
+
+
+@advanced_users_only
+def get_reports_data(request):
+    import random
+    graph_data = dict()
+    graph_data['dimensions'] = list()
+    for dim in Dimension.objects.all():
+        dim_dict = dict()
+        dim_dict['title'] = dim.title
+        dim_dict['value'] = random.randint(0, 100)
+        dim_dict['domains'] = list()
+        for dom in Domain.objects.filter(dimension=dim):
+            dom_dict = dict()
+            dom_dict['title'] = dom.title
+            dom_dict['value'] = random.randint(0, 100)
+            dim_dict['domains'].append(dom_dict)
+        graph_data['dimensions'].append(dim_dict)
+    
+    return JsonResponse(graph_data)
+    

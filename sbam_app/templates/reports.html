@@ -29,6 +29,27 @@
         .select2-container--default .select2-selection--single .select2-selection__rendered {
             line-height: inherit;
         }
+        #charts_container .card-body {
+            padding: 0.25rem;
+        }
+        #charts_container .card-header{
+            padding: 0.25rem 0.5rem;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        .loading{
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            background: #fffdfd;
+            width: 100%;
+            text-align: center;
+        }
+        .loading img{
+            height: 100%;
+        }
     </style>
 
 {% endblock %}
@@ -72,22 +93,35 @@
                                 <label for="time_period">Time period considered</label>
                                 <input type="range" class="custom-range" id="time_period">
                             </div>
-
                         </form>
+                        <button id='update_charts_button' class='btn btn-primary'>
+                            Update graphs
+                        </button>                    
                     </div>
                 </div>
             </div>
             <div id='charts_container'class="col-md-9 container">
-                <div class='card mb-1' style='height: 35vh;'> 
-                    <div id='chartdiv1' class='chartdiv' style='height: 100%; '> </div>
+                <div class='card mb-2' style='height: 40vh; text-align: center;'> 
+                    <div class='card-header'> Security Dimensions </div>
+                    <div id='chartdiv1' class='chartdiv card-body' style='height: 100%; position: relative; '> </div>
+                    <div class="loading">
+                        <img src="https://media1.tenor.com/images/c7cce308690c435002dfedee6889d135/tenor.gif" alt="Loading..." />
+                    </div>
                 </div>
 
-                <div class='card mb-1' style='height: 50vh;'> 
-                    <div id='chartdiv2' class='chartdiv' style='height: 100%; '> </div>
+                <div class='card mb-2' style='height: 55vh; text-align: center;'> 
+                <div class='card-header'> Domains </div>
+                    <div id='chartdiv2' class='chartdiv' style='height: 100%; position: relative;'> </div>
+                    <div class="loading">
+                        <img src="https://media1.tenor.com/images/c7cce308690c435002dfedee6889d135/tenor.gif" alt="Loading..." />
+                    </div>
                 </div>
 
-                <div class='card' style='height: 35vh;'> 
-                    <div id='chartdiv3' class='chartdiv' style='height: 100%; '> </div>
+                <div class='card' style='height: 35vh; text-align: center;'> 
+                    <div id='chartdiv3' class='chartdiv  card-body' style='height: 100%; position: relative; '> </div>
+                    <div class="loading">
+                        <img src="https://media1.tenor.com/images/c7cce308690c435002dfedee6889d135/tenor.gif" alt="Loading..." />
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,6 +147,39 @@
     
         $('#filter_container select').select2();
 
+    </script>
+
+    <script>
+        var graph_data = {{ graph_data|safe }};
+        console.log(graph_data);
+        var dim_chart;
+        var dom_chart;
+
+        $(document).ready(function(){
+            $("#update_charts_button").click(function(){
+                $(".loading").show();
+                $.ajax({
+                    url: "http://localhost:8000/get_reports_data/",
+                    type: 'GET',
+                    success: function(result) {
+                        if (result) {
+                            console.log(result);
+                            graph_data = result;
+                            dim_chart.data = graph_data['dimensions'];
+                            dim_chart.invalidateData();
+                            dom_chart.data = {};
+                            dom_chart.invalidateData();
+                        }
+                        $(".loading").hide();
+                    },
+                    error: function() {
+                        $(".loading").hide();
+                        alert("Error");
+                    }
+                });
+            })
+
+        });
     </script>
 
     <!-- Chart code -->
