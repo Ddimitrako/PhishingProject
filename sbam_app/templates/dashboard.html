@@ -155,7 +155,7 @@
                                             {% endif %}
                                         </div>
                                         <div class="col-sm-4 auto scores"><strong>{% trans "On" %}: </strong> {{ self_ass.get_answer_time }}</div>
-                                        <div class="col-sm-3 auto scores"><strong>{% trans "Score" %}: </strong> {% with score=self_ass.get_result %}
+                                        <div class="col-sm-3 auto scores"><strong>{% trans "score"|capfirst %}: </strong> {% with score=self_ass.get_result %}
                                                 {% get_badge score as badge_type %}
                                                 <span {% if badge_type != 'Not Completed Yet' %}class="badge {{ badge_type }}"{% endif %}>
                                                     {{ score }}

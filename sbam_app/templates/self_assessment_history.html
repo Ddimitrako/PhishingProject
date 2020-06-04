@@ -5,7 +5,7 @@
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
-    <li class="breadcrumb-item active"><a href="{% url 'sbam:self_assessment' %}">{% trans "Μy Evaluations" %}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:self_assessment' %}">{% trans "My Evaluations" %}</a></li>
 {% endblock %}
 
 {% block page_name %}
@@ -28,10 +28,10 @@
                     <tr>
                         <th></th>
                         <th>{% trans "title"|capfirst %}</th>
-                        <th>{% trans "Domain"|capfirst %}</th>
-                        <th>{% trans "Dimension"|capfirst %}</th>
+                        <th>{% trans "domain"|capfirst %}</th>
+                        <th>{% trans "dimension"|capfirst %}</th>
                         <th>{% trans "No. Questions"|capfirst %}</th>
-                        <th>{% trans "Score"|capfirst %}</th>
+                        <th>{% trans "score"|capfirst %}</th>
                     </tr>
                 </thead>
                 <tbody>

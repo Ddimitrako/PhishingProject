@@ -39,7 +39,7 @@ class Domain(Model):
         on_delete=CASCADE,
         help_text=_('Dimension this domain belongs to')
     )
-    title = CharField(_('title'), max_length=50, help_text=_('Domain title'))
+    title = CharField(_('title'), max_length=100, help_text=_('Domain title'))
     description = TextField(_('description'), blank=True, null=True, default='', help_text=_('Domain description'))
 
     def __str__(self):
@@ -51,7 +51,7 @@ class Domain(Model):
 
 
 class Campaign(Model):
-    title = CharField(_('title'), max_length=20, help_text=_('Campaign title'))
+    title = CharField(_('title'), max_length=100, help_text=_('Campaign title'))
     start_date = DateField(_('start date'), help_text=_('Campaign start date'))
     end_date = DateField(_('end date'), help_text=_('Campaign end date'))
     owner = ForeignKey(
