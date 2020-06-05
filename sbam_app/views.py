@@ -634,8 +634,59 @@ def reports(request):
             dom_dict['value'] = random.randint(0, 100)
             dim_dict['domains'].append(dom_dict)
         graph_data['dimensions'].append(dim_dict)
+          
+    if request.user.is_superuser:
+        campaigns = [c for c in Campaign.objects.all() if c.status=='FINISHED']
+        groups = Group.objects.filter(groupprofile__is_active=True)
+    else:
+        campaigns = [c for c in Campaign.objects.filter(owner=request.user) if c.status=='FINISHED']
+        groups = set([g for g in Group.objects.filter(groupprofile__is_active=True, groupprofile__creator=request.user)] + [g for g in Group.objects.filter(groupprofile__is_active=True) if g.groupprofile.is_global])
     
-    return render(request, 'reports.html', {'graph_data': graph_data}) 
+    # Create a dict of dimensions and their domains
+    info = dict()
+    for dim in Dimension.objects.all():
+        info[dim.title] = dict()
+        for dom in dim.domain_set.all():
+            info[dim.title][dom.title] = dict()
+            for q in dom.questionnaire_set.all():
+                info[dim.title][dom.title][q.title] = list()
+                    
+                    
+    qas = QuestionnaireAssignment.objects.all().order_by('questionnaire', 'user')
+    results_dict = dict()
+    for qa in qas:
+        if qa.questionnaire.title not in results_dict.keys():
+            results_dict[qa.questionnaire.title] = dict()
+        res = qa.assignmentresult_set.first()
+        if res is not None:
+            if qa.user.username not in results_dict[qa.questionnaire.title].keys():
+                results_dict[qa.questionnaire.title][qa.user.username] = {'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score, 'answer_time': res.answer_time}
+            else:
+                if res.answer_time > results_dict[qa.questionnaire.title][qa.user.username]['answer_time']:
+                    results_dict[qa.questionnaire.title][qa.user.username] = {'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score, 'answer_time': res.answer_time}
+
+
+    for dim in info.keys():
+        for dom in info[dim].keys():
+            for q in info[dim][dom].keys():
+                info[dim][dom][q] = [(u[1]['name'], str(u[1]['answer_time'])) for u in results_dict[q].items()]
+
+
+
+    for dim in list(info.keys()):
+        for dom in list(info[dim].keys()):
+            for q in list(info[dim][dom].keys()):
+                if len(info[dim][dom][q]) == 0:
+                    info[dim][dom].pop(q, None)
+            if len(info[dim][dom]) == 0:
+                info[dim].pop(dom, None)
+        if len(info[dim]) == 0:
+                info.pop(dim, None)
+
+
+    data = {'graph_data': graph_data, 'info': info}
+
+    return render(request, 'reports.html', {'data': data, 'campaigns': campaigns, 'groups': groups}) 
 
 
 @advanced_users_only
@@ -654,6 +705,51 @@ def get_reports_data(request):
             dom_dict['value'] = random.randint(0, 100)
             dim_dict['domains'].append(dom_dict)
         graph_data['dimensions'].append(dim_dict)
-    
-    return JsonResponse(graph_data)
+
+
+    # Create a dict of dimensions and their domains
+    info = dict()
+    for dim in Dimension.objects.all():
+        info[dim.title] = dict()
+        for dom in dim.domain_set.all():
+            info[dim.title][dom.title] = dict()
+            for q in dom.questionnaire_set.all():
+                info[dim.title][dom.title][q.title] = list()
+                    
+                    
+    qas = QuestionnaireAssignment.objects.all().order_by('questionnaire', 'user')
+    results_dict = dict()
+    for qa in qas:
+        if qa.questionnaire.title not in results_dict.keys():
+            results_dict[qa.questionnaire.title] = dict()
+        res = qa.assignmentresult_set.first()
+        if res is not None:
+            if qa.user.username not in results_dict[qa.questionnaire.title].keys():
+                results_dict[qa.questionnaire.title][qa.user.username] = {'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score, 'answer_time': res.answer_time}
+            else:
+                if res.answer_time > results_dict[qa.questionnaire.title][qa.user.username]['answer_time']:
+                    results_dict[qa.questionnaire.title][qa.user.username] = {'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score, 'answer_time': res.answer_time}
+
+
+    for dim in info.keys():
+        for dom in info[dim].keys():
+            for q in info[dim][dom].keys():
+                info[dim][dom][q] = [(u[1]['name'], str(u[1]['answer_time'])) for u in results_dict[q].items()]
+
+
+
+    for dim in list(info.keys()):
+        for dom in list(info[dim].keys()):
+            for q in list(info[dim][dom].keys()):
+                if len(info[dim][dom][q]) == 0:
+                    info[dim][dom].pop(q, None)
+            if len(info[dim][dom]) == 0:
+                info[dim].pop(dom, None)
+        if len(info[dim]) == 0:
+                info.pop(dim, None)
+
+
+    data = {'graph_data': graph_data, 'info': info}
+
+    return JsonResponse(data)
     

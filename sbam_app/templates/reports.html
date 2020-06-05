@@ -50,6 +50,21 @@
         .loading img{
             height: 100%;
         }
+        #accordion{
+            height: 60vh;
+            max-height: 60vh;
+            overflow: auto;
+        }
+        #info-toggler{
+            position: absolute;
+            right: 1.25rem;
+            bottom: 1.25rem;
+            padding: 0.25rem;
+            background: #efeded;
+            color: #be1f1f;
+            font-weight: 500;
+            cursor: pointer;
+        }
     </style>
 
 {% endblock %}
@@ -66,23 +81,43 @@
                         <form>
                             <div class="form-group">
                                 <label style='display: block;'>Level</label>
-                                <select class="form-control">
-                                    <option>Organisation</option>
-                                    <option>Campaign</option>
-                                    <option>Group</option>
+                                <select class="form-control" id='report-level' name='report-level' style="width: 100%">
+                                    <option value='organisation'>Organisation</option>
+                                    <option value='campaign'>Campaign</option>
+                                    <option value='group'>Group</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id='campaign-select-div' style='display: none;'>
+                                <label style='display: block;'>Campaign</label>
+                                <select class="form-control" id='campaign-select' name='campaign-select' style="width: 100%">
+                                    {% for campaign in campaigns %}
+                                        <option value='{{ campaign.pk }}'>{{ campaign.title }} (ended: {{campaign.end_date}})</option>
+                                    {% empty %}
+                                        <option disabled selected>No campaigns available</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group" id='group-select-div' style='display: none;'>
+                                <label style='display: block;'>Group</label>
+                                <select class="form-control" id='group-select' name='group-select' style="width: 100%">
+                                    {% for group in groups %}
+                                        <option value='{{ group.pk }}'>{{ group.name }}</option>
+                                    {% empty %}
+                                        <option disabled selected>No groups available</option>
+                                    {% endfor %}
                                 </select>
                             </div>
 
                             <div class="form-group clearfix">
                                 <label style='display: block;'>Type</label>
                                 <div class="icheck-primary d-inline">
-                                    <input type="checkbox" id="organisational_check" checked="">
+                                    <input type="checkbox" id="organisational_check" checked="" name="organisational_check">
                                     <label for="organisational_check">
                                         Organisational
                                     </label>
                                 </div>
                                 <div class="icheck-primary d-inline ml-4" >
-                                    <input type="checkbox" id="individual_check" checked="">
+                                    <input type="checkbox" id="individual_check" checked="" name="individual_check">
                                     <label for="individual_check">
                                         Individual
                                     </label>
@@ -91,14 +126,17 @@
 
                             <div class="form-group">
                                 <label for="time_period">Time period considered</label>
-                                <input type="range" class="custom-range" id="time_period">
+                                <input type="range" class="custom-range" id="time_period" name="time_period">
                             </div>
                         </form>
-                        <button id='update_charts_button' class='btn btn-primary'>
-                            Update graphs
-                        </button>                    
+                        <button id='update_charts_button' class='btn btn-success btn-md'>
+                            Update Charts
+                        </button>       
+
+                        <a id='info-toggler' class="" data-toggle="modal" data-target="#infoModal" >Calculation Info</a>             
                     </div>
                 </div>
+                
             </div>
             <div id='charts_container'class="col-md-9 container">
                 <div class='card mb-2' style='height: 40vh; text-align: center;'> 
@@ -126,6 +164,81 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="infoModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-xl">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Metrics Info</h4>
+            </div>
+            <div class="modal-body">
+                <p><strong>Note:</strong> following lists present the survey responses that were used for the calculation of the metrics displayed on the charts.</p>
+                <p><strong>Click a security dimension to expand</strong></p>
+                <div class="panel-group" id="accordion">
+                    {% for dim, dim_info in data.info.items %}
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h4 class="card-title">
+                                    <a data-toggle="collapse" href="#collapse_dim_{{ forloop.counter }}" class="" aria-expanded="false">
+                                        {{ dim }}
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse_dim_{{ forloop.counter }}" class="panel-collapse collapse" style="">
+                                <div class="card-body">
+                                    <div class="panel-group" id="accordion_{{ dim }}" style='padding-left: 2rem;'>
+                                        {% with dim_counter=forloop.counter %}   
+                                            {% for dom, dom_info in dim_info.items %}
+                                                <div class="card card-primary">
+                                                    <div class="card-header">
+                                                        <h4 class="card-title">
+                                                            <a data-toggle="collapse" href="#collapse_dim_{{dim_counter}}_dom_{{ forloop.counter }}" class="" aria-expanded="false">
+                                                                {{ dom }}
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse_dim_{{dim_counter}}_dom_{{ forloop.counter }}" class="panel-collapse collapse" style="">
+                                                        <div class="card-body">
+                                                            <ul class="list-group">
+                                                                {% for q, users in dom_info.items %}
+                                                                <li class="list-group-item">
+                                                                    <h4> 
+                                                                        Questionnaire: {{ q }} 
+                                                                    </h4>
+                                                                    <div>
+                                                                        <div class='row'>
+                                                                            {% for u, d in users %} 
+                                                                                <div class='col col-sm-4'>
+                                                                                    {{ u }} ({{ d }})
+                                                                                </div  >
+                                                                            {% endfor %}
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        {% endwith %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+
+        </div>
+    </div>
 {% endblock %}
 
 
@@ -145,12 +258,12 @@
             hide_min_max: true,
         });
     
-        $('#filter_container select').select2();
+        $('#filter_container select').select2({ width: 'resolve' });
 
     </script>
 
     <script>
-        var graph_data = {{ graph_data|safe }};
+        var graph_data = {{ data.graph_data|safe }};
         console.log(graph_data);
         var dim_chart;
         var dom_chart;
@@ -164,7 +277,7 @@
                     success: function(result) {
                         if (result) {
                             console.log(result);
-                            graph_data = result;
+                            graph_data = result.graph_data;
                             dim_chart.data = graph_data['dimensions'];
                             dim_chart.invalidateData();
                             dom_chart.data = {};
@@ -178,6 +291,25 @@
                     }
                 });
             })
+
+            $("#report-level").change(function(){
+                if($(this).val() == 'organisation'){
+                    $("#campaign-select").val('');
+                    $("#campaign-select-div").hide();
+                    $("#group-select").val('');
+                    $("#group-select-div").hide();
+                }
+                else if($(this).val() == 'campaign'){
+                    $("#campaign-select-div").show();
+                    $("#group-select").val('');
+                    $("#group-select-div").hide();
+                }
+                else if($(this).val() == 'group'){
+                    $("#group-select-div").show();
+                    $("#campaign-select").val('');
+                    $("#campaign-select-div").hide();
+                }
+            });
 
         });
     </script>
