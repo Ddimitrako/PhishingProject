@@ -26,23 +26,30 @@
                    class="table table-bordered table-hover table-head-fixed table-responsive-md table-striped">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>{% trans "title"|capfirst %}</th>
-                        <th>{% trans "Domain"|capfirst %}</th>
                         <th>{% trans "Dimension"|capfirst %}</th>
-                        <th>{% trans "No. Questions"|capfirst %}</th>
+                        <th>{% trans "Domain"|capfirst %}</th>
                         <th>{% trans "Score"|capfirst %}</th>
+                        <th>{% trans "answer Date"|capfirst %}</th>
+                        <th>{% trans "No. Questions"|capfirst %}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for self_ass in self_assessment_history_list %}
                         <tr>
-                            <td></td>
                             <td>
                                 {% if self_ass.questionnaire %}
                                     {{ self_ass.questionnaire.title }}
                                 {% else %}
                                     {{ self_ass.test.title }}
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% if self_ass.questionnaire %}
+                                    {{ self_ass.questionnaire.domain.dimension|default:'Not Available' }}
+                                {% else %}
+                                    {{ self_ass.test.domain.dimension|default:'Not Available' }}
                                 {% endif %}
                             </td>
                             <td>
@@ -53,25 +60,22 @@
                                 {% endif %}
                             </td>
                             <td>
-                                {% if self_ass.questionnaire %}
-                                    {{ self_ass.questionnaire.domain.dimension|default:'Not Available' }}
-                                {% else %}
-                                    {{ self_ass.test.domain.dimension|default:'Not Available' }}
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if self_ass.questionnaire %}
-                                    {{ self_ass.questionnaire.get_questions_count }}
-                                {% else %}
-                                    {{ self_ass.test.title }}
-                                {% endif %}</td>
-                            <td>
                                 {% with score=self_ass.get_result %}
                                     {% get_badge score as badge_type %}
                                     <span {% if badge_type != 'Not Completed Yet' %}class="badge {{ badge_type }}"{% endif %}>
                                         {{ score }}
                                     </span>
                                 {% endwith %}
+                            </td>
+                            <td>
+                                {{ self_ass.get_answer_time }}
+                            </td>
+                            <td>
+                                {% if self_ass.questionnaire %}
+                                    {{ self_ass.questionnaire.get_questions_count }}
+                                {% else %}
+                                    {{ self_ass.test.title }}
+                                {% endif %}
                             </td>
                         </tr>
                         {% empty %}
