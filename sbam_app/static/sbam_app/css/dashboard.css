@@ -62,12 +62,21 @@
     min-height: 100%;
 }
 
-.row h3{
-    height: 15%;
-    margin: 0;
+h3{
+    padding-bottom: 0.5rem;
     border-bottom: 1px;
     border-bottom-style: solid;
     border-bottom-color: #e0e4e8;
+    color: #3f5082;
+}
+
+#metrics-div h3{
+    margin-top: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: none;
+    border-top: 1px;
+    border-top-style: solid;
+    border-top-color: #e0e4e8;
     color: #3f5082;
 }
 

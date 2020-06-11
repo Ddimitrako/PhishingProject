@@ -6,10 +6,12 @@ am4core.ready(function() {
     
     dom_chart = am4core.create("chartdiv2", am4charts.XYChart);
     dom_chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+    dom_chart.responsive.enabled = true;
+    dom_chart.exporting.menu = new am4core.ExportMenu();
     
-    dom_chart.data = {};
+    // dom_chart.data = {};
      
-    //  dom_chart.padding(40, 40, 40, 40);
+     dom_chart.padding(0, 20, 20, 0);
      
      var categoryAxis = dom_chart.yAxes.push(new am4charts.CategoryAxis());
      categoryAxis.renderer.grid.template.location = 0;
@@ -20,7 +22,9 @@ am4core.ready(function() {
      
      var valueAxis = dom_chart.xAxes.push(new am4charts.ValueAxis());
      valueAxis.min = 0;
-     valueAxis.extraMax = 0.1;
+     valueAxis.max = 100;
+     valueAxis.extraMax = 0.1; 
+     valueAxis.strictMinMax = true;
      //valueAxis.rangeChangeEasing = am4core.ease.linear;
      //valueAxis.rangeChangeDuration = 1500;
      
@@ -31,18 +35,22 @@ am4core.ready(function() {
      series.columns.template.strokeOpacity = 0;
      series.columns.template.column.cornerRadiusTopRight = 10;
      series.columns.template.column.cornerRadiusBottomRight = 10;
-     //series.interpolationDuration = 1500;
+     series.interpolationDuration = 1500;
+     
      //series.interpolationEasing = am4core.ease.linear;
      var labelBullet = series.bullets.push(new am4charts.LabelBullet());
      //labelBullet.label.verticalCenter = "center";
-     labelBullet.label.dx = 20;
-     labelBullet.label.text = "{values.valueX.workingValue.formatNumber('#.')}";
+     labelBullet.label.dx = -20;
+     labelBullet.label.text = "{values.valueX.value}%";
+     labelBullet.label.fill = am4core.color("white");
+     labelBullet.label.fontWeight = "bold";
      
      var label = categoryAxis.renderer.labels.template;
      label.wrap = true;
-     label.maxWidth = 200;
+     label.maxWidth = 180;
      label.align = "left";
      categoryAxis.renderer.minGridDistance = 20;
+     label.fontSize = 12;
 
      
      dom_chart.zoomOutButton.disabled = true;

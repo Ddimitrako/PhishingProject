@@ -191,6 +191,7 @@
 {% block extra_js %}
     <!-- Chart code -->
     <script>
+        var chart1;
         am4core.ready(function() {
 
             // Themes begin
@@ -198,39 +199,80 @@
             // Themes end
 
             /* Create chart instance */
-            var chart = am4core.create("chartdiv1", am4charts.RadarChart);
+            chart1 = am4core.create("chartdiv1", am4charts.RadarChart);
 
             /* Add data */
-            chart.data = [{
-            "dimension": "Attitude",
-            "value": 45
-            }, {
-            "dimension": "Awareness",
-            "value": 60
-            }, {
-            "dimension": "Behaviour",
-            "value": 70
-            }, {
-            "dimension": "Competency",
-            "value": 40
-            }];
-
+            chart1.data = [];
 
             /* Create axes */
-            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-            categoryAxis.dataFields.category = "dimension";
+            var categoryAxis = chart1.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "title";
+            categoryAxis.renderer.labels.template.location = 0.5;
 
-            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-            valueAxis.renderer.axisFills.template.fill = chart.colors.getIndex(2);
-            valueAxis.renderer.axisFills.template.fillOpacity = 0.05;
+            var valueAxis = chart1.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.labels.template.fillOpacity = 0.5;
+            valueAxis.min = 0;
+            valueAxis.max = 100;
+            valueAxis.strictMinMax = true;
+            valueAxis.renderer.minGridDistance = 20;
+            
 
             /* Create and configure series */
-            var series = chart.series.push(new am4charts.RadarSeries());
+            var series = chart1.series.push(new am4charts.RadarColumnSeries());
             series.dataFields.valueY = "value";
-            series.dataFields.categoryX = "dimension";
-            series.name = "My Security Culture Status";
-            series.strokeWidth = 3;
+            series.dataFields.categoryX = "title";
+            series.strokeWidth = 0;
+            series.stroke = am4core.color("#134a03");
+            //series.fill = am4core.color("#269017");
+            series.fillOpacity =0.7;
+            series.sequencedInterpolation = true;
+            series.sequencedInterpolationDelay = 100;   
+            series.columns.template.tooltipText = "Dimension: {categoryX}\nValue: {valueY}%";
+
+            series.columns.template.adapter.add("fill", function(fill, target) {
+                return chart1.colors.getIndex(target.dataItem.index);
+            });
+
+            /* Add cursor */
+            //chart1.cursor = new am4charts.RadarCursor();
+
+            /* Make chart angled */
+            chart1.startAngle = -170;
+            chart1.endAngle = -10;
+            chart1.innerRadius = am4core.percent(50);
 
         }); // end am4core.ready()
+    </script>
+
+    <script type='text/javascript'>
+        function update_charts(){
+            //$(".loading").show();
+            $.ajax({
+                url: "{% url 'sbam:get_user_metrics' %}",
+                type: 'GET',
+                data: { 
+                    time_period: 24
+                },
+                success: function(result) {
+                    if (result) {
+                        console.log(result);
+                        graph_data = result.graph_data;
+                        chart1.invalidateData();
+                        chart1.data = graph_data.dimensions.filter(function (d){return d.level=== 1;});
+                        //$(".loading").hide();
+                        chart1.reinit();
+                    }
+                    
+                },
+                error: function() {
+                    $(".loading").hide();
+                    alert("Error");
+                }
+            });
+        }
+
+        $(document).ready(function(){
+            update_charts();
+        });
     </script>
 {% endblock %}

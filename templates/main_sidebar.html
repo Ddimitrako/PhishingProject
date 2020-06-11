@@ -39,13 +39,13 @@
                             </li>
 
                             <li class="nav-item has-tree-view">
-                                <a href="#" class="nav-link">
+                                <a href="{% url 'sbam:reports' %}" class="nav-link">
                                     <i class="nav-icon fas fa-chart-line"></i>
                                     <p>{% trans "Reports" %}</p>
-                                    <p><i class="right fas fa-angle-left"></i></p>
+                                    {% comment %} <p><i class="right fas fa-angle-left"></i></p> {% endcomment %}
                                 </a>
 
-                                <ul class="nav nav-treeview menu-open">
+                                {% comment %} <ul class="nav nav-treeview menu-open">
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="nav-icon fas fa-building"></i>
@@ -59,7 +59,7 @@
                                             <p>{% trans "Individual" %}</p>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> {% endcomment %}
                             </li>
                             {% if request.user.is_superuser or request.user.userprofile.is_manager %}
                                 <li class="nav-item">

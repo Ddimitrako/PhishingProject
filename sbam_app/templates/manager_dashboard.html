@@ -144,7 +144,7 @@
                                     </div>
                                 </li>
                             {% empty %}
-                                <li>No active campaigns</li>
+                                <p>No active campaigns</p>
                             {% endfor %}
                         </ul>
                     </div>
@@ -152,17 +152,25 @@
             </div>
         </div>
 
-        <div class="row" style='height: 40vh; margin-top: 1vh;'>
+        <div class="row" id='metrics-div' style='display: block; text-align: center;' >
+            <h3>
+                Organisation Status
+            </h3>
+            <div><a href="{% url 'sbam:reports' %}" style=" font-weight: bold; text-decoration: underline; color: #23a5e1;">More details</a></div>
+        </div>
+        <div class="row" style='height: 50vh; margin-top: 1vh;'>
+            
             <div class="col col-md-6">
-                <div class='text-center' style='height: 100%;'>
-                    <h3> {% trans "Organisational Status" %} </h3>
+                <div class='text-center' style='height: 90%;'>
+                    <h4> {% trans "Organisational Dimensions" %} </h4>
+
                     <div id='chartdiv1' class='chartdiv'> </div>
                 </div>             
             </div>
 
             <div class="col col-md-6">
-                <div class='text-center' style='height: 100%;'>
-                    <h3> {% trans "Individual Status" %} </h3>
+                <div class='text-center' style='height: 90%;'>
+                    <h4> {% trans "Individual Dimensions" %} </h4>
                     <div id='chartdiv2' class='chartdiv'> </div>
                 </div>
             </div>
@@ -176,6 +184,8 @@
 {% block extra_js %}
     <!-- Chart code -->
     <script>
+        var chart1;
+        var chart2;
         am4core.ready(function() {
 
             // Themes begin
@@ -183,44 +193,47 @@
             // Themes end
 
             /* Create chart instance */
-            var chart = am4core.create("chartdiv1", am4charts.RadarChart);
+            chart1 = am4core.create("chartdiv1", am4charts.RadarChart);
 
             /* Add data */
-            chart.data = [{
-            "dimension": "Assets",
-            "value": 65
-            }, {
-            "dimension": "Continuity",
-            "value": 45
-            }, {
-            "dimension": "Access and Trust",
-            "value": 70
-            }, {
-            "dimension": "Operations",
-            "value": 37
-            }, {
-            "dimension": "Defense",
-            "value": 80
-            }, {
-            "dimension": "Security Governance",
-            "value": 30
-            }];
-
+            chart1.data = [];
 
             /* Create axes */
-            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-            categoryAxis.dataFields.category = "dimension";
+            var categoryAxis = chart1.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "title";
+            categoryAxis.renderer.labels.template.location = 0.5;
 
-            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-            valueAxis.renderer.axisFills.template.fill = chart.colors.getIndex(2);
-            valueAxis.renderer.axisFills.template.fillOpacity = 0.05;
+            var valueAxis = chart1.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.labels.template.fillOpacity = 0.5;
+            valueAxis.min = 0;
+            valueAxis.max = 100;
+            valueAxis.strictMinMax = true;
+            valueAxis.renderer.minGridDistance = 20;
+            
 
             /* Create and configure series */
-            var series = chart.series.push(new am4charts.RadarSeries());
+            var series = chart1.series.push(new am4charts.RadarColumnSeries());
             series.dataFields.valueY = "value";
-            series.dataFields.categoryX = "dimension";
-            series.name = "Organisational Status";
-            series.strokeWidth = 3;
+            series.dataFields.categoryX = "title";
+            series.strokeWidth = 0;
+            series.stroke = am4core.color("#134a03");
+            //series.fill = am4core.color("#269017");
+            series.fillOpacity =0.7;
+            series.sequencedInterpolation = true;
+            series.sequencedInterpolationDelay = 100;   
+            series.columns.template.tooltipText = "Dimension: {categoryX}\nValue: {valueY}%";
+
+            series.columns.template.adapter.add("fill", function(fill, target) {
+                return chart1.colors.getIndex(target.dataItem.index);
+            });
+
+            /* Add cursor */
+            //chart1.cursor = new am4charts.RadarCursor();
+
+            /* Make chart angled */
+            chart1.startAngle = -170;
+            chart1.endAngle = -10;
+            chart1.innerRadius = am4core.percent(50);
 
         }); // end am4core.ready()
     </script>
@@ -236,39 +249,87 @@
             // Themes end
 
             /* Create chart instance */
-            var chart = am4core.create("chartdiv2", am4charts.RadarChart);
+            chart2 = am4core.create("chartdiv2", am4charts.RadarChart);
 
-            chart.data = [{
-            "dimension": "Attitude",
-            "value": 45
-            }, {
-            "dimension": "Awareness",
-            "value": 60
-            }, {
-            "dimension": "Behaviour",
-            "value": 70
-            }, {
-            "dimension": "Competency",
-            "value": 40
-            }];
+            chart2.data = [];
 
 
             /* Create axes */
-            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-            categoryAxis.dataFields.category = "dimension";
+            var categoryAxis = chart2.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "title";
+            categoryAxis.renderer.labels.template.location = 0.5;
 
-            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-            valueAxis.renderer.axisFills.template.fill = chart.colors.getIndex(2);
-            valueAxis.renderer.axisFills.template.fillOpacity = 0.05;
+            var valueAxis = chart2.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.labels.template.fillOpacity = 0.5;
+            valueAxis.min = 0;
+            valueAxis.max = 100;
+            valueAxis.strictMinMax = true;
+            valueAxis.renderer.minGridDistance = 20;
 
             /* Create and configure series */
-            var series = chart.series.push(new am4charts.RadarSeries());
+            var series = chart2.series.push(new am4charts.RadarColumnSeries());
             series.dataFields.valueY = "value";
-            series.dataFields.categoryX = "dimension";
-            series.name = "Indivudual Status";
-            series.strokeWidth = 3;
+            series.dataFields.categoryX = "title";
+            series.strokeWidth = 0;
+            series.stroke = am4core.color("#9b4907");
+            //series.fill = am4core.color("#d8670d");
+            series.fillOpacity =0.7;
+            series.sequencedInterpolation = true;
+            series.sequencedInterpolationDelay = 100;   
+            series.columns.template.tooltipText = "Dimension: {categoryX}\nValue: {valueY}%";
 
+            series.columns.template.adapter.add("fill", function(fill, target) {
+                return chart2.colors.getIndex(7+target.dataItem.index);
+            });
+
+            /* Make chart angled */
+            chart2.startAngle = -170;
+            chart2.endAngle = -10;
+            chart2.innerRadius = am4core.percent(50);
         }); // end am4core.ready()
+    </script>
+
+
+    <script type='text/javascript'>
+        function update_charts(){
+            //$(".loading").show();
+            $.ajax({
+                url: "{% url 'sbam:get_reports_data' %}",
+                type: 'GET',
+                data: { 
+                    report_level: 'organisation',
+                    campaign_select: '',
+                    group_select: '',
+                    organisational_check: 'true',
+                    individual_check: 'true',
+                    time_period: 24
+                },
+                success: function(result) {
+                    if (result) {
+                        console.log(result);
+                        graph_data = result.graph_data;
+                        chart1.invalidateData();
+                        chart2.invalidateData();
+
+                        chart1.data = graph_data.dimensions.filter(function (d){return d.level=== 0;});
+                        chart2.data = graph_data.dimensions.filter(function (d){return d.level=== 1;});
+                        
+                        //$(".loading").hide();
+                        chart1.reinit();
+                        chart2.reinit();
+                    }
+                    
+                },
+                error: function() {
+                    $(".loading").hide();
+                    alert("Error");
+                }
+            });
+        }
+
+        $(document).ready(function(){
+            update_charts();
+        });
     </script>
 
 {% endblock %}

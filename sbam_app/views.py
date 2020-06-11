@@ -1,6 +1,9 @@
 import json
 from itertools import chain
 
+from datetime import date
+from dateutil.relativedelta import relativedelta
+
 from allauth.account.utils import send_email_confirmation
 from django.conf import settings
 from django.contrib import messages
@@ -620,21 +623,6 @@ def create_campaign(request):
 
 @advanced_users_only
 def reports(request):
-    import random
-    graph_data = dict()
-    graph_data['dimensions'] = list()
-    for dim in Dimension.objects.all():
-        dim_dict = dict()
-        dim_dict['title'] = dim.title
-        dim_dict['value'] = random.randint(0, 100)
-        dim_dict['domains'] = list()
-        for dom in Domain.objects.filter(dimension=dim):
-            dom_dict = dict()
-            dom_dict['title'] = dom.title
-            dom_dict['value'] = random.randint(0, 100)
-            dim_dict['domains'].append(dom_dict)
-        graph_data['dimensions'].append(dim_dict)
-          
     if request.user.is_superuser:
         campaigns = [c for c in Campaign.objects.all() if c.status=='FINISHED']
         groups = Group.objects.filter(groupprofile__is_active=True)
@@ -642,100 +630,68 @@ def reports(request):
         campaigns = [c for c in Campaign.objects.filter(owner=request.user) if c.status=='FINISHED']
         groups = set([g for g in Group.objects.filter(groupprofile__is_active=True, groupprofile__creator=request.user)] + [g for g in Group.objects.filter(groupprofile__is_active=True) if g.groupprofile.is_global])
     
-    # Create a dict of dimensions and their domains
-    info = dict()
-    for dim in Dimension.objects.all():
-        info[dim.title] = dict()
-        for dom in dim.domain_set.all():
-            info[dim.title][dom.title] = dict()
-            for q in dom.questionnaire_set.all():
-                info[dim.title][dom.title][q.title] = list()
-                    
-                    
-    qas = QuestionnaireAssignment.objects.all().order_by('questionnaire', 'user')
-    results_dict = dict()
-    for qa in qas:
-        if qa.questionnaire.title not in results_dict.keys():
-            results_dict[qa.questionnaire.title] = dict()
-        res = qa.assignmentresult_set.first()
-        if res is not None:
-            if qa.user.username not in results_dict[qa.questionnaire.title].keys():
-                results_dict[qa.questionnaire.title][qa.user.username] = {'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score, 'answer_time': res.answer_time}
-            else:
-                if res.answer_time > results_dict[qa.questionnaire.title][qa.user.username]['answer_time']:
-                    results_dict[qa.questionnaire.title][qa.user.username] = {'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score, 'answer_time': res.answer_time}
+
+    return render(request, 'reports.html', {'campaigns': campaigns, 'groups': groups}) 
 
 
-    for dim in info.keys():
-        for dom in info[dim].keys():
-            for q in info[dim][dom].keys():
-                info[dim][dom][q] = [(u[1]['name'], str(u[1]['answer_time'])) for u in results_dict[q].items()]
+def get_user_metrics(request):
+    months = int(request.GET.get('time_period'))
 
-
-
-    for dim in list(info.keys()):
-        for dom in list(info[dim].keys()):
-            for q in list(info[dim][dom].keys()):
-                if len(info[dim][dom][q]) == 0:
-                    info[dim][dom].pop(q, None)
-            if len(info[dim][dom]) == 0:
-                info[dim].pop(dom, None)
-        if len(info[dim]) == 0:
-                info.pop(dim, None)
-
-
-    data = {'graph_data': graph_data, 'info': info}
-
-    return render(request, 'reports.html', {'data': data, 'campaigns': campaigns, 'groups': groups}) 
+    graph_data = dict()
+    graph_data['dimensions'] = list()
+    assignments = get_user_assignments(request.user, months)
+    # print(assignments)
+    return get_graph_data(assignments, include_individual=True)
 
 
 @advanced_users_only
 def get_reports_data(request):
-    import random
+    report_level = request.GET.get('report_level')
+
+    campaign_id = request.GET.get('campaign_select', '')
+    campaign_id = int(campaign_id) if campaign_id != '' else None
+
+    group_id = request.GET.get('group_select', '')
+    group_id = int(group_id) if group_id != '' else None
+
+    include_organisational = True if request.GET.get('organisational_check') == 'true' else False
+    include_individual = True if request.GET.get('individual_check') == 'true' else False
+    # print(include_organisational, include_individual)
+    months = int(request.GET.get('time_period'))
+
+    assignments = get_assignments(report_level, campaign_id, group_id, include_organisational, include_individual, months)
+    return get_graph_data(assignments)
+    
+    
+def get_graph_data(assignments, include_organisational=False, include_individual=False): 
     graph_data = dict()
-    graph_data['dimensions'] = list()
-    for dim in Dimension.objects.all():
+    graph_data['dimensions'] = list()   
+    info, results_dict = get_infos(assignments, include_organisational, include_individual)
+    # print(results_dict)
+    # print(info)
+    dimensions = Dimension.objects.all()
+    if not include_organisational:
+        dimensions = dimensions.exclude(level=0)
+    if not include_individual:
+        dimensions = dimensions.exclude(level=1)
+
+    for dim in dimensions:
         dim_dict = dict()
         dim_dict['title'] = dim.title
-        dim_dict['value'] = random.randint(0, 100)
+        dim_dict['value'] = 0.0
+        dim_dict['level'] = dim.level
         dim_dict['domains'] = list()
+        dom_num = 0
         for dom in Domain.objects.filter(dimension=dim):
             dom_dict = dict()
             dom_dict['title'] = dom.title
-            dom_dict['value'] = random.randint(0, 100)
+            dom_avg = get_domain_mean_value(dim, dom, info, results_dict)
+            dom_dict['value'] = dom_avg
+            dim_dict['value'] += dom_avg
             dim_dict['domains'].append(dom_dict)
+            dom_num += 1
+        dim_dict['value'] = round(dim_dict['value'] / dom_num) if dom_num else 0
         graph_data['dimensions'].append(dim_dict)
-
-
-    # Create a dict of dimensions and their domains
-    info = dict()
-    for dim in Dimension.objects.all():
-        info[dim.title] = dict()
-        for dom in dim.domain_set.all():
-            info[dim.title][dom.title] = dict()
-            for q in dom.questionnaire_set.all():
-                info[dim.title][dom.title][q.title] = list()
-                    
-                    
-    qas = QuestionnaireAssignment.objects.all().order_by('questionnaire', 'user')
-    results_dict = dict()
-    for qa in qas:
-        if qa.questionnaire.title not in results_dict.keys():
-            results_dict[qa.questionnaire.title] = dict()
-        res = qa.assignmentresult_set.first()
-        if res is not None:
-            if qa.user.username not in results_dict[qa.questionnaire.title].keys():
-                results_dict[qa.questionnaire.title][qa.user.username] = {'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score, 'answer_time': res.answer_time}
-            else:
-                if res.answer_time > results_dict[qa.questionnaire.title][qa.user.username]['answer_time']:
-                    results_dict[qa.questionnaire.title][qa.user.username] = {'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score, 'answer_time': res.answer_time}
-
-
-    for dim in info.keys():
-        for dom in info[dim].keys():
-            for q in info[dim][dom].keys():
-                info[dim][dom][q] = [(u[1]['name'], str(u[1]['answer_time'])) for u in results_dict[q].items()]
-
 
 
     for dim in list(info.keys()):
@@ -750,6 +706,84 @@ def get_reports_data(request):
 
 
     data = {'graph_data': graph_data, 'info': info}
-
     return JsonResponse(data)
     
+
+def get_infos(assignments, include_organisational=False, include_individual=False):
+    info = dict()
+    dimensions = Dimension.objects.all()
+    if not include_organisational:
+        dimensions = dimensions.exclude(level=0)
+    if not include_individual:
+        dimensions = dimensions.exclude(level=1)
+
+    for dim in dimensions:
+        info[dim.title] = dict()
+        for dom in dim.domain_set.all():
+            info[dim.title][dom.title] = dict()
+            for q in dom.questionnaire_set.filter(is_active=1):
+                info[dim.title][dom.title][q.title] = list()
+
+    # print(len(qas))
+    results_dict = dict()
+    for qa in assignments:
+        campaign = Campaign.objects.filter(assignment=qa)
+        # print(campaign)
+        if qa.questionnaire.title not in results_dict.keys():
+            results_dict[qa.questionnaire.title] = dict()
+        res = qa.assignmentresult_set.first()
+        if res is not None:
+            if qa.user.username not in results_dict[qa.questionnaire.title].keys():
+                results_dict[qa.questionnaire.title][qa.user.username] = {
+                    'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score,
+                    'answer_time': res.answer_time, 'campaign': campaign}
+            else:
+                if res.answer_time > results_dict[qa.questionnaire.title][qa.user.username]['answer_time']:
+                    results_dict[qa.questionnaire.title][qa.user.username] = {
+                        'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score,
+                        'answer_time': res.answer_time,  'campaign': campaign}
+
+    for dim in info.keys():
+        for dom in info[dim].keys():
+            for q in info[dim][dom].keys():
+                if q in results_dict.keys():
+                    info[dim][dom][q] = [(u[1]['name'], str(u[1]['answer_time'])) for u in results_dict[q].items()]
+
+    return info, results_dict
+
+
+
+def get_domain_mean_value(dim, dom, info, results_dict):
+    assignment_num = 0
+    total = 0
+    for questionnaire in info[dim.title][dom.title]:
+        if questionnaire in results_dict:
+            # print(results_dict[questionnaire])
+            for assigned_user in results_dict[questionnaire]:
+                total += results_dict[questionnaire][assigned_user]['score']
+                assignment_num += 1
+    # return round(total / assignment_num) if assignment_num > 0 else 0
+    import random
+    return random.randint(10, 100)
+
+
+def get_assignments(report_level, campaign_id, group_id, include_organisational, include_individual, months):
+    qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, campaign__end_date__gte=date.today() - relativedelta(months=months))
+            
+    if report_level == 'campaign':
+        qas = qas.filter(campaign_id=campaign_id)
+    elif report_level == 'group':
+        qas = qas.filter(user__groups__in=[group_id])
+
+    if not include_organisational:
+        qas = qas.exclude(questionnaire__domain__dimension__level=0)
+    if not include_individual:
+        qas = qas.exclude(questionnaire__domain__dimension__level=1)
+    
+    return qas.order_by('questionnaire', 'user')
+
+
+def get_user_assignments(user, months):
+    qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, user=user, campaign__end_date__gte=date.today() - relativedelta(months=months))
+    qas = qas.exclude(questionnaire__domain__dimension__level=1)
+    return qas.order_by('questionnaire')

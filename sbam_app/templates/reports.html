@@ -56,14 +56,34 @@
             overflow: auto;
         }
         #info-toggler{
-            position: absolute;
-            right: 1.25rem;
-            bottom: 1.25rem;
+            
             padding: 0.25rem;
             background: #efeded;
             color: #be1f1f;
             font-weight: 500;
             cursor: pointer;
+            display: block;
+            text-align: center;
+        }
+        @media (min-width: 1450px){
+            #info-toggler{
+                position: absolute;
+                right: 1.25rem;
+                bottom: 1.25rem;
+            }
+        }
+        @media (max-width: 1450px){
+            #info-toggler{
+                margin-top: 1.1rem;
+            }
+
+            #update_charts_button{
+                width: 100%;
+            }
+        }
+        .icheck-primary>input:first-child:checked+input[type=hidden]+label::before, .icheck-primary>input:first-child:checked+label::before {
+            background-color: #007bff;
+            border: none;
         }
     </style>
 
@@ -73,14 +93,14 @@
 {% block content %}
     <div class="container-fluid pb-4">
         <div class="row">
-            <div id='filter_container' class="col-md-3 container">
+            <div id='filter_container' class="col-lg-3 container-fluid">
                 <div class='card' style='min-height: unset; 
                                          /*background-color: #266691; 
                                          color: white;*/'> 
                     <div class='card-body'>
                         <form>
                             <div class="form-group">
-                                <label style='display: block;'>Level</label>
+                                <label style='display: block;'>Report for</label>
                                 <select class="form-control" id='report-level' name='report-level' style="width: 100%">
                                     <option value='organisation'>Organisation</option>
                                     <option value='campaign'>Campaign</option>
@@ -109,16 +129,16 @@
                             </div>
 
                             <div class="form-group clearfix">
-                                <label style='display: block;'>Type</label>
+                                <label style='display: block;'>Level</label>
                                 <div class="icheck-primary d-inline">
                                     <input type="checkbox" id="organisational_check" checked="" name="organisational_check">
-                                    <label for="organisational_check">
+                                    <label for="organisational_check" style='color: #217c07;'>
                                         Organisational
                                     </label>
                                 </div>
                                 <div class="icheck-primary d-inline ml-4" >
                                     <input type="checkbox" id="individual_check" checked="" name="individual_check">
-                                    <label for="individual_check">
+                                    <label for="individual_check" style='color: #9b4907;'>
                                         Individual
                                     </label>
                                 </div>
@@ -129,6 +149,7 @@
                                 <input type="range" class="custom-range" id="time_period" name="time_period">
                             </div>
                         </form>
+                        
                         <button id='update_charts_button' class='btn btn-success btn-md'>
                             Update Charts
                         </button>       
@@ -138,12 +159,12 @@
                 </div>
                 
             </div>
-            <div id='charts_container'class="col-md-9 container">
-                <div class='card mb-2' style='height: 40vh; text-align: center;'> 
+            <div id='charts_container'class="col-lg-9 container-fluid">
+                <div class='card mb-2' style='height: 55vh; text-align: center;'> 
                     <div class='card-header'> Security Dimensions </div>
                     <div id='chartdiv1' class='chartdiv card-body' style='height: 100%; position: relative; '> </div>
                     <div class="loading">
-                        <img src="https://media1.tenor.com/images/c7cce308690c435002dfedee6889d135/tenor.gif" alt="Loading..." />
+                        <img src="{% static 'img/loading.gif' %}" alt="Loading..." />
                     </div>
                 </div>
 
@@ -151,14 +172,7 @@
                 <div class='card-header'> Domains </div>
                     <div id='chartdiv2' class='chartdiv' style='height: 100%; position: relative;'> </div>
                     <div class="loading">
-                        <img src="https://media1.tenor.com/images/c7cce308690c435002dfedee6889d135/tenor.gif" alt="Loading..." />
-                    </div>
-                </div>
-
-                <div class='card' style='height: 35vh; text-align: center;'> 
-                    <div id='chartdiv3' class='chartdiv  card-body' style='height: 100%; position: relative; '> </div>
-                    <div class="loading">
-                        <img src="https://media1.tenor.com/images/c7cce308690c435002dfedee6889d135/tenor.gif" alt="Loading..." />
+                        <img src="{% static 'img/loading.gif' %}" alt="Loading..." />
                     </div>
                 </div>
             </div>
@@ -178,7 +192,7 @@
                 <p><strong>Note:</strong> following lists present the survey responses that were used for the calculation of the metrics displayed on the charts.</p>
                 <p><strong>Click a security dimension to expand</strong></p>
                 <div class="panel-group" id="accordion">
-                    {% for dim, dim_info in data.info.items %}
+                    {% comment %} {% for dim, dim_info in data.info.items %}
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h4 class="card-title">
@@ -208,14 +222,12 @@
                                                                     <h4> 
                                                                         Questionnaire: {{ q }} 
                                                                     </h4>
-                                                                    <div>
-                                                                        <div class='row'>
-                                                                            {% for u, d in users %} 
-                                                                                <div class='col col-sm-4'>
-                                                                                    {{ u }} ({{ d }})
-                                                                                </div  >
-                                                                            {% endfor %}
-                                                                        </div>
+                                                                    <div class="row">
+                                                                        {% for u, d in users %} 
+                                                                            <div class="col col-sm-4">
+                                                                                {{ u }} ({{ d }})
+                                                                            </div  >
+                                                                        {% endfor %}
                                                                     </div>
                                                                 </li>
                                                                 {% endfor %}
@@ -229,11 +241,11 @@
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
+                    {% endfor %} {% endcomment %}
                 </div> 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
             </div>
 
@@ -260,36 +272,131 @@
     
         $('#filter_container select').select2({ width: 'resolve' });
 
+        $('#report-level').select2({
+            width: 'resolve',
+            minimumResultsForSearch: -1
+        });
+
     </script>
 
     <script>
-        var graph_data = {{ data.graph_data|safe }};
-        console.log(graph_data);
+        //var graph_data = {{ data.graph_data|safe }};
+        //console.log(graph_data);
         var dim_chart;
         var dom_chart;
 
         $(document).ready(function(){
-            $("#update_charts_button").click(function(){
+            function update_modal_info(info){
+                $('#accordion').html('');
+                var dim_counter = 1;
+                $.each(info, function(dim, dim_info){
+                    $('#accordion').append(' ' +
+                        ' <div class="card card-primary"> ' +
+                        '     <div class="card-header"> ' +
+                        '         <h4 class="card-title"> ' +
+                        '             <a data-toggle="collapse" href="#collapse_dim_'+ dim_counter +'" class="" aria-expanded="false"> ' +
+                        '                 ' + dim + 
+                        '             </a> ' +
+                        '         </h4> ' +
+                        '     </div> ' +
+                        '     <div id="collapse_dim_'+ dim_counter +'" class="panel-collapse collapse" style=""> ' +
+                        '       <div class="panel-group" id="accordion_'+ dim_counter +'" style="padding-left: 2rem;"> ' +
+                        '       </div> ' +
+                        '     </div> ' +
+                        ' </div> ' +
+                    '');
+                    
+
+                    var dom_counter = 1;
+                    $.each(dim_info, function(dom, dom_info){
+                        $('#accordion_'+ dim_counter).append(' ' +
+                            ' <div class="card card-primary"> ' +
+                            '     <div class="card-header"> ' +
+                            '         <h4 class="card-title"> ' +
+                            '             <a data-toggle="collapse" href="#collapse_dim_'+ dim_counter +'_dom_'+ dom_counter +'" class="" aria-expanded="false"> ' +
+                            '              ' + dom + 
+                            '             </a> ' +
+                            '         </h4> ' +
+                            '     </div> ' +
+                            '     <div id="collapse_dim_'+ dim_counter +'_dom_'+ dom_counter +'" class="panel-collapse collapse" style=""> ' +
+                            '         <div class="card-body"> ' +
+                            '             <ul class="list-group"> ' +
+                            '             </ul> ' +
+                            '         </div> ' +
+                            '     </div> ' +
+                            ' </div> ' +
+                        '');
+
+                        $.each(dom_info, function(q, users){
+                            var users_list = '';
+                            var usr_counter = 0;
+                            $.each(users, function(key, user){
+                                if(usr_counter%4==0)
+                                    users_list += '<tr>';
+                                users_list += '<td class="">' + user[0] + ' (' + user[1] + ') ' + '</td>';
+                                if(usr_counter%4==3)
+                                    users_list += '</tr>';
+                                usr_counter++;
+                            });
+
+                            $('#collapse_dim_'+ dim_counter +'_dom_'+ dom_counter + ' .list-group').append(' ' +
+                                ' <li class="list-group-item"> ' +
+                                ' <h4> Questionnaire: ' + q + ' </h4> ' +
+                                ' <table class="table table-striped table-condensed"> ' +
+                                    users_list +
+                                ' </table> ' + 
+                            '');
+                        });
+                        dom_counter++;
+                    });
+
+                    dim_counter++;
+                });
+            };
+
+
+
+            function update_charts(){
                 $(".loading").show();
                 $.ajax({
-                    url: "http://localhost:8000/get_reports_data/",
+                    url: "{% url 'sbam:get_reports_data' %}",
                     type: 'GET',
+                    data: { 
+                        report_level: $("#report-level").val(),
+                        campaign_select: $("#campaign-select").val(),
+                        group_select: $("#group-select").val(),
+                        organisational_check: $("#organisational_check").is(':checked'),
+                        individual_check: $("#individual_check").is(':checked'),
+                        time_period: $("#time_period").val()
+                    },
                     success: function(result) {
                         if (result) {
                             console.log(result);
+                            
+                            dim_chart.invalidateData();
                             graph_data = result.graph_data;
                             dim_chart.data = graph_data['dimensions'];
-                            dim_chart.invalidateData();
+                            
                             dom_chart.data = {};
                             dom_chart.invalidateData();
+
+                            $(".loading").hide();
+                            dim_chart.reinit();
+                            update_modal_info(result['info']);
                         }
-                        $(".loading").hide();
+                        
                     },
                     error: function() {
                         $(".loading").hide();
                         alert("Error");
                     }
                 });
+            }
+
+            update_charts();
+
+            $("#update_charts_button").click(function(){
+                update_charts();
             })
 
             $("#report-level").change(function(){
@@ -317,6 +424,5 @@
     <!-- Chart code -->
     <script src="{% static "sbam_app/js/dimensions_chart_report.js" %}"></script>
     <script src="{% static "sbam_app/js/domains_chart_report.js" %}"></script>
-    <script src="{% static "sbam_app/js/dim_dom_time_chart_report.js" %}"></script>
 
 {% endblock %}

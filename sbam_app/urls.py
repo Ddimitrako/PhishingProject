@@ -35,4 +35,5 @@ urlpatterns = [
     # Reports
     path('reports/', reports, name='reports'),
     path('get_reports_data/', get_reports_data, name='get_reports_data'),
+    path('get_user_metrics/', get_user_metrics, name='get_user_metrics'),
 ]
