@@ -134,7 +134,7 @@ class Assignment(Model):
         return self.assignmentresult_set.get(assignment=self).answer_time
 
     def get_result(self):
-        return '{0:.2%}'.format(self.assignmentresult_set.get(assignment=self).score)
+        return '{0:.0%}'.format(self.assignmentresult_set.get(assignment=self).score)
 
     class Meta:
         verbose_name = _('assignment')
@@ -371,7 +371,7 @@ class SelfAssessment(Model):
         return self.selfassessmentresult_set.get(selfassessment=self).answer_time
 
     def get_result(self):
-        return '{0:.2%}'.format(self.selfassessmentresult_set.get(selfassessment=self).score)
+        return '{0:.0%}'.format(self.selfassessmentresult_set.get(selfassessment=self).score)
 
 
 class QuestionnaireSelfAssessment(SelfAssessment):

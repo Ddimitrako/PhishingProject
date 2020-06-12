@@ -281,7 +281,7 @@ def calculate_campaign_result(campaign, assignments):
             pass
 
         score = round(sum / total) if total != 0.0 else round(total)
-        result = (user, '{0}%'.format(score), '{0:.0%}'.format(no_assignments / assignments))
+        result = (user, '{0:.0%}'.format(score), '{0:.0%}'.format(no_assignments / assignments))
         results.append(result)
 
     return results
@@ -291,7 +291,7 @@ def get_best_self_assessment_score(questionnaire, user):
     self_assessments = QuestionnaireSelfAssessment.objects.filter(questionnaire=questionnaire, user=user)
     print(SelfAssessmentResult.objects.filter(selfassessment__in=self_assessments).aggregate(Max('score')))
     score = SelfAssessmentResult.objects.filter(selfassessment__in=self_assessments).aggregate(Max('score'))['score__max']
-    return '{0:.2%}'.format(score) if score != None else ''
+    return '{0:.0%}'.format(score) if score != None else ''
 
 
 def get_assignment_info(assignment):
@@ -327,17 +327,31 @@ def user_dashboard(request):
                              ).filter(campaign__start_date__lte=date.today()
                                       ).order_by('campaign__end_date') if a_quest.status == 'OPEN']
 
+    # distinct_active_questionnaires = []
+    # distinct_active_questionnaires_titles = []
+    # for assignment in active_questionnaires:
+    #     if assignment.questionnaire.title not in distinct_active_questionnaires_titles:
+    #         distinct_active_questionnaires.append(assignment)
+    #         distinct_active_questionnaires_titles.append(assignment.questionnaire.title)
+    
     active_tests = [a_test for a_test in
                     models.TestAssignment.objects.filter(user_id=request.user).filter(
                         campaign__end_date__gte=date.today()
                     ).filter(campaign__start_date__lte=date.today()
                              ).order_by('campaign__end_date') if a_test.status == 'OPEN']
 
+    # distinct_active_tests = []
+    # distinct_active_tests_titles = []
+    # for assignment in active_tests:
+    #     if assignment.test.title not in distinct_active_tests_titles:
+    #         distinct_active_tests.append(assignment)
+    #         distinct_active_tests_titles.append(assignment.test.title)
+    
     active_assignments = sorted(
         chain(active_questionnaires, active_tests),
         key=lambda instance:
         (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
-
+    
     # fetching completed assignments
     completed_questionnaires = [c_quest for c_quest in
                                 models.QuestionnaireAssignment.objects.filter(user_id=request.user)
@@ -529,22 +543,22 @@ def assignmentCompletion(request, assignment_id):
 def selfAssessmentSubmission(request):
     print('self assessment')
     answers = json.loads(request.POST['data'])
-    questionnaire = models.Questionnaire.objects.get(pk=int(request.POST['ass_id']))
+    questionnaire = Questionnaire.objects.get(pk=int(request.POST['ass_id']))
     print(request.user.id)
-    self_assessment = models.QuestionnaireSelfAssessment(questionnaire=questionnaire, user_id=request.user.id)
+    self_assessment = QuestionnaireSelfAssessment(questionnaire=questionnaire, user_id=request.user.id)
     self_assessment.save()
     for ques in answers:
-        question = models.Question.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
+        question = uestion.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
         if isinstance(answers[ques], list):
             answers_options = [option_id for option_id in answers[ques]]
             for option_id in answers_options:
-                answer = models.QuestionOption.objects.get(pk=option_id)
-                self_assessment_answer = models.SelfAssessmentQuestionAnswer(selfassessment=self_assessment,
+                answer = QuestionOption.objects.get(pk=option_id)
+                self_assessment_answer = SelfAssessmentQuestionAnswer(selfassessment=self_assessment,
                                                                              question=question, question_option=answer)
                 self_assessment_answer.save()
         else:
-            answer = models.QuestionOption.objects.get(pk=answers[ques])
-            self_assessment_answer = models.SelfAssessmentQuestionAnswer(selfassessment=self_assessment,
+            answer = QuestionOption.objects.get(pk=answers[ques])
+            self_assessment_answer = SelfAssessmentQuestionAnswer(selfassessment=self_assessment,
                                                                          question=question, question_option=answer)
             self_assessment_answer.save()
 
@@ -553,40 +567,47 @@ def selfAssessmentSubmission(request):
 
     return JsonResponse({'result': 'success',
                          'badge': custom_tags.get_badge(str(self_assessment_result.score * 100)),
-                         'score': '{0:.1%}'.format(self_assessment_result.score)})
+                         'score': '{0:.0%}'.format(self_assessment_result.score)})
 
 
 @login_required
 def surveySubmission(request):
-    assignment = models.QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
+    assignment_init = QuestionnaireAssignment.objects.get(pk=int(request.POST['ass_id']))
+    q = assignment_init.questionnaire
+    assignments_list = [a for a in QuestionnaireAssignment.objects.filter(user=request.user, questionnaire=q) if a.status == 'OPEN']
+
     answers = json.loads(request.POST['data'])
-    for ques in answers:
-        question = models.Question.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
-        if isinstance(answers[ques], list):
-            answers_options = [option_id for option_id in answers[ques]]
-            for option_id in answers_options:
-                answer = models.QuestionOption.objects.get(pk=option_id)
-                assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question,
-                                                                  question_option=answer)
+    score = 0
+
+    for assignment in assignments_list:
+        for ques in answers:
+            question = Question.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
+            if isinstance(answers[ques], list):
+                answers_options = [option_id for option_id in answers[ques]]
+                for option_id in answers_options:
+                    answer = QuestionOption.objects.get(pk=option_id)
+                    assignment_answer = CampaignQuestionAnswer(assignment=assignment, question=question,
+                                                                    question_option=answer)
+                    assignment.save()
+                    assignment_answer.save()
+
+                    # print(assignment.questionnaire.domain.title, question.text, answer.text)
+            else:
+                answer = QuestionOption.objects.get(pk=answers[ques])
+                # print(assignment.questionnaire.domain.title, question.text, answer.text)
+
+                assignment_answer = CampaignQuestionAnswer(assignment=assignment, question=question,
+                                                                question_option=answer)
                 assignment.save()
                 assignment_answer.save()
 
-                # print(assignment.questionnaire.domain.title, question.text, answer.text)
-        else:
-            answer = models.QuestionOption.objects.get(pk=answers[ques])
-            # print(assignment.questionnaire.domain.title, question.text, answer.text)
-
-            assignment_answer = models.CampaignQuestionAnswer(assignment=assignment, question=question,
-                                                              question_option=answer)
-            assignment.save()
-            assignment_answer.save()
-
-    assignment_result = calculate_assignment_result(assignment)
-    assignment_result.save()
+        assignment_result = calculate_assignment_result(assignment)
+        assignment_result.save()
+        score = assignment_result.score
 
     return JsonResponse({'result': 'success',
-                         'badge': custom_tags.get_badge(str(assignment_result.score * 100)),
-                         'score': '{0:.1%}'.format(assignment_result.score)
+                         'badge': custom_tags.get_badge(str(score * 100)),
+                         'score': '{0:.0%}'.format(score)
                          })
 
 
@@ -894,12 +915,12 @@ def gather_results(assignments, self_assessments, dimensions):
         if res is not None:
             if qa.user.username not in results_dict[qa.questionnaire.title].keys():
                 results_dict[qa.questionnaire.title][qa.user.username] = {
-                    'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score,
+                    'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score*100,
                     'answer_time': res.answer_time, 'campaign': campaign}
             else:
                 if res.answer_time > results_dict[qa.questionnaire.title][qa.user.username]['answer_time']:
                     results_dict[qa.questionnaire.title][qa.user.username] = {
-                        'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score,
+                        'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score*100,
                         'answer_time': res.answer_time,  'campaign': campaign}
 
 
@@ -910,12 +931,12 @@ def gather_results(assignments, self_assessments, dimensions):
         if res is not None:
             if sa.user.username not in results_dict[sa.questionnaire.title].keys():
                 results_dict[sa.questionnaire.title][sa.user.username] = {
-                    'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score,
+                    'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score*100,
                     'answer_time': res.answer_time, 'campaign': ''}
             else:
                 if res.answer_time > results_dict[sa.questionnaire.title][sa.user.username]['answer_time']:
                     results_dict[sa.questionnaire.title][sa.user.username] = {
-                        'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score,
+                        'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score*100,
                         'answer_time': res.answer_time,  'campaign': ''}
 
     
@@ -946,9 +967,9 @@ def get_domain_mean_value(dim, dom, info, results_dict):
             for assigned_user in results_dict[questionnaire]:
                 total += results_dict[questionnaire][assigned_user]['score']
                 assignment_num += 1
-    # return round(total / assignment_num) if assignment_num > 0 else 0
-    import random
-    return random.randint(10, 100)
+    return round(total / assignment_num) if assignment_num > 0 else 0
+    # import random
+    # return random.randint(10, 100)
 
 
 def get_assignments(report_level, campaign_id, group_id, include_organisational, include_individual, months):
