@@ -93,10 +93,10 @@
 {% block content %}
     <div class="container-fluid pb-4">
         <div class="row">
-            <div id='filter_container' class="col-lg-3 container-fluid">
+            <div id='filter_container' class="col-lg-3 container-fluid" style='{% if isManager %}  {% else %} display:none; {% endif %}'>
                 <div class='card' style='min-height: unset; 
-                                         /*background-color: #266691; 
-                                         color: white;*/'> 
+                                        /*background-color: #266691; 
+                                        color: white;*/'> 
                     <div class='card-body'>
                         <form>
                             <div class="form-group">
@@ -159,7 +159,9 @@
                 </div>
                 
             </div>
-            <div id='charts_container'class="col-lg-9 container-fluid">
+
+            
+            <div id='charts_container' class=" {% if isManager %} col-lg-9 {% else %} col-lg-12 {% endif %}  container-fluid">
                 <div class='card mb-2' style='height: 55vh; text-align: center;'> 
                     <div class='card-header'> Security Dimensions </div>
                     <div id='chartdiv1' class='chartdiv card-body' style='height: 100%; position: relative; '> </div>
@@ -359,15 +361,20 @@
             function update_charts(){
                 $(".loading").show();
                 $.ajax({
-                    url: "{% url 'sbam:get_reports_data' %}",
+                    
+                    url: {% if isManager %} "{% url 'sbam:get_reports_data' %}" {% else %} "{% url 'sbam:get_user_metrics' %}" {% endif %},
                     type: 'GET',
-                    data: { 
-                        report_level: $("#report-level").val(),
-                        campaign_select: $("#campaign-select").val(),
-                        group_select: $("#group-select").val(),
-                        organisational_check: $("#organisational_check").is(':checked'),
-                        individual_check: $("#individual_check").is(':checked'),
-                        time_period: $("#time_period").val()
+                    data: {
+                        {% if isManager %} 
+                            report_level: $("#report-level").val(),
+                            campaign_select: $("#campaign-select").val(),
+                            group_select: $("#group-select").val(),
+                            organisational_check: $("#organisational_check").is(':checked'),
+                            individual_check: $("#individual_check").is(':checked'),
+                            time_period: $("#time_period").val()
+                        {% else %}
+                            time_period: $("#time_period").val()
+                        {% endif %}
                     },
                     success: function(result) {
                         if (result) {

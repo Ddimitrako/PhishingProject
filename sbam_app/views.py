@@ -814,7 +814,7 @@ def create_campaign(request):
 
 
 
-@advanced_users_only
+# @advanced_users_only
 def reports(request):
     if request.user.is_superuser:
         campaigns = [c for c in Campaign.objects.all() if c.status=='FINISHED']
@@ -824,7 +824,7 @@ def reports(request):
         groups = set([g for g in Group.objects.filter(groupprofile__is_active=True, groupprofile__creator=request.user)] + [g for g in Group.objects.filter(groupprofile__is_active=True) if g.groupprofile.is_global])
     
 
-    return render(request, 'reports.html', {'campaigns': campaigns, 'groups': groups}) 
+    return render(request, 'reports.html', {'campaigns': campaigns, 'groups': groups, 'isManager': False}) 
 
 
 def get_user_metrics(request):
