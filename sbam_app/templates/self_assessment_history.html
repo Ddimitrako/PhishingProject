@@ -30,6 +30,7 @@
                         <th>{% trans "domain"|capfirst %}</th>
                         <th>{% trans "dimension"|capfirst %}</th>
                         <th>{% trans "No. Questions"|capfirst %}</th>
+                        <th>{% trans "Completion date"|capfirst %}</th>
                         <th>{% trans "score"|capfirst %}</th>
                     </tr>
                 </thead>
@@ -62,7 +63,11 @@
                                     {{ self_ass.questionnaire.get_questions_count }}
                                 {% else %}
                                     {{ self_ass.test.title }}
-                                {% endif %}</td>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ self_ass.get_answer_time }}
+                            </td>
                             <td>
                                 {% with score=self_ass.get_result %}
                                     {% get_badge score as badge_type %}
