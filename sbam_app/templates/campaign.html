@@ -15,7 +15,7 @@
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
     <li class="breadcrumb-item"><a href="{% url 'sbam:campaigns' %}">{% trans "campaigns"|capfirst %}</a></li>
-    <li class="breadcrumb-item active">{% trans "campaign"|capfirst %}</li>
+    <li class="breadcrumb-item active">{% trans campaign.title|capfirst %}</li>
 {% endblock %}
 
 {% block content %}
@@ -50,10 +50,10 @@
                                 {% crispy campaign_form %}
 
                                 <div class="row">
-                                    <div class="col col-md-4">
-                                        <label>{% trans "questionnaires"|capfirst %}</label>
+                                    <div class="col-lg-4">
+                                        <div style="text-align: center; font-size: 1.1rem; color: #263c90;"><label>{% trans "questionnaires"|capfirst %}</label></div>
                                         <table id="questionnaires"
-                                               class="table table-hover table-head-fixed table-striped table-responsive">
+                                               class="table table-hover table-head-fixed table-striped ">
                                             <thead>
                                                 <tr>
                                                     <th>{% trans "name"|capfirst %}</th>
@@ -81,10 +81,10 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="col col-md-4">
-                                        <label>{% trans "Tests" %}</label>
+                                    <div class="col-lg-4">
+                                        <div style="text-align: center; font-size: 1.1rem; color: #263c90;"><label>{% trans "Tests" %}</label></div>   
                                         <table id="tests"
-                                               class="table table-hover table-head-fixed table-striped table-responsive">
+                                               class="table table-hover table-head-fixed table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>{% trans "name"|capfirst %}</th>
@@ -112,19 +112,23 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="col col-md-4">
-                                        <label>{% trans "Users" %}</label>
+                                    <div class="col-lg-4">
+                                        <div style="text-align: center; font-size: 1.1rem; color: #263c90;"><label>{% trans "Users" %}</label></div>
                                         <table id="users"
-                                               class="table table-hover table-head-fixed table-striped table-responsive">
+                                               class="table table-hover table-head-fixed table-striped ">
                                             <thead>
                                                 <tr>
                                                     <th>{% trans "Full Name" %}</th>
+                                                    <th>{% trans "Job Title" %}</th>
+                                                    <th>{% trans "Department" %}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {% for last_name, first_name in assignees %}
+                                                {% for last_name, first_name, job_title, department in assignees %}
                                                     <tr>
                                                         <td>{{ last_name }} {{ first_name }}</td>
+                                                        <td>{{ job_title }}</td>
+                                                        <td>{{ department }}</td>
                                                     </tr>
                                                 {% endfor %}
                                             </tbody>
@@ -164,4 +168,13 @@
             </div>
         </div>
     </form>
+{% endblock %}
+
+
+{% block extra_js%}
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 {% endblock %}

@@ -16,10 +16,10 @@
     <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
     {% if is_assignment == 'true' %}
         <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "assignments"|capfirst %}</a></li>
-        <li class="breadcrumb-item active"><a href="{% url 'sbam:assignments' quest_id  %}">{{ quest_id }}</a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'sbam:assignments' quest_id  %}">{{ quest_title }}</a></li>
     {% else %}
         <li class="breadcrumb-item"><a href="{% url 'sbam:self_assessment' %}">{% trans "self assessment"|capfirst %}</a></li>
-        <li class="breadcrumb-item active"><a href="{% url 'sbam:self_assessment_completion' quest_id  %}">{{ quest_id }}</a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'sbam:self_assessment_completion' quest_id  %}">{{ quest_title }}</a></li>
     {% endif %}
 {% endblock %}
 

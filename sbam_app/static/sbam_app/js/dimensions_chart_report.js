@@ -57,6 +57,7 @@ am4core.ready(function() {
     series.columns.template.tension = 1;
     series.columns.template.fillOpacity = 0.75;
     series.interpolationDuration = 1500;
+    series.columns.template.cursorOverStyle = am4core.MouseCursorStyle.pointer;
 
     
 

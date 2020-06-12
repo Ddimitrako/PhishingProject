@@ -17,7 +17,7 @@
 {% block content %}
     <div class="card card-primary card-outline">
         <div class="card-body">
-            <a class="btn btn-outline-info btn-sm mb-4 float-right"
+            <a class="btn btn-success btn-md mb-4 float-right"
                href="{% url 'sbam:self_assessment' %}" role="button"
                title="{% trans "Execute a New Assessment" %}">
                 <i class="fas fa-plus-circle mr-2"></i>{% trans "Execute a New Assessment" %}
@@ -26,7 +26,6 @@
                    class="table table-bordered table-hover table-head-fixed table-responsive-md table-striped">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>{% trans "title"|capfirst %}</th>
                         <th>{% trans "domain"|capfirst %}</th>
                         <th>{% trans "dimension"|capfirst %}</th>
@@ -37,7 +36,6 @@
                 <tbody>
                     {% for self_ass in self_assessment_history_list %}
                         <tr>
-                            <td></td>
                             <td>
                                 {% if self_ass.questionnaire %}
                                     {{ self_ass.questionnaire.title }}

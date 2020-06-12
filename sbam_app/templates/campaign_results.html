@@ -1,10 +1,10 @@
 {% load i18n custom_tags %}
 
 <div class="row">
-    <div class="col col-md-4">
+    <div class="col-md-12">
         <label>{% trans "Results Per User" %}</label>
         <table id="table"
-               class="table table-bordered table-hover table-head-fixed table-striped table-responsive"
+               class="table table-bordered table-hover table-head-fixed table-striped"
                style="height: 410px;">
             <thead>
                 <tr>
@@ -18,7 +18,7 @@
                     <tr>
                         <td>
                             <div class="progress progress-sm align-self-center" style="border-radius: 20px;">
-                                <div class="progress-bar bg-success" style="width:{{ progress }}">
+                                <div class="progress-bar bg-success" style="width:{{ progress }}" data-toggle="tooltip" title="{{ progress }}" >
                                 </div>
                             </div>
                         </td>

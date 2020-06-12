@@ -26,8 +26,8 @@
 
 {% block content %}
     <div class="container assignmets">
-        <div class="row" style=''>
-            <div class="col-lg-6 main_cols">
+        <div class="row" style='min-height: 35vh;'>
+            <div class="col-xl-6 main_cols">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
 
@@ -131,7 +131,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 main_cols">
+            <div class="col-xl-6 main_cols">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
                         <div class="d-sm-inline-flex w-100 justify-content-between">
@@ -168,28 +168,32 @@
                                 <p>No completed assignments</p>
                             {% endfor %}
                         </ul>
-                        <div class="row assessment_history_row">
-                            <div class="col-sm-4">
-                                <a class="btn btn-xs btn-primary assessment_history_btn" href='{% url 'sbam:self_assessment_history' %}'  role="button" style='color: white; '> {% trans "View More" %} </a>
+                        {% if self_assessment|length > 0%}
+                            <div class="row assessment_history_row">
+                                <div class="col-sm-4">
+                                    <a class="btn btn-xs btn-primary assessment_history_btn" href='{% url 'sbam:self_assessment_history' %}'  role="button" style='color: white; '> {% trans "View More" %} </a>
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row" style='margin-top: 1vh;'>
-            <div class="col-lg-6 main_cols">
+        <div class="row" style='margin-top: 1vh; min-height: 50vh;'>
+            <div class="col-xl-6 main_cols">
                 <div class='text-center' style='height: 100%;'>
                     <h3> {% trans "My Security Culture Status" %} </h3>
                     <div id='chartdiv1' class='chartdiv'> </div>
                 </div>             
             </div>
 
-            <div class="col-lg-6 main_cols">
-                <div id='recommendations' class='text-center' style='height: 100%;'>
+            <div class="col-xl-6 main_cols">
+                <div id='recommendations' class='text-center' style='height: 100%; '>
+                    
                     <h3> {% trans "Recommendations/Tips" %} </h3>
-                    <ul class="list-group" style='padding: 1rem;'>
+                    <ul class="list-group" style='padding: 1rem;position: relative;height: 65%; color: #5f5f5f7a;'>
+                        <div id='overlay'><h3>Coming Soon</h3></div>
                         <li class="list-group-item"> Apply stronger passwords on your accounts. </li>
                         <li class="list-group-item"> Avoid sharing your phone number. </li>
                         <li class="list-group-item"> Do not reply to 'suspicious' emails. </li>

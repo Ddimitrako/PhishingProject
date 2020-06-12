@@ -162,7 +162,7 @@ $(document).ready(function(){
         let jumbotron = '<div data-bind="css: css.header" class="sv-title sv-container-modern__title" style="margin-left: 0px;margin-right: 0px;">'
         +'<div class="row">'
         +    '<div class="jumbotron infos" style="font-weight: 400; color: #dae1e7 !important; '
-        +            'background-color: #004895; padding: 1.5rem 1.5rem; margin-bottom: 0; min-width: 50%">'
+        +            'background-color: #004895; padding: 1.5rem 1.5rem; margin-bottom: 0; width: 100%">'
         +        '<div class="row" style="margin-bottom: 1%;">'
         +            '<h2 class="display-4">'+quest_title+'</h2>'
         +        '</div>';

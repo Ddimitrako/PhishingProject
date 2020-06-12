@@ -280,8 +280,8 @@ def calculate_campaign_result(campaign, assignments):
         except ObjectDoesNotExist:
             pass
 
-        score = (sum / total) if total != 0.0 else total
-        result = (user, '{0:.2%}'.format(score), '{0:.0%}'.format(no_assignments / assignments))
+        score = round(sum / total) if total != 0.0 else round(total)
+        result = (user, '{0}%'.format(score), '{0:.0%}'.format(no_assignments / assignments))
         results.append(result)
 
     return results
@@ -697,7 +697,7 @@ def campaign(request, id):
             disable_form(campaign_form)
 
     assignees = Assignment.objects.filter(campaign=campaign). \
-        values_list('user__last_name', 'user__first_name'). \
+        values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title', 'user__userprofile__department'). \
         distinct().order_by('user__last_name')
     questionnaires = QuestionnaireAssignment.objects.filter(campaign=campaign). \
         values_list('questionnaire__title', 'questionnaire__domain__dimension__level'). \
@@ -808,12 +808,13 @@ def reports(request):
 
 def get_user_metrics(request):
     months = int(request.GET.get('time_period'))
-
-    graph_data = dict()
-    graph_data['dimensions'] = list()
+    
     assignments = get_user_assignments(request.user, months)
-    # print(assignments)
-    return get_graph_data(assignments, include_individual=True)
+
+    self_assessments = get_user_self_assessments(request.user, months)
+
+    dimensions = Dimension.objects.filter(level=1)
+    return get_graph_data(assignments, self_assessments, dimensions)
 
 
 @advanced_users_only
@@ -831,21 +832,23 @@ def get_reports_data(request):
     # print(include_organisational, include_individual)
     months = int(request.GET.get('time_period'))
 
-    assignments = get_assignments(report_level, campaign_id, group_id, include_organisational, include_individual, months)
-    return get_graph_data(assignments)
-    
-    
-def get_graph_data(assignments, include_organisational=False, include_individual=False): 
-    graph_data = dict()
-    graph_data['dimensions'] = list()   
-    info, results_dict = get_infos(assignments, include_organisational, include_individual)
-    # print(results_dict)
-    # print(info)
+
     dimensions = Dimension.objects.all()
     if not include_organisational:
         dimensions = dimensions.exclude(level=0)
     if not include_individual:
         dimensions = dimensions.exclude(level=1)
+
+    assignments = get_assignments(report_level, campaign_id, group_id, include_organisational, include_individual, months)
+    return get_graph_data(assignments, [], dimensions)
+    
+    
+def get_graph_data(assignments, self_assessments, dimensions): 
+    graph_data = dict()
+    graph_data['dimensions'] = list()   
+    info, results_dict = gather_results(assignments, self_assessments, dimensions)
+    # print(results_dict)
+    # print(info)
 
     for dim in dimensions:
         dim_dict = dict()
@@ -881,26 +884,10 @@ def get_graph_data(assignments, include_organisational=False, include_individual
     return JsonResponse(data)
     
 
-def get_infos(assignments, include_organisational=False, include_individual=False):
-    info = dict()
-    dimensions = Dimension.objects.all()
-    if not include_organisational:
-        dimensions = dimensions.exclude(level=0)
-    if not include_individual:
-        dimensions = dimensions.exclude(level=1)
-
-    for dim in dimensions:
-        info[dim.title] = dict()
-        for dom in dim.domain_set.all():
-            info[dim.title][dom.title] = dict()
-            for q in dom.questionnaire_set.filter(is_active=1):
-                info[dim.title][dom.title][q.title] = list()
-
-    # print(len(qas))
+def gather_results(assignments, self_assessments, dimensions):
     results_dict = dict()
     for qa in assignments:
         campaign = Campaign.objects.filter(assignment=qa)
-        # print(campaign)
         if qa.questionnaire.title not in results_dict.keys():
             results_dict[qa.questionnaire.title] = dict()
         res = qa.assignmentresult_set.first()
@@ -914,6 +901,31 @@ def get_infos(assignments, include_organisational=False, include_individual=Fals
                     results_dict[qa.questionnaire.title][qa.user.username] = {
                         'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score,
                         'answer_time': res.answer_time,  'campaign': campaign}
+
+
+    for sa in self_assessments:
+        if sa.questionnaire.title not in results_dict.keys():
+            results_dict[sa.questionnaire.title] = dict()
+        res = sa.selfassessmentresult_set.first()
+        if res is not None:
+            if sa.user.username not in results_dict[sa.questionnaire.title].keys():
+                results_dict[sa.questionnaire.title][sa.user.username] = {
+                    'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score,
+                    'answer_time': res.answer_time, 'campaign': ''}
+            else:
+                if res.answer_time > results_dict[sa.questionnaire.title][sa.user.username]['answer_time']:
+                    results_dict[sa.questionnaire.title][sa.user.username] = {
+                        'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score,
+                        'answer_time': res.answer_time,  'campaign': ''}
+
+    
+    info = dict()
+    for dim in dimensions:
+        info[dim.title] = dict()
+        for dom in dim.domain_set.all():
+            info[dim.title][dom.title] = dict()
+            for q in dom.questionnaire_set.filter(is_active=1):
+                info[dim.title][dom.title][q.title] = list()
 
     for dim in info.keys():
         for dom in info[dim].keys():
@@ -959,3 +971,10 @@ def get_user_assignments(user, months):
     qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, user=user, campaign__end_date__gte=date.today() - relativedelta(months=months))
     qas = qas.exclude(questionnaire__domain__dimension__level=1)
     return qas.order_by('questionnaire')
+
+
+
+def get_user_self_assessments(user, months):
+    qsass = [q for q in QuestionnaireSelfAssessment.objects.filter(questionnaire__is_active=1, user=user).order_by('questionnaire') if q.get_answer_time() > date.today() - relativedelta(months=months)]
+    return qsass
+
