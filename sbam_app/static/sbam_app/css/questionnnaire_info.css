@@ -16,3 +16,7 @@
 .update-button{
     display: none;
 }
+
+.quest-general-info{
+    padding-inline-start: 0px;
+}

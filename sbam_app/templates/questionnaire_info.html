@@ -84,12 +84,7 @@
                 <a class="flex-sm-fill text-center nav-link" id="dom-dscr-tab" data-toggle="pill"
                    href="#dom-dscr"
                    aria-controls="dom-dscr"
-                   aria-selected="false"><i class="fas fa-book-open"></i> {% trans "Domain Description" %}
-                </a>
-                <a class="flex-sm-fill text-center nav-link" id="dim-dscr-tab" data-toggle="pill"
-                   href="#dim-dscr"
-                   aria-controls="dim-dscr"
-                   aria-selected="false"><i class="fas fa-book-open"></i> {% trans "Dimension Description" %}
+                   aria-selected="false"><i class="fas fa-book-open"></i> {% trans "General Info" %}
                 </a>
             </nav>
 
@@ -102,43 +97,34 @@
                                 <div class="row">
                                     {% for question_attr_key, question_attr_value in question_value.items %}
                                         {% if question_attr_key == 'question_options' %}
-                                            {% if question_attr_value|length <= 5 %}
-                                                <div class="col-sm-4 text-center align-self-center">
-                                                    <div class="d-flex flex-column bd-highlight mb-2 align-self-center">
+                                            <div class="col-sm-8 align-self-center">
+                                                <div class="row">
+                                                    <ul>
                                                         {% for options_dicts in question_attr_value %}
                                                             {% for key, value in options_dicts.items %}
                                                                 {% if key == 'text' %}
-                                                                    <div class="p-2-highlight">
-                                                                        {{ value }}
-                                                                    </div>
+                                                                    <li>
+                                                                        <div class="p-2-highlight">
+                                                                            {{ value }}
+                                                                        </div>
+                                                                    </li>
                                                                 {% endif %}
                                                             {% endfor %}
                                                         {% endfor %}
-                                                    </div>
-                                            {% else %}
-                                                <div class="col-sm-4 align-self-center">
-                                                    <div class="d-flex w-auto justify-content-between align-items-start">
-                                                        {% for options_dicts in question_attr_value %}
-                                                            {% for key, value in options_dicts.items %}
-                                                                {% if key == 'text' %}
-                                                                    {{ value }}
-                                                                {% endif %}
-                                                            {% endfor %}
-                                                        {% endfor %}
-                                                    </div>
+                                                    </ul>
                                                 </div>
-                                            {% endif %}
+                                            </div>
                                         {% else %}
                                             {% for key_attr, val in question_attr_value.items %}
                                                 {% if question_attr_key == 'question' %}
                                                     {% if key_attr == 'text' %}
-                                                        <div class="col-sm-4 align-self-center">
+                                                        <div class="col-sm-3 align-self-center">
                                                             <div class="p-2 bd-highlight align-self-center">
-                                                                {{ forloop.parentloop.parentloop.counter }}.{{ val }}
+                                                                {{ forloop.parentloop.parentloop.counter }}. {{ val }}
                                                             </div>
                                                         </div>
                                                     {% elif key_attr == 'is_active' %}
-                                                        <div class="col-sm-4 align-self-center text-center order-3">
+                                                        <div class="col-sm-1 align-self-center text-center order-3">
                                                             <div class=" p-2 bd-highlight align-self-center status-switch">
                                                                 <div class="custom-control custom-switch">
                                                                     {% if val == 1 %}
@@ -165,15 +151,26 @@
                 </div>
                 <div class="tab-pane fade" id="dom-dscr" role="tabpanel"
                      aria-labelledby="dom-dscr-tab">
-                <div class="d-flex w-auto justify-content-between align-items-start">
-                    <p>{{ quest.domain.description }}</p>
-                </div>
-                </div>
-                <div class="tab-pane fade" id="dim-dscr" role="tabpanel"
-                     aria-labelledby="dim-dscr-tab">
-                    <div class="d-flex w-auto justify-content-between align-items-start">
-                        <p>{{ quest.domain.dimension.description }}</p>
-                    </div>
+                        <ul class="quest-general-info">
+                            <li  class="list-group-item align-items-start">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class=" p-2 bd-highlight align-self-center">
+                                            <h5>{% trans "Dimension Description"|capfirst %}</h5>
+                                            <p>{{ quest.domain.dimension.description|default:'No info available at the moment' }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li  class="list-group-item align-items-start">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h5>{% trans "Domain Description"|capfirst %}</h5>
+                                        <p>{{ quest.domain.description|default:'No info available at the moment' }}</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                 </div>
             </div>
         </div>
