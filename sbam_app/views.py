@@ -765,7 +765,6 @@ def create_campaign(request):
         title = request.POST['title']
         start_date = request.POST['start_date']
         end_date = request.POST['end_date']
-        print(questionnaires, users, current_user, tests, title, start_date, end_date)
         try:
             with transaction.atomic():
                 new_campaign = Campaign(title=title, start_date=start_date, end_date=end_date, owner=current_user)

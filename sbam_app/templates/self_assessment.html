@@ -22,12 +22,12 @@
         <tr>
             <th></th>
             <th>{% trans "title"|capfirst %}</th>
-            <th>{% trans "domain"|capfirst %}</th>
-            <th>{% trans "Domain description" %}</th>
             <th>{% trans "dimension"|capfirst %}</th>
-            <th>{% trans "Dimension description" %}</th>
-            <th>{% trans "No. Questions" %}</th>
-            <th>{% trans "Best score" %}</th>
+            <th>{% trans "dimension Description"|capfirst %}</th>
+            <th>{% trans "domain"|capfirst %}</th>
+            <th>{% trans "domain Description"|capfirst %}</th>
+            <th>{% trans "no. Questions"|capfirst %}</th>
+            <th>{% trans "best Score"|capfirst %}</th>
         </tr>
     </thead>
 
@@ -40,10 +40,10 @@
                         {{ questionnaire.title|default:'Not Available' }}
                     </a>
                 </td>
-                <td>{{ questionnaire.domain|default:'Not Available' }}</td>
-                <td>{{ questionnaire.domain.description|default:'Not Available' }}</td>
                 <td>{{ questionnaire.domain.dimension|default:'Not Available' }}</td>
                 <td>{{ questionnaire.domain.dimension.description|default:'Not Available' }}</td>
+                <td>{{ questionnaire.domain|default:'Not Available' }}</td>
+                <td>{{ questionnaire.domain.description|default:'Not Available' }}</td>
                 <td>{{ questionnaire.get_questions_count}}</td>
                 <td>
                     {% with score=questionnaire.best_score %}
@@ -61,6 +61,6 @@
 
 {% block template_js %}
     <script>
-        datatable('#table', [0,3, 5], [], [], false);
+        datatable('#table', [0,1], [], [], false);
     </script>
 {% endblock %}
