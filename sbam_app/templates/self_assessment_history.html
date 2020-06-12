@@ -1,0 +1,90 @@
+{% extends "base_form.html" %}
+
+{% load i18n static %}
+{% load i18n custom_tags %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:self_assessment' %}">{% trans "My Evaluations" %}</a></li>
+{% endblock %}
+
+{% block page_name %}
+    <div class="row">
+        <strong>{% trans "My Self Evaluation History" %}</strong>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <a class="btn btn-outline-info btn-sm mb-4 float-right"
+               href="{% url 'sbam:self_assessment' %}" role="button"
+               title="{% trans "Execute a New Assessment" %}">
+                <i class="fas fa-plus-circle mr-2"></i>{% trans "Execute a New Assessment" %}
+            </a>
+            <table id="table"
+                   class="table table-bordered table-hover table-head-fixed table-responsive-md table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>{% trans "title"|capfirst %}</th>
+                        <th>{% trans "domain"|capfirst %}</th>
+                        <th>{% trans "dimension"|capfirst %}</th>
+                        <th>{% trans "No. Questions"|capfirst %}</th>
+                        <th>{% trans "score"|capfirst %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for self_ass in self_assessment_history_list %}
+                        <tr>
+                            <td></td>
+                            <td>
+                                {% if self_ass.questionnaire %}
+                                    {{ self_ass.questionnaire.title }}
+                                {% else %}
+                                    {{ self_ass.test.title }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if self_ass.questionnaire %}
+                                   {{ self_ass.questionnaire.domain|default:'Not Available' }}
+                                {% else %}
+                                    {{ self_ass.test.domain|default:'Not Available' }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if self_ass.questionnaire %}
+                                    {{ self_ass.questionnaire.domain.dimension|default:'Not Available' }}
+                                {% else %}
+                                    {{ self_ass.test.domain.dimension|default:'Not Available' }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if self_ass.questionnaire %}
+                                    {{ self_ass.questionnaire.get_questions_count }}
+                                {% else %}
+                                    {{ self_ass.test.title }}
+                                {% endif %}</td>
+                            <td>
+                                {% with score=self_ass.get_result %}
+                                    {% get_badge score as badge_type %}
+                                    <span {% if badge_type != 'Not Completed Yet' %}class="badge {{ badge_type }}"{% endif %}>
+                                        {{ score }}
+                                    </span>
+                                {% endwith %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-muted">{% trans "No Self Assessment executed!" %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block  extra_js  %}
+{% endblock %}

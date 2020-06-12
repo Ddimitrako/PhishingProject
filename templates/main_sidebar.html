@@ -61,11 +61,23 @@
                                     </li>
                                 </ul> {% endcomment %}
                             </li>
+                            <li class="nav-item">
+                                <a href="{% url 'sbam:self_assessment_history' %}" class="nav-link">
+                                    <i class="nav-icon fas fa-chalkboard"></i>
+                                    <p>{% trans "Self Evaluation" %}</p>
+                                </a>
+                            </li>
                             {% if request.user.is_superuser or request.user.userprofile.is_manager %}
                                 <li class="nav-item">
                                     <a href="{% url 'sbam:campaigns' %}" class="nav-link">
                                         <i class="nav-icon fas fa-edit"></i>
                                         <p>{% trans "campaigns"|capfirst %}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'sbam:questionnaires_list' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-clipboard"></i>
+                                        <p>{% trans "questionnaires"|capfirst %}</p>
                                     </a>
                                 </li>
                             {% endif %}

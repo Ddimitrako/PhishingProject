@@ -1,0 +1,62 @@
+{% extends "base_datatable.html" %}
+
+{% load i18n static %}
+{#{% load i18n custom_tags %}#}
+{#{% load i18n %}#}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:questionnaires_list'  %}">{% trans "Questionnaires" %}</a></li>
+{% endblock %}
+
+{% block page_name %}
+    <div class="row">
+        {% trans "Questionnaires" %}
+    </div>
+{% endblock %}
+
+{% block table_content %}
+    <thead>
+        <tr>
+            <th></th>
+            <th>{% trans "title"|capfirst %}</th>
+            <th>{% trans "status"|capfirst %}</th>
+            <th>{% trans "domain"|capfirst %}</th>
+            <th>{% trans "domain Description"|capfirst %}</th>
+            <th>{% trans "dimension"|capfirst %}</th>
+            <th>{% trans "dimension Description"|capfirst %}</th>
+            <th>{% trans "No. Questions" %}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for questionnaire in questionnaires %}
+            <tr>
+                <td></td>
+                <td>
+                    <a href="{% url 'sbam:questionnaire_info' questionnaire.id %}">
+                        {{ questionnaire.title}}
+                    </a>
+                </td>
+                <td>{{ questionnaire.get_status|default:'Not Available' }}</td>
+                <td>{{ questionnaire.domain|default:'Not Available' }}</td>
+                <td>{{ questionnaire.domain.description|default:'Not Available' }}</td>
+                <td>{{ questionnaire.domain.dimension|default:'Not Available' }}</td>
+                <td>{{ questionnaire.domain.dimension.description|default:'Not Available' }}</td>
+                <td>{{ questionnaire.get_questions_count}}</td>
+            </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="8" class="text-muted">{% trans "No Available questionnaires!" %}</td>
+                </tr>
+        {% endfor %}
+    </tbody>
+
+{% endblock %}
+
+{% block template_js %}
+    <script>
+        datatable('#table', [0,4,6], [0,4,6], [], false);
+    </script>
+{% endblock %}

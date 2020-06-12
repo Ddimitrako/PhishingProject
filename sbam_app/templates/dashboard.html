@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n custom_tags %}
 
 {% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
 
@@ -9,7 +10,7 @@
 
 {% block page_name %}
     <div class="row">
-        <strong><i class="nav-icon fas fa-tachometer-alt mr-2"></i> {% trans "Dashboard" %}</strong>
+        <strong>{% trans "Dashboard" %}</strong>
     </div>
 {% endblock %}
 
@@ -26,33 +27,34 @@
 {% block content %}
     <div class="container assignmets">
         <div class="row" style=''>
-            <div class="col col-md-6">
+            <div class="col-lg-6 main_cols">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
-                        <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="active-ass-tab" data-toggle="pill"
-                                   href="#active-ass" role="tab"
+
+                        <nav class="nav nav-tabs flex-column flex-sm-row" id="custom-tabs-three-tab">
+{#                            <li class="nav-item">#}
+                                <a class="flex-sm-fill text-sm-center nav-link active" id="active-ass-tab" data-toggle="pill"
+                                   href="#active-ass"
                                    aria-controls="active-ass"
                                    aria-selected="true"><i class="fas fa-hourglass-half"></i>
                                     {% trans "Active Assignments" %}
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="compl-ass-tab" data-toggle="pill"
-                                   href="#compl-ass" role="tab"
+{#                            </li>#}
+{#                            <li class="nav-item">#}
+                                <a class="flex-sm-fill text-sm-center nav-link" id="compl-ass-tab" data-toggle="pill"
+                                   href="#compl-ass"
                                    aria-controls="compl-ass"
                                    aria-selected="false"><i class="fas fa-check"></i> {% trans "Completed Assignments" %}
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="expired-ass-tab" data-toggle="pill"
-                                   href="#expired-ass" role="tab"
+{#                            </li>#}
+{#                            <li class="nav-item">#}
+                                <a class="flex-sm-fill text-sm-center nav-link" id="expired-ass-tab" data-toggle="pill"
+                                   href="#expired-ass"
                                    aria-controls="expired-ass"
                                    aria-selected="false"><i class="fas fa-calendar-times"></i> {% trans "Expired Assignments" %}
                                 </a>
-                            </li>
-                        </ul>
+{#                            </li>#}
+                        </nav>
 
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="active-ass" role="tabpanel"
@@ -85,6 +87,7 @@
                                     <p>No active assignments</p>
                                 {% endif %}
                             </div>
+
                             <div class="tab-pane fade" id="compl-ass" role="tabpanel"
                                  aria-labelledby="compl-ass-tab">
                                 <ul class="list-group active-assignments">
@@ -99,11 +102,10 @@
                                                 <div class="align-self-end"><strong>{% trans "Completed at" %}: </strong> {{ compl_ass.get_answer_time }}</div>
                                             </div>
                                         </li>
+                                    {% empty %}
+                                        <p>No completed assignments</p>
                                     {% endfor %}
-                                </ul>
-                            {% if completed_assignments|length == 0 %}
-                                <p>No completed assignments</p>
-                            {% endif %}
+                                 </ul>
                             </div>
                             <div class="tab-pane fade" id="expired-ass" role="tabpanel"
                                  aria-labelledby="expired-ass-tab">
@@ -119,60 +121,72 @@
                                                 <div class="align-self-end"><strong>{% trans "Ended at" %}: </strong> {{ exp_ass.campaign.end_date }}</div>
                                             </div>
                                         </li>
+                                    {% empty %}
+                                        <p>No expired assignments</p>
                                     {% endfor %}
                                 </ul>
-                            {% if expired_assignments|length == 0 %}
-                                <p>No expired assignments</p>
-                            {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col col-md-6">
+            <div class="col-lg-6 main_cols">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
-                        <h3 style="display: inline-block; width: 100%;"> {% trans "My Self-Evaluations" %} </h3>
-                        <a class="btn btn-sm btn-success" href='#'  role="button" style='color: white; position: absolute; right: 1.25rem;'> Start </a>
-                        <ul class="list-group active-campaigns">
-                            {# {% for eval in 'xxxx' %} #}
-                                <li  class="list-group-item  flex-column align-items-start">
-                                    <div style="position: relative;">
-                                        <strong class="assignment_title">Password protection </strong>
-                                        <strong class="label text-warning" style="position: absolute; top: 5px; right: 0;"> 28% </strong>
+                        <div class="d-sm-inline-flex w-100 justify-content-between">
+                            <div class="align-self-start">
+                                <h4> {% trans "My Self-Evaluations" %} </h4>
+                            </div>
+                            <div class="align-self-end ">
+                                <a class="btn btn-xs btn-success new_assessment_btn" href='{% url 'sbam:self_assessment' %}'  role="button" style='color: white; '> {% trans "Start New!" %} </a>
+                            </div>
+
+                        </div>
+                        <ul class="list-group active-assignments">
+                            {% for self_ass in self_assessment %}
+                                <li  class="list-group-item  flex-column align-items-start self_assessm_item">
+                                    <div class="row">
+                                        <div class="col-sm-5 mr-auto">
+                                            {% if self_ass.questionnaire %}
+                                                <strong class="assignment_title">{{ self_ass.questionnaire.title }}</strong>
+                                            {% else %}
+                                                <strong class="assignment_title">{{ self_ass.test.title }}</strong>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-sm-4 auto scores"><strong>{% trans "On" %}: </strong> {{ self_ass.get_answer_time }}</div>
+                                        <div class="col-sm-3 auto scores"><strong>{% trans "score"|capfirst %}: </strong> {% with score=self_ass.get_result %}
+                                                {% get_badge score as badge_type %}
+                                                <span {% if badge_type != 'Not Completed Yet' %}class="badge {{ badge_type }}"{% endif %}>
+                                                    {{ score }}
+                                                </span>
+                                            {% endwith %}
+                                        </div>
                                     </div>
                                 </li>
-                                <li  class="list-group-item  flex-column align-items-start">
-                                    <div style="position: relative;">
-                                        <strong class="assignment_title">Email fraud prevention  </strong>
-                                        <strong class="label text-info" style="position: absolute; top: 5px; right: 0;"> 72% </strong>
-                                    </div>
-                                </li>
-                                <li  class="list-group-item  flex-column align-items-start">
-                                    <div style="position: relative;">
-                                        <strong class="assignment_title">Security Awareness </strong>
-                                        <strong class="label text-success" style="position: absolute; top: 5px; right: 0;"> 90% </strong>
-                                    </div>
-                                </li>
-                           {# {% empty %} #}
-                             {#   <li>No self-evaluations</li> #}
-                           {# {% endfor %} #}
+                            {% empty %}
+                                <p>No completed assignments</p>
+                            {% endfor %}
                         </ul>
+                        <div class="row assessment_history_row">
+                            <div class="col-sm-4">
+                                <a class="btn btn-xs btn-primary assessment_history_btn" href='{% url 'sbam:self_assessment_history' %}'  role="button" style='color: white; '> {% trans "View More" %} </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row" style='height: 40vh; margin-top: 1vh;'>
-            <div class="col col-md-6">
+        <div class="row" style='margin-top: 1vh;'>
+            <div class="col-lg-6 main_cols">
                 <div class='text-center' style='height: 100%;'>
                     <h3> {% trans "My Security Culture Status" %} </h3>
                     <div id='chartdiv1' class='chartdiv'> </div>
                 </div>             
             </div>
 
-            <div class="col col-md-6">
+            <div class="col-lg-6 main_cols">
                 <div id='recommendations' class='text-center' style='height: 100%;'>
                     <h3> {% trans "Recommendations/Tips" %} </h3>
                     <ul class="list-group" style='padding: 1rem;'>

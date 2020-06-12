@@ -39,7 +39,7 @@ class Domain(Model):
         on_delete=CASCADE,
         help_text=_('Dimension this domain belongs to')
     )
-    title = CharField(_('title'), max_length=50, help_text=_('Domain title'))
+    title = CharField(_('title'), max_length=100, help_text=_('Domain title'))
     description = TextField(_('description'), blank=True, null=True, default='', help_text=_('Domain description'))
 
     def __str__(self):
@@ -51,7 +51,7 @@ class Domain(Model):
 
 
 class Campaign(Model):
-    title = CharField(_('title'), max_length=20, help_text=_('Campaign title'))
+    title = CharField(_('title'), max_length=100, help_text=_('Campaign title'))
     start_date = DateField(_('start date'), help_text=_('Campaign start date'))
     end_date = DateField(_('end date'), help_text=_('Campaign end date'))
     owner = ForeignKey(
@@ -163,6 +163,12 @@ class Questionnaire(Model):
 
     def __str__(self):
         return self.title
+
+    def get_questions_count(self):
+        return self.question_set.all().count()
+
+    def get_status(self):
+        return 'Active' if self.is_active else 'Inactive'
 
     class Meta:
         verbose_name = _('questionnaire')
@@ -356,6 +362,79 @@ class AssignmentResult(Model):
     class Meta:
         verbose_name = _('assignment result')
         verbose_name_plural = _('assignment results')
+
+
+class SelfAssessment(Model):
+    user = ForeignKey(User, verbose_name=_('user'), on_delete=CASCADE, help_text=_('Assignee'))
+
+    def get_answer_time(self):
+        return self.selfassessmentresult_set.get(selfassessment=self).answer_time
+
+    def get_result(self):
+        return '{0:.2%}'.format(self.selfassessmentresult_set.get(selfassessment=self).score)
+
+
+class QuestionnaireSelfAssessment(SelfAssessment):
+    questionnaire = ForeignKey(
+        Questionnaire,
+        verbose_name=_('questionnaire'),
+        on_delete=CASCADE,
+        help_text=_('Questionnaire assigned')
+    )
+
+    def __str__(self):
+        return self.questionnaire.title + ' has been assigned to ' + self.user.username
+
+    class Meta:
+        verbose_name = _('questionnaire assignment')
+        verbose_name_plural = _('questionnaire assignments')
+
+
+class TestSelfAssessment(SelfAssessment):
+    test = ForeignKey(Test, verbose_name=_('test'), on_delete=CASCADE, help_text=_('Test assigned'))
+
+    def __str__(self):
+        return self.test + ' has been assigned to ' + self.user
+
+    class Meta:
+        verbose_name = _('test assignment')
+        verbose_name_plural = _('test assignments')
+
+
+class SelfAssessmentResult(Model):
+    selfassessment = ForeignKey(
+        SelfAssessment,
+        verbose_name=_('self assessment'),
+        on_delete=CASCADE,
+        help_text=_('self assessment survey this result refers to')
+    )
+    answer_time = DateField(_('answer time'), help_text=_('The date this self assessment survey result was achieved'))
+    score = FloatField(_('score'), help_text=_('Achieved self assessment survey score'))
+
+
+class SelfAssessmentQuestionAnswer(Model):
+    question = ForeignKey(
+        Question,
+        verbose_name=_('question'),
+        on_delete=CASCADE,
+        help_text=_('The question this answer refers to')
+    )
+    selfassessment = ForeignKey(
+        QuestionnaireSelfAssessment,
+        verbose_name=_('assignment'),
+        on_delete=CASCADE,
+        help_text=_('The self assessment survey this answer belongs to')
+    )
+    question_option = ForeignKey(
+        QuestionOption,
+        verbose_name=_('question option'),
+        on_delete=CASCADE,
+        help_text=_('The option selected by the assignee')
+    )
+
+    class Meta:
+        verbose_name = _('self assessment question answer')
+        verbose_name_plural = _('self assessment question answers')
 
 
 # User Management Model

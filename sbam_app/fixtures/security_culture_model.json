@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "title": "Assets",
-      "description": "This dimension refers to organization's assets (including people, buildings, machines, systems and information assets) and includes policies that enforce several levels of confidentiality, availability, and integrity controls.",
+      "description": "This dimension includes the designment, development, documentation and implementation of security policies and procedures that aim to protect an organisation’s assets (including people, buildings, machines, systems and information assets) by enforcing several levels of confidentiality, availability, and integrity controls.",
       "level": 0
     }
   },
@@ -13,7 +13,7 @@
     "pk": 2,
     "fields": {
       "title": "Continuity",
-      "description": "This dimension is meant to ensure operations, services and production continuity for an organization at predefined levels while safeguarding the reputation and interests of key stakeholders in cases of disruptive incidents.",
+      "description": "This dimension includes the planning, development, documentation and implementation of security policies and procedures that aim to ensure operations, services and production continuity for an organisation at predefined levels while safeguarding the reputation and interests of key stakeholders in cases of disruptive incidents.",
       "level": 0
     }
   },
@@ -22,7 +22,7 @@
     "pk": 3,
     "fields": {
       "title": "Access and Trust",
-      "description": "This dimension focuses on appropriate access to resources across the organization while clarifying different roles and permissions. In addition, it delimits any interactions the organization has with third-party factors, such as suppliers, customers, authorities, and so on.",
+      "description": "This dimension includes the designment, development, documentation and implementation of business processes, policies and procedures that aim to ensure appropriate access to resources across the organisation while clarifying different roles and permissions. In addition, it delimits any interactions the organisation has with third-party factors, such as suppliers, customers, authorities, etc.",
       "level": 0
     }
   },
@@ -31,7 +31,7 @@
     "pk": 4,
     "fields": {
       "title": "Operations",
-      "description": "This dimension refers to the administration of business practices to create the highest level of efficiency possible within an organization while taking into account the security aspects that safeguard its final results.",
+      "description": "This dimension refers to the administration of business practices to create the highest level of efficiency possible within an organisation while taking into account the security aspects that safeguard its final results.",
       "level": 0
     }
   },
@@ -49,7 +49,7 @@
     "pk": 6,
     "fields": {
       "title": "Security Governance",
-      "description": "This dimension refers to the measures taken to effectively plan, manage and improve its information security.",
+      "description": "This dimension includes the designment, development, documentation and implementation of policies so as to effectively plan, manage and improve organisation’s information security.",
       "level": 0
     }
   },
@@ -67,7 +67,7 @@
     "pk": 8,
     "fields": {
       "title": "Awareness",
-      "description": "This dimension examines employees' understanding, knowledge and awareness of security issues and activities.",
+      "description": "This dimension refers to the employees’ understanding, knowledge and awareness of security issues and activities.",
       "level": 1
     }
   },
@@ -76,7 +76,7 @@
     "pk": 9,
     "fields": {
       "title": "Behaviour",
-      "description": "This dimension assists in studying the security-conscious behaviour exhibited on a day-to-day basis in an individual's workplace.",
+      "description": "This dimension refers to the actions and activities of employees that have direct or indirect impact on the security of the organisation.",
       "level": 1
     }
   },
@@ -85,7 +85,7 @@
     "pk": 10,
     "fields": {
       "title": "Competency",
-      "description": "This dimension refers to evaluating the employees' abilities, skills, knowledge and expertise that enable them to conform with the security policies and procedures of the organization.",
+      "description": "This dimension refers to the employees’ abilities, skills, knowledge and expertise that enable them to conform with the security policies and procedures of the organisation.",
       "level": 1
     }
   },
@@ -95,7 +95,7 @@
     "fields": {
       "dimension": 1,
       "title": "Application Software Security",
-      "description": ""
+      "description": "Management of the security life cycle of all in-house developed and acquired software in order to prevent, detect, and correct security weaknesses."
     }
   },
   {
@@ -104,7 +104,7 @@
     "fields": {
       "dimension": 1,
       "title": "Data Security and Privacy",
-      "description": ""
+      "description": "The processes and tools used to prevent data exfiltration, mitigate the effects of exfiltrated data, and ensure the privacy and integrity of sensitive information."
     }
   },
   {
@@ -113,7 +113,7 @@
     "fields": {
       "dimension": 1,
       "title": "Hardware Assets Management",
-      "description": null
+      "description": "Active documentation, inventory and management of all hardware devices (laptops, removable media, datacenters, etc.) or physical assets (hard copies of documents such as policies, records, contracts, etc.) so that effective protection is assured."
     }
   },
   {
@@ -122,7 +122,7 @@
     "fields": {
       "dimension": 1,
       "title": "Hardware Configuration Management",
-      "description": null
+      "description": "Establishment, implementation, and active management of  the security configuration of mobile devices, laptops, servers, and workstations using a rigorous configuration management and change control process in order to prevent attackers from exploiting vulnerable services and settings."
     }
   },
   {
@@ -131,7 +131,7 @@
     "fields": {
       "dimension": 1,
       "title": "Information Resources Management",
-      "description": null
+      "description": "Classification of all assets and information depending on their criticality, confidentiality and business value."
     }
   },
   {
@@ -140,7 +140,7 @@
     "fields": {
       "dimension": 1,
       "title": "Network Configuration Management",
-      "description": null
+      "description": "Establishment, implementation, and active management of the security configuration of network infrastructure devices using a rigorous configuration management and change control process in order to prevent attackers from exploiting vulnerable services and settings."
     }
   },
   {
@@ -149,7 +149,7 @@
     "fields": {
       "dimension": 1,
       "title": "Network Infrastructure Management",
-      "description": null
+      "description": "Management of the ongoing operational use of ports, protocols, and services on networked devices in order to minimise windows of vulnerability available to attackers."
     }
   },
   {
@@ -158,25 +158,25 @@
     "fields": {
       "dimension": 1,
       "title": "Software Assets Management",
-      "description": null
+      "description": "Active documentation, inventory and management of all corporate software so that effective protection of them is ensured."
     }
   },
   {
     "model": "sbam_app.domain",
     "pk": 9,
     "fields": {
-      "dimension": 2,
-      "title": "Backup Mechanisms",
-      "description": null
+      "dimension": 1,
+      "title": "Personnel Security",
+      "description": "Management of the proper authentication and authorisation level controlling personnel and/or visitors’ access in the physical facilities of the organisation."
     }
   },
   {
     "model": "sbam_app.domain",
     "pk": 10,
     "fields": {
-      "dimension": 2,
-      "title": "Business Continuity & Disaster Recovery",
-      "description": null
+      "dimension": 1,
+      "title": "Physical Safety and Security",
+      "description": "Establishment, implementation, and active management of facilities’ physical security."
     }
   },
   {
@@ -184,8 +184,8 @@
     "pk": 11,
     "fields": {
       "dimension": 2,
-      "title": "Capacity Management",
-      "description": null
+      "title": "Backup Mechanisms",
+      "description": "The backup procedures that are in place in order to avoid loss of critical information and provide a level of acceptable business continuity in case of incidents."
     }
   },
   {
@@ -193,8 +193,8 @@
     "pk": 12,
     "fields": {
       "dimension": 2,
-      "title": "Change Management",
-      "description": null
+      "title": "Business Continuity & Disaster Recovery",
+      "description": "The processes and tools used to properly back up critical information with a proven methodology for timely recovery of it."
     }
   },
   {
@@ -202,26 +202,26 @@
     "pk": 13,
     "fields": {
       "dimension": 2,
-      "title": "Continuous Vulnerability Management",
-      "description": null
+      "title": "Capacity Management",
+      "description": "The procedures with which the organisation can ensure that information technology resources are right-sized to meet current and future business requirements in a cost-effective manner."
     }
   },
   {
     "model": "sbam_app.domain",
     "pk": 14,
     "fields": {
-      "dimension": 3,
-      "title": "Access Management",
-      "description": null
+      "dimension": 2,
+      "title": "Change Management",
+      "description": "The procedures used for the management of any changes in the organisation."
     }
   },
   {
     "model": "sbam_app.domain",
     "pk": 15,
     "fields": {
-      "dimension": 3,
-      "title": "Account Management",
-      "description": null
+      "dimension": 2,
+      "title": "Continuous Vulnerability Management",
+      "description": "Continuous acquisition, assessment, and elaboration on new information in order to identify vulnerabilities, remediate, and minimise the opportunity window for attackers."
     }
   },
   {
@@ -229,8 +229,8 @@
     "pk": 16,
     "fields": {
       "dimension": 3,
-      "title": "Communication",
-      "description": null
+      "title": "Access Management",
+      "description": "The processes and tools used to track/control/prevent/correct secure access to critical assets (e.g., information, resources, systems) according to the formal determination of which persons, computers, and applications have a need and right to access these critical assets based on an approved classification."
     }
   },
   {
@@ -238,8 +238,8 @@
     "pk": 17,
     "fields": {
       "dimension": 3,
-      "title": "External Environment Connections",
-      "description": null
+      "title": "Account Management",
+      "description": "Active management of the life cycle of system and application accounts – their creation, use, dormancy, deletion – in order to minimise opportunities for attackers to leverage them."
     }
   },
   {
@@ -247,8 +247,8 @@
     "pk": 18,
     "fields": {
       "dimension": 3,
-      "title": "Password Robustness and Exposure",
-      "description": null
+      "title": "Communication",
+      "description": "Various controls aiming to protect data, information and systems during communication procedures."
     }
   },
   {
@@ -256,8 +256,8 @@
     "pk": 19,
     "fields": {
       "dimension": 3,
-      "title": "Privileged Account Management",
-      "description": null
+      "title": "External Environment Connections",
+      "description": "Establishment and active management of the external environment connections of the organisation."
     }
   },
   {
@@ -265,8 +265,8 @@
     "pk": 20,
     "fields": {
       "dimension": 3,
-      "title": "Role Segregation",
-      "description": null
+      "title": "Password Robustness and Exposure",
+      "description": "The measures taken by the organisation to ensure all passwords used are secure enough along with the policies developed to ensure the passwords confidentiality."
     }
   },
   {
@@ -274,8 +274,8 @@
     "pk": 21,
     "fields": {
       "dimension": 3,
-      "title": "Third-Party Relationships",
-      "description": null
+      "title": "Privileged Account Management",
+      "description": "The processes and tools used to track/control/prevent/correct the use, assignment, and configuration of administrative privileges on computers, networks, and applications."
     }
   },
   {
@@ -283,26 +283,26 @@
     "pk": 22,
     "fields": {
       "dimension": 3,
-      "title": "Wireless Access Management",
-      "description": null
+      "title": "Role Segregation",
+      "description": "The proper appointment of roles and responsibilities ensuring their segregation in various processes and procedures, so as to avoid possible issues such as conflict of interests."
     }
   },
   {
     "model": "sbam_app.domain",
     "pk": 23,
     "fields": {
-      "dimension": 4,
-      "title": "Compliance Review",
-      "description": null
+      "dimension": 3,
+      "title": "Third-Party Relationships",
+      "description": "Determination of the necessary requirements a third party should have to be considered trusty, along with the implementation of the necessary procedures with which those requirements are fulfilled.\nAlso includes the procedures used by the organisation in order to get in contact with relevant authorities when needed and the contacts maintained with various special groups, that may help it improve its information security.\n"
     }
   },
   {
     "model": "sbam_app.domain",
     "pk": 24,
     "fields": {
-      "dimension": 4,
-      "title": "Documentation Fulfilness",
-      "description": null
+      "dimension": 3,
+      "title": "Wireless Access Management",
+      "description": "The processes and tools used to track/control/prevent/correct the secure use of wireless local area networks (WLANs), access points, and wireless client systems."
     }
   },
   {
@@ -310,8 +310,8 @@
     "pk": 25,
     "fields": {
       "dimension": 4,
-      "title": "Efficient Distinction of Development, Testing and ",
-      "description": null
+      "title": "Compliance Review",
+      "description": "Various controls determining the security level appointed by security audit results."
     }
   },
   {
@@ -319,8 +319,8 @@
     "pk": 26,
     "fields": {
       "dimension": 4,
-      "title": "Operating Procedures",
-      "description": null
+      "title": "Documentation Fulfilness",
+      "description": "A checklist with all the necessary documentation an organisation is advised to have in order to maintain an appropriate level of information security."
     }
   },
   {
@@ -328,8 +328,8 @@
     "pk": 27,
     "fields": {
       "dimension": 4,
-      "title": "Organizational Culture and Top Management Support",
-      "description": null
+      "title": "Efficient Distinction of Development, Testing and Operational Environments",
+      "description": "Proper segregation of the development, testing and operational environments."
     }
   },
   {
@@ -337,26 +337,26 @@
     "pk": 28,
     "fields": {
       "dimension": 4,
-      "title": "Risk Assessment",
-      "description": null
+      "title": "Operating Procedures",
+      "description": "Definition of operating procedures with focus on minimising the possibility of errors and malpractices."
     }
   },
   {
     "model": "sbam_app.domain",
     "pk": 29,
     "fields": {
-      "dimension": 5,
-      "title": "Boundary Defense",
-      "description": null
+      "dimension": 4,
+      "title": "Organizational Culture and Top Management Support",
+      "description": "Identification, establishment, and active management of the organisational culture and top management support influencing and formatting the overall security culture of the organisation."
     }
   },
   {
     "model": "sbam_app.domain",
     "pk": 30,
     "fields": {
-      "dimension": 5,
-      "title": "Cryptography",
-      "description": null
+      "dimension": 4,
+      "title": "Risk Assessment",
+      "description": "Conducting risk assessments in order to find any vulnerabilities in the organisation repeated at regular intervals or when significant changes occur."
     }
   },
   {
@@ -364,8 +364,8 @@
     "pk": 31,
     "fields": {
       "dimension": 5,
-      "title": "Email and Web Browser Resilience",
-      "description": null
+      "title": "Boundary Defense",
+      "description": "Detection/prevention/correction of the information flow transferring across networks of different trust levels with a focus on security-damaging data."
     }
   },
   {
@@ -373,8 +373,8 @@
     "pk": 32,
     "fields": {
       "dimension": 5,
-      "title": "Information Security Policy and Compliance",
-      "description": null
+      "title": "Cryptography",
+      "description": "All of the cryptographic controls used by the organisation."
     }
   },
   {
@@ -382,8 +382,8 @@
     "pk": 33,
     "fields": {
       "dimension": 5,
-      "title": "Malware Defense",
-      "description": null
+      "title": "Email and Web Browser Resilience",
+      "description": "Minimisation of the attack surface and the opportunities for attackers to manipulate human behavior through their interaction with web browsers and email systems."
     }
   },
   {
@@ -391,26 +391,26 @@
     "pk": 34,
     "fields": {
       "dimension": 5,
-      "title": "Security Awareness and Training Program",
-      "description": null
+      "title": "Information Security Policy and Compliance",
+      "description": "Establishment, implementation, and active management of information security policies and the compliance against them."
     }
   },
   {
     "model": "sbam_app.domain",
     "pk": 35,
     "fields": {
-      "dimension": 6,
-      "title": "Audit Logs Management",
-      "description": null
+      "dimension": 5,
+      "title": "Malware Defense",
+      "description": "Controls over the installation, spread, and execution of malicious code at multiple points in the enterprise, while optimising the use of automation to enable rapid updating of defense, data gathering, and corrective action."
     }
   },
   {
     "model": "sbam_app.domain",
     "pk": 36,
     "fields": {
-      "dimension": 6,
-      "title": "Incident Response and Management",
-      "description": null
+      "dimension": 5,
+      "title": "Security Awareness and Training Program",
+      "description": "Targeting all functional roles in the organisation (prioritising those mission-critical to the business and its security).  Identification of the specific knowledge, skills, and abilities needed to support defense of the enterprise; development and execution of an integrated plan to assess, identify gaps, and remediate through policy, organisational planning, training, and awareness programs."
     }
   },
   {
@@ -418,8 +418,8 @@
     "pk": 37,
     "fields": {
       "dimension": 6,
-      "title": "Penetration Tests and Red Team Exercises",
-      "description": null
+      "title": "Audit Logs Management",
+      "description": "Collection, management, and analysis of event logs that could assist in detecting, understanding, or recovering from attacks."
     }
   },
   {
@@ -427,8 +427,8 @@
     "pk": 38,
     "fields": {
       "dimension": 6,
-      "title": "Personnel Security",
-      "description": null
+      "title": "Incident Response and Management",
+      "description": "Protection of the organisation’s information, as well as its reputation, by developing and implementing an incident response infrastructure (e.g., plans, defined roles, training, communications, management oversight)."
     }
   },
   {
@@ -436,8 +436,8 @@
     "pk": 39,
     "fields": {
       "dimension": 6,
-      "title": "Physical Safety and Security",
-      "description": null
+      "title": "Penetration Tests and Red Team Exercises",
+      "description": "Testing the overall strength of an organisation’s defense (the technology, the processes, and the people) by simulating the objectives and actions of an attacker."
     }
   },
   {
@@ -446,7 +446,7 @@
     "fields": {
       "dimension": 6,
       "title": "Reporting Mechanisms",
-      "description": null
+      "description": "The channels used by the organisation in order for employees or other relevant parties to report vulnerabilities or incidents detected."
     }
   },
   {
@@ -455,7 +455,7 @@
     "fields": {
       "dimension": 6,
       "title": "Security Management Maturity",
-      "description": null
+      "description": "Evaluate the security management maturity of an organisation."
     }
   },
   {
@@ -464,7 +464,7 @@
     "fields": {
       "dimension": 7,
       "title": "Employee Climate",
-      "description": null
+      "description": "The assessment of the satisfaction each employee has towards information security, directly affecting his/her security behavior."
     }
   },
   {
@@ -473,7 +473,7 @@
     "fields": {
       "dimension": 7,
       "title": "Employee Profiling",
-      "description": null
+      "description": "A generic employee profile that shall assist in identifying possible security behavioral patterns."
     }
   },
   {
@@ -482,7 +482,7 @@
     "fields": {
       "dimension": 7,
       "title": "Employee Satisfaction",
-      "description": null
+      "description": "The assessment of the satisfaction each employee has towards both the organisation and other colleagues directly affecting his/ her security behavior."
     }
   },
   {
@@ -491,7 +491,7 @@
     "fields": {
       "dimension": 8,
       "title": "Policies and Procedures Awareness",
-      "description": null
+      "description": "Assessment of the cognition each employee has regarding the organisation’s security policies and procedures."
     }
   },
   {
@@ -500,7 +500,7 @@
     "fields": {
       "dimension": 8,
       "title": "Roles and Responsibilities Awareness",
-      "description": null
+      "description": "Assessment of the cognition each employee has regarding his role and responsibilities related to information security."
     }
   },
   {
@@ -509,7 +509,7 @@
     "fields": {
       "dimension": 9,
       "title": "Policies and Procedures Compliance",
-      "description": null
+      "description": "Controlling and logging any security policies and procedures incompliances or violations by employees or other affected parties."
     }
   },
   {
@@ -518,7 +518,7 @@
     "fields": {
       "dimension": 9,
       "title": "Security Agent Persona",
-      "description": null
+      "description": "Identification of the kind of security-conscious behaviour individuals tend to exhibit on a day-to-day basis in their workplace."
     }
   },
   {
@@ -527,7 +527,7 @@
     "fields": {
       "dimension": 9,
       "title": "Security Behaviour",
-      "description": null
+      "description": "Security-conscious behaviour exhibited on a day-to-day basis in the workplace."
     }
   },
   {
@@ -536,7 +536,7 @@
     "fields": {
       "dimension": 10,
       "title": "Employee Competency",
-      "description": null
+      "description": "The identification and definition of the competency needed for each role and responsibility. Also, the documentation of the proof of competency of each employee."
     }
   },
   {
@@ -545,7 +545,7 @@
     "fields": {
       "dimension": 10,
       "title": "Security Skills Evaluation",
-      "description": null
+      "description": "Measurement/Evaluation of the security skills, familiarity, awareness, etc."
     }
   },
   {
@@ -554,7 +554,7 @@
     "fields": {
       "dimension": 10,
       "title": "Training Completion and Scoring",
-      "description": null
+      "description": "Record of any training programs attended by individuals along with scoring, completeness rate and assessment of their effectiveness."
     }
   }
 ]

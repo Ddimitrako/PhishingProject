@@ -11,13 +11,13 @@
 }
 
 .active-assignments{
-    max-height: 35vh;
+    /*max-height: 35vh;*/
     /*overflow: auto;*/
 }
 
 .active-campaigns{
-    max-height: 35vh;
-    /*overflow: auto;*/
+    /*max-height: 35vh;*/
+    overflow: auto;
 }
 
 .list-group{
@@ -43,9 +43,14 @@
     padding: 5px 10px;
 }
 
+.main_cols{
+    padding-bottom: 1%;
+}
+
 .assignmets .tab-content{
-    height: 25vh;
     overflow: auto;
+    /*min-height: 20.5vh;*/
+    max-height: 208px;
 }
 
 .assignmets .tab-content .list-group-item{
@@ -55,15 +60,22 @@
 }
 
 .assignment_title{
-    font-size: large;
+    font-size: medium;
 }
 
 .card{
     min-height: 100%;
+    /*max-height: 30vh;*/
 }
 
 h3{
     padding-bottom: 0.5rem;
+/*.tab-content{*/
+/*    overflow: auto;*/
+/*}*/
+}
+
+.row h3{
     border-bottom: 1px;
     border-bottom-style: solid;
     border-bottom-color: #e0e4e8;
@@ -81,8 +93,28 @@ h3{
 }
 
 .card-body .nav{
-    height: 5vh;
+    /* height: 5vh; */
     margin: 0;
+}
+
+.new_assessment_btn{
+    margin-bottom: 15%;
+}
+
+.self_assessm_item{
+    padding: 5px;
+}
+
+.card-body{
+    padding-bottom: 0.5rem;
+}
+
+.assessment_history_row{
+    padding-top: 0.5rem;
+}
+
+.scores{
+    text-align: end;
 }
 
 .alert-warning{
@@ -99,4 +131,34 @@ h3{
 
 #recommendations .list-group-item{
     background-color: #e9f1f7c7;
+}
+
+
+.nav-tabs.flex-column .nav-item.show .nav-link, .nav-tabs.flex-column .nav-link.active {
+    border-color: #dee2e6;
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+
+}
+
+.nav-tabs.flex-column {
+    border-bottom: 1px solid #dee2e6;
+}
+
+#overlay{
+    height: 100%; 
+    width:100%; 
+    position: absolute; 
+    top:0; 
+    left:0; 
+    background-color: #61616182; 
+    z-index:1;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+#overlay h3{
+    color: white;
 }

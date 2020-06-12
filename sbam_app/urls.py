@@ -8,9 +8,19 @@ urlpatterns = [
     # Dashboard
     path('', dashboardView, name='dashboard'),
 
+    # Self-Assessment
+    path('selfassessment/', SelfEvaluation.as_view(), name='self_assessment'),
+    path('selfassessment/history', SelfEvaluationHistory.as_view(), name='self_assessment_history'),
+    path('selfassessment/<quest_id>/', selfAssessmentCompletion, name='self_assessment_completion'),
+    path('self_assessment_submit/', selfAssessmentSubmission, name='self_assessment_submit'),
+
+    # Questionnaires
+    path('questionnaires/', QuestionnairesList.as_view(), name='questionnaires_list'),
+    path('questionnaires/<quest_id>/', questionnaireInfo, name='questionnaire_info'),
+
     # Assignments
     path('assignments/<assignment_id>/', assignmentCompletion, name='assignments'),
-    path('survey_submit/', surveySumbission, name='survey_submit'),
+    path('survey_submit/', surveySubmission, name='survey_submit'),
 
     # Users
     path('users/', UsersView.as_view(), name='users'),

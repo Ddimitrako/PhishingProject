@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load i18n adminlte_helpers widget_tweaks %}
+{% load i18n custom_tags %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:questionnaires_list' %}">{% trans "questionnaires"|capfirst %}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:questionnaire_info' quest.id  %}">{{ quest.id }}</a></li>
+{% endblock %}
+
+{% block page_name %}
+    <div class="row">
+        <strong>{% trans "Questionnaire Details" %}</strong>
+    </div>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
