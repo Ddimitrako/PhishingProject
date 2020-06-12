@@ -174,10 +174,11 @@ def activate_group(request, name, status):
     return redirect('sbam:group', name)
 
 
-def get_questionnaire(questionnaire):
+def get_questionnaire(questionnaire, render_inactive=False):
     questions_dict = {}
     quest_title = questionnaire.title
-    questions = Question.objects.filter(questionnaire=questionnaire, is_active=Status.ACTIVE).values()
+    questions = Question.objects.filter(questionnaire=questionnaire, is_active=Status.ACTIVE).values() if not render_inactive \
+        else Question.objects.filter(questionnaire=questionnaire).values()
     # print(questions)
     for question in questions:
         question_type = QuestionType.objects.get(pk=question['question_type_id'])
@@ -496,8 +497,34 @@ class QuestionnairesList(ListView):
 
 
 def questionnaireInfo(request, quest_id):
-    questionnaire = Questionnaire.objects.get(pk=quest_id)
-    return render(request, 'questionnaire_info.html', {'quest':questionnaire})
+    if request.method == 'GET':
+        questionnaire = Questionnaire.objects.get(pk=quest_id)
+        _, questions_dict = get_questionnaire(questionnaire, True)
+        print(questions_dict)
+        return render(request, 'questionnaire_info.html', {'quest':questionnaire,
+                                                           'questions': questions_dict})
+    else:
+        idxs = json.loads(request.POST['indexes'])
+        updated_statuses = json.loads(request.POST['status'])
+        print(updated_statuses, idxs)
+        for index in idxs:
+            if index != 0:
+                question = models.Question.objects.get(pk=updated_statuses[index]['id'])
+                if question.is_active:
+                    question.is_active = F('is_active') - 1
+                else:
+                    question.is_active = F('is_active') + 1
+                question.save()
+            else:
+                questionnaire = models.Questionnaire.objects.get(pk=quest_id)
+                print(questionnaire, questionnaire.is_active)
+                if questionnaire.is_active:
+                    questionnaire.is_active = F('is_active') - 1
+                else:
+                    questionnaire.is_active = F('is_active') + 1
+                questionnaire.save()
+                print(questionnaire, questionnaire.is_active)
+        return JsonResponse({'result': 'success'})
 
 
 def selfAssessmentCompletion(request, quest_id):

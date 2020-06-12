@@ -1,0 +1,22 @@
+.quest-info-container{
+    margin-left: 0;
+    margin-bottom: 1%;
+}
+
+.quest-info-jumbotron{
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 0;
+}
+
+.tab-content{
+    overflow: auto;
+    max-height: 50vh;
+}
+.update-button{
+    display: none;
+}
+
+.quest-general-info{
+    padding-inline-start: 0px;
+}

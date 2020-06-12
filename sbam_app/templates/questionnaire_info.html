@@ -6,12 +6,13 @@
 {% load i18n custom_tags %}
 
 {% block extra_head %}
+    <link href="{% static "sbam_app/css/questionnnaire_info.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
-    <li class="breadcrumb-item"><a href="{% url 'sbam:questionnaires_list' %}">{% trans "questionnaires"|capfirst %}</a></li>
-    <li class="breadcrumb-item active"><a href="{% url 'sbam:questionnaire_info' quest.id  %}">{{ quest.title }}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:questionnaires_list' %}">{% trans "Questionnaires"|capfirst %}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:questionnaire_info' quest.id  %}">{{ quest.id }}</a></li>
 {% endblock %}
 
 {% block page_name %}
@@ -21,4 +22,190 @@
 {% endblock %}
 
 {% block content %}
+    <div class="container-fluid quest-info-container">
+        <div class="jumbotron quest-info-jumbotron">
+            <div class="row">
+                <h2 class="display-4">{{ quest.title|capfirst }}</h2>
+            </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-md-3">
+                        {% trans "Dimension" %}
+                    </div>
+                   <div class="col-md-9">
+                        {{ quest.domain.dimension }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        {% trans "Domain" %}
+                    </div>
+                    <div class="col-md-9">
+                        {{ quest.domain }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        {% trans "Status" %}
+                    </div>
+                    <div class="col-md-9">
+                        <div class="custom-control custom-switch">
+                            {% if quest.is_active == 1 %}
+                                <input type="checkbox" class="custom-control-input" id="questionnaire_status" checked>
+                            {% else %}
+                                <input type="checkbox" class="custom-control-input" id="questionnaire_status">
+                            {% endif %}
+                            <label class="custom-control-label" for="questionnaire_status">{{ quest.get_status }}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        {% trans "No. Questions" %}
+                    </div>
+                    <div class="col-md-9">
+                        {{ quest.get_questions_count }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 align-self-center text-center">
+                <button type="button" class="btn btn-primary update-button">Update Questionnaire Info</button>
+            </div>
+        </div>
+            <hr class="my-4">
+            <nav class="nav nav-tabs " id="custom-tabs-three-tab">
+                <a class="flex-sm-fill text-center nav-link active" id="questions-tab" data-toggle="pill"
+                   href="#questions"
+                   aria-controls="active-ass"
+                   aria-selected="true"><i class="fas fa-clipboard"></i>
+                    {% trans "Questions" %}
+                </a>
+                <a class="flex-sm-fill text-center nav-link" id="dom-dscr-tab" data-toggle="pill"
+                   href="#dom-dscr"
+                   aria-controls="dom-dscr"
+                   aria-selected="false"><i class="fas fa-book-open"></i> {% trans "General Info" %}
+                </a>
+            </nav>
+
+            <div class="tab-content">
+                <div class="tab-pane fade in active show" id="questions" role="tabpanel"
+                     aria-labelledby="questions-tab">
+                    <ol class="list-group questions-list">
+                        {% for question_key, question_value in questions.items %}
+                            <li  class="list-group-item  flex-column align-items-start">
+                                <div class="row">
+                                    {% for question_attr_key, question_attr_value in question_value.items %}
+                                        {% if question_attr_key == 'question_options' %}
+                                            <div class="col-sm-8 align-self-center">
+                                                <div class="row">
+                                                    <ul>
+                                                        {% for options_dicts in question_attr_value %}
+                                                            {% for key, value in options_dicts.items %}
+                                                                {% if key == 'text' %}
+                                                                    <li>
+                                                                        <div class="p-2-highlight">
+                                                                            {{ value }}
+                                                                        </div>
+                                                                    </li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            {% for key_attr, val in question_attr_value.items %}
+                                                {% if question_attr_key == 'question' %}
+                                                    {% if key_attr == 'text' %}
+                                                        <div class="col-sm-3 align-self-center">
+                                                            <div class="p-2 bd-highlight align-self-center">
+                                                                {{ forloop.parentloop.parentloop.counter }}. {{ val }}
+                                                            </div>
+                                                        </div>
+                                                    {% elif key_attr == 'is_active' %}
+                                                        <div class="col-sm-1 align-self-center text-center order-3">
+                                                            <div class=" p-2 bd-highlight align-self-center status-switch">
+                                                                <div class="custom-control custom-switch">
+                                                                    {% if val == 1 %}
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                            id="custom_switch_{{ forloop.parentloop.parentloop.counter }}" data-id = {{ forloop.parentloop.parentloop.counter }} checked>
+                                                                        <label class="custom-control-label" for="custom_switch_{{ forloop.parentloop.parentloop.counter }}">Active</label>
+                                                                    {% else %}
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="custom_switch_{{ forloop.parentloop.parentloop.counter }}" data-id = {{ forloop.parentloop.parentloop.counter }}>
+                                                                        <label class="custom-control-label" for="custom_switch_{{ forloop.parentloop.parentloop.counter }}">Inactive</label>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+                <div class="tab-pane fade" id="dom-dscr" role="tabpanel"
+                     aria-labelledby="dom-dscr-tab">
+                        <ul class="quest-general-info">
+                            <li  class="list-group-item align-items-start">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class=" p-2 bd-highlight align-self-center">
+                                            <h5>{% trans "Dimension Description"|capfirst %}</h5>
+                                            <p>{{ quest.domain.dimension.description|default:'No info available at the moment' }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li  class="list-group-item align-items-start">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h5>{% trans "Domain Description"|capfirst %}</h5>
+                                        <p>{{ quest.domain.description|default:'No info available at the moment' }}</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="questionnaireEditSuccessModal" tabindex="-1" role="dialog"
+         aria-labelledby="questionnaireEditSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="questionnaireEditSuccessModalLabel">Well Done!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info" role="alert">
+                        Questionnaire Info updated successfully <strong>Close</strong> to redirect to Questionnaires' List
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'sbam:questionnaires_list' %}" class="btn btn-outline-info " role="button">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block  extra_js  %}
+
+    <script type="application/javascript">
+        let questData = {{ questions | safe }};
+        let quest_status = {{ quest.is_active }};
+        let quest_id = {{ quest.id }};
+    </script>
+    <script src="{% static "sbam_app/js/questionnaire_info.js" %}"></script>
+
 {% endblock %}
