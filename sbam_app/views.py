@@ -469,10 +469,12 @@ class SelfEvaluationHistory(ListView):
                                           models.QuestionnaireSelfAssessment.objects.filter(user_id=self.request.user)
                                               .order_by('-selfassessmentresult__answer_time')]
 
+        print(self_assessment_questionnaires)
         self_assessment_tests = [self_quest for self_quest in
                                  models.TestSelfAssessment.objects.filter(user_id=self.request.user)
                                      .order_by('-selfassessmentresult__answer_time')]
 
+        print(self_assessment_tests)
         self_assessment = sorted(
             chain(self_assessment_questionnaires, self_assessment_tests),
             key=lambda instance:
@@ -548,7 +550,7 @@ def selfAssessmentSubmission(request):
     self_assessment = QuestionnaireSelfAssessment(questionnaire=questionnaire, user_id=request.user.id)
     self_assessment.save()
     for ques in answers:
-        question = uestion.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
+        question = Question.objects.get(pk=int(ques[ques.find('_') + 1: len(ques)]))
         if isinstance(answers[ques], list):
             answers_options = [option_id for option_id in answers[ques]]
             for option_id in answers_options:
