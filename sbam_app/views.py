@@ -846,14 +846,16 @@ def create_campaign(request):
 def reports(request):
     if request.user.is_superuser:
 
-        campaigns = [c for c in Campaign.objects.all() if c.status=='FINISHED']
+        campaigns_finished = [c for c in Campaign.objects.all().order_by('-end_date') if c.status=='FINISHED']
+        campaigns_active =   [c for c in Campaign.objects.all().order_by('-end_date') if c.status=='ACTIVE']
         groups = Group.objects.filter(groupprofile__is_active=True)
     else:
-        campaigns = [c for c in Campaign.objects.filter(owner=request.user) if c.status=='FINISHED']
+        campaigns_finished = [c for c in Campaign.objects.filter(owner=request.user).order_by('-end_date') if c.status=='FINISHED']
+        campaigns_active =   [c for c in Campaign.objects.filter(owner=request.user).order_by('-end_date') if c.status=='ACTIVE']
         groups = set([g for g in Group.objects.filter(groupprofile__is_active=True, groupprofile__creator=request.user)] + [g for g in Group.objects.filter(groupprofile__is_active=True) if g.groupprofile.is_global])
     
     isManager = (request.user.is_superuser) or (request.user.userprofile.is_manager)
-    return render(request, 'reports.html', {'campaigns': campaigns, 'groups': groups, 'isManager': isManager }) 
+    return render(request, 'reports.html', {'campaigns_finished': campaigns_finished, 'campaigns_active': campaigns_active, 'groups': groups, 'isManager': isManager }) 
 
 
 def get_user_metrics(request):

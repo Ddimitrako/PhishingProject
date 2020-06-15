@@ -110,11 +110,15 @@
                             <div class="form-group" id='campaign-select-div' style='display: none;'>
                                 <label style='display: block;'>Campaign</label>
                                 <select class="form-control" id='campaign-select' name='campaign-select' style="width: 100%">
-                                    {% for campaign in campaigns %}
-                                        <option value='{{ campaign.pk }}'>{{ campaign.title }} (ended: {{campaign.end_date}})</option>
-                                    {% empty %}
-                                        <option disabled selected>No campaigns available</option>
+                                    {% for campaign in campaigns_active %}
+                                        <option value='{{ campaign.pk }}'>{{ campaign.title }} (in progress)</option>
                                     {% endfor %}
+                                    {% for campaign in campaigns_finished %}
+                                        <option value='{{ campaign.pk }}'>{{ campaign.title }} (completed: {{campaign.finish_date}})</option>                                        
+                                    {% endfor %}
+                                    {% if campaigns_active|length == 0 and  campaigns_finished|length == 0 %}
+                                        <option disabled selected>No campaigns available</option>
+                                    {% endif %}
                                 </select>
                             </div>
                             <div class="form-group" id='group-select-div' style='display: none;'>
