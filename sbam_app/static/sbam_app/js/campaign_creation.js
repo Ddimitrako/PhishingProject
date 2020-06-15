@@ -163,7 +163,17 @@ $(document).ready(function(){
 
     //    Function to validate that a questionnaire or a test is selected
     function check_selected_items(){
-        if(questTree.selectedNodes.length === 0 ){            //----> Thumisou oti prepei na baleis kai to if kai gia ta test
+        let questselected = false;
+        let testselected = false;
+        for (var i = 0; i < questTree.selectedNodes.length; i++){
+            if(questTree.selectedNodes[i].id.includes('quest'))
+                questselected = true;
+        }
+        for (var i = 0; i < testsTree.selectedNodes.length; i++){
+            if(testsTree.selectedNodes[i].id.includes('test'))
+                testselected = true;
+        }
+        if(!questselected && !testselected){
             alert('Please select a Questionnaire or a Test');
             return 0;
         }
@@ -216,8 +226,8 @@ $(document).ready(function(){
             ajax_data["users"] =  JSON.stringify(users);
             ajax_data["tests"] =  JSON.stringify(tests);
 
-            // console.log('Sto Ajax call');
-            // console.log(ajax_data);
+            console.log('Sto Ajax call');
+            console.log(ajax_data);
             $.ajax({
                 "type": "POST",
                 headers: { "X-CSRFToken": csrftoken },
