@@ -17,9 +17,14 @@
     </div>
 {% endblock %}
 
+{% block table_head %}
+    <h4> Select a questionnaire to start your self-evaluation. </h4>
+{% endblock %}
+
 {% block table_content %}
     <thead>
         <tr>
+            <th></th>
             <th></th>
             <th>{% trans "title"|capfirst %}</th>
             <th>{% trans "dimension"|capfirst %}</th>
@@ -35,6 +40,11 @@
         {% for questionnaire in self_assessment_list %}
             <tr>
                 <td></td>
+                <td>
+                    <a class="btn btn-primary btn-xs" href="{% url 'sbam:self_assessment_completion' questionnaire.id %}">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </td>
                 <td>
                     <a href="{% url 'sbam:self_assessment_completion' questionnaire.id %}">
                         {{ questionnaire.title|default:'Not Available' }}
@@ -61,6 +71,6 @@
 
 {% block template_js %}
     <script>
-        datatable('#table', [0,1], [], [], false);
+        datatable('#table', [0,1,2], [], [], false);
     </script>
 {% endblock %}

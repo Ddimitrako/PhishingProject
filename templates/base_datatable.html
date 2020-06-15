@@ -22,6 +22,8 @@
 {% block content %}
     <div class="card card-primary card-outline">
         <div class="card-body">
+            {% block table_head %}
+            {% endblock %}
             <table id="table"
                    class="table table-bordered table-hover table-head-fixed table-responsive-lg table-striped">
                 {% block table_content %}

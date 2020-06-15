@@ -15,8 +15,19 @@
 }
 .update-button{
     display: none;
+    float: right;
 }
 
 .quest-general-info{
     padding-inline-start: 0px;
+}
+
+.fa-question-circle {
+    color: #676767;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.fa-question-circle:hover {
+    opacity: 1;
 }

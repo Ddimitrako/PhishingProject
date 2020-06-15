@@ -30,26 +30,26 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-3">
                         {% trans "Dimension" %}
                     </div>
-                   <div class="col-md-9">
-                        {{ quest.domain.dimension }}
+                   <div class="col-9">
+                        <span> {{ quest.domain.dimension }} </span>  <span data-toggle="tooltip" title="{{ quest.domain.dimension.description|default:'No info available at the moment' }}"><i class="fas fa-question-circle"></i></span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        {% trans "Domain" %}
+                    <div class="col-3">
+                        {% trans "Domain" %} 
                     </div>
-                    <div class="col-md-9">
-                        {{ quest.domain }}
+                    <div class="col-9">
+                        <span> {{ quest.domain }} </span>  <span data-toggle="tooltip" title="{{ quest.domain.description|default:'No info available at the moment' }}"><i class="fas fa-question-circle"></i></span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-3">
                         {% trans "Status" %}
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-9">
                         <div class="custom-control custom-switch">
                             {% if quest.is_active == 1 %}
                                 <input type="checkbox" class="custom-control-input" id="questionnaire_status" checked>
@@ -61,20 +61,21 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-3">
                         {% trans "No. Questions" %}
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-9">
                         {{ quest.get_questions_count }}
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 align-self-center text-center">
-                <button type="button" class="btn btn-primary update-button">Update Questionnaire Info</button>
+                <button type="button" class="btn btn-primary btn-sm update-button">Update Questionnaire Info</button>
             </div>
         </div>
             <hr class="my-4">
-            <nav class="nav nav-tabs " id="custom-tabs-three-tab">
+            <h3> {% trans "Questions" %} </h3>
+            {% comment %} <nav class="nav nav-tabs " id="custom-tabs-three-tab">
                 <a class="flex-sm-fill text-center nav-link active" id="questions-tab" data-toggle="pill"
                    href="#questions"
                    aria-controls="active-ass"
@@ -85,7 +86,7 @@
                    href="#dom-dscr"
                    aria-controls="dom-dscr"
                    aria-selected="false"><i class="fas fa-book-open"></i> {% trans "General Info" %}
-                </a>
+                </a> {% endcomment %}
             </nav>
 
             <div class="tab-content">
@@ -97,7 +98,7 @@
                                 <div class="row">
                                     {% for question_attr_key, question_attr_value in question_value.items %}
                                         {% if question_attr_key == 'question_options' %}
-                                            <div class="col-sm-8 align-self-center">
+                                            <div class="col-sm-7 align-self-center">
                                                 <div class="row">
                                                     <ul>
                                                         {% for options_dicts in question_attr_value %}
@@ -149,7 +150,7 @@
                         {% endfor %}
                     </ol>
                 </div>
-                <div class="tab-pane fade" id="dom-dscr" role="tabpanel"
+                {% comment %} <div class="tab-pane fade" id="dom-dscr" role="tabpanel"
                      aria-labelledby="dom-dscr-tab">
                         <ul class="quest-general-info">
                             <li  class="list-group-item align-items-start">
@@ -171,7 +172,7 @@
                                 </div>
                             </li>
                         </ul>
-                </div>
+                </div> {% endcomment %}
             </div>
         </div>
     </div>
@@ -207,5 +208,11 @@
         let quest_id = {{ quest.id }};
     </script>
     <script src="{% static "sbam_app/js/questionnaire_info.js" %}"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 
 {% endblock %}

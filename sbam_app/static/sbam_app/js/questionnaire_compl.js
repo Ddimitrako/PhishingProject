@@ -159,7 +159,7 @@ $(document).ready(function(){
     survey.onAfterRenderSurvey.add(function () {
         $('.sv-title').hide();
 
-        let jumbotron = '<div data-bind="css: css.header" class="sv-title sv-container-modern__title" style="margin-left: 0px;margin-right: 0px;">'
+        let jumbotron = '<div data-bind="css: css.header" class="sv-title sv-container-modern__title" style="">'
         +'<div class="row">'
         +    '<div class="jumbotron infos" style="font-weight: 400; color: #dae1e7 !important; '
         +            'background-color: #004895; padding: 1.5rem 1.5rem; margin-bottom: 0; width: 100%">'
