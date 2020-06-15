@@ -921,8 +921,8 @@ def get_graph_data(assignments, self_assessments, dimensions):
 
     for dim in list(info.keys()):
         for dom in list(info[dim].keys()):
-            for q in list(info[dim][dom].keys()):
-                if len(info[dim][dom][q]) == 0:
+            for q_id in list(info[dim][dom].keys()):
+                if len(info[dim][dom][q_id]['responses']) == 0:
                     info[dim][dom].pop(q, None)
             if len(info[dim][dom]) == 0:
                 info[dim].pop(dom, None)
@@ -938,33 +938,33 @@ def gather_results(assignments, self_assessments, dimensions):
     results_dict = dict()
     for qa in assignments:
         campaign = Campaign.objects.filter(assignment=qa)
-        if qa.questionnaire.title not in results_dict.keys():
-            results_dict[qa.questionnaire.title] = dict()
+        if qa.questionnaire.id not in results_dict.keys():
+            results_dict[qa.questionnaire.id] = dict()
         res = qa.assignmentresult_set.first()
         if res is not None:
-            if qa.user.username not in results_dict[qa.questionnaire.title].keys():
-                results_dict[qa.questionnaire.title][qa.user.username] = {
+            if qa.user.username not in results_dict[qa.questionnaire.id].keys():
+                results_dict[qa.questionnaire.id][qa.user.username] = {
                     'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score*100,
                     'answer_time': res.answer_time, 'campaign': campaign}
             else:
-                if res.answer_time > results_dict[qa.questionnaire.title][qa.user.username]['answer_time']:
-                    results_dict[qa.questionnaire.title][qa.user.username] = {
+                if res.answer_time > results_dict[qa.questionnaire.id][qa.user.username]['answer_time']:
+                    results_dict[qa.questionnaire.id][qa.user.username] = {
                         'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score*100,
                         'answer_time': res.answer_time,  'campaign': campaign}
 
 
     for sa in self_assessments:
-        if sa.questionnaire.title not in results_dict.keys():
-            results_dict[sa.questionnaire.title] = dict()
+        if sa.questionnaire.id not in results_dict.keys():
+            results_dict[sa.questionnaire.id] = dict()
         res = sa.selfassessmentresult_set.first()
         if res is not None:
-            if sa.user.username not in results_dict[sa.questionnaire.title].keys():
-                results_dict[sa.questionnaire.title][sa.user.username] = {
+            if sa.user.username not in results_dict[sa.questionnaire.id].keys():
+                results_dict[sa.questionnaire.id][sa.user.username] = {
                     'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score*100,
                     'answer_time': res.answer_time, 'campaign': ''}
             else:
-                if res.answer_time > results_dict[sa.questionnaire.title][sa.user.username]['answer_time']:
-                    results_dict[sa.questionnaire.title][sa.user.username] = {
+                if res.answer_time > results_dict[sa.questionnaire.id][sa.user.username]['answer_time']:
+                    results_dict[sa.questionnaire.id][sa.user.username] = {
                         'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score*100,
                         'answer_time': res.answer_time,  'campaign': ''}
 
@@ -975,13 +975,15 @@ def gather_results(assignments, self_assessments, dimensions):
         for dom in dim.domain_set.all():
             info[dim.title][dom.title] = dict()
             for q in dom.questionnaire_set.filter(is_active=1):
-                info[dim.title][dom.title][q.title] = list()
+                info[dim.title][dom.title][q.id] = dict()
+                info[dim.title][dom.title][q.id]['title'] = q.title
+                info[dim.title][dom.title][q.id]['responses'] = list()
 
     for dim in info.keys():
         for dom in info[dim].keys():
-            for q in info[dim][dom].keys():
-                if q in results_dict.keys():
-                    info[dim][dom][q] = [(u[1]['name'], str(u[1]['answer_time'])) for u in results_dict[q].items()]
+            for q_id in info[dim][dom].keys():
+                if q_id in results_dict.keys():
+                    info[dim][dom][q_id]['responses'] = [(u[1]['name'], str(u[1]['answer_time'])) for u in results_dict[q_id].items()]
 
     return info, results_dict
 

@@ -329,10 +329,10 @@
                             ' </div> ' +
                         '');
 
-                        $.each(dom_info, function(q, users){
+                        $.each(dom_info, function(q_id, q_info){
                             var users_list = '';
                             var usr_counter = 0;
-                            $.each(users, function(key, user){
+                            $.each(q_info['responses'], function(key, user){
                                 if(usr_counter%4==0)
                                     users_list += '<tr>';
                                 users_list += '<td class="">' + user[0] + ' (' + user[1] + ') ' + '</td>';
@@ -343,7 +343,7 @@
 
                             $('#collapse_dim_'+ dim_counter +'_dom_'+ dom_counter + ' .list-group').append(' ' +
                                 ' <li class="list-group-item"> ' +
-                                ' <h4> Questionnaire: ' + q + ' </h4> ' +
+                                ' <h4> Questionnaire: ' + q_info['title'] + ' </h4> ' +
                                 ' <table class="table table-striped table-condensed"> ' +
                                     users_list +
                                 ' </table> ' + 
