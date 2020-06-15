@@ -228,21 +228,21 @@ $(document).ready(function(){
 
             console.log('Sto Ajax call');
             console.log(ajax_data);
-            // $.ajax({
-            //     "type": "POST",
-            //     headers: { "X-CSRFToken": csrftoken },
-            //     dataType: 'json',
-            //     // 'url': 'create_campaign/',
-            //     'data': ajax_data,
-            //     success: function(response){
-            //         console.log(response);
-            //         $('#campaignSuccessModal').modal('toggle');
-            //     },
-            //     error : function(response){
-            //         console.log(response);
-            //         $('#campaignErrorModal').modal('toggle');
-            //     }
-            // })
+            $.ajax({
+                "type": "POST",
+                headers: { "X-CSRFToken": csrftoken },
+                dataType: 'json',
+                // 'url': 'create_campaign/',
+                'data': ajax_data,
+                success: function(response){
+                    console.log(response);
+                    $('#campaignSuccessModal').modal('toggle');
+                },
+                error : function(response){
+                    console.log(response);
+                    $('#campaignErrorModal').modal('toggle');
+                }
+            })
         }
     })
 });
