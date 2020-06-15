@@ -26,7 +26,8 @@
                     <th style="text-align:center">{% trans "Status" %}</th>
                     <th>{% trans "title"|capfirst %}</th>
                     <th>{% trans "start date"|capfirst %}</th>
-                    <th>{% trans "end date"|capfirst %}</th>
+                    <th>{% trans "initial end date"|capfirst %}</th>
+                    <th>{% trans "actual finish date"|capfirst %}</th>
                     <th>{% trans "owner"|capfirst %}</th>
                 </tr>
             </thead>
@@ -55,6 +56,7 @@
                         </td>
                         <td>{{ campaign.start_date }}</td>
                         <td>{{ campaign.end_date }}</td>
+                        <td>{{ campaign.finish_date }}</td>
                         <td>{{ campaign.owner.get_full_name }}</td>
                     </tr>
                 {% empty %}

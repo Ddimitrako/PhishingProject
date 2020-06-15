@@ -714,7 +714,7 @@ class CampaignsView(ListView):
     context_object_name = 'campaigns_list'
 
     def get_queryset(self):
-        campaigns = Campaign.objects.all()
+        campaigns = Campaign.objects.all().order_by('-start_date', '-end_date')
         if self.request.user.is_superuser:
             return campaigns
         else:
