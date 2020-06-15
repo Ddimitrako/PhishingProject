@@ -22,10 +22,10 @@
             <th></th>
             <th>{% trans "title"|capfirst %}</th>
             <th>{% trans "status"|capfirst %}</th>
-            <th>{% trans "domain"|capfirst %}</th>
-            <th>{% trans "domain Description"|capfirst %}</th>
             <th>{% trans "dimension"|capfirst %}</th>
             <th>{% trans "dimension Description"|capfirst %}</th>
+            <th>{% trans "domain"|capfirst %}</th>
+            <th>{% trans "domain Description"|capfirst %}</th>
             <th>{% trans "No. Questions" %}</th>
         </tr>
     </thead>
@@ -40,10 +40,10 @@
                     </a>
                 </td>
                 <td>{{ questionnaire.get_status|default:'Not Available' }}</td>
-                <td>{{ questionnaire.domain|default:'Not Available' }}</td>
-                <td>{{ questionnaire.domain.description|default:'Not Available' }}</td>
                 <td>{{ questionnaire.domain.dimension|default:'Not Available' }}</td>
                 <td>{{ questionnaire.domain.dimension.description|default:'Not Available' }}</td>
+                <td>{{ questionnaire.domain|default:'Not Available' }}</td>
+                <td>{{ questionnaire.domain.description|default:'Not Available' }}</td>
                 <td>{{ questionnaire.get_questions_count}}</td>
             </tr>
             {% empty %}
@@ -57,6 +57,6 @@
 
 {% block template_js %}
     <script>
-        datatable('#table', [0,4,6], [0,4,6], [], false);
+        datatable('#table', [0], [0], [], false);
     </script>
 {% endblock %}

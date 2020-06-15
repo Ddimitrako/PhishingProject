@@ -840,8 +840,6 @@ def create_campaign(request):
                       {'campaign_form': CampaignCreationForm(),
                        'campaign_form_trees': campaign_form_trees})
 
-
-
 # @advanced_users_only
 def reports(request):
     if request.user.is_superuser:
