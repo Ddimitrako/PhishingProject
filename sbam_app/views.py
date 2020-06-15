@@ -281,7 +281,7 @@ def calculate_campaign_result(campaign, assignments):
         except ObjectDoesNotExist:
             pass
 
-        score = round(sum / total) if total != 0.0 else round(total)
+        score = (sum / total) if total != 0.0 else total
         result = (user, '{0:.0%}'.format(score), '{0:.0%}'.format(no_assignments / assignments))
         results.append(result)
 
