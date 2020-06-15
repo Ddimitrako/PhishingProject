@@ -923,7 +923,7 @@ def get_graph_data(assignments, self_assessments, dimensions):
         for dom in list(info[dim].keys()):
             for q_id in list(info[dim][dom].keys()):
                 if len(info[dim][dom][q_id]['responses']) == 0:
-                    info[dim][dom].pop(q, None)
+                    info[dim][dom].pop(q_id, None)
             if len(info[dim][dom]) == 0:
                 info[dim].pop(dom, None)
         if len(info[dim]) == 0:
