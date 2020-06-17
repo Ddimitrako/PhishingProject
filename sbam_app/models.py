@@ -100,8 +100,13 @@ class Campaign(Model):
     def finish_date(self):
         if self.is_expired():
             return self.end_date
+        elif self.status in ['ACTIVE', 'NOT_STARTED', 'CANCELLED']:
+                return None
         else:
-            return AssignmentResult.objects.filter(assignment__in=Assignment.objects.filter(campaign=self)).order_by('-answer_time').first().answer_time
+            try:
+                return AssignmentResult.objects.filter(assignment__in=Assignment.objects.filter(campaign=self)).order_by('-answer_time').first().answer_time
+            except:
+                return None
 
     def is_global(self):
         return self.owner.is_superuser
