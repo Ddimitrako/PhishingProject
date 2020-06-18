@@ -1,3 +1,0 @@
-id	type	text_en	options_en
-1	AGR5_P	Security issues are regularly included in my team meetings and briefings.	 
-2	AGR5_N	I receive insufficient training on security, given where I work, e.g. what the threats are.	 

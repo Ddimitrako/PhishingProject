@@ -1,0 +1,11 @@
+id	type	text_en	options_en
+1	AGR5_P	Security issues are regularly included in my team meetings and briefings.	 
+2	AGR5_N	I receive insufficient training on security, given where I work, e.g. what the threats are.	 
+3	AGR5_N	I think that management have the responsibility to ensure a company is protected from cyber crime
+4	AGR5_P	I am aware of my role in keeping the company protected from potential cyber criminals.	
+5	AGR5_P	I believe everyone in the company has a role to play in protecting against threats from cyber criminals.	
+6	AGR5_N	It is hard to know how I can help protect the organisation from cyber crime.	
+7	AGR5_N	I don't have the right skills to be able to protect the organisation from cyber crime.	
+8	AGR5_N	I do not feel that IT security is a priority within my organisation.	
+9	AGR5_N	Computer systems provide all the protection a company needs.	
+10	AGR5_N	I think that reporting cyber crime is a waste of time.	
