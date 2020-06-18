@@ -1,11 +1,11 @@
 id	type	text_en	options_en
 1	BOOL_P	Do you have policies and procedures that address allowing authorized and limiting unauthorized physical access to electronic information systems and the facilities in which they are housed?	 
 2	BOOL_P	Do you regularly maintain all hardware assets used in your facilities?	 
-3	BOOL_P	"Is access to your computing area controlled (single point, reception or security desk, sign-in/sign-out log, temporary/visitor badges)?"	 
-4	BOOL_P	Are visitors escorted into and out of controlled areas?	 
-5	BOOL_P	Are your PCs inaccessible to unauthorized users (e.g. located away from public areas)?	 
+3	BOOL_P	Is access to your computing area controlled (single point, reception or security desk, sign-in/sign-out log, temporary/visitor badges)?
+4	BOOL_P	Are visitors escorted into and out of controlled areas?
+5	BOOL_P	Are your PCs inaccessible to unauthorized users (e.g. located away from public areas)?
 6	BOOL_P	Is your computing area and equipment physically secured?	 
-7	BOOL_P	"Are there procedures in place to prevent computers from being left in a logged on state, however briefly?"	 
+7	BOOL_P	Are there procedures in place to prevent computers from being left in a logged on state, however briefly?
 8	BOOL_P	Are screens automatically locked after 10 minutes idle?	 
 9	BOOL_P	Are modems set to Auto-Answer OFF (not to accept incoming calls)?	 
 10	BOOL_P	Do you have procedures for protecting data during equipment repairs?	 

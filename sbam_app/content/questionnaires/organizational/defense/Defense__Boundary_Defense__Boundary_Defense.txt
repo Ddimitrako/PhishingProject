@@ -1,13 +1,13 @@
 id	type	text_en	options_en
-1	BOOL_P	Do you maintain an up-to-date inventory of all of the organization’s network boundaries?	 
+1	BOOL_P	Do you maintain an up-to-date inventory of all of the organization's network boundaries?
 2	BOOL_P	Do you perform regular scans from outside each trusted network boundary to detect any unauthorized connections which are accessible across the boundary?	 
-3	BOOL_P	Do you deny communications with known malicious or unused Internet IP addresses and limit access only to trusted and necessary IP address ranges at each of the organization’s network boundaries?	 
-4	BOOL_P	Do you deny communication over unauthorized TCP or UDP ports or application traffic to ensure that only authorized protocols are allowed to cross the network boundary in or out of the network at each of the organization’s network boundaries?	 
-5	BOOL_P	Have you configured monitoring systems to record network packets passing through the boundary at each of the organization’s network boundaries?	 
-6	BOOL_P	Have you deployed network-based Intrusion Detection Systems (IDS) sensors to look for unusual attack mechanisms and detect compromise of these systems at each of the organization’s network boundaries?	 
-7	BOOL_P	Have you deployed network-based Intrusion Prevention Systems (IPS) to block malicious network traffic at each of the organization’s network boundaries? 	 
+3	BOOL_P	Do you deny communications with known malicious or unused Internet IP addresses and limit access only to trusted and necessary IP address ranges at each of the organization's network boundaries?
+4	BOOL_P	Do you deny communication over unauthorized TCP or UDP ports or application traffic to ensure that only authorized protocols are allowed to cross the network boundary in or out of the network at each of the organization's network boundaries?
+5	BOOL_P	Have you configured monitoring systems to record network packets passing through the boundary at each of the organization's network boundaries?
+6	BOOL_P	Have you deployed network-based Intrusion Detection Systems (IDS) sensors to look for unusual attack mechanisms and detect compromise of these systems at each of the organization's network boundaries?
+7	BOOL_P	Have you deployed network-based Intrusion Prevention Systems (IPS) to block malicious network traffic at each of the organization's network boundaries?
 8	BOOL_P	Have you enabled the collection of NetFlow and logging data on all network boundary devices? 	 
 9	BOOL_P	Have you ensured that all network traffic to or from the Internet passes through an authenticated application layer proxy that is configured to filter unauthorized connections?	 
-10	BOOL_P	Do you decrypt all encrypted network traffic at the boundary proxy prior to analyzing the content?	 
-11	BOOL_P	Have you required all remote login access to the organization’s network to encrypt data in transit and use multi-factor authentication?	 
-12	BOOL_P	Do you scan all enterprise devices remotely logging into the organization’s network prior to accessing the network to ensure that each of the organization’s security policies has been enforced in the same manner as local network devices?	 
+10	BOOL_P	Do you decrypt all encrypted network traffic at the boundary proxy prior to analyze the content?
+11	BOOL_P	Have you required all remote login access to the organization's network to encrypt data in transit and use multi-factor authentication?
+12	BOOL_P	Do you scan all enterprise devices remotely logging into the organization's network prior to accessing the network to ensure that each of the organization's security policies has been enforced in the same manner as local network devices?

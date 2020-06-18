@@ -3,12 +3,12 @@ id	type	text_en	options_en
 2	BOOL_P	Does the log-on procedure display a general notice warning that the system should only be accessed by authorized users?	 
 3	BOOL_P	Does the log-on procedures avoid providing help messages that would aid an unauthorized user?	 
 4	BOOL_P	Does the log-on procedure validate the log-on information only on completion of all input data? 	 
-5	BOOL_P	"Does the log-on procedure ensure that when an error condition arises, it does not indicate which part of the data is correct or incorrect?"	 
-6	BOOL_P	Do you enforce a “least privilege” access to cyber assets and periodically review access privileges?	 
+5	BOOL_P	Does the log-on procedure ensure that when an error condition arises, it does not indicate which part of the data is correct or incorrect?	
+6	BOOL_P	Do you enforce a "least privilege" access to cyber assets and periodically review access privileges?
 7	BOOL_P	Does your log-on procedure protect against brute force log-on attempts?	 
 8	BOOL_P	Does your log-on procedure log successful and unsuccessful attempts?	 
 9	BOOL_P	Does your log-on procedure raise a security event if a potential attempted or successful breach of log-on controls is detected?	 
-10	BOOL_P	"Does your log-on procedure terminate inactive sessions after a defined period of inactivity, especially in high risk locations such as public areas?"	 
+10	BOOL_P	Does your log-on procedure terminate inactive sessions after a defined period of inactivity, especially in high risk locations such as public areas?	
 11	BOOL_P	Does your log-on procedure restrict connection times to provide additional security for high-risk applications and reduce the window of opportunity for unauthorized access?	 
 12	BOOL_P	"Does your log-on procedure display the following information on completion of a successful log-on:
 A. date and time of the previous successful log-on,

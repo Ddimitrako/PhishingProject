@@ -7,6 +7,5 @@ id	type	text_en	options_en
 6	BOOL_P	Do your policies and procedures foresee regular management reviews and internal audits?	 
 7	BOOL_P	Do your policies and procedures comply with relevant regional legislation?	 
 8	BOOL_P	Do your policies and procedures guard the fulfillment of contractual security obligations?	 
-9	BOOL_P	Do you analyse examples of information security best practices – benchmarking on a regular basis?	 
-10	BOOL_P	Do you comply with relevant legislation or any contractual obligations regarding the access to data or services	 
-11	BOOL_P	Are all fire doors on a security perimeter alarmed, monitored and tested in conjunction with the walls to establish the required level of resistance in accordance with suitable regional, national and international standards?	 
+9	BOOL_P	Do you analyse examples of information security best practices benchmarking on a regular basis?
+10	BOOL_P	Do you comply with relevant legislation or any contractual obligations regarding the access to data or services

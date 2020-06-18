@@ -1,12 +1,12 @@
 id	type	text_en	options_en
-1	BOOL_P	"Do you perform a skills gap analysis to understand the skills and behaviours workforce members are not adhering to, using this information to build a baseline education roadmap?"	 
-2	BOOL_P	Do you deliver training to address the skills gap identified to positively impact workforce members’ security ehavior?	 
+1	BOOL_P	Do you perform a skills gap analysis to understand the skills and behaviours workforce members are not adhering to, using this information to build a baseline education roadmap?
+2	BOOL_P	Do you deliver training to address the skills gap identified to positively impact workforce members' security behaviour?
 3	BOOL_P	Have you created a security awareness program for all workforce members to complete on a regular basis to ensure they understand and exhibit the necessary behaviours and skills to help ensure the security of the organization?	 
-4	BOOL_P	"Have you ensured that the organization’s security awareness program is updated frequently (at least annually) to address new technologies, threats, standards, and business requirements?"	 
+4	BOOL_P	Have you ensured that the organization's security awareness program is updated frequently (at least annually) to address new technologies, threats, standards, and business requirements?
 5	BOOL_P	Do you train workforce members on the importance of enabling and utilizing secure authentication?	 
-6	BOOL_P	"Do you train the workforce on how to identify different forms of social engineering attacks, such as phishing, phone scams, and impersonation calls?"	 
-7	BOOL_P	"Do you train workforce members on how to identify and properly store, transfer, archive, and destroy sensitive information?"	 
-8	BOOL_P	"Do you train workforce members to be aware of causes for unintentional data exposures, such as losing their mobile devices or emailing the wrong person due to autocomplete in email?"	 
+6	BOOL_P	Do you train the workforce on how to identify different forms of social engineering attacks, such as phishing, phone scams, and impersonation calls?
+7	BOOL_P	Do you train workforce members on how to identify and properly store, transfer, archive, and destroy sensitive information?
+8	BOOL_P	Do you train workforce members to be aware of causes for unintentional data exposures, such as losing their mobile devices or emailing the wrong person due to autocomplete in email?
 9	BOOL_P	Do you train workforce members to be able to identify the most common indicators of an incident and be able to report such an incident?	 
-10	BOOL_P	"Does your awareness and education plan teach proper methods for managing credit card data (PCI standards) and personal private information (Social security numbers, names, addresses, phone numbers, etc.)?"	 
-11	BOOL_P	"Do managers and security “champions” distribute ongoing reports with behavioral metrics (e.g. the frequency of passwords left exposed in work areas, failure to activate a secure screensaver when an employee has left their desk, and other instances of lack of compliance with security policies)?"	 
+10	BOOL_P	Does your awareness and education plan teach proper methods for managing credit card data (PCI standards) and personal private information (Social security numbers, names, addresses, phone numbers, etc.)?
+11	BOOL_P	Do managers and security "champions" distribute ongoing reports with behavioral metrics (e.g. the frequency of passwords left exposed in work areas, failure to activate a secure screensaver when an employee has left their desk, and other instances of lack of compliance with security policies)?

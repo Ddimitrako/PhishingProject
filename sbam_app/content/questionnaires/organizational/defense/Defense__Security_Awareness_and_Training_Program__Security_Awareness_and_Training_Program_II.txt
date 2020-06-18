@@ -6,7 +6,7 @@ id	type	text_en	options_en
 5	PERC20_P	What is the percentage of the attendees that actually complete the course?	 
 6	PERC10_P	What is the percentage of senior management/executives; middle management/professionals; operational works/staff that received a security review?	 
 7	PERC20_P	What is the percentage of service delivery performance targets achieved?	 
-8	PERC20_P	What is the percentage from the total number of employees that participate in the awareness survey?	 
+8	PERC20_P	What is the percentage of the total number of employees that participate in the awareness survey?
 9	CUSTOM_R	How many self security assessments are done per year?	"[[1, 1, ""0"", 0], [2, 2, ""1"", 0.33], [3, 3, ""2"", 0.67], [4, 4, ""More"", 1]] "
-10	PERC20_P	What is the percentage from the total number of employees that passed the exam or certification?	 
+10	PERC20_P	What is the percentage of the total number of employees that passed the exam or certification?
 11	PERC20_N	What is the percentage of security incidents that occur due to human behavior?	 

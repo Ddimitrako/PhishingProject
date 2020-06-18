@@ -1,13 +1,13 @@
 id	type	text_en	options_en
 1	BOOL_P	Do you maintain an up-to-date list of all authorized software that is required in the enterprise for any business purpose on any business system?	 
-2	BOOL_P	Have you ensured that only software applications or operating systems currently supported and receiving vendor updates are added to the organization’s authorized software inventory? 	 
+2	BOOL_P	Have you ensured that only software applications or operating systems currently supported and receiving vendor updates are added to the organization's authorized software inventory?
 3	BOOL_P	Have you utilized software inventory tools throughout the organization to automate the documentation of all software on business systems?	 
 4	BOOL_P	Does the software inventory system track the name, version, publisher, and install date for all software, including operating systems authorized by the organization?	 
 5	BOOL_P	Is the software inventory system tied into the hardware asset inventory so that all devices and associated software are tracked from a single location?	 
 6	BOOL_P	Have you ensured that unauthorized software is either removed or the inventory is updated in a timely manner?	 
 7	BOOL_P	Have you utilized application whitelisting technology on all assets to ensure that only authorized software executes and all unauthorized software is blocked from executing on assets?	 
-8	BOOL_P	Does the organization’s application whitelisting software ensure that only authorized software libraries (such as *.dll, *.ocx, *.so, etc.) are allowed to be loaded into a system process?	 
-9	BOOL_P	Does the organization’s application whitelisting software ensure that only authorized, digitally signed scripts (such as *.ps1,*.py, macros, etc.) are allowed to run on a system?	 
+8	BOOL_P	Does the organization's application whitelisting software ensure that only authorized software libraries (such as *.dll, *.ocx, *.so, etc.) are allowed to be loaded into a system process?
+9	BOOL_P	Does the organization's application whitelisting software ensure that only authorized, digitally signed scripts (such as *.ps1,*.py, macros, etc.) are allowed to run on a system?
 10	BOOL_P	Do you use physically or logically segregated systems to isolate and run software that is required for business operations but incurs higher risk for the organization?	 
 11	BOOL_P	Do you employ integrity checking mechanisms to verify software, firmware, and information integrity?	 
 12	BOOL_P	Is maintenance of organizational software assets approved, logged, and performed in a manner that prevents unauthorized access?	 

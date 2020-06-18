@@ -3,10 +3,10 @@ id	type	text_en	options_en
 2	BOOL_P	Does your organization use unique user IDs?	 
 3	BOOL_P	Do you immediately disable user IDs of people who have left the organization?	 
 4	BOOL_P	Do you periodically review user IDs and disable any redundant ones?	 
-5	BOOL_P	"In order to be provided with access rights, do you need to obtain authorization from the owner of the information system or service?"	 
+5	BOOL_P	In order to be provided with access rights, do you need to obtain authorization from the owner of the information system or service?
 6	BOOL_P	Do you verify that the level of access granted is appropriate to the access policies and is consistent with other requirements such as segregation of duties?	 
 7	BOOL_P	Do you ensure that access rights are not activated before the authorization procedures are completed?	 
 8	BOOL_P	Do you maintain a central record of access rights granted to a user ID?	 
 9	BOOL_P	Do you immediately adapt access rights of users who change roles or leave the organization?	 
-10	BOOL_P	"Does the organization control the access rights of users (read, write, delete and execute)?"	 
+10	BOOL_P	Does the organization control the access rights of users (read, write, delete and execute)?
 11	BOOL_P	Does the organization control the access rights of other applications?	 

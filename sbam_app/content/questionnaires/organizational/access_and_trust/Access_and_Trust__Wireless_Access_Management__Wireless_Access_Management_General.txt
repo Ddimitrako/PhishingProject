@@ -3,11 +3,11 @@ id	type	text_en	options_en
 2	BOOL_P	Have you configured network vulnerability scanning tools to detect and alert on unauthorized wireless access points connected to the wired network?	 
 3	BOOL_P	Do you use a wireless intrusion detection system (WIDS) to detect and alert on unauthorized wireless access points connected to the network?	 
 4	BOOL_P	Have you disabled wireless access on devices that do not have a business purpose for wireless access?	 
-5	BOOL_P	"Have you configured wireless access on client machines that do have an essential wireless business purpose, to allow access only to authorized wireless networks and to restrict access to other wireless networks?"	 
+5	BOOL_P	Have you configured wireless access on client machines that do have an essential wireless business purpose, to allow access only to authorized wireless networks and to restrict access to other wireless networks?
 6	BOOL_P	Have you disabled peer-to-peer (ad hoc) wireless network capabilities on wireless clients?	 
 7	BOOL_P	Do you leverage the Advanced Encryption Standard (AES) to encrypt wireless data in transit?	 
-8	BOOL_P	"Have you ensured that wireless networks use authentication protocols such as Extensible Authentication Protocol-Transport Layer Security (EAP/TLS), that requires mutual, multi-factor authentication?"	 
-9	BOOL_P	"Have you disabled wireless peripheral access of devices [such as Bluetooth and Near Field Communication (NFC)], unless such access is required for a business purpose?"	 
+8	BOOL_P	Have you ensured that wireless networks use authentication protocols such as Extensible Authentication Protocol-Transport Layer Security (EAP/TLS), that requires mutual, multi-factor authentication?
+9	BOOL_P	Have you disabled wireless peripheral access of devices [such as Bluetooth and Near Field Communication (NFC)], unless such access is required for a business purpose?
 10	BOOL_P	Have you created a separate wireless network for personal or untrusted devices?	 
-11	BOOL_P	"Is remote maintenance of organizational assets approved, logged, and performed in a manner that prevents unauthorized access?"	 
+11	BOOL_P	Is remote maintenance of organizational assets approved, logged, and performed in a manner that prevents unauthorized access?
 12	PERC20_N	What is the percentage of unidentified devices in the internal network?	 

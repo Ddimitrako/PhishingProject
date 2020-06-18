@@ -1,6 +1,6 @@
 id	type	text_en	options_en
 1	BOOL_P	Do you protect temporary or permanent copies of information to a level consistent with the protection of the original information?	 
-2	BOOL_P	"Do you store in separate media the multiple copies of valuable data, in order to reduce the risk of coincidental data damage or loss?"	 
+2	BOOL_P	Do you store in separate media the multiple copies of valuable data, in order to reduce the risk of coincidental data damage or loss?
 3	CUSTOM_R	How often do you perform tests of your backup systems?	"[[1, 1, ""Once per month"", 1],[2, 2, ""Once per quarter"", 0.75], [3, 3, ""Once per semester"", 0.50], [4, 4, ""Once per year"", 0.25], [5, 5, ""Less"", 0]] "
 4	CUSTOM_R	Do you perform regular or semi-regular maintenance of your backup systems according to their specifications?	"[[1, 1, ""Regular"", 1], [2, 2, ""Semi-regular"", 0.50], [3, 3, ""Less"", 0]] "
 5	BOOL_P	Have you established the extent and frequency of the backups?	 

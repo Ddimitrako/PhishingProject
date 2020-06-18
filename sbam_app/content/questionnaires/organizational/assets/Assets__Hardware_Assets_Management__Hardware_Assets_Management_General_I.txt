@@ -1,11 +1,11 @@
 id	type	text_en	options_en
-1	BOOL_P	Have you utilized an active discovery tool to identify devices connected to the organization’s network and update the hardware asset inventory?	 
-2	BOOL_P	Have you utilized a passive discovery tool to identify devices connected to the organization’s network and automatically update the organization’s hardware asset inventory?	 
-3	BOOL_P	Do you use Dynamic Host Configuration Protocol (DHCP) logging on all DHCP servers or IP address management tools to update the organization’s hardware asset inventory?	 
-4	BOOL_P	Do you maintain an accurate and up-to-date inventory of all assets (including the ones not connected within the organization’s network) with the potential to store or process information?	 
-5	BOOL_P	"Have you ensured that the hardware asset inventory records the network address, hardware address, machine name, data asset owner, and department for each asset and whether the hardware asset has been approved to connect to the network?"	 
-6	BOOL_P	"Have you ensured that unauthorized assets are either removed from the network, quarantined or the inventory is updated in a timely manner?"	 
-7	BOOL_P	"Have you utilized port level access control, following 802.1x standards, to control which devices can authenticate to the network? "	 
-8	BOOL_P	Do you use client certificates to authenticate hardware assets connecting to the organization’s trusted network?	 
+1	BOOL_P	Have you utilized an active discovery tool to identify devices connected to the organization's network and update the hardware asset inventory?
+2	BOOL_P	Have you utilized a passive discovery tool to identify devices connected to the organization's network and automatically update the organization's hardware asset inventory?
+3	BOOL_P	Do you use Dynamic Host Configuration Protocol (DHCP) logging on all DHCP servers or IP address management tools to update the organization's hardware asset inventory?
+4	BOOL_P	Do you maintain an accurate and up-to-date inventory of all assets (including the ones not connected within the organization's network) with the potential to store or process information?
+5	BOOL_P	Have you ensured that the hardware asset inventory records the network address, hardware address, machine name, data asset owner, and department for each asset and whether the hardware asset has been approved to connect to the network?
+6	BOOL_P	Have you ensured that unauthorized assets are either removed from the network, quarantined or the inventory is updated in a timely manner?
+7	BOOL_P	Have you utilized port level access control, following 802.1x standards, to control which devices can authenticate to the network?
+8	BOOL_P	Do you use client certificates to authenticate hardware assets connecting to the organization's trusted network?
 9	BOOL_P	Does the organization restrict employees from installing unrelated to their work software on their devices?	
 10	BOOL_P	Do you install the latest security patches on devices immediately? 	
