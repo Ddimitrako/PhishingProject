@@ -1,0 +1,6 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you have all the necessary policies and procedures properly documented?	 
+2	BOOL_P	Do you have all the necessary records properly documented?	 
+3	BOOL_P	Is each asset owner properly identified and documented in the inventory of assets?	 
+4	BOOL_P	Is all the documentation properly maintained and updated?	 
+5	BOOL_P	Is all the documentation properly communicated to all relevant parties?	 

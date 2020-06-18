@@ -1,0 +1,20 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you have a current business continuity plan?	 
+2	BOOL_P	Is there a process for creating retrievable backups and archival copies of critical information?	 
+3	BOOL_P	Have you ensured that all system data is automatically backed up on a regular basis?	 
+4	BOOL_P	Have you ensured that all of the organization’s key systems are backed up as a complete system, through processes such as imaging, to enable the quick recovery of an entire system?	 
+5	BOOL_P	Do you test data integrity on backup media on a regular basis by performing a data restoration process to ensure that the backup is properly working?	 
+6	BOOL_P	Have you ensured that backups are properly protected via physical security or encryption when they are stored, as well as when they are moved across the network, including remote backups and cloud services?	 
+7	BOOL_P	Have you ensured that all backups have at least one offline (i.e., not accessible via a network connection) backup destination?	 
+8	BOOL_P	Do you have an emergency/incident management communications plan?	 
+9	BOOL_P	Does your emergency/incident management communication plan address the potential damage to public relations?	 
+10	BOOL_P	Does your emergency/incident management communications plan address the potential damage to the reputation of the organisation?	 
+11	BOOL_P	Do you have a procedure for notifying authorities in the case of a disaster or security incident?	 
+12	BOOL_P	Does your procedure identify who should make the contacts?	 
+13	BOOL_P	Does your procedure identify who should be contacted, including contact information?	 
+14	BOOL_P	Is the contact information sorted and identified by incident type?	 
+15	BOOL_P	Have you identified who will speak to the press/public in the case of an emergency or an incident?	 
+16	BOOL_P	Does your communication plan cover internal communications with your employees and their families?	 
+17	BOOL_P	Can emergency procedures be appropriately implemented, as needed, by those responsible?	 
+18	CUSTOM_R	Do you regularly or semi-regularly test your recovery plans?	"[[1, 1, ""Twice per year"", 1], [2, 2, ""Once per year"", 0.50], [3, 3, ""Less than once per year"", 0]] "
+19	BOOL_P	Do you conduct disaster response and recovery planning and testing with third party stakeholders?	 

@@ -1,0 +1,17 @@
+id	type	text_en	options_en
+1	BOOL_P	Are you being properly informed about the relevant policies and procedures of the organisation?  	 
+2	BOOL_P	Are you aware of the organisations’ communication flows?	 
+3	BOOL_P	Are you aware of the organisations data flows?	 
+4	BOOL_P	Are you aware of the prioritization of resources based on their classification, criticality, and business value	 
+5	BOOL_P	Are you aware of the organisations role in the supply chain   ?	 
+6	BOOL_P	Are you aware of the organisations place in critical infrastructure and its industry sector?	 
+7	BOOL_P	Are you aware of the organisations priorities, mission objective and activities?	 
+8	BOOL_P	Are you aware of the vulnerabilities of assets you are responsible for?	 
+9	BOOL_P	Are you aware of the information sharing forums and sources used by the company?	 
+10	BOOL_P	Are you aware of the risk response procedures of the organisation?	 
+11	BOOL_P	Are you aware of the credentials, and the relevant procedures and polices about them?	 
+12	BOOL_P	Are you aware of the policies regarding physical access to assets?	 
+13	BOOL_P	Are you aware of the polices regarding remote access to assets?	 
+14	BOOL_P	Are you aware of the implemented network segregation and network segmentation policies?	 
+15	BOOL_P	Are you aware of the policies regarding data destruction?	 
+16	BOOL_P	Are you aware of the policies regarding maintenance of assets?	 

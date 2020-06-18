@@ -1,0 +1,17 @@
+id	type	text_en	options_en
+1	BOOL_P	Have you defined and documented a formal procedure with which the risk assessment shall be conducted?	 
+2	BOOL_P	Does your risk assessment determine the impact of specific events separately?	 
+3	BOOL_P	Have you defined the risk acceptance criteria? 	 
+4	BOOL_P	Have you established unique alert thresholds for each potential incident?	 
+5	BOOL_P	Does your procedure ensure that repeated security risk assessments produce consistent, valid and comparable results?	 
+6	BOOL_P	Have you identified the risk owners?	 
+7	BOOL_P	Is the risk assessment properly documented?	 
+8	BOOL_P	Do you formulate a risk treatment plan after a risk assessment?	 
+9	BOOL_P	Do governance and risk management processes address cybersecurity risks?	 
+10	BOOL_P	Do you receive threat and vulnerability information from information sharing forums and sources?	 
+11	BOOL_P	Is the organizational risk tolerance determined and clearly expressed?	 
+12	BOOL_P	Is the organisational risk tolerance informed by its role in critical infrastructure and sector specific analysis?	 
+13	BOOL_P	Are organization’s determination of risk tolerance informed by its role in critical infrastructure and sector specific risk analysis?	 
+14	BOOL_P	Do you identify and document specific asset vulnerabilities?	
+15	CUSTOM_R	Do you identify both internal and external threats during the risk assessment?	"[[1, 1, ""Both"", 1], [2, 2, ""Only internal"", 0.50], [3, 3, ""Only external"", 0.50], [4, 4, ""None"", 0]] "
+16	CUSTOM_R	Number of security issues related to employees security behaviour identified by the risk department.	"[[1, 1, ""Few unimportant issues"", 1], [2, 2, ""Normal amount of unimportant issues"", 0.80], [3, 3, ""A lot of unimportant issues"", 0.60], [4, 4, ""Few important issues"", 0.40], [5, 5, ""Normal amount of important issues"", 0.20], [6, 6, ""A lot of important issues"", 0]] "

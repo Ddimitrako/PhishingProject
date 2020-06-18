@@ -1,0 +1,3 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you enforce the principle of “least privilege” granting user access to SCADA resources?	 
+2	BOOL_P	Do you ensure that no critical control decision is being made without human confirmation?	 

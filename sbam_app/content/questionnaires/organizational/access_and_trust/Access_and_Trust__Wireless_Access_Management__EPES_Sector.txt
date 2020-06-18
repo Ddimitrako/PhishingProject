@@ -1,0 +1,2 @@
+id	type	text_en	options_en
+1	BOOL_P	Have you disabled remote disconnect feature that allows to shut down electricity remotely using a smart meter?	 

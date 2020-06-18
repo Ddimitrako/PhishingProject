@@ -1,0 +1,6 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you use cryptographic controls on data stored in removable media, if confidentiality and/or integrity are important considerations?	 
+2	BOOL_P	Do you identify the required level of protection based on a risk assessment?	 
+3	BOOL_P	Do you use cryptographic controls for the protection of information transported across communication lines?	 
+4	BOOL_P	Have you established methods to deal with the protection of cryptographic keys and the recovery of encrypted information in the case of lost, compromised or damaged keys?	 
+5	BOOL_P	Do you take into account the impact of using encrypted information on controls that rely upon content inspection?	 

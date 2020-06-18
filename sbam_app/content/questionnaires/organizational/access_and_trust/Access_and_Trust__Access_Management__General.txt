@@ -1,0 +1,39 @@
+id	type	text_en	options_en
+1	BOOL_P	Have you segmented the network based on the label or classification level of the information stored on the servers, locate all sensitive information on separated Virtual Local Area Networks (VLANs)? 	 
+2	BOOL_P	Have you enabled firewall filtering between VLANs to ensure that only authorized systems are able to communicate with other systems necessary to fulfill their specific responsibilities?	 
+3	BOOL_P	Have you disabled all workstation-to-workstation communication to limit an attacker’s ability to move laterally and compromise neighboring systems, through technologies such as private VLANs or micro segmentation? 	 
+4	BOOL_P	Do you encrypt all sensitive information in transit?	 
+5	BOOL_P	Have you utilized an active discovery tool to identify all sensitive information stored, processed, or transmitted by the organization’s technology systems, including those located on-site or at a remote service provider, and update the organization’s sensitive information inventory?	 
+6	BOOL_P	Do you protect all information stored on systems with file system, network share, claims, application, or database specific access control lists? These controls will enforce the principle that only authorized individuals should have access to the information based on their need to access the information as a part of their responsibilities.	 
+7	BOOL_P	Do you use an automated tool, such as host-based Data Loss Prevention, to enforce access controls to data even when the data is copied off a system?	 
+8	BOOL_P	Do you encrypt all sensitive information at rest using a tool that requires a secondary authentication mechanism not integrated into the operating system, in order to access the information? 	 
+9	BOOL_P	Do you enforce detailed audit logging for access to sensitive data or changes to sensitive data (utilizing tools such as File Integrity Monitoring or Security Information and Event Monitoring)?	 
+10	BOOL_P	Do you establish access restrictions in accordance with the classification scheme adopted by the organization?	 
+11	BOOL_P	Do you use a distributed and networked environment which recognizes all types of connections available for access rights management?	 
+12	BOOL_P	Have you implemented a formal authorization process for access requests?	 
+13	BOOL_P	Does your organization use unique user IDs?	 
+14	BOOL_P	Do you immediately disable user IDs of people who have left the organization?	 
+15	BOOL_P	Do you periodically review user IDs and disable any redundant ones?	 
+16	BOOL_P	In order to be provided with access rights, do you need to obtain authorization from the owner of the information system or service?	 
+17	BOOL_P	Do you verify that the level of access granted is appropriate to the access policies and is consistent with other requirements such as segregation of duties?	 
+18	BOOL_P	Do you ensure that access rights are not activated before the authorization procedures are completed?	 
+19	BOOL_P	Do you maintain a central record of access rights granted to a user ID?	 
+20	BOOL_P	Do you immediately adapt access rights of users who change roles or leave the organization?	 
+21	BOOL_P	Does the organization control the access rights of users (read, write, delete and execute)?	 
+22	BOOL_P	Does the organization control the access rights of other applications?	 
+23	BOOL_P	During the access procedures, is the output of information limited?	 
+24	BOOL_P	Have you implemented physical or logical access controls for the isolation of sensitive applications, application data or systems?	 
+25	BOOL_P	Do you ensure that the log-on procedures avoid displaying system or application identifiers until the log-on procedure has been successfully completed?	 
+26	BOOL_P	Does the log-on procedure display a general notice warning that the system should only be accessed by authorized users?	 
+27	BOOL_P	Does the log-on procedures avoid providing help messages that would aid an unauthorized user?	 
+28	BOOL_P	Does the log-on procedure validate the log-on information only on completion of all input data? 	 
+29	BOOL_P	Does the log-on procedure ensure that when an error condition arises, it does not indicate which part of the data is correct or incorrect?	 
+30	BOOL_P	Do you enforce a “least privilege” access to cyber assets and periodically review access privileges?	 
+31	BOOL_P	Does your log-on procedure protect against brute force log-on attempts?	 
+32	BOOL_P	Does your log-on procedure log successful and unsuccessful attempts?	 
+33	BOOL_P	Does your log-on procedure raise a security event if a potential attempted or successful breach of log-on controls is detected?	 
+34	BOOL_P	Does your log-on procedure terminate inactive sessions after a defined period of inactivity, especially in high risk locations such as public areas?	 
+35	BOOL_P	Does your log-on procedure restrict connection times to provide additional security for high-risk applications and reduce the window of opportunity for unauthorized access?	 
+36	BOOL_P	"Does your log-on procedure display the following information on completion of a successful log-on:
+•	date and time of the previous successful log-on,
+•	details of any unsuccessful log-on attempts since the last successful log-on?"	 

@@ -1,0 +1,23 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you perform a skills gap analysis to understand the skills and behaviours workforce members are not adhering to, using this information to build a baseline education roadmap?	 
+2	BOOL_P	Do you deliver training to address the skills gap identified to positively impact workforce members’ security ehavior?	 
+3	BOOL_P	Have you created a security awareness program for all workforce members to complete on a regular basis to ensure they understand and exhibit the necessary behaviours and skills to help ensure the security of the organization?	 
+4	BOOL_P	Have you ensured that the organization’s security awareness program is updated frequently (at least annually) to address new technologies, threats, standards, and business requirements?	 
+5	BOOL_P	Do you train workforce members on the importance of enabling and utilizing secure authentication?	 
+6	BOOL_P	Do you train the workforce on how to identify different forms of social engineering attacks, such as phishing, phone scams, and impersonation calls?	 
+7	BOOL_P	Do you train workforce members on how to identify and properly store, transfer, archive, and destroy sensitive information?	 
+8	BOOL_P	Do you train workforce members to be aware of causes for unintentional data exposures, such as losing their mobile devices or emailing the wrong person due to autocomplete in email?	 
+9	BOOL_P	Do you train workforce members to be able to identify the most common indicators of an incident and be able to report such an incident?	 
+10	BOOL_P	Does your awareness and education plan teach proper methods for managing credit card data (PCI standards) and personal private information (Social security numbers, names, addresses, phone numbers, etc.)?	 
+11	BOOL_P	Do managers and security “champions” distribute ongoing reports with behavioral metrics (e.g. the frequency of passwords left exposed in work areas, failure to activate a secure screensaver when an employee has left their desk, and other instances of lack of compliance with security policies)?	 
+12	BOOL_P	Is there a framework for the certification and accreditation of cybersecurity professionals?	 
+13	PERC20_P	Rate of budget spent on awareness training.	 
+14	PERC20_P	Rate of time spent on awareness training per FTE.	 
+15	PERC20_P	Number of FTEs IT-security trained/total users.	 
+16	PERC20_P	Rate of employees completing the course / attendees.	 
+17	PERC10_P	"Rate of senior management/executives; middle management/professionals; operational works/staff that received a security review."	 
+18	PERC20_P	Rate of service delivery performance targets achieved	 
+19	PERC20_P	Number of participants in the awareness survey/total employees	 
+20	CUSTOM_R	Number of self security assessment done/year.	"[[1, 1, ""0"", 0], [2, 2, ""1"", 0.33], [3, 3, ""2"", 0.67], [4, 4, ""More"", 1]] "
+21	PERC20_P	Number of employees who passed the exam or certification/Total number of employees.	 
+22	PERC20_N	Number of security incidents due to human behavior.	 

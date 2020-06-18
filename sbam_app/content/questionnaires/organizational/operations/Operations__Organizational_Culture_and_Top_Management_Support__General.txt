@@ -1,0 +1,12 @@
+id	type	text_en	options_en
+1	BOOL_P	Is your leadership actively and continuously involved in information security planning?	 
+2	BOOL_P	Do your policies and procedures clearly define the organizational hierarchy and provide a comprehensive job classification?	 
+3	BOOL_P	Is your information security department adequately staffed and financially supported?	 
+4	BOOL_P	Do you take into consideration information security in the planning of organizational projects and changes?	 
+5	BOOL_P	Have you established a good relations’ and constructive debates’ level regarding security controls between organizational departments?	 
+6	BOOL_P	Do you pursue the principle of efficiency in information security - economy/cost optimization?	 
+7	BOOL_P	Have you established and ensured an ethical, socially responsible and transparent security management?	 
+8	BOOL_P	Is there investment in cybersecurity research & development programs?	 
+9	BOOL_P	Do you take into account the principle of least functionality by configuring systems to provide only essential capabilities?	 
+10	BOOL_P	Are mechanisms implemented to achieve resilience requirements in normal and adverse situations?	 
+11	BOOL_P	Have you assigned responsibility of developing, implementing, and enforcing cyber security policies to a senior manage while ensuring he has the requisite authority across departments to enforce them?	 

@@ -1,0 +1,8 @@
+id	type	text_en	options_en
+1	BOOL_P	Do your policies and procedures utilize a strategic and long-term planning of information security thus ensuring a proactive approach?	 
+2	BOOL_P	Have you developed information security as a business function or special department/service?	 
+3	BOOL_P	Do you have an adequate personnel structure staffed with qualified members occupied for information security?	 
+4	BOOL_P	Have you established a formal authority of security personnel with a granted decision-making ability?	 
+5	BOOL_P	Do your policies and procedures clearly separate your IT and security division, thus their responsibilities and tasks?	 
+6	BOOL_P	Do you organize vertical and horizontal security meetings on a regular basis?	 
+7	BOOL_P	Are critical security tasks handled based on team decision-making techniques? 	 

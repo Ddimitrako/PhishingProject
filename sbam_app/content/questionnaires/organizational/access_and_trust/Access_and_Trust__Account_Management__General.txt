@@ -1,0 +1,16 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you maintain an inventory of each of the organization’s authentication systems, including those located on-site or at a remote service provider?	 
+2	BOOL_P	Have you configured access for all accounts through as few centralized points of authentication as possible, including network, security, and cloud systems?	 
+3	BOOL_P	Do you require multi-factor authentication for all user accounts, on all systems, whether managed on-site or by a third-party provider?	 
+4	BOOL_P	Do you encrypt or hash with a salt all authentication credentials when stored?	 
+5	BOOL_P	Have you ensured that all account usernames and authentication credentials are transmitted across networks using encrypted channels?	 
+6	BOOL_P	Do you maintain an inventory of all accounts organized by authentication system?	 
+7	BOOL_P	Have you established and follow an automated process for revoking system access by disabling accounts immediately upon termination or change of responsibilities of an employee or contractor?	 
+8	BOOL_P	Do you disable any account that cannot be associated with a business process or business owner?	 
+9	BOOL_P	Do you automatically disable dormant accounts after a set period of inactivity?	 
+10	BOOL_P	Have you ensured that all accounts have an expiration date that is monitored and enforced?	 
+11	BOOL_P	Do you automatically lock workstation sessions after a standard period of inactivity? 	 
+12	BOOL_P	Do you monitor attempts to access deactivated accounts through audit logging?	 
+13	BOOL_P	Are you being alerted when users deviate from normal login behavior, such as time-of-day, workstation location, and duration? 	 
+14	BOOL_P	Are your computers set up so others cannot view staff entering passwords?	 
+15	CUSTOM_R	Number of days to deactivate former employee credentials.	"[[1, 1, ""Once per month"", 1],[2, 2, ""Once per quarter"", 0.75], [3, 3, ""Once per semester"", 0.50], [4, 4, ""Once per year"", 0.25], [5, 5, ""Less"", 0]]"

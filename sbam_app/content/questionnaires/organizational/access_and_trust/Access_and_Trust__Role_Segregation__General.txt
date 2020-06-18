@@ -1,0 +1,8 @@
+id	type	text_en	options_en
+1	BOOL_P	Are access permissions and authorizations managed according to the principles of least privilege and separation of duties?	 
+2	BOOL_P	Do you have procedures to ensure third-party stakeholders understand their roles and responsibilities according to their contractual relationship?	 
+3	BOOL_P	Do you have procedures to ensure senior executives understand their roles and responsibilities?	 
+4	BOOL_P	Do you have procedures to ensure privileged users understand their roles and responsibilities?	 
+5	BOOL_P	Do you have procedures to ensure physical and cybersecurity personnel understand their roles and responsibilities?	 
+6	BOOL_P	Have you established cybersecurity roles and responsibilities for the entire workforce and third party stakeholders?	 
+7	CUSTOM_R	Have you properly assigned roles and responsibilities for: A) the implementation of the policy on cryptographic controls, B) the cryptographic key management?	"[[1, 1, ""A & B"", 1], [2, 2, ""A"", 0.50], [3, 3, ""B"", 0.50], [4, 4, ""None"", 0]] "
