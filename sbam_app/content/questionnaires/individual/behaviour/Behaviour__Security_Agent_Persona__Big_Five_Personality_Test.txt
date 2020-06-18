@@ -15,7 +15,7 @@ id	type	text_en	options_en
 14	AGR5_N	I am often troubled by negative thoughts.	 
 15	AGR5_P	I enjoy going to art museums.	 
 16	AGR5_P	I accept people the way they are.	 
-17	AGR5_P	It’s important to me that people are on time.	 
+17	AGR5_P	It's important to me that people are on time.
 18	AGR5_P	I am the life of the party.	 
 19	AGR5_N	My moods change easily.	 
 20	AGR5_P	I have a vivid imagination.	 
