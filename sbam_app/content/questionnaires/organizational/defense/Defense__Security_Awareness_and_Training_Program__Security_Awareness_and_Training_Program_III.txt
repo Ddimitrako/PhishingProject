@@ -1,0 +1,7 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you organize relevant trainings and seminars for the employees?	 
+2	BOOL_P	Do you keep documentation of all the trainings and seminars conducted by the organization?	 
+3	BOOL_P	"Do you examine the efficiency of conducted trainings and seminars, through relevant tests and questionnaires? "	 
+4	AGR5_P	How satisfied are you with communication about the training programme?	 
+5	AGR5_P	How satisfied are you with the governance arrangements?	 
+6	AGR5_P	What is your understanding of the initiative benefits?	 

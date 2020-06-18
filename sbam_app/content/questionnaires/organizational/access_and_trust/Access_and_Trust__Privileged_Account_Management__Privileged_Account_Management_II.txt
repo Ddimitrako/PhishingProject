@@ -1,0 +1,9 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you identify the privileged access rights associated with each system or process and the users to whom they need to be allocated?	 
+2	BOOL_P	Do you ensure that the privileged access rights are allocated to users on a need-to-use basis and on an event-by-event basis in line with the access control policy?	 
+3	BOOL_P	Do you identify the requirements for expiry of privileged access rights?	 
+4	BOOL_P	Do you regularly review the competences of users with privileged access rights?	 
+5	BOOL_P	Do you check privilege allocations at regular intervals to ensure that unauthorized privileges have not been obtained?	 
+6	BOOL_P	Do you log changes to privileged accounts?	 
+7	PERC20_N	What is the percentage of users with “super user” access level?	 
+8	PERC20_N	What is the percentage of privileged accounts in relation with the total number of accounts?	 

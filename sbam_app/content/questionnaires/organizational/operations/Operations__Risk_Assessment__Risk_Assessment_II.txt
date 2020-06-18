@@ -1,0 +1,9 @@
+id	type	text_en	options_en
+9	BOOL_P	Do governance and risk management processes address cybersecurity risks?	 
+10	BOOL_P	Do you receive threat and vulnerability information from information sharing forums and sources?	 
+11	BOOL_P	Is the organizational risk tolerance determined and clearly expressed?	 
+12	BOOL_P	Is the organisational risk tolerance informed by its role in critical infrastructure and sector specific analysis?	 
+13	BOOL_P	Are organization’s determination of risk tolerance informed by its role in critical infrastructure and sector specific risk analysis?	 
+14	BOOL_P	Do you identify and document specific asset vulnerabilities?	
+15	CUSTOM_R	Do you identify both internal and external threats during the risk assessment?	"[[1, 1, ""Both"", 1], [2, 2, ""Only internal"", 0.50], [3, 3, ""Only external"", 0.50], [4, 4, ""None"", 0]] "
+16	CUSTOM_R	What is the number of security issues related to employees security behaviour identified by the risk department?	"[[1, 1, ""Few unimportant ones"", 1], [2, 2, ""Normal amount of unimportant ones"", 0.80], [3, 3, ""A lot of unimportant ones"", 0.60], [4, 4, ""Few important ones"", 0.40], [5, 5, ""Normal amount of important ones"", 0.20], [6, 6, ""A lot of important ones"", 0]] "

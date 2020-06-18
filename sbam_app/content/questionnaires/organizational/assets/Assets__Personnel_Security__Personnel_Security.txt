@@ -1,0 +1,13 @@
+id	type	text_en	options_en
+1	BOOL_P	Does your staff wear ID badges?	 
+2	BOOL_P	Is a current picture part of the ID badge?	 
+3	BOOL_P	"Are authorized access levels and type (employee, contractor, visitor) identified on the Badge?"	 
+4	BOOL_P	Do you have policies addressing background checks for employees and contractors?	 
+5	BOOL_P	Do you have a process for effectively cutting off access to facilities and information systems when an employee/contractor terminates employment?	 
+6	BOOL_P	Is personnel activity monitored to detect potential cybersecurity events?	 
+7	BOOL_P	"Do you assure that personnel are only aware of the existence of, or activities within, a secure area on a need-to-know basis?"	 
+8	BOOL_P	"Have you established guidelines for eating, drinking and smoking in proximity to information processing facilities?"	 
+9	BOOL_P	Do you identify the competency needed for each role and responsibility?	
+10	BOOL_P	Do you test the competency of each employee before employment?	
+11	BOOL_P	Do you keep the necessary proof of the competency of each employee?	
+12	BOOL_P	Do you use information sharing forums and sources when needed?  	

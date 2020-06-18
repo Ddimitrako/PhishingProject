@@ -1,2 +1,0 @@
-id	type	text_en	options_en
-1	CUSTOM_R	Number of security incidents that stems from non-secure behaviour.	"[[1, 1, ""Few unimportant incidents"", 1], [2, 2, ""Normal amount of unimportant incidents"", 0.80], [3, 3, ""A lot of unimportant incidents"", 0.60], [4, 4, ""Few important incidents"", 0.40], [5, 5, ""Normal amount of important incidents"", 0.20], [6, 6, ""A lot of important incidents"", 0]]"

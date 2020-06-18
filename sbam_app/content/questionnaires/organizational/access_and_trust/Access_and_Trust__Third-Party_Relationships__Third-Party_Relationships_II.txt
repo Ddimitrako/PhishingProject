@@ -1,0 +1,13 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you identify and document all the relevant to your organization’s security authorities?	 
+2	BOOL_P	Do you document and distribute to all relevant parties all the necessary contact information with the identified authorities?	 
+3	BOOL_P	Do you identify and document all the relevant to your organization’s security special groups?	 
+4	BOOL_P	Do you document and distribute to all relevant parties all the necessary contact information with the identified special groups?	 
+5	BOOL_P	Are there any multilateral agreements on cybersecurity cooperation?	 
+6	BOOL_P	Do you have procedures to ensure third party stakeholders understand their roles and responsibilities according to their contractual relationship?	 
+7	BOOL_P	Do you conduct response and recovery planning and testing with third party stakeholders?	 
+8	BOOL_P	Have you implemented procedures to verify the identification of couriers?	 
+9	CUSTOM_R	How often do you review third party accesses?	"[[1, 1, ""Once per month"", 1],[2, 2, ""Once per quarter"", 0.75], [3, 3, ""Once per semester"", 0.50], [4, 4, ""Once per year"", 0.25], [5, 5, ""Less"", 0]]"
+10	CUSTOM_R	How often do third parties access critical enterprise systems?	"[[1, 1, ""Regularly"", 0], [2, 2, ""Semi-regularly"", 0.33], [3, 3, ""Rarely"", 0.67], [4, 4, ""Never"", 1]] "
+11	PERC20_P	What is the percentage of your business partners that have established effective cybersecurity policies?	 
+12	PERC20_P	What is the percentage of your critical vendors who have completed a risk assessment?	 

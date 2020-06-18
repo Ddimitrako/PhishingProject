@@ -1,0 +1,8 @@
+id	type	text_en	options_en
+1	BOOL_P	Are you aware of all the devices and systems you are responsible for?	 
+2	BOOL_P	Are you aware of all the software platforms and applications you are responsible for?	 
+3	BOOL_P	Are you aware of all the external information systems they come in contact with?	 
+4	BOOL_P	Are you aware of the the dependencies of critical functions for delivery of critical services you are responsible for?	 
+5	BOOL_P	"Are you aware of the third party partners information system, components and services you come into contact with?"	 
+6	BOOL_P	"Are you aware of other employees roles and responsibilities (e.g. privileged user, senior executive,etc..)? "	 
+7	PERC20_N	What is the percentage of security incidents that fall within your responsibilities but were not identified by you?	 

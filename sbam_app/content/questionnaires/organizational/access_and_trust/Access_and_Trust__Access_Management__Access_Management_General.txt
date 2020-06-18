@@ -1,0 +1,14 @@
+id	type	text_en	options_en
+1	BOOL_P	"Have you segmented the network based on the label or classification level of the information stored on the servers, locate all sensitive information on separated Virtual Local Area Networks (VLANs)? "	 
+2	BOOL_P	Have you enabled firewall filtering between VLANs to ensure that only authorized systems are able to communicate with other systems necessary to fulfill their specific responsibilities?	 
+3	BOOL_P	"Have you disabled all workstation-to-workstation communication to limit an attacker’s ability to move laterally and compromise neighboring systems, through technologies such as private VLANs or micro segmentation? "	 
+4	BOOL_P	Do you encrypt all sensitive information in transit?	 
+5	BOOL_P	"Have you utilized an active discovery tool to identify all sensitive information stored, processed, or transmitted by the organization’s technology systems, including those located on-site or at a remote service provider, and update the organization’s sensitive information inventory?"	 
+6	BOOL_P	"Do you protect all information stored on systems with file system, network share, claims, application, or database specific access control lists? These controls will enforce the principle that only authorized individuals should have access to the information based on their need to access the information as a part of their responsibilities."	 
+7	BOOL_P	"Do you use an automated tool, such as host-based Data Loss Prevention, to enforce access controls to data even when the data is copied off a system?"	 
+8	BOOL_P	"Do you encrypt all sensitive information at rest using a tool that requires a secondary authentication mechanism not integrated into the operating system, in order to access the information? "	 
+9	BOOL_P	Do you enforce detailed audit logging for access to sensitive data or changes to sensitive data (utilizing tools such as File Integrity Monitoring or Security Information and Event Monitoring)?	 
+10	BOOL_P	Do you establish access restrictions in accordance with the classification scheme adopted by the organization?	 
+11	BOOL_P	Do you use a distributed and networked environment which recognizes all types of connections available for access rights management?	 
+12	BOOL_P	"During the access procedures, is the output of information limited?"	 
+13	BOOL_P	"Have you implemented physical or logical access controls for the isolation of sensitive applications, application data or systems?"	 

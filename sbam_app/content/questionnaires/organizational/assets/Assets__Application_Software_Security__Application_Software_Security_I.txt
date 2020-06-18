@@ -1,0 +1,12 @@
+id	type	text_en	options_en
+1	BOOL_P	Have you established secure coding practices appropriate to the programming language and development environment being used? 	 
+2	BOOL_P	"For in-house developed software, do you ensure that explicit error checking is performed and documented for all input, including for size, data type, and acceptable ranges or formats?"	 
+3	BOOL_P	Have you verified that the version of all software acquired from outside your organization is still supported by the developer or appropriately hardened based on developer security recommendations? 	 
+4	BOOL_P	Do you only use up-to-date and trusted third-party components for the software developed by the organization? 	 
+5	BOOL_P	"Do you use only standardized, currently accepted, and extensively reviewed encryption algorithms?"	 
+6	BOOL_P	Have you ensured that all software development personnel receive training in writing secure code for their specific development environment and for their responsibilities?	 
+7	BOOL_P	Do you apply static and dynamic analysis tools to verify that secure coding practices are being adhered to for internally developed software?	 
+8	BOOL_P	"Have you established a process to accept and address reports of software vulnerabilities, including providing a means for external entities to contact your security group? "	 
+9	BOOL_P	Do you protect web applications by deploying web application firewalls (WAFs) that inspect all traffic flowing to the web application for common web application attacks?	 
+10	BOOL_P	"For applications that rely on a database, do you use standard hardening configuration templates?"	 
+11	BOOL_P	Do you perform regular or semi-regular vulnerability scans?	 

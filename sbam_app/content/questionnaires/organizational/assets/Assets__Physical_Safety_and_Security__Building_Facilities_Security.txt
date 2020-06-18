@@ -1,0 +1,45 @@
+id	type	text_en	options_en
+1	BOOL_P	"Do your policies and procedures specify the methods used to protect buildings and premises against fire, voltage and flood?"	 
+2	BOOL_P	Do your policies and procedures specify the methods used to protect buildings and premises against break-ins and wiretapping?	 
+3	BOOL_P	"Do your policies and procedures specify the methods used to control physical access to your secure areas, such as door locks, access control systems, security officers, or video monitoring?"	 
+4	BOOL_P	Does your plan identify areas and facilities that need to be sealed off immediately in case of an emergency?	 
+5	BOOL_P	Do you ensure that doors and windows are locked when unattended?	 
+6	BOOL_P	"Do you have external protection for windows, especially for those on ground level?"	 
+7	BOOL_P	Do you ensure that unoccupied areas are alarmed at all times?	 
+8	BOOL_P	Are processing facilities managed by the organization physically separated from those managed by external parties?	 
+9	BOOL_P	Do your buildings give the minimum possible indication of their purpose?	 
+10	BOOL_P	Are your facilities configured to prevent confidential information or activities from being visible or audible from the outside?	 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
