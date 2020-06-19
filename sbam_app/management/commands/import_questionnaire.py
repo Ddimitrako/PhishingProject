@@ -48,6 +48,7 @@ class Command(BaseCommand):
                 print(row)
                 if len([x for x in row if x.strip() != '']) == 0:
                     continue
+                # print(row[0])
                 q_id_in_questionnaire = int(row[0])
                 try:
                     question = Question.objects.get(

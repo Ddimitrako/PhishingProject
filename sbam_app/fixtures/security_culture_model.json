@@ -328,7 +328,7 @@
     "pk": 27,
     "fields": {
       "dimension": 4,
-      "title": "Efficient Distinction of Development, Testing and Operational Environments",
+      "title": "Efficient Distinction of Development Testing and Operational Environments",
       "description": "Proper segregation of the development, testing and operational environments."
     }
   },

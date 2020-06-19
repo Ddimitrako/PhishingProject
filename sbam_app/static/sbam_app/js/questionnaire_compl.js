@@ -55,7 +55,7 @@ $(document).ready(function(){
             name: "question_"+quest_id,
             title: text,
             // description: text,
-            colCount: colnum,
+            rowCount: colnum,
             isRequired: true,
             choices: choices_list
 
@@ -79,7 +79,7 @@ $(document).ready(function(){
             name: "question_"+quest_id,
             title: text,
             // description: text,
-            colCount: colnum,
+            rowCount: colnum,
             isRequired: true,
             choices: choices_list
 
@@ -106,9 +106,9 @@ $(document).ready(function(){
             if(questData[quest_obj]['question_type'].type.startsWith('BOOL'))
                 survey_quest['questions'] = create_bool_quest(questData[quest_obj]['question'].text, questData[quest_obj]['question'].id, question_opt);
             else if(questData[quest_obj]['question_type'].takes_multiple === 'true')
-                survey_quest['questions'] = create_multiple_opt_quest(questData[quest_obj]['question'].text, questData[quest_obj]['question'].id, question_opt, 5);
+                survey_quest['questions'] = create_multiple_opt_quest(questData[quest_obj]['question'].text, questData[quest_obj]['question'].id, question_opt, question_opt.length);
             else
-                survey_quest['questions'] = create_perc_quest(questData[quest_obj]['question'].text, questData[quest_obj]['question'].id, question_opt, 5);
+                survey_quest['questions'] = create_perc_quest(questData[quest_obj]['question'].text, questData[quest_obj]['question'].id, question_opt, question_opt.length);
 
             questions.push(survey_quest);
         }

@@ -7,4 +7,4 @@ id	type	text_en	options_en
 6	BOOL_P	Do you log changes to privileged accounts?	 
 7	PERC20_N	What is the percentage of users with "super user" access level?
 8	PERC20_N	What is the percentage of privileged accounts in relation with the total number of accounts?	 
-9   BOOL_P Do administrators have separate accounts for network management?
+9	BOOL_P	Do administrators have separate accounts for network management?	 
