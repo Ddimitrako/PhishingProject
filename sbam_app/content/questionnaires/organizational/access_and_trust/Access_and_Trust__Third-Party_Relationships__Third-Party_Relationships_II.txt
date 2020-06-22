@@ -1,7 +1,7 @@
 id	type	text_en	options_en
-1	BOOL_P	Do you identify and document all the relevant to your organization’s security authorities?	 
+1	BOOL_P	Do you identify and document all the relevant to your organization's security authorities?
 2	BOOL_P	Do you document and distribute to all relevant parties all the necessary contact information with the identified authorities?	 
-3	BOOL_P	Do you identify and document all the relevant to your organization’s security special groups?	 
+3	BOOL_P	Do you identify and document all the relevant to your organization's security special groups?
 4	BOOL_P	Do you document and distribute to all relevant parties all the necessary contact information with the identified special groups?	 
 5	BOOL_P	Are there any multilateral agreements on cybersecurity cooperation?	 
 6	BOOL_P	Do you have procedures to ensure third party stakeholders understand their roles and responsibilities according to their contractual relationship?	 

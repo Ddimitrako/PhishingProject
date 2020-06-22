@@ -1,7 +1,7 @@
 id	type	text_en	options_en
 1	BOOL_P	Do you use at least three synchronized time sources from which all servers and network devices retrieve time information on a regular basis so that timestamps in logs are consistent?	 
 2	BOOL_P	Have you ensured that local logging has been enabled on all systems and networking devices?	 
-3	BOOL_P	Have you enabled system logging to include detailed information such as an event source, date, user, timestamp, source addresses, destination addresses, and other useful elements? 	 
+3	BOOL_P	Have you enabled system logging to include detailed information such as an event source, date, user, timestamp, source addresses, destination addresses, and other useful elements?
 4	BOOL_P	Have you ensured that all systems that store logs have adequate storage space for the logs generated?	 
 5	BOOL_P	Have you ensured that appropriate logs are being aggregated to a central log management system for analysis and review?	 
 6	BOOL_P	Have you deployed Security Information and Event Management (SIEM) or log analytic tools for log correlation and analysis?	 

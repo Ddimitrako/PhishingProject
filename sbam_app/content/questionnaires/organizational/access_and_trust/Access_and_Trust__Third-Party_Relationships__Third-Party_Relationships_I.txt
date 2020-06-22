@@ -4,8 +4,8 @@ id	type	text_en	options_en
 3	BOOL_P	Do you involve third parties in the implementation of information security measures?	 
 4	BOOL_P	Do you apply security vetting of business partners and suppliers?	 
 5	BOOL_P	Do your policies and procedures properly define and regulate security of e-business?	 
-6	BOOL_P	Has the organization’s role in the supply chain been identified and communicated?	 
-7	BOOL_P	Has the organization’s place in critical infrastructure and its industry sector been identified and communicated?	 
+6	BOOL_P	Has the organization's role in the supply chain been identified and communicated?
+7	BOOL_P	Has the organization's place in critical infrastructure and its industry sector been identified and communicated?
 8	BOOL_P	Are dependencies and critical functions for delivery of critical services established?	 
 9	BOOL_P	Do you identify and define the necessary requirements a third party should have to be considered trusty?	 
 10	BOOL_P	Do you request from third parties proof of compliance with the security requirements defined by the organization?	 
