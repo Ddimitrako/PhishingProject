@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-04 07:54+0300\n"
+"POT-Creation-Date: 2020-06-22 13:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -293,47 +293,47 @@ msgid ""
 "mail address</a>."
 msgstr ""
 
-#: .\templates\base_datatable.html:135
+#: .\templates\base_datatable.html:137
 msgid "Add"
 msgstr ""
 
-#: .\templates\base_datatable.html:141
+#: .\templates\base_datatable.html:143
 msgid "Add User"
 msgstr ""
 
-#: .\templates\base_datatable.html:149
+#: .\templates\base_datatable.html:151
 msgid "Add Group"
 msgstr ""
 
-#: .\templates\base_datatable.html:161
+#: .\templates\base_datatable.html:163
 msgid "Show/Hide Columns"
 msgstr ""
 
-#: .\templates\base_datatable.html:166
+#: .\templates\base_datatable.html:168
 msgid "Select All"
 msgstr ""
 
-#: .\templates\base_datatable.html:174
+#: .\templates\base_datatable.html:176
 msgid "Copy"
 msgstr ""
 
-#: .\templates\base_datatable.html:184
+#: .\templates\base_datatable.html:186
 msgid "Print"
 msgstr ""
 
-#: .\templates\base_datatable.html:193
+#: .\templates\base_datatable.html:195
 msgid "Export to file"
 msgstr ""
 
-#: .\templates\base_datatable.html:198
+#: .\templates\base_datatable.html:200
 msgid "Export to Excel"
 msgstr ""
 
-#: .\templates\base_datatable.html:208
+#: .\templates\base_datatable.html:210
 msgid "Export to CSV"
 msgstr ""
 
-#: .\templates\base_datatable.html:218
+#: .\templates\base_datatable.html:220
 msgid "Export to PDF"
 msgstr ""
 
@@ -482,8 +482,9 @@ msgstr ""
 #: .\sbam_app\templates\new_group.html:10
 #: .\sbam_app\templates\new_user.html:10 .\sbam_app\templates\profile.html:16
 #: .\sbam_app\templates\questionnaire.html:16
-#: .\sbam_app\templates\questionnaire_info.html:12
+#: .\sbam_app\templates\questionnaire_info.html:13
 #: .\sbam_app\templates\questionnaires_list.html:9
+#: .\sbam_app\templates\reports.html:10
 #: .\sbam_app\templates\self_assessment.html:9
 #: .\sbam_app\templates\self_assessment_history.html:7
 #: .\sbam_app\templates\users.html:10
@@ -520,42 +521,38 @@ msgstr ""
 msgid "Groups"
 msgstr ""
 
-#: .\templates\main_sidebar.html:44
+#: .\templates\main_sidebar.html:44 .\sbam_app\templates\reports.html:6
+#: .\sbam_app\templates\reports.html:11
 msgid "Reports"
 msgstr ""
 
-#: .\templates\main_sidebar.html:52 .\sbam_app\models.py:20
-#: .\sbam_app\templates\campaign.html:69
-#: .\sbam_app\templates\campaign.html:100
-msgid "Organisational"
-msgstr ""
-
-#: .\templates\main_sidebar.html:59 .\sbam_app\models.py:21
-#: .\sbam_app\templates\campaign.html:71
-#: .\sbam_app\templates\campaign.html:102
-msgid "Individual"
-msgstr ""
-
-#: .\templates\main_sidebar.html:67 .\sbam_app\templates\questionnaire.html:31
+#: .\templates\main_sidebar.html:69 .\sbam_app\templates\questionnaire.html:31
 #: .\sbam_app\templates\self_assessment.html:16
 msgid "Self Evaluation"
 msgstr ""
 
-#: .\templates\main_sidebar.html:74 .\sbam_app\models.py:104
+#: .\templates\main_sidebar.html:76 .\sbam_app\models.py:109
 #: .\sbam_app\templates\campaign.html:17 .\sbam_app\templates\campaigns.html:6
 #: .\sbam_app\templates\campaigns.html:11
 #: .\sbam_app\templates\new_campaign.html:16
 msgid "campaigns"
 msgstr ""
 
-#: .\templates\main_sidebar.html:80 .\sbam_app\models.py:175
+#: .\templates\main_sidebar.html:82 .\sbam_app\models.py:180
 #: .\sbam_app\templates\campaign.html:54
-#: .\sbam_app\templates\questionnaire_info.html:13
 msgid "questionnaires"
 msgstr ""
 
 #: .\sbam_app\forms.py:173 .\sbam_app\models.py:61
 msgid "The user who created the campaign"
+msgstr ""
+
+#: .\sbam_app\management\commands\import_questionnaire.py:18
+msgid "The tab-separated file of the questionnaire"
+msgstr ""
+
+#: .\sbam_app\management\commands\import_questionnaire.py:19
+msgid "The directory hosting questionnaires"
 msgstr ""
 
 #: .\sbam_app\models.py:12
@@ -566,12 +563,22 @@ msgstr ""
 msgid "Active"
 msgstr ""
 
+#: .\sbam_app\models.py:20 .\sbam_app\templates\campaign.html:69
+#: .\sbam_app\templates\campaign.html:100
+msgid "Organisational"
+msgstr ""
+
+#: .\sbam_app\models.py:21 .\sbam_app\templates\campaign.html:71
+#: .\sbam_app\templates\campaign.html:102
+msgid "Individual"
+msgstr ""
+
 #: .\sbam_app\models.py:23 .\sbam_app\models.py:42 .\sbam_app\models.py:54
-#: .\sbam_app\models.py:145 .\sbam_app\models.py:320
+#: .\sbam_app\models.py:150 .\sbam_app\models.py:325
 #: .\sbam_app\templates\campaigns.html:27
 #: .\sbam_app\templates\questionnaires_list.html:23
-#: .\sbam_app\templates\self_assessment.html:24
-#: .\sbam_app\templates\self_assessment_history.html:30
+#: .\sbam_app\templates\self_assessment.html:29
+#: .\sbam_app\templates\self_assessment_history.html:29
 msgid "title"
 msgstr ""
 
@@ -579,12 +586,13 @@ msgstr ""
 msgid "Dimension title"
 msgstr ""
 
-#: .\sbam_app\models.py:24 .\sbam_app\models.py:43 .\sbam_app\models.py:559
+#: .\sbam_app\models.py:24 .\sbam_app\models.py:43 .\sbam_app\models.py:564
 #: .\sbam_app\templates\groups.html:20
 msgid "description"
 msgstr ""
 
-#: .\sbam_app\models.py:24 .\sbam_app\templates\self_assessment.html:28
+#: .\sbam_app\models.py:24 .\sbam_app\templates\questionnaires_list.html:26
+#: .\sbam_app\templates\self_assessment.html:31
 msgid "Dimension description"
 msgstr ""
 
@@ -597,9 +605,10 @@ msgid "Dimension level"
 msgstr ""
 
 #: .\sbam_app\models.py:31 .\sbam_app\models.py:38
-#: .\sbam_app\templates\questionnaires_list.html:27
-#: .\sbam_app\templates\self_assessment.html:27
-#: .\sbam_app\templates\self_assessment_history.html:32
+#: .\sbam_app\templates\questionnaire_info.html:34
+#: .\sbam_app\templates\questionnaires_list.html:25
+#: .\sbam_app\templates\self_assessment.html:30
+#: .\sbam_app\templates\self_assessment_history.html:30
 msgid "dimension"
 msgstr ""
 
@@ -615,13 +624,15 @@ msgstr ""
 msgid "Domain title"
 msgstr ""
 
-#: .\sbam_app\models.py:43 .\sbam_app\templates\self_assessment.html:26
+#: .\sbam_app\models.py:43 .\sbam_app\templates\questionnaires_list.html:28
+#: .\sbam_app\templates\self_assessment.html:33
 msgid "Domain description"
 msgstr ""
 
-#: .\sbam_app\models.py:49 .\sbam_app\models.py:148 .\sbam_app\models.py:316
-#: .\sbam_app\templates\questionnaires_list.html:25
-#: .\sbam_app\templates\self_assessment.html:25
+#: .\sbam_app\models.py:49 .\sbam_app\models.py:153 .\sbam_app\models.py:321
+#: .\sbam_app\templates\questionnaire_info.html:42
+#: .\sbam_app\templates\questionnaires_list.html:27
+#: .\sbam_app\templates\self_assessment.html:32
 #: .\sbam_app\templates\self_assessment_history.html:31
 msgid "domain"
 msgstr ""
@@ -642,7 +653,7 @@ msgstr ""
 msgid "Campaign start date"
 msgstr ""
 
-#: .\sbam_app\models.py:56 .\sbam_app\templates\campaigns.html:29
+#: .\sbam_app\models.py:56
 msgid "end date"
 msgstr ""
 
@@ -650,11 +661,11 @@ msgstr ""
 msgid "Campaign end date"
 msgstr ""
 
-#: .\sbam_app\models.py:59 .\sbam_app\templates\campaigns.html:30
+#: .\sbam_app\models.py:59 .\sbam_app\templates\campaigns.html:31
 msgid "owner"
 msgstr ""
 
-#: .\sbam_app\models.py:64 .\sbam_app\templates\campaigns.html:45
+#: .\sbam_app\models.py:64 .\sbam_app\templates\campaigns.html:46
 msgid "cancelled"
 msgstr ""
 
@@ -662,487 +673,490 @@ msgstr ""
 msgid "Designates whether this campaign has been cancelled."
 msgstr ""
 
-#: .\sbam_app\models.py:103 .\sbam_app\models.py:110
-#: .\sbam_app\templates\campaign.html:7 .\sbam_app\templates\campaign.html:18
+#: .\sbam_app\models.py:108 .\sbam_app\models.py:115
+#: .\sbam_app\templates\campaign.html:7
 msgid "campaign"
 msgstr ""
 
-#: .\sbam_app\models.py:112
+#: .\sbam_app\models.py:117
 msgid "The campaign this assignment derives from"
 msgstr ""
 
-#: .\sbam_app\models.py:114 .\sbam_app\models.py:368 .\sbam_app\models.py:447
+#: .\sbam_app\models.py:119 .\sbam_app\models.py:373 .\sbam_app\models.py:452
 msgid "user"
 msgstr ""
 
-#: .\sbam_app\models.py:114 .\sbam_app\models.py:368
+#: .\sbam_app\models.py:119 .\sbam_app\models.py:373
 msgid "Assignee"
 msgstr ""
 
-#: .\sbam_app\models.py:140 .\sbam_app\models.py:297 .\sbam_app\models.py:355
-#: .\sbam_app\models.py:424 .\sbam_app\templates\assignments.html:9
+#: .\sbam_app\models.py:145 .\sbam_app\models.py:302 .\sbam_app\models.py:360
+#: .\sbam_app\models.py:429 .\sbam_app\templates\assignments.html:9
 #: .\sbam_app\templates\questionnaire.html:29
 msgid "assignment"
 msgstr ""
 
-#: .\sbam_app\models.py:141 .\sbam_app\templates\profile.html:118
+#: .\sbam_app\models.py:146 .\sbam_app\templates\profile.html:118
 #: .\sbam_app\templates\questionnaire.html:18
 msgid "assignments"
 msgstr ""
 
-#: .\sbam_app\models.py:145
+#: .\sbam_app\models.py:150
 msgid "Questionnaire title"
 msgstr ""
 
-#: .\sbam_app\models.py:150
+#: .\sbam_app\models.py:155
 msgid "The domain this questionnaire belongs to"
 msgstr ""
 
-#: .\sbam_app\models.py:153 .\sbam_app\models.py:236 .\sbam_app\models.py:267
-#: .\sbam_app\models.py:322 .\sbam_app\models.py:576
+#: .\sbam_app\models.py:158 .\sbam_app\models.py:241 .\sbam_app\models.py:272
+#: .\sbam_app\models.py:327 .\sbam_app\models.py:581
 #: .\sbam_app\templates\groups.html:35 .\sbam_app\templates\users.html:18
 #: .\sbam_app\templates\users.html:42
 msgid "active"
 msgstr ""
 
-#: .\sbam_app\models.py:156
+#: .\sbam_app\models.py:161
 msgid ""
 "Designates whether this questionnaire is being used for the evaluation of a "
 "specific domain"
 msgstr ""
 
-#: .\sbam_app\models.py:159 .\sbam_app\models.py:273 .\sbam_app\models.py:328
+#: .\sbam_app\models.py:164 .\sbam_app\models.py:278 .\sbam_app\models.py:333
 msgid "weight"
 msgstr ""
 
-#: .\sbam_app\models.py:161
+#: .\sbam_app\models.py:166
 msgid "Multiplier indicating questionnaire's significance"
 msgstr ""
 
-#: .\sbam_app\models.py:174 .\sbam_app\models.py:181 .\sbam_app\models.py:255
-#: .\sbam_app\models.py:380
+#: .\sbam_app\models.py:179 .\sbam_app\models.py:186 .\sbam_app\models.py:260
+#: .\sbam_app\models.py:385
 msgid "questionnaire"
 msgstr ""
 
-#: .\sbam_app\models.py:183 .\sbam_app\models.py:382
+#: .\sbam_app\models.py:188 .\sbam_app\models.py:387
 msgid "Questionnaire assigned"
 msgstr ""
 
-#: .\sbam_app\models.py:190 .\sbam_app\models.py:389
+#: .\sbam_app\models.py:195 .\sbam_app\models.py:394
 msgid "questionnaire assignment"
 msgstr ""
 
-#: .\sbam_app\models.py:191 .\sbam_app\models.py:390
+#: .\sbam_app\models.py:196 .\sbam_app\models.py:395
 msgid "questionnaire assignments"
 msgstr ""
 
-#: .\sbam_app\models.py:199
+#: .\sbam_app\models.py:204
 msgid "boolean_positive"
 msgstr ""
 
-#: .\sbam_app\models.py:200
+#: .\sbam_app\models.py:205
 msgid "boolean_negative"
 msgstr ""
 
-#: .\sbam_app\models.py:201
+#: .\sbam_app\models.py:206
 msgid "percentage_step_10_positive"
 msgstr ""
 
-#: .\sbam_app\models.py:202
+#: .\sbam_app\models.py:207
 msgid "percentage_step_10_negative"
 msgstr ""
 
-#: .\sbam_app\models.py:203
+#: .\sbam_app\models.py:208
 msgid "percentage_step_20_positive"
 msgstr ""
 
-#: .\sbam_app\models.py:204
+#: .\sbam_app\models.py:209
 msgid "percentage_step_20_negative"
 msgstr ""
 
-#: .\sbam_app\models.py:206
+#: .\sbam_app\models.py:211
 msgid "agreement_scale_5_positive"
 msgstr ""
 
-#: .\sbam_app\models.py:208
+#: .\sbam_app\models.py:213
 msgid "agreement_scale_5_negative"
 msgstr ""
 
-#: .\sbam_app\models.py:209
+#: .\sbam_app\models.py:214
 msgid "custom_question"
 msgstr ""
 
-#: .\sbam_app\models.py:211 .\sbam_app\templates\campaign.html:60
+#: .\sbam_app\models.py:216 .\sbam_app\templates\campaign.html:60
 #: .\sbam_app\templates\campaign.html:91
 msgid "type"
 msgstr ""
 
-#: .\sbam_app\models.py:211 .\sbam_app\models.py:263
+#: .\sbam_app\models.py:216 .\sbam_app\models.py:268
 msgid "Question type"
 msgstr ""
 
-#: .\sbam_app\models.py:213
+#: .\sbam_app\models.py:218
 msgid "takes multiple"
 msgstr ""
 
-#: .\sbam_app\models.py:215
+#: .\sbam_app\models.py:220
 msgid "Designates if specific question type accepts multiple answers"
 msgstr ""
 
-#: .\sbam_app\models.py:222 .\sbam_app\models.py:229
+#: .\sbam_app\models.py:227 .\sbam_app\models.py:234
 msgid "question type"
 msgstr ""
 
-#: .\sbam_app\models.py:223
+#: .\sbam_app\models.py:228
 msgid "question types"
 msgstr ""
 
-#: .\sbam_app\models.py:231
+#: .\sbam_app\models.py:236
 msgid "Question type this option refers to"
 msgstr ""
 
-#: .\sbam_app\models.py:233 .\sbam_app\models.py:265
+#: .\sbam_app\models.py:238 .\sbam_app\models.py:270
 msgid "text"
 msgstr ""
 
-#: .\sbam_app\models.py:233
+#: .\sbam_app\models.py:238
 msgid "Question's option text"
 msgstr ""
 
-#: .\sbam_app\models.py:234
+#: .\sbam_app\models.py:239
 msgid "value"
 msgstr ""
 
-#: .\sbam_app\models.py:234
+#: .\sbam_app\models.py:239
 msgid "Value corresponding to specific option"
 msgstr ""
 
-#: .\sbam_app\models.py:239
+#: .\sbam_app\models.py:244
 msgid ""
 "Designates whether this question option is being offered by a specific "
 "question type"
 msgstr ""
 
-#: .\sbam_app\models.py:241
+#: .\sbam_app\models.py:246
 msgid "id in question"
 msgstr ""
 
-#: .\sbam_app\models.py:242 .\sbam_app\models.py:278
+#: .\sbam_app\models.py:247 .\sbam_app\models.py:283
 msgid "order"
 msgstr ""
 
-#: .\sbam_app\models.py:248 .\sbam_app\models.py:303 .\sbam_app\models.py:430
+#: .\sbam_app\models.py:253 .\sbam_app\models.py:308 .\sbam_app\models.py:435
 msgid "question option"
 msgstr ""
 
-#: .\sbam_app\models.py:249
+#: .\sbam_app\models.py:254
 msgid "question options"
 msgstr ""
 
-#: .\sbam_app\models.py:257
+#: .\sbam_app\models.py:262
 msgid "The questionnaire this question belongs to"
 msgstr ""
 
-#: .\sbam_app\models.py:261
+#: .\sbam_app\models.py:266
 msgid "question_type"
 msgstr ""
 
-#: .\sbam_app\models.py:265
+#: .\sbam_app\models.py:270
 msgid "Question text"
 msgstr ""
 
-#: .\sbam_app\models.py:270
+#: .\sbam_app\models.py:275
 msgid ""
 "Designates whether this question is being used by a specific questionnaire"
 msgstr ""
 
-#: .\sbam_app\models.py:275
+#: .\sbam_app\models.py:280
 msgid "Multiplier indicating question's significance"
 msgstr ""
 
-#: .\sbam_app\models.py:277
+#: .\sbam_app\models.py:282
 msgid "id in questionnaire"
 msgstr ""
 
-#: .\sbam_app\models.py:284 .\sbam_app\models.py:291 .\sbam_app\models.py:418
+#: .\sbam_app\models.py:289 .\sbam_app\models.py:296 .\sbam_app\models.py:423
 msgid "question"
 msgstr ""
 
-#: .\sbam_app\models.py:285
+#: .\sbam_app\models.py:290 .\sbam_app\templates\questionnaire_info.html:77
 msgid "questions"
 msgstr ""
 
-#: .\sbam_app\models.py:293 .\sbam_app\models.py:420
+#: .\sbam_app\models.py:298 .\sbam_app\models.py:425
 msgid "The question this answer refers to"
 msgstr ""
 
-#: .\sbam_app\models.py:299
+#: .\sbam_app\models.py:304
 msgid "The assignment this answer belongs to"
 msgstr ""
 
-#: .\sbam_app\models.py:305 .\sbam_app\models.py:432
+#: .\sbam_app\models.py:310 .\sbam_app\models.py:437
 msgid "The option selected by the assignee"
 msgstr ""
 
-#: .\sbam_app\models.py:309
+#: .\sbam_app\models.py:314
 msgid "campaign question answer"
 msgstr ""
 
-#: .\sbam_app\models.py:310
+#: .\sbam_app\models.py:315
 msgid "campaign question answers"
 msgstr ""
 
-#: .\sbam_app\models.py:318
+#: .\sbam_app\models.py:323
 msgid "The domain this test belongs to"
 msgstr ""
 
-#: .\sbam_app\models.py:320
+#: .\sbam_app\models.py:325
 msgid "Test title"
 msgstr ""
 
-#: .\sbam_app\models.py:325
+#: .\sbam_app\models.py:330
 msgid ""
 "Designates whether this test is being used for the evaluation of a specific "
 "domain"
 msgstr ""
 
-#: .\sbam_app\models.py:330
+#: .\sbam_app\models.py:335
 msgid "Multiplier indicating test's significance"
 msgstr ""
 
-#: .\sbam_app\models.py:337 .\sbam_app\models.py:342 .\sbam_app\models.py:394
+#: .\sbam_app\models.py:342 .\sbam_app\models.py:347 .\sbam_app\models.py:399
 msgid "test"
 msgstr ""
 
-#: .\sbam_app\models.py:338
+#: .\sbam_app\models.py:343
 msgid "tests"
 msgstr ""
 
-#: .\sbam_app\models.py:342 .\sbam_app\models.py:394
+#: .\sbam_app\models.py:347 .\sbam_app\models.py:399
 msgid "Test assigned"
 msgstr ""
 
-#: .\sbam_app\models.py:348 .\sbam_app\models.py:400
+#: .\sbam_app\models.py:353 .\sbam_app\models.py:405
 msgid "test assignment"
 msgstr ""
 
-#: .\sbam_app\models.py:349 .\sbam_app\models.py:401
+#: .\sbam_app\models.py:354 .\sbam_app\models.py:406
 msgid "test assignments"
 msgstr ""
 
-#: .\sbam_app\models.py:357
+#: .\sbam_app\models.py:362
 msgid "Assignment this result refers to"
 msgstr ""
 
-#: .\sbam_app\models.py:359 .\sbam_app\models.py:411
+#: .\sbam_app\models.py:364 .\sbam_app\models.py:416
 msgid "answer time"
 msgstr ""
 
-#: .\sbam_app\models.py:359
+#: .\sbam_app\models.py:364
 msgid "The date this assignment result was achieved"
 msgstr ""
 
-#: .\sbam_app\models.py:360 .\sbam_app\models.py:412
+#: .\sbam_app\models.py:365 .\sbam_app\models.py:417
 #: .\sbam_app\templates\assignments.html:10
 #: .\sbam_app\templates\campaign_results.html:13
 #: .\sbam_app\templates\dashboard.html:158
-#: .\sbam_app\templates\self_assessment_history.html:34
+#: .\sbam_app\templates\self_assessment_history.html:32
 msgid "score"
 msgstr ""
 
-#: .\sbam_app\models.py:360
+#: .\sbam_app\models.py:365
 msgid "Achieved assignment score"
 msgstr ""
 
-#: .\sbam_app\models.py:363
+#: .\sbam_app\models.py:368
 msgid "assignment result"
 msgstr ""
 
-#: .\sbam_app\models.py:364
+#: .\sbam_app\models.py:369
 msgid "assignment results"
 msgstr ""
 
-#: .\sbam_app\models.py:407 .\sbam_app\templates\questionnaire.html:21
+#: .\sbam_app\models.py:412 .\sbam_app\templates\questionnaire.html:21
 msgid "self assessment"
 msgstr ""
 
-#: .\sbam_app\models.py:409
+#: .\sbam_app\models.py:414
 msgid "self assessment survey this result refers to"
 msgstr ""
 
-#: .\sbam_app\models.py:411
+#: .\sbam_app\models.py:416
 msgid "The date this self assessment survey result was achieved"
 msgstr ""
 
-#: .\sbam_app\models.py:412
+#: .\sbam_app\models.py:417
 msgid "Achieved self assessment survey score"
 msgstr ""
 
-#: .\sbam_app\models.py:426
+#: .\sbam_app\models.py:431
 msgid "The self assessment survey this answer belongs to"
 msgstr ""
 
-#: .\sbam_app\models.py:436
+#: .\sbam_app\models.py:441
 msgid "self assessment question answer"
 msgstr ""
 
-#: .\sbam_app\models.py:437
+#: .\sbam_app\models.py:442
 msgid "self assessment question answers"
 msgstr ""
 
-#: .\sbam_app\models.py:444
+#: .\sbam_app\models.py:449
 msgid "Male"
 msgstr ""
 
-#: .\sbam_app\models.py:445
+#: .\sbam_app\models.py:450
 msgid "Female"
 msgstr ""
 
-#: .\sbam_app\models.py:447
+#: .\sbam_app\models.py:452
 msgid "User ID"
 msgstr ""
 
-#: .\sbam_app\models.py:450 .\sbam_app\templates\users.html:25
+#: .\sbam_app\models.py:455 .\sbam_app\templates\users.html:25
 msgid "birth date"
 msgstr ""
 
-#: .\sbam_app\models.py:450
+#: .\sbam_app\models.py:455
 msgid "User birth date"
 msgstr ""
 
-#: .\sbam_app\models.py:451 .\sbam_app\templates\users.html:26
+#: .\sbam_app\models.py:456 .\sbam_app\templates\users.html:26
 msgid "gender"
 msgstr ""
 
-#: .\sbam_app\models.py:451
+#: .\sbam_app\models.py:456
 msgid "User gender"
 msgstr ""
 
-#: .\sbam_app\models.py:455
+#: .\sbam_app\models.py:460
 msgid "manager status"
 msgstr ""
 
-#: .\sbam_app\models.py:457
+#: .\sbam_app\models.py:462
 msgid ""
 "Designates whether the user can have advanced business privileges within the "
 "tool."
 msgstr ""
 
-#: .\sbam_app\models.py:460
+#: .\sbam_app\models.py:465
 msgid "employee id"
 msgstr ""
 
-#: .\sbam_app\models.py:465
+#: .\sbam_app\models.py:470
 msgid "A user with that employee id already exists."
 msgstr ""
 
-#: .\sbam_app\models.py:467
+#: .\sbam_app\models.py:472
 msgid "User employee id"
 msgstr ""
 
-#: .\sbam_app\models.py:470 .\sbam_app\templates\users.html:27
+#: .\sbam_app\models.py:475 .\sbam_app\templates\campaign.html:122
+#: .\sbam_app\templates\users.html:27
 msgid "job title"
 msgstr ""
 
-#: .\sbam_app\models.py:475
+#: .\sbam_app\models.py:480
 msgid "User job title"
 msgstr ""
 
-#: .\sbam_app\models.py:478 .\sbam_app\templates\profile.html:36
-#: .\sbam_app\templates\users.html:28
+#: .\sbam_app\models.py:483 .\sbam_app\templates\campaign.html:123
+#: .\sbam_app\templates\profile.html:36 .\sbam_app\templates\users.html:28
 msgid "department"
 msgstr ""
 
-#: .\sbam_app\models.py:483
+#: .\sbam_app\models.py:488
 msgid "Department this user belongs to"
 msgstr ""
 
-#: .\sbam_app\models.py:486 .\sbam_app\templates\profile.html:40
+#: .\sbam_app\models.py:491 .\sbam_app\templates\profile.html:40
 #: .\sbam_app\templates\users.html:29
 msgid "company"
 msgstr ""
 
-#: .\sbam_app\models.py:491
+#: .\sbam_app\models.py:496
 msgid "Company this user belongs to"
 msgstr ""
 
-#: .\sbam_app\models.py:496 .\sbam_app\templates\users.html:30
+#: .\sbam_app\models.py:501 .\sbam_app\templates\users.html:30
 msgid "telephone"
 msgstr ""
 
-#: .\sbam_app\models.py:501
+#: .\sbam_app\models.py:506
 msgid "User telephone number"
 msgstr ""
 
-#: .\sbam_app\models.py:504 .\sbam_app\templates\users.html:31
+#: .\sbam_app\models.py:509 .\sbam_app\templates\users.html:31
 msgid "address"
 msgstr ""
 
-#: .\sbam_app\models.py:509
+#: .\sbam_app\models.py:514
 msgid "User working address"
 msgstr ""
 
-#: .\sbam_app\models.py:514 .\sbam_app\models.py:567
+#: .\sbam_app\models.py:519 .\sbam_app\models.py:572
 #: .\sbam_app\templates\groups.html:25 .\sbam_app\templates\users.html:32
 msgid "notes"
 msgstr ""
 
-#: .\sbam_app\models.py:519 .\sbam_app\models.py:572
+#: .\sbam_app\models.py:524 .\sbam_app\models.py:577
 msgid "Notes"
 msgstr ""
 
-#: .\sbam_app\models.py:526
+#: .\sbam_app\models.py:531
 msgid "user profile"
 msgstr ""
 
-#: .\sbam_app\models.py:527
+#: .\sbam_app\models.py:532
 msgid "user profiles"
 msgstr ""
 
-#: .\sbam_app\models.py:544 .\sbam_app\templates\group.html:7
+#: .\sbam_app\models.py:549 .\sbam_app\templates\group.html:7
 #: .\sbam_app\templates\group.html:18
 msgid "group"
 msgstr ""
 
-#: .\sbam_app\models.py:546
+#: .\sbam_app\models.py:551
 msgid "Group ID"
 msgstr ""
 
-#: .\sbam_app\models.py:550 .\sbam_app\templates\group.html:60
+#: .\sbam_app\models.py:555 .\sbam_app\templates\group.html:60
 #: .\sbam_app\templates\groups.html:24
 msgid "creator"
 msgstr ""
 
-#: .\sbam_app\models.py:554
+#: .\sbam_app\models.py:559
 msgid "Creator User ID"
 msgstr ""
 
-#: .\sbam_app\models.py:564
+#: .\sbam_app\models.py:569
 msgid "Group description"
 msgstr ""
 
-#: .\sbam_app\models.py:579
+#: .\sbam_app\models.py:584
 msgid ""
 "Designates whether this group should be treated as active. Unselect this "
 "instead of deleting groups."
 msgstr ""
 
-#: .\sbam_app\models.py:583 .\sbam_app\templates\group.html:74
+#: .\sbam_app\models.py:588 .\sbam_app\templates\group.html:74
 #: .\sbam_app\templates\groups.html:23
 msgid "creation timestamp"
 msgstr ""
 
-#: .\sbam_app\models.py:593
+#: .\sbam_app\models.py:598
 msgid "group profile"
 msgstr ""
 
-#: .\sbam_app\models.py:594
+#: .\sbam_app\models.py:599
 msgid "group profiles"
 msgstr ""
 
 #: .\sbam_app\templates\assignments.html:8
 #: .\sbam_app\templates\campaigns.html:26 .\sbam_app\templates\groups.html:18
 #: .\sbam_app\templates\profile.html:110
+#: .\sbam_app\templates\questionnaire_info.html:50
+#: .\sbam_app\templates\questionnaires_list.html:24
 msgid "Status"
 msgstr ""
 
@@ -1207,30 +1221,30 @@ msgstr ""
 msgid "Full Name"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:143 .\sbam_app\templates\group.html:97
+#: .\sbam_app\templates\campaign.html:147 .\sbam_app\templates\group.html:97
 #: .\sbam_app\templates\profile.html:57
 msgid "Save changes"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:144 .\sbam_app\templates\group.html:98
+#: .\sbam_app\templates\campaign.html:148 .\sbam_app\templates\group.html:98
 #: .\sbam_app\templates\profile.html:58
 msgid "Save"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:151
+#: .\sbam_app\templates\campaign.html:155
 msgid "Cancel campaign"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:152
+#: .\sbam_app\templates\campaign.html:156
 msgid "Cancel"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:158 .\sbam_app\templates\group.html:118
+#: .\sbam_app\templates\campaign.html:162 .\sbam_app\templates\group.html:118
 #: .\sbam_app\templates\profile.html:76
 msgid "Discard changes"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:159 .\sbam_app\templates\group.html:119
+#: .\sbam_app\templates\campaign.html:163 .\sbam_app\templates\group.html:119
 #: .\sbam_app\templates\profile.html:77
 msgid "Reset"
 msgstr ""
@@ -1250,19 +1264,27 @@ msgstr ""
 msgid "Create new campaign"
 msgstr ""
 
-#: .\sbam_app\templates\campaigns.html:39
+#: .\sbam_app\templates\campaigns.html:29
+msgid "initial end date"
+msgstr ""
+
+#: .\sbam_app\templates\campaigns.html:30
+msgid "actual finish date"
+msgstr ""
+
+#: .\sbam_app\templates\campaigns.html:40
 msgid "Finished "
 msgstr ""
 
-#: .\sbam_app\templates\campaigns.html:42
+#: .\sbam_app\templates\campaigns.html:43
 msgid "In progress "
 msgstr ""
 
-#: .\sbam_app\templates\campaigns.html:48
+#: .\sbam_app\templates\campaigns.html:49
 msgid "Scheduled"
 msgstr ""
 
-#: .\sbam_app\templates\campaigns.html:62
+#: .\sbam_app\templates\campaigns.html:64
 msgid "No campaigns available!"
 msgstr ""
 
@@ -1318,15 +1340,15 @@ msgstr ""
 msgid "On"
 msgstr ""
 
-#: .\sbam_app\templates\dashboard.html:173
+#: .\sbam_app\templates\dashboard.html:174
 msgid "View More"
 msgstr ""
 
-#: .\sbam_app\templates\dashboard.html:184
+#: .\sbam_app\templates\dashboard.html:186
 msgid "My Security Culture Status"
 msgstr ""
 
-#: .\sbam_app\templates\dashboard.html:191
+#: .\sbam_app\templates\dashboard.html:195
 msgid "Recommendations/Tips"
 msgstr ""
 
@@ -1371,12 +1393,12 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: .\sbam_app\templates\manager_dashboard.html:158
-msgid "Organisational Status"
+#: .\sbam_app\templates\manager_dashboard.html:165
+msgid "Organisational Dimensions"
 msgstr ""
 
-#: .\sbam_app\templates\manager_dashboard.html:165
-msgid "Individual Status"
+#: .\sbam_app\templates\manager_dashboard.html:173
+msgid "Individual Dimensions"
 msgstr ""
 
 #: .\sbam_app\templates\new_campaign.html:17
@@ -1461,30 +1483,20 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: .\sbam_app\templates\questionnaire_info.html:19
-msgid "Questionnaire Details"
-msgstr ""
-
+#: .\sbam_app\templates\questionnaire_info.html:14
 #: .\sbam_app\templates\questionnaires_list.html:10
 #: .\sbam_app\templates\questionnaires_list.html:15
 msgid "Questionnaires"
 msgstr ""
 
-#: .\sbam_app\templates\questionnaires_list.html:24
-msgid "status"
+#: .\sbam_app\templates\questionnaire_info.html:20
+msgid "Questionnaire Details"
 msgstr ""
 
-#: .\sbam_app\templates\questionnaires_list.html:26
-msgid "domain Description"
-msgstr ""
-
-#: .\sbam_app\templates\questionnaires_list.html:28
-msgid "dimension Description"
-msgstr ""
-
+#: .\sbam_app\templates\questionnaire_info.html:65
 #: .\sbam_app\templates\questionnaires_list.html:29
-#: .\sbam_app\templates\self_assessment.html:29
-#: .\sbam_app\templates\self_assessment_history.html:33
+#: .\sbam_app\templates\self_assessment.html:34
+#: .\sbam_app\templates\self_assessment_history.html:34
 msgid "No. Questions"
 msgstr ""
 
@@ -1493,7 +1505,6 @@ msgid "No Available questionnaires!"
 msgstr ""
 
 #: .\sbam_app\templates\self_assessment.html:10
-#: .\sbam_app\templates\self_assessment_history.html:8
 msgid "My Evaluations"
 msgstr ""
 
@@ -1501,8 +1512,12 @@ msgstr ""
 msgid "New Evaluation"
 msgstr ""
 
-#: .\sbam_app\templates\self_assessment.html:30
-msgid "Best score"
+#: .\sbam_app\templates\self_assessment.html:35
+msgid "Best Score"
+msgstr ""
+
+#: .\sbam_app\templates\self_assessment_history.html:8
+msgid "Μy Evaluations"
 msgstr ""
 
 #: .\sbam_app\templates\self_assessment_history.html:13
@@ -1514,7 +1529,11 @@ msgstr ""
 msgid "Execute a New Assessment"
 msgstr ""
 
-#: .\sbam_app\templates\self_assessment_history.html:79
+#: .\sbam_app\templates\self_assessment_history.html:33
+msgid "answer Date"
+msgstr ""
+
+#: .\sbam_app\templates\self_assessment_history.html:83
 msgid "No Self Assessment executed!"
 msgstr ""
 
@@ -1542,44 +1561,44 @@ msgstr ""
 msgid "manager"
 msgstr ""
 
-#: .\sbam_app\views.py:27 .\sbam_app\views.py:41
+#: .\sbam_app\views.py:30 .\sbam_app\views.py:44
 msgid "You do not have enough privileges to perform this action"
 msgstr ""
 
-#: .\sbam_app\views.py:85 .\sbam_app\views.py:161
+#: .\sbam_app\views.py:88 .\sbam_app\views.py:164
 #, python-format
 msgid "User successfully %(action)s"
 msgstr ""
 
-#: .\sbam_app\views.py:88 .\sbam_app\views.py:138 .\sbam_app\views.py:688
+#: .\sbam_app\views.py:91 .\sbam_app\views.py:141 .\sbam_app\views.py:741
 msgid "Please correct the errors below"
 msgstr ""
 
-#: .\sbam_app\views.py:132 .\sbam_app\views.py:170
+#: .\sbam_app\views.py:135 .\sbam_app\views.py:173
 #, python-format
 msgid "Group successfully %(action)s"
 msgstr ""
 
-#: .\sbam_app\views.py:136
+#: .\sbam_app\views.py:139
 msgid "Please add at least one group member"
 msgstr ""
 
-#: .\sbam_app\views.py:517
+#: .\sbam_app\views.py:563
 #, python-format
 msgid ""
 "Assignment \"%(title)s\" is not active for completion! Please select an "
 "active assignment from the ones presented in your dashboard..."
 msgstr ""
 
-#: .\sbam_app\views.py:685
+#: .\sbam_app\views.py:738
 msgid "Campaign successfully updated"
 msgstr ""
 
-#: .\sbam_app\views.py:727
+#: .\sbam_app\views.py:780
 msgid "Campaign successfully cancelled."
 msgstr ""
 
-#: .\sbam_app\views.py:729
+#: .\sbam_app\views.py:782
 msgid ""
 "Campaign has been created by another user. Therefore, you cannot cancel it."
 msgstr ""

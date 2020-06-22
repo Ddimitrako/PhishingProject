@@ -31,7 +31,7 @@
             <div class="col-lg-6">
                 <div class="row">
                     <div class="col-3">
-                        {% trans "Dimension" %}
+                        {% trans "dimension"|capfirst %}
                     </div>
                    <div class="col-9">
                         <span> {{ quest.domain.dimension }} </span>  <span data-toggle="tooltip" title="{{ quest.domain.dimension.description|default:'No info available at the moment' }}"><i class="fas fa-question-circle"></i></span>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="row">
                     <div class="col-3">
-                        {% trans "Domain" %} 
+                        {% trans "domain"|capfirst %}
                     </div>
                     <div class="col-9">
                         <span> {{ quest.domain }} </span>  <span data-toggle="tooltip" title="{{ quest.domain.description|default:'No info available at the moment' }}"><i class="fas fa-question-circle"></i></span>
@@ -74,7 +74,7 @@
             </div>
         </div>
             <hr class="my-4">
-            <h3> {% trans "Questions" %} </h3>
+            <h3> {% trans "questions"|capfirst %} </h3>
             {% comment %} <nav class="nav nav-tabs " id="custom-tabs-three-tab">
                 <a class="flex-sm-fill text-center nav-link active" id="questions-tab" data-toggle="pill"
                    href="#questions"
