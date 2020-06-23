@@ -395,12 +395,17 @@ thead th {
     color: #0e74bf;
 }
 
+.nav .nav-link {
+    color: #0e74bf;
+}
+
 .badge{
     font-size: 90%;
 }
 
 .card {
     margin: 0.5rem 0 0.5rem 0;
+    box-shadow: 0px 3px 5px 1px #ada6a6ba !important;
 }
 
 .content-header {
@@ -412,3 +417,15 @@ thead th {
     text-decoration: underline;
     font-weight: 500;
 }
+
+
+.dt-buttons .btn{
+    /* color: #c7694d; */
+    /* color: #289eb1; */
+    border-color: #00527100;
+}
+
+/* .dt-buttons .btn-outline:hover{
+    color: white;
+    background-color: #289eb1;
+} */
