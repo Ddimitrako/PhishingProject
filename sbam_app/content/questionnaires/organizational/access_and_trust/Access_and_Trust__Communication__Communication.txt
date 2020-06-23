@@ -1,0 +1,5 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you have documentation of the mapping of organizational communication flows?	 
+2	BOOL_P	Have you implemented appropriate mechanisms for the communication of secret authentication between privileged users?	 
+3	BOOL_P	Are users given temporary secret authentication information in a secure manner?	 
+4	BOOL_P	Do users acknowledge receipt of secret authentication information?	 

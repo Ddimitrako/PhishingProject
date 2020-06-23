@@ -1,0 +1,7 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you maintain documented security configuration standards for all authorized operating systems and software?	 
+2	BOOL_P	Do you maintain secure images or templates for all systems in the enterprise based on the organization's approved configuration standards?
+3	BOOL_P	Do you store the master images and templates on securely configured servers, validated with integrity monitoring tools, to ensure that only authorized changes to the images are possible?
+4	BOOL_P	Have you deployed system configuration management tools that will automatically enforce and redeploy configuration settings to systems at regularly scheduled intervals?	 
+5	BOOL_P	Have you utilized a Security Content Automation Protocol (SCAP) compliant configuration monitoring system to verify all security configuration elements, catalog approved exceptions, and alert when unauthorized changes occur?
+6	PERC10_N	What percentage of your systems have not implemented a password policy?	 

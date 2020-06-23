@@ -1,0 +1,12 @@
+id	type	text_en	options_en
+1	BOOL_P	Is there a process for creating retrievable backup and archival copies of critical information?	 
+2	BOOL_P	Do you have procedures for disposing waste material?
+3	CUSTOM_R	Is waste paper binned or shredded?	"[[1, 1, ""Binned"", 0], [2, 2, ""Shredded"", 1]] "
+4	BOOL_P	Is your shred bin locked at all times?	 
+5	BOOL_P	Do your policies for disposing old computer equipment protect against loss of data (e.g. by reading old disks and hard drives)?
+6	BOOL_P	Do your disposal procedures identify appropriate technologies and methods for making hardware and electronic media unusable and inaccessible (such as shredding CDs and DVDs, electronically wiping drives, burning tapes) etc.)?
+7	BOOL_P	Do you have procedures in place to regularly assess I.T. compliance with required regulations?	 
+8	BOOL_P	Do you employ integrity checking mechanisms to verify data integrity?	 
+9	BOOL_P	Do you have documentation of the organizational data flows mapping?
+10	BOOL_P	Do you ensure that all hardware authentication settings have been changed from their default values?	 
+11	BOOL_P	Do you clear confidential information from the equipment during maintenance by external parties?	 

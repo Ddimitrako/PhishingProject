@@ -1,0 +1,6 @@
+id	type	text_en	options_en
+1	BOOL_P	Have you associated active ports, services, and protocols to the hardware assets in the asset inventory?	 
+2	BOOL_P	Have you ensured that only network ports, protocols, and services listening on a system with validated business needs are running on each system?	 
+3	BOOL_P	Do you perform automated port scans on a regular basis against all systems and alert if unauthorized ports are detected on a system?	 
+4	BOOL_P	Do you apply host-based firewalls or port-filtering tools on end systems, with a default-deny rule that drops all traffic except those services and ports that are explicitly allowed?	 
+5	BOOL_P	Have you placed application firewalls in front of any critical servers to verify and validate the traffic going to the server? 	 

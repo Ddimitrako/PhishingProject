@@ -1,0 +1,8 @@
+id	type	text_en	options_en
+1	BOOL_P	Do your policies and procedures ensure the flexibility of your organization by defining ways of adapting to changes in the sector and the environment?	 
+2	BOOL_P	Have you established a good cooperation level with other sectoral organizations (inter-organizational strategic ties)?	 
+3	BOOL_P	Do you formally participate in economic and business associations, societies and groups?	 
+4	BOOL_P	Do your policies and procedures forecast cooperation with competent authorities when dealing with information incidents?	 
+5	BOOL_P	Do your policies and procedures forecast cooperation with security consultant groups and external audits of information security?	 
+6	BOOL_P	Do your policies and procedures forecast an active participation in foreign environments and an international cooperation for knowledge sharing?	 
+7	BOOL_P	Do your policies and procedures define a set of rules governing communication with the public and competitive organizations?	 

@@ -1,0 +1,9 @@
+id	type	text_en	options_en
+1	AGR5_P	I  am  pleased with my organisation's approach towards information security.	
+2	AGR5_P	I feel comfortable with the current security controls.	
+3	AGR5_P	I feel confident with the backup mechanisms used by our IT department.	
+4	AGR5_P	I am happy to conform with the security guidance offered by our security experts.	
+5	AGR5_N	Cyber-security webinars are not available as often as required to keep me alert on current threat reality.	
+6	AGR5_N	Security policies and procedures delay me from performing my duties on time.	
+7	AGR5_P	Incidents I noticed and reported were addressed properly and feedback was provided to me.	
+8	AGR5_P	Security solutions used by our organisation facilitate our cyber-safety without introducing difficulties.	

@@ -193,7 +193,7 @@
     "pk": 12,
     "fields": {
       "dimension": 2,
-      "title": "Business Continuity & Disaster Recovery",
+      "title": "Business Continuity and Disaster Recovery",
       "description": "The processes and tools used to properly back up critical information with a proven methodology for timely recovery of it."
     }
   },
@@ -328,7 +328,7 @@
     "pk": 27,
     "fields": {
       "dimension": 4,
-      "title": "Efficient Distinction of Development, Testing and Operational Environments",
+      "title": "Efficient Distinction of Development Testing and Operational Environments",
       "description": "Proper segregation of the development, testing and operational environments."
     }
   },

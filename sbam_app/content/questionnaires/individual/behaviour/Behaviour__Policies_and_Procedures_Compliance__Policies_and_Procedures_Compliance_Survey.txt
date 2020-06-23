@@ -1,0 +1,9 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you make sure your mobile devices are not left exposed?	
+2	BOOL_P	Do you efficiently protect mobile devices from physical hazards?	
+3	BOOL_P	Do people close to you (family or friends) have access to your corporative devices?	
+4	BOOL_P	Do you store information assets outside the organization in a sufficiently safe place?	
+5	BOOL_P	Do you avoid keeping a record of secret authentication information?	
+6	BOOL_P	Do you change your secret authentication information whenever there is an indication of compromise?	
+7	BOOL_P	Do you avoid sharing your secret authentication information?	
+8	BOOL_P	Do you avoid using the same secret authentication information for business and non-business purposes?	

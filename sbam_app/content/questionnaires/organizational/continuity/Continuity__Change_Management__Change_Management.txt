@@ -1,0 +1,9 @@
+id	type	text_en	options_en
+1	BOOL_P	Are the maintenance and copying of program source libraries subject to strict change control?	 
+2	BOOL_P	Do you identify and record significant changes?	 
+3	BOOL_P	Do you plan and test changes?	 
+4	BOOL_P	Do you contact and assess the potential impacts of changes?	 
+5	BOOL_P	Have you established a formal approval procedure for proposed changes?	 
+6	BOOL_P	Do you verify that information security requirements have been met during changes?	 
+7	BOOL_P	Do you communicate change details to all related people?	 
+8	BOOL_P	Do you establish fall-back procedures to any changes?	 

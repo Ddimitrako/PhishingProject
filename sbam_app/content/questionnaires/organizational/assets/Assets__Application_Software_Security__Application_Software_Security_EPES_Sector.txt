@@ -1,0 +1,7 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you ask software and hardware (with embedded software) vendors for evidence (e.g. third-party assessment) that their software is free of software weaknesses?
+2	BOOL_P	Do you perform remote attestation of smart meters to ensure that their firmware has not been modified?	 
+3	BOOL_P	Have you ensured that all software (developed internally or procured from a third party) is developed using security aware SDLC?	 
+4	BOOL_P	Has the MDM system been designed and implemented using security aware SDLC?	 
+5	BOOL_P	Have you ensured that software running in the SCADA environment (internal or external) has been built with security in mind and reviewed for security by a qualified third party?	 
+6	BOOL_P	Have you ensured that software controlling voltage regulators and monitors are free of security weaknesses?

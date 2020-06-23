@@ -1,0 +1,12 @@
+id	type	text_en	options_en
+1	AGR5_N	Policies lack the capacity to deal with cyber crime effectively.
+2	AGR5_N	I believe that cyber criminals are more advanced than the people who are supposed to be protecting us.	
+3	AGR5_N	I think that information provided by the Government and Police on cyber  crime is not relevant to businesses.	
+4	AGR5_N	I feel that the Police are far too busy to deal with cyber crime.	
+5	AGR5_N	I worry that if I report a cyber attack to the Police it might damage the reputation of the company.	
+6	AGR5_P	I think more could be done to communicate the risks from cyber crime to individuals in the organisation.	
+7	AGR5_P	I am aware of the company's IT use policy and attempt to follow it.	
+8	AGR5_N	I would not know how to report a cyber attack if one happened.	
+9	AGR5_N	I don't think that reporting a cyber attack on the company is my responsibility.	
+10	AGR5_N	I don't pay attention to company material about the threats from cyber crime.
+

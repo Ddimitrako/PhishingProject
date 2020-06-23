@@ -1,0 +1,11 @@
+id	type	text_en	options_en
+1	BOOL_P	Are operations controlled and predictable, managed according to the same standards throughout the organization?	 
+2	BOOL_P	Are operations agile and adaptable, managed with minimal bureaucracy and capable of fast adaptation and flexible execution to respond to changes in the environment?	 
+3	BOOL_P	Do you maintain separate environments for production and non-production systems? 	 
+4	BOOL_P	Do you have defined rules for the transfer of software from development to operational status?	 
+5	BOOL_P	Does the development and operational software run on different systems or computer processors and in different domains or directories?	 
+6	BOOL_P	Do you test changes to operational systems and applications in a testing or staging environment prior to being applied to operational systems?	 
+7	BOOL_P	Do you avoid conducting testing on operation systems?	 
+8	BOOL_P	Do you make compilers, editors and other development tools inaccessible from operational systems?	 
+9	BOOL_P	Do users have different user profiles for operational and testing systems?	 
+10	BOOL_P	Do you avoid copying sensitive data into the testing system environment?	 

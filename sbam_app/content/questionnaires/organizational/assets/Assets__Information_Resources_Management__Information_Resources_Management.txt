@@ -1,0 +1,7 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you have an efficient classification scheme for all the information assets taking into account their confidentiality, criticality, legal requirements, sensitivity to unauthorized modification and business value?	 
+2	BOOL_P	Do you properly label all relevant assets, depending on their classification?	 
+3	BOOL_P	Are the classification scheme and labeling procedures properly communicated to all relevant parties?	 
+4	BOOL_P	Have you implemented access controls that take into account the classification scheme?	 
+5	BOOL_P	Are all the assets properly returned to the organization after termination of the user's employment, contract or agreement?
+6	BOOL_P	Have you implemented a System Development Life Cycle to manage assets and systems?	 

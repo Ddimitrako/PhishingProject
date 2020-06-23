@@ -1,0 +1,10 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you have a procedure for notifying authorities in the case of a disaster or security incident?	 
+2	BOOL_P	Does your procedure identify who should make the contacts?	 
+3	BOOL_P	"Does your procedure identify who should be contacted, including contact information?"	 
+4	BOOL_P	Is the contact information sorted and identified by incident type?	 
+5	BOOL_P	Have you identified who will speak to the press/public in the case of an emergency or an incident?	 
+6	BOOL_P	Does your communication plan cover internal communications with your employees and their families?	 
+7	BOOL_P	"Can emergency procedures be appropriately implemented, as needed, by those responsible?"	 
+8	CUSTOM_R	How often do you test your recovery plans?	"[[1, 1, ""Twice per year"", 1], [2, 2, ""Once per year"", 0.50], [3, 3, ""Less than once per year"", 0]] "
+9	BOOL_P	Do you conduct disaster response and recovery planning and testing with third party stakeholders?	 

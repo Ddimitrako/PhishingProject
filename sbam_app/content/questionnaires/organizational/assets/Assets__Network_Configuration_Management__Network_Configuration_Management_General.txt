@@ -1,0 +1,9 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you maintain documented security configuration standards for all authorized network devices?	 
+2	BOOL_P	Have you documented all configuration rules that allow traffic to flow through network devices in a configuration management system with a specific business reason for each rule, a specific individual's name responsible for that business need, and an expected duration of the need?
+3	BOOL_P	Have you compared all network device configurations against approved security configurations defined for each network device in use, and do you alert when any deviations are discovered?
+4	BOOL_P	Do you install the latest stable version of any security-related update on all network devices?	 
+5	CUSTOM_R	In how many of your network devices do you use multi-factor authentication and encrypted sessions?	"[[1, 1, ""None"", 0], [2, 2, ""Some"", 0.25], [3, 3, ""Only the critical ones"", 0.50], [4, 4, ""The majority"", 0.75], [5, 5, ""All"", 1]] "
+6	BOOL_P	Have you ensured that network engineers use a dedicated machine (segmented from the organization's primary network and not allowed Internet access) for all administrative tasks or tasks requiring elevated access?
+7	BOOL_P	Do you manage the network infrastructure across network connections that are separated from the business use of that network, relying on separate VLANs or, preferably, on entirely different physical connectivity for management sessions for network devices?
+8	BOOL_P	Have you established a baseline of network operations and expected data flows?	 

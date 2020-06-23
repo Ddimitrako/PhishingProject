@@ -1,0 +1,13 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you maintain an inventory of all sensitive information stored, processed, or transmitted by the organization's technology systems, including those located on-site or at a remote service provider?
+2	BOOL_P	Have you ensured that sensitive data or systems are not regularly accessed by the organization from the network?	 
+3	BOOL_P	Have you deployed an automated tool on network perimeters that monitors for unauthorized transfer of sensitive information and blocks such transfers while alerting information security professionals?	 
+4	BOOL_P	Do you only allow access to authorized cloud storage or email providers?	 
+5	BOOL_P	Do you monitor all traffic leaving the organization and detect any unauthorized use of encryption?	 
+6	BOOL_P	Have you utilized approved cryptographic mechanisms to protect enterprise data stored on all mobile devices?	 
+7	BOOL_P	If USB storage devices are required, is enterprise software being used to configure systems to allow the use of specific devices?
+8	BOOL_P	Have you configured systems not to write data to external removable media, if there is no business need for supporting such devices?
+9	BOOL_P	If USB storage devices are required, are all data stored on such devices encrypted while at rest?
+10	BOOL_P	Do you have a policy for identifying the retention of information (both hard and soft copies)?	 
+11	BOOL_P	Do you have procedures in place to deal with credit card information?	 
+12	BOOL_P	Do you have procedures covering the management of personal private information?	 

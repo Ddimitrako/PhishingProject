@@ -1,0 +1,10 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you store IT assets in accordance with manufacturer's specifications?
+2	BOOL_P	Do you make unrecoverable any information stored in reusable media that is no longer required?	
+3	BOOL_P	Do you enable removable media drives only when there is a reason for doing so?	
+4	BOOL_P	Is the use of removable media properly monitored?	
+5	BOOL_P	Do you employ integrity checking mechanisms to verify hardware integrity?	
+6	BOOL_P	Is maintenance of physical organizational assets approved, logged, and performed in a manner that prevents unauthorized access?
+7	BOOL_P	Have you implemented proper disposal procedures for media containing sensitive and confidential information?	
+8	CUSTOM_R	How many days after the release of a patch do you install it to all applicable systems?	"[[1, 1, ""Immediately"", 1], [2, 2, ""Withink a week"", 0.75], [3, 3, ""Within two weeks"", 0.50], [4, 4, ""Within a month"", 0.25], [5, 5, ""More than that"", 0]] "
+9	PERC10_P	What percentage of your systems (workstations, laptops, servers) are equipped with the latest antivirus/antispyware signatures?

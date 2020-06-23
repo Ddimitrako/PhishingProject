@@ -1,0 +1,9 @@
+id	type	text_en	options_en
+1	BOOL_P	Are you aware of the information sharing forums and sources used by the company?
+2	BOOL_P	Are you aware of the risk response procedures of the organisation?
+3	BOOL_P	Are you aware of the credentials, and the relevant procedures and polices about them?
+4	BOOL_P	Are you aware of the policies regarding physical access to assets?
+5	BOOL_P	Are you aware of the polices regarding remote access to assets?
+6	BOOL_P	Are you aware of the implemented network segregation and network segmentation policies?
+7	BOOL_P	Are you aware of the policies regarding data destruction?
+8	BOOL_P	Are you aware of the policies regarding maintenance of assets?

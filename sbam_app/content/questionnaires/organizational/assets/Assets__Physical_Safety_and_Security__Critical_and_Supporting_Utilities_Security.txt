@@ -1,0 +1,10 @@
+id	type	text_en	options_en
+1	BOOL_P	Do your policies and procedures identify critical services (e.g. power supply, cooling, communication, etc.) and specify methods for supporting the underlying systems?
+2	BOOL_P	Do all employees have emergency shelter-in-place kits for emergencies where they can't leave your facility? (canned food and a can opener, bottled water, a blanket, prescription medicines, sanitary wipes, a garbage bag with ties and toilet paper for personal sanitation)
+3	BOOL_P	Do you regularly inspect and test supporting utilities (e.g. electricity, telecommunications, water supply, ventilation, air conditioning, etc.)?
+4	BOOL_P	Have you established a way to be provided with emergency lighting and communications if necessary?	 
+5	BOOL_P	Do you have emergency switches and valves to cut off power, water, gas or other utilities located near emergency exits or equipment rooms?
+6	BOOL_P	Are power and telecommunication lines that go into your information processing facilities underground?	 
+7	BOOL_P	Are your power cables segregated from your communication cables?	 
+8	BOOL_P	Have you installed armored conduit and locked rooms or boxes at inspection and termination points?	 
+9	BOOL_P	Do you perform technical sweeps and physical inspections in order to detect unauthorized devices being attached to the cables?	 

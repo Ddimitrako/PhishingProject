@@ -1,0 +1,2 @@
+id	type	text_en	options_en
+1	BOOL_P	Are changes to electrical distribution feeders being reviewed and authorised by humans?	 

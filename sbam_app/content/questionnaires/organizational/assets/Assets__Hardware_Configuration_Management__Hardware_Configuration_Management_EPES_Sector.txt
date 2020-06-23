@@ -1,0 +1,2 @@
+id	type	text_en	options_en
+1	BOOL_P	Have you established and do you maintain secure configuration management processes (e.g. when servicing field devices or updating their firmware)?	 

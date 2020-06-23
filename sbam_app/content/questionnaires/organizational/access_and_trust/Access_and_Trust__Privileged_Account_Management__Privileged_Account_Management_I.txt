@@ -1,0 +1,10 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you use automated tools to inventory all administrative accounts, including domain and local accounts, to ensure that only authorized individuals have elevated privileges?
+2	BOOL_P	Before deploying any new asset, do you change all default passwords to have values consistent with administrative level accounts?
+3	BOOL_P	Have you ensured that all users with administrative account access use a dedicated or secondary account for elevated activities?	 
+4	BOOL_P	Where multi-factor authentication is not supported (such as local administrator, root, or service accounts), do accounts use passwords that are unique to that system?
+5	BOOL_P	Do you use multi-factor authentication and encrypted channels for all administrative account access?	 
+6	BOOL_P	Have you ensured administrators use a dedicated machine (segmented from the organization's primary network and not allowed Internet access) for all administrative tasks or tasks requiring administrative access?
+7	BOOL_P	Do you limit access to scripting tools (e.g. Microsoft' PowerShell, Python) to only administrative or development users with the need to access those capabilities?
+8	BOOL_P	Have you configured systems to issue a log entry and alert when an account is added to or removed from any group assigned administrative privileges?	 
+9	BOOL_P	Have you configured systems to issue a log entry and alert on unsuccessful logins to an administrative account?	 

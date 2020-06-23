@@ -1,0 +1,13 @@
+id	type	text_en	options_en
+1	BOOL_P	Can you remotely wipe computers, laptops, and mobile devices that are lost or stolen?
+2	BOOL_P	Do you have security policies in place for all of your computers, laptops, tablets, and smartphones?
+3	BOOL_P	Do you have a "Bring Your Own Device" policy in place for employee mobile devices?
+4	BOOL_P	Do you use electromagnetic shielding?	 
+5	BOOL_P	Do you assure that directories and internal telephone books identifying locations of confidential information processing facilities are not readily accessible to anyone unauthorized?	 
+6	BOOL_P	Do you prohibit the use of photographic, video, audio or other recording equipment in secure areas, unless properly authorized?
+7	BOOL_P	Is your delivery and loading area designed in such a way as to be able to load and unload supplies without delivery personnel gaining access to other parts of the building?	 
+8	BOOL_P	Do you examine and inspect incoming material for explosives, chemical or other hazardous materials, before it is moved from a delivery and loading area?
+9	BOOL_P	Do you inspect incoming material for evidence of tampering?	 
+10	BOOL_P	Do you physically segregate, where possible, incoming and outgoing shipments?
+11	BOOL_P	Do you monitor relevant environmental conditions, such as humidity and temperature, which could adversely affect the operation of information processing facilities?
+12	BOOL_P	Do you use special protection methods, such as keyboard membranes?

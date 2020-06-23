@@ -1,0 +1,11 @@
+id	type	text_en	options_en
+1	CUSTOM_R	I dispose sensitive information appropriately (e.g. shredding).	"[[1, 1, ""Always"", 1], [2, 2, ""Most of the time"", 0.67], [3, 3, ""Sometimes"", 0.33], [4, 4, ""Never"", 0], [5, 5, ""Not applicable"", 1]] "
+2	CUSTOM_R	I lock my computer terminal and electronic devices when leaving them unattended.	"[[1, 1, ""Always"", 1], [2, 2, ""Most of the time"", 0.67], [3, 3, ""Sometimes"", 0.33], [4, 4, ""Never"", 0], [5, 5, ""Not applicable"", 1]] "
+3	CUSTOM_R	I check whether certain information can or cannot be shared with others if I am unsure.	"[[1, 1, ""Always"", 1], [2, 2, ""Most of the time"", 0.67], [3, 3, ""Sometimes"", 0.33], [4, 4, ""Never"", 0], [5, 5, ""Not applicable"", 1]] "
+4	AGR5_P	I get into the office wearing my security pass.	
+5	AGR5_P	I always make all necessary arrangements for any visitors coming to the office on time.	
+6	AGR5_P	I avoid discussing sensitive issues in public places.	
+7	AGR5_N	I avoid locking my business mobile phone to easy the access to it.	
+8	AGR5_N	All documents that i have not completed elaborating remain on my desk until I do so.	
+9	AGR5_P	I accompany visitors within our business offices and escort them round.	
+10	AGR5_P	I remove my security pass upon leaving the building.	

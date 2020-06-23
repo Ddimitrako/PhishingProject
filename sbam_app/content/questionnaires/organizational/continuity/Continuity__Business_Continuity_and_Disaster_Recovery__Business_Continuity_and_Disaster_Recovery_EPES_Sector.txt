@@ -1,0 +1,2 @@
+id	type	text_en	options_en
+1	BOOL_P	Have you ensured sufficient fault tolerance and redundancy in the SCADA environment?	 

@@ -1,0 +1,10 @@
+id	type	text_en	options_en
+1	BOOL_P	Do you perform forensic analysis on the incidents that occurred in order to learn from them and be able to improve the controls used to prevent it, as well as the response procedures used for the specific incident?
+2	BOOL_P	Do you gather evidence in order to find the responsible parties for the incident occurred?	 
+3	BOOL_P	Have you implemented effective disciplinary actions?	 
+4	BOOL_P	Do you have established processes to receive, analyse and respond to vulnerabilities disclosed to the organization from internal and external sources (e.g. internal testing, security bulletins, or security researchers)
+5	BOOL_P	Do you update your incident response plans according to your findings from the incident analysis?	 
+6	CUSTOM_R	Do you regularly or semi-regularly test your response plans?	"[[1, 1, ""Regularly"", 1], [2, 2, ""Semi-regularly"", 0.5], [3, 3, ""Never"", 0]] "
+7	PERC20_N	What percentage of your security incidents cause service interruption or reduced availability?	 
+8	CUSTOM_R	How many security incidents do you identify in a year?	"[[1, 1, ""Few unimportant ones"", 1], [2, 2, ""Normal amount of unimportant ones"", 0.80], [3, 3, ""A lot of unimportant ones"", 0.60], [4, 4, ""Few important ones"", 0.40], [5, 5, ""Normal amount of important ones"", 0.20], [6, 6, ""A lot of important ones"", 0]] "
+9	PERC20_N	What percentage of your security issues identified by the audit department is related to employees security behaviour?	 
