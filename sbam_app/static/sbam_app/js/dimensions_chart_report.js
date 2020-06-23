@@ -33,7 +33,7 @@ am4core.ready(function() {
         var cellWidth = axis.pixelWidth / (axis.endIndex - axis.startIndex);
         // label.maxWidth = cellWidth;
         if (cellWidth < label.maxWidth) {
-          label.rotation = -30;
+          label.rotation = -45;
           label.horizontalCenter = "middle";
         }
         else {
