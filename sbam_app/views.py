@@ -911,10 +911,14 @@ def get_graph_data(assignments, self_assessments, dimensions):
             dom_dict = dict()
             dom_dict['title'] = dom.title
             dom_avg = get_domain_mean_value(dim, dom, info, results_dict)
-            dom_dict['value'] = dom_avg
-            dim_dict['value'] += dom_avg
+            if dom_avg >= 0:
+                dom_dict['value'] = dom_avg
+                dim_dict['value'] += dom_avg
+                dom_num += 1
+            else:
+                dom_dict['value'] = 0
             dim_dict['domains'].append(dom_dict)
-            dom_num += 1
+            
         dim_dict['value'] = round(dim_dict['value'] / dom_num) if dom_num else 0
         graph_data['dimensions'].append(dim_dict)
 
@@ -998,7 +1002,7 @@ def get_domain_mean_value(dim, dom, info, results_dict):
             for assigned_user in results_dict[questionnaire]:
                 total += results_dict[questionnaire][assigned_user]['score']
                 assignment_num += 1
-    return round(total / assignment_num) if assignment_num > 0 else 0
+    return round(total / assignment_num) if assignment_num > 0 else -1
     # import random
     # return random.randint(10, 100)
 
