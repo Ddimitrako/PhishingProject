@@ -2,7 +2,8 @@ import json
 from itertools import chain
 from sbam_app.templatetags import custom_tags
 
-from datetime import date
+from datetime import date, datetime
+from django.utils import timezone
 from dateutil.relativedelta import relativedelta
 
 from allauth.account.utils import send_email_confirmation
@@ -570,10 +571,10 @@ def assignmentCompletion(request, assignment_id):
 
 @login_required
 def selfAssessmentSubmission(request):
-    print('self assessment')
+    # print('self assessment')
     answers = json.loads(request.POST['data'])
     questionnaire = Questionnaire.objects.get(pk=int(request.POST['ass_id']))
-    print(request.user.id)
+    # print(request.user.id)
     self_assessment = QuestionnaireSelfAssessment(questionnaire=questionnaire, user_id=request.user.id)
     self_assessment.save()
     for ques in answers:
@@ -967,10 +968,12 @@ def gather_results(assignments, self_assessments, dimensions):
                     'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score*100,
                     'answer_time': res.answer_time, 'campaign': ''}
             else:
+                print(res.answer_time, results_dict[sa.questionnaire.id][sa.user.username]['answer_time'])
                 if res.answer_time > results_dict[sa.questionnaire.id][sa.user.username]['answer_time']:
                     results_dict[sa.questionnaire.id][sa.user.username] = {
                         'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score*100,
                         'answer_time': res.answer_time,  'campaign': ''}
+                    print('new answer time!!')
 
     
     info = dict()
@@ -1024,14 +1027,13 @@ def get_assignments(report_level, campaign_id, group_id, include_organisational,
 
 
 def get_user_assignments(user, months):
-    qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, user=user, campaign__end_date__gte=date.today() - relativedelta(months=months))
+    qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, user=user, campaign__end_date__gte=timezone.now() - relativedelta(months=months))
     qas = qas.exclude(questionnaire__domain__dimension__level=0)
-    print(qas)
     return qas.order_by('questionnaire')
 
 
 
-def get_user_self_assessments(user, months):
-    qsass = [q for q in QuestionnaireSelfAssessment.objects.filter(questionnaire__is_active=1, user=user).order_by('questionnaire') if q.get_answer_time() > date.today() - relativedelta(months=months)]
+def get_user_self_assessments(user, months):    
+    qsass = [q for q in QuestionnaireSelfAssessment.objects.filter(questionnaire__is_active=1, user=user).order_by('questionnaire') if q.get_answer_time() > timezone.now() - relativedelta(months=months)]
     return qsass
 

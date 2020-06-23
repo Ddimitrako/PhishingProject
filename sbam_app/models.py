@@ -368,7 +368,7 @@ class AssignmentResult(Model):
         on_delete=CASCADE,
         help_text=_('Assignment this result refers to')
     )
-    answer_time = DateField(_('answer time'), help_text=_('The date this assignment result was achieved'))
+    answer_time = DateTimeField(_('answer time'), help_text=_('The date this assignment result was achieved'))
     score = FloatField(_('score'), help_text=_('Achieved assignment score'))
 
     class Meta:
@@ -420,7 +420,7 @@ class SelfAssessmentResult(Model):
         on_delete=CASCADE,
         help_text=_('self assessment survey this result refers to')
     )
-    answer_time = DateField(_('answer time'), help_text=_('The date this self assessment survey result was achieved'))
+    answer_time = DateTimeField(_('answer time'), help_text=_('The date this self assessment survey result was achieved'))
     score = FloatField(_('score'), help_text=_('Achieved self assessment survey score'))
 
 
