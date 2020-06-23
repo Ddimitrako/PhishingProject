@@ -49,7 +49,7 @@
     box-shadow: 0px 1px 0px 0px #5c4f4f30;
     margin-bottom: 7px;
     color: #263c91;
-    height: 3vh;
+    /* height: 3vh; */
 }
 
 .campaign_creation_form .form-row{
