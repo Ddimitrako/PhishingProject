@@ -282,12 +282,14 @@ def get_campaign_form_trees(logged_user):
     users = models.User.objects.filter(is_active=True).order_by('first_name', 'last_name')
     users_groups = Group.objects.filter(groupprofile__is_active=1).order_by('name')
     if logged_user > 0:
-        users_groups = users_groups.filter(groupprofile__creator_id=logged_user).order_by('name')
+        users_groups = set([g for g in Group.objects.filter(groupprofile__is_active=True, groupprofile__creator_id=logged_user)] + [g for g in Group.objects.filter(groupprofile__is_active=True) if g.groupprofile.is_global])
+    else:
+        users_groups = set([g for g in Group.objects.filter(groupprofile__is_active=True) if g.groupprofile.is_global])
 
     users_dict = list()
     users_dict.append({
         "id": 'users_groups',
-        "text": 'Users Groups',
+        "text": 'User Groups',
         "attributes": {},
         "children": [],
         "check": "False"
