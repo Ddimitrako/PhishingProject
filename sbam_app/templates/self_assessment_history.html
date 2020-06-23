@@ -29,9 +29,10 @@
                         <th>{% trans "title"|capfirst %}</th>
                         <th>{% trans "dimension"|capfirst %}</th>
                         <th>{% trans "domain"|capfirst %}</th>
-                        <th>{% trans "score"|capfirst %}</th>
-                        <th>{% trans "answer Date"|capfirst %}</th>
                         <th>{% trans "No. Questions" %}</th>
+                        <th>{% trans "answer Date"|capfirst %}</th>
+                        <th>{% trans "score"|capfirst %}</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,6 +61,16 @@
                                 {% endif %}
                             </td>
                             <td>
+                                {% if self_ass.questionnaire %}
+                                    {{ self_ass.questionnaire.get_questions_count }}
+                                {% else %}
+                                    {{ self_ass.test.title }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ self_ass.get_answer_time }}
+                            </td>
+                            <td>
                                 {% with score=self_ass.get_result %}
                                     {% get_badge score as badge_type %}
                                     <span {% if badge_type != 'Not Completed Yet' %}class="badge {{ badge_type }}"{% endif %}>
@@ -68,19 +79,14 @@
                                 {% endwith %}
                             </td>
                             <td>
-                                {{ self_ass.get_answer_time }}
-                            </td>
-                            <td>
-                                {% if self_ass.questionnaire %}
-                                    {{ self_ass.questionnaire.get_questions_count }}
-                                {% else %}
-                                    {{ self_ass.test.title }}
-                                {% endif %}
+                                <a href="{% url 'sbam:self_assessment_completion' self_ass.questionnaire.id %}">
+                                    <i class="fas fa-redo-alt" style='color: #23a5e1; cursor: pointer;'></i>
+                                </a>
                             </td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="6" class="text-muted">{% trans "No Self Assessment executed!" %}</td>
+                            <td colspan="7" class="text-muted">{% trans "No Self Assessment executed!" %}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
