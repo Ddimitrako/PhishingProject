@@ -1025,7 +1025,8 @@ def get_assignments(report_level, campaign_id, group_id, include_organisational,
 
 def get_user_assignments(user, months):
     qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, user=user, campaign__end_date__gte=date.today() - relativedelta(months=months))
-    qas = qas.exclude(questionnaire__domain__dimension__level=1)
+    qas = qas.exclude(questionnaire__domain__dimension__level=0)
+    print(qas)
     return qas.order_by('questionnaire')
 
 
