@@ -25,31 +25,31 @@
     <div class="container-fluid quest-info-container">
         <div class="jumbotron quest-info-jumbotron">
             <div class="row">
-                <h2 class="display-4">{{ quest.title|capfirst }}</h2>
+                <h2 class="" style='color: #155888;'>{{ quest.title|capfirst }}</h2>
             </div>
         <div class="row">
             <div class="col-lg-6">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-4">
                         {% trans "dimension"|capfirst %}
                     </div>
-                   <div class="col-9">
+                   <div class="col-8">
                         <span> {{ quest.domain.dimension }} </span>  <span data-toggle="tooltip" title="{{ quest.domain.dimension.description|default:'No info available at the moment' }}"><i class="fas fa-question-circle"></i></span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-4">
                         {% trans "domain"|capfirst %}
                     </div>
-                    <div class="col-9">
+                    <div class="col-8">
                         <span> {{ quest.domain }} </span>  <span data-toggle="tooltip" title="{{ quest.domain.description|default:'No info available at the moment' }}"><i class="fas fa-question-circle"></i></span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-4">
                         {% trans "Status" %}
                     </div>
-                    <div class="col-9">
+                    <div class="col-8">
                         <div class="custom-control custom-switch">
                             {% if quest.is_active == 1 %}
                                 <input type="checkbox" class="custom-control-input" id="questionnaire_status" checked>
@@ -61,10 +61,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-4">
                         {% trans "No. Questions" %}
                     </div>
-                    <div class="col-9">
+                    <div class="col-8">
                         {{ quest.get_questions_count }}
                     </div>
                 </div>
@@ -74,7 +74,7 @@
             </div>
         </div>
             <hr class="my-4">
-            <h3> {% trans "questions"|capfirst %} </h3>
+            <h3 style='color: #155888;'> {% trans "questions"|capfirst %} </h3>
             {% comment %} <nav class="nav nav-tabs " id="custom-tabs-three-tab">
                 <a class="flex-sm-fill text-center nav-link active" id="questions-tab" data-toggle="pill"
                    href="#questions"
@@ -98,7 +98,7 @@
                                 <div class="row">
                                     {% for question_attr_key, question_attr_value in question_value.items %}
                                         {% if question_attr_key == 'question_options' %}
-                                            <div class="col-sm-7 align-self-center">
+                                            <div class="col-sm-6 align-self-center">
                                                 <div class="row">
                                                     <ul>
                                                         {% for options_dicts in question_attr_value %}
