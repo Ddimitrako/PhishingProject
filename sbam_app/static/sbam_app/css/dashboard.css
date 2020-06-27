@@ -10,15 +10,11 @@
     /*max-height: 30vh;*/
 }
 
-.active-assignments{
-    /*max-height: 35vh;*/
-    /*overflow: auto;*/
+.assignmets .nav-link{
+    padding: 0.2rem;
+    text-align: center;
 }
 
-.active-campaigns{
-    /*max-height: 35vh;*/
-    overflow: auto;
-}
 
 .list-group{
     color: #3f5082;
@@ -47,10 +43,52 @@
     padding-bottom: 1%;
 }
 
-.assignmets .tab-content{
-    overflow: auto;
-    /*min-height: 20.5vh;*/
-    max-height: 208px;
+
+
+@media only screen and (max-width: 1024px), screen and  (max-height: 700px) {
+    .assignmets .tab-content{
+        overflow: auto;
+        height: 250px;
+        border-style: none;
+    }
+    .card{
+        min-height: 97%;
+        height: 350px;
+    }
+    .card-body .nav{
+        height: 50px;
+        margin: 0;
+    }
+    #metrics-div{
+        height: auto; 
+        margin-top: 1vh;
+    }
+    #metrics-div .chartdiv, #metrics-div #recommendations{
+        height: 250px; 
+    }
+  }
+
+@media only screen and (min-width: 1025px) and (min-height: 701px){
+    .assignmets .tab-content{
+        overflow: auto;
+        height: 30vh;
+        border-style: none;
+    }
+    .card{
+        min-height: 97%;
+        height: 40vh;
+    }
+    .card-body .nav{
+        height: 40px;
+        margin: 0;
+    }
+    #metrics-div{
+        height: 45vh; 
+        margin-top: 1vh;
+    }
+    #metrics-div .chartdiv, #metrics-div #recommendations{
+        height: 95%; 
+    }
 }
 
 .assignmets .tab-content .list-group-item{
@@ -63,16 +101,11 @@
     font-size: medium;
 }
 
-.card{
-    min-height: 100%;
-    /*max-height: 30vh;*/
-}
 
-h3{
-    padding-bottom: 0.5rem;
-/*.tab-content{*/
-/*    overflow: auto;*/
-/*}*/
+
+.card h3{
+    height: 5vh;
+    margin-bottom: 0;
 }
 
 .row h3{
@@ -90,12 +123,20 @@ h3{
     border-top-style: solid;
     border-top-color: #e0e4e8;
     color: #3f5082;
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
-.card-body .nav{
-    /* height: 5vh; */
-    margin: 0;
+#metrics-title-div{
+    text-align: center;
 }
+
+#metrics-div{
+    text-align: center;
+}
+
+
 
 .new_assessment_btn{
     margin-bottom: 15%;
@@ -125,9 +166,6 @@ h3{
     margin: 0;
 }
 
-.chartdiv{
-    height: 85%;
-}
 
 #recommendations .list-group-item{
     background-color: #e9f1f7c7;

@@ -25,12 +25,12 @@
 
 {% block content %}
     <div class="container assignmets">
-        <div class="row"  style='min-height: 35vh;'>
+        <div class="row">
             <div class="col-xl-6">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
                         <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
-                            <li class="nav-item">
+                            <li class="nav-item col">
                                 <a class="nav-link active" id="active-ass-tab" data-toggle="pill"
                                    href="#active-ass" role="tab"
                                    aria-controls="active-ass"
@@ -38,14 +38,14 @@
                                     {% trans "Active Assignments" %}
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item col">
                                 <a class="nav-link" id="compl-ass-tab" data-toggle="pill"
                                    href="#compl-ass" role="tab"
                                    aria-controls="compl-ass"
-                                   aria-selected="false"><i class="fas fa-check"></i> {% trans "Completed Assignments" %}
+                                   aria-selected="false"><i class="fas fa-check"></i> {% trans "Finished Assignments" %}
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item col">
                                 <a class="nav-link" id="expired-ass-tab" data-toggle="pill"
                                    href="#expired-ass" role="tab"
                                    aria-controls="expired-ass"
@@ -96,6 +96,8 @@
                                                 {% else %}
                                                     <strong class="assignment_title">{{ compl_ass.test.title }}</strong>
                                                 {% endif %}
+                                            </div>
+                                            <div class="d-flex w-100 justify-content-between">
                                                 <div class="align-self-end"><strong>{% trans "Completed at" %}: </strong> {{ compl_ass.get_answer_time }}</div>
                                             </div>
                                         </li>
@@ -116,14 +118,16 @@
                                                 {% else %}
                                                     <strong class="assignment_title">{{ exp_ass.test.title }}</strong>
                                                 {% endif %}
+                                            </div>
+                                            <div class="d-flex w-100 justify-content-between">
                                                 <div class="align-self-end"><strong>{% trans "Ended at" %}: </strong> {{ exp_ass.campaign.end_date }}</div>
                                             </div>
                                         </li>
                                     {% endfor %}
                                 </ul>
-                            {% if expired_assignments|length == 0 %}
-                                <p>No expired assignments</p>
-                            {% endif %}
+                                {% if expired_assignments|length == 0 %}
+                                    <p>No expired assignments</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -134,46 +138,72 @@
             <div class="col-xl-6">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
-                        <h3> {% trans "Active Campaigns" %} </h3>
-                        <ul class="list-group active-campaigns">
-                            {% for camp in active_campaigns %}
-                                <li  class="list-group-item  flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <strong class="assignment_title">{{ camp.title }}</strong>
-                                        <a class="btn btn-sm btn-primary ass-btn" href="{% url 'sbam:campaign' camp.id %}" role="button">{% trans "Details" %}</a>
-                                    </div>
+                        <div class="d-sm-inline-flex w-100 justify-content-between" style='border-bottom: 1px solid #dee2e6;'>
+                            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist"  style='width: 35%; border-bottom: none;'>
+                                <li class="nav-item col">
+                                    <a class="nav-link active" id="active-ass-tab" data-toggle="pill"
+                                    href="#active-camp" role="tab"
+                                    aria-controls="active-camp"
+                                    aria-selected="true"><i class="fas fa-hourglass-half"></i>
+                                        {% trans "Active Campaigns" %}
+                                    </a>
                                 </li>
-                            {% empty %}
-                                <p>No active campaigns</p>
-                            {% endfor %}
-                        </ul>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="active-camp" role="tabpanel"
+                                 aria-labelledby="active-camp-tab">
+                                <ul class="list-group active-campaigns">
+                                    {% for camp in active_campaigns %}
+                                        <li  class="list-group-item  flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <strong class="assignment_title">{{ camp.title }}</strong>
+                                                <a class="btn btn-sm btn-primary ass-btn" href="{% url 'sbam:campaign' camp.id %}" role="button">{% trans "Details" %}</a>
+                                            </div>
+                                        </li>
+                                    {% empty %}
+                                        <p>No active campaigns</p>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row" id='metrics-div' style='display: block; text-align: center;' >
+        <div class="row" style='display: block; text-align: center; margin-top: 1rem;' >
             <h3>
-                Organisation Status
+                Status of the Organisation
             </h3>
             <div><a href="{% url 'sbam:reports' %}" style=" font-weight: bold; text-decoration: underline; color: #23a5e1;">More details</a></div>
         </div>
-        <div class="row" style='height: 50vh; margin-top: 1vh;'>
-            
-            <div class="col-xl-6">
-                <div class='text-center' style='height: 90%;'>
-                    <h4> {% trans "Organisational Dimensions" %} </h4>
-
-                    <div id='chartdiv1' class='chartdiv'> </div>
-                </div>             
-            </div>
-
-            <div class="col-xl-6">
-                <div class='text-center' style='height: 90%;'>
-                    <h4> {% trans "Individual Dimensions" %} </h4>
-                    <div id='chartdiv2' class='chartdiv'> </div>
+        <div  id='metrics-div' class="row" style=''>
+            {% comment %} <div id='metrics-title-div' class="row">
+                <h3>
+                    Status of the Organisation
+                </h3>
+                <div style='width: 100%;'>
+                    <a href="{% url 'sbam:reports' %}" style="font-weight: bold; text-decoration: underline; color: #23a5e1;">More details</a>
                 </div>
-            </div>
+            </div> {% endcomment %}
+            {% comment %} <div class="row"> {% endcomment %}
+                <div class="col-lg-6">
+                    <div class='text-center' style='height: 90%;'>
+                        <h5> {% trans "Organisational Dimensions" %} </h5>
+
+                        <div id='chartdiv1' class='chartdiv'> </div>
+                    </div>             
+                </div>
+
+                <div class="col-lg-6">
+                    <div class='text-center' style='height: 90%;'>
+                        <h5> {% trans "Individual Dimensions" %} </h5>
+                        <div id='chartdiv2' class='chartdiv'> </div>
+                    </div>
+                </div>
+            {% comment %} </div> {% endcomment %}
         </div>
 
     </div>
@@ -194,6 +224,7 @@
 
             /* Create chart instance */
             chart1 = am4core.create("chartdiv1", am4charts.RadarChart);
+            chart1.responsive.enabled = true;
 
             /* Add data */
             chart1.data = [];
@@ -203,13 +234,36 @@
             categoryAxis.dataFields.category = "title";
             categoryAxis.renderer.labels.template.location = 0.5;
 
+            var label = categoryAxis.renderer.labels.template;
+            label.wrap = true;
+            label.maxWidth = 70;
+            label.tooltipText = "{category}";
+            if (screen.width < 400) {
+                label.rotation = -45;
+                label.fontSize = 10;
+            }
+            else {
+                label.rotation = 0;
+                label.fontSize = 12;
+            }
+            categoryAxis.events.on("sizechanged", function(ev) {
+                if (screen.width < 400) {
+                    label.rotation = -45;
+                    label.fontSize = 10;
+                }
+                else {
+                    label.rotation = 0;
+                    label.fontSize = 12;
+                }
+            });
+                   
+
             var valueAxis = chart1.yAxes.push(new am4charts.ValueAxis());
             valueAxis.renderer.labels.template.fillOpacity = 0.5;
             valueAxis.min = 0;
             valueAxis.max = 100;
             valueAxis.strictMinMax = true;
-            valueAxis.renderer.minGridDistance = 20;
-            
+            valueAxis.renderer.minGridDistance = 20;     
 
             /* Create and configure series */
             var series = chart1.series.push(new am4charts.RadarColumnSeries());
@@ -250,6 +304,7 @@
 
             /* Create chart instance */
             chart2 = am4core.create("chartdiv2", am4charts.RadarChart);
+            chart2.responsive.enabled = true;
 
             chart2.data = [];
 
@@ -258,6 +313,30 @@
             var categoryAxis = chart2.xAxes.push(new am4charts.CategoryAxis());
             categoryAxis.dataFields.category = "title";
             categoryAxis.renderer.labels.template.location = 0.5;
+
+            var label = categoryAxis.renderer.labels.template;
+            label.wrap = true;
+            label.maxWidth = 70;
+            label.tooltipText = "{category}";
+            if (screen.width < 400) {
+                label.rotation = -45;
+                label.fontSize = 10;
+            }
+            else {
+                label.rotation = 0;
+                label.fontSize = 12;
+            }
+            categoryAxis.events.on("sizechanged", function(ev) {
+                if (screen.width < 400) {
+                    label.rotation = -45;
+                    label.fontSize = 10;
+                }
+                else {
+                    label.rotation = 0;
+                    label.fontSize = 12;
+                }
+            });
+
 
             var valueAxis = chart2.yAxes.push(new am4charts.ValueAxis());
             valueAxis.renderer.labels.template.fillOpacity = 0.5;
