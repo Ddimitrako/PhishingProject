@@ -18,18 +18,20 @@
 
 {% block extra_head %}
     <style>
-        .button:active,
-        .button.is-checked {
-            background-color: #28F;
+        h4{
+            color: #155888;
         }
-
-        .button.is-checked {
-            color: white;
-            text-shadow: 0 -1px hsla(0, 0%, 0%, 0.8);
+        p{
+            margin-bottom: 0.1rem;
         }
-
-        .button:active {
-            box-shadow: inset 0 1px 10px hsla(0, 0%, 0%, 0.8);
+        .card-body span{
+            max-width: 50%;
+        }
+        .card-body span:nth-child(2){
+            text-align: right;
+        }
+        .tooltip-inner {
+            min-width: 450px; 
         }
     </style>
 {% endblock %}
@@ -72,37 +74,76 @@
         {% endfor %}
     </tbody>
 </table> {% endcomment %}
-<div class="row">
-    <div class="button-group filter-button-group col-lg-12">
-        <button type="button" class="btn btn-primary" data-filter="*">show all</button>
-        {% for dim in dimensions %}
-            <button type="button" class="btn btn-primary" data-filter=".dim_{{dim.pk}}">{{dim.title}}</button>
-        {% endfor %}
+<div class="container-fluid">
+    <p> Explore the available questionnaires by selecting security Dimensions and Domains. Select a questionnaire to see more information about it.</p>
+</div>
+<div class="container-fluid">
+    <h4> Dimensions </h4>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="button-group dimensions-button-group col-lg-12">
+            <button type="button" class="btn btn-primary is-checked" data-filter=".dim_0_btns">All</button>
+            {% comment %} <button type="button" class="btn btn-primary is-checked" data-filter="*">show all</button> {% endcomment %}
+            {% for dim in dimensions %}
+                <button type="button" class="btn btn-default" data-filter=".dim_{{dim.pk}}_btns" data-toggle="tooltip" data-placement="top" title='{{dim.description}}'>{{dim.title}}</button>
+            {% endfor %}
+        </div>
     </div>
 </div>
 
-<div class="grid row">
-    {% for questionnaire in questionnaires %}
-        <div class="grid-item col-lg-4 dim_{{ questionnaire.domain.dimension.pk }}">
-            <div class="col-lg-12 card">
-                <div class="card-header">
-                    <h5>
-                        <a href="{% url 'sbam:questionnaire_info' questionnaire.id %}">
-                            {{ questionnaire.title}}
-                        </a>
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div class='d-flex w-100 justify-content-between'><span> Dimension </span> <span>{{ questionnaire.domain.dimension|default:'Not Available' }}</span></div>
-                    <div class='d-flex w-100 justify-content-between'><span> Domain </span> <span>{{ questionnaire.domain|default:'Not Available' }}</span></div>
-                    <div class='d-flex w-100 justify-content-between'><span> No Questions </span> <span>{{ questionnaire.get_questions_count}}</span></div>
-                    <div class='d-flex w-100 justify-content-between'><span> Status </span> <span>{{ questionnaire.get_status|default:'Not Available'}}</span></div>
-                </div>
+<div class="container-fluid">
+    <h4> Domains </h4>
+</div>
+
+<div class="container-fluid domains-grid">
+    <div class="row domains-grid-item dim_0_btns">
+        <div class="button-group domains-button-group col-lg-12">
+            <button type="button" class="btn btn-sm btn-primary is-checked" data-filter="*">All</button>
+        </div>
+    </div>
+    {% for dim in dimensions %}
+        <div class="row domains-grid-item dim_{{dim.pk}}_btns">
+            <div class="button-group domains-button-group col-lg-12">
+                <button type="button" class="btn btn-sm btn-primary is-checked" data-filter=".dim_{{dim.pk}}">All</button>
+                {% for dom in dim.domain_set.all %}
+                    <button type="button" class="btn btn-sm btn-default" data-filter=".dom_{{dom.pk}}" data-toggle="tooltip" data-placement="top" title='{{dom.description}}'>{{dom.title}}</button>
+                {% endfor %}
             </div>
         </div>
     {% endfor %}
 </div>
 
+<div class="container-fluid">
+    <div class="grid row">
+        {% for questionnaire in questionnaires %}
+            <div class="grid-item col-md-4 dim_{{ questionnaire.domain.dimension.pk }} dom_{{ questionnaire.domain.pk }}">
+                <div class="col-md-12 card">
+                    <div class="card-header">
+                        <h5>
+                            <a href="{% url 'sbam:questionnaire_info' questionnaire.id %}">
+                                {{ questionnaire.title}}
+                            </a>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class='d-flex w-100 justify-content-between'><span> Dimension </span> <span>{{ questionnaire.domain.dimension|default:'Not Available' }}</span></div>
+                        <div class='d-flex w-100 justify-content-between'><span> Domain </span> <span>{{ questionnaire.domain|default:'Not Available' }}</span></div>
+                        <div class='d-flex w-100 justify-content-between'><span> No Questions </span> <span>{{ questionnaire.get_questions_count}}</span></div>
+                        <div class='d-flex w-100 justify-content-between'><span> Status </span> <span>{{ questionnaire.get_status|default:'Not Available'}}</span></div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div id='empty-msg-box' style='display: none; margin-top: 1rem; margin-bottom: 1rem; font-size: 1rem;'>
+        No questionnaires.
+    </div>
+</div>
 
 {% endblock %}
 
@@ -113,28 +154,45 @@
 
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
     <script type='text/javascript'>
+        var $domains_grid = $('.domains-grid').isotope({
+            itemSelector: '.domains-grid-item',
+            layoutMode: 'fitRows',
+            transitionDuration: 0,
+            filter: '.dim_0_btns'
+        });
+        
+        $('.dimensions-button-group').on( 'click', 'button', function() {
+            var filterValue = $(this).attr('data-filter');
+            $domains_grid.isotope({ filter: filterValue });
+            $('.domains-grid '+filterValue).find('.btn').first().click();
+        });
+
         var $grid = $('.grid').isotope({
             itemSelector: '.grid-item',
             layoutMode: 'fitRows'
         });
-        $('.filter-button-group').on( 'click', 'button', function() {
+        $('.domains-button-group').on( 'click', 'button', function() {
             var filterValue = $(this).attr('data-filter');
             $grid.isotope({ filter: filterValue });
+            if ( !$grid.data('isotope').filteredItems.length ) {
+                $('#empty-msg-box').show();
+            }
+            else{
+                $('#empty-msg-box').hide();
+            }
         });
-        // bind filter button click
-        $('.filters-button-group').on( 'click', 'button', function() {
-            var filterValue = $( this ).attr('data-filter');
-            // use filterFn if matches value
-            filterValue = filterFns[ filterValue ] || filterValue;
-            $grid.isotope({ filter: filterValue });
-        });
+
         // change is-checked class on buttons
         $('.button-group').each( function( i, buttonGroup ) {
             var $buttonGroup = $( buttonGroup );
             $buttonGroup.on( 'click', 'button', function() {
-                $buttonGroup.find('.is-checked').removeClass('is-checked');
-                $( this ).addClass('is-checked');
+                $buttonGroup.find('.is-checked').removeClass('is-checked').removeClass('btn-primary').addClass('btn-default');
+                $( this ).addClass('is-checked').removeClass('btn-default').addClass('btn-primary');
             });
+        });
+
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
 {% endblock %}

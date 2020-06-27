@@ -491,8 +491,10 @@ def questionnaires_list(request):
 
     questionnaires = Questionnaire.objects.all()
     dimensions = Dimension.objects.all()
+    domains = Domain.objects.all()
     return render(request, 'questionnaires_list.html', {'questionnaires':questionnaires,
-                                                        'dimensions': dimensions})
+                                                        'dimensions': dimensions,
+                                                        'domains': domains})
 
 
 def questionnaireInfo(request, quest_id):
