@@ -33,6 +33,9 @@
         .tooltip-inner {
             min-width: 450px; 
         }
+        .card{
+            min-height: 200px;
+        }
     </style>
 {% endblock %}
 
@@ -75,10 +78,10 @@
     </tbody>
 </table> {% endcomment %}
 <div class="container-fluid">
-    <p> Explore the available questionnaires by selecting security Dimensions and Domains. Select a questionnaire to see more information about it.</p>
+    <p> {% trans "Explore the available questionnaires by selecting security Dimensions and Domains. Select a questionnaire to see more information about it." %}</p>
 </div>
 <div class="container-fluid">
-    <h4> Dimensions </h4>
+    <h4> {% trans "Dimensions" %} </h4>
 </div>
 
 <div class="container-fluid">
@@ -94,7 +97,7 @@
 </div>
 
 <div class="container-fluid">
-    <h4> Domains </h4>
+    <h4> {% trans "Domains" %} </h4>
 </div>
 
 <div class="container-fluid domains-grid">
@@ -128,10 +131,10 @@
                         </h5>
                     </div>
                     <div class="card-body">
-                        <div class='d-flex w-100 justify-content-between'><span> Dimension </span> <span>{{ questionnaire.domain.dimension|default:'Not Available' }}</span></div>
-                        <div class='d-flex w-100 justify-content-between'><span> Domain </span> <span>{{ questionnaire.domain|default:'Not Available' }}</span></div>
-                        <div class='d-flex w-100 justify-content-between'><span> No Questions </span> <span>{{ questionnaire.get_questions_count}}</span></div>
-                        <div class='d-flex w-100 justify-content-between'><span> Status </span> <span>{{ questionnaire.get_status|default:'Not Available'}}</span></div>
+                        <div class='d-flex w-100 justify-content-between'><span> {% trans "Dimension" %} </span> <span>{{ questionnaire.domain.dimension|default:'Not Available' }}</span></div>
+                        <div class='d-flex w-100 justify-content-between'><span> {% trans "Domain" %} </span> <span>{{ questionnaire.domain|default:'Not Available' }}</span></div>
+                        <div class='d-flex w-100 justify-content-between'><span> {% trans "No Questions" %} </span> <span>{{ questionnaire.get_questions_count}}</span></div>
+                        <div class='d-flex w-100 justify-content-between'><span> {% trans "Status" %} </span> <span>{{ questionnaire.get_status|default:'Not Available'}}</span></div>
                     </div>
                 </div>
             </div>
@@ -141,7 +144,7 @@
 
 <div class="container-fluid">
     <div id='empty-msg-box' style='display: none; margin-top: 1rem; margin-bottom: 1rem; font-size: 1rem;'>
-        No questionnaires.
+        {% trans "No questionnaires." %}
     </div>
 </div>
 
