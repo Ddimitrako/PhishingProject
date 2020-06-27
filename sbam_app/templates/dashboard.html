@@ -246,7 +246,9 @@
             var label = categoryAxis.renderer.labels.template;
             label.wrap = true;
             label.maxWidth = 70;
-            label.tooltipText = "{category}";
+            label.tooltipText = "{description}";
+            categoryAxis.tooltip.label.wrap = true;
+            categoryAxis.tooltip.label.width = 250;
             if (screen.width < 400) {
                 label.rotation = -45;
                 label.fontSize = 10;

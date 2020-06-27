@@ -13,6 +13,9 @@ am4core.ready(function() {
     categoryAxis.renderer.minGridDistance = 30;
     
     var label = categoryAxis.renderer.labels.template;
+    label.tooltipText = "{description}";
+    categoryAxis.tooltip.label.wrap = true;
+    categoryAxis.tooltip.label.width = 250;
     label.wrap = true;
     label.fontSize = 12;
     label.fontWeight = 'bold';
