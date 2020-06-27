@@ -451,15 +451,14 @@ def manager_dashboard(request):
                                                       'active_campaigns': active_campaigns})
 
 
-class SelfEvaluation(ListView):
-    template_name = 'self_assessment.html'
-    context_object_name = 'self_assessment_list'
 
-    def get_queryset(self):
-        questionnaires = Questionnaire.objects.filter(domain__dimension__level=1, is_active=1)
-        for quest in questionnaires:
-            quest.best_score = get_best_self_assessment_score(quest, self.request.user)
-        return questionnaires
+def self_evaluation(request):
+    questionnaires = Questionnaire.objects.filter(domain__dimension__level=1, is_active=1)
+    for quest in questionnaires:
+        quest.best_score = get_best_self_assessment_score(quest, request.user)
+    dimensions = Dimension.objects.filter(level=1)
+    return render(request, 'self_assessment.html', {'self_assessment':questionnaires,
+                                                    'dimensions': dimensions})
 
 
 class SelfEvaluationHistory(ListView):
@@ -491,10 +490,8 @@ def questionnaires_list(request):
 
     questionnaires = Questionnaire.objects.all()
     dimensions = Dimension.objects.all()
-    domains = Domain.objects.all()
     return render(request, 'questionnaires_list.html', {'questionnaires':questionnaires,
-                                                        'dimensions': dimensions,
-                                                        'domains': domains})
+                                                        'dimensions': dimensions})
 
 
 def questionnaireInfo(request, quest_id):
@@ -904,6 +901,7 @@ def get_graph_data(assignments, self_assessments, dimensions):
     for dim in dimensions:
         dim_dict = dict()
         dim_dict['title'] = dim.title
+        dim_dict['description'] = dim.description
         dim_dict['value'] = 0.0
         dim_dict['level'] = dim.level
         dim_dict['domains'] = list()
@@ -911,6 +909,7 @@ def get_graph_data(assignments, self_assessments, dimensions):
         for dom in Domain.objects.filter(dimension=dim):
             dom_dict = dict()
             dom_dict['title'] = dom.title
+            dom_dict['description'] = dom.description
             dom_avg = get_domain_mean_value(dim, dom, info, results_dict)
             if dom_avg >= 0:
                 dom_dict['value'] = dom_avg
