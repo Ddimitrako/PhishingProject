@@ -222,7 +222,7 @@ table.dataTable tbody tr.hover a {
 }
 
 #accordion .card .card-header {
-    padding: 10px 0;
+    padding: 10px ;
 }
 
 #accordion .card .card-header > h5 {
@@ -230,9 +230,9 @@ table.dataTable tbody tr.hover a {
     font-weight: 400;
 }
 
-#accordion .card .card-body {
+/* #accordion .card .card-body {
     padding-left: 0;
-}
+} */
 
 .controls > p {
     color: #6c757d;
