@@ -15,7 +15,7 @@ urlpatterns = [
     path('self_assessment_submit/', selfAssessmentSubmission, name='self_assessment_submit'),
 
     # Questionnaires
-    path('questionnaires/', QuestionnairesList.as_view(), name='questionnaires_list'),
+    path('questionnaires/', questionnaires_list, name='questionnaires_list'),
     path('questionnaires/<quest_id>/', questionnaireInfo, name='questionnaire_info'),
 
     # Assignments

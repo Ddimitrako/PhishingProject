@@ -1,4 +1,4 @@
-{% extends "base_datatable.html" %}
+{% extends "base.html" %}
 
 {% load i18n static %}
 {#{% load i18n custom_tags %}#}
@@ -16,7 +16,26 @@
     </div>
 {% endblock %}
 
-{% block table_content %}
+{% block extra_head %}
+    <style>
+        .button:active,
+        .button.is-checked {
+            background-color: #28F;
+        }
+
+        .button.is-checked {
+            color: white;
+            text-shadow: 0 -1px hsla(0, 0%, 0%, 0.8);
+        }
+
+        .button:active {
+            box-shadow: inset 0 1px 10px hsla(0, 0%, 0%, 0.8);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+{% comment %} <table>
     <thead>
         <tr>
             <th></th>
@@ -52,11 +71,70 @@
                 </tr>
         {% endfor %}
     </tbody>
+</table> {% endcomment %}
+<div class="row">
+    <div class="button-group filter-button-group col-lg-12">
+        <button type="button" class="btn btn-primary" data-filter="*">show all</button>
+        {% for dim in dimensions %}
+            <button type="button" class="btn btn-primary" data-filter=".dim_{{dim.pk}}">{{dim.title}}</button>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="grid row">
+    {% for questionnaire in questionnaires %}
+        <div class="grid-item col-lg-4 dim_{{ questionnaire.domain.dimension.pk }}">
+            <div class="col-lg-12 card">
+                <div class="card-header">
+                    <h5>
+                        <a href="{% url 'sbam:questionnaire_info' questionnaire.id %}">
+                            {{ questionnaire.title}}
+                        </a>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class='d-flex w-100 justify-content-between'><span> Dimension </span> <span>{{ questionnaire.domain.dimension|default:'Not Available' }}</span></div>
+                    <div class='d-flex w-100 justify-content-between'><span> Domain </span> <span>{{ questionnaire.domain|default:'Not Available' }}</span></div>
+                    <div class='d-flex w-100 justify-content-between'><span> No Questions </span> <span>{{ questionnaire.get_questions_count}}</span></div>
+                    <div class='d-flex w-100 justify-content-between'><span> Status </span> <span>{{ questionnaire.get_status|default:'Not Available'}}</span></div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
 
 {% endblock %}
 
 {% block template_js %}
-    <script>
+    {% comment %} <script>
         datatable('#table', [0], [0], [], false);
+    </script> {% endcomment %}
+
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script type='text/javascript'>
+        var $grid = $('.grid').isotope({
+            itemSelector: '.grid-item',
+            layoutMode: 'fitRows'
+        });
+        $('.filter-button-group').on( 'click', 'button', function() {
+            var filterValue = $(this).attr('data-filter');
+            $grid.isotope({ filter: filterValue });
+        });
+        // bind filter button click
+        $('.filters-button-group').on( 'click', 'button', function() {
+            var filterValue = $( this ).attr('data-filter');
+            // use filterFn if matches value
+            filterValue = filterFns[ filterValue ] || filterValue;
+            $grid.isotope({ filter: filterValue });
+        });
+        // change is-checked class on buttons
+        $('.button-group').each( function( i, buttonGroup ) {
+            var $buttonGroup = $( buttonGroup );
+            $buttonGroup.on( 'click', 'button', function() {
+                $buttonGroup.find('.is-checked').removeClass('is-checked');
+                $( this ).addClass('is-checked');
+            });
+        });
     </script>
 {% endblock %}
