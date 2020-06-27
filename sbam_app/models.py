@@ -94,7 +94,11 @@ class Campaign(Model):
                + TestAssignment.objects.filter(campaign=self, assignmentresult__isnull=False).count()
 
     def completion_rate(self):
-        return self.num_of_completed_assignments() / self.num_of_assignments()
+        try:
+            rate = self.num_of_completed_assignments() / self.num_of_assignments()
+        except:
+            rate = 0
+        return rate
 
     @property
     def finish_date(self):
