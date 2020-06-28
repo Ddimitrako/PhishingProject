@@ -184,11 +184,20 @@ $(document).ready(function(){
         return 1;
     }
 
+    function check_campaign_title(){
+        let campaign_title = $('#id_title').val();
+        if(campaign_title === '') {
+            alert('Please fill in the campaign title');
+            return 0;
+        }
+        return 1;
+    }
+
 
 
     $('#create_campaign_btn').click(function () {
 
-        if(check_campaign_dates() && check_selected_items()){
+        if(check_campaign_dates() && check_selected_items() && check_campaign_title()){
             const title = $('#id_title').val();
             const start_date = $('#id_start_date').val();
             const end_date = $('#id_end_date').val();
