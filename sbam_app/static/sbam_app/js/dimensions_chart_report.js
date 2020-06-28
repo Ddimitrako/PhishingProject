@@ -15,12 +15,15 @@ am4core.ready(function() {
     var label = categoryAxis.renderer.labels.template;
     label.tooltipText = "{description}";
     categoryAxis.tooltip.label.wrap = true;
-    categoryAxis.tooltip.label.width = 250;
+    
+    
     label.wrap = true;
     label.fontSize = 12;
     label.fontWeight = 'bold';
     // label.truncate = true;
     label.maxWidth = 95;
+    label.horizontalCenter = "middle";
+
     label.adapter.add("fill", function(fill, target) {
       if(target.dataItem.dataContext){
         //console.log(target.dataItem.dataContext.level);
@@ -31,17 +34,30 @@ am4core.ready(function() {
       }
     });
 
+    if (screen.width < 400) {
+        categoryAxis.tooltip.label.width = 250;
+        categoryAxis.tooltip.dy = -60;
+        label.rotation = -45;
+    }
+    else {
+        categoryAxis.tooltip.label.width = 400;
+        categoryAxis.tooltip.dy = -30;
+        label.rotation = 0;
+    }
+
     categoryAxis.events.on("sizechanged", function(ev) {
         var axis = ev.target;
         var cellWidth = axis.pixelWidth / (axis.endIndex - axis.startIndex);
         // label.maxWidth = cellWidth;
         if (cellWidth < label.maxWidth) {
           label.rotation = -45;
-          label.horizontalCenter = "middle";
+          categoryAxis.tooltip.label.width = 250;
+          categoryAxis.tooltip.dy = -70;
         }
         else {
+          categoryAxis.tooltip.label.width = 400;
+          categoryAxis.tooltip.dy = -40;
           label.rotation = 0;
-          label.horizontalCenter = "middle";
         }
       });
 
