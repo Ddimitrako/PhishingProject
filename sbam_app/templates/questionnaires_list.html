@@ -32,6 +32,7 @@
         }
         .tooltip-inner {
             min-width: 450px; 
+            background-color: #0a2940;
         }
         .card{
             min-height: 200px;
@@ -81,7 +82,7 @@
     <p> {% trans "Explore the available questionnaires by selecting security Dimensions and Domains. Select a questionnaire to see more information about it." %}</p>
 </div>
 <div class="container-fluid">
-    <h4> {% trans "Dimensions" %} </h4>
+    <h4> {% trans "Security Dimensions" %} </h4>
 </div>
 
 <div class="container-fluid">
@@ -90,7 +91,7 @@
             <button type="button" class="btn btn-primary is-checked" data-filter=".dim_0_btns">All</button>
             {% comment %} <button type="button" class="btn btn-primary is-checked" data-filter="*">show all</button> {% endcomment %}
             {% for dim in dimensions %}
-                <button type="button" class="btn btn-default" data-filter=".dim_{{dim.pk}}_btns" data-toggle="tooltip" data-placement="top" title='{{dim.description}}'>{{dim.title}}</button>
+                <button type="button" class="btn btn-default" data-filter=".dim_{{dim.pk}}_btns" data-toggle="tooltip" data-placement="top" title='{{dim.description|default:"Description unavailable"}}'>{{dim.title}}</button>
             {% endfor %}
         </div>
     </div>
@@ -111,7 +112,7 @@
             <div class="button-group domains-button-group col-lg-12">
                 <button type="button" class="btn btn-sm btn-primary is-checked" data-filter=".dim_{{dim.pk}}">All</button>
                 {% for dom in dim.domain_set.all %}
-                    <button type="button" class="btn btn-sm btn-default" data-filter=".dom_{{dom.pk}}" data-toggle="tooltip" data-placement="top" title='{{dom.description}}'>{{dom.title}}</button>
+                    <button type="button" class="btn btn-sm btn-default" data-filter=".dom_{{dom.pk}}" data-toggle="tooltip" data-placement="top" title='{{dom.description|default:"Description unavailable"}}'>{{dom.title}}</button>
                 {% endfor %}
             </div>
         </div>
@@ -155,7 +156,7 @@
         datatable('#table', [0], [0], [], false);
     </script> {% endcomment %}
 
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
     <script type='text/javascript'>
         var $domains_grid = $('.domains-grid').isotope({
             itemSelector: '.domains-grid-item',

@@ -17,8 +17,8 @@
                 {% for user, score, progress in results %}
                     <tr>
                         <td>
-                            <div class="progress progress-sm align-self-center" style="border-radius: 20px;">
-                                <div class="progress-bar bg-success" style="width:{{ progress }}" data-toggle="tooltip" title="{{ progress }}" >
+                            <div class="progress progress-sm align-self-center" data-toggle="tooltip" title="{{ progress }}" style="border-radius: 20px;">
+                                <div class="progress-bar bg-success" style="width:{{ progress }}" >
                                 </div>
                             </div>
                         </td>
