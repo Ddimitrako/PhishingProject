@@ -17,10 +17,11 @@
     <link href="{% static "/admin-lte/plugins/select2/css/select2.min.css" %}" rel="stylesheet">
 
 
-    <!-- Resources -->
-    <script src="https://www.amcharts.com/lib/4/core.js"></script>
-    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <!-- Amcharts Resources -->
+    <script src="{% static 'js/amcharts4/core.js' %}"></script>
+    <script src="{% static 'js/amcharts4/charts.js' %}"></script>
+    <script src="{% static 'js/amcharts4/themes/animated.js' %}"></script>
+
 
     <style>
         select option{
@@ -176,7 +177,7 @@
 
             
             <div id='charts_container' class=" {% if isManager %} col-xl-9 {% else %} col-lg-12 {% endif %}  container-fluid">
-                <div class='card mb-2' style='text-align: center;'> 
+                <div class='card mb-4' style='text-align: center;'> 
                     <div class='card-header'> Security Dimensions </div>
                     <div id='chartdiv1' class='chartdiv card-body' style='height: 100%; position: relative; '> </div>
                     <div class="loading">
