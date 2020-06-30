@@ -375,9 +375,10 @@
 
             function update_charts(){
                 $(".loading").show();
+                var d = new Date();
+                var n = d.getTime();
                 $.ajax({
-                    
-                    url: {% if isManager %} "{% url 'sbam:get_reports_data' %}" {% else %} "{% url 'sbam:get_user_metrics' %}" {% endif %},
+                    url: {% if isManager %} "{% url 'sbam:get_reports_data' %}?timestamp=" {% else %} "{% url 'sbam:get_user_metrics' %}?timestamp=" {% endif %} +n,
                     type: 'GET',
                     data: {
                         {% if isManager %} 

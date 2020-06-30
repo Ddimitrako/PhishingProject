@@ -43,7 +43,9 @@
     padding-bottom: 1%;
 }
 
-
+.card h5{
+    margin-bottom: 0;
+}
 
 @media only screen and (max-width: 1024px), screen and  (max-height: 700px) {
     .assignmets .tab-content{
@@ -53,7 +55,7 @@
     }
     .card{
         min-height: 97%;
-        height: 350px;
+        height: 400px;
     }
     .card-body .nav{
         height: 50px;
@@ -76,7 +78,7 @@
     }
     .card{
         min-height: 97%;
-        height: 40vh;
+        height: 45vh;
     }
     .card-body .nav{
         height: 40px;

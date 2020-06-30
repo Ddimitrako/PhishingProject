@@ -162,10 +162,11 @@
                         <div class='d-flex w-100 justify-content-between'>
                             <span> {% trans "Best Score" %} </span> 
                             {% with score=questionnaire.best_score %}
-                                {% get_badge score as badge_type %}
-                                <span {% if badge_type != 'Not Completed Yet' %}class="badge {{ badge_type }}"{% endif %}>
-                                    {{ score }}
-                                </span>
+                                
+                                    {% get_badge score as badge_type %}
+                                    <span {% if badge_type != 'Not Completed Yet' %} class="badge {{ badge_type }}"{% endif %}>
+                                        {{ score|default:'-' }}
+                                    </span>
                             {% endwith %}
                         </div>
                     </div>
