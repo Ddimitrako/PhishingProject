@@ -1026,13 +1026,13 @@ def get_assignments(report_level, campaign_id, group_id, include_organisational,
 
 
 def get_user_assignments(user, months):
-    qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, user=user, campaign__end_date__gte=timezone.now() - relativedelta(months=months))
+    qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, user=user, campaign__end_date__gte=date.today() - relativedelta(months=months))
     qas = qas.exclude(questionnaire__domain__dimension__level=0)
     return qas.order_by('questionnaire')
 
 
 
 def get_user_self_assessments(user, months):    
-    qsass = [q for q in QuestionnaireSelfAssessment.objects.filter(questionnaire__is_active=1, user=user).order_by('questionnaire') if q.get_answer_time() > timezone.now() - relativedelta(months=months)]
+    qsass = [q for q in QuestionnaireSelfAssessment.objects.filter(questionnaire__is_active=1, user=user).order_by('questionnaire') if q.get_answer_time() > date.today() - relativedelta(months=months)]
     return qsass
 
