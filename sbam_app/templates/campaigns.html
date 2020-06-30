@@ -25,10 +25,11 @@
                 <tr>
                     <th style="text-align:center">{% trans "Status" %}</th>
                     <th>{% trans "title"|capfirst %}</th>
+                    <th>{% trans "creation date"|capfirst %}</th>
                     <th>{% trans "start date"|capfirst %}</th>
-                    <th>{% trans "initial end date"|capfirst %}</th>
-                    <th>{% trans "actual finish date"|capfirst %}</th>
-                    <th>{% trans "owner"|capfirst %}</th>
+                    <th data-toggle="tooltip" title='The campaign end date as defined by its creator.'>{% trans "initial end date"|capfirst %}</th>
+                    <th data-toggle="tooltip" title="The date when all the campaign's assignments were completed.">{% trans "actual finish date"|capfirst %}</th>
+                    <th>{% trans "creator"|capfirst %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,16 +38,16 @@
                         <td style="text-align:center">
                             {% if campaign.status == 'FINISHED' %}
                                 <i class="fas fa-check-circle" style="color: darkgreen"
-                                   title="{% trans "Finished " %}"></i>
+                                   title="{% trans "Finished " %}" data-toggle="tooltip"></i>
                             {% elif campaign.status == 'ACTIVE' %}
                                 <i class="fas fa-spinner" style="color: darkblue"
-                                   title="{% trans "In progress " %}"></i>
+                                   title="{% trans "In progress " %}" data-toggle="tooltip"></i>
                             {% elif campaign.status == 'CANCELLED' %}
                                 <i class="fas fa-minus-circle" style="color: darkred"
-                                   title="{% trans "cancelled"|capfirst %}"></i>
+                                   title="{% trans "cancelled"|capfirst %}" data-toggle="tooltip"></i>
                             {% elif campaign.status == 'NOT_STARTED' %}
                                 <i class="far fa-clock" style="color: darkgrey"
-                                title="{% trans "Scheduled" %}"></i>
+                                title="{% trans "Scheduled" %}" data-toggle="tooltip"></i>
                             {% endif %}
                         </td>
                         <td>
@@ -54,9 +55,10 @@
                                 {{ campaign.title }}
                             </a>
                         </td>
+                        <td>{{ campaign.creation_date }}</td>
                         <td>{{ campaign.start_date }}</td>
                         <td>{{ campaign.end_date }}</td>
-                        <td>{{ campaign.finish_date }}</td>
+                        <td>{{ campaign.finish_date|default:'-' }}</td>
                         <td>{{ campaign.owner.get_full_name }}</td>
                     </tr>
                 {% empty %}
@@ -68,4 +70,13 @@
         </table>
     </div>
 </div>
+{% endblock %}
+
+
+{% block  extra_js  %}
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 {% endblock %}

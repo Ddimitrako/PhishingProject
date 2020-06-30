@@ -174,12 +174,13 @@ class CampaignForm(forms.ModelForm):
 
     class Meta:
         model = models.Campaign
-        fields = ('title', 'start_date', 'end_date')
+        fields = ('title', 'creation_date', 'start_date', 'end_date')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.fields['start_date'].disabled = True
+        self.fields['creation_date'].disabled = True
         self.fields['creator'].disabled = True
         self.fields['creator'].initial = self.instance.owner.get_full_name()
 
@@ -190,6 +191,8 @@ class CampaignForm(forms.ModelForm):
                 Column('creator', css_class='col-md-3'),
             ),
             Row(
+                Column(AppendedText('creation_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),
+                                    css_class='datepicker'), css_class='col-md-3'),
                 Column(AppendedText('start_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),
                                     css_class='datepicker'), css_class='col-md-3'),
                 Column(AppendedText('end_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),

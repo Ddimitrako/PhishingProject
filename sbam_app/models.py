@@ -52,6 +52,7 @@ class Domain(Model):
 
 class Campaign(Model):
     title = CharField(_('title'), max_length=100, help_text=_('Campaign title'))
+    creation_date = DateField(_('creation date'), help_text=_('Campaign creation date'))
     start_date = DateField(_('start date'), help_text=_('Campaign start date'))
     end_date = DateField(_('end date'), help_text=_('Campaign end date'))
     owner = ForeignKey(

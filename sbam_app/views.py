@@ -221,7 +221,7 @@ def calculate_self_assessment_result(self_assessment):
         score = (answer_sum / calculate_questionnaire_total_score(question_type_weights)) if \
             calculate_questionnaire_total_score(question_type_weights) != 0.0 else \
             calculate_questionnaire_total_score(question_type_weights)
-    return SelfAssessmentResult(selfassessment=self_assessment, score=score, answer_time=date.today())
+    return SelfAssessmentResult(selfassessment=self_assessment, score=score, answer_time=datetime.now())
 
 
 def calculate_assignment_result(assignment):
@@ -245,7 +245,7 @@ def calculate_assignment_result(assignment):
             calculate_questionnaire_total_score(question_type_weights) != 0.0 else \
             calculate_questionnaire_total_score(question_type_weights)
 
-    return AssignmentResult(assignment=assignment, score=score, answer_time=date.today())
+    return AssignmentResult(assignment=assignment, score=score, answer_time=datetime.now())
 
 
 def calculate_campaign_result(campaign, assignments):
@@ -365,7 +365,7 @@ def user_dashboard(request):
     completed_assignments = sorted(
         chain(completed_questionnaires, completed_tests),
         key=lambda instance:
-        (instance.get_answer_time(), instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+        (instance.get_answer_time(), instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title), reverse=True)
 
     # fetching expired assignments
     expired_questionnaires = [c_quest for c_quest in models.QuestionnaireAssignment.objects.filter(user_id=request.user)
@@ -377,15 +377,15 @@ def user_dashboard(request):
     expired_assignments = sorted(
         chain(expired_questionnaires, expired_tests),
         key=lambda instance:
-        (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+        (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title), reverse=True)
 
     self_assessment_questionnaires = [self_quest for self_quest in
                                       models.QuestionnaireSelfAssessment.objects.filter(user_id=request.user)
-                                      .order_by('-selfassessmentresult__answer_time')[:5]]
+                                      .order_by('selfassessmentresult__answer_time')[:5]]
 
     self_assessment_tests = [self_quest for self_quest in
                              models.TestSelfAssessment.objects.filter(user_id=request.user)
-                                 .order_by('-selfassessmentresult__answer_time')[:5]]
+                                 .order_by('selfassessmentresult__answer_time')[:5]]
 
     self_assessment = sorted(
         chain(self_assessment_questionnaires, self_assessment_tests),
@@ -429,7 +429,7 @@ def manager_dashboard(request):
     completed_assignments = sorted(
         chain(completed_questionnaires, completed_tests),
         key=lambda instance:
-        (instance.get_answer_time(), instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+        (instance.get_answer_time(), instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title), reverse=True)
 
     # fetching expired assignments
     expired_questionnaires = [c_quest for c_quest in models.QuestionnaireAssignment.objects.filter(user_id=request.user)
@@ -441,9 +441,9 @@ def manager_dashboard(request):
     expired_assignments = sorted(
         chain(expired_questionnaires, expired_tests),
         key=lambda instance:
-        (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+        (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title), reverse=True)
 
-    active_campaigns = [c for c in Campaign.objects.filter(owner=request.user) if c.status=='ACTIVE']
+    active_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('end_date') if c.status=='ACTIVE']
  
     return render(request, 'manager_dashboard.html', {'active_assignments': active_assignments,
                                                       'completed_assignments': completed_assignments,
@@ -794,7 +794,7 @@ def create_campaign(request):
         end_date = request.POST['end_date']
         try:
             with transaction.atomic():
-                new_campaign = Campaign(title=title, start_date=start_date, end_date=end_date, owner=current_user)
+                new_campaign = Campaign(title=title, creation_date=date.today(), start_date=start_date, end_date=end_date, owner=current_user)
                 new_campaign.save()
 
                 # Getting the selected users to ass
@@ -967,12 +967,12 @@ def gather_results(assignments, self_assessments, dimensions):
                     'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score*100,
                     'answer_time': res.answer_time, 'campaign': ''}
             else:
-                print(res.answer_time, results_dict[sa.questionnaire.id][sa.user.username]['answer_time'])
+                #print(res.answer_time, results_dict[sa.questionnaire.id][sa.user.username]['answer_time'])
                 if res.answer_time > results_dict[sa.questionnaire.id][sa.user.username]['answer_time']:
                     results_dict[sa.questionnaire.id][sa.user.username] = {
                         'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score*100,
                         'answer_time': res.answer_time,  'campaign': ''}
-                    print('new answer time!!')
+                    #print('new answer time!!')
 
     
     info = dict()
