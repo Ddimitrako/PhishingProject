@@ -46,10 +46,10 @@ python manage.py flush --no-input
 echo "Migrating..."
 python manage.py migrate --noinput
 
-#echo "Generating dummy dataset..."
-#python manage.py generate_dummy_dataset
 python manage.py collectstatic --noinput
 
+echo "Initiating the admin"
+python manage.py initadmin
 
 echo "Starting the server..."
 gunicorn sbam.wsgi:application --bind 0.0.0.0:80 --workers=${WEB_CONCURRENCY}

@@ -7,12 +7,18 @@ from sbam.settings.base_settings import *
 
 import environ
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
+env = environ.Env()
 # reading .env file
-#environ.Env.read_env()
+if 'DJANGO_DEVELOPMENT' in os.environ and env('DJANGO_DEVELOPMENT'):
+    print('Starting Django using Development settings')
+    env.read_env(env.str('ENV_PATH', '.env/dev/.env_app_dev'))
+else:
+    print('Starting Django using Production settings')
+    env.read_env(env.str('ENV_PATH', '.env/prod/.env_app_prod'))
+
+
+ADMINS = [x.split(" ") for x in env('ADMINS').split(",")]
+
 
 # False if not in os.environ
 DEBUG = env('DEBUG')

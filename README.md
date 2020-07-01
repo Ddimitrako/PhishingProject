@@ -47,15 +47,13 @@ you shall need to create a workplace with the below requirements:
         Host: 127.0.0.1 
         Python intepreter: the newly created one
         Working Directory: Top directory of the project
-5. In `.env -> dev` create a new `.env_app_dev` file by copying the `.env_app_dev.template` file in the same directory
-   and create a new `.env_db_dev` file by copying the `.env_db_dev.template` file in the same directory
+5. In `.env -> dev` create a new `.env_app_dev` file by copying the `.env_app_dev.template` and create a new `.env_db_dev` file by copying the `.env_db_dev.template` file in the same directory
 
    **_Note 1_**: Make sure to create a dedicated **database schema** for the project 
    (e.g. `sbam`) to your PostgreSQL DB.<br>
    
-7. Migrate all committed migrations to properly update the database schema:
-        
-        py manage migrate
+6. In order to use the development settings set DJANGO_DEVELOPMENT=True
+
 8. Load data to the database using django **fixtures** directory:
 
         py manage.py loaddata sbam_app/fixtures/<json file>

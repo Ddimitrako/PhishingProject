@@ -18,8 +18,8 @@ python manage.py flush --no-input
 echo "Migrating..."
 python manage.py migrate --noinput
 
-#echo "Generating dummy dataset..."
-#python manage.py generate_dummy_dataset
+echo "Initiating the admin"
+python manage.py initadmin
 
 echo "Starting the server..."
 python manage.py runserver 0.0.0.0:8000
