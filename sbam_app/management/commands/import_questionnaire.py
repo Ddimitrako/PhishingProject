@@ -69,7 +69,7 @@ class Command(BaseCommand):
 
         # Iterate over each row after the header in the csv
         for i, row in enumerate(rd):
-            print(row)
+            #print(row)
             if len([x for x in row if x.strip() != '']) == 0:
                 continue
             # print(row[0])
@@ -116,7 +116,7 @@ class Command(BaseCommand):
                 lang_col_options_idx = lang_idx * 2 + 1
 
                 lang = headers[lang_col_text_idx].split('_')[1]
-                print('Language {0} is {1}'.format(str(lang_idx), lang))
+                #print('Language {0} is {1}'.format(str(lang_idx), lang))
 
                 # set the text attr of the language i.e. text_en for the English text
                 q_lang_text_field = headers[lang_col_text_idx]
@@ -125,7 +125,7 @@ class Command(BaseCommand):
 
                 # if it is a custom question type, update or create the options
                 if q_is_custom:
-                    print(row[lang_col_options_idx])
+                    #print(row[lang_col_options_idx])
                     options_list = loads(row[lang_col_options_idx])
                     for opt in options_list:
                         opt_id_in_question = int(opt[0])

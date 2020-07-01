@@ -51,5 +51,14 @@ python manage.py collectstatic --noinput
 echo "Initiating the admin"
 python manage.py initadmin
 
+echo "Loading the Security Culture Model"
+python manage.py loaddata "sbam_app/fixtures/security_culture_model.json"
+
+echo "Generating the default question types"
+python manage.py generate_default_question_types
+
+echo "Importing the questionnaires"
+python manage.py import_questionnaire
+
 echo "Starting the server..."
 gunicorn sbam.wsgi:application --bind 0.0.0.0:80 --workers=${WEB_CONCURRENCY}
