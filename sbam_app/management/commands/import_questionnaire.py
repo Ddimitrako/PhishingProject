@@ -19,26 +19,27 @@ class Command(BaseCommand):
         parser.add_argument('-d', '--dir', type=str, help=_('The directory hosting questionnaires'))
 
     def handle(self, *args, **kwargs):
-        with transaction.atomic():
-            filename = kwargs['file']
-            dir = kwargs['dir']
+        
+        filename = kwargs['file']
+        dir = kwargs['dir']
 
-            directory = dir if dir else DEFAUL_BASE_DIR
+        directory = dir if dir else DEFAUL_BASE_DIR
 
-            if filename:
+        if filename:
+            with transaction.atomic():
                 self.import_quest(filename)
-
-                self.stdout.write(self.style.SUCCESS('Successfully imported questionnaire from file: ' + filename))
-            elif directory:
-                for root, directories, files in os.walk(directory):
-                    for file in files:
+            self.stdout.write(self.style.SUCCESS('Successfully imported questionnaire from file: ' + filename))
+        elif directory:
+            for root, directories, files in os.walk(directory):
+                for file in files:
+                    with transaction.atomic():
                         filepath = os.path.join(root, file)
                         self.import_quest(filepath)
+                        self.stdout.write(self.style.SUCCESS('Successfully imported: ' + file))
+            self.stdout.write(self.style.SUCCESS('Successfully imported all questionnaires from root directory: ' + directory))
+        else:
+            self.stdout.write(self.style.ERROR('No filename specified or all flag used!'))
 
-                self.stdout.write(
-                    self.style.SUCCESS('Successfully imported all questionnaires from root directory: ' + directory))
-            else:
-                self.stdout.write(self.style.ERROR('No filename specified or all flag used!'))
 
     def import_quest(self, filename):
         file_parts = filename.split('__')
