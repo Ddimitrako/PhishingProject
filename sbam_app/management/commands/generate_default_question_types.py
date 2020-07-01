@@ -30,7 +30,7 @@ class Command(BaseCommand):
                         # print('eimai sto try')
                     except QuestionOption.DoesNotExist:
                         qo_obj = QuestionOption(question_type=qt_obj)
-                        print('eimai sto except')
+                        #print('eimai sto except')
                     # print(qo_obj.text)
                     for l in languages:
                         try:

@@ -21,5 +21,11 @@ python manage.py migrate --noinput
 echo "Initiating the admin"
 python manage.py initadmin
 
+echo "Loading the Security Culture Model"
+python manage.py loaddata "sbam_app/fixtures/security_culture_model.json"
+
+echo "Generating the default question types"
+python manage.py generate_default_question_types
+
 echo "Starting the server..."
 python manage.py runserver 0.0.0.0:8000
