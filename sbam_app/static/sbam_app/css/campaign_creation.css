@@ -39,7 +39,7 @@
 } */
 
 .selected-row{
-    height: 37vh;
+    min-height: 37vh;
     background-color: #d6d6d626;
     padding-top: 5px;
 }
@@ -49,11 +49,11 @@
     box-shadow: 0px 1px 0px 0px #5c4f4f30;
     margin-bottom: 7px;
     color: #263c91;
-    height: 3vh;
+    /* height: 3vh; */
 }
 
 .campaign_creation_form .form-row{
-    height: 30vh;
+    min-height: 30vh;
 }
 
 
@@ -65,4 +65,10 @@
 .selected-items{
     height: 32vh;
     overflow: auto;
+}
+
+.table .thead-dark th {
+    color: #fff;
+    background-color: #284767;
+    border-color: transparent;
 }

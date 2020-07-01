@@ -46,6 +46,9 @@ am4core.ready(function() {
      labelBullet.label.fontWeight = "bold";
      
      var label = categoryAxis.renderer.labels.template;
+     label.tooltipText = "{description}";
+     categoryAxis.tooltip.label.wrap = true;
+     categoryAxis.tooltip.label.width = 250;
      label.wrap = true;
      label.maxWidth = 180;
      label.align = "left";

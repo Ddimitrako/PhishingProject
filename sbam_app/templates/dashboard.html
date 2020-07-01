@@ -10,51 +10,54 @@
 
 {% block page_name %}
     <div class="row">
-        <strong>{% trans "Dashboard" %}</strong>
+        <strong>{% trans "My Dashboard" %}</strong>
     </div>
 {% endblock %}
 
 {% block extra_head %}
     <link href="{% static "sbam_app/css/dashboard.css" %}" rel="stylesheet">
 
-    <!-- Resources -->
-    <script src="https://www.amcharts.com/lib/4/core.js"></script>
-    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <!-- Amcharts Resources -->
+    <script src="{% static 'js/amcharts4/core.js' %}"></script>
+    <script src="{% static 'js/amcharts4/charts.js' %}"></script>
+    <script src="{% static 'js/amcharts4/themes/animated.js' %}"></script>
 
 {% endblock %}
 
 {% block content %}
     <div class="container assignmets">
-        <div class="row" style='min-height: 35vh;'>
+        <div class="row">
             <div class="col-xl-6 main_cols">
                 <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h5>Assignments</h5>
+                    </div>
                     <div class="card-body">
 
-                        <nav class="nav nav-tabs flex-column flex-sm-row" id="custom-tabs-three-tab">
-{#                            <li class="nav-item">#}
-                                <a class="flex-sm-fill text-sm-center nav-link active" id="active-ass-tab" data-toggle="pill"
-                                   href="#active-ass"
+                        <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+                            <li class="nav-item col">
+                                <a class="nav-link active" id="active-ass-tab" data-toggle="pill"
+                                   href="#active-ass" role="tab"
                                    aria-controls="active-ass"
                                    aria-selected="true"><i class="fas fa-hourglass-half"></i>
                                     {% trans "Active Assignments" %}
                                 </a>
-{#                            </li>#}
-{#                            <li class="nav-item">#}
-                                <a class="flex-sm-fill text-sm-center nav-link" id="compl-ass-tab" data-toggle="pill"
-                                   href="#compl-ass"
+                            </li>
+                            <li class="nav-item col">
+                                <a class="nav-link" id="compl-ass-tab" data-toggle="pill"
+                                   href="#compl-ass" role="tab"
                                    aria-controls="compl-ass"
-                                   aria-selected="false"><i class="fas fa-check"></i> {% trans "Completed Assignments" %}
+                                   aria-selected="false"><i class="fas fa-check"></i> {% trans "Finished Assignments" %}
                                 </a>
-{#                            </li>#}
-{#                            <li class="nav-item">#}
-                                <a class="flex-sm-fill text-sm-center nav-link" id="expired-ass-tab" data-toggle="pill"
-                                   href="#expired-ass"
+                            </li>
+                            <li class="nav-item col">
+                                <a class="nav-link" id="expired-ass-tab" data-toggle="pill"
+                                   href="#expired-ass" role="tab"
                                    aria-controls="expired-ass"
                                    aria-selected="false"><i class="fas fa-calendar-times"></i> {% trans "Expired Assignments" %}
                                 </a>
-{#                            </li>#}
-                        </nav>
+                            </li>
+                        </ul>
 
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="active-ass" role="tabpanel"
@@ -99,13 +102,16 @@
                                                 {% else %}
                                                     <strong class="assignment_title">{{ compl_ass.test.title }}</strong>
                                                 {% endif %}
+                                            </div>
+                                            <div class="d-flex w-100 justify-content-between">
                                                 <div class="align-self-end"><strong>{% trans "Completed at" %}: </strong> {{ compl_ass.get_answer_time }}</div>
                                             </div>
                                         </li>
-                                    {% empty %}
-                                        <p>No completed assignments</p>
                                     {% endfor %}
-                                 </ul>
+                                </ul>
+                                {% if completed_assignments|length == 0 %}
+                                    <p>No completed assignments</p>
+                                {% endif %}
                             </div>
                             <div class="tab-pane fade" id="expired-ass" role="tabpanel"
                                  aria-labelledby="expired-ass-tab">
@@ -118,13 +124,16 @@
                                                 {% else %}
                                                     <strong class="assignment_title">{{ exp_ass.test.title }}</strong>
                                                 {% endif %}
+                                            </div>
+                                            <div class="d-flex w-100 justify-content-between">
                                                 <div class="align-self-end"><strong>{% trans "Ended at" %}: </strong> {{ exp_ass.campaign.end_date }}</div>
                                             </div>
                                         </li>
-                                    {% empty %}
-                                        <p>No expired assignments</p>
                                     {% endfor %}
                                 </ul>
+                                {% if expired_assignments|length == 0 %}
+                                    <p>No expired assignments</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -133,29 +142,40 @@
 
             <div class="col-xl-6 main_cols">
                 <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h5>Self-Evaluations</h5>
+                    </div>
                     <div class="card-body">
-                        <div class="d-sm-inline-flex w-100 justify-content-between">
-                            <div class="align-self-start">
-                                <h4> {% trans "My Self-Evaluations" %} </h4>
-                            </div>
-                            <div class="align-self-end ">
+                        
+                        <div class="d-sm-inline-flex w-100 justify-content-between" style='border-bottom: 1px solid #dee2e6;'>
+                            <ul class="nav nav-tabs align-self-start" id="custom-tabs-three-tab" role="tablist"  style='width: 50%; display: inline-block; border-bottom: none;'>
+                                <li class="nav-item col">
+                                    <a class="nav-link active" id="self-eval-tab" data-toggle="pill"
+                                    href="#self-eval" role="tab"
+                                    aria-controls="self-eval"
+                                    aria-selected="true">
+                                        {% trans "My Self-Evaluations" %}
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="align-self-end" style="float:right;  display: inline-block;"> 
                                 <a class="btn btn-xs btn-success new_assessment_btn" href='{% url 'sbam:self_assessment' %}'  role="button" style='color: white; '> {% trans "Start New!" %} </a>
                             </div>
-
                         </div>
+                        
                         <ul class="list-group active-assignments">
                             {% for self_ass in self_assessment %}
                                 <li  class="list-group-item  flex-column align-items-start self_assessm_item">
                                     <div class="row">
-                                        <div class="col-sm-5 mr-auto">
+                                        <div class="col-sm-12 mr-auto">
                                             {% if self_ass.questionnaire %}
                                                 <strong class="assignment_title">{{ self_ass.questionnaire.title }}</strong>
                                             {% else %}
                                                 <strong class="assignment_title">{{ self_ass.test.title }}</strong>
                                             {% endif %}
                                         </div>
-                                        <div class="col-sm-4 auto scores"><strong>{% trans "On" %}: </strong> {{ self_ass.get_answer_time }}</div>
-                                        <div class="col-sm-3 auto scores"><strong>{% trans "score"|capfirst %}: </strong> {% with score=self_ass.get_result %}
+                                        <div class="col-8 auto"><strong>{% trans "On" %}: </strong> {{ self_ass.get_answer_time }}</div>
+                                        <div class="col-4 auto scores"><strong>{% trans "score"|capfirst %}: </strong> {% with score=self_ass.get_result %}
                                                 {% get_badge score as badge_type %}
                                                 <span {% if badge_type != 'Not Completed Yet' %}class="badge {{ badge_type }}"{% endif %}>
                                                     {{ score }}
@@ -180,19 +200,19 @@
             </div>
         </div>
 
-        <div class="row" style='margin-top: 1vh; min-height: 50vh;'>
-            <div class="col-xl-6 main_cols">
-                <div class='text-center' style='height: 100%;'>
-                    <h3> {% trans "My Security Culture Status" %} </h3>
+        <div id='metrics-div' class="row" style='margin-top: 1rem; '>
+            <div class="col-lg-6 main_cols">
+                <div class='text-center' style='height: 90%;'>
+                    <h4> {% trans "My Security Culture Status" %} </h4>
                     <div><a href="{% url 'sbam:reports' %}" style=" font-weight: bold; text-decoration: underline; color: #23a5e1;">More details</a></div>
                     <div id='chartdiv1' class='chartdiv'> </div>
                 </div>             
             </div>
 
-            <div class="col-xl-6 main_cols">
-                <div id='recommendations' class='text-center' style='height: 100%; '>
+            <div class="col-lg-6 main_cols">
+                <div id='recommendations' class='text-center' style=''>
                     
-                    <h3> {% trans "Recommendations/Tips" %} </h3>
+                    <h4> {% trans "Recommendations/Tips" %} </h4>
                     <ul class="list-group" style='padding: 1rem;position: relative;height: 65%; color: #5f5f5f7a;'>
                         <div id='overlay'><h3>Coming Soon</h3></div>
                         <li class="list-group-item"> Apply stronger passwords on your accounts. </li>
@@ -219,6 +239,7 @@
 
             /* Create chart instance */
             chart1 = am4core.create("chartdiv1", am4charts.RadarChart);
+            chart1.responsive.enabled = true;
 
             /* Add data */
             chart1.data = [];
@@ -227,6 +248,31 @@
             var categoryAxis = chart1.xAxes.push(new am4charts.CategoryAxis());
             categoryAxis.dataFields.category = "title";
             categoryAxis.renderer.labels.template.location = 0.5;
+
+            var label = categoryAxis.renderer.labels.template;
+            label.wrap = true;
+            label.maxWidth = 70;
+            label.tooltipText = "{description}";
+            categoryAxis.tooltip.label.wrap = true;
+            categoryAxis.tooltip.label.width = 250;
+            if (screen.width < 400) {
+                label.rotation = -45;
+                label.fontSize = 10;
+            }
+            else {
+                label.rotation = 0;
+                label.fontSize = 12;
+            }
+            categoryAxis.events.on("sizechanged", function(ev) {
+                if (screen.width < 400) {
+                    label.rotation = -45;
+                    label.fontSize = 10;
+                }
+                else {
+                    label.rotation = 0;
+                    label.fontSize = 12;
+                }
+            });
 
             var valueAxis = chart1.yAxes.push(new am4charts.ValueAxis());
             valueAxis.renderer.labels.template.fillOpacity = 0.5;
@@ -266,8 +312,10 @@
     <script type='text/javascript'>
         function update_charts(){
             //$(".loading").show();
+            var d = new Date();
+            var n = d.getTime();
             $.ajax({
-                url: "{% url 'sbam:get_user_metrics' %}",
+                url: "{% url 'sbam:get_user_metrics' %}?timestamp="+n,
                 type: 'GET',
                 data: { 
                     time_period: 24

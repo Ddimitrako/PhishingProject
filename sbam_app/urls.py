@@ -9,13 +9,13 @@ urlpatterns = [
     path('', dashboardView, name='dashboard'),
 
     # Self-Assessment
-    path('selfassessment/', SelfEvaluation.as_view(), name='self_assessment'),
+    path('selfassessment/', self_evaluation, name='self_assessment'),
     path('selfassessment/history', SelfEvaluationHistory.as_view(), name='self_assessment_history'),
     path('selfassessment/<quest_id>/', selfAssessmentCompletion, name='self_assessment_completion'),
     path('self_assessment_submit/', selfAssessmentSubmission, name='self_assessment_submit'),
 
     # Questionnaires
-    path('questionnaires/', QuestionnairesList.as_view(), name='questionnaires_list'),
+    path('questionnaires/', questionnaires_list, name='questionnaires_list'),
     path('questionnaires/<quest_id>/', questionnaireInfo, name='questionnaire_info'),
 
     # Assignments

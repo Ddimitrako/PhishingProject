@@ -9,15 +9,13 @@
 {% endblock %}
 
 {% block page_name %}
-    <div class="row">
-        <strong>{% trans "My Self Evaluation History" %}</strong>
-    </div>
+    <strong>{% trans "My Self Evaluation History" %}</strong>
 {% endblock %}
 
 {% block content %}
     <div class="card card-primary card-outline">
         <div class="card-body">
-            <a class="btn btn-success btn-md mb-4 float-right"
+            <a class="btn btn-success btn-sm mb-4 float-right"
                href="{% url 'sbam:self_assessment' %}" role="button"
                title="{% trans "Execute a New Assessment" %}">
                 <i class="fas fa-plus-circle mr-2"></i>{% trans "Execute a New Assessment" %}
@@ -29,10 +27,10 @@
                         <th>{% trans "title"|capfirst %}</th>
                         <th>{% trans "dimension"|capfirst %}</th>
                         <th>{% trans "domain"|capfirst %}</th>
-                        <th>{% trans "No. Questions" %}</th>
+                        <th style='text-align:center;'>{% trans "No. Questions" %}</th>
                         <th>{% trans "answer Date"|capfirst %}</th>
-                        <th>{% trans "score"|capfirst %}</th>
-                        <th></th>
+                        <th style='text-align:center;'>{% trans "score"|capfirst %}</th>
+                        <th style='text-align:center;'>{% trans "Redo"|capfirst %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,7 +58,7 @@
                                     {{ self_ass.test.domain|default:'Not Available' }}
                                 {% endif %}
                             </td>
-                            <td>
+                            <td style='text-align:center;'>
                                 {% if self_ass.questionnaire %}
                                     {{ self_ass.questionnaire.get_questions_count }}
                                 {% else %}
@@ -70,15 +68,15 @@
                             <td>
                                 {{ self_ass.get_answer_time }}
                             </td>
-                            <td>
+                            <td style='text-align:center;'>
                                 {% with score=self_ass.get_result %}
                                     {% get_badge score as badge_type %}
-                                    <span {% if badge_type != 'Not Completed Yet' %}class="badge {{ badge_type }}"{% endif %}>
+                                    <span {% if badge_type != 'Not Completed Yet' %} class="badge {{ badge_type }}"{% endif %}>
                                         {{ score }}
                                     </span>
                                 {% endwith %}
                             </td>
-                            <td>
+                            <td style='text-align:center;'>
                                 <a href="{% url 'sbam:self_assessment_completion' self_ass.questionnaire.id %}">
                                     <i class="fas fa-redo-alt" style='color: #23a5e1; cursor: pointer;'></i>
                                 </a>

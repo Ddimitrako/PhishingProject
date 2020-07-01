@@ -1,4 +1,4 @@
-{% extends "base_datatable.html" %}
+{% extends "base.html" %}
 
 {% load i18n static %}
 {% load i18n custom_tags %}
@@ -17,11 +17,35 @@
     </div>
 {% endblock %}
 
-{% block table_head %}
-    <h4> Select a questionnaire to start your self-evaluation. </h4>
+{% block extra_head %}
+    <style>
+        h4{
+            color: #155888;
+        }
+        p{
+            margin-bottom: 0.1rem;
+        }
+        .card-body span{
+            max-width: 50%;
+        }
+        .card-body span:nth-child(2){
+            text-align: right;
+        }
+        .tooltip-inner {
+            min-width: 450px;  
+            background-color: #0a2940;
+        }
+        .card{
+            min-height: 200px;
+        }
+    </style>
 {% endblock %}
 
-{% block table_content %}
+{% comment %} {% block table_head %}
+    <h4> Select a questionnaire to start your self-evaluation. </h4>
+{% endblock %} {% endcomment %}
+
+{% comment %} {% block table_content %}
     <thead>
         <tr>
             <th></th>
@@ -72,5 +96,137 @@
 {% block template_js %}
     <script>
         datatable('#table', [0,1,2], [], [], false);
+    </script>
+{% endblock %} {% endcomment %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+    <p> {% trans "Explore the available questionnaires by selecting security Dimensions and Domains. Select a questionnaire start your self-evaluation. "%}</p>
+</div>
+<div class="container-fluid">
+    <h4> {% trans "Security Dimensions" %} </h4>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="button-group dimensions-button-group col-lg-12">
+            <button type="button" class="btn btn-primary is-checked" data-filter=".dim_0_btns">All</button>
+            {% comment %} <button type="button" class="btn btn-primary is-checked" data-filter="*">show all</button> {% endcomment %}
+            {% for dim in dimensions %}
+                <button type="button" class="btn btn-default" data-filter=".dim_{{dim.pk}}_btns" data-toggle="tooltip" data-placement="top" title='{{dim.description|default:"Description unavailable"}}'>{{dim.title}}</button>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <h4> {% trans "Domains" %} </h4>
+</div>
+
+<div class="container-fluid domains-grid">
+    <div class="row domains-grid-item dim_0_btns">
+        <div class="button-group domains-button-group col-lg-12">
+            <button type="button" class="btn btn-sm btn-primary is-checked" data-filter="*">All</button>
+        </div>
+    </div>
+    {% for dim in dimensions %}
+        <div class="row domains-grid-item dim_{{dim.pk}}_btns">
+            <div class="button-group domains-button-group col-lg-12">
+                <button type="button" class="btn btn-sm btn-primary is-checked" data-filter=".dim_{{dim.pk}}">All</button>
+                {% for dom in dim.domain_set.all %}
+                    <button type="button" class="btn btn-sm btn-default" data-filter=".dom_{{dom.pk}}" data-toggle="tooltip" data-placement="top" title='{{dom.description|default:"Description unavailable"}}'>{{dom.title}}</button>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="container-fluid">
+    <div class="grid row">
+        {% for questionnaire in self_assessment %}
+            <div class="grid-item col-md-4 dim_{{ questionnaire.domain.dimension.pk }} dom_{{ questionnaire.domain.pk }}">
+                <div class="col-md-12 card">
+                    <div class="card-header">
+                        <h5>
+                            <a href="{% url 'sbam:self_assessment_completion' questionnaire.id %}">
+                                {{ questionnaire.title}}
+                            </a>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class='d-flex w-100 justify-content-between'><span> {% trans "Dimension" %} </span> <span>{{ questionnaire.domain.dimension|default:'Not Available' }}</span></div>
+                        <div class='d-flex w-100 justify-content-between'><span> {% trans "Domain" %} </span> <span>{{ questionnaire.domain|default:'Not Available' }}</span></div>
+                        <div class='d-flex w-100 justify-content-between'><span> {% trans "No Questions" %} </span> <span>{{ questionnaire.get_questions_count}}</span></div>
+                        <div class='d-flex w-100 justify-content-between'>
+                            <span> {% trans "Best Score" %} </span> 
+                            {% with score=questionnaire.best_score %}
+                                
+                                    {% get_badge score as badge_type %}
+                                    <span {% if badge_type != 'Not Completed Yet' %} class="badge {{ badge_type }}"{% endif %}>
+                                        {{ score|default:'-' }}
+                                    </span>
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div id='empty-msg-box' style='display: none; margin-top: 1rem; margin-bottom: 1rem; font-size: 1rem;'>
+         {% trans "No questionnaires." %}
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block template_js %}
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script type='text/javascript'>
+        var $domains_grid = $('.domains-grid').isotope({
+            itemSelector: '.domains-grid-item',
+            layoutMode: 'fitRows',
+            transitionDuration: 0,
+            filter: '.dim_0_btns'
+        });
+        
+        $('.dimensions-button-group').on( 'click', 'button', function() {
+            var filterValue = $(this).attr('data-filter');
+            $domains_grid.isotope({ filter: filterValue });
+            $('.domains-grid '+filterValue).find('.btn').first().click();
+        });
+
+        var $grid = $('.grid').isotope({
+            itemSelector: '.grid-item',
+            layoutMode: 'fitRows'
+        });
+        $('.domains-button-group').on( 'click', 'button', function() {
+            var filterValue = $(this).attr('data-filter');
+            $grid.isotope({ filter: filterValue });
+            if ( !$grid.data('isotope').filteredItems.length ) {
+                $('#empty-msg-box').show();
+            }
+            else{
+                $('#empty-msg-box').hide();
+            }
+        });
+
+        // change is-checked class on buttons
+        $('.button-group').each( function( i, buttonGroup ) {
+            var $buttonGroup = $( buttonGroup );
+            $buttonGroup.on( 'click', 'button', function() {
+                $buttonGroup.find('.is-checked').removeClass('is-checked').removeClass('btn-primary').addClass('btn-default');
+                $( this ).addClass('is-checked').removeClass('btn-default').addClass('btn-primary');
+            });
+        });
+
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 {% endblock %}

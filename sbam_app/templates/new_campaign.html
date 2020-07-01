@@ -28,17 +28,17 @@
         <form method="post" action=".">
             <div class="row">
                 {% csrf_token %}
-                <div class="col col-md-9">
+                <div class="col-lg-9">
                     <div class="card card-primary card-outline">
                         <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col col-md-4 questionnaiers">
+                            <div class="form-row row">
+                                <div class="form-group col-lg-4 questionnaiers">
                                     <div class="labels">
                                         <label>Questionnaires</label>
                                     </div>
                                     <div class="tree_container" id="dim_tree_container"></div>
                                 </div>
-                                <div class="form-group col col-md-4 tests">
+                                <div class="form-group col-lg-4 tests">
                                     <div class="labels">
                                         <label>Tests</label>
                                     </div>
@@ -46,7 +46,7 @@
                                         <p class="tests_avail">No tests available currently</p>
                                     </div>
                                 </div>
-                                <div class="form-group col col-md-4 users">
+                                <div class="form-group col-lg-4 users">
                                     <div class="labels">
                                         <label>Users</label>
                                     </div>
@@ -54,9 +54,9 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="selected-row">
-                                <div class="form-row" style="height: 100%">
-                                    <div class="form-group col col-md-4 sel_domains" style="height: 100%">
+                            <div class="selected-row row">
+                                <div class="form-row container-fluid" style="height: 100%">
+                                    <div class="form-group col-lg-4 sel_domains" style="height: 100%">
                                         <div class="labels">
                                             <label>Selected Questionnaires</label>
                                         </div>
@@ -70,7 +70,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col col-md-4 sel_tests " style="height: 100%">
+                                    <div class="form-group col-lg-4 sel_tests " style="height: 100%">
                                         <div class="labels">
                                             <label>Selected Tests</label>
                                         </div>
@@ -84,7 +84,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col col-md-4 sel_users" style="height: 100%">
+                                    <div class="form-group col-lg-4 sel_users" style="height: 100%">
                                         <div class="labels">
                                             <label>Selected Users</label>
                                         </div>
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col col-md-3">
+                <div class="col-lg-3">
                     <div class="card card-primary card-outline">
                         <h4 class="legend">Campaign details</h4>
                         <div class="card-body">
@@ -121,7 +121,7 @@
                                     {{ campaign_form.end_date }}
                                 </li>
                                 <li class="list-group-item p-0 border-0 mb-3">
-                                    <button type="button" class="btn btn-info btn-sm" id="create_campaign_btn"
+                                    <button type="button" class="btn btn-success btn-sm" id="create_campaign_btn"
                                             title="{% trans "Create new campaign" %}">Create Campaign
                                     </button>
                                 </li>

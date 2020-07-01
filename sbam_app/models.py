@@ -52,6 +52,7 @@ class Domain(Model):
 
 class Campaign(Model):
     title = CharField(_('title'), max_length=100, help_text=_('Campaign title'))
+    creation_date = DateField(_('creation date'), help_text=_('Campaign creation date'))
     start_date = DateField(_('start date'), help_text=_('Campaign start date'))
     end_date = DateField(_('end date'), help_text=_('Campaign end date'))
     owner = ForeignKey(
@@ -94,7 +95,11 @@ class Campaign(Model):
                + TestAssignment.objects.filter(campaign=self, assignmentresult__isnull=False).count()
 
     def completion_rate(self):
-        return self.num_of_completed_assignments() / self.num_of_assignments()
+        try:
+            rate = self.num_of_completed_assignments() / self.num_of_assignments()
+        except:
+            rate = 0
+        return rate
 
     @property
     def finish_date(self):

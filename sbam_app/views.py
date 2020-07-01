@@ -221,7 +221,7 @@ def calculate_self_assessment_result(self_assessment):
         score = (answer_sum / calculate_questionnaire_total_score(question_type_weights)) if \
             calculate_questionnaire_total_score(question_type_weights) != 0.0 else \
             calculate_questionnaire_total_score(question_type_weights)
-    return SelfAssessmentResult(selfassessment=self_assessment, score=score, answer_time=date.today())
+    return SelfAssessmentResult(selfassessment=self_assessment, score=score, answer_time=datetime.now())
 
 
 def calculate_assignment_result(assignment):
@@ -245,7 +245,7 @@ def calculate_assignment_result(assignment):
             calculate_questionnaire_total_score(question_type_weights) != 0.0 else \
             calculate_questionnaire_total_score(question_type_weights)
 
-    return AssignmentResult(assignment=assignment, score=score, answer_time=date.today())
+    return AssignmentResult(assignment=assignment, score=score, answer_time=datetime.now())
 
 
 def calculate_campaign_result(campaign, assignments):
@@ -365,7 +365,7 @@ def user_dashboard(request):
     completed_assignments = sorted(
         chain(completed_questionnaires, completed_tests),
         key=lambda instance:
-        (instance.get_answer_time(), instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+        (instance.get_answer_time(), instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title), reverse=True)
 
     # fetching expired assignments
     expired_questionnaires = [c_quest for c_quest in models.QuestionnaireAssignment.objects.filter(user_id=request.user)
@@ -377,15 +377,15 @@ def user_dashboard(request):
     expired_assignments = sorted(
         chain(expired_questionnaires, expired_tests),
         key=lambda instance:
-        (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+        (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title), reverse=True)
 
     self_assessment_questionnaires = [self_quest for self_quest in
                                       models.QuestionnaireSelfAssessment.objects.filter(user_id=request.user)
-                                      .order_by('-selfassessmentresult__answer_time')[:5]]
+                                      .order_by('selfassessmentresult__answer_time')[:5]]
 
     self_assessment_tests = [self_quest for self_quest in
                              models.TestSelfAssessment.objects.filter(user_id=request.user)
-                                 .order_by('-selfassessmentresult__answer_time')[:5]]
+                                 .order_by('selfassessmentresult__answer_time')[:5]]
 
     self_assessment = sorted(
         chain(self_assessment_questionnaires, self_assessment_tests),
@@ -429,7 +429,7 @@ def manager_dashboard(request):
     completed_assignments = sorted(
         chain(completed_questionnaires, completed_tests),
         key=lambda instance:
-        (instance.get_answer_time(), instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+        (instance.get_answer_time(), instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title), reverse=True)
 
     # fetching expired assignments
     expired_questionnaires = [c_quest for c_quest in models.QuestionnaireAssignment.objects.filter(user_id=request.user)
@@ -441,9 +441,9 @@ def manager_dashboard(request):
     expired_assignments = sorted(
         chain(expired_questionnaires, expired_tests),
         key=lambda instance:
-        (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
+        (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title), reverse=True)
 
-    active_campaigns = [c for c in Campaign.objects.filter(owner=request.user) if c.status=='ACTIVE']
+    active_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('end_date') if c.status=='ACTIVE']
  
     return render(request, 'manager_dashboard.html', {'active_assignments': active_assignments,
                                                       'completed_assignments': completed_assignments,
@@ -451,15 +451,14 @@ def manager_dashboard(request):
                                                       'active_campaigns': active_campaigns})
 
 
-class SelfEvaluation(ListView):
-    template_name = 'self_assessment.html'
-    context_object_name = 'self_assessment_list'
 
-    def get_queryset(self):
-        questionnaires = Questionnaire.objects.filter(domain__dimension__level=1, is_active=1)
-        for quest in questionnaires:
-            quest.best_score = get_best_self_assessment_score(quest, self.request.user)
-        return questionnaires
+def self_evaluation(request):
+    questionnaires = Questionnaire.objects.filter(domain__dimension__level=1, is_active=1)
+    for quest in questionnaires:
+        quest.best_score = get_best_self_assessment_score(quest, request.user)
+    dimensions = Dimension.objects.filter(level=1)
+    return render(request, 'self_assessment.html', {'self_assessment':questionnaires,
+                                                    'dimensions': dimensions})
 
 
 class SelfEvaluationHistory(ListView):
@@ -486,15 +485,13 @@ class SelfEvaluationHistory(ListView):
         return self_assessment
 
 
-class QuestionnairesList(ListView):
+def questionnaires_list(request):
     template_name = 'questionnaires_list.html'
-    context_object_name = 'questionnaires'
 
-    def get_queryset(self):
-        questionnaires = Questionnaire.objects.all()
-        # for quest in questionnaires:
-        #     quest.best_score = get_best_self_assessment_score(quest, self.request.user)
-        return questionnaires
+    questionnaires = Questionnaire.objects.all()
+    dimensions = Dimension.objects.all()
+    return render(request, 'questionnaires_list.html', {'questionnaires':questionnaires,
+                                                        'dimensions': dimensions})
 
 
 def questionnaireInfo(request, quest_id):
@@ -797,7 +794,7 @@ def create_campaign(request):
         end_date = request.POST['end_date']
         try:
             with transaction.atomic():
-                new_campaign = Campaign(title=title, start_date=start_date, end_date=end_date, owner=current_user)
+                new_campaign = Campaign(title=title, creation_date=date.today(), start_date=start_date, end_date=end_date, owner=current_user)
                 new_campaign.save()
 
                 # Getting the selected users to ass
@@ -904,6 +901,7 @@ def get_graph_data(assignments, self_assessments, dimensions):
     for dim in dimensions:
         dim_dict = dict()
         dim_dict['title'] = dim.title
+        dim_dict['description'] = dim.description
         dim_dict['value'] = 0.0
         dim_dict['level'] = dim.level
         dim_dict['domains'] = list()
@@ -911,6 +909,7 @@ def get_graph_data(assignments, self_assessments, dimensions):
         for dom in Domain.objects.filter(dimension=dim):
             dom_dict = dict()
             dom_dict['title'] = dom.title
+            dom_dict['description'] = dom.description
             dom_avg = get_domain_mean_value(dim, dom, info, results_dict)
             if dom_avg >= 0:
                 dom_dict['value'] = dom_avg
@@ -968,12 +967,12 @@ def gather_results(assignments, self_assessments, dimensions):
                     'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score*100,
                     'answer_time': res.answer_time, 'campaign': ''}
             else:
-                print(res.answer_time, results_dict[sa.questionnaire.id][sa.user.username]['answer_time'])
+                #print(res.answer_time, results_dict[sa.questionnaire.id][sa.user.username]['answer_time'])
                 if res.answer_time > results_dict[sa.questionnaire.id][sa.user.username]['answer_time']:
                     results_dict[sa.questionnaire.id][sa.user.username] = {
                         'name': sa.user.first_name + ' ' + sa.user.last_name, 'score': res.score*100,
                         'answer_time': res.answer_time,  'campaign': ''}
-                    print('new answer time!!')
+                    #print('new answer time!!')
 
     
     info = dict()
@@ -1027,13 +1026,13 @@ def get_assignments(report_level, campaign_id, group_id, include_organisational,
 
 
 def get_user_assignments(user, months):
-    qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, user=user, campaign__end_date__gte=timezone.now() - relativedelta(months=months))
+    qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, user=user, campaign__end_date__gte=date.today() - relativedelta(months=months))
     qas = qas.exclude(questionnaire__domain__dimension__level=0)
     return qas.order_by('questionnaire')
 
 
 
 def get_user_self_assessments(user, months):    
-    qsass = [q for q in QuestionnaireSelfAssessment.objects.filter(questionnaire__is_active=1, user=user).order_by('questionnaire') if q.get_answer_time() > timezone.now() - relativedelta(months=months)]
+    qsass = [q for q in QuestionnaireSelfAssessment.objects.filter(questionnaire__is_active=1, user=user).order_by('questionnaire') if q.get_answer_time() > date.today() - relativedelta(months=months)]
     return qsass
 

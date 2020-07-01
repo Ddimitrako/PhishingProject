@@ -94,7 +94,24 @@ body, .dt-button-collection, .dropdown-menu {
 
 /* Main Sidebar */
 .main-sidebar {
-    background-color: #263C91;
+    /* background-color: #263C91; */
+    background-color: #155888;
+    /* background-color: #0e67ad; */
+    box-shadow: 2px 0px 5px 1px #696969b3 !important;
+}
+
+[class*=sidebar-dark-] .sidebar a {
+    color: white;
+}
+
+[class*=sidebar-dark] .brand-link {
+    border-bottom: 1px solid #72787d94;
+    color: white;
+}
+
+.breadcrumb-item a {
+    color: #0e74bd;
+    font-weight: 500;
 }
 
 /* Main Context */
@@ -205,7 +222,7 @@ table.dataTable tbody tr.hover a {
 }
 
 #accordion .card .card-header {
-    padding: 10px 0;
+    padding: 10px ;
 }
 
 #accordion .card .card-header > h5 {
@@ -213,9 +230,9 @@ table.dataTable tbody tr.hover a {
     font-weight: 400;
 }
 
-#accordion .card .card-body {
+/* #accordion .card .card-body {
     padding-left: 0;
-}
+} */
 
 .controls > p {
     color: #6c757d;
@@ -365,4 +382,54 @@ table.dataTable tbody tr.hover a {
 .bootstrap-duallistbox-container .box2 .buttons .btn {
     font-size: 0.5rem;
     line-height: 0.5;
+}
+
+.content-header h1 {
+    font-size: 1.8rem;
+    font-weight: 200;
+    font-family: sans-serif;
+    color: #0e74bd;
+}
+
+thead th {
+    color: #0e74bf;
+}
+
+.nav .nav-link {
+    color: #0e74bf;
+}
+
+.badge{
+    font-size: 90%;
+}
+
+.card {
+    margin: 0.5rem 0 0.5rem 0;
+    box-shadow: 0px 3px 5px 1px #afafafba !important;
+}
+
+.content-header {
+    padding: 0.5rem;
+}
+
+.table a{
+    color: #0d75e4;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+
+.dt-buttons .btn{
+    /* color: #c7694d; */
+    /* color: #289eb1; */
+    border-color: #00527100;
+}
+
+/* .dt-buttons .btn-outline:hover{
+    color: white;
+    background-color: #289eb1;
+} */
+
+.main-header{
+    box-shadow: 0px 1px 9px 2px #bbbbbbbf;
 }
