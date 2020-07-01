@@ -8,7 +8,10 @@ from django.utils.translation import gettext_lazy as _
 
 from sbam_app.models import *
 
-DEFAUL_BASE_DIR = '.\sbam_app\content\questionnaires'
+if os.name == 'nt':
+    DEFAUL_BASE_DIR = '.\sbam_app\content\questionnaires'
+else:
+    DEFAUL_BASE_DIR = './sbam_app/content/questionnaires'
 
 
 class Command(BaseCommand):
