@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    console.log(questtreeData);
-    console.log(usertreeData);
-    console.log(testTreeData);
+    //console.log(questtreeData);
+    //console.log(usertreeData);
+    //console.log(testTreeData);
 
     const questTree = new Tree('#dim_tree_container', {
         data: questtreeData,
@@ -10,7 +10,7 @@ $(document).ready(function(){
         onChange: function() {
             document.getElementById("selected_domains").deleteTHead();
             $("#selected_domains tr").remove();
-            console.log(this.selectedNodes);
+            //console.log(this.selectedNodes);
             var len = this.selectedNodes.length;
             if(len > 0) {
                 $("#selected_domains").append("<thead class=\"thead-dark\">\n" +
@@ -62,7 +62,7 @@ $(document).ready(function(){
                 // $("#selected_users").delete
                 document.getElementById("selected_users").deleteTHead();
                 $("#selected_users tr").remove();
-                console.log(this.selectedNodes);
+                //console.log(this.selectedNodes);
                 var len = this.selectedNodes.length;
                 if(len > 0) {
                     $("#selected_users").append("<thead class=\"thead-dark\">\n" +
@@ -91,7 +91,7 @@ $(document).ready(function(){
         });
     }
 
-    console.log(testTreeData.length);
+    //console.log(testTreeData.length);
     let testsTree;
     if(testTreeData.length > 0){
         testsTree = new Tree('#tests_tree_container', {
@@ -115,7 +115,7 @@ $(document).ready(function(){
                 else
                     $('.sel-tests-par').show();
 
-                console.log(this.selectedNodes);
+                //console.log(this.selectedNodes);
                 var len = this.selectedNodes.length;
                 for (var i = 0; i < len; i++) {
                     if (this.selectedNodes[i].id.includes('test'))
@@ -240,8 +240,8 @@ $(document).ready(function(){
             ajax_data["users"] =  JSON.stringify(users);
             ajax_data["tests"] =  JSON.stringify(tests);
 
-            console.log('Sto Ajax call');
-            console.log(ajax_data);
+            //console.log('Sto Ajax call');
+            //console.log(ajax_data);
             $.ajax({
                 "type": "POST",
                 headers: { "X-CSRFToken": csrftoken },
@@ -249,11 +249,11 @@ $(document).ready(function(){
                 // 'url': 'create_campaign/',
                 'data': ajax_data,
                 success: function(response){
-                    console.log(response);
+                    //console.log(response);
                     $('#campaignSuccessModal').modal('toggle');
                 },
                 error : function(response){
-                    console.log(response);
+                    //console.log(response);
                     $('#campaignErrorModal').modal('toggle');
                 }
             })
