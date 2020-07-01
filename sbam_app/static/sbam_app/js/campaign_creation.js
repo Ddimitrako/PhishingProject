@@ -50,75 +50,80 @@ $(document).ready(function(){
     });
 
 
-    const userTree = new Tree('#user_tree_container', {
-        data: usertreeData,
+    let userTree = null;
+    //console.log(usertreeData);
+    if(usertreeData[1].length > 0){
+        userTree = new Tree('#user_tree_container', {
+            data: usertreeData,
 
-        closeDepth: 1,
+            closeDepth: 1,
 
-        onChange: function() {
-            // $("#selected_users").delete
-            document.getElementById("selected_users").deleteTHead();
-            $("#selected_users tr").remove();
-            console.log(this.selectedNodes);
-            var len = this.selectedNodes.length;
-            if(len > 0) {
-                $("#selected_users").append("<thead class=\"thead-dark\">\n" +
-                    "    <tr>\n" +
-                    "      <th class='sel_index'>#</th>\n" +
-                    "      <th class='sel_index'>Name</th>\n" +
-                    "      <th class='sel_index'>Type</th>\n" +
-                    "    </tr>\n" +
-                    "  </thead>");
+            onChange: function() {
+                // $("#selected_users").delete
+                document.getElementById("selected_users").deleteTHead();
+                $("#selected_users tr").remove();
+                console.log(this.selectedNodes);
+                var len = this.selectedNodes.length;
+                if(len > 0) {
+                    $("#selected_users").append("<thead class=\"thead-dark\">\n" +
+                        "    <tr>\n" +
+                        "      <th class='sel_index'>#</th>\n" +
+                        "      <th class='sel_index'>Name</th>\n" +
+                        "      <th class='sel_index'>Type</th>\n" +
+                        "    </tr>\n" +
+                        "  </thead>");
 
-                $('.sel-usr-par').hide();
-            }
-            else
-                $('.sel-usr-par').show();
-
-
-            for(var i=0; i < len; i++){
-                if (!this.selectedNodes[i].id.includes('users')) {
-                    if(this.selectedNodes[i].id.includes('user'))
-                        $("#selected_users tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 80%'>" + this.selectedNodes[i].text + "</td><td style='width: 20%'>User</td></tr>");
-                    else
-                        $("#selected_users tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 80%'>" + this.selectedNodes[i].text + "</td><td style='width: 20%'>Group</td></tr>");
+                    $('.sel-usr-par').hide();
                 }
-            }
-        },
-    });
+                else
+                    $('.sel-usr-par').show();
+
+
+                for(var i=0; i < len; i++){
+                    if (!this.selectedNodes[i].id.includes('users')) {
+                        if(this.selectedNodes[i].id.includes('user'))
+                            $("#selected_users tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 80%'>" + this.selectedNodes[i].text + "</td><td style='width: 20%'>User</td></tr>");
+                        else
+                            $("#selected_users tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 80%'>" + this.selectedNodes[i].text + "</td><td style='width: 20%'>Group</td></tr>");
+                    }
+                }
+            },
+        });
+    }
 
     console.log(testTreeData.length);
     let testsTree;
+    if(testTreeData.length > 0){
+        testsTree = new Tree('#tests_tree_container', {
+            data: testTreeData,
+            closeDepth: 1,
 
-    testsTree = new Tree('#tests_tree_container', {
-        data: testTreeData,
-        closeDepth: 1,
+            onChange: function () {
+                document.getElementById("selected_tests").deleteTHead();
+                $("#selected_tests tr").remove();
+                var len = this.selectedNodes.length;
+                if(len > 0) {
+                    $("#selected_tests").append("<thead class=\"thead-dark\">\n" +
+                        "    <tr>\n" +
+                        "      <th class='sel_index'>#</th>\n" +
+                        "      <th class='sel_index'>Name</th>\n" +
+                        "    </tr>\n" +
+                        "  </thead>");
 
-        onChange: function () {
-            document.getElementById("selected_tests").deleteTHead();
-            $("#selected_tests tr").remove();
-            var len = this.selectedNodes.length;
-            if(len > 0) {
-                $("#selected_tests").append("<thead class=\"thead-dark\">\n" +
-                    "    <tr>\n" +
-                    "      <th class='sel_index'>#</th>\n" +
-                    "      <th class='sel_index'>Name</th>\n" +
-                    "    </tr>\n" +
-                    "  </thead>");
+                    $('.sel-tests-par').hide();
+                }
+                else
+                    $('.sel-tests-par').show();
 
-                $('.sel-tests-par').hide();
-            }
-            else
-                $('.sel-tests-par').show();
-
-            console.log(this.selectedNodes);
-            var len = this.selectedNodes.length;
-            for (var i = 0; i < len; i++) {
-                if (this.selectedNodes[i].id.includes('test'))
-                    $("#selected_tests tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 70%'>" + this.selectedNodes[i].text + "</td></tr>");
-            }
-        },
-    });
+                console.log(this.selectedNodes);
+                var len = this.selectedNodes.length;
+                for (var i = 0; i < len; i++) {
+                    if (this.selectedNodes[i].id.includes('test'))
+                        $("#selected_tests tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 70%'>" + this.selectedNodes[i].text + "</td></tr>");
+                }
+            },
+        });
+    }
 
     function getCookie(name) {
         var cookieValue = null;
