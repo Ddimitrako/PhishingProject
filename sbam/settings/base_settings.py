@@ -173,6 +173,9 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = 'staticfiles'
 
+# adding the md5 checksum at the end of static files for versioning
+STATICFILES_STORAGE='django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
 # Project Specific User-Defined Variables
 
 PROJECT_NAME = 'Energy Shield'
