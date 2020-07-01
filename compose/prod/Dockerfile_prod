@@ -11,9 +11,6 @@ ENV PYTHONUNBUFFERED 1
 # update pip
 RUN python3 -m pip install --upgrade pip
 
-# install c++ for Jype1
-RUN apk add --update g++
-
 # install dependencies
 COPY ./requirements/requirements_base.txt /usr/src/sbam/requirements_base.txt
 RUN \
