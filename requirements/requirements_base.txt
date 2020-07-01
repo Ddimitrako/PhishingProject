@@ -26,3 +26,6 @@ django-modeltranslation==0.15
 
 # Datetime
 python-dateutil
+
+#static
+whitenoise

@@ -8,7 +8,13 @@ __pycache__/
 db.sqlite3
 
 # Environmental Variables File
-.env
+sbam/settings/.env
+.env/dev/.env_app_dev
+.env/dev/.env_db_dev
+.env/prod/.env_app_prod
+.env/prod/.env_db_prod
 
 # Compiled Message Files (binary)
 *.mo
+
+staticfiles/*/*

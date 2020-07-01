@@ -1,0 +1,46 @@
+# pull official base image
+FROM python:3.7-alpine
+
+# set work directory
+WORKDIR /usr/src/sbam
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# update pip
+RUN python3 -m pip install --upgrade pip
+
+# install c++ for Jype1
+RUN apk add --update g++
+
+# install dependencies
+COPY ./requirements/requirements_base.txt /usr/src/sbam/requirements_base.txt
+RUN \
+ apk add --no-cache postgresql-libs && \
+ apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev && \
+ python3 -m pip install -r requirements_base.txt  && \
+ apk --purge del .build-deps
+
+COPY ./requirements/requirements_prod.txt /usr/src/sbam/requirements_extra.txt
+RUN \
+ apk add --no-cache postgresql-libs && \
+ apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev && \
+ python3 -m pip install -r requirements_extra.txt  && \
+ apk --purge del .build-deps
+
+
+# create a "django" user
+RUN addgroup -S django \
+    && adduser -S -G django django
+
+
+# copy the starting commands for django
+COPY ./compose/prod/start-prod.sh /start.sh
+RUN sed -i 's/\r$//g' /start.sh
+RUN chmod +x /start.sh
+RUN chown django /start.sh
+
+
+# copy project
+COPY . /usr/src/sbam/

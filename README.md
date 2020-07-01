@@ -36,12 +36,8 @@ you shall need to create a workplace with the below requirements:
     * Directly in PyCharm: `File-> Settings -> Project -> Project Intepreter -> Add -> New Environment` 
 3. Install required packages:
         
-        pip install -r requirements.txt
-    
-    **or** 
-    
-    Navigate in PyCharm to file `requirements.txt` and accept recommended automatic installation hint 
-    at the top of the editor.<br>
+        pip install -r requirements/requirements_base.txt
+        pip install -r requirements/requirements_dev.txt
     
     **_Note_**: If package `psycopg2`, or any other, fail to install, download `pip` latest version from
      _Project Intepreter_.
@@ -51,22 +47,12 @@ you shall need to create a workplace with the below requirements:
         Host: 127.0.0.1 
         Python intepreter: the newly created one
         Working Directory: Top directory of the project
-5. In `sbam -> settings` create a new `.env` file by copying the `.env.example` file in the same directory:
+5. In `.env -> dev` create a new `.env_app_dev` file by copying the `.env_app_dev.template` file in the same directory
+   and create a new `.env_db_dev` file by copying the `.env_db_dev.template` file in the same directory
 
-        # Template file used to host environmental variables.
-        #
-        # Use it to generate a .env file in the same directory
-        # with all necessary variables based on specific environment.
-        #
-        DEBUG=on
-        SECRET_KEY=your-secret-key
-        DATABASE_URL=psql://username:password@hostname:port/database
-        SQLITE_URL=sqlite:///my-local-sqlite.db
-        TIME_ZONE='UTC'
    **_Note 1_**: Make sure to create a dedicated **database schema** for the project 
    (e.g. `sbam`) to your PostgreSQL DB.<br>
    
-   **_Note 2_**: DB user defined in `DATABASE_URL` needs to have proper **DML privileges**.
 7. Migrate all committed migrations to properly update the database schema:
         
         py manage migrate
