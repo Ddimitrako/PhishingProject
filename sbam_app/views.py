@@ -291,7 +291,7 @@ def calculate_campaign_result(campaign, assignments):
 
 def get_best_self_assessment_score(questionnaire, user):
     self_assessments = QuestionnaireSelfAssessment.objects.filter(questionnaire=questionnaire, user=user)
-    print(SelfAssessmentResult.objects.filter(selfassessment__in=self_assessments).aggregate(Max('score')))
+    #print(SelfAssessmentResult.objects.filter(selfassessment__in=self_assessments).aggregate(Max('score')))
     score = SelfAssessmentResult.objects.filter(selfassessment__in=self_assessments).aggregate(Max('score'))['score__max']
     return '{0:.0%}'.format(score) if score != None else ''
 
@@ -470,12 +470,12 @@ class SelfEvaluationHistory(ListView):
                                           models.QuestionnaireSelfAssessment.objects.filter(user_id=self.request.user)
                                               .order_by('-selfassessmentresult__answer_time')]
 
-        print(self_assessment_questionnaires)
+        #print(self_assessment_questionnaires)
         self_assessment_tests = [self_quest for self_quest in
                                  models.TestSelfAssessment.objects.filter(user_id=self.request.user)
                                      .order_by('-selfassessmentresult__answer_time')]
 
-        print(self_assessment_tests)
+        #print(self_assessment_tests)
         self_assessment = sorted(
             chain(self_assessment_questionnaires, self_assessment_tests),
             key=lambda instance:
@@ -498,13 +498,13 @@ def questionnaireInfo(request, quest_id):
     if request.method == 'GET':
         questionnaire = Questionnaire.objects.get(pk=quest_id)
         _, questions_dict = get_questionnaire(questionnaire, True)
-        print(questions_dict)
+        #print(questions_dict)
         return render(request, 'questionnaire_info.html', {'quest':questionnaire,
                                                            'questions': questions_dict})
     else:
         idxs = json.loads(request.POST['indexes'])
         updated_statuses = json.loads(request.POST['status'])
-        print(updated_statuses, idxs)
+        #print(updated_statuses, idxs)
         for index in idxs:
             if index != 0:
                 question = models.Question.objects.get(pk=updated_statuses[index]['id'])
@@ -515,13 +515,13 @@ def questionnaireInfo(request, quest_id):
                 question.save()
             else:
                 questionnaire = models.Questionnaire.objects.get(pk=quest_id)
-                print(questionnaire, questionnaire.is_active)
+                #print(questionnaire, questionnaire.is_active)
                 if questionnaire.is_active:
                     questionnaire.is_active = F('is_active') - 1
                 else:
                     questionnaire.is_active = F('is_active') + 1
                 questionnaire.save()
-                print(questionnaire, questionnaire.is_active)
+                #print(questionnaire, questionnaire.is_active)
         return JsonResponse({'result': 'success'})
 
 
