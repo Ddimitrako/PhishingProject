@@ -17,4 +17,4 @@ sbam/settings/.env
 # Compiled Message Files (binary)
 *.mo
 
-staticfiles/*/*
+staticfiles/*

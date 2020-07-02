@@ -17,12 +17,9 @@ services:
   db:
     image: postgres:12.0-alpine
     volumes:
-      - sbam_dev_data:/var/lib/postgresql/data/
+      - ../sbam_dev_data:/var/lib/postgresql/data/
     ports:
       - 5432:5432
     env_file:
       - .env/dev/.env_db_dev
-
-volumes:
-  sbam_dev_data: {}
 
