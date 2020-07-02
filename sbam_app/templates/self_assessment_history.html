@@ -38,24 +38,24 @@
                         <tr>
                             <td>
                                 {% if self_ass.questionnaire %}
-                                    {{ self_ass.questionnaire.title }}
+                                    <span data-toggle="tooltip" data-placement="top" title="{{self_ass.questionnaire.description}}">{{ self_ass.questionnaire.title }}</span>
                                 {% else %}
-                                    {{ self_ass.test.title }}
+                                    <span data-toggle="tooltip" title="{{self_ass.test.description}}">{{ self_ass.test.title }}</span>
                                 {% endif %}
                             </td>
 
                             <td>
                                 {% if self_ass.questionnaire %}
-                                    {{ self_ass.questionnaire.domain.dimension|default:'Not Available' }}
+                                    <span data-toggle="tooltip" data-placement="top" title="{{self_ass.questionnaire.domain.dimension.description}}">{{ self_ass.questionnaire.domain.dimension|default:'Not Available' }}</span>
                                 {% else %}
-                                    {{ self_ass.test.domain.dimension|default:'Not Available' }}
+                                    <span data-toggle="tooltip" data-placement="top" title="{{self_ass.test.domain.dimension.description}}">{{ self_ass.test.domain.dimension|default:'Not Available' }}</span>
                                 {% endif %}
                             </td>
                             <td>
                                 {% if self_ass.questionnaire %}
-                                   {{ self_ass.questionnaire.domain|default:'Not Available' }}
+                                   <span data-toggle="tooltip" data-placement="top" title="{{self_ass.questionnaire.domain.description}}">{{ self_ass.questionnaire.domain|default:'Not Available' }}</span>
                                 {% else %}
-                                    {{ self_ass.test.domain|default:'Not Available' }}
+                                    <span data-toggle="tooltip" data-placement="top" title="{{self_ass.test.domain.description}}">{{ self_ass.test.domain|default:'Not Available' }}</span>
                                 {% endif %}
                             </td>
                             <td style='text-align:center;'>
@@ -95,4 +95,9 @@
 
 
 {% block  extra_js  %}
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 {% endblock %}
