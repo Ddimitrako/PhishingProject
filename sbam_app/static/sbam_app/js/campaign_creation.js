@@ -52,7 +52,7 @@ $(document).ready(function(){
 
     let userTree = null;
     //console.log(usertreeData);
-    if(usertreeData[1].length > 0){
+    if(usertreeData[1].children.length > 0){
         userTree = new Tree('#user_tree_container', {
             data: usertreeData,
 
@@ -141,8 +141,12 @@ $(document).ready(function(){
         return cookieValue;
     }
 
-    $('#id_start_date').datetimepicker('minDate', [new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()]);
-    $('#id_end_date').datetimepicker('minDate', [new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()]);
+    var MyDate = new Date();
+    var day = ("0" + MyDate.getDate()).slice(-2);
+    var month = ("0" + (MyDate.getMonth() + 1)).slice(-2)
+    var year = MyDate.getFullYear();
+    $('#id_start_date').datetimepicker('minDate', [year+'-'+month+'-'+day]);
+    $('#id_end_date').datetimepicker('minDate', [year+'-'+month+'-'+day]);
 
     //    controlling the expansion level of the tree one level at a time
     $('#dim_tree_container li').addClass('treejs-node__close');
