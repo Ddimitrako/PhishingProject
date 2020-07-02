@@ -14,7 +14,6 @@ done
 echo "PostgreSQL started"
 
 
-python manage.py flush --no-input
 echo "Migrating..."
 python manage.py migrate --noinput
 
