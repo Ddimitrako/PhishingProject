@@ -315,7 +315,7 @@ def get_assignment_info(assignment):
 #
 @login_required
 def dashboardView(request):
-    if UserProfile.objects.get(user=request.user).is_manager:
+    if UserProfile.objects.get(user=request.user).is_manager or request.user.is_superuser:
         return manager_dashboard(request)
     else:
         return user_dashboard(request)
