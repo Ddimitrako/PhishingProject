@@ -92,38 +92,39 @@ $(document).ready(function(){
     }
 
     //console.log(testTreeData.length);
-    let testsTree;
-    if(testTreeData.length > 0){
-        testsTree = new Tree('#tests_tree_container', {
-            data: testTreeData,
-            closeDepth: 1,
+    
+    if(testTreeData.length > 0)
+        $(".tests_avail").hide()
+    const testsTree = new Tree('#tests_tree_container', {
+        data: testTreeData,
+        closeDepth: 1,
 
-            onChange: function () {
-                document.getElementById("selected_tests").deleteTHead();
-                $("#selected_tests tr").remove();
-                var len = this.selectedNodes.length;
-                if(len > 0) {
-                    $("#selected_tests").append("<thead class=\"thead-dark\">\n" +
-                        "    <tr>\n" +
-                        "      <th class='sel_index'>#</th>\n" +
-                        "      <th class='sel_index'>Name</th>\n" +
-                        "    </tr>\n" +
-                        "  </thead>");
+        onChange: function () {
+            document.getElementById("selected_tests").deleteTHead();
+            $("#selected_tests tr").remove();
+            var len = this.selectedNodes.length;
+            if(len > 0) {
+                $("#selected_tests").append("<thead class=\"thead-dark\">\n" +
+                    "    <tr>\n" +
+                    "      <th class='sel_index'>#</th>\n" +
+                    "      <th class='sel_index'>Name</th>\n" +
+                    "    </tr>\n" +
+                    "  </thead>");
 
-                    $('.sel-tests-par').hide();
-                }
-                else
-                    $('.sel-tests-par').show();
+                $('.sel-tests-par').hide();
+            }
+            else
+                $('.sel-tests-par').show();
 
-                //console.log(this.selectedNodes);
-                var len = this.selectedNodes.length;
-                for (var i = 0; i < len; i++) {
-                    if (this.selectedNodes[i].id.includes('test'))
-                        $("#selected_tests tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 70%'>" + this.selectedNodes[i].text + "</td></tr>");
-                }
-            },
-        });
-    }
+            //console.log(this.selectedNodes);
+            var len = this.selectedNodes.length;
+            for (var i = 0; i < len; i++) {
+                if (this.selectedNodes[i].id.includes('test'))
+                    $("#selected_tests tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 70%'>" + this.selectedNodes[i].text + "</td></tr>");
+            }
+        },
+    });
+    
 
     function getCookie(name) {
         var cookieValue = null;
@@ -178,9 +179,11 @@ $(document).ready(function(){
             if(questTree.selectedNodes[i].id.includes('quest'))
                 questselected = true;
         }
-        for (var i = 0; i < testsTree.selectedNodes.length; i++){
-            if(testsTree.selectedNodes[i].id.includes('test'))
-                testselected = true;
+        if(testsTree != null){
+            for (var i = 0; i < testsTree.selectedNodes.length; i++){
+                if(testsTree.selectedNodes[i].id.includes('test'))
+                    testselected = true;
+            }
         }
         if(!questselected && !testselected){
             alert('Please select a Questionnaire or a Test');
