@@ -47,6 +47,10 @@ am4core.ready(function() {
      
      var label = categoryAxis.renderer.labels.template;
      label.tooltipText = "{description}";
+     categoryAxis.tooltip.dx = 200;
+     categoryAxis.tooltip.label.wrap = true;
+     categoryAxis.tooltip.label.width = 50;
+
      categoryAxis.tooltip.label.wrap = true;
      categoryAxis.tooltip.label.width = 250;
      label.wrap = true;
