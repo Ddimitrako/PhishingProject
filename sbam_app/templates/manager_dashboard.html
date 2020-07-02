@@ -86,7 +86,7 @@
                                     {% endfor %}
                                 </ul>
                                 {% if active_assignments|length == 0 %}
-                                    <p>No active assignments</p>
+                                    <p>No active assignments.</p>
                                 {% endif %}
                             </div>
                             <div class="tab-pane fade" id="compl-ass" role="tabpanel"
@@ -108,7 +108,7 @@
                                     {% endfor %}
                                 </ul>
                             {% if completed_assignments|length == 0 %}
-                                <p>No completed assignments</p>
+                                <p>No completed assignments.</p>
                             {% endif %}
                             </div>
                             <div class="tab-pane fade" id="expired-ass" role="tabpanel"
@@ -130,7 +130,7 @@
                                     {% endfor %}
                                 </ul>
                                 {% if expired_assignments|length == 0 %}
-                                    <p>No expired assignments</p>
+                                    <p>No expired assignments.</p>
                                 {% endif %}
                             </div>
                         </div>
@@ -146,13 +146,29 @@
                     </div>
                     <div class="card-body">
                         <div class="d-sm-inline-flex w-100 justify-content-between" style='border-bottom: 1px solid #dee2e6;'>
-                            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist"  style='width: 35%; border-bottom: none;'>
+                            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist"  style='width: 100%; border-bottom: none;'>
                                 <li class="nav-item col">
                                     <a class="nav-link active" id="active-ass-tab" data-toggle="pill"
                                     href="#active-camp" role="tab"
                                     aria-controls="active-camp"
                                     aria-selected="true"><i class="fas fa-hourglass-half"></i>
                                         {% trans "Active Campaigns" %}
+                                    </a>
+                                </li>
+                                <li class="nav-item col">
+                                    <a class="nav-link" id="finished-ass-tab" data-toggle="pill"
+                                    href="#finished-camp" role="tab"
+                                    aria-controls="finished-camp"
+                                    aria-selected="true"><i class="fas fa-check"></i>
+                                        {% trans "Finished Campaigns" %}
+                                    </a>
+                                </li>
+                                <li class="nav-item col">
+                                    <a class="nav-link" id="future-ass-tab" data-toggle="pill"
+                                    href="#future-camp" role="tab"
+                                    aria-controls="future-camp"
+                                    aria-selected="true"><i class="fas fa-calendar"></i>
+                                        {% trans "Future Campaigns" %}
                                     </a>
                                 </li>
                             </ul>
@@ -169,7 +185,37 @@
                                             </div>
                                         </li>
                                     {% empty %}
-                                        <p>No active campaigns</p>
+                                        <p>No active campaigns.</p>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade " id="finished-camp" role="tabpanel"
+                                 aria-labelledby="finished-camp-tab">
+                                <ul class="list-group finished-campaigns">
+                                    {% for camp in finished_campaigns %}
+                                        <li  class="list-group-item  flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <strong class="assignment_title">{{ camp.title }}</strong>
+                                                <a class="btn btn-sm btn-primary ass-btn" href="{% url 'sbam:campaign' camp.id %}" role="button">{% trans "Details" %}</a>
+                                            </div>
+                                        </li>
+                                    {% empty %}
+                                        <p>No finished campaigns.</p>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade " id="future-camp" role="tabpanel"
+                                 aria-labelledby="future-camp-tab">
+                                <ul class="list-group future-campaigns">
+                                    {% for camp in future_campaigns %}
+                                        <li  class="list-group-item  flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <strong class="assignment_title">{{ camp.title }}</strong>
+                                                <a class="btn btn-sm btn-primary ass-btn" href="{% url 'sbam:campaign' camp.id %}" role="button">{% trans "Details" %}</a>
+                                            </div>
+                                        </li>
+                                    {% empty %}
+                                        <p>No future campaigns arranged.</p>
                                     {% endfor %}
                                 </ul>
                             </div>

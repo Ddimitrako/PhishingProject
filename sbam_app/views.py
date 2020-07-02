@@ -444,11 +444,15 @@ def manager_dashboard(request):
         (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title), reverse=True)
 
     active_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('end_date') if c.status=='ACTIVE']
+    finished_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('-end_date') if c.status=='FINISHED']
+    future_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('start_date') if c.status=='NOT_STARTED']
  
     return render(request, 'manager_dashboard.html', {'active_assignments': active_assignments,
                                                       'completed_assignments': completed_assignments,
                                                       'expired_assignments': expired_assignments,
-                                                      'active_campaigns': active_campaigns})
+                                                      'active_campaigns': active_campaigns,
+                                                      'finished_campaigns': finished_campaigns,
+                                                      'future_campaigns': future_campaigns})
 
 
 
