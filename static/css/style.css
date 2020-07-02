@@ -218,7 +218,7 @@ table.dataTable tbody tr.hover a {
 }
 
 #accordion .card {
-    box-shadow: none;
+    box-shadow: none !important;
 }
 
 #accordion .card .card-header {
