@@ -206,6 +206,9 @@
                     <h4> {% trans "My Security Culture Status" %} </h4>
                     <div><a href="{% url 'sbam:reports' %}" style=" font-weight: bold; text-decoration: underline; color: #23a5e1;">More details</a></div>
                     <div id='chartdiv1' class='chartdiv'> </div>
+                    <div class="loading">
+                        <img src="{% static 'img/loading.gif' %}" alt="Loading..." />
+                    </div>
                 </div>             
             </div>
 
@@ -326,7 +329,7 @@
                         graph_data = result.graph_data;
                         chart1.invalidateData();
                         chart1.data = graph_data.dimensions.filter(function (d){return d.level=== 1;});
-                        //$(".loading").hide();
+                        $(".loading").hide();
                         chart1.reinit();
                     }
                     

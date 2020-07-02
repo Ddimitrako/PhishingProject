@@ -210,3 +210,17 @@
 h5 {
     color: #155888;
 }
+
+.loading{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #fffdfd;
+    width: 100%;
+    text-align: center;
+}
+.loading img{
+    height: 70%;
+}

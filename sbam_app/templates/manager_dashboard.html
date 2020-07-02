@@ -201,6 +201,9 @@
                         <h5> {% trans "Organisational Dimensions" %} </h5>
 
                         <div id='chartdiv1' class='chartdiv'> </div>
+                        <div class="loading">
+                            <img src="{% static 'img/loading.gif' %}" alt="Loading..." />
+                        </div>
                     </div>             
                 </div>
 
@@ -208,6 +211,9 @@
                     <div class='text-center' style='height: 90%;'>
                         <h5> {% trans "Individual Dimensions" %} </h5>
                         <div id='chartdiv2' class='chartdiv'> </div>
+                        <div class="loading">
+                            <img src="{% static 'img/loading.gif' %}" alt="Loading..." />
+                        </div>
                     </div>
                 </div>
             {% comment %} </div> {% endcomment %}
@@ -407,7 +413,7 @@
                         chart1.data = graph_data.dimensions.filter(function (d){return d.level=== 0;});
                         chart2.data = graph_data.dimensions.filter(function (d){return d.level=== 1;});
                         
-                        //$(".loading").hide();
+                        $(".loading").hide();
                         chart1.reinit();
                         chart2.reinit();
                     }
