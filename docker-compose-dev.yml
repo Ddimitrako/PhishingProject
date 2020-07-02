@@ -15,7 +15,7 @@ services:
     depends_on:
       - db
   db:
-    image: postgres:12.0-alpine
+    image: postgres:11
     volumes:
       - ../sbam_dev_data:/var/lib/postgresql/data
     ports:
