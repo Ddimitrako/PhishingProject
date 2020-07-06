@@ -42,6 +42,24 @@
             margin-right: 0;
             margin-left: 0;
         }
+        .btn-org{
+            border-color: #217c07;
+        }
+        .btn-org:hover{
+            border-color: #217c07;
+        }
+        .btn-org.is-checked{
+            background-color: #217c07;
+        }
+        .btn-ind{
+            border-color: #9b4907;
+        }
+        .btn-ind:hover{
+            border-color: #9b4907;
+        }
+        .btn-ind.is-checked{
+            background-color: #9b4907;
+        }
     </style>
 {% endblock %}
 
@@ -119,7 +137,7 @@
             <button type="button" class="btn btn-primary is-checked" data-filter=".dim_0_btns">All</button>
             {% comment %} <button type="button" class="btn btn-primary is-checked" data-filter="*">show all</button> {% endcomment %}
             {% for dim in dimensions %}
-                <button type="button" class="btn btn-default" data-filter=".dim_{{dim.pk}}_btns" data-trigger="hover" data-toggle="tooltip" data-placement="top" title='{{dim.description|default:"Description unavailable"}}'>{{dim.title}}</button>
+                <button type="button" class="btn btn-default {% if dim.level == 0 %} btn-org {% else %} btn-ind {% endif %}" data-filter=".dim_{{dim.pk}}_btns" data-trigger="hover" data-toggle="tooltip" data-placement="top" title='{{ dim.title }} ({% if dim.level == 0 %}Organisational{% else %}Individual{% endif %}): {{dim.description|default:"Description unavailable"}}'>{{dim.title}}</button>
             {% endfor %}
         </div>
     </div>

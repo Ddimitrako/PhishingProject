@@ -461,7 +461,7 @@ def self_evaluation(request):
     questionnaires = Questionnaire.objects.filter(domain__dimension__level=1, is_active=1)
     for quest in questionnaires:
         quest.best_score = get_best_self_assessment_score(quest, request.user)
-    dimensions = Dimension.objects.filter(level=1)
+    dimensions = Dimension.objects.filter(level=1).order_by('title')
     return render(request, 'self_assessment.html', {'self_assessment':questionnaires,
                                                     'dimensions': dimensions})
 
@@ -494,7 +494,7 @@ def questionnaires_list(request):
     template_name = 'questionnaires_list.html'
 
     questionnaires = Questionnaire.objects.all()
-    dimensions = Dimension.objects.all()
+    dimensions = [d for d in Dimension.objects.filter(level=0).order_by('title')] + [d for d in Dimension.objects.filter(level=1).order_by('title')]
     return render(request, 'questionnaires_list.html', {'questionnaires':questionnaires,
                                                         'dimensions': dimensions})
 
