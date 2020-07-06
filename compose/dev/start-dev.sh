@@ -20,6 +20,9 @@ python manage.py migrate --noinput
 echo "Initiating the admin"
 python manage.py initadmin
 
+echo "Generate the multi-lingual context"
+python manage.py compilemessages 
+
 echo "Loading the Security Culture Model"
 python manage.py loaddata "sbam_app/fixtures/security_culture_model.json"
 

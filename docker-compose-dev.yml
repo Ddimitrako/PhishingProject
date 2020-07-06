@@ -17,9 +17,12 @@ services:
   db:
     image: postgres:11
     volumes:
-      - ../sbam_dev_data:/var/lib/postgresql/data
+      - dev-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     env_file:
       - .env/dev/.env_db_dev
 
+
+volumes:
+  dev-data: 
