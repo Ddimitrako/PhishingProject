@@ -147,9 +147,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-LOCALE_PATHS = [
-    'sbam_app/locale',
-]
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'sbam_app/locale'),
+)
 
 LANGUAGES = [
     ('el', _('Greek')),

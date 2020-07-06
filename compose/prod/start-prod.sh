@@ -45,6 +45,7 @@ exec "$@"
 echo "Migrating..."
 python manage.py migrate --noinput
 
+echo "Collecting the static files"
 python manage.py collectstatic --noinput
 
 echo "Initiating the admin"
