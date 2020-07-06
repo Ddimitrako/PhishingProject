@@ -26,9 +26,9 @@
 {% block page_name %}
     <div class="row">
         {% if is_assignment == 'true' %}
-            <strong><i class="nav-icon fas fa-edit mr-2"></i> {% trans "assignment"|capfirst %}</strong>
+            <strong>{% trans "assignment"|capfirst %}</strong>
         {% else %}
-            <strong><i class="nav-icon fas fa-chalkboard-teacher mr-2"></i> {% trans "Self Evaluation" %}</strong>
+            <strong>{% trans "Self Evaluation"|capfirst %}</strong>
         {% endif %}
     </div>
 {% endblock %}
