@@ -17,6 +17,7 @@ from django.http import JsonResponse
 from django.shortcuts import *
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import *
+from django.utils.decorators import method_decorator
 
 from sbam_app.forms import *
 from sbam_app.models import *
@@ -642,6 +643,8 @@ def surveySubmission(request):
                          })
 
 
+
+@method_decorator(advanced_users_only, name='dispatch')
 class UsersView(ListView):
     template_name = 'users.html'
     context_object_name = 'users_list'
@@ -653,6 +656,7 @@ class UsersView(ListView):
             return User.objects.filter(is_active=True).select_related('userprofile')
 
 
+@advanced_users_only
 def profile(request, username):
     user = User.objects.get(username=username)
     return create_or_update_user(request, 'profile.html', user, user.userprofile, False)
@@ -673,6 +677,7 @@ def create_user(request):
     return create_or_update_user(request, 'new_user.html')
 
 
+@method_decorator(advanced_users_only, name='dispatch')
 class GroupsView(ListView):
     template_name = 'groups.html'
     context_object_name = 'groups_list'
