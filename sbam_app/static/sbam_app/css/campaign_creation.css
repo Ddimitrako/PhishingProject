@@ -58,7 +58,7 @@
 
 
 .tree_container{
-    height: 28vh;
+    max-height: 55vh;
     overflow: auto;
 }
 
