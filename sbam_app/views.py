@@ -870,7 +870,7 @@ def get_user_metrics(request):
 
     self_assessments = get_user_self_assessments(request.user, months)
 
-    dimensions = Dimension.objects.filter(level=1)
+    dimensions = Dimension.objects.filter(level=1).order_by('title')
     return get_graph_data(assignments, self_assessments, dimensions)
 
 
@@ -890,7 +890,7 @@ def get_reports_data(request):
     months = int(request.GET.get('time_period'))
 
 
-    dimensions = Dimension.objects.all()
+    dimensions = Dimension.objects.order_by('level', 'title')
     if not include_organisational:
         dimensions = dimensions.exclude(level=0)
     if not include_individual:
@@ -915,7 +915,7 @@ def get_graph_data(assignments, self_assessments, dimensions):
         dim_dict['level'] = dim.level
         dim_dict['domains'] = list()
         dom_num = 0
-        for dom in Domain.objects.filter(dimension=dim):
+        for dom in Domain.objects.filter(dimension=dim).order_by('title'):
             dom_dict = dict()
             dom_dict['title'] = dom.title
             dom_dict['description'] = dom.description
