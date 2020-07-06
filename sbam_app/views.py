@@ -544,7 +544,8 @@ def selfAssessmentCompletion(request, quest_id):
                                                       'current_lang': current_lang,
                                                       'assignment': get_assignment_info(quest)})
     else:
-        return HttpResponseForbidden()
+        messages.error(request, _('You do not have access to this assignment'))
+        return redirect('/')
 
 
 @login_required
@@ -568,7 +569,8 @@ def assignmentCompletion(request, assignment_id):
                                       % {'title': quest.questionnaire.title}))
             return redirect('sbam:dashboard')
     else:
-        return HttpResponseForbidden()
+        messages.error(request, _('You do not have access to this assignment'))
+        return redirect('/')
 
 
 @login_required
