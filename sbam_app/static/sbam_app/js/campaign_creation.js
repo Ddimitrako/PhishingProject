@@ -91,8 +91,6 @@ $(document).ready(function(){
         });
     }
 
-    //console.log(testTreeData.length);
-    
     if(testTreeData.length > 0)
         $(".tests_avail").hide()
     const testsTree = new Tree('#tests_tree_container', {
@@ -141,13 +139,6 @@ $(document).ready(function(){
         }
         return cookieValue;
     }
-
-    var MyDate = new Date();
-    var day = ("0" + MyDate.getDate()).slice(-2);
-    var month = ("0" + (MyDate.getMonth() + 1)).slice(-2)
-    var year = MyDate.getFullYear();
-    $('#id_start_date').datetimepicker('minDate', [year+'-'+month+'-'+day]);
-    $('#id_end_date').datetimepicker('minDate', [year+'-'+month+'-'+day]);
 
     //    controlling the expansion level of the tree one level at a time
     $('#dim_tree_container li').addClass('treejs-node__close');
@@ -248,7 +239,7 @@ $(document).ready(function(){
             ajax_data["tests"] =  JSON.stringify(tests);
 
             //console.log('Sto Ajax call');
-            //console.log(ajax_data);
+            console.log(ajax_data);
             $.ajax({
                 "type": "POST",
                 headers: { "X-CSRFToken": csrftoken },

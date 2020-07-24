@@ -5,10 +5,8 @@
 
 {% block extra_head %}
     {{ campaign_form.media }}
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css"
-          integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous"/>
     <link href="{% static "sbam_app/css/campaign_creation.css" %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href='{% static 'admin-lte/plugins/daterangepicker/daterangepicker.css' %}'/>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -111,16 +109,7 @@
                         <div class="card-body">
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item p-0 border-0 mb-3">
-                                    <label for="id_title">Campaign Title</label>
-                                    {{ campaign_form.title|add_class:"form-control" }}
-                                </li>
-                                <li class="list-group-item p-0 border-0 mb-3">
-                                    <label for="id_start_date">Campaign Start</label>
-                                    {{ campaign_form.start_date }}
-                                </li>
-                                <li class="list-group-item p-0 border-0 mb-3">
-                                    <label for="id_end_date">Campaign End</label>
-                                    {{ campaign_form.end_date }}
+                                    {% crispy campaign_form campaign_form.general_info_helper %}
                                 </li>
                                 <li class="list-group-item p-0 border-0 mb-3">
                                     <button type="button" class="btn btn-success btn-sm" id="create_campaign_btn"
@@ -184,14 +173,85 @@
 
 {% block  extra_js %}
     <script src="{% static "admin-lte/plugins/moment/moment-with-locales.js" %}"></script>
+    <script src='{% static 'admin-lte/plugins/daterangepicker/daterangepicker.js' %}'></script>
     <script src="{% static "sbam_app/js/tree.min.js" %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"
-            integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
 
     <script type="application/javascript">
         let questtreeData = {{ campaign_form_trees.dimensions_dict | safe }};
         let usertreeData = {{ campaign_form_trees.users_dict | safe }};
         let testTreeData = {{ campaign_form_trees.tests_dict | safe }};
+
+        $("#id_title").attr("autocomplete", "off");
+
+        $('.start-date-pick').daterangepicker({
+                 singleDatePicker: true,
+                 showDropdowns: true,
+                 autoUpdateInput: false,
+                 minDate: moment(),
+                 locale: {
+                     format: 'YYYY-MM-DD',
+                     daysOfWeek: [
+                         '{% trans "Su" %}',
+                         '{% trans "Mo" %}',
+                         '{% trans "Tu" %}',
+                         '{% trans "We" %}',
+                         '{% trans "Th" %}',
+                         '{% trans "Fr" %}',
+                         '{% trans "Sa" %}'
+                     ],
+                     monthNames: [
+                         '{% trans "January" %}',
+                         '{% trans "February" %}',
+                         '{% trans "March" %}',
+                         '{% trans "April" %}',
+                         '{% trans "May" %}',
+                         '{% trans "June" %}',
+                         '{% trans "July" %}',
+                         '{% trans "August" %}',
+                         '{% trans "September" %}',
+                         '{% trans "October" %}',
+                         '{% trans "November" %}',
+                         '{% trans "December" %}'
+                     ]
+                 }
+             }, function (chosen_date) {
+                 $(this.element[0]).val(chosen_date.format('YYYY-MM-DD'));
+             });
+
+        $('.end-date-pick').daterangepicker({
+                 singleDatePicker: true,
+                 showDropdowns: true,
+                 autoUpdateInput: false,
+                 minDate: moment(),
+                 locale: {
+                     format: 'YYYY-MM-DD',
+                     daysOfWeek: [
+                         '{% trans "Su" %}',
+                         '{% trans "Mo" %}',
+                         '{% trans "Tu" %}',
+                         '{% trans "We" %}',
+                         '{% trans "Th" %}',
+                         '{% trans "Fr" %}',
+                         '{% trans "Sa" %}'
+                     ],
+                     monthNames: [
+                         '{% trans "January" %}',
+                         '{% trans "February" %}',
+                         '{% trans "March" %}',
+                         '{% trans "April" %}',
+                         '{% trans "May" %}',
+                         '{% trans "June" %}',
+                         '{% trans "July" %}',
+                         '{% trans "August" %}',
+                         '{% trans "September" %}',
+                         '{% trans "October" %}',
+                         '{% trans "November" %}',
+                         '{% trans "December" %}'
+                     ]
+                 }
+             }, function (chosen_date) {
+                 $(this.element[0]).val(chosen_date.format('YYYY-MM-DD'));
+             });
     </script>
 
     <script src="{% static "sbam_app/js/campaign_creation.js" %}"></script>

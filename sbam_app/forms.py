@@ -201,28 +201,32 @@ class CampaignForm(forms.ModelForm):
         )
 
 
-class CampaignCreationForm(forms.Form):
-    title = forms.CharField()
-    start_date = forms.DateField(
-        input_formats=['%YYYY-%m-%dd'],
-        widget=DatePicker(
-            attrs={
-                'append': 'fa fa-calendar',
-                'input_toggle': True,
-                'autocomplete': "off"
-            }
-        ),
-    )
-    end_date = forms.DateField(
-        input_formats=['%YYYY-%m-%dd'],
-        widget=DatePicker(
-            attrs={
-                'append': 'fa fa-calendar',
-                'input_toggle': True,
-                'autocomplete': "off"
-            }
-        ),
-    )
+class CampaignCreationForm(forms.ModelForm):
+
+    class Meta:
+        model = models.Campaign
+        fields = ('title', 'start_date', 'end_date')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.general_info_helper = FormHelper()
+        self.general_info_helper.form_tag = False
+        self.general_info_helper.layout = Layout(
+            Row(
+                Column('title', css_class='col-md-12'),
+            ),
+            Row(
+                Column(AppendedText('start_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),
+                                    css_class='datepicker start-date-pick', autocomplete="off"), css_class='col-md-12'),
+            ),
+            Row(
+                Column(AppendedText('end_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),
+                                    css_class='datepicker end-date-pick', autocomplete="off"), css_class='col-md-12'),
+            ),
+
+        )
+
 
 
 def get_campaign_form_trees(logged_user):
