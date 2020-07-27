@@ -658,10 +658,15 @@ class UsersView(ListView):
             return User.objects.filter(is_active=True).select_related('userprofile')
 
 
-@advanced_users_only
+
 def profile(request, username):
+
     user = User.objects.get(username=username)
-    return create_or_update_user(request, 'profile.html', user, user.userprofile, False)
+    if request.user == user or request.user.is_superuser or request.user.userprofile.is_manager:
+        return create_or_update_user(request, 'profile.html', user, user.userprofile, False)
+    else:
+        messages.error(request, _('You do not have enough privileges to perform this action'))
+        return redirect(settings.USER_MANAGEMENT_URL)
 
 
 @superuser_only
