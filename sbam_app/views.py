@@ -1053,3 +1053,73 @@ def get_user_self_assessments(user, months):
     qsass = [q for q in QuestionnaireSelfAssessment.objects.filter(questionnaire__is_active=1, user=user).order_by('questionnaire') if q.get_answer_time() > midnight - relativedelta(months=months)]
     return qsass
 
+
+#REST API
+def get_organizational_report(request):
+    months = 24
+    if 'time_period' in request.GET:
+        print(request.GET.get('time_period'))
+        months = int(request.GET.get('time_period'))
+
+    assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
+                 campaign__end_date__gte=date.today() - relativedelta(months=months)).order_by('questionnaire', 'user')
+    dimensions = Dimension.objects.order_by('level', 'title')
+    data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
+    for dim in data['dimensions']:
+        dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
+        dim.pop('description', None)
+        for domain in dim['domains']:
+            domain.pop('description', None)
+
+    return JsonResponse({'metrics': data})
+
+
+def get_campaign_report(request, campaign_id):
+    months = 24
+    assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
+         campaign__end_date__gte=date.today() - relativedelta(months=months), campaign_id=campaign_id)\
+        .order_by('questionnaire', 'user')
+    dimensions = Dimension.objects.order_by('level', 'title')
+    data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
+    print(data)
+    for dim in data['dimensions']:
+        dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
+        dim.pop('description', None)
+        for domain in dim['domains']:
+            domain.pop('description', None)
+
+    return JsonResponse({'metrics': data})
+
+
+def get_user_report(request, user_id):
+    months = 24
+    assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
+         campaign__end_date__gte=date.today() - relativedelta(months=months), user_id=user_id, questionnaire__domain__dimension=1)\
+        .order_by('questionnaire', 'user')
+    dimensions = Dimension.objects.filter(level=1).order_by('level', 'title')
+    data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
+    print(data)
+    for dim in data['dimensions']:
+        dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
+        dim.pop('description', None)
+        for domain in dim['domains']:
+            domain.pop('description', None)
+
+    return JsonResponse({'metrics': data})
+
+
+def get_group_report(request, group_id):
+    months = 24
+    assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
+         campaign__end_date__gte=date.today() - relativedelta(months=months), user__groups__in=[group_id])\
+        .order_by('questionnaire', 'user')
+    dimensions = Dimension.objects.order_by('level', 'title')
+    data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
+    print(data)
+    for dim in data['dimensions']:
+        dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
+        dim.pop('description', None)
+        for domain in dim['domains']:
+            domain.pop('description', None)
+
+    return JsonResponse({'metrics': data})

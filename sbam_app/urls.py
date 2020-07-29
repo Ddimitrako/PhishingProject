@@ -46,4 +46,11 @@ urlpatterns = [
     path('reports/', reports, name='reports'),
     path('get_reports_data/', get_reports_data, name='get_reports_data'),
     path('get_user_metrics/', get_user_metrics, name='get_user_metrics'),
+
+    #results REST API
+    path('api/metrics/organization', get_organizational_report, name='organization_report'),
+    path('api/metrics/campaign/<campaign_id>/', get_campaign_report, name='campaign_report'),
+    path('api/metrics/user/<user_id>/', get_user_report, name='user_report'),
+    path('api/metrics/group/<group_id>/', get_group_report, name='group_report'),
+
 ]
