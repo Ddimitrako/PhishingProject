@@ -105,6 +105,14 @@
                                             </div>
                                             <div class="d-flex w-100 justify-content-between">
                                                 <div class="align-self-end"><strong>{% trans "Completed at" %}: </strong> {{ compl_ass.get_answer_time }}</div>
+                                                <div class="align-self-start">
+                                                    {% with score=compl_ass.get_result %}
+                                                        {% get_badge score as badge_type %}
+                                                        <span {% if badge_type != 'Not Completed Yet' %} class="badge {{ badge_type }}"{% endif %}>
+                                                            {{ score }}
+                                                        </span>
+                                                    {% endwith %}
+                                                </div>
                                             </div>
                                         </li>
                                     {% endfor %}

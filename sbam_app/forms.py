@@ -185,10 +185,19 @@ class CampaignForm(forms.ModelForm):
         self.fields['creator'].initial = self.instance.owner.get_full_name()
 
         self.helper = FormHelper()
+        compl_perc = models.AssignmentResult.objects.filter(assignment__campaign=self.instance).count() / \
+                     models.Assignment.objects.filter(campaign=self.instance).count() * 100
+
         self.helper.layout = Layout(
             Row(
                 Column('title', css_class='col-md-3'),
                 Column('creator', css_class='col-md-3'),
+                # Column(HTML("""
+                #     <div class="progress progress-lg center-block" data-toggle="tooltip">
+                #         <div class="progress-bar progress-bar-striped" role="progressbar"
+                #         style="width:"""+str(compl_perc)+"""%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                #     </div>
+                # """), css_class='col-md-3')
             ),
             Row(
                 Column(AppendedText('creation_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),

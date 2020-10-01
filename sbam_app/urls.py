@@ -19,6 +19,7 @@ urlpatterns = [
     path('questionnaires/<quest_id>/', questionnaireInfo, name='questionnaire_info'),
 
     # Assignments
+    path('assignments/', AssignmentsHistory.as_view(), name='assignments_history'),
     path('assignments/<assignment_id>/', assignmentCompletion, name='assignments'),
     path('survey_submit/', surveySubmission, name='survey_submit'),
 

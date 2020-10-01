@@ -473,12 +473,14 @@ class SelfEvaluationHistory(ListView):
     def get_queryset(self):
         self_assessment_questionnaires = [self_quest for self_quest in
                                           models.QuestionnaireSelfAssessment.objects.filter(user_id=self.request.user)
-                                              .order_by('-selfassessmentresult__answer_time')]
+                                              .order_by('-selfassessmentresult__answer_time')
+                                          ]
 
         #print(self_assessment_questionnaires)
         self_assessment_tests = [self_quest for self_quest in
                                  models.TestSelfAssessment.objects.filter(user_id=self.request.user)
-                                     .order_by('-selfassessmentresult__answer_time')]
+                                     .order_by('-selfassessmentresult__answer_time')
+                                 ]
 
         #print(self_assessment_tests)
         self_assessment = sorted(
@@ -488,6 +490,17 @@ class SelfEvaluationHistory(ListView):
              instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title), reverse=True)
 
         return self_assessment
+
+
+class AssignmentsHistory(ListView):
+    template_name = 'assignments.html'
+    context_object_name = 'assignments_list'
+
+    def get_queryset(self):
+        assignments = [self_quest for self_quest in
+                                          models.QuestionnaireAssignment.objects.filter(user_id=self.request.user)
+                                              .order_by('-assignmentresult__answer_time')]
+        return assignments
 
 
 def questionnaires_list(request):
@@ -723,6 +736,7 @@ def create_group(request):
     return create_or_update_group(request, 'new_group.html')
 
 
+@method_decorator(advanced_users_only, name='dispatch')
 class CampaignsView(ListView):
     template_name = 'campaigns.html'
     context_object_name = 'campaigns_list'
@@ -763,18 +777,23 @@ def campaign(request, id):
     assignees = Assignment.objects.filter(campaign=campaign). \
         values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title', 'user__userprofile__department'). \
         distinct().order_by('user__last_name')
-    questionnaires = QuestionnaireAssignment.objects.filter(campaign=campaign). \
-        values_list('questionnaire__title', 'questionnaire__domain__dimension__level'). \
-        distinct().order_by('questionnaire__title')
+
+    questionnaires = QuestionnaireAssignment.objects.filter(campaign=campaign).\
+        order_by('questionnaire__title').distinct('questionnaire__title')
+
     tests = TestAssignment.objects.filter(campaign=campaign). \
         values_list('test__title', 'test__domain__dimension__level'). \
-        distinct().order_by('test__title')
+        order_by('test__title').distinct('test__title')
 
     assignments = questionnaires.count() + tests.count()
     results = calculate_campaign_result(campaign, assignments)
 
+    compl_perc = models.AssignmentResult.objects.filter(assignment__campaign=campaign).count() / \
+                 models.Assignment.objects.filter(campaign=campaign).count() * 100
+
     return render(request, 'campaign.html', {
         'campaign': campaign,
+        'campaign_compl_rate': compl_perc,
         'assignees': assignees,
         'questionnaires': questionnaires,
         'tests': tests,

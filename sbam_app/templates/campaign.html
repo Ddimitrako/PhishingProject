@@ -58,18 +58,33 @@
                                                 <tr>
                                                     <th>{% trans "name"|capfirst %}</th>
                                                     <th>{% trans "type"|capfirst %}</th>
+                                                    <th>{% trans "info"|capfirst %}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {% for name, type in questionnaires %}
+                                                {% for quest in questionnaires %}
                                                     <tr>
-                                                        <td>{{ name }}</td>
+                                                        <td>
+                                                            {{ quest.questionnaire.title }}
+                                                        </td>
                                                         <td>
                                                             {% if type == 0 %}
                                                                 {% trans "Organisational" %}
                                                             {% else %}
                                                                 {% trans "Individual" %}
                                                             {% endif %}
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-outline-primary btn-xs"
+                                                                href="{% url 'sbam:questionnaire_info' quest.questionnaire_id %}"
+                                                                role="button">
+                                                                <i class="fas fa-external-link-alt"></i>
+                                                            </a>
+{#                                                            <a class="btn btn-success btn-sm mb-4 float-right"#}
+{#                                                               href="{% url 'sbam:create_campaign' %}" role="button"#}
+{#                                                               title="{% trans "Create new campaign" %}">#}
+{#                                                                <i class="fas fa-plus-circle mr-2"></i>{% trans "Create new campaign" %}#}
+{#                                                            </a>#}
                                                         </td>
                                                     </tr>
                                                 {% empty %}
