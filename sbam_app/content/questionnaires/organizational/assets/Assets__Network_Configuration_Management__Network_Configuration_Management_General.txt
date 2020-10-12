@@ -7,3 +7,4 @@ id	type	text_en	options_en
 6	BOOL_P	Have you ensured that network engineers use a dedicated machine (segmented from the organization's primary network and not allowed Internet access) for all administrative tasks or tasks requiring elevated access?
 7	BOOL_P	Do you manage the network infrastructure across network connections that are separated from the business use of that network, relying on separate VLANs or, preferably, on entirely different physical connectivity for management sessions for network devices?
 8	BOOL_P	Have you established a baseline of network operations and expected data flows?	 
+9	BOOL_P	Have you enabled network intrusion detection and prevention systems that use network signatures to identify traffic for specific adversary malware?	

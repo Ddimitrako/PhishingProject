@@ -1,3 +1,5 @@
 id	type	text_en	options_en
 1	BOOL_P	Do you enforce the principle of "least privilege" granting user access to SCADA resources?
 2	BOOL_P	Do you ensure that no critical control decision is being made without human confirmation?	 
+3	BOOL_P	Do you restrict read, manipulate, or execute privileges to only authenticated users?	
+4	BOOL_P	Do you use role-based access control (RBAC) schemes in your OT network?	

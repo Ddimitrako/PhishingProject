@@ -5,3 +5,6 @@ id	type	text_en	options_en
 4	BOOL_P	Have you deployed system configuration management tools that will automatically enforce and redeploy configuration settings to systems at regularly scheduled intervals?	 
 5	BOOL_P	Have you utilized a Security Content Automation Protocol (SCAP) compliant configuration monitoring system to verify all security configuration elements, catalog approved exceptions, and alert when unauthorized changes occur?
 6	PERC10_N	What percentage of your systems have not implemented a password policy?	 
+7	BOOL_P	Do you use specific methods to ensure secure boot of the operating systems?	
+8	BOOL_P	Have you utilized startup integridy policies of your systems?	
+9	BOOL_P	Do you use the Trusted Platform Module technology to prevent system integrity from being compromised?

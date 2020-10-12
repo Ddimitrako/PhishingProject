@@ -5,3 +5,6 @@ id	type	text_en	options_en
 4	BOOL_P	Have you established methods to deal with the protection of cryptographic keys and the recovery of encrypted information in the case of lost, compromised or damaged keys?	 
 5	BOOL_P	Do you take into account the impact of using encrypted information on controls that rely upon content inspection?
 6	BOOL_P	Do you encrypt all sensitive information in transit?	
+7	BOOL_P	Do you encrypt all data stored in cloud services?	
+8	BOOL_P	Do you encrypt event files locally and in transit?	
+9	BOOL_P	Do you store keys on separate cryptographic hardware instead of on the local system, wherever possible?
