@@ -50,9 +50,13 @@ INSTALLED_APPS = [
 
     # apps
     'sbam_app',
+    'password_strength',
 
     # Tempus Dominus DateTimepicker
     'tempus_dominus',
+
+    #Password validator
+    'zxcvbn_password',
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -127,6 +131,13 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+    {
+        'NAME': 'zxcvbn_password.ZXCVBNValidator',
+        'OPTIONS': {
+            'min_score': 3,
+            'user_attributes': ('username', 'email', 'first_name', 'last_name')
+        }
+    }
 ]
 
 ACCOUNT_EMAIL_REQUIRED = True
