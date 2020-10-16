@@ -36,7 +36,7 @@ class Domain(Model):
     dimension = ForeignKey(
         Dimension,
         verbose_name=_('dimension'),
-        on_delete=CASCADE,
+        on_delete=PROTECT,
         help_text=_('Dimension this domain belongs to')
     )
     title = CharField(_('title'), max_length=100, help_text=_('Domain title'))
@@ -148,6 +148,7 @@ class Assignment(Model):
             return 'OPEN'
 
     def get_answer_time(self):
+        # print(self.assignmentresult_set.get(assignment=self).answer_time)
         return self.assignmentresult_set.get(assignment=self).answer_time
 
     def get_result(self):
@@ -163,7 +164,7 @@ class Questionnaire(Model):
     domain = ForeignKey(
         Domain,
         verbose_name=_('domain'),
-        on_delete=CASCADE,
+        on_delete=PROTECT,
         help_text=_('The domain this questionnaire belongs to')
     )
     is_active = IntegerField(
@@ -196,7 +197,7 @@ class QuestionnaireAssignment(Assignment):
     questionnaire = ForeignKey(
         Questionnaire,
         verbose_name=_('questionnaire'),
-        on_delete=CASCADE,
+        on_delete=PROTECT,
         help_text=_('Questionnaire assigned')
     )
 
@@ -244,7 +245,7 @@ class QuestionOption(Model):
     question_type = ForeignKey(
         QuestionType,
         verbose_name=_('question type'),
-        on_delete=CASCADE,
+        on_delete=PROTECT,
         help_text=_('Question type this option refers to')
     )
     text = TextField(_('text'), help_text=_('Question\'s option text'))
@@ -270,13 +271,13 @@ class Question(Model):
     questionnaire = ForeignKey(
         Questionnaire,
         verbose_name=_('questionnaire'),
-        on_delete=CASCADE,
+        on_delete=PROTECT,
         help_text=_('The questionnaire this question belongs to')
     )
     question_type = ForeignKey(
         QuestionType,
         verbose_name=_('question_type'),
-        on_delete=CASCADE,
+        on_delete=PROTECT,
         help_text=_('Question type')
     )
     text = TextField(_('text'), help_text=_('Question text'))
@@ -385,6 +386,8 @@ class SelfAssessment(Model):
     user = ForeignKey(User, verbose_name=_('user'), on_delete=CASCADE, help_text=_('Assignee'))
 
     def get_answer_time(self):
+        print('STO SELF ASSESSMENT')
+        print(self.selfassessmentresult_set.get(selfassessment=self).answer_time)
         return self.selfassessmentresult_set.get(selfassessment=self).answer_time
 
     def get_result(self):

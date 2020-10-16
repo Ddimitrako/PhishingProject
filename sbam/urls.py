@@ -28,4 +28,7 @@ urlpatterns = [
 
     # main app
     path('', include('sbam_app.urls')),
+
+    #password strength app
+    path('tests/', include('password_strength.urls'))
 ]

@@ -1,5 +1,22 @@
 {% load i18n custom_tags %}
 
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h4 class="display-12">Campaign completion rate</h4>
+                <div class="progress" style="height: 25px;">
+                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{ campaign_compl_rate }}%"
+                       aria-valuenow="{{ campaign_compl_rate }}" aria-valuemin="0" aria-valuemax="100">{{ campaign_compl_rate }}%
+                  </div>
+                </div>
+{#            {{ campaign_compl_rate }}#}
+          </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-12">
         <label>{% trans "Results Per User" %}</label>
