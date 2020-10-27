@@ -493,7 +493,7 @@ class SelfEvaluationHistory(ListView):
 
 
 class AssignmentsHistory(ListView):
-    template_name = 'assignments.html'
+    template_name = 'assignments_history.html'
     context_object_name = 'assignments_list'
 
     def get_queryset(self):
