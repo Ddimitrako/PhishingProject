@@ -27,6 +27,25 @@ $(document).ready(function(){
         // create_post();
     });
 
+    $('.close').click(function (){
+        $('.pass_1_content').empty();
+        $('.pass_2_content').empty();
+        $('.pass_3_content').empty();
+        $('.pass_1_password').empty();
+        $('.pass_2_password').empty();
+        $('.pass_3_password').empty();
+        $('.pass_1_score').empty();
+        $('.pass_2_score').empty();
+        $('.pass_3_score').empty();
+        $('.pass_1_crack_display').empty();
+        $('.pass_2_crack_display').empty();
+        $('.pass_3_crack_display').empty();
+        $('.total_score').empty();
+        $('.pass_1_suggestions').empty();
+        $('.pass_2_suggestions').empty();
+        $('.pass_3_suggestions').empty();
+    })
+
     $('.pass-form-submit').click(function (){
         // alert('edw');
         var csrftoken = getCookie('csrftoken');
@@ -62,6 +81,7 @@ $(document).ready(function(){
                         sugesstions_string += '</ul>'
                         $('.'+pass+'_suggestions').append(sugesstions_string);
                     }
+                    $('.total_score').append(response['total_score'].toFixed(2));
                     // alert('pali edw');
                 },
             })

@@ -30,13 +30,15 @@ def password_strength(request):
                 'score': zxcvbn(pass_3)['score'],
                 'crack_display': zxcvbn(pass_3)['crack_times_display']['offline_fast_hashing_1e10_per_second'],
                 'suggestions': zxcvbn(pass_3)['feedback']['suggestions']
-            }
+            },
         }
 
         for key in zxcvbn(pass_1):
             print(key, zxcvbn(pass_1)[key])
 
-        return JsonResponse({'data': result_dict})
+        return JsonResponse({'data': result_dict,
+                             'total_score': (zxcvbn(pass_1)['score'] + zxcvbn(pass_2)['score'] + zxcvbn(pass_3)['score']) / 3,
+                             })
     else:
         return render(request, 'password_strength.html', {
             'pass_check_form': PasswordStrengthForm()
