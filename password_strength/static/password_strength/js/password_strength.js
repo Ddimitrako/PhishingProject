@@ -1,9 +1,9 @@
 $(document).ready(function(){
-    $('.card-info-btn').click(function(){
-        $(this).text(function(i,old){
-            return old=='Read More' ?  'Read Less' : 'Read More';
-        });
-    });
+    // $('.card-info-btn').click(function(){
+    //     $(this).text(function(i,old){
+    //         return old=='Read More' ?  'Read Less' : 'Read More';
+    //     });
+    // });
 
     function getCookie(name) {
         var cookieValue = null;
@@ -28,9 +28,6 @@ $(document).ready(function(){
     });
 
     $('.close').click(function (){
-        $('.pass_1_content').empty();
-        $('.pass_2_content').empty();
-        $('.pass_3_content').empty();
         $('.pass_1_password').empty();
         $('.pass_2_password').empty();
         $('.pass_3_password').empty();
@@ -69,8 +66,7 @@ $(document).ready(function(){
                         console.log(pass);
                         console.log(response['data'][pass]);
                         console.log('.'+pass+'_password');
-                        $('.'+pass+'_password').append(response['data'][pass]['pass']);
-                        $('.'+pass+'_score').append(response['data'][pass]['score']);
+                        $('.'+pass+'_score').append(response['data'][pass]['score'] + '/10');
                         $('.'+pass+'_crack_display').append(response['data'][pass]['crack_display']);
                         sugesstions_string = '<ul>';
                         for(sugg in response['data'][pass]['suggestions']){
@@ -81,7 +77,7 @@ $(document).ready(function(){
                         sugesstions_string += '</ul>'
                         $('.'+pass+'_suggestions').append(sugesstions_string);
                     }
-                    $('.total_score').append(response['total_score'].toFixed(2));
+                    $('.total_score').append(response['total_score'].toFixed(2) + '/10');
                     // alert('pali edw');
                 },
             })
