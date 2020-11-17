@@ -1,35 +1,76 @@
 
-.carousel-control-next-icon {
-  height: 100px;
-  width: 100px;
-  outline: black;
-  background-size: 100%, 100%;
-  border-radius: 50%;.
-  border: 1px solid black;
-  background-image: none;
-    margin-left: 300px;
+/*.carousel-control-next-icon {*/
+/*  height: 100px;*/
+/*  width: 100px;*/
+/*  outline: black;*/
+/*  background-size: 100%, 100%;*/
+/*  border-radius: 50%;.*/
+/*  border: 1px solid black;*/
+/*  background-image: none;*/
+/*  !*margin-left: 750px;*!*/
+/*}*/
+
+/*.carousel-control-prev-icon {*/
+/*  height: 100px;*/
+/*  width: 100px;*/
+/*  outline: black;*/
+/*  background-size: 100%, 100%;*/
+/*  border-radius: 50%;.*/
+/*  border: 1px solid black;*/
+/*  background-image: none;*/
+/*  !*margin-right: 300px;*!*/
+/*}*/
+
+/*.carousel-control-next-icon:after*/
+/*{*/
+/*  content: '>';*/
+/*  font-size: 55px;*/
+/*  color: black;*/
+/*}*/
+
+/*.carousel-control-prev-icon:after {*/
+/*  content: '<';*/
+/*  font-size: 55px;*/
+/*  color: black;*/
+/*}*/
+
+/*.img-fluid {*/
+/*  max-width: 100%;*/
+/*  !*height: 30vh;*!*/
+/*}*/
+
+
+@media (max-width: 768px) {
+    .carousel-inner .carousel-item > div {
+        display: none;
+    }
+    .carousel-inner .carousel-item > div:first-child {
+        display: block;
+    }
 }
 
-.carousel-control-prev-icon {
-  height: 100px;
-  width: 100px;
-  outline: black;
-  background-size: 100%, 100%;
-  border-radius: 50%;.
-  border: 1px solid black;
-  background-image: none;
-  margin-right: 300px;
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
 }
 
-.carousel-control-next-icon:after
-{
-  content: '>';
-  font-size: 55px;
-  color: black;
+/* display 3 */
+@media (min-width: 768px) {
+
+    .carousel-inner .carousel-item-right.active,
+    .carousel-inner .carousel-item-next {
+      transform: translateX(50.333%);
+    }
+
+    .carousel-inner .carousel-item-left.active,
+    .carousel-inner .carousel-item-prev {
+      transform: translateX(-50.333%);
+    }
 }
 
-.carousel-control-prev-icon:after {
-  content: '<';
-  font-size: 55px;
-  color: black;
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{
+  transform: translateX(0);
 }
+
