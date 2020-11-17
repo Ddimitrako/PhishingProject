@@ -1,0 +1,25 @@
+id	type	text_en	options_en
+1	AGR5_P	I double-check my information resources to be sure i have the right facts before making decisions.
+2	AGR5_P	I make decisions in a logical and systematic way.
+3	AGR5_P	My decision making requires careful thought.
+4	AGR5_P	When making a decision, I consider various options in terms of a specific goal.
+5	AGR5_P	When making decisions, I rely upon my instincts.
+6	AGR5_P	When I make decisions, I tend to rely on my intuition.
+7	AGR5_P	I generally make decisions that feel right to me.
+8	AGR5_P	When I make a decision, it is more important for me to feel the decision is right than to have a rational reason for it.
+9	AGR5_P	When I make a decision, I trust my inner feelings and reactions.
+10	AGR5_N	I often need the assistance of other people when making important decisions.
+11	AGR5_N	I rarely make important decisions without consulting other people.
+12	AGR5_N	If I have the support of others, it is easier for me to make important decisions.
+13	AGR5_N	I use the advice of other people in making my important decisions.
+14	AGR5_N	I like to have someone to steer me in the right direction when i am faced with important decisions.
+15	AGR5_N	I avoid making important decisions until the pressure is on.
+16	AGR5_N	I postpone decision making whenever possible.
+17	AGR5_N	I often procrastinate when it comes to making important decisions.
+18	AGR5_N	I generally make important decisions at the last minute
+19	AGR5_N	I put off making many decisions because thinking about them makes me uneasy.
+20	AGR5_N	I generally make snap decisions.
+21	AGR5_N	I often make decisions on the spur of the moment.
+22	AGR5_N	I make quick decisions.
+23	AGR5_N	I often make impulsive decisions.
+24	AGR5_N	When making decisions, I do what seems natural at the moment.

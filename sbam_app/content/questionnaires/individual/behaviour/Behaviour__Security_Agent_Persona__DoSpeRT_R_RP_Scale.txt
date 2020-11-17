@@ -1,0 +1,7 @@
+id	type	text_en	options_en
+1	RISK7_N	Going camping in the wilderness.
+2	RISK7_N	Going down a ski run that is beyond your ability.
+3	RISK7_N	Going whitewater rafting at high water in the spring.
+4	RISK7_N	Taking a skydiving class.
+5	RISK7_N	Bungee jumping off a tall bridge.
+6	RISK7_N	Piloting a small plane.

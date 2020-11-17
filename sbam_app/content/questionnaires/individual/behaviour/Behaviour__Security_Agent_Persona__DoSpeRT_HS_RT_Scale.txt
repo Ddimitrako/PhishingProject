@@ -1,0 +1,11 @@
+id	type	text_en	options_en
+1	LIK7_P	Drinking heavily at a social function.
+2	LIK7_P	Disagreeing with an authority figure on a major issue.
+3	LIK7_P	Driving a car without wearing a seat belt.
+4	LIK7_P	Riding a motorcycle without a helmet.
+5	LIK7_P	Choosing a career that you truly enjoy over a more secure one.
+6	LIK7_P	Speaking your mind about an unpopular issue in a meeting at work.
+7	LIK7_P	Sunbathing without sunscreen.
+8	LIK7_P	Walking home alone at night in an unsafe area of town.
+9	LIK7_P	Moving to a city far away from your extended family.
+10	LIK7_P	Starting a new career in your mid-thirties.
