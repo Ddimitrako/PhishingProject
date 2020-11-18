@@ -1,0 +1,22 @@
+id	type	text_en	options_en
+1	AGR5_N	It's safe to use the same password for social media and work accounts.
+2	AGR5_P	It's a bad idea to share my work passwords, even if a colleague asks for it.
+3	AGR5_N	It's safe to have a work password with just letters.
+4	AGR5_N	It's always safe to click on links in emails from people I know.
+5	AGR5_N	Nothing bad can happen if I click on a link in an email from an unknown sender.
+6	AGR5_P	It's risky to open an email attachment from an unknown sender.
+7	AGR5_P	It can be risky to download files on my work computer.
+8	AGR5_P	Just because I can access a website at work, doesn't mean that it's safe.
+9	AGR5_N	If it helps me to do my job, it doesn't matter what information I put on a website.
+10	AGR5_P	It's a good idea to regularly review my social media privacy settings.
+11	AGR5_N	It doesn't matter if I post things on social media that I wouldn't normally say in public.
+12	AGR5_P	It's risky to post certain information about my work on social media.
+13	AGR5_N	When working in a cafe, it's safe to leave my laptop unattended for a minute.
+14	AGR5_P	It's risky to send sensitive work files using a public Wi-Fi network.
+15	AGR5_P	It's risky to access sensitive work files on a laptop if strangers can see my screen.
+16	AGR5_N	Disposing of sensitive print-outs by putting them in the rubbish bin is safe.
+17	AGR5_N	If I find a USB stick in a public place, nothing bad can happen if I plug it into my work computer.
+18	AGR5_P	It's risky to leave print-outs that contain sensitive information on my desk overnight.
+19	AGR5_N	If I ignore someone acting suspiciously in my workplace, nothing bad can happen.
+20	AGR5_N	Nothing bad can happen if I ignore poor security behaviour by a colleague.
+21	AGR5_P	It's risky to ignore security incidents, even if I think they're not significant.
