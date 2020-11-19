@@ -4,6 +4,7 @@ from zxcvbn_password import zxcvbn
 from django.http import JsonResponse
 from password_strength import PasswordPolicy
 from sbam_app.models import User
+from sbam_app.templatetags import custom_tags
 
 # Create your views here.
 
@@ -17,19 +18,22 @@ def password_strength(request):
         pass_3 = request.POST['pass_3']
         result_dict = {
             'pass_1': {
-                'score': policy.password(pass_1).strength(),
+                'score': policy.password(pass_1).strength() * 100,
+                'badge': custom_tags.get_badge(str(policy.password(pass_1).strength() * 100)),
                 'crack_display': zxcvbn(pass_1)['crack_times_display']['offline_fast_hashing_1e10_per_second'],
                 'weakness_factor': policy.password(pass_1).weakness_factor,
                 'suggestions': zxcvbn(pass_1)['feedback']['suggestions']
             },
             'pass_2': {
-                'score': policy.password(pass_2).strength(),
+                'score': policy.password(pass_2).strength() * 100,
+                'badge': custom_tags.get_badge(str(policy.password(pass_2).strength() * 100)),
                 'crack_display': zxcvbn(pass_2)['crack_times_display']['offline_fast_hashing_1e10_per_second'],
                 'weakness_factor': policy.password(pass_2).weakness_factor,
                 'suggestions': zxcvbn(pass_2)['feedback']['suggestions']
             },
             'pass_3': {
-                'score': policy.password(pass_3).strength(),
+                'score': policy.password(pass_3).strength() * 100,
+                'badge': custom_tags.get_badge(str(policy.password(pass_3).strength() * 100)),
                 'crack_display': zxcvbn(pass_3)['crack_times_display']['offline_fast_hashing_1e10_per_second'],
                 'weakness_factor': policy.password(pass_3).weakness_factor,
                 'suggestions': zxcvbn(pass_3)['feedback']['suggestions']
@@ -81,10 +85,13 @@ def password_strength(request):
                 or current_user.userprofile.birth_date.strftime('%m') in pass_3 or current_user.userprofile.birth_date.strftime('%d') in pass_3:
             result_dict['pass_3']['suggestions'].append('You should avoid using words found in your personal information')
 
-        return JsonResponse({'data': result_dict,
-                             'total_score': (policy.password(pass_1).strength() +
+
+        mean_score = (policy.password(pass_1).strength() +
                                              policy.password(pass_2).strength() +
-                                             policy.password(pass_3).strength()) / 3,
+                                             policy.password(pass_3).strength()) / 3
+        return JsonResponse({'data': result_dict,
+                             'total_score': mean_score,
+                             'total_score_badge': custom_tags.get_badge(str(mean_score)),
                              })
     else:
         return render(request, 'password_strength.html', {

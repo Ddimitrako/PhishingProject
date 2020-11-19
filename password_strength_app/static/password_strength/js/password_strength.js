@@ -165,7 +165,8 @@ $(document).ready(function(){
                             console.log(pass);
                             console.log(response['data'][pass]);
                             console.log('.'+pass+'_password');
-                            $('.'+pass+'_score').append(response['data'][pass]['score'].toFixed(3));
+                            $('.'+pass+'_badge').addClass(response['data'][pass]['badge']);
+                            $('.'+pass+'_badge').text(response['data'][pass]['score'].toFixed(2) + '%');
                             $('.'+pass+'_crack_display').append(response['data'][pass]['crack_display']);
                             $('.'+pass+'_weakness_factor').append(response['data'][pass]['weakness_factor'].toFixed(3));
                             sugesstions_string = '<ul>';
@@ -177,7 +178,8 @@ $(document).ready(function(){
                             sugesstions_string += '</ul>'
                             $('.'+pass+'_suggestions').append(sugesstions_string);
                         }
-                        $('.total_score').append(response['total_score'].toFixed(2) + '/10');
+                        $('.badge').addClass(response['total_score_badge']);
+                        $('.badge').text(response['total_score'].toFixed(2) + '%');
                         // alert('pali edw');
                     },
                 })
