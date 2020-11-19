@@ -1,0 +1,18 @@
+{% load static %}
+{% load i18n custom_tags %}
+
+{% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
+
+{% block extra_head %}
+<link href="{% static "phishing_quiz/css/email-template.css" %}" rel="stylesheet">
+{% endblock %}
+
+<div class="card email-card">
+    <div class="card-body">
+
+        <iframe src="{% url 'phishing_quiz:email_request' email_id %}"  width="100%" height="500"></iframe>
+    </div>
+</div>
+
+
+

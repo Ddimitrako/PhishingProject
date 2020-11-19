@@ -30,5 +30,10 @@ urlpatterns = [
     path('', include('sbam_app.urls')),
 
     #password strength app
-    path('tests/', include('password_strength.urls'))
+    path('tests/', include('password_strength.urls')),
+
+    #phishing_quiz
+    path('tests/', include('phishing_quiz.urls')),
+
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]

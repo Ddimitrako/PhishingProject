@@ -51,12 +51,18 @@ INSTALLED_APPS = [
     # apps
     'sbam_app',
     'password_strength',
+    'phishing_quiz',
 
     # Tempus Dominus DateTimepicker
     'tempus_dominus',
 
     #Password validator
     'zxcvbn_password',
+
+    #ckeditor
+    'ckeditor',
+    'ckeditor_uploader',
+
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -177,6 +183,19 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# CK_EDITOR variables
+CKEDITOR_UPLOAD_PATH = '/staticfiles/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 500,
+        'width': 1000,
+    },
+}
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),

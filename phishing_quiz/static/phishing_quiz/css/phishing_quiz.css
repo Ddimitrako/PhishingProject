@@ -1,0 +1,31 @@
+
+
+.btn-toolbar{
+    margin: auto;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.carousel-indicators{
+    margin-bottom: 2.5rem;
+}
+
+.display-container{
+    margin-right: 5rem;
+    margin-left: 5rem;
+}
+
+.carousel-card{
+    width: 75%;
+    margin: auto;
+    background-color: #1d3852!important;
+}
+
+.email-card{
+    width: 100%;
+    font-family:    Arial, Helvetica, sans-serif;
+    font-size:      40px;
+    font-weight:    bold;
+}
