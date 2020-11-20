@@ -1,43 +1,9 @@
 $(document).ready(function(){
 
-    // window.onload = function() {
-    //   let link = document.createElement("link");
-    //   link.href = "/static/phishing_quiz/css/email-template.css";      /**** your CSS file ****/
-    //   link.rel = "stylesheet";
-    //   link.type = "text/css";
-    //   frames[0].document.head.appendChild(link); /**** 0 is an index of your iframe ****/
-    // }
 
-    $('#email-1 input').on('change', function (){
-        val1 = $('input[name=phishing-email-1]:checked', '#email-1').val();
-        // console.log(val1);
-        check_input();
-    });
-
-     $('#email-2 input').on('change', function (){
-        val2 = $('input[name=phishing-email-2]:checked', '#email-2').val();
-        // console.log(val2);
-        check_input();
-    });
-
-      $('#email-3 input').on('change', function (){
-        val3 = $('input[name=phishing-email-3]:checked', '#email-3').val();
-        // console.log(val3);
-        check_input();
-    });
-
-    function check_input(){
-        val1 = $('input[name=choices]:checked', '#email-1').val();
-        val2 = $('input[name=choices]:checked', '#email-2').val();
-        val3 = $('input[name=choices]:checked', '#email-3').val();
-        console.log(val1);
-        console.log(val2);
-        console.log(val3);
-
-        if(val1 !== undefined && val2 !== undefined && val3 !== undefined){
-            $('.submit-btn').show();
-        }
-    }
+    let carousel = $("#carouselExampleIndicators").carousel();
+    let answers = {};
+    let compl_rate = (1 / emails_num) * 100;
 
     function getCookie(name) {
         var cookieValue = null;
@@ -55,36 +21,36 @@ $(document).ready(function(){
         return cookieValue;
     }
 
-    $('#email-1').on('submit', function(event){
-        event.preventDefault();
-        console.log("form submitted!")  // sanity check
-        // create_post();
-    });
-    $('#email-2').on('submit', function(event){
-        event.preventDefault();
-        console.log("form submitted!")  // sanity check
-        // create_post();
-    });
-    $('#email-3').on('submit', function(event){
-        event.preventDefault();
-        console.log("form submitted!")  // sanity check
-        // create_post();
+    $(".btn-group > button.btn").on("click", function(){
+        carousel.carousel('next');
+        answers['email_'+$(this).attr('data-email')] = $(this).attr('data-value');
+        console.log(answers);
+        $('.progress-bar').css('width', (compl_rate+((1/emails_num)*100))+'%').attr('aria-valuenow', (compl_rate+((1/emails_num)*100)));
+        compl_rate += (1/emails_num)*100;
+
+        $('.prog-indicator').text('Email ' + (++current_num) + ' of '+(emails_num));
+        // console.log($(this).attr('data-value') + ' '+ emails_num.toString());
+        if($(this).attr('data-email') === emails_num.toString()){
+
+            submit_answers();
+        }
     });
 
-    $('.submit-btn').click(function (){
+    function submit_answers(){
+        alert('edw')
         var csrftoken = getCookie('csrftoken');
-        const ajax_data = {}
-        ajax_data['email_1'] = $('input[name=phishing-email-1]:checked', '#email-1').val();
-        ajax_data['email_2'] = $('input[name=phishing-email-2]:checked', '#email-2').val();
-        ajax_data['email_3'] = $('input[name=phishing-email-3]:checked', '#email-3').val();
-        // alert(ajax_data)
+        let results = {};
+        results['data'] =  JSON.stringify(answers);
         $.ajax({
-            "type": "POST",
+            type: "POST",
             headers: {"X-CSRFToken": csrftoken},
             dataType: 'json',
-            'url': 'phishing_quiz',
-            'data': ajax_data,
+            url: 'phishing_quiz',
+            data: results,
+            success: function (result) {
+               alert('gurisaaa');
+            }
         })
-    })
+    }
 
 });

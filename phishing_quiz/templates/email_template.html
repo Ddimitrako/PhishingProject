@@ -7,11 +7,11 @@
 <link href="{% static "phishing_quiz/css/email-template.css" %}" rel="stylesheet">
 {% endblock %}
 
-<div class="card email-card">
-    <div class="card-body">
+<div class="email-card">
+{#    <div class="">#}
 
         <iframe src="{% url 'phishing_quiz:email_request' email_id %}"  width="100%" height="500"></iframe>
-    </div>
+{#    </div>#}
 </div>
 
 
