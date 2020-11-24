@@ -3,36 +3,42 @@ from django.http import JsonResponse, HttpResponse
 from phishing_quiz.models import *
 from phishing_quiz.forms import *
 from django.views.decorators.clickjacking import xframe_options_exempt
-
-
+import json
 
 
 # Create your views here.
 def phishing_quiz(request):
     if request.method == 'POST':
-        print(request.POST['data'])
+        # print(request.POST['data'])
+
+        answers = json.loads(request.POST['data'])
+        emails_ids = []
+        print(answers)
+        for email in answers:
+            emails_ids.append(int(answers[email]['id']))
+
+        labels = PhishingEmail.objects.filter(pk__in=emails_ids)
+        print(labels)
+        # campaign = sbam_models.Campaign(pk=13)
+        test_assignment = sbam_models.TestAssignment.objects.get(pk=52)
+
+        for true_label, email in zip(labels, answers):
+            print(true_label.is_phishing, answers[email]['answer'])
+            new_answer = PhishingEmailAssignmentAnswer(email=true_label, user_answer=answers[email]['answer'], assignment=test_assignment)
+            new_answer.save()
+            if true_label.is_phishing == answers[email]['answer']:
+                print('Swsto')
 
 
-        # FOR DEMO PURPOSES ONLY
-        answers = {
-            'email_1': 'true',
-            'email_2': 'false',
-            'email_3': 'true',
-            'email_4': 'false'
-        }
-
-        return JsonResponse({'mpompa':1})
+        return JsonResponse({'mpompa': 1})
 
     else:
-        form1 = Phishing_Quiz()
-        form2 = Phishing_Quiz()
-        form3 = Phishing_Quiz()
-        return render(request, 'phishing_quiz.html', {
-            'mode': 'quiz',
-            'email_1': form1,
-            'email_2': form2,
-            'email_3': form3,
-        })
+
+        # na dialegeis 10 random emails otan ftiaxtei
+        # Na koitaei ti exei apanthsei kai se poia exei kanei lathos etsi wste na dinetai proteraiothta se auta
+        test_emails = PhishingEmail.objects.all()
+        return render(request, 'phishing_quiz.html', {'emails': test_emails,
+                                                      'progress_bar': 1 / len(test_emails) * 100})
 
 @xframe_options_exempt
 def email_request(request, email_id):

@@ -17,100 +17,63 @@
         <h3 class="display-1 text-center">Phishing Quiz</h3>
         <p class="lead text-center">Decide whether a mail is a fraud or not</p>
         <div class="card carousel-card text-white">
-            <div>
-                <div class="card-header">
+            <div class="card-header">
 
-                    <div class="row ">
-                        <div class="col-md-3 offset-4 text-center prog-indicator">
-                            Email 1 of 4
-                        </div>
+                <div class="row ">
+                    <div class="col-md-3 offset-4 text-center prog-indicator">
+                        Email 1 of {{ emails|length }}
                     </div>
-                    <div class="progress" style="height: 20px;">
-                        <div class="progress-bar bg-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
-                    </div>
+                </div>
+                <div class="progress" style="height: 20px;">
+                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:{{ progress_bar }}%"></div>
                 </div>
             </div>
             <div class="card-body">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
                     <div class="carousel-inner w-100">
-                        <div class="carousel-item active">
+                        {% for email in emails %}
+                            {% if forloop.counter == 1 %}
+                                <div class="carousel-item active">
+                            {% else %}
+                                <div class="carousel-item">
+                            {% endif %}
                             <div class="container-fluid">
                                 <div class="row">
-                                    {% include 'email_template.html' with email_id=1 %}
+                                    <div class="email-card">
+                                        <iframe src="{% url 'phishing_quiz:email_request' email.id %}"  width="100%" height="500"></iframe>
+                                    </div>
                                 </div>
                                 <div class="row">
+                                    <button type="button" class="btn btn-outline-info align-self-center prev-btn" style="display: none">Previous Email</button>
                                     <div class="btn-toolbar align-self-center" role="toolbar" aria-label="Toolbar with button groups">
                                         <div class="btn-group mr-2" role="group" aria-label="First group">
-                                            <button type="button" class="btn btn-info" data-value="Phishing_email" data-email="1">Phishing Email</button>
+                                            <button type="button" class="btn btn-outline-info" data-value="Phishing_email" data-email="{{ email.id }}">Phishing Email</button>
                                         </div>
                                         <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                            <button type="button" class="btn btn-outline-info" data-value="Legit_email" data-email="1">Legit Email</button>
+                                            <button type="button" class="btn btn-outline-info" data-value="Legit_email" data-email="{{ email.id }}">Legit Email</button>
                                         </div>
                                     </div>
+                                    <button type="button" class="btn btn-outline-info align-self-center next-btn">Next Email</button>
                                </div>
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    {% include 'email_template.html' with email_id=2 %}
-                                </div>
-                                <div class="row">
-                                    <div class="btn-toolbar align-self-center" role="toolbar" aria-label="Toolbar with button groups">
-                                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                                            <button type="button" class="btn btn-info" data-value="Phishing_email" data-email="2">Phishing Email</button>
-                                        </div>
-                                        <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                            <button type="button" class="btn btn-outline-info" data-value="Legit_email" data-email="2">Legit Email</button>
-                                        </div>
-                                    </div>
-                               </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    {% include 'email_template.html' with email_id=1 %}
-                                </div>
-                                <div class="row">
-                                    <div class="btn-toolbar align-self-center" role="toolbar" aria-label="Toolbar with button groups">
-                                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                                            <button type="button" class="btn btn-info" data-value="Phishing_email" data-email="3">Phishing Email</button>
-                                        </div>
-                                        <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                            <button type="button" class="btn btn-outline-info" data-value="Legit_email" data-email="3">Legit Email</button>
-                                        </div>
-                                    </div>
-                               </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    {% include 'email_template.html' with email_id=2 %}
-                                </div>
-                                <div class="row">
-                                    <div class="btn-toolbar align-self-center" role="toolbar" aria-label="Toolbar with button groups">
-                                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                                            <button type="button" class="btn btn-info" data-value="Phishing_email" data-email="4">Phishing Email</button>
-                                        </div>
-                                        <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                            <button type="button" class="btn btn-outline-info" data-value="Legit_email" data-email="4">Legit Email</button>
-                                        </div>
-                                    </div>
-                               </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
+{#                 <div class="row">#}
+                    <button type="button" class="btn btn-outline-light float-right submit-btn">Finish Game!</button>
+{#                </div>#}
             </div>
+
+
         </div>
+
     </div>
 {% endblock %}
 
 {% block extra_js %}
     <script type="application/javascript">
-       let emails_num = 4;
+       let emails_num = {{ emails|length }};
        let current_num = 1;
     </script>
     <script src="{% static "phishing_quiz/js/phishing_quiz.js" %}"></script>

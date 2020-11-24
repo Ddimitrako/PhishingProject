@@ -30,3 +30,24 @@
     font-weight:    bold;
     background-color: white!important;
 }
+
+.btn{
+    color:#fff;
+}
+
+.prev-btn{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.next-btn{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.submit-btn{
+    display: none;
+    margin-top: 0.5rem;
+}
