@@ -27,3 +27,11 @@ class PhishingEmailAssignmentAnswer(models.Model):
     )
 
 
+class PhishingEmailQuizScore(models.Model):
+    assignment = models.ForeignKey(
+        sbam_models.Assignment,
+        on_delete=models.PROTECT,
+        help_text=_('The assignment this answer belongs to')
+    )
+    score = models.FloatField(_('score'), help_text=_('Achieved score in phishing quiz'))
+

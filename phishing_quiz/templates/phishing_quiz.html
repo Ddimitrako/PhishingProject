@@ -69,6 +69,32 @@
         </div>
 
     </div>
+
+    <div class="modal fade bd-example-modal-lg" id="phishing_quiz_modal" tabindex="-1" role="dialog"
+         aria-labelledby="phishing_quiz_modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="password_strength_modalLabel">Results</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row alert alert-info"  role="alert">
+                                <div class="col-md-3 align-self-center">
+                                    Total Score
+                                </div>
+                                <div class="col-md-9 text-center total_score align-self-center"><span class="badge"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'sbam:dashboard' %}" class="btn btn-info" role="button">Finish</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block extra_js %}

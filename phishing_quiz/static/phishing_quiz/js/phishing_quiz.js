@@ -52,7 +52,9 @@ $(document).ready(function(){
         if(current_num > 1)
             $('.prev-btn').show();
 
-        answers_num++;
+        if(!('email_'+$(this).attr('data-email') in answers))
+            answers_num++;
+        
         answers['email_'+$(this).attr('data-email')] = {};
         answers['email_'+$(this).attr('data-email')]['answer'] = $(this).attr('data-value') === 'Phishing_email';
         answers['email_'+$(this).attr('data-email')]['id'] = $(this).attr('data-email');
@@ -105,8 +107,11 @@ $(document).ready(function(){
             dataType: 'json',
             url: 'phishing_quiz',
             data: results,
-            success: function (result) {
-               alert('gurisaaa');
+            success: function (response) {
+               $('#phishing_quiz_modal').modal('toggle');
+               $('.badge').addClass(response['score_badge']);
+               $('.badge').text(response['score'].toFixed(2) + '%');
+
             }
         })
     }

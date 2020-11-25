@@ -4,6 +4,7 @@ from phishing_quiz.models import *
 from phishing_quiz.forms import *
 from django.views.decorators.clickjacking import xframe_options_exempt
 import json
+from sbam_app.templatetags import custom_tags
 
 
 # Create your views here.
@@ -20,17 +21,23 @@ def phishing_quiz(request):
         labels = PhishingEmail.objects.filter(pk__in=emails_ids)
         print(labels)
         # campaign = sbam_models.Campaign(pk=13)
-        test_assignment = sbam_models.TestAssignment.objects.get(pk=52)
 
+        # na fernw to swsto assignment
+        test_assignment = sbam_models.TestAssignment.objects.get(pk=52)
+        correct_answers = 0
         for true_label, email in zip(labels, answers):
             print(true_label.is_phishing, answers[email]['answer'])
             new_answer = PhishingEmailAssignmentAnswer(email=true_label, user_answer=answers[email]['answer'], assignment=test_assignment)
             new_answer.save()
             if true_label.is_phishing == answers[email]['answer']:
-                print('Swsto')
+                correct_answers += 1
 
-
-        return JsonResponse({'mpompa': 1})
+        quiz_score = PhishingEmailQuizScore(assignment=test_assignment, score=correct_answers / len(labels) * 100)
+        quiz_score.save()
+        return JsonResponse({
+                             'score': correct_answers / len(labels) * 100,
+                             'score_badge': custom_tags.get_badge(str(correct_answers / len(labels) * 100)),
+                         })
 
     else:
 
