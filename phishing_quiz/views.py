@@ -7,7 +7,7 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 import json
 from sbam_app.templatetags import custom_tags
 from django.shortcuts import redirect
-from datetime import date, datetime
+from datetime import datetime
 
 
 # Create your views here.
@@ -17,19 +17,13 @@ def phishing_quiz(request, assignment_id):
 
         answers = json.loads(request.POST['data'])
         emails_ids = []
-        print(answers)
         for email in answers:
             emails_ids.append(int(answers[email]['id']))
 
         labels = PhishingEmail.objects.filter(pk__in=emails_ids)
-        print(labels)
-        # campaign = sbam_models.Campaign(pk=13)
-
-        # na fernw to swsto assignment
         test_assignment = sbam_models.TestAssignment.objects.get(pk=request.POST['ass_id'])
         correct_answers = 0
         for true_label, email in zip(labels, answers):
-            print(true_label.is_phishing, answers[email]['answer'])
             new_answer = PhishingEmailAssignmentAnswer(email=true_label, user_answer=answers[email]['answer'], assignment=test_assignment)
             new_answer.save()
             if true_label.is_phishing == answers[email]['answer']:
@@ -61,14 +55,6 @@ def phishing_quiz(request, assignment_id):
 def email_request(request, email_id):
 
     email = PhishingEmail.objects.get(id=email_id)
-    response_string = '<div class=\'sender-email\'>' \
-                      + email.sender_email \
-                      + '</div><div class=\'sender-display-name\'>' \
-                      + email.sender_display_name \
-                      + '<div class=\'email-content\'>' \
-                      + email.content + '</div>'
-
-    # return HttpResponse(response_string)
     current_time = datetime.now().strftime("%H:%M")
     current_time = current_time + ' PM' if datetime.now() > datetime.now().replace(hour=12, minute=0) else current_time + ' AM'
     return render(request, 'email_template.html', {'email': email,
@@ -86,9 +72,17 @@ def email_creation(request):
                                       sender_display_name=new_email_form.cleaned_data['sender_display_name'],
                                       content=handle_uploaded_file(request.FILES['email_file'])
                                       )
-            new_email.save()
-
-        return redirect('/')
+            # new_email.save()
+            return render(request, 'email_creation.html', {
+                'email_creation_form': new_email_form,
+                'message': 'success'
+            })
+        else:
+             return render(request, 'email_creation.html', {
+                'email_creation_form': PhishingEmailCreationForm(),
+                'message': new_email_form.errors
+            })
+        # return redirect('/')
     else:
         email_creation_form = PhishingEmailCreationForm()
         return render(request, 'email_creation.html', {
