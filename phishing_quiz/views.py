@@ -50,7 +50,7 @@ def phishing_quiz(request, assignment_id):
 
         # na dialegeis 10 random emails otan ftiaxtei
         # Na koitaei ti exei apanthsei kai se poia exei kanei lathos etsi wste na dinetai proteraiothta se auta
-        test_emails = PhishingEmail.objects.all()
+        test_emails = PhishingEmail.objects.filter(is_active=True)
         assignment = sbam_models.TestAssignment.objects.get(pk=assignment_id)
         return render(request, 'phishing_quiz.html', {'emails': test_emails,
                                                       'assignment_id': assignment.id,
@@ -68,8 +68,11 @@ def email_request(request, email_id):
                       + '<div class=\'email-content\'>' \
                       + email.content + '</div>'
 
-    return HttpResponse(response_string)
-
+    # return HttpResponse(response_string)
+    current_time = datetime.now().strftime("%H:%M")
+    current_time = current_time + ' PM' if datetime.now() > datetime.now().replace(hour=12, minute=0) else current_time + ' AM'
+    return render(request, 'email_template.html', {'email': email,
+                                                   'time': current_time})
 
 def email_creation(request):
     if request.method == 'POST':

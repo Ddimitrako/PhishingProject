@@ -4,20 +4,50 @@
 {% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
 
 {% block extra_head %}
-<link href="{% static "phishing_quiz/css/email-template.css" %}" rel="stylesheet">
+    <link href="{% static "phishing_quiz/css/email-template.css" %}" rel="stylesheet">
 {% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {{ email.content }}
-</body>
-</html>
+{% block breadcrumbs %}
 
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid" style="margin-top: 1.5rem;">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="sender-img" src="{% static 'phishing_emails/google profile name.png' %}">
+                <span class="display-name">
+                    {{ email.sender_display_name }}
+                </span>
+                <span class="sender-email">
+                    < {{ email.sender_email }} >
+                </span>
+            </div>
+            <div class="col-md-3" style="color: #a8a8a8;">
+                <span style="margin-left: .5rem">to me</span>
+                <span style="float: right; margin-right: 1rem;">{{ time }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="email-content">
+         {{ email.content|safe }}
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+     <script src="{% static 'admin-lte/plugins/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'admin-lte/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+
+    <script src="{% static 'admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js' %} "></script>
+    <script src="{% static "phishing_quiz/js/email_template.js" %}"></script>
+{% endblock %}
 
 
 
