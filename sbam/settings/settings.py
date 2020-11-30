@@ -51,6 +51,20 @@ EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = env('EMAIL_USE_TLS')
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono',
+        'toolbar': [['Format'],
+                    ['Bold', 'Italic', 'Undo', 'Redo'],
+                    ['Link', 'Unlink'],
+                    ['Image'],
+                    ['SpecialChar'],
+                    ['Source']],
+        'tabSpaces': 4,
+        'contentsCss': '/static/phishing_quiz/css/email-template.css',
+    }
+}
+
 # STATIC_URL = '/static/'
 
 # STATICFILES_DIRS = [
