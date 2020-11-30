@@ -20,15 +20,19 @@
     margin-left: .25rem;
 }
 
-/*table{*/
-/*    background-color: #d3d3d3 !important;*/
-/*}*/
-
-/*img {*/
-/*    width:  25px;*/
-/*    height: 25px;*/
-/*    object-fit: cover;*/
-/*}*/
+.dot {
+    height: 50px;
+    width: 50px;
+    background-color: #bbb;
+    border-radius: 50%;
+    font-size: 25px;
+    /*display: inline-block;*/
+    display: inline-flex; /* or inline-flex */
+    align-items: center;
+    justify-content: center;
+    margin-left: 2rem;
+    color: white;
+}
 
 * {
  font-size: 100%;
