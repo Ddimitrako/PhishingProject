@@ -151,6 +151,7 @@ $(document).ready(function(){
         // console.log(ajax_data);
         if(check_form() && check_length()){
             if(ajax_data["pass_1"] !== '' && ajax_data["pass_2"] !== '' && ajax_data["pass_3"] !== '') {
+                ajax_data['ass_id'] = ass_id;
                 $.ajax({
                     "type": "POST",
                     headers: {"X-CSRFToken": csrftoken},

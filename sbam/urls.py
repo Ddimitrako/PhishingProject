@@ -30,7 +30,7 @@ urlpatterns = [
     path('', include('sbam_app.urls')),
 
     #password strength app
-    path('tests/', include('password_strength_app.urls')),
+    path('', include('password_strength_app.urls')),
 
     #phishing_quiz
     path('tests/', include('phishing_quiz.urls')),
