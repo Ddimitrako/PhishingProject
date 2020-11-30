@@ -33,7 +33,7 @@ urlpatterns = [
     path('tests/', include('password_strength.urls')),
 
     #phishing_quiz
-    path('tests/', include('phishing_quiz.urls')),
+    path('', include('phishing_quiz.urls')),
 
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]

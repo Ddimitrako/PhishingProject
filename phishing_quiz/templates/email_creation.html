@@ -1,0 +1,32 @@
+{% extends "base_form.html" %}
+{% load static %}
+{% load i18n custom_tags %}
+
+{% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container container-fluid">
+            <h3 class="display-4 text-center">Email Creation Form</h3>
+            <p class="lead text-center">Upload your html source code with additional information</p>
+            <div class="card form-card border-info">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% crispy email_creation_form email_creation_form.general_info_helper %}
+                        {% csrf_token %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

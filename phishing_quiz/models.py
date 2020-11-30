@@ -3,12 +3,13 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.translation import gettext_lazy as _
 from sbam_app import models as sbam_models
 
+
 class PhishingEmail(models.Model):
     content = RichTextUploadingField()
     is_phishing = models.BooleanField()
     sender_email = models.CharField(_('sender_email'), max_length=100, help_text=_('Sender\'s Email'))
     sender_display_name = models.CharField(_('sender_display_name'), max_length=100, help_text=_('Sender\'s Name'))
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)
 
 
 class PhishingEmailAssignmentAnswer(models.Model):

@@ -97,10 +97,11 @@ $(document).ready(function(){
     })
 
     function submit_answers(){
-        // alert('edw')
+        // alert(ass_id)
         var csrftoken = getCookie('csrftoken');
         let results = {};
         results['data'] =  JSON.stringify(answers);
+        results['ass_id'] = ass_id;
         $.ajax({
             type: "POST",
             headers: {"X-CSRFToken": csrftoken},

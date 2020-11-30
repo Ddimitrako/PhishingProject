@@ -2,15 +2,18 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from phishing_quiz.models import *
 from phishing_quiz.forms import *
+
 from django.views.decorators.clickjacking import xframe_options_exempt
 import json
 from sbam_app.templatetags import custom_tags
+from django.shortcuts import redirect
+from datetime import date, datetime
 
 
 # Create your views here.
-def phishing_quiz(request):
+def phishing_quiz(request, assignment_id):
     if request.method == 'POST':
-        # print(request.POST['data'])
+        print(request.POST['ass_id'])
 
         answers = json.loads(request.POST['data'])
         emails_ids = []
@@ -23,7 +26,7 @@ def phishing_quiz(request):
         # campaign = sbam_models.Campaign(pk=13)
 
         # na fernw to swsto assignment
-        test_assignment = sbam_models.TestAssignment.objects.get(pk=52)
+        test_assignment = sbam_models.TestAssignment.objects.get(pk=request.POST['ass_id'])
         correct_answers = 0
         for true_label, email in zip(labels, answers):
             print(true_label.is_phishing, answers[email]['answer'])
@@ -34,6 +37,10 @@ def phishing_quiz(request):
 
         quiz_score = PhishingEmailQuizScore(assignment=test_assignment, score=correct_answers / len(labels) * 100)
         quiz_score.save()
+        assignment_result = sbam_models.AssignmentResult(assignment=test_assignment,
+                                                         score=correct_answers / len(labels), answer_time=datetime.now())
+
+        assignment_result.save()
         return JsonResponse({
                              'score': correct_answers / len(labels) * 100,
                              'score_badge': custom_tags.get_badge(str(correct_answers / len(labels) * 100)),
@@ -44,12 +51,51 @@ def phishing_quiz(request):
         # na dialegeis 10 random emails otan ftiaxtei
         # Na koitaei ti exei apanthsei kai se poia exei kanei lathos etsi wste na dinetai proteraiothta se auta
         test_emails = PhishingEmail.objects.all()
+        assignment = sbam_models.TestAssignment.objects.get(pk=assignment_id)
         return render(request, 'phishing_quiz.html', {'emails': test_emails,
+                                                      'assignment_id': assignment.id,
                                                       'progress_bar': 1 / len(test_emails) * 100})
+
 
 @xframe_options_exempt
 def email_request(request, email_id):
-    print(email_id)
+
     email = PhishingEmail.objects.get(id=email_id)
-    print(email.content)
-    return HttpResponse(email.content)
+    response_string = '<div class=\'sender-email\'>' \
+                      + email.sender_email \
+                      + '</div><div class=\'sender-display-name\'>' \
+                      + email.sender_display_name \
+                      + '<div class=\'email-content\'>' \
+                      + email.content + '</div>'
+
+    return HttpResponse(response_string)
+
+
+def email_creation(request):
+    if request.method == 'POST':
+        new_email_form = PhishingEmailCreationForm(request.POST, request.FILES)
+        print(new_email_form.errors)
+        print(new_email_form.is_valid())
+        if new_email_form.is_valid():
+
+            new_email = PhishingEmail(sender_email=new_email_form.cleaned_data['sender_email'],
+                                      is_phishing= new_email_form.cleaned_data['is_phishing'],
+                                      sender_display_name=new_email_form.cleaned_data['sender_display_name'],
+                                      content=handle_uploaded_file(request.FILES['email_file'])
+                                      )
+            new_email.save()
+
+        return redirect('/')
+    else:
+        email_creation_form = PhishingEmailCreationForm()
+        return render(request, 'email_creation.html', {
+            'email_creation_form': email_creation_form
+        })
+
+
+def handle_uploaded_file(f):
+    email_content = ''
+    for chunk in f.chunks():
+        email_content += chunk.decode('utf-8')
+    return email_content
+

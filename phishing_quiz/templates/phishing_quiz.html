@@ -9,7 +9,10 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-    <li class="breadcrumb-item active"><a href="{% url 'password_strength:password_strength' %}">{% trans "Password Strength" %}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "assignments"|capfirst %}</a></li>
+
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:dashboard' %}">Tests</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'phishing_quiz:phishing_quiz' assignment_id %}">{% trans "Phishing Quiz" %}</a></li>
 {% endblock %}
 
 {% block content %}
@@ -101,6 +104,7 @@
     <script type="application/javascript">
        let emails_num = {{ emails|length }};
        let current_num = 1;
+       let ass_id = {{ assignment_id|safe }};
     </script>
     <script src="{% static "phishing_quiz/js/phishing_quiz.js" %}"></script>
 {% endblock %}
