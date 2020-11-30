@@ -84,7 +84,11 @@
                                                 {% if act_ass.questionnaire %}
                                                     <a class="btn btn-sm btn-success ass-btn" href="{% url 'sbam:assignments' act_ass.id %}" role="button">{% trans "Start!" %}</a>
                                                 {% else %}
-                                                    <a class="btn btn-sm btn-success ass-btn" href="{% url 'phishing_quiz:phishing_quiz' act_ass.id %}" role="button">{% trans "Start!" %}</a>
+                                                    {% if act_ass.test.title == 'Password Strength Test' %}
+                                                        <a class="btn btn-sm btn-success ass-btn" href="{% url 'password_strength_app:password_strength' act_ass.id %}" role="button">{% trans "Start!" %}</a>
+                                                    {% elif act_ass.test.title == 'Phishing Quiz' %}
+                                                        <a class="btn btn-sm btn-success ass-btn" href="{% url 'phishing_quiz:phishing_quiz' act_ass.id %}" role="button">{% trans "Start!" %}</a>
+                                                    {% endif %}
                                                 {% endif %}
                                             </div>
                                         </li>
