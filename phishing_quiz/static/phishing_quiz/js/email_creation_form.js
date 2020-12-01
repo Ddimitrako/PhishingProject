@@ -1,40 +1,50 @@
 $(document).ready(function(){
     if(message === 'success'){
-        // $.notifyDefaults({
-        //         url_target: "_self"
-        //     });
-        $.notify( 'Email successfully created! Click to return to Home',{
-                element: 'body',
-               allow_dismiss: false,
-               url: "/",
-               offset: {
-                   y: 80,
-                   x: 20
-               },
-                type: 'success',
-            animate: {
-                enter: 'animated fadeInRight',
-                exit: 'animated fadeOutRight'
-            },
-            delay: 5000,
-        });
+        toastr["success"]("Your email was successfully created! Now you can return to the Dashboard")
+
+        toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+        }
+
+        $('.submit-btn').on('click', function (event){
+            event.preventDefault();
+        })
     }
     else if(message !== ''){
-        $.notify( message,{
-                element: 'body',
-               allow_dismiss: false,
-               url: "/",
-               offset: {
-                   y: 80,
-                   x: 20
-               },
-                type: 'danger',
-            animate: {
-                enter: 'animated fadeInRight',
-                exit: 'animated fadeOutRight'
-            },
-            delay: 5000,
-        });
+
+        toastr["error"](message)
+
+        toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+        }
     }
 
     // alert(message);

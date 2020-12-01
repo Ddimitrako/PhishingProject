@@ -72,7 +72,7 @@ def email_creation(request):
                                       sender_display_name=new_email_form.cleaned_data['sender_display_name'],
                                       content=handle_uploaded_file(request.FILES['email_file'])
                                       )
-            # new_email.save()
+            new_email.save()
             return render(request, 'email_creation.html', {
                 'email_creation_form': new_email_form,
                 'message': 'success'
