@@ -59,10 +59,6 @@ INSTALLED_APPS = [
     #Password validator
     'zxcvbn_password',
 
-    #ckeditor
-    'ckeditor',
-    'ckeditor_uploader',
-
 ]
 
 AUTHENTICATION_BACKENDS = (

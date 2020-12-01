@@ -34,6 +34,4 @@ urlpatterns = [
 
     #phishing_quiz
     path('', include('phishing_quiz.urls')),
-
-    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
