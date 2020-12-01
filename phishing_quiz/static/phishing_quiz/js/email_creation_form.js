@@ -20,9 +20,7 @@ $(document).ready(function(){
               "hideMethod": "fadeOut"
         }
 
-        $('.submit-btn').on('click', function (event){
-            event.preventDefault();
-        })
+        $('#submit-id-submit').hide();
     }
     else if(message !== ''){
 
@@ -47,5 +45,4 @@ $(document).ready(function(){
         }
     }
 
-    // alert(message);
 });

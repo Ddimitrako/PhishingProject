@@ -31,13 +31,9 @@ python-dateutil
 whitenoise
 
 #Password Validator
-zxcvbn-4.4.28
-django-zxcvbn-password-2.1.0
-
-# CK Editor
-'django-ckeditor',
 zxcvbn==4.4.28
 django-zxcvbn-password==2.1.0
 
+
 #password-strength
-password-strength-0.0.3.post2
+password-strength==0.0.3.post2

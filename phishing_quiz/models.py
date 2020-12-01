@@ -5,7 +5,7 @@ from sbam_app import models as sbam_models
 
 
 class PhishingEmail(models.Model):
-    content = RichTextUploadingField()
+    content = models.TextField(help_text=_('Email content'), default='')
     is_phishing = models.BooleanField()
     sender_email = models.CharField(_('sender_email'), max_length=100, help_text=_('Sender\'s Email'))
     sender_display_name = models.CharField(_('sender_display_name'), max_length=100, help_text=_('Sender\'s Name'))
