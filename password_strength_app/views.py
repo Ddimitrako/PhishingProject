@@ -72,20 +72,45 @@ def password_strength(request, assignment_id):
         test_assignment = TestAssignment.objects.get(pk=request.POST['ass_id'])
         print(current_user.userprofile.birth_date.strftime('%Y'))
 
-        if current_user.username.lower() in pass_1.lower() or current_user.password.lower() in pass_1.lower() or current_user.first_name.lower() in pass_1.lower() \
-                or current_user.last_name.lower() in pass_1.lower() or current_user.userprofile.birth_date.strftime('%Y') in pass_1\
-                or current_user.userprofile.birth_date.strftime('%m') in pass_1 or current_user.userprofile.birth_date.strftime('%d') in pass_1:
+        pass1_has_pers_info = False
+        if current_user.username.lower() in pass_1.lower() or current_user.password.lower() in pass_1.lower() or current_user.first_name.lower() in pass_1.lower()\
+                or current_user.last_name.lower() in pass_1.lower()  in pass_1:
             result_dict['pass_1']['suggestions'].append('You should avoid using words found in your personal information')
+            pass1_has_pers_info = True
 
+        pass2_has_pers_info = False
         if current_user.username.lower() in pass_2.lower() or current_user.password.lower() in pass_2.lower() or current_user.first_name.lower() in pass_2.lower() \
-                or current_user.last_name.lower() in pass_2.lower() or current_user.userprofile.birth_date.strftime('%Y') in pass_2\
-                or current_user.userprofile.birth_date.strftime('%m') in pass_2 or current_user.userprofile.birth_date.strftime('%d') in pass_2:
+                or current_user.last_name.lower() in pass_2.lower():
             result_dict['pass_2']['suggestions'].append('You should avoid using words found in your personal information')
+            pass2_has_pers_info = True
 
+        pass3_has_pers_info = False
         if current_user.username.lower() in pass_3.lower() or current_user.password.lower() in pass_3.lower() or current_user.first_name.lower() in pass_3.lower() \
-                or current_user.last_name.lower() in pass_3.lower() or current_user.userprofile.birth_date.strftime('%Y') in pass_3\
-                or current_user.userprofile.birth_date.strftime('%m') in pass_3 or current_user.userprofile.birth_date.strftime('%d') in pass_3:
+                or current_user.last_name.lower() in pass_3.lower():
             result_dict['pass_3']['suggestions'].append('You should avoid using words found in your personal information')
+            pass2_has_pers_info = False
+
+
+        if not pass1_has_pers_info:
+            if current_user.userprofile.birth_date:
+                if current_user.userprofile.birth_date.strftime('%Y') in pass_1\
+                    or current_user.userprofile.birth_date.strftime('%m') in pass_1 or current_user.userprofile.birth_date.strftime('%d') in pass_1:
+                    result_dict['pass_1']['suggestions'].append(
+                        'You should avoid using words found in your personal information')
+
+        if not pass2_has_pers_info:
+            if current_user.userprofile.birth_date:
+                if current_user.userprofile.birth_date.strftime('%Y') in pass_2\
+                    or current_user.userprofile.birth_date.strftime('%m') in pass_2 or current_user.userprofile.birth_date.strftime('%d') in pass_2:
+                    result_dict['pass_2']['suggestions'].append(
+                        'You should avoid using words found in your personal information')
+
+        if not pass3_has_pers_info:
+            if current_user.userprofile.birth_date:
+                if current_user.userprofile.birth_date.strftime('%Y') in pass_3\
+                    or current_user.userprofile.birth_date.strftime('%m') in pass_3 or current_user.userprofile.birth_date.strftime('%d') in pass_3:
+                    result_dict['pass_3']['suggestions'].append(
+                        'You should avoid using words found in your personal information')
 
 
 
