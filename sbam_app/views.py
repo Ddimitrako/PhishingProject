@@ -1111,6 +1111,29 @@ def get_campaign_report(request, campaign_id):
         for domain in dim['domains']:
             domain.pop('description', None)
 
+    data['assignees'] = []
+    data['tests'] = []
+    assignees = list(Assignment.objects.filter(campaign=campaign_id). \
+                     values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title',
+                                 'user__userprofile__department'). \
+                     distinct().order_by('user__last_name').values('user__first_name', 'user__last_name'))
+    #
+    for assignee in assignees:
+        data['assignees'].append(({
+            'first_name': assignee['user__first_name'],
+            'last_name': assignee['user__last_name']
+        }))
+
+
+    tests = list(TestAssignment.objects.filter(campaign=campaign_id).
+         order_by('test__title').distinct('test__title').values('test__title', 'assignmentresult__score'))
+
+    for test in tests:
+        data['tests'].append(({
+            'title': test['test__title'],
+            'score': test['assignmentresult__score']
+        }))
+
     return JsonResponse({'metrics': data})
 
 
@@ -1155,11 +1178,59 @@ def get_group_report(request, group_id):
 
     return JsonResponse({'metrics': data})
 
+
 def get_campaigns(request):
     months = 24
+    campaigns_json = {
+        'data': []
+    }
     if 'time_period' in request.GET:
         print(request.GET.get('time_period'))
         months = int(request.GET.get('time_period'))
-    campaigns_json = list(Campaign.objects.filter(end_date__gte=date.today() - relativedelta(months=months)).values())
-    print(campaigns_json)
-    return JsonResponse({'data': campaigns_json})
+    campaigns = Campaign.objects.filter(end_date__gte=date.today() - relativedelta(months=months))
+
+    for campaign in campaigns:
+        campaign_dict = {
+            'id': campaign.pk,
+            'title': campaign.title,
+            'creation_date': campaign.creation_date,
+            'start_date': campaign.start_date,
+            'end_date': campaign.end_date,
+            'description': campaign.description,
+            'owner': campaign.owner.first_name + ' ' + campaign.owner.last_name,
+            'is_canceled': campaign.is_cancelled,
+            'assignees': [],
+            'questionnaires': [],
+            'tests': []
+        }
+        assignees = list(Assignment.objects.filter(campaign=campaign). \
+            values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title',
+                        'user__userprofile__department'). \
+            distinct().order_by('user__last_name').values('user__first_name', 'user__last_name'))
+
+        for assignee in assignees:
+            campaign_dict['assignees'].append(({
+                'first_name': assignee['user__first_name'],
+                'last_name': assignee['user__last_name']
+            }))
+
+        questionnaires = list(QuestionnaireAssignment.objects.filter(campaign=campaign). \
+            order_by('questionnaire__title').distinct('questionnaire__title').values('questionnaire__title'))
+
+        for quest in questionnaires:
+            campaign_dict['questionnaires'].append(({
+                'title': quest['questionnaire__title'],
+            }))
+
+        tests = list(TestAssignment.objects.filter(campaign=campaign). \
+            values_list('test__title', 'test__domain__dimension__level'). \
+            order_by('test__title').distinct('test__title').values('test__title'))
+
+        for test in tests:
+            campaign_dict['tests'].append(({
+                'title': test['test__title'],
+            }))
+
+        campaigns_json['data'].append(campaign_dict)
+
+    return JsonResponse(campaigns_json)
