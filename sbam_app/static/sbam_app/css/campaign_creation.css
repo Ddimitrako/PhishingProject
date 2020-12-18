@@ -76,3 +76,7 @@
     background-color: #284767;
     border-color: transparent;
 }
+
+textarea[name="description"]{
+    height: 60px; !important;
+}

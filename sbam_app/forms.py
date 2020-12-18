@@ -214,7 +214,7 @@ class CampaignCreationForm(forms.ModelForm):
 
     class Meta:
         model = models.Campaign
-        fields = ('title', 'start_date', 'end_date')
+        fields = ('title', 'start_date', 'end_date', 'description')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -232,6 +232,9 @@ class CampaignCreationForm(forms.ModelForm):
             Row(
                 Column(AppendedText('end_date', mark_safe('<i class="fas fa-calendar-alt"></i>'),
                                     css_class='datepicker end-date-pick', autocomplete="off"), css_class='col-md-12'),
+            ),
+            Row(
+                Column('description', css_class='col-md-12'),
             ),
 
         )

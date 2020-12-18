@@ -21,6 +21,7 @@ from django.utils.decorators import method_decorator
 
 from sbam_app.forms import *
 from sbam_app.models import *
+from django.core import serializers
 
 
 #
@@ -826,10 +827,12 @@ def create_campaign(request):
         tests = json.loads(request.POST['tests'])
         title = request.POST['title']
         start_date = request.POST['start_date']
+        description = request.POST['description']
         end_date = request.POST['end_date']
         try:
             with transaction.atomic():
-                new_campaign = Campaign(title=title, creation_date=date.today(), start_date=start_date, end_date=end_date, owner=current_user)
+                new_campaign = Campaign(title=title, creation_date=date.today(), start_date=start_date,
+                                        end_date=end_date, owner=current_user, description=description)
                 new_campaign.save()
 
                 # Getting the selected users to ass
@@ -1090,13 +1093,14 @@ def get_organizational_report(request):
         for domain in dim['domains']:
             domain.pop('description', None)
 
+    print(data)
     return JsonResponse({'metrics': data})
 
 
 def get_campaign_report(request, campaign_id):
     months = 24
-    assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
-         campaign__end_date__gte=date.today() - relativedelta(months=months), campaign_id=campaign_id)\
+
+    assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, campaign_id=campaign_id)\
         .order_by('questionnaire', 'user')
     dimensions = Dimension.objects.order_by('level', 'title')
     data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
@@ -1112,6 +1116,10 @@ def get_campaign_report(request, campaign_id):
 
 def get_user_report(request, user_id):
     months = 24
+    if 'time_period' in request.GET:
+        print(request.GET.get('time_period'))
+        months = int(request.GET.get('time_period'))
+
     assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
          campaign__end_date__gte=date.today() - relativedelta(months=months), user_id=user_id, questionnaire__domain__dimension=1)\
         .order_by('questionnaire', 'user')
@@ -1129,6 +1137,10 @@ def get_user_report(request, user_id):
 
 def get_group_report(request, group_id):
     months = 24
+    if 'time_period' in request.GET:
+        print(request.GET.get('time_period'))
+        months = int(request.GET.get('time_period'))
+
     assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
          campaign__end_date__gte=date.today() - relativedelta(months=months), user__groups__in=[group_id])\
         .order_by('questionnaire', 'user')
@@ -1142,3 +1154,12 @@ def get_group_report(request, group_id):
             domain.pop('description', None)
 
     return JsonResponse({'metrics': data})
+
+def get_campaigns(request):
+    months = 24
+    if 'time_period' in request.GET:
+        print(request.GET.get('time_period'))
+        months = int(request.GET.get('time_period'))
+    campaigns_json = list(Campaign.objects.filter(end_date__gte=date.today() - relativedelta(months=months)).values())
+    print(campaigns_json)
+    return JsonResponse({'data': campaigns_json})

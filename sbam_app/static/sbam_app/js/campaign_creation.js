@@ -208,6 +208,7 @@ $(document).ready(function(){
             const title = $('#id_title').val();
             const start_date = $('#id_start_date').val();
             const end_date = $('#id_end_date').val();
+            const descr = $('#id_description').val()
             const ajax_data = {};
             var csrftoken = getCookie('csrftoken');
             const domain_len = questTree.selectedNodes.length;
@@ -238,6 +239,7 @@ $(document).ready(function(){
             ajax_data["title"] = title;
             ajax_data["start_date"] = start_date;
             ajax_data["end_date"] = end_date;
+            ajax_data["description"] = descr;
             ajax_data["quests"] = JSON.stringify(domains);
             ajax_data["users"] =  JSON.stringify(users);
             ajax_data["tests"] =  JSON.stringify(tests);

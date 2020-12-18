@@ -55,6 +55,7 @@ class Campaign(Model):
     creation_date = DateField(_('creation date'), help_text=_('Campaign creation date'))
     start_date = DateField(_('start date'), help_text=_('Campaign start date'))
     end_date = DateField(_('end date'), help_text=_('Campaign end date'))
+    description = TextField(_('description'), help_text=_('Campaign\'s description'))
     owner = ForeignKey(
         User,
         verbose_name=_('owner'),
