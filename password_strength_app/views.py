@@ -69,8 +69,6 @@ def password_strength(request, assignment_id):
             result_dict['pass_3']['suggestions'].append('You should include special characters, such as @#!$')
 
         current_user = User.objects.get(pk=request.user.id)
-        test_assignment = TestAssignment.objects.get(pk=request.POST['ass_id'])
-        print(current_user.userprofile.birth_date.strftime('%Y'))
 
         pass1_has_pers_info = False
         if current_user.username.lower() in pass_1.lower() or current_user.password.lower() in pass_1.lower() or current_user.first_name.lower() in pass_1.lower()\
