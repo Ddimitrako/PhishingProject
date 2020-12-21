@@ -26,21 +26,21 @@ urlpatterns = [
     # Users
     path('users/', UsersView.as_view(), name='users'),
     path('users/profile/<username>/', profile, name='profile'),
-    path('users/profile/<username>/enable', enable_user, name='enable_user'),
-    path('users/profile/<username>/disable', disable_user, name='disable_user'),
+    path('users/profile/<username>/enable/', enable_user, name='enable_user'),
+    path('users/profile/<username>/disable/', disable_user, name='disable_user'),
     path('users/create_user/', create_user, name='create_user'),
 
     # Groups
     path('groups/', GroupsView.as_view(), name='groups'),
     path('groups/group/<name>/', group, name='group'),
-    path('groups/group/<name>/enable', enable_group, name='enable_group'),
-    path('groups/group/<name>/disable', disable_group, name='disable_group'),
+    path('groups/group/<name>/enable/', enable_group, name='enable_group'),
+    path('groups/group/<name>/disable/', disable_group, name='disable_group'),
     path('groups/create_group/', create_group, name='create_group'),
 
     # Campaigns
     path('campaigns/', CampaignsView.as_view(), name='campaigns'),
     path('campaigns/campaign/<id>/', campaign, name='campaign'),
-    path('campaigns/campaign/<id>/cancel', cancel_campaign, name='cancel_campaign'),
+    path('campaigns/campaign/<id>/cancel/', cancel_campaign, name='cancel_campaign'),
     path('campaigns/create_campaign/', create_campaign, name='create_campaign'),
 
     # Reports
@@ -49,10 +49,10 @@ urlpatterns = [
     path('get_user_metrics/', get_user_metrics, name='get_user_metrics'),
 
     #results REST API
-    path('api/metrics/organization', get_organizational_report, name='organization_report'),
+    path('api/metrics/organization/', get_organizational_report, name='organization_report'),
     path('api/metrics/campaigns/<campaign_id>/', get_campaign_report, name='campaign_report'),
     path('api/metrics/user/<user_id>/', get_user_report, name='user_report'),
     path('api/metrics/group/<group_id>/', get_group_report, name='group_report'),
-    path('api/metrics/campaigns', get_campaigns, name='get_campaigns')
+    path('api/metrics/campaigns/', get_campaigns, name='get_campaigns')
 
 ]
