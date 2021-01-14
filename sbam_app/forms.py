@@ -359,3 +359,33 @@ def get_campaign_form_trees(logged_user):
         'tests_dict': tests_dict,
     }
     return tree
+
+
+class PhishingTestEmailCreationForm(forms.Form):
+    # class Meta:
+    #     fields = ('is_phishing', 'sender_email', 'sender_display_name', 'email_file')
+
+    is_phishing = forms.TypedChoiceField(
+        label="Is a Phishing email?",
+        choices=((1, "Yes"), (0, "No")),
+        coerce=lambda x: bool(int(x)),
+        widget=forms.RadioSelect,
+        initial='1',
+        required=True,
+    )
+    email_file = forms.FileField()
+
+    def __init__(self, *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
+
+        self.general_info_helper = FormHelper()
+        self.general_info_helper.layout = Layout(
+            Row(
+                Column('is_phishing', css_class='form-group col-md-4  mb-0'),
+                Column('email_file', css_class='form-group col-md-4 offset-md-1 mb-0'),
+                css_class='form-row'
+            ),
+        )
+
+

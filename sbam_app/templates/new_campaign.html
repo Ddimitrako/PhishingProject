@@ -7,6 +7,9 @@
     {{ campaign_form.media }}
     <link href="{% static "sbam_app/css/campaign_creation.css" %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href='{% static 'admin-lte/plugins/daterangepicker/daterangepicker.css' %}'/>
+    <link rel="stylesheet" type="text/css" href='{% static 'admin-lte/plugins/select2/css/select2.css' %}'/>
+    <link rel="stylesheet" type="text/css" href='{% static "admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.css" %}'/>
+{#    <link rel="stylesheet" type="text/css" href='{% static "vendor/select2-bootstrap4-theme/dist/select2-bootstrap4.css"%}' />#}
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -112,9 +115,18 @@
                                     {% crispy campaign_form campaign_form.general_info_helper %}
                                 </li>
                                 <li class="list-group-item p-0 border-0 mb-3">
-                                    <button type="button" class="btn btn-success btn-sm" id="create_campaign_btn"
-                                            title="{% trans "Create new campaign" %}">Create Campaign
-                                    </button>
+                                    <div class="row">
+                                        <div class="col col-md-6">
+                                            <button type="button" class="btn btn-success btn-sm" id="create_campaign_btn"
+                                                title="{% trans "Create new campaign" %}">Create Campaign
+                                            </button>
+                                        </div>
+                                        <div class="col col-md-6">
+                                            <button type="button" class="btn btn-primary btn-sm float-right" id="edit_phishing_test" style="display: none;"
+                                                title="{% trans "Edit Phishing Test" %}">Edit Phishing Test
+                                            </button>
+                                        </div>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -122,6 +134,40 @@
                 </div>
             </div>
         </form>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="PhishingTestModal" tabindex="-1" role="dialog"
+         aria-labelledby="PhishingTestModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="PhishingTestModalLabel">Well Done!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% crispy test_email_form test_email_form.general_info_helper %}
+{#                        data-detail-view="true">#}
+                        <label for="id_label_multiple">
+                            Click this to highlight the single select element
+                            <select class="js-example-basic-multiple" name="states[]" id="id_label_multiple" multiple="multiple" style="width: 100%">
+                            </select>
+                            <hr>
+                            <select class="js-example-basic-multiple" name="states[]" id="id_label_multiple" multiple="multiple" style="width: 100%">
+                            </select>
+                            <hr>
+                            <select class="js-example-basic-multiple" name="states[]" id="id_label_multiple" multiple="multiple" style="width: 100%">
+                            </select>
+                            <hr>
+                        </label>
+
+                </div>
+                <div class="modal-footer">
+{#                    <a href="{% url 'sbam:dashboard' %}" class="btn btn-outline-info" role="button">Close</a>#}
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="modal fade bd-example-modal-lg" id="campaignSuccessModal" tabindex="-1" role="dialog"
@@ -172,11 +218,16 @@
 
 
 {% block  extra_js %}
+    <script src="{% static "admin-lte/plugins/select2/js/select2.min.js" %}"></script>
     <script src="{% static "admin-lte/plugins/moment/moment-with-locales.js" %}"></script>
     <script src='{% static 'admin-lte/plugins/daterangepicker/daterangepicker.js' %}'></script>
     <script src="{% static "sbam_app/js/tree.min.js" %}"></script>
 
     <script type="application/javascript">
+        $('.js-example-basic-multiple').select2();
+        $(".js-example-theme-multiple").select2({
+          theme: "bootstrap4"
+        });
         let questtreeData = {{ campaign_form_trees.dimensions_dict | safe }};
         let usertreeData = {{ campaign_form_trees.users_dict | safe }};
         let testTreeData = {{ campaign_form_trees.tests_dict | safe }};

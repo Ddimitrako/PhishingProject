@@ -874,6 +874,7 @@ def create_campaign(request):
 
         return render(request, 'new_campaign.html',
                       {'campaign_form': CampaignCreationForm(),
+                       'test_email_form': PhishingTestEmailCreationForm(),
                        'campaign_form_trees': campaign_form_trees})
 
 # @advanced_users_only

@@ -60,6 +60,7 @@ $(document).ready(function(){
 
             onChange: function() {
                 // $("#selected_users").delete
+                $('#id_label_multiple').val(null).trigger('change');
                 document.getElementById("selected_users").deleteTHead();
                 $("#selected_users tr").remove();
                 //console.log(this.selectedNodes);
@@ -78,15 +79,24 @@ $(document).ready(function(){
                 else
                     $('.sel-usr-par').show();
 
-
+                let ids = [];
                 for(var i=0; i < len; i++){
+
                     if (!this.selectedNodes[i].id.includes('users')) {
                         if(this.selectedNodes[i].id.includes('user'))
                             $("#selected_users tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 80%'>" + this.selectedNodes[i].text + "</td><td style='width: 20%'>User</td></tr>");
                         else
                             $("#selected_users tbody").append("<tr><th class='sel_index'>" + i + "</th><td style='width: 80%'>" + this.selectedNodes[i].text + "</td><td style='width: 20%'>Group</td></tr>");
+                        var data = {
+                            id: this.selectedNodes[i].id,
+                            text: this.selectedNodes[i].text
+                        };
+                         var newOption = new Option(data.text, data.id, false, false);
+                        $('#id_label_multiple').append(newOption).trigger('change');
+                        ids.push(this.selectedNodes[i].id);
                     }
                 }
+                $('#id_label_multiple').val(ids);
             },
         });
     }
@@ -119,6 +129,11 @@ $(document).ready(function(){
             let idx = 1;
             for (var i = 0; i < len; i++) {
                 if (this.selectedNodes[i].id.includes('test')) {
+                    if(this.selectedNodes[i].text === 'Phishing Email Test'){
+                         $('#edit_phishing_test').show();
+                         // alert('edw');
+                    }
+
                     $("#selected_tests tbody").append("<tr><th class='sel_index'>" + idx + "</th><td style='width: 70%'>"
                         + this.selectedNodes[i].text + "</td></tr>");
                     idx++;
@@ -199,6 +214,14 @@ $(document).ready(function(){
         }
         return 1;
     }
+
+    $('#edit_phishing_test').click(function (){
+         $('#PhishingTestModal').modal('toggle');
+        //  for(var i=0; i < len; i++){
+        //
+        //
+        // }
+    })
 
 
 
