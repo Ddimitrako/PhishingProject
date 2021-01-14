@@ -1,0 +1,22 @@
+id	type	text_en	options_en
+1	AGR5_N	It's acceptable to use my social media passwords on my work accounts.
+2	AGR5_N	I am allowed to share my work passwords with colleagues.
+3	AGR5_P	A mixture of letters, numbers and symbols is necessary for work passwords.
+4	AGR5_N	I am allowed to click on any links in emails from people I know.
+5	AGR5_P	I am not permitted to click on a link in an email from an unknown sender.
+6	AGR5_N	I am allowed to open email attachments from unknown senders.
+7	AGR5_N	I am allowed to download any files onto my work computer if they help me to do my job.
+8	AGR5_P	While I am at work, I shouldnt't access certain websites.
+9	AGR5_N	I am allowed to enter my information on any website if it helps me do my job.
+10	AGR5_P	I must periodically review the privacy settings on my social media accounts.
+11	AGR5_N	I can't be fired for something I post on social media.
+12	AGR5_N	I can post what I want about work on social media.
+13	AGR5_P	When working in a public place, I have to keep my laptop with me at all times.
+14	AGR5_N	I am allowed to send sensitive work files via a public Wi-Fi network.
+15	AGR5_P	When working on a sensitive document, I must ensure that strangers can't see my laptop screen.
+16	AGR5_N	Sensitive print-outs can be disposed of in the same way as non-sensitive ones.
+17	AGR5_P	If I find a USB stick in a public place, I shouldn't plug it into my work computer.
+18	AGR5_N	I am allowed to leave print-outs containing sensitive information on my desk overnight.
+19	AGR5_P	If I see someone acting suspiciously in my workplace, I should report it.
+20	AGR5_P	I must not ignore poor security behaviour by my colleagues.
+21	AGR5_N	It's optional to report security incidents.

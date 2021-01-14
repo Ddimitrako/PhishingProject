@@ -46,5 +46,77 @@
     "fields": {
       "type": "AGR5_N"
     }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "AGR9_P"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "AGR9_N"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "FREQ4_P"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "FREQ4_N"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "FREQ5_P"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "FREQ5_N"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "LIK7_P"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "LIK7_N"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "RISK7_P"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "RISK7_N"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "CHAR5_P"
+    }
+  },
+  {
+    "model": "sbam_app.QuestionType",
+    "fields": {
+      "type": "CHAR5_N"
+    }
   }
 ]
