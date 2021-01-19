@@ -1,0 +1,17 @@
+id	type	text_en	options_en
+1	FREQ5_P	I set my computer screen to automatically lock if I don't use it for a prolonged period of time.
+2	FREQ5_P	I use a password/passcode to unlock my laptop or tablet.	
+3	FREQ5_P	I manually lock my computer screen when I step away from it.	
+4	FREQ5_P	I use a PIN or passcode to unlock my mobile phone.	
+5	FREQ5_N	I do not change my passwords, unless I have to.	
+6	FREQ5_P	I use different passwords for different accounts that I have.	
+7	FREQ5_P	When I create a new online account, I try to use a password that goes beyond the site's minimum requirements.
+8	FREQ5_N	I do not include special characters in my password if it's not required.
+9	FREQ5_N	When someone sends me a link, I open it without first verifying where it goes.	
+10	FREQ5_N	I know what website I'm visiting based on its look and feel, rather than by looking at the URL bar.
+11	FREQ5_N	I submit information to websites without first verifying that it will be sent securely (e.g., SSL, 'https://', a lock icon).	
+12	FREQ5_P	When browsing websites, I mouseover links to see where they go, before clicking them.	
+13	FREQ5_N	If I discover a security problem, I continue what I was doing because I assume someone else will fix it.	
+14	FREQ5_P	When I'm prompted about a software update, I install it right away.
+15	FREQ5_P	I try to make sure that the programs I use are up-to-date.	
+16	FREQ5_P	I verify that my anti-virus software has been regularly updating itself.

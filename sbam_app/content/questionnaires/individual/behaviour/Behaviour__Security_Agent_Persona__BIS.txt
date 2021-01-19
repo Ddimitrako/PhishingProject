@@ -1,0 +1,31 @@
+id	type	text_en	options_en
+1	FREQ4_P	I plan tasks carefully.
+2	FREQ4_N	I do things without thinking.
+3	FREQ4_N	I make-up my mind quickly.
+4	FREQ4_N	I am happy-go-lucky.
+5	FREQ4_N	I don't 'pay attention'.
+6	FREQ4_N	I have 'racing' thoughts.
+7	FREQ4_P	I plan trips well ahead of time.
+8	FREQ4_P	I am self-controlled.
+9	FREQ4_P	I concentrate easily.
+10	FREQ4_P	I save regularly.
+11	FREQ4_N	I 'squirm' at plays or lectures.
+12	FREQ4_P	I am a careful thinker.
+13	FREQ4_P	I plan for job security.
+14	FREQ4_N	I say things without thinking.
+15	FREQ4_P	I like to think about complex problems.
+16	FREQ4_N	I change jobs.
+17	FREQ4_N	I act 'on impulse'.
+18	FREQ4_N	I get easily bored when solving thought problems.
+19	FREQ4_N	I act on the spur of the moment.
+20	FREQ4_P	I am a steady thinker.
+21	FREQ4_N	I change residences.
+22	FREQ4_N	I buy things on impulse.
+23	FREQ4_N	I can only think about one problem at a time.
+24	FREQ4_N	I change hobbies.
+25	FREQ4_N	I spend or charge more than I earn.
+26	FREQ4_N	I often have extraneous thoughts when thinking.
+27	FREQ4_N	I am more interested in the present than the future.
+28	FREQ4_N	I am restless at the theater or lectures.
+29	FREQ4_P	I like puzzles.
+30	FREQ4_P	I am future oriented.

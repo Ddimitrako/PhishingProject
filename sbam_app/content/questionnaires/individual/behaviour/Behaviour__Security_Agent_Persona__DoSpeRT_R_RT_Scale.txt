@@ -1,0 +1,7 @@
+id	type	text_en	options_en
+1	LIK7_P	Going camping in the wilderness.
+2	LIK7_P	Going down a ski run that is beyond your ability.
+3	LIK7_P	Going whitewater rafting at high water in the spring.
+4	LIK7_P	Taking a skydiving class.
+5	LIK7_P	Bungee jumping off a tall bridge.
+6	LIK7_P	Piloting a small plane.

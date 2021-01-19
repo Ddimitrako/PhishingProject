@@ -604,6 +604,968 @@
       "id_in_question": 5,
       "order": 5
     }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_P",
+      "text_en": "Strongly disagree",
+      "text_el": "Διαφωνώ πλήρως",
+      "text_it": "In forte disaccordo",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_P",
+      "text_en": "Mostly disagree",
+      "text_el": "Κυρίως διαφωνώ",
+      "text_it": "Per lo più in disaccordo",
+      "value": 2,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_P",
+      "text_en": "Somewhat disagree",
+      "text_el": "Κάπως διαφωνώ",
+      "text_it": "Piuttosto in disaccordo",
+      "value": 3,
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_P",
+      "text_en": "Slightly disagree",
+      "text_el": "Ελαφρώς διαφωνώ",
+      "text_it": "Leggermente in disaccordo",
+      "value": 4,
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_P",
+      "text_en": "Neither agree nor disagree",
+      "text_el": "Ούτε συμφωνώ ούτε διαφωνώ",
+      "text_it": "Nè d'accordo né in disaccordo",
+      "value": 5,
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_P",
+      "text_en": "Slightly agree",
+      "text_el": "Ελαφρώς συμφωνώ",
+      "text_it": "Leggermente d'accordo",
+      "value": 6,
+      "is_active": 1,
+      "id_in_question": 6,
+      "order": 6
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_P",
+      "text_en": "Somewhat agree",
+      "text_el": "Κάπως συμφωνώ",
+      "text_it": "Abbastanza d'accordo",
+      "value": 7,
+      "is_active": 1,
+      "id_in_question": 7,
+      "order": 7
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_P",
+      "text_en": "Mostly agree",
+      "text_el": "Συμφωνώ κυρίως",
+      "text_it": "Per lo più d'accordo",
+      "value": 8,
+      "is_active": 1,
+      "id_in_question": 8,
+      "order": 8
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_P",
+      "text_en": "Strongly agree",
+      "text_el": "Συμφωνώ απολύτως",
+      "text_it": "Assolutamente d'accordo",
+      "value": 9,
+      "is_active": 1,
+      "id_in_question": 9,
+      "order": 9
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_N",
+      "text_en": "Strongly disagree",
+      "text_el": "Διαφωνώ πλήρως",
+      "text_it": "In forte disaccordo",
+      "value": 9,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_N",
+      "text_en": "Mostly disagree",
+      "text_el": "Κυρίως διαφωνώ",
+      "text_it": "Per lo più in disaccordo",
+      "value": 8,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_N",
+      "text_en": "Somewhat disagree",
+      "text_el": "Κάπως διαφωνώ",
+      "text_it": "Piuttosto in disaccordo",
+      "value": 7,
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_N",
+      "text_en": "Slightly disagree",
+      "text_el": "Ελαφρώς διαφωνώ",
+      "text_it": "Leggermente in disaccordo",
+      "value": 6,
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_N",
+      "text_en": "Neither agree nor disagree",
+      "text_el": "Ούτε συμφωνώ ούτε διαφωνώ",
+      "text_it": "Nè d'accordo né in disaccordo",
+      "value": 5,
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_N",
+      "text_en": "Slightly agree",
+      "text_el": "Ελαφρώς συμφωνώ",
+      "text_it": "Leggermente d'accordo",
+      "value": 4,
+      "is_active": 1,
+      "id_in_question": 6,
+      "order": 6
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_N",
+      "text_en": "Somewhat agree",
+      "text_el": "Κάπως συμφωνώ",
+      "text_it": "Abbastanza d'accordo",
+      "value": 3,
+      "is_active": 1,
+      "id_in_question": 7,
+      "order": 7
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_N",
+      "text_en": "Mostly agree",
+      "text_el": "Συμφωνώ κυρίως",
+      "text_it": "Per lo più d'accordo",
+      "value": 2,
+      "is_active": 1,
+      "id_in_question": 8,
+      "order": 8
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "AGR9_N",
+      "text_en": "Strongly agree",
+      "text_el": "Συμφωνώ απολύτως",
+      "text_it": "Assolutamente d'accordo",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 9,
+      "order": 9
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ4_P",
+      "text_en": "Rarely / Never",
+      "text_el": "Σπάνια / Ποτέ",
+      "text_it": "Raramente / Mai",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ4_P",
+      "text_en": "Occasionally",
+      "text_el": "Ενίοτε",
+      "text_it": "A volte",
+      "value": 2,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ4_P",
+      "text_en": "Often",
+      "text_el": "Συχνά",
+      "text_it": "Spesso",
+      "value": 3,
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ4_P",
+      "text_en": "Almost always / Always",
+      "text_el": "Σχεδόν πάντα / Πάντα",
+      "text_it": "Quasi sempre / Sempre",
+      "value": 4,
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ4_N",
+      "text_en": "Rarely / Never",
+      "text_el": "Σπάνια / Ποτέ",
+      "text_it": "Raramente / Mai",
+      "value": 4,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ4_N",
+      "text_en": "Occasionally",
+      "text_el": "Ενίοτε",
+      "text_it": "A volte",
+      "value": 3,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ4_N",
+      "text_en": "Often",
+      "text_el": "Συχνά",
+      "text_it": "Spesso",
+      "value": 2,
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ4_N",
+      "text_en": "Almost always / Always",
+      "text_el": "Σχεδόν πάντα / Πάντα",
+      "text_it": "Quasi sempre / Sempre",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ5_P",
+      "text_en": "Always",
+      "text_el": "Πάντα",
+      "text_it": "Sempre",
+      "value": 1.0,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ5_P",
+      "text_en": "Often",
+      "text_el": "Συχνά",
+      "text_it": "Spesso",
+      "value": 0.75,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ5_P",
+      "text_en": "Sometimes",
+      "text_el": "Ενίοτε",
+      "text_it": "A volte",
+      "value": 0.50,
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ5_P",
+      "text_en": "Rarely",
+      "text_el": "Σπανίως",
+      "text_it": "Raramente",
+      "value": 0.25,
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ5_P",
+      "text_en": "Never",
+      "text_el": "Ποτέ",
+      "text_it": "Mai",
+      "value": 0,
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ5_N",
+      "text_en": "Always",
+      "text_el": "Πάντα",
+      "text_it": "Sempre",
+      "value": 0,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ5_N",
+      "text_en": "Often",
+      "text_el": "Συχνά",
+      "text_it": "Spesso",
+      "value": 0.25,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ5_N",
+      "text_en": "Sometimes",
+      "text_el": "Ενίοτε",
+      "text_it": "A volte",
+      "value": 0.50,
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ5_N",
+      "text_en": "Rarely",
+      "text_el": "Σπανίως",
+      "text_it": "Raramente",
+      "value": 0.75,
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "FREQ5_N",
+      "text_en": "Never",
+      "text_el": "Ποτέ",
+      "text_it": "Mai",
+      "value": 1.0,
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_P",
+      "text_en": "Extremely unlikely",
+      "text_el": "Εξαιρετικά απίθανο",
+      "text_it": "Estremamente improbabile",
+      "value": 7,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_P",
+      "text_en": "Moderately unlikely",
+      "text_el": "Αρκετά απίθανο",
+      "text_it": "Moderatamente improbabile",
+      "value": 6,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_P",
+      "text_en": "Somewhat unlikely",
+      "text_el": "Κάπως απίθανο",
+      "text_it": "Abbastanza improbabile",
+      "value": 5,
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_P",
+      "text_en": "Not Sure",
+      "text_el": "Όχι σίγουρα",
+      "text_it": "Non sono sicuro",
+      "value": 4,
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_P",
+      "text_en": "Somewhat likely",
+      "text_el": "Κάπως πιθανό",
+      "text_it": "Abbastanza probabile",
+      "value": 3,
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_P",
+      "text_en": "Moderately likely",
+      "text_el": "Μέτρια πιθανό",
+      "text_it": "Moderatamente probabile",
+      "value": 2,
+      "is_active": 1,
+      "id_in_question": 6,
+      "order": 6
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_P",
+      "text_en": "Extremely likely",
+      "text_el": "Εξαιρετικά πιθανό",
+      "text_it": "Assai probabile",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 7,
+      "order": 7
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_N",
+      "text_en": "Extremely unlikely",
+      "text_el": "Εξαιρετικά απίθανο",
+      "text_it": "Estremamente improbabile",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_N",
+      "text_en": "Moderately unlikely",
+      "text_el": "Αρκετά απίθανο",
+      "text_it": "Moderatamente improbabile",
+      "value": 2,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_N",
+      "text_en": "Somewhat unlikely",
+      "text_el": "Κάπως απίθανο",
+      "text_it": "Abbastanza improbabile",
+      "value": 3,
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_N",
+      "text_en": "Not Sure",
+      "text_el": "Όχι σίγουρα",
+      "text_it": "Non sono sicuro",
+      "value": 4,
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_N",
+      "text_en": "Somewhat likely",
+      "text_el": "Κάπως πιθανό",
+      "text_it": "Abbastanza probabile",
+      "value": 5,
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_N",
+      "text_en": "Moderately likely",
+      "text_el": "Μέτρια πιθανό",
+      "text_it": "Moderatamente probabile",
+      "value": 6,
+      "is_active": 1,
+      "id_in_question": 6,
+      "order": 6
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "LIK7_N",
+      "text_en": "Extremely likely",
+      "text_el": "Εξαιρετικά πιθανό",
+      "text_it": "Assai probabile",
+      "value": 7,
+      "is_active": 1,
+      "id_in_question": 7,
+      "order": 7
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_P",
+      "text_en": "Not at all risky",
+      "text_el": "Καθόλου επικίνδυνο",
+      "text_it": "Per niente rischioso",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_P",
+      "text_en": "Slightly risky",
+      "text_el": "Ελαφρώς επικίνδυνο",
+      "text_it": "Leggermente rischioso",
+      "value": 2,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_P",
+      "text_en": "Somewhat risky",
+      "text_el": "Κάπως επικίνδυνο",
+      "text_it": "Abbastanza risky",
+      "value": 3,
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_P",
+      "text_en": "Moderately risky",
+      "text_el": "Μέτρια επικίνδυνο",
+      "text_it": "Moderatamente rischioso",
+      "value": 4,
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_P",
+      "text_en": "Risky",
+      "text_el": "Επικίνδυνο",
+      "text_it": "Rischioso",
+      "value": 5,
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_P",
+      "text_en": "Very risky",
+      "text_el": "Πολύ επικίνδυνο",
+      "text_it": "Molto rischioso",
+      "value": 6,
+      "is_active": 1,
+      "id_in_question": 6,
+      "order": 6
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_P",
+      "text_en": "Extremely risky",
+      "text_el": "Εξαιρετικά επικίνδυνο",
+      "text_it": "Estremamente rischioso",
+      "value": 7,
+      "is_active": 1,
+      "id_in_question": 7,
+      "order": 7
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_N",
+      "text_en": "Not at all risky",
+      "text_el": "Καθόλου επικίνδυνο",
+      "text_it": "Per niente rischioso",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_N",
+      "text_en": "Slightly risky",
+      "text_el": "Ελαφρώς επικίνδυνο",
+      "text_it": "Leggermente rischioso",
+      "value": 2,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_N",
+      "text_en": "Somewhat risky",
+      "text_el": "Κάπως επικίνδυνο",
+      "text_it": "Abbastanza risky",
+      "value": 3,
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_N",
+      "text_en": "Moderately risky",
+      "text_el": "Μέτρια επικίνδυνο",
+      "text_it": "Moderatamente rischioso",
+      "value": 4,
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_N",
+      "text_en": "Risky",
+      "text_el": "Επικίνδυνο",
+      "text_it": "Rischioso",
+      "value": 5,
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_N",
+      "text_en": "Very risky",
+      "text_el": "Πολύ επικίνδυνο",
+      "text_it": "Molto rischioso",
+      "value": 6,
+      "is_active": 1,
+      "id_in_question": 6,
+      "order": 6
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "RISK7_N",
+      "text_en": "Extremely risky",
+      "text_el": "Εξαιρετικά επικίνδυνο",
+      "text_it": "Estremamente rischioso",
+      "value": 7,
+      "is_active": 1,
+      "id_in_question": 7,
+      "order": 7
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "CHAR5_P",
+      "text_en": "Extremely uncharacteristic",
+      "text_el": "Εξαιρετικά μη χαρακτηριστικό",
+      "text_it": "Estremamente insolito",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "CHAR5_P",
+      "text_en": "Somewhat uncharacteristic",
+      "text_el": "Κάπως μη χαρακτηριστικό",
+      "text_it": "Un po 'insolito",
+      "value": 2,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "CHAR5_P",
+      "text_en": "Uncertain",
+      "text_el": "Αβέβαιος/η",
+      "text_it": "Incerto/a",
+      "value": 3,
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "CHAR5_P",
+      "text_en": "Somewhat characteristic",
+      "text_el": "Κάπως χαρακτηριστικό",
+      "text_it": "Un po 'caratteristico",
+      "value": 4,
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "CHAR5_P",
+      "text_en": "Extremely characteristic",
+      "text_el": "Εξαιρετικά χαρακτηριστικό",
+      "text_it": "Estremamente caratteristico",
+      "value": 5,
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "CHAR5_N",
+      "text_en": "Extremely uncharacteristic",
+      "text_el": "Εξαιρετικά μη χαρακτηριστικό",
+      "text_it": "Estremamente insolito",
+      "value": 5,
+      "is_active": 1,
+      "id_in_question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "CHAR5_N",
+      "text_en": "Somewhat uncharacteristic",
+      "text_el": "Κάπως μη χαρακτηριστικό",
+      "text_it": "Un po 'insolito",
+      "value": 4,
+      "is_active": 1,
+      "id_in_question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "CHAR5_N",
+      "text_en": "Uncertain",
+      "text_el": "Αβέβαιος/η",
+      "text_it": "Incerto/a",
+      "value": 3,
+      "is_active": 1,
+      "id_in_question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "CHAR5_N",
+      "text_en": "Somewhat characteristic",
+      "text_el": "Κάπως χαρακτηριστικό",
+      "text_it": "Un po 'caratteristico",
+      "value": 2,
+      "is_active": 1,
+      "id_in_question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "sbam_app.QuestionOption",
+    "fields": {
+      "question_type": "CHAR5_N",
+      "text_en": "Extremely characteristic",
+      "text_el": "Εξαιρετικά χαρακτηριστικό",
+      "text_it": "Estremamente caratteristico",
+      "value": 1,
+      "is_active": 1,
+      "id_in_question": 5,
+      "order": 5
+    }
   }
 ]
 
