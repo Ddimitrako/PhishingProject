@@ -34,4 +34,7 @@ urlpatterns = [
 
     #phishing_quiz
     path('', include('phishing_quiz.urls')),
+
+    # email_simulation
+    path('', include('email_simulation.urls')),
 ]

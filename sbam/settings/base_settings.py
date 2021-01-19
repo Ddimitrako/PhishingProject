@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'sbam_app',
     'password_strength_app',
     'phishing_quiz',
+    'email_simulation',
 
     # Tempus Dominus DateTimepicker
     'tempus_dominus',
