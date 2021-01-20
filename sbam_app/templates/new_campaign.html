@@ -147,24 +147,41 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {% crispy test_email_form test_email_form.general_info_helper %}
-{#                        data-detail-view="true">#}
-                        <label for="id_label_multiple">
-                            Click this to highlight the single select element
-                            <select class="js-example-basic-multiple" name="states[]" id="id_label_multiple" multiple="multiple" style="width: 100%">
-                            </select>
-                            <hr>
-                            <select class="js-example-basic-multiple" name="states[]" id="id_label_multiple" multiple="multiple" style="width: 100%">
-                            </select>
-                            <hr>
-                            <select class="js-example-basic-multiple" name="states[]" id="id_label_multiple" multiple="multiple" style="width: 100%">
-                            </select>
-                            <hr>
-                        </label>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>
+                                <p class="text-xl-left font-weight-bold">{% trans "Available emails"|capfirst %}</p>
+                            </div>
+                            <div class="list-group" id="emails-titles" role="tablist">
+                                {% for sim_email in sim_emails %}
+                                    {% if forloop.counter == 1  %}
+                                        <a href="#" class="list-group-item list-group-item-action active" data-toggle="list" data-id="{{ sim_email.id }}" role="tab" aria-controls="{{ sim_email.title }}">{{ sim_email.title }}</a>
+                                    {% else %}
+                                        <a href="#" class="list-group-item list-group-item-action" data-toggle="list" role="tab" data-id="{{ sim_email.id }}" aria-controls="{{ sim_email.title }}">{{ sim_email.title }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="email-card">
+                                {% for sim_email in sim_emails %}
+                                    {% if forloop.counter == 1  %}
+                                        <div class="embed-responsive embed-responsive-21by9">
+                                            <iframe class="embed-responsive-item" src="{% url 'email_simulation:email_request' sim_email.id %}" id="ifrm"  width="100%" height="300"></iframe>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="modal-footer">
-{#                    <a href="{% url 'sbam:dashboard' %}" class="btn btn-outline-info" role="button">Close</a>#}
+                    <a href="{% url 'sbam:dashboard' %}" class="btn btn-outline-info  mr-auto" role="button">{% trans "Send to me"|capfirst %}</a>
+                    <button type="button" class="btn btn-success email-selector" data-dismiss="modal">{% trans "Select email"|capfirst %}</button>
                 </div>
             </div>
         </div>
@@ -182,11 +199,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-info" role="alert">
-                        Your campaign was sucessfully created! Click <strong>Close</strong> to redirect to Dashboard
+                        {% trans "Your campaign was sucessfully created! Click <strong>Close</strong> to redirect to Dashboard"|capfirst %}
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="{% url 'sbam:dashboard' %}" class="btn btn-outline-info" role="button">Close</a>
+                    <a href="{% url 'sbam:dashboard' %}" class="btn btn-outline-info" role="button">{% trans "Close"|capfirst %}</a>
                 </div>
             </div>
         </div>
@@ -231,6 +248,7 @@
         let questtreeData = {{ campaign_form_trees.dimensions_dict | safe }};
         let usertreeData = {{ campaign_form_trees.users_dict | safe }};
         let testTreeData = {{ campaign_form_trees.tests_dict | safe }};
+        let selected_email_id = {{ sim_emails.0.id }};
 
         $("#id_title").attr("autocomplete", "off");
 

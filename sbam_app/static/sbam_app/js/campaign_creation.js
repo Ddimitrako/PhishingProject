@@ -206,6 +206,30 @@ $(document).ready(function(){
         return 1;
     }
 
+    // $('.email-selector').click(function () {
+    //     selected_email_id =
+    // })
+
+    function loadIframe(url) {
+        var $iframe = $('#ifrm');
+        if ( $iframe.length ) {
+            $iframe.attr('src','/sim_email/'+url);
+        return false;
+    }
+    return true;
+}
+
+    $('a[data-toggle="list"]').on('show.bs.tab', function (e) {
+        e.target // newly activated tab
+        e.relatedTarget // previous active tab
+        // alert('edw');
+        selected_email_id = $(e.target).data('id');
+        console.log($(e.target).data('id'));
+        console.log(selected_email_id);
+        loadIframe($(e.target).data('id'));
+
+    })
+
     function check_campaign_title(){
         let campaign_title = $('#id_title').val();
         if(campaign_title === '') {
@@ -217,13 +241,7 @@ $(document).ready(function(){
 
     $('#edit_phishing_test').click(function (){
          $('#PhishingTestModal').modal('toggle');
-        //  for(var i=0; i < len; i++){
-        //
-        //
-        // }
     })
-
-
 
     $('#create_campaign_btn').click(function () {
 
@@ -266,6 +284,7 @@ $(document).ready(function(){
             ajax_data["quests"] = JSON.stringify(domains);
             ajax_data["users"] =  JSON.stringify(users);
             ajax_data["tests"] =  JSON.stringify(tests);
+            ajax_data["email_id"] = selected_email_id;
 
             //console.log('Sto Ajax call');
             console.log(ajax_data);

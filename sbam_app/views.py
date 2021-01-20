@@ -21,6 +21,7 @@ from django.utils.decorators import method_decorator
 
 from sbam_app.forms import *
 from sbam_app.models import *
+from email_simulation import models as sim_models
 from django.core import serializers
 
 
@@ -829,6 +830,7 @@ def create_campaign(request):
         start_date = request.POST['start_date']
         description = request.POST['description']
         end_date = request.POST['end_date']
+        sel_email_id = request.POST['email_id']
         try:
             with transaction.atomic():
                 new_campaign = Campaign(title=title, creation_date=date.today(), start_date=start_date,
@@ -863,6 +865,10 @@ def create_campaign(request):
                         new_assignment = TestAssignment(campaign_id=new_campaign.id, user=sel_user, test_id=test_id)
                         new_assignment.save()
 
+                        if Test.objects.filter(title='Phishing Email Test').first().id == test_id:
+                            email_ass = sim_models.EmailAssignment(email=sim_models.SimEmail.objects.get(id=sel_email_id), assignment=new_assignment)
+                            email_ass.save()
+
             return JsonResponse({'success': 'True'}, status=200)
         except Error:
             return JsonResponse({'success': 'False'}, status=400)
@@ -872,10 +878,12 @@ def create_campaign(request):
         else:
             campaign_form_trees = get_campaign_form_trees(request.user.id)
 
+        sim_emails = sim_models.SimEmail.objects.filter(is_active=1)
         return render(request, 'new_campaign.html',
                       {'campaign_form': CampaignCreationForm(),
                        'test_email_form': PhishingTestEmailCreationForm(),
-                       'campaign_form_trees': campaign_form_trees})
+                       'campaign_form_trees': campaign_form_trees,
+                       'sim_emails': sim_emails})
 
 # @advanced_users_only
 def reports(request):
