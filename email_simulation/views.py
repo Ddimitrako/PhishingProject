@@ -12,8 +12,9 @@ def email_creation(request):
         print(new_email_form.is_valid())
         if new_email_form.is_valid():
 
-            new_email = SimEmail(is_phishing=True,
-                                  content=handle_uploaded_file(request.FILES['email_file'])
+            new_email = SimEmail(is_active=True,
+                                 title=new_email_form.cleaned_data['title'],
+                                content=handle_uploaded_file(request.FILES['email_file'])
                                 )
             new_email.save()
             return render(request, 'email_creation.html', {

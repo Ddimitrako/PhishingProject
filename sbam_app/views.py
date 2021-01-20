@@ -22,6 +22,7 @@ from django.utils.decorators import method_decorator
 from sbam_app.forms import *
 from sbam_app.models import *
 from email_simulation import models as sim_models
+from email_simulation import tasks as sim_tasks
 from django.core import serializers
 
 
@@ -868,6 +869,7 @@ def create_campaign(request):
                         if Test.objects.filter(title='Phishing Email Test').first().id == test_id:
                             email_ass = sim_models.EmailAssignment(email=sim_models.SimEmail.objects.get(id=sel_email_id), assignment=new_assignment)
                             email_ass.save()
+                            sim_tasks.simulation_email_schedule(new_assignment, start_date, end_date, email_ass, sel_user)
 
             return JsonResponse({'success': 'True'}, status=200)
         except Error:

@@ -66,6 +66,11 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+Q_CLUSTER = {
+    'workers': 1,
+    'orm': 'default',
+}
+
 APPEND_SLASH = True
 
 # STATIC_URL = '/static/'

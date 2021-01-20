@@ -60,6 +60,9 @@ INSTALLED_APPS = [
     #Password validator
     'zxcvbn_password',
 
+    #django-q (scheduling)
+    'django_q'
+
 ]
 
 AUTHENTICATION_BACKENDS = (
