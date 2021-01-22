@@ -11,7 +11,7 @@ from sbam_app.models import TestAssignment
 def simulation_email_schedule(new_assignment, start_date, end_date, email_ass, user):
 
     msg = 'Welcome to our website scheduled'
-    scheduled_date = datetime.datetime.strptime(start_date+' 9:16PM', '%Y-%m-%d %I:%M%p')
+    scheduled_date = datetime.datetime.strptime(start_date+' 5:21PM', '%Y-%m-%d %I:%M%p')
     email = SimEmail.objects.filter(emailassignment=email_ass.pk).first()
     # print(email.content)
     schedule('django.core.mail.send_mail',
@@ -23,9 +23,13 @@ def simulation_email_schedule(new_assignment, start_date, end_date, email_ass, u
              None,
              None,
              None,
-             email.content,
+             link_enriched(email.content, new_assignment.id, email.id),
              schedule_type=Schedule.ONCE,
              next_run=timezone.make_aware(scheduled_date))
 
     # since the `repeats` defaults to -1
     # this schedule will erase itself after having run
+
+
+def link_enriched(email, ass_id, emali_id):
+    return email.replace('https://rb.gy/92erwn', 'https://rb.gy/92erwn?ass='+str(ass_id)+'&em='+str(emali_id))

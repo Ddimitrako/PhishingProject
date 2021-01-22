@@ -9,4 +9,5 @@ app_name = 'email_simulation'
 urlpatterns = [
     path('simualtion_email/', email_creation, name='email_creation'),
     path('sim_email/<email_id>', email_request, name='email_request'),
+    path('sim_endpoint/', sim_endpoint, name='sim_endpoint'),
 ]

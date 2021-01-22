@@ -32,8 +32,16 @@ def email_creation(request):
             'email_creation_form': email_creation_form
         })
 
+
 @xframe_options_exempt
 def email_request(request, email_id):
 
     email = SimEmail.objects.get(id=email_id)
     return render(request, 'email_template.html', {'email': email})
+
+
+def sim_endpoint(request):
+    print(request.GET['ass'])
+    print(request.GET['em'])
+    # print(ass_id, email_id)
+    return
