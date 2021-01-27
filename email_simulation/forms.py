@@ -12,7 +12,8 @@ class PhishingSimulationCreationForm(forms.Form):
 
     title = forms.CharField(widget=forms.TextInput(),required=True)
     email_file = forms.FileField()
-    encrypted_link = forms.CharField(widget=forms.TextInput(), initial='geiaaa')
+    encrypted_link = forms.CharField(widget=forms.TextInput(), initial='https://rb.gy/92erwn')
+    email_subject = forms.CharField(widget=forms.TextInput(), required=True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -21,9 +22,14 @@ class PhishingSimulationCreationForm(forms.Form):
         self.general_info_helper = FormHelper()
         self.general_info_helper.layout = Layout(
             Row(
-                Column('title', css_class='form-group col-md-3 mb-0'),
-                Column(FieldWithButtons('encrypted_link', StrictButton("Copy to clipboard", css_class='btn-success clipboard')), css_class='form-group col-md-5 '),
-                Column('email_file', css_class='form-group col-md-3 mb-0'),
+                Column('title', css_class='form-group col-md-4 mb-0'),
+                Column('email_subject', css_class='form-group col-md-4 offset-md-1 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column(FieldWithButtons('encrypted_link', StrictButton("Copy to clipboard", css_class='btn-success clipboard')),
+                       css_class='form-group col-md-4 mb-0'),
+                Column('email_file', css_class='form-group col-md-4 offset-md-1 mb-0'),
                 css_class='form-row'
             ),
             Submit('submit', 'Create Email', css_class='float-right')

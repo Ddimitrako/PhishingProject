@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href='{% static 'admin-lte/plugins/daterangepicker/daterangepicker.css' %}'/>
     <link rel="stylesheet" type="text/css" href='{% static 'admin-lte/plugins/select2/css/select2.css' %}'/>
     <link rel="stylesheet" type="text/css" href='{% static "admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.css" %}'/>
+    <link href="{% static "admin-lte/plugins/toastr/toastr.min.css" %}" rel="stylesheet">
 {#    <link rel="stylesheet" type="text/css" href='{% static "vendor/select2-bootstrap4-theme/dist/select2-bootstrap4.css"%}' />#}
 {% endblock %}
 
@@ -180,7 +181,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <a href="{% url 'sbam:dashboard' %}" class="btn btn-outline-info  mr-auto" role="button">{% trans "Send to me"|capfirst %}</a>
+                    <button class="btn btn-outline-info mr-auto email-check" role="button">{% trans "Send to me"|capfirst %}</button>
                     <button type="button" class="btn btn-success email-selector" data-dismiss="modal">{% trans "Select email"|capfirst %}</button>
                 </div>
             </div>
@@ -221,7 +222,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-danger" role="alert">
-                        Could not create a campaign. Please try again
+                        {% trans "Could not create a campaign. Please try again."|capfirst %}
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -235,6 +236,7 @@
 
 
 {% block  extra_js %}
+    <script src="{% static "admin-lte/plugins/toastr/toastr.min.js" %}"></script>
     <script src="{% static "admin-lte/plugins/select2/js/select2.min.js" %}"></script>
     <script src="{% static "admin-lte/plugins/moment/moment-with-locales.js" %}"></script>
     <script src='{% static 'admin-lte/plugins/daterangepicker/daterangepicker.js' %}'></script>

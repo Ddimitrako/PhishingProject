@@ -819,6 +819,13 @@ def cancel_campaign(request, id):
 
     return redirect('sbam:campaign', id)
 
+@advanced_users_only
+def check_email(request):
+    sel_email_id = request.POST['email_id']
+    print(sel_email_id)
+    sim_tasks.check_simulation_email(request.user, sel_email_id)
+    return JsonResponse({'success': 'True'}, status=200)
+
 
 @advanced_users_only
 def create_campaign(request):

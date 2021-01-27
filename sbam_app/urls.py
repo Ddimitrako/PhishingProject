@@ -42,6 +42,7 @@ urlpatterns = [
     path('campaigns/campaign/<id>/', campaign, name='campaign'),
     path('campaigns/campaign/<id>/cancel/', cancel_campaign, name='cancel_campaign'),
     path('campaigns/create_campaign/', create_campaign, name='create_campaign'),
+    path('campaigns/check_email/', check_email, name='check_email'),
 
     # Reports
     path('reports/', reports, name='reports'),

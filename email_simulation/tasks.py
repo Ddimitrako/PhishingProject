@@ -15,7 +15,7 @@ def simulation_email_schedule(new_assignment, start_date, end_date, email_ass, u
     email = SimEmail.objects.filter(emailassignment=email_ass.pk).first()
     # print(email.content)
     schedule('django.core.mail.send_mail',
-             'Emails',
+             email.subject,
              '',
              settings.EMAIL_HOST_USER,
              [user.email],
@@ -29,6 +29,12 @@ def simulation_email_schedule(new_assignment, start_date, end_date, email_ass, u
 
     # since the `repeats` defaults to -1
     # this schedule will erase itself after having run
+
+
+def check_simulation_email(user, email_id):
+    email = SimEmail.objects.get(pk=email_id)
+    async_task('django.core.mail.send_mail', email.subject,
+               '', settings.EMAIL_HOST_USER, [user.email], False, None, None, None, email.content)
 
 
 def link_enriched(email, ass_id, emali_id):

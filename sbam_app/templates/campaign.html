@@ -166,7 +166,7 @@
                             {% if request.user.is_superuser or request.user == campaign.owner %}
                                 {% if campaign.status in 'NOT_STARTED, ACTIVE' %}
                                     <button class="btn btn-outline-danger btn-sm mt-4" type="submit"
-                                            formaction="cancel"
+                                            formaction="{% url 'sbam:cancel_campaign' campaign.id %}"
                                             title="{% trans "Cancel campaign" %}">
                                         <i class="fas fa-slash mr-2"></i>{% trans "Cancel" %}
                                     </button>

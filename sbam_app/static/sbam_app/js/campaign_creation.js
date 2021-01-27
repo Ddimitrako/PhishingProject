@@ -243,6 +243,72 @@ $(document).ready(function(){
          $('#PhishingTestModal').modal('toggle');
     })
 
+
+    //send email to check  ajax
+    $('.email-check').click(function () {
+        // alert(selected_email_id);
+        const ajax_data = {};
+        var csrftoken = getCookie('csrftoken');
+        ajax_data["email_id"] = selected_email_id;
+        $.ajax({
+                "type": "POST",
+                headers: { "X-CSRFToken": csrftoken },
+                dataType: 'json',
+                'url': './../check_email/',
+                'data': ajax_data,
+                success: function(response, status, xhr){
+                    //console.log(response);
+
+                    if(response['success'] === 'True'){
+                        console.log(response);
+                        // alert('edww');
+                        toastr["success"]("Email sent successfully!")
+
+                        toastr.options = {
+                              "closeButton": true,
+                              "debug": false,
+                              "newestOnTop": false,
+                              "progressBar": false,
+                              "positionClass": "toast-top-right",
+                              "preventDuplicates": false,
+                              "onclick": null,
+                              "showDuration": "300",
+                              "hideDuration": "1000",
+                              "timeOut": "5000",
+                              "extendedTimeOut": "1000",
+                              "showEasing": "swing",
+                              "hideEasing": "linear",
+                              "showMethod": "fadeIn",
+                              "hideMethod": "fadeOut"
+                        }
+                    }
+                },
+                error : function(response){
+                    toastr["error"]("Email did not sent!")
+
+                        toastr.options = {
+                              "closeButton": true,
+                              "debug": false,
+                              "newestOnTop": false,
+                              "progressBar": false,
+                              "positionClass": "toast-top-right",
+                              "preventDuplicates": false,
+                              "onclick": null,
+                              "showDuration": "300",
+                              "hideDuration": "1000",
+                              "timeOut": "5000",
+                              "extendedTimeOut": "1000",
+                              "showEasing": "swing",
+                              "hideEasing": "linear",
+                              "showMethod": "fadeIn",
+                              "hideMethod": "fadeOut"
+                        }
+                }
+            })
+    })
+
+
+    //    campaign creation ajax
     $('#create_campaign_btn').click(function () {
 
         if(check_campaign_dates() && check_selected_items() && check_campaign_title()){

@@ -6,9 +6,10 @@ from sbam_app import models as sbam_models
 
 
 class SimEmail(models.Model):
-    title = models.CharField(_('title'), max_length=100, help_text=_('Campaign title'))
+    title = models.CharField(_('title'), max_length=100, help_text=_('Simulation email title'))
     is_active = models.BooleanField(default=True)
     content = models.TextField(help_text=_('Email content'), default='')
+    subject = models.CharField(_('subject'), max_length=100, help_text=_('Simulation email subject'))
 
 
 class EmailAssignment(models.Model):
