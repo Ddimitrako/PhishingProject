@@ -80,3 +80,14 @@
 textarea[name="description"]{
     height: 60px; !important;
 }
+
+#emails-titles{
+    max-height: 25vh;
+    overflow: auto;
+}
+
+iframe {
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}

@@ -116,6 +116,7 @@ $(document).ready(function(){
                     "    <tr>\n" +
                     "      <th class='sel_index'>#</th>\n" +
                     "      <th class='sel_index'>Name</th>\n" +
+                    "      <th class='sel_index'></th>\n" +
                     "    </tr>\n" +
                     "  </thead>");
 
@@ -130,12 +131,25 @@ $(document).ready(function(){
             for (var i = 0; i < len; i++) {
                 if (this.selectedNodes[i].id.includes('test')) {
                     if(this.selectedNodes[i].text === 'Phishing Email Test'){
-                         $('#edit_phishing_test').show();
-                         // alert('edw');
+                         // $('#edit_phishing_test').show();
+                         $("#selected_tests tbody").append("<tr><th class='sel_index'>" + idx + "</th><td style='width: 70%'>"
+                        + this.selectedNodes[i].text + "</td><td style='width: 30%'>" +
+                             "<button type='button' onclick='toggleSimModal();' class='btn btn-primary btn-xs float-right' id='edit_phishing_test'" +
+                             " title='Edit Phishing Test'>Edit</button></td></tr>");
+
+                    }
+                    else if (this.selectedNodes[i].text === 'Phishing Email Quiz'){
+                        $("#selected_tests tbody").append("<tr><th class='sel_index'>" + idx + "</th><td style='width: 70%'>"
+                        + this.selectedNodes[i].text + "</td><td style='width: 30%'>" +
+                             "<button type='button' class='btn btn-primary btn-xs float-right' id='edit_phishing_quiz'" +
+                             " title='Edit Phishing Quiz'>Edit</button></td></tr>");
+                    }
+                    else {
+
+                        $("#selected_tests tbody").append("<tr><th class='sel_index'>" + idx + "</th><td style='width: 70%'>"
+                            + this.selectedNodes[i].text + "</td><td></td></tr>");
                     }
 
-                    $("#selected_tests tbody").append("<tr><th class='sel_index'>" + idx + "</th><td style='width: 70%'>"
-                        + this.selectedNodes[i].text + "</td></tr>");
                     idx++;
                 }
             }
@@ -238,6 +252,8 @@ $(document).ready(function(){
         }
         return 1;
     }
+
+
 
     $('#edit_phishing_test').click(function (){
          $('#PhishingTestModal').modal('toggle');

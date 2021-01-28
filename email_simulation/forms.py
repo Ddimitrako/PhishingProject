@@ -17,7 +17,7 @@ class PhishingSimulationCreationForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['encrypted_link'].disabled = True
+        self.fields['encrypted_link'].widget.attrs['readonly'] = True
 
         self.general_info_helper = FormHelper()
         self.general_info_helper.layout = Layout(
@@ -27,7 +27,7 @@ class PhishingSimulationCreationForm(forms.Form):
                 css_class='form-row'
             ),
             Row(
-                Column(FieldWithButtons('encrypted_link', StrictButton("Copy to clipboard", css_class='btn-success clipboard')),
+                Column(FieldWithButtons('encrypted_link', StrictButton("copy", css_class='btn-success clipboard')),
                        css_class='form-group col-md-4 mb-0'),
                 Column('email_file', css_class='form-group col-md-4 offset-md-1 mb-0'),
                 css_class='form-row'

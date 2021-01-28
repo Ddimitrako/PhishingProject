@@ -123,9 +123,9 @@
                                             </button>
                                         </div>
                                         <div class="col col-md-6">
-                                            <button type="button" class="btn btn-primary btn-sm float-right" id="edit_phishing_test" style="display: none;"
-                                                title="{% trans "Edit Phishing Test" %}">Edit Phishing Test
-                                            </button>
+{#                                            <button type="button" class="btn btn-primary btn-sm float-right" id="edit_phishing_test" style="display: none;"#}
+{#                                                title="{% trans "Edit Phishing Test" %}">Edit Phishing Test#}
+{#                                            </button>#}
                                         </div>
                                     </div>
                                 </li>
@@ -142,7 +142,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="PhishingTestModalLabel">Well Done!</h5>
+                    <h5 class="modal-title" id="PhishingTestModalLabel">{% trans "List of Available emails"|capfirst %}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -153,7 +153,8 @@
                             <div>
                                 <p class="text-xl-left font-weight-bold">{% trans "Available emails"|capfirst %}</p>
                             </div>
-                            <div class="list-group" id="emails-titles" role="tablist">
+                            <hr>
+                            <div class="list-group border-info" id="emails-titles" role="tablist">
                                 {% for sim_email in sim_emails %}
                                     {% if forloop.counter == 1  %}
                                         <a href="#" class="list-group-item list-group-item-action active" data-toggle="list" data-id="{{ sim_email.id }}" role="tab" aria-controls="{{ sim_email.title }}">{{ sim_email.title }}</a>
@@ -164,7 +165,11 @@
                             </div>
                         </div>
                     </div>
-
+                    <hr>
+                    <div>
+                        <p class="text-xl-left font-weight-bold">{% trans "Email Preview"|capfirst %}</p>
+                    </div>
+                    <hr>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="email-card">
@@ -247,6 +252,9 @@
         $(".js-example-theme-multiple").select2({
           theme: "bootstrap4"
         });
+        function toggleSimModal(){
+            $('#PhishingTestModal').modal('toggle');
+        }
         let questtreeData = {{ campaign_form_trees.dimensions_dict | safe }};
         let usertreeData = {{ campaign_form_trees.users_dict | safe }};
         let testTreeData = {{ campaign_form_trees.tests_dict | safe }};
