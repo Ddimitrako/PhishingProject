@@ -8,6 +8,8 @@ import json
 from sbam_app.templatetags import custom_tags
 from django.shortcuts import redirect
 from datetime import datetime
+from email_simulation.views import email_preview, handle_uploaded_file
+from sbam_app.views import disable_form
 
 
 # Create your views here.
@@ -51,6 +53,10 @@ def phishing_quiz(request, assignment_id):
                                                       'progress_bar': 1 / len(test_emails) * 100})
 
 
+def phis_email_preview(request):
+    return email_preview(request)
+
+
 @xframe_options_exempt
 def email_request(request, email_id):
 
@@ -59,6 +65,7 @@ def email_request(request, email_id):
     current_time = current_time + ' PM' if datetime.now() > datetime.now().replace(hour=12, minute=0) else current_time + ' AM'
     return render(request, 'email_template.html', {'email': email,
                                                    'time': current_time})
+
 
 def email_creation(request):
     if request.method == 'POST':
@@ -73,12 +80,22 @@ def email_creation(request):
                                       content=handle_uploaded_file(request.FILES['email_file'])
                                       )
             new_email.save()
+            new_form = PhishingEmailCreationForm(initial={'sender_email': new_email.sender_email,
+                                                          'is_phishing': new_email.is_phishing,
+                                                          'sender_display_name': new_email.sender_display_name,
+                                                          'email_file': request.FILES['email_file']})
+
+            disable_form(new_form)
+            print('edwwww')
             return render(request, 'email_creation.html', {
-                'email_creation_form': new_email_form,
+                'mode': 'submitted',
+                'email': new_email.id,
+                'email_creation_form': new_form,
                 'message': 'success'
             })
         else:
              return render(request, 'email_creation.html', {
+                'mode': 'error',
                 'email_creation_form': PhishingEmailCreationForm(),
                 'message': new_email_form.errors
             })
@@ -86,13 +103,10 @@ def email_creation(request):
     else:
         email_creation_form = PhishingEmailCreationForm()
         return render(request, 'email_creation.html', {
+            'mode': 'rendered',
             'email_creation_form': email_creation_form
         })
 
 
-def handle_uploaded_file(f):
-    email_content = ''
-    for chunk in f.chunks():
-        email_content += chunk.decode('utf-8')
-    return email_content
+
 

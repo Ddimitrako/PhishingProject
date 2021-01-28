@@ -22,8 +22,25 @@
                         {% crispy email_creation_form email_creation_form.general_info_helper %}
                         {% csrf_token %}
                     </form>
+                    {% if mode == 'submitted' %}
+                        <a href="{% url 'sbam:dashboard' %}" class="btn btn-outline-info float-right" role="button">{% trans "Return to Dashboard"|capfirst %}</a>
+                    {% endif %}
                 </div>
             </div>
+            <div class="card border-info mb-3">
+                <div class="card-header text-cyan">Email Preview</div>
+                <div class="card-body preview text-danger">
+                    {% if mode == 'submitted' %}
+                        <div class="embed-responsive embed-responsive-21by9">
+                            <iframe class="embed-responsive-item" src="{% url 'phishing_quiz:email_request' email %}" id="ifrm"  width="100%" height="300"></iframe>
+                        </div>
+                    {% else %}
+                        <p>No email inserted</p>
+                    {% endif %}
+                </div>
+            </div>
+{#                </div>#}
+{#            </div>#}
         </div>
     </div>
 {% endblock %}

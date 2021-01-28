@@ -2,12 +2,11 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from email_simulation.forms import *
 from email_simulation.models import *
-from phishing_quiz.views import handle_uploaded_file
 from sbam_app.views import disable_form
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 
-def email_creation(request):
+def sim_email_creation(request):
     if request.method == 'POST':
         new_email_form = PhishingSimulationCreationForm(request.POST, request.FILES)
         print(new_email_form.errors)
@@ -46,7 +45,7 @@ def email_creation(request):
 
 
 @xframe_options_exempt
-def email_request(request, email_id):
+def sim_email_request(request, email_id):
 
     email = SimEmail.objects.get(id=email_id)
     return render(request, 'email_template.html', {'email': email})
@@ -67,3 +66,10 @@ def sim_endpoint(request):
     print(request.GET['em'])
     # print(ass_id, email_id)
     return
+
+
+def handle_uploaded_file(f):
+    email_content = ''
+    for chunk in f.chunks():
+        email_content += chunk.decode('utf-8')
+    return email_content
