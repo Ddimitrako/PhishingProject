@@ -11,7 +11,7 @@ from sbam_app.models import TestAssignment
 def simulation_email_schedule(new_assignment, start_date, end_date, email_ass, user):
 
     msg = 'Welcome to our website scheduled'
-    scheduled_date = datetime.datetime.strptime(start_date+' 5:21PM', '%Y-%m-%d %I:%M%p')
+    scheduled_date = datetime.datetime.strptime(start_date+' 10:53AM', '%Y-%m-%d %I:%M%p')
     email = SimEmail.objects.filter(emailassignment=email_ass.pk).first()
     # print(email.content)
     schedule('django.core.mail.send_mail',

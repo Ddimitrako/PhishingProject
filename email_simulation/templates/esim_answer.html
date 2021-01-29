@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n custom_tags %}
+
+{% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
+
+{% block extra_head %}
+    <link href="{% static "admin-lte/plugins/toastr/toastr.min.css" %}" rel="stylesheet">
+     <link href="{% static 'email_simulation/css/sim_email_form.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">{% trans 'You failed in phishing simulation test!' %}</h5>
+        <div class="card-body">
+            <h5 class="card-title">{% trans 'Dear ' %} {{ user.first_name }}, </h5>
+            <p class="card-text lh-base">{% trans 'This email was a phishing simulation test, part of '  %}<strong>{{ campaign.title }}</strong>.</p>
+            <p class="lh-base">{% trans 'Please be more careful next time!'  %}</p>
+            <a href="{% url 'sbam:dashboard' %}" class="btn btn-primary">{% trans "Return to dashboard" %}</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static "admin-lte/plugins/toastr/toastr.min.js" %}"></script>
+    <script type="application/javascript">
+       let message = "{{ message|safe }}";
+    </script>
+
+    <script src="{% static "phishing_quiz/js/email_creation_form.js" %}"></script>
+
+{% endblock %}

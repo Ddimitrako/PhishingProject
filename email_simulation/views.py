@@ -4,6 +4,7 @@ from email_simulation.forms import *
 from email_simulation.models import *
 from sbam_app.views import disable_form
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.db.models import F
 
 
 def sim_email_creation(request):
@@ -64,8 +65,15 @@ def email_preview(request):
 def sim_endpoint(request):
     print(request.GET['ass'])
     print(request.GET['em'])
-    # print(ass_id, email_id)
-    return
+
+    sim_assignment = EmailAssignment(assignment_id=request.GET['ass'], email_id=request.GET['em'])
+    sim_assignment.answer = True
+    sim_assignment.save()
+    campaign = sbam_models.Campaign.objects.get(assignment=request.GET['ass'])
+    assignee = sbam_models.User.objects.get(assignment=request.GET['ass'])
+    print(assignee)
+    return render(request, 'esim_answer.html', {'user': assignee,
+                                                'campaign': campaign})
 
 
 def handle_uploaded_file(f):

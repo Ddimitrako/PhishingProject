@@ -25,4 +25,9 @@ class EmailAssignment(models.Model):
         on_delete=models.PROTECT,
         help_text=_('The assigment the simulation belongs')
     )
+    answer = models.IntegerField(
+        _('active'),
+        choices=sbam_models.Status.choices,
+        default=0,
+    )
 

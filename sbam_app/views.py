@@ -343,8 +343,7 @@ def user_dashboard(request):
     active_tests = [a_test for a_test in
                     models.TestAssignment.objects.filter(user_id=request.user).filter(
                         campaign__end_date__gte=date.today()
-                    ).filter(campaign__start_date__lte=date.today()
-                             ).order_by('campaign__end_date') if a_test.status == 'OPEN']
+                    ).filter(campaign__start_date__lte=date.today()).exclude(test__title='Phishing Email Test').order_by('campaign__end_date') if a_test.status == 'OPEN']
 
     # distinct_active_tests = []
     # distinct_active_tests_titles = []
@@ -414,8 +413,8 @@ def manager_dashboard(request):
     active_tests = [a_test for a_test in
                     models.TestAssignment.objects.filter(user_id=request.user).filter(
                         campaign__end_date__gte=date.today()
-                    ).filter(campaign__start_date__lte=date.today()
-                             ).order_by('campaign__end_date') if a_test.status == 'OPEN']
+                    ).filter(campaign__start_date__lte=date.today()).exclude(test__title='Phishing Email Test')
+                        .order_by('campaign__end_date') if a_test.status == 'OPEN']
 
     active_assignments = sorted(
         chain(active_questionnaires, active_tests),
