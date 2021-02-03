@@ -26,7 +26,9 @@ def phishing_quiz(request, assignment_id):
         test_assignment = sbam_models.TestAssignment.objects.get(pk=request.POST['ass_id'])
         correct_answers = 0
         for true_label, email in zip(labels, answers):
-            new_answer = PhishingEmailAssignmentAnswer(email=true_label, user_answer=answers[email]['answer'], assignment=test_assignment)
+            new_answer = PhishingEmailAssignmentAnswer.objects.filter(email=true_label, assignment=test_assignment).first()
+            print(new_answer)
+            new_answer.user_answer=answers[email]['answer']
             new_answer.save()
             if true_label.is_phishing == answers[email]['answer']:
                 correct_answers += 1
@@ -46,7 +48,7 @@ def phishing_quiz(request, assignment_id):
 
         # na dialegeis 10 random emails otan ftiaxtei
         # Na koitaei ti exei apanthsei kai se poia exei kanei lathos etsi wste na dinetai proteraiothta se auta
-        test_emails = PhishingEmail.objects.filter(is_active=True)
+        test_emails = PhishingEmail.objects.filter(is_active=True).filter(phishingemailassignmentanswer__assignment=assignment_id)
         assignment = sbam_models.TestAssignment.objects.get(pk=assignment_id)
         return render(request, 'phishing_quiz.html', {'emails': test_emails,
                                                       'assignment_id': assignment.id,

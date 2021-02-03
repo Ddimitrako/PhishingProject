@@ -23,6 +23,7 @@ from sbam_app.forms import *
 from sbam_app.models import *
 from email_simulation import models as sim_models
 from email_simulation import tasks as sim_tasks
+from phishing_quiz import models as phish_models
 from django.core import serializers
 
 
@@ -833,6 +834,7 @@ def create_campaign(request):
         users = json.loads(request.POST['users'])
         questionnaires = json.loads(request.POST['quests'])
         tests = json.loads(request.POST['tests'])
+        phishing_emails = json.loads(request.POST['phishing_emails'])
         title = request.POST['title']
         start_date = request.POST['start_date']
         description = request.POST['description']
@@ -877,6 +879,13 @@ def create_campaign(request):
                             email_ass.save()
                             sim_tasks.simulation_email_schedule(new_assignment, start_date, end_date, email_ass, sel_user)
 
+                        elif Test.objects.filter(title='Phishing Email Quiz').first().id == test_id:
+                            for email_id in phishing_emails:
+                                print('edw')
+                                phish_email = phish_models.PhishingEmail(pk=email_id)
+                                phis_email_ass = phish_models.PhishingEmailAssignmentAnswer(email=phish_email, assignment=new_assignment, user_answer=1)
+                                phis_email_ass.save()
+
             return JsonResponse({'success': 'True'}, status=200)
         except Error:
             return JsonResponse({'success': 'False'}, status=400)
@@ -887,11 +896,13 @@ def create_campaign(request):
             campaign_form_trees = get_campaign_form_trees(request.user.id)
 
         sim_emails = sim_models.SimEmail.objects.filter(is_active=1)
+        quiz_emails = phish_models.PhishingEmail.objects.filter(is_active=1)
         return render(request, 'new_campaign.html',
                       {'campaign_form': CampaignCreationForm(),
                        'test_email_form': PhishingTestEmailCreationForm(),
                        'campaign_form_trees': campaign_form_trees,
-                       'sim_emails': sim_emails})
+                       'sim_emails': sim_emails,
+                       'phish_quiz': quiz_emails})
 
 # @advanced_users_only
 def reports(request):

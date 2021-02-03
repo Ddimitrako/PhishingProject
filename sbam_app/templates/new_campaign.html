@@ -193,6 +193,72 @@
         </div>
     </div>
 
+    <div class="modal fade bd-example-modal-lg" id="PhishingQuizModal" tabindex="-1" role="dialog"
+         aria-labelledby="PhishingQuizModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="PhishingQuizModalLabel">{% trans "List of Available emails"|capfirst %}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p class="text-xl-left font-weight-bold">{% trans "Available emails"|capfirst %}</p>
+                                    </div>
+                                    <div class="col-md-2 selected_phish_emails_counter">
+                                        0/5
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p class="text-xl-left font-weight-bold">{% trans "Selected"|capfirst %}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <ul class="list-group" id="emails-titles">
+                                {% for sim_email in phish_quiz %}
+
+                                    <li class="list-group-item phish_email" style="padding: 0.75rem 3.25rem;">
+                                        <input class="custom-control-input phish_email" id="{{ sim_email.id }}" type="checkbox" value="{{ sim_email.id }}">
+                                        <label class="cursor-pointer font-italic d-block custom-control-label" for="{{ sim_email.id }}">{{ sim_email.title }}</label>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <p class="text-xl-left font-weight-bold">{% trans "Email Preview"|capfirst %}</p>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="email-card">
+                                {% for sim_email in phish_quiz %}
+                                    {% if forloop.counter == 1  %}
+                                        <div class="embed-responsive embed-responsive-21by9">
+                                            <iframe class="embed-responsive-item" src="{% url 'phishing_quiz:email_request' sim_email.id %}" id="ifrm_quiz"  width="100%" height="300"></iframe>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+{#                    <button class="btn btn-outline-info mr-auto email-check" role="button">{% trans "Send to me"|capfirst %}</button>#}
+{#                    <button type="button" class="btn btn-success email-selector" data-dismiss="modal">{% trans "Select email"|capfirst %}</button>#}
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade bd-example-modal-lg" id="campaignSuccessModal" tabindex="-1" role="dialog"
          aria-labelledby="campaignSuccessModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -248,17 +314,20 @@
     <script src="{% static "sbam_app/js/tree.min.js" %}"></script>
 
     <script type="application/javascript">
-        $('.js-example-basic-multiple').select2();
-        $(".js-example-theme-multiple").select2({
-          theme: "bootstrap4"
-        });
+
         function toggleSimModal(){
             $('#PhishingTestModal').modal('toggle');
         }
+
+        function toggleQuizModal(){
+            $('#PhishingQuizModal').modal('toggle');
+        }
+
         let questtreeData = {{ campaign_form_trees.dimensions_dict | safe }};
         let usertreeData = {{ campaign_form_trees.users_dict | safe }};
         let testTreeData = {{ campaign_form_trees.tests_dict | safe }};
         let selected_email_id = {{ sim_emails.0.id }};
+        let selected_phish_emails = [];
 
         $("#id_title").attr("autocomplete", "off");
 

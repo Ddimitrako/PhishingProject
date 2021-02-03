@@ -8,6 +8,7 @@ class PhishingEmail(models.Model):
     is_phishing = models.BooleanField()
     sender_email = models.CharField(_('sender_email'), max_length=100, help_text=_('Sender\'s Email'))
     sender_display_name = models.CharField(_('sender_display_name'), max_length=100, help_text=_('Sender\'s Name'))
+    title = models.CharField(_('title'), max_length=100, help_text=_('Phishing email title'))
     is_active = models.BooleanField(default=True)
 
 
@@ -34,4 +35,5 @@ class PhishingEmailQuizScore(models.Model):
         help_text=_('The assignment this answer belongs to')
     )
     score = models.FloatField(_('score'), help_text=_('Achieved score in phishing quiz'))
+
 

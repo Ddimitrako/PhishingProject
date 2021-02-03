@@ -141,7 +141,7 @@ $(document).ready(function(){
                     else if (this.selectedNodes[i].text === 'Phishing Email Quiz'){
                         $("#selected_tests tbody").append("<tr><th class='sel_index'>" + idx + "</th><td style='width: 70%'>"
                         + this.selectedNodes[i].text + "</td><td style='width: 30%'>" +
-                             "<button type='button' class='btn btn-primary btn-xs float-right' id='edit_phishing_quiz'" +
+                             "<button type='button' onclick='toggleQuizModal();' class='btn btn-primary btn-xs float-right' id='edit_phishing_quiz'" +
                              " title='Edit Phishing Quiz'>Edit</button></td></tr>");
                     }
                     else {
@@ -220,18 +220,25 @@ $(document).ready(function(){
         return 1;
     }
 
-    // $('.email-selector').click(function () {
-    //     selected_email_id =
-    // })
 
     function loadIframe(url) {
         var $iframe = $('#ifrm');
         if ( $iframe.length ) {
             $iframe.attr('src','/sim_email/'+url);
-        return false;
+            return false;
+        }
+        return true;
     }
-    return true;
-}
+
+    function loadIframeQuiz(url) {
+        var $iframe = $('#ifrm_quiz');
+        if ( $iframe.length ) {
+            $iframe.attr('src','/email_request/'+url);
+            return false;
+        }
+        return true;
+    }
+
 
     $('a[data-toggle="list"]').on('show.bs.tab', function (e) {
         e.target // newly activated tab
@@ -244,11 +251,58 @@ $(document).ready(function(){
 
     })
 
+
+    $(".phish_email:input:checkbox").each(function (index){
+        this.checked = (".phish_email:input:checkbox" < 5);
+    }).change(function (){
+
+        if ($(".phish_email:input:checkbox:checked").length > 5){
+            this.checked = false;
+            toastr["info"]("Maximum number of emails reached. Unselect an email to insert a new one")
+                toastr.options = {
+                      "closeButton": true,
+                      "debug": false,
+                      "newestOnTop": false,
+                      "progressBar": false,
+                      "positionClass": "toast-top-right",
+                      "preventDuplicates": false,
+                      "onclick": null,
+                      "showDuration": "300",
+                      "hideDuration": "1000",
+                      "timeOut": "5000",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                }
+        }
+        else{
+            let counter = $(".phish_email:input:checkbox:checked").length;
+            $('.selected_phish_emails_counter').text(counter + '/5');
+        }
+        loadIframeQuiz($(this).val());
+    });
+
     function check_campaign_title(){
         let campaign_title = $('#id_title').val();
         if(campaign_title === '') {
             alert('Please fill in the campaign title');
             return 0;
+        }
+        return 1;
+    }
+
+    function check_selected_emails(){
+        selected_tests = testsTree.selectedNodes;
+
+        for(var i=0; i< selected_tests.length; i++){
+            if(selected_tests[i].text === 'Phishing Email Quiz'){
+                if($(".phish_email:input:checkbox:checked").length === 0){
+                    alert('Please insert at least 1 email at Phishing email Quiz');
+                    return 0;
+                }
+            }
         }
         return 1;
     }
@@ -327,7 +381,7 @@ $(document).ready(function(){
     //    campaign creation ajax
     $('#create_campaign_btn').click(function () {
 
-        if(check_campaign_dates() && check_selected_items() && check_campaign_title()){
+        if(check_campaign_dates() && check_selected_items() && check_campaign_title() && check_selected_emails()){
             const title = $('#id_title').val();
             const start_date = $('#id_start_date').val();
             const end_date = $('#id_end_date').val();
@@ -356,8 +410,16 @@ $(document).ready(function(){
 
                 for (var i = 0; i < test_len; i++) {
                     tests.push(testsTree.selectedNodes[i]);
+                    // alert('edw');
+                    if(testsTree.selectedNodes[i].text === 'Phishing Email Quiz'){
+                        $.each($(".phish_email:input:checkbox:checked"), function (){
+                            console.log($(this).val());
+                            selected_phish_emails.push($(this).val());
+                        })
+                    }
                 }
             }
+
 
             ajax_data["title"] = title;
             ajax_data["start_date"] = start_date;
@@ -367,6 +429,7 @@ $(document).ready(function(){
             ajax_data["users"] =  JSON.stringify(users);
             ajax_data["tests"] =  JSON.stringify(tests);
             ajax_data["email_id"] = selected_email_id;
+            ajax_data["phishing_emails"] =  JSON.stringify(selected_phish_emails);
 
             //console.log('Sto Ajax call');
             console.log(ajax_data);
