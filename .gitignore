@@ -18,3 +18,5 @@ sbam/settings/.env
 *.mo
 
 staticfiles/*
+wordcount.py
+SBAM_UML_DIAGRAM.png

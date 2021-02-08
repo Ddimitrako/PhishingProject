@@ -91,3 +91,7 @@ iframe {
   height: 100vh;
   pointer-events: none;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}

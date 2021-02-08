@@ -90,6 +90,25 @@ $(document).ready(function(){
                         console.log(response['msg']);
                         $('.preview').text('')
                         $('.preview').append(response['msg'])
+                        toastr["info"]('Email successfully uploaded')
+
+                        toastr.options = {
+                              "closeButton": true,
+                              "debug": false,
+                              "newestOnTop": false,
+                              "progressBar": false,
+                              "positionClass": "toast-top-right",
+                              "preventDuplicates": false,
+                              "onclick": null,
+                              "showDuration": "300",
+                              "hideDuration": "1000",
+                              "timeOut": "5000",
+                              "extendedTimeOut": "1000",
+                              "showEasing": "swing",
+                              "hideEasing": "linear",
+                              "showMethod": "fadeIn",
+                              "hideMethod": "fadeOut"
+                        }
                     }
                     else{
                         alert('file not uploaded');
@@ -112,6 +131,26 @@ $(document).ready(function(){
 
         /* Copy the text inside the text field */
         document.execCommand("copy");
+
+        toastr["success"]('Copy to clipboard')
+
+        toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+        }
     })
 
 

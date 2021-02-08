@@ -500,9 +500,18 @@ class AssignmentsHistory(ListView):
     context_object_name = 'assignments_list'
 
     def get_queryset(self):
-        assignments = [self_quest for self_quest in
+        q_assignments = [self_quest for self_quest in
                                           models.QuestionnaireAssignment.objects.filter(user_id=self.request.user)
                                               .order_by('-assignmentresult__answer_time')]
+
+        t_assignments = [self_quest for self_quest in
+                                          models.TestAssignment.objects.filter(user_id=self.request.user)
+                                              .order_by('-assignmentresult__answer_time')]
+        assignments = sorted(
+            chain(q_assignments, t_assignments),
+            key=lambda instance:
+            (instance.campaign.end_date,
+             instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
         return assignments
 
 
@@ -881,7 +890,6 @@ def create_campaign(request):
 
                         elif Test.objects.filter(title='Phishing Email Quiz').first().id == test_id:
                             for email_id in phishing_emails:
-                                print('edw')
                                 phish_email = phish_models.PhishingEmail(pk=email_id)
                                 phis_email_ass = phish_models.PhishingEmailAssignmentAnswer(email=phish_email, assignment=new_assignment, user_answer=1)
                                 phis_email_ass.save()
@@ -957,7 +965,7 @@ def get_reports_data(request):
     return get_graph_data(assignments, [], dimensions)
     
     
-def get_graph_data(assignments, self_assessments, dimensions): 
+def get_graph_data(assignments, self_assessments, dimensions):
     graph_data = dict()
     graph_data['dimensions'] = list()   
     info, results_dict = gather_results(assignments, self_assessments, dimensions)
@@ -1006,20 +1014,22 @@ def get_graph_data(assignments, self_assessments, dimensions):
 
 def gather_results(assignments, self_assessments, dimensions):
     results_dict = dict()
-    for qa in assignments:
-        campaign = Campaign.objects.filter(assignment=qa)
-        if qa.questionnaire.id not in results_dict.keys():
-            results_dict[qa.questionnaire.id] = dict()
-        res = qa.assignmentresult_set.first()
+    for ass in assignments:
+        campaign = Campaign.objects.filter(assignment=ass)
+        ass_content_id = ass.questionnaire.id if isinstance(ass, QuestionnaireAssignment) else ass.test.id
+        if ass_content_id not in results_dict.keys():
+            results_dict[ass_content_id] = dict()
+        res = ass.assignmentresult_set.first()
+        # print(campaign, ass.id, res)
         if res is not None:
-            if qa.user.username not in results_dict[qa.questionnaire.id].keys():
-                results_dict[qa.questionnaire.id][qa.user.username] = {
-                    'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score*100,
+            if ass.user.username not in results_dict[ass_content_id].keys():
+                results_dict[ass_content_id][ass.user.username] = {
+                    'name': ass.user.first_name + ' ' + ass.user.last_name, 'score': res.score*100,
                     'answer_time': res.answer_time, 'campaign': campaign}
             else:
-                if res.answer_time > results_dict[qa.questionnaire.id][qa.user.username]['answer_time']:
-                    results_dict[qa.questionnaire.id][qa.user.username] = {
-                        'name': qa.user.first_name + ' ' + qa.user.last_name, 'score': res.score*100,
+                if res.answer_time > results_dict[ass_content_id][ass.user.username]['answer_time']:
+                    results_dict[ass_content_id][ass.user.username] = {
+                        'name': ass.user.first_name + ' ' + ass.user.last_name, 'score': res.score*100,
                         'answer_time': res.answer_time,  'campaign': campaign}
 
 
@@ -1051,6 +1061,11 @@ def gather_results(assignments, self_assessments, dimensions):
                 info[dim.title][dom.title][q.id]['title'] = q.title
                 info[dim.title][dom.title][q.id]['responses'] = list()
 
+            for test in dom.test_set.filter(is_active=1):
+                info[dim.title][dom.title][test.id] = dict()
+                info[dim.title][dom.title][test.id]['title'] = test.title
+                info[dim.title][dom.title][test.id]['responses'] = list()
+
     for dim in info.keys():
         for dom in info[dim].keys():
             for q_id in info[dim][dom].keys():
@@ -1066,7 +1081,7 @@ def get_domain_mean_value(dim, dom, info, results_dict):
     total = 0
     for questionnaire in info[dim.title][dom.title]:
         if questionnaire in results_dict:
-            # print(results_dict[questionnaire])
+            print(results_dict[questionnaire])
             for assigned_user in results_dict[questionnaire]:
                 total += results_dict[questionnaire][assigned_user]['score']
                 assignment_num += 1
@@ -1077,24 +1092,30 @@ def get_domain_mean_value(dim, dom, info, results_dict):
 
 def get_assignments(report_level, campaign_id, group_id, include_organisational, include_individual, months):
     qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, campaign__end_date__gte=date.today() - relativedelta(months=months))
-            
+    tests = TestAssignment.objects.filter(test__is_active=1, campaign__end_date__gte=date.today() - relativedelta(months=months))
+    # print(tests)
     if report_level == 'campaign':
         qas = qas.filter(campaign_id=campaign_id)
+        tests = tests.filter(campaign_id=campaign_id)
     elif report_level == 'group':
         qas = qas.filter(user__groups__in=[group_id])
+        tests = tests.filter(user__groups__in=[group_id])
 
     if not include_organisational:
         qas = qas.exclude(questionnaire__domain__dimension__level=0)
+        tests = tests.exclude(test__domain__dimension__level=0)
     if not include_individual:
         qas = qas.exclude(questionnaire__domain__dimension__level=1)
+        tests = tests.exclude(test__domain__dimension__level=0)
     
-    return qas.order_by('questionnaire', 'user')
+    return chain(qas.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
 
 
 def get_user_assignments(user, months):
     qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, user=user, campaign__end_date__gte=date.today() - relativedelta(months=months))
     qas = qas.exclude(questionnaire__domain__dimension__level=0)
-    return qas.order_by('questionnaire')
+    tests = TestAssignment.objects.filter(test__is_active=1, user=user, campaign__end_date__gte=date.today() - relativedelta(months=months))
+    return chain(qas.order_by('questionnaire'), tests.order_by('test'))
 
 
 

@@ -114,7 +114,7 @@ def password_strength(request, assignment_id):
 
         mean_score = ((policy.password(pass_1).strength() +
                                              policy.password(pass_2).strength() +
-                                             policy.password(pass_3).strength()) / 3) * 100
+                                             policy.password(pass_3).strength()) / 3)
 
         test_assignment = TestAssignment.objects.get(pk=request.POST['ass_id'])
         assignment_result = AssignmentResult(assignment=test_assignment,
@@ -124,7 +124,7 @@ def password_strength(request, assignment_id):
         assignment_result.save()
 
         return JsonResponse({'data': result_dict,
-                             'total_score': mean_score,
+                             'total_score': mean_score * 100,
                              'total_score_badge': custom_tags.get_badge(str(mean_score)),
                              })
     else:

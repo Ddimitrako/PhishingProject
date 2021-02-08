@@ -61,7 +61,9 @@ INSTALLED_APPS = [
     'zxcvbn_password',
 
     #django-q (scheduling)
-    'django_q'
+    'django_q',
+
+    'django_extensions',
 
 ]
 

@@ -72,4 +72,10 @@ you shall need to create a workplace with the below requirements:
 9. Run the project:
 
         py manage runserver
+   
+10. Create ER Diagram:
+    
+         python manage.py graph_models -a -o SBAM_UML_DIAGRAM.png  settings=sbam.settings.base_settings
+
+
 10. Enjoy developing!
