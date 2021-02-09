@@ -60,12 +60,12 @@
 
                             {% if request.user.is_superuser %}
                                 {% if user.is_active %}
-                                    <button class="btn btn-outline-danger btn-sm" type="submit" formaction="disable"
+                                    <button class="btn btn-outline-danger btn-sm" type="submit" formaction="disable/"
                                             title="{% trans "Disable user" %}">
                                         <i class="fas fa-user-slash mr-2"></i>{% trans "Disable" %}
                                     </button>
                                 {% else %}
-                                    <button class="btn btn-outline-success btn-sm" type="submit" formaction="enable"
+                                    <button class="btn btn-outline-success btn-sm" type="submit" formaction="enable/"
                                             title="{% trans "Enable user" %}">
                                         <i class="fas fa-user-check mr-2"></i>{% trans "Enable" %}
                                     </button>
