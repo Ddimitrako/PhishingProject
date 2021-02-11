@@ -1,4 +1,4 @@
 # deployment
 dj-config-url
 newrelic
-gunicorn
+gunicorn==20.0.4
