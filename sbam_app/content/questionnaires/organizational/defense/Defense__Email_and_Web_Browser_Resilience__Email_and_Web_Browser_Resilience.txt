@@ -6,7 +6,7 @@ id	type	text_en	options_en
 5	BOOL_P	Have you subscribed to URL-categorization services to ensure that they are up-to-date with the most recent website category definitions available?	 
 6	BOOL_P	Do you log all URL requests from each of the organization's systems, whether on-site or a mobile device, in order to identify potentially malicious activity and assist incident handlers with identifying potentially compromised systems?
 7	BOOL_P	Do you use Domain Name System (DNS) filtering services to help block access to known malicious domains?	 
-8	BOOL_P	Have you implemented Domain-based Message Authentication, Reporting and Conformance (DMARC) policy and verification, having started by implementing the Sender Policy Framework (SPF) and the DomainKeys Identified Mail (DKIM) standards, in order to lower the chance of spoofed or modified emails from valid domains,?
+8	BOOL_P	Have you implemented Domain-based Message Authentication, Reporting and Conformance (DMARC) policy and verification, having started by implementing the Sender Policy Framework (SPF) and the DomainKeys Identified Mail (DKIM) standards, in order to lower the chance of spoofed or modified emails from valid domains?
 9	BOOL_P	Do you block all email attachments entering the organization's email gateway if the file types are unnecessary for the organization's business?
 10	BOOL_P	Do you use sandboxing to analyze and block inbound email attachments with malicious behavior?	 
 11	PERC10_N	What is the percentage from your total received emails that are detected as spam?	 
