@@ -624,3 +624,33 @@ def create_group_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=Group)
 def save_group_profile(sender, instance, **kwargs):
     instance.groupprofile.save()
+
+
+#Mitre Attack
+
+MITTRE_TYPES = (
+    ('enterprise', 'Enterprise'),
+    ('ics', 'ICS'),
+)
+
+
+class AttackPattern(Model):
+    mittre_id = CharField(max_length=20, unique=True)
+    mittre_json_id = CharField(max_length=100, unique=True)
+    name = CharField(max_length=200)
+    description = TextField(max_length=100)
+    # type = CharField(max_length=20, choices=MITTRE_TYPES)
+
+
+class Mitigation(Model):
+    mittre_id = CharField(max_length=20, unique=True)
+    mittre_json_id = CharField(max_length=100, unique=True)
+    name = CharField(max_length=200)
+    description = TextField(max_length=100)
+    # type = CharField(max_length=20, choices=MITTRE_TYPES)
+    attack_patterns = ManyToManyField(AttackPattern)
+    domains = ManyToManyField(Domain)
+
+
+class ActiveAttackPatterns(Model):
+    attack_pattern = ForeignKey(AttackPattern, on_delete=CASCADE)
