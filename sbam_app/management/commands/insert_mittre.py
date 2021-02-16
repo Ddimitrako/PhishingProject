@@ -10,6 +10,7 @@ class Command(BaseCommand):
         types = ['enterprise', 'ics']
         # Mitigations and Attack Patterns
         for t in types:
+            print('------------------------------------\n',t, '\n------------------------------------\n')
             with open('sbam_app/mittre/{0}-attack.json'.format(t), encoding="utf8") as f:
                 data = json.load(f)
 
@@ -19,7 +20,7 @@ class Command(BaseCommand):
             attack_patterns = []
 
             for obj in data['objects']:
-                if obj['type'] == 'course-of-action':
+                if obj['type'] == 'course-of-action' and str(obj['external_references'][0]['external_id']).startswith('M'):
                     mitigations.append(obj)
                 elif obj['type'] == 'attack-pattern':
                     attack_patterns.append(obj)
@@ -57,7 +58,11 @@ class Command(BaseCommand):
             for r in relations:
                 m = r['source_ref']
                 # print(m)
-                mitigation = Mitigation.objects.get(mittre_json_id=m)
+                try:
+                    mitigation = Mitigation.objects.get(mittre_json_id=m)
+                except:
+                    print(m)
+                    continue
                 ap = r['target_ref']
                 # print(ap)
                 attack_pattern = AttackPattern.objects.get(mittre_json_id=ap)
