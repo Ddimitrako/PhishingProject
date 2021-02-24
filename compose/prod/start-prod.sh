@@ -64,7 +64,7 @@ echo "Importing the questionnaires"
 python manage.py import_questionnaire
 
 echo "Importing the Mitre Attack Model"
-python manage.py import_mittre
+python manage.py insert_mittre
 
 echo "Importing the demo emails for Phishing Quiz"
 python manage.py loaddata demo_emails.json
