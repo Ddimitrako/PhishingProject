@@ -11,7 +11,7 @@ class Command(BaseCommand):
         # Mitigations and Attack Patterns
         for t in types:
             print('------------------------------------\n',t, '\n------------------------------------\n')
-            with open('sbam_app/mittre/{0}-attack.json'.format(t), encoding="utf8") as f:
+            with open('sbam_app/mitre/{0}-attack.json'.format(t), encoding="utf8") as f:
                 data = json.load(f)
 
             print(len(data['objects']))
@@ -70,7 +70,7 @@ class Command(BaseCommand):
                 mitigation.save()
 
             # Domains and Mitigations
-            with open('sbam_app/mittre/domains_mitigations_{0}.csv'.format(t), 'r') as read_obj:
+            with open('sbam_app/mitre/domains_mitigations_{0}.csv'.format(t), 'r') as read_obj:
                 # pass the file object to reader() to get the reader object
                 csv_reader = csv.reader(read_obj, delimiter=';')
                 headers = next(csv_reader, None)
