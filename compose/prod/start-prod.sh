@@ -66,6 +66,9 @@ python manage.py import_questionnaire
 echo "Importing the Mitre Attack Model"
 python manage.py insert_mittre
 
+echo "Importing SBAM Tests"
+python manage.py loaddata tests.json
+
 echo "Importing the demo emails for Phishing Quiz"
 python manage.py loaddata demo_emails.json
 
