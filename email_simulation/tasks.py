@@ -38,4 +38,10 @@ def check_simulation_email(user, email_id):
 
 
 def link_enriched(email, ass_id, emali_id):
-    return email.replace('https://rb.gy/92erwn', 'https://rb.gy/92erwn?ass='+str(ass_id)+'&em='+str(emali_id))
+    return email.replace('https://rb.gy/kmo4ur', 'https://rb.gy/kmo4ur?ass='+str(ass_id)+'&em='+str(emali_id))
+
+# encryption for url /sim_endpoint/
+
+#encryption for online in vm https://rb.gy/kmo4ur
+
+#encryption for localhost https://rb.gy/92erwn

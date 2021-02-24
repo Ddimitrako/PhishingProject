@@ -33,7 +33,7 @@ echo "Importing the questionnaires"
 python manage.py import_questionnaire
 
 echo "Starting service for scheduled tasks"
-python manage.py qcluster
+python manage.py qcluster &
 
 echo "Starting the server..."
 python manage.py runserver 0.0.0.0:8000
