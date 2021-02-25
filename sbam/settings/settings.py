@@ -9,7 +9,7 @@ import environ
 
 env = environ.Env()
 # reading .env file
-if 'DJANGO_DEVELOPMENT' in os.environ and env('DJANGO_DEVELOPMENT')==False:
+if 'DJANGO_DEVELOPMENT' in os.environ and env('DJANGO_DEVELOPMENT')=='False':
     print('Starting Django using Production settings')
     env.read_env(env.str('ENV_PATH', '.env/prod/.env_app_prod'))
 else:

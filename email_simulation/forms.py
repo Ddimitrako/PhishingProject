@@ -12,7 +12,7 @@ class PhishingSimulationCreationForm(forms.Form):
 
     title = forms.CharField(widget=forms.TextInput(),required=True)
     email_file = forms.FileField()
-    encrypted_link = forms.CharField(widget=forms.TextInput(), initial='https://rb.gy/92erwn')
+    encrypted_link = forms.CharField(widget=forms.TextInput(), initial='https://rb.gy/kmo4ur')
     email_subject = forms.CharField(widget=forms.TextInput(), required=True)
 
     def __init__(self, *args, **kwargs):
@@ -35,3 +35,10 @@ class PhishingSimulationCreationForm(forms.Form):
             Submit('submit', 'Create Email', css_class='float-right')
         )
 
+
+
+# encryption for url /sim_endpoint/
+
+#encryption for online in vm https://rb.gy/kmo4ur
+
+#encryption for localhost https://rb.gy/92erwn
