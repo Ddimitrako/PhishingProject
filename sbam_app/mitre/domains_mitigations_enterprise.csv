@@ -4,7 +4,10 @@ M1015;Active Directory Configuration;;"Configure Active Directory to prevent use
 Org.->Access and Trust->Account Management"
 M1016;Vulnerability Scanning;;Vulnerability scanning is used to find potentially exploitable software vulnerabilities to remediate them.;Org.->Continuity->Continuous Vulnerability Management
 M1017;User Training;;Train users to to be aware of access or manipulation attempts by an adversary to reduce the risk of successful spearphishing, social engineering, and other techniques that involve user interaction.;"Ind.->Competency->Security Skills Evaluation
-Ind.->Behaviour->Security Behaviour"
+Ind.->Behaviour->Security Behaviour
+Org.->Defense->Security Awareness and Training Program
+Ind.->Competency->Security Skills Evaluation
+Ind.->Competency->Training Completion and Scoring"
 M1018;User Account Management;;Manage the creation, modification, use, and permissions associated to user accounts.;Org.->Access and Trust->Account Management
 M1019;Threat Intelligence Program;;A threat intelligence program helps an organization generate their own threat intelligence information and track trends to inform defensive priorities to mitigate risk.;Org.->Operations->Risk Assessment
 M1020;SSL/TLS Inspection;;Break and inspect SSL/TLS sessions to look at encrypted web traffic for adversary activity.;Org.->Defense->Boundary Defense
@@ -13,7 +16,8 @@ M1022;Restrict File and Directory Permissions;;Restrict access by setting direct
 M1024;Restrict Registry Permissions;;Restrict the ability to modify certain hives or keys in the Windows Registry.;Org.->Assets->Hardware Configuration Management
 M1025;Privileged Process Integrity;#N/A;Protect processes with high privileges that can be used to interact with critical system components through use of protected process light, anti-process injection defenses, or other process integrity enforcement measures.;Org.->Access and Trust->Privileged Account Management
 M1026;Privileged Account Management;;Manage the creation, modification, use, and permissions associated to privileged accounts, including SYSTEM and root.;Org.->Access and Trust->Privileged Account Management
-M1027;Password Policies;;Set and enforce secure password policies for accounts.;Ind.->Competency->Security Skills Evaluation
+M1027;Password Policies;;Set and enforce secure password policies for accounts.;"Ind.->Competency->Security Skills Evaluation
+Org.->Access and Trust->Password Robustness and Exposure"
 M1028;Operating System Configuration;;Make configuration changes related to the operating system or a common feature of the operating system that result in system hardening against techniques.;Org.->Assets->Hardware Configuration Management
 M1029;Remote Data Storage;#N/A;Use remote security log and sensitive file storage where access can be controlled better to prevent exposure of intrusion detection log data or sensitive information.;Org.->Continuity->Backup Mechanisms
 M1030;Network Segmentation;;Architect sections of the network to isolate critical systems, functions, or resources. Use physical and logical segmentation to prevent access to potentially sensitive systems and information. Use a DMZ to contain any internet-facing services that should not be exposed from the internal network. Configure separate virtual private cloud (VPC) instances to isolate critical cloud systems.;Org.->Access and Trust->Access Management
