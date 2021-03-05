@@ -79,7 +79,8 @@ def email_creation(request):
             new_email = PhishingEmail(sender_email=new_email_form.cleaned_data['sender_email'],
                                       is_phishing= new_email_form.cleaned_data['is_phishing'],
                                       sender_display_name=new_email_form.cleaned_data['sender_display_name'],
-                                      content=handle_uploaded_file(request.FILES['email_file'])
+                                      content=handle_uploaded_file(request.FILES['email_file']),
+                                      title=new_email_form.cleaned_data['email_title'],
                                       )
             new_email.save()
             new_form = PhishingEmailCreationForm(initial={'sender_email': new_email.sender_email,

@@ -17,6 +17,7 @@ class PhishingEmailCreationForm(forms.Form):
     )
     sender_email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'user@example,com'}), required=True)
     sender_display_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'John Papadopoulos'}), required=True)
+    email_title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Test Title'}), required=True)
     email_file = forms.FileField()
 
     def __init__(self, *args, **kwargs):
@@ -28,12 +29,19 @@ class PhishingEmailCreationForm(forms.Form):
             Row(
                 Column('sender_email', css_class='form-group col-md-4 mb-0'),
                 Column('is_phishing', css_class='form-group col-md-4 offset-md-1 mb-0'),
+                # Column('email_title', css_class='form-group col-md-4 mb-0'),
+
                 css_class='form-row'
             ),
             Row(
                 Column('sender_display_name', css_class='form-group col-md-4 mb-0'),
 
+
                 Column('email_file', css_class='form-group col-md-4 offset-md-1 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('email_title', css_class='form-group col-md-4 mb-0'),
                 css_class='form-row'
             ),
             Submit('submit', 'Create Email', css_class='float-right')
