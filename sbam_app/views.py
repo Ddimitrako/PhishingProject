@@ -790,14 +790,49 @@ def campaign(request, id):
         values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title', 'user__userprofile__department'). \
         distinct().order_by('user__last_name')
 
-    questionnaires = QuestionnaireAssignment.objects.filter(campaign=campaign).\
+    q_ass = QuestionnaireAssignment.objects.filter(campaign=campaign).\
         order_by('questionnaire__title').distinct('questionnaire__title')
 
-    tests = TestAssignment.objects.filter(campaign=campaign). \
+    t_ass = TestAssignment.objects.filter(campaign=campaign). \
         values_list('test__title', 'test__domain__dimension__level'). \
         order_by('test__title').distinct('test__title')
 
-    assignments = questionnaires.count() + tests.count()
+    #TODO for now i am not taking into account the rest of the domains a mitigation is related
+    mitigations_set = set()
+    attack_patterns_set = set()
+    for ass in q_ass:
+        for mit in ass.questionnaire.domain.mitigation_set.all():
+            mitigations_set.add(mit)
+
+    # At this point the mitigations_set contains all mitigations that are related to the campaign
+
+    for mit in mitigations_set:
+        for pattern in mit.attack_patterns.all():
+            attack_patterns_set.add(pattern)
+
+    # At this point the attack_patterns_set contains all attack_patterns that are related to the mitigations of the campaign
+    print(len(attack_patterns_set))
+
+    score = 0.0
+    domains_set = set()
+    for pattern in attack_patterns_set:
+        for mit in pattern.mitigation_set.all():
+            for domain in mit.domains.all():
+                domains_set.add(domain)
+
+    count = 0
+    for domain in domains_set:
+
+        quests = models.QuestionnaireAssignment.objects.filter(questionnaire__domain=domain).order_by('assignmentresult__answer_time')[0]
+        print(quests.status)
+        if quests.status == 'COMPLETED':
+            score += quests.assignmentresult_set.get(assignment=quests).score
+            count += 1
+        print(score)
+
+    print(score/count)
+    # print(mitigations_set, len(mitigations_set))
+    assignments = q_ass.count() + t_ass.count()
     results = calculate_campaign_result(campaign, assignments)
 
     compl_perc = models.AssignmentResult.objects.filter(assignment__campaign=campaign).count() / \
@@ -807,8 +842,8 @@ def campaign(request, id):
         'campaign': campaign,
         'campaign_compl_rate': compl_perc,
         'assignees': assignees,
-        'questionnaires': questionnaires,
-        'tests': tests,
+        'questionnaires': q_ass,
+        'tests': t_ass,
         'assignments': assignments,
         'results': results,
         'campaign_form': campaign_form

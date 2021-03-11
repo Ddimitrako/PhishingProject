@@ -641,6 +641,8 @@ class AttackPattern(Model):
     description = TextField(max_length=100)
     # type = CharField(max_length=20, choices=MITTRE_TYPES)
 
+    def __str__(self):
+        return self.name
 
 class Mitigation(Model):
     mittre_id = CharField(max_length=20, unique=True)
@@ -651,6 +653,8 @@ class Mitigation(Model):
     attack_patterns = ManyToManyField(AttackPattern)
     domains = ManyToManyField(Domain)
 
+    def __str__(self):
+        return self.name
 
 class ActiveAttackPatterns(Model):
     attack_pattern = ForeignKey(AttackPattern, on_delete=CASCADE)
