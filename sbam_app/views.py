@@ -797,8 +797,12 @@ def campaign(request, id):
         values_list('test__title', 'test__domain__dimension__level'). \
         order_by('test__title').distinct('test__title')
 
+    print(tests, questionnaires)
+
     assignments = questionnaires.count() + tests.count()
     results = calculate_campaign_result(campaign, assignments)
+
+    print( models.AssignmentResult.objects.filter(assignment__campaign=campaign).count(),  models.Assignment.objects.filter(campaign=campaign).count())
 
     compl_perc = models.AssignmentResult.objects.filter(assignment__campaign=campaign).count() / \
                  models.Assignment.objects.filter(campaign=campaign).count() * 100

@@ -5,6 +5,7 @@ from email_simulation.models import *
 from sbam_app.views import disable_form
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.db.models import F
+from datetime import datetime
 
 
 def sim_email_creation(request):
@@ -57,9 +58,10 @@ def email_preview(request):
     # for a in request.POST['email_file']:
     #     print(a)
     print(request.FILES)
-
+    print('edw')
+    success, content = handle_uploaded_file(request.FILES['email_file'])
     # https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
-    return JsonResponse({'success': 'True', 'msg': handle_uploaded_file(request.FILES['email_file'])}, status=200)
+    return JsonResponse({'success': success, 'msg': content}, status=200)
 
 
 def sim_endpoint(request):
@@ -71,13 +73,24 @@ def sim_endpoint(request):
     sim_assignment.save()
     campaign = sbam_models.Campaign.objects.get(assignment=request.GET['ass'])
     assignee = sbam_models.User.objects.get(assignment=request.GET['ass'])
+    assignment_result = sbam_models.AssignmentResult(assignment=sim_assignment.assignment,
+                                                     score=0, answer_time=datetime.now())
+
+    assignment_result.save()
     print(assignee)
+    print(assignment_result)
     return render(request, 'esim_answer.html', {'user': assignee,
                                                 'campaign': campaign})
 
 
 def handle_uploaded_file(f):
     email_content = ''
-    for chunk in f.chunks():
-        email_content += chunk.decode('utf-8')
-    return email_content
+    success = ''
+    try:
+        for chunk in f.chunks():
+            email_content += chunk.decode('utf-8')
+        success = 'True'
+    except:
+        email_content += 'Could not load email'
+        success = 'False'
+    return success, email_content
