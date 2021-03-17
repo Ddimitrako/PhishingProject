@@ -14,24 +14,33 @@ def sim_email_creation(request):
         print(new_email_form.errors)
         print(new_email_form.is_valid())
         if new_email_form.is_valid():
+            msg, content = handle_uploaded_file(request.FILES['email_file'])
 
-            new_email = SimEmail(is_active=True,
-                                 title=new_email_form.cleaned_data['title'],
-                                 subject=new_email_form.cleaned_data['email_subject'],
-                                content=handle_uploaded_file(request.FILES['email_file'])
-                                )
-            new_email.save()
-            new_form = PhishingSimulationCreationForm(initial={'title': new_email.title,
-                                                               'email_subject': new_email.subject,
-                                                               'email_file': request.FILES['email_file']})
-            print(new_form)
-            disable_form(new_form)
-            return render(request, 'sim_email_creation.html', {
-                'mode': 'submitted',
-                'email': new_email.id,
-                'email_creation_form': new_form,
-                'message': 'success'
-            })
+            #TODO get the encrypted link from the environment variables
+            if content.find('https://rb.gy/92erwn') == -1:
+                return render(request, 'sim_email_creation.html', {
+                    'mode': 'error',
+                    'email_creation_form': PhishingSimulationCreationForm(),
+                    'message': 'Please insert the provided url somewhere inside your email'
+                })
+            else:
+                new_email = SimEmail(is_active=True,
+                                     title=new_email_form.cleaned_data['title'],
+                                     subject=new_email_form.cleaned_data['email_subject'],
+                                    content=content)
+
+                new_email.save()
+                new_form = PhishingSimulationCreationForm(initial={'title': new_email.title,
+                                                                   'email_subject': new_email.subject,
+                                                                   'email_file': request.FILES['email_file']})
+                print(new_form)
+                disable_form(new_form)
+                return render(request, 'sim_email_creation.html', {
+                    'mode': 'submitted',
+                    'email': new_email.id,
+                    'email_creation_form': new_form,
+                    'message': 'success'
+                })
         else:
             return render(request, 'sim_email_creation.html', {
                 'mode': 'error',
@@ -84,7 +93,6 @@ def sim_endpoint(request):
                                                     'campaign': campaign})
     else:
         email = SimEmail.objects.get(pk=request.GET['em'])
-        print(email)
         return render(request, 'sim_email_test_preview.html', {'email': email})
 
 
