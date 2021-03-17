@@ -11,7 +11,7 @@ from sbam_app.models import TestAssignment
 def simulation_email_schedule(new_assignment, start_date, end_date, email_ass, user):
 
     msg = 'Welcome to our website scheduled'
-    scheduled_date = datetime.datetime.strptime(start_date+' 1:58pM', '%Y-%m-%d %I:%M%p')
+    scheduled_date = datetime.datetime.strptime(start_date+' 11:00aM', '%Y-%m-%d %I:%M%p')
     email = SimEmail.objects.filter(emailassignment=email_ass.pk).first()
     # print(email.content)
     schedule('django.core.mail.send_mail',
@@ -23,7 +23,7 @@ def simulation_email_schedule(new_assignment, start_date, end_date, email_ass, u
              None,
              None,
              None,
-             link_enriched(email.content, new_assignment.id, email.id),
+             link_enriched(email.content, email.id, new_assignment.id),
              schedule_type=Schedule.ONCE,
              next_run=timezone.make_aware(scheduled_date))
 
@@ -34,8 +34,11 @@ def simulation_email_schedule(new_assignment, start_date, end_date, email_ass, u
 def check_simulation_email(user, email_id):
     email = SimEmail.objects.get(pk=email_id)
     async_task('django.core.mail.send_mail', email.subject,
-               '', settings.EMAIL_HOST_USER, [user.email], False, None, None, None, email.content)
+               '', settings.EMAIL_HOST_USER, [user.email], False, None, None, None, link_enriched(email.content, email.id))
 
 
-def link_enriched(email, ass_id, emali_id):
-    return email.replace('https://rb.gy/92erwn', 'https://rb.gy/92erwn?ass='+str(ass_id)+'&em='+str(emali_id))
+def link_enriched(email, email_id, ass_id=-1):
+    if ass_id == -1:
+        return email.replace('https://rb.gy/92erwn', 'https://rb.gy/92erwn?em=' + str(email_id))
+    else:
+        return email.replace('https://rb.gy/92erwn', 'https://rb.gy/92erwn?ass='+str(ass_id)+'&em='+str(email_id))

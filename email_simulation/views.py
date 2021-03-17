@@ -65,22 +65,27 @@ def email_preview(request):
 
 
 def sim_endpoint(request):
-    print(request.GET['ass'])
-    print(request.GET['em'])
+    if 'ass' in request.GET:
+        print(request.GET['ass'])
+        print(request.GET['em'])
 
-    sim_assignment = EmailAssignment(assignment_id=request.GET['ass'], email_id=request.GET['em'])
-    sim_assignment.answer = True
-    sim_assignment.save()
-    campaign = sbam_models.Campaign.objects.get(assignment=request.GET['ass'])
-    assignee = sbam_models.User.objects.get(assignment=request.GET['ass'])
-    assignment_result = sbam_models.AssignmentResult(assignment=sim_assignment.assignment,
-                                                     score=0, answer_time=datetime.now())
+        sim_assignment = EmailAssignment(assignment_id=request.GET['ass'], email_id=request.GET['em'])
+        sim_assignment.answer = True
+        sim_assignment.save()
+        campaign = sbam_models.Campaign.objects.get(assignment=request.GET['ass'])
+        assignee = sbam_models.User.objects.get(assignment=request.GET['ass'])
+        assignment_result = sbam_models.AssignmentResult(assignment=sim_assignment.assignment,
+                                                         score=0, answer_time=datetime.now())
 
-    assignment_result.save()
-    print(assignee)
-    print(assignment_result)
-    return render(request, 'esim_answer.html', {'user': assignee,
-                                                'campaign': campaign})
+        assignment_result.save()
+        print(assignee)
+        print(assignment_result)
+        return render(request, 'esim_answer.html', {'user': assignee,
+                                                    'campaign': campaign})
+    else:
+        email = SimEmail.objects.get(pk=request.GET['em'])
+        print(email)
+        return render(request, 'sim_email_test_preview.html', {'email': email})
 
 
 def handle_uploaded_file(f):
