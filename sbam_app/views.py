@@ -25,6 +25,7 @@ from email_simulation import models as sim_models
 from email_simulation import tasks as sim_tasks
 from phishing_quiz import models as phish_models
 from django.core import serializers
+from kafka import KafkaProducer
 
 
 #
@@ -1287,3 +1288,21 @@ def get_campaigns(request):
         campaigns_json['data'].append(campaign_dict)
 
     return JsonResponse(campaigns_json)
+
+
+def kafka_producer(request):
+    producer = KafkaProducer(bootstrap_servers='bdo-dev.epu.ntua.gr:9092',
+                             value_serializer=lambda x: json.dumps(x).encode('utf-8'))
+    data = {
+        'header': {
+            'topicName': 'TOP06_02_SIEM_DATA_PROCESSED',
+            'topicVerMajor': 1,
+            'topicVerMinor': 0,
+            'sender': 'SBA',
+            'sentUtc': timezone.now().strftime('%Y-%m-%d%I:%M%p'),
+            'msgType': 'info',
+        },
+        'body': {}
+    }
+    producer.send('chris_test', value=data)
+    return JsonResponse({'success': 'True'}, status=200)

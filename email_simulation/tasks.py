@@ -49,9 +49,9 @@ def check_simulation_email(user, email_id):
 
 def link_enriched(email, email_id, ass_id=-1):
     if ass_id == -1:
-        return email.replace('https://rb.gy/92erwn', 'https://rb.gy/92erwn?em=' + str(email_id))
+        return email.replace(settings.ENCRYPTED_ENDPOINT, settings.ENCRYPTED_ENDPOINT+'?em=' + str(email_id))
     else:
-        return email.replace('https://rb.gy/92erwn', 'https://rb.gy/92erwn?ass='+str(ass_id)+'&em='+str(email_id))
+        return email.replace(settings.ENCRYPTED_ENDPOINT, settings.ENCRYPTED_ENDPOINT+'?ass='+str(ass_id)+'&em='+str(email_id))
 
 
 def simulation_test_pass(assignment, email):

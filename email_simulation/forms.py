@@ -2,6 +2,7 @@ from crispy_forms.bootstrap import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import *
 from django import forms
+from django.conf import settings
 from django.contrib.auth.models import Group
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
@@ -12,7 +13,7 @@ class PhishingSimulationCreationForm(forms.Form):
 
     title = forms.CharField(widget=forms.TextInput(),required=True)
     email_file = forms.FileField()
-    encrypted_link = forms.CharField(widget=forms.TextInput(), initial='https://rb.gy/92erwn')
+    encrypted_link = forms.CharField(widget=forms.TextInput(), initial=settings.ENCRYPTED_ENDPOINT)
     email_subject = forms.CharField(widget=forms.TextInput(), required=True)
 
     def __init__(self, *args, **kwargs):
