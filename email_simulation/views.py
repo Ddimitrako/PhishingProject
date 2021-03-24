@@ -77,20 +77,23 @@ def sim_endpoint(request):
     if 'ass' in request.GET:
         print(request.GET['ass'])
         print(request.GET['em'])
+        email_ass = EmailAssignment.objects.filter(assignment_id=request.GET['ass'], email_id=request.GET['ass'])
+        if email_ass.exists():
+            sim_assignment = EmailAssignment(assignment_id=request.GET['ass'], email_id=request.GET['em'])
+            sim_assignment.answer = True
+            sim_assignment.save()
+            campaign = sbam_models.Campaign.objects.get(assignment=request.GET['ass'])
+            assignee = sbam_models.User.objects.get(assignment=request.GET['ass'])
+            assignment_result = sbam_models.AssignmentResult(assignment=sim_assignment.assignment,
+                                                             score=0, answer_time=datetime.now())
 
-        sim_assignment = EmailAssignment(assignment_id=request.GET['ass'], email_id=request.GET['em'])
-        sim_assignment.answer = True
-        sim_assignment.save()
-        campaign = sbam_models.Campaign.objects.get(assignment=request.GET['ass'])
-        assignee = sbam_models.User.objects.get(assignment=request.GET['ass'])
-        assignment_result = sbam_models.AssignmentResult(assignment=sim_assignment.assignment,
-                                                         score=0, answer_time=datetime.now())
-
-        assignment_result.save()
-        print(assignee)
-        print(assignment_result)
-        return render(request, 'esim_answer.html', {'user': assignee,
-                                                    'campaign': campaign})
+            assignment_result.save()
+            print(assignee)
+            print(assignment_result)
+            return render(request, 'esim_answer.html', {'user': assignee,
+                                                        'campaign': campaign})
+        else:
+            JsonResponse({'success': True, 'msg': 'content'}, status=200)
     else:
         email = SimEmail.objects.get(pk=request.GET['em'])
         return render(request, 'sim_email_test_preview.html', {'email': email})
