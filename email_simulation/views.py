@@ -78,7 +78,7 @@ def sim_endpoint(request):
         print(request.GET['ass'])
         print(request.GET['em'])
         email_ass = EmailAssignment.objects.filter(assignment_id=request.GET['ass'], email_id=request.GET['ass'])
-        if email_ass.exists():
+        if not email_ass.exists():
             sim_assignment = EmailAssignment(assignment_id=request.GET['ass'], email_id=request.GET['em'])
             sim_assignment.answer = True
             sim_assignment.save()
