@@ -28,17 +28,28 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="card border-info mb-3">
-                <div class="card-header text-cyan">Email Preview</div>
-                <div class="card-body preview text-danger">
-                    {% if mode == 'submitted' %}
-                        <div class="embed-responsive embed-responsive-21by9">
-                            <iframe class="embed-responsive-item" src="{% url 'email_simulation:email_request' email %}" id="ifrm"  width="100%" height="300"></iframe>
-                        </div>
-                        {% else %}
-                            <p>No email inserted</p>
-                    {% endif %}
-                </div>
+{#            <div class="container preview-container">#}
+{#                <div class="card border-info mb-3">#}
+{#                    <div class="card-header text-cyan">Email Preview</div>#}
+{#                        <div class="card-body preview text-danger">#}
+{#                        {% if mode == 'submitted' %}#}
+{#                            <div class="embed-responsive embed-responsive-16by9" style="--aspect-ratio: 16/9;">#}
+{#                                <iframe class="responsive-iframe embed-responsive-item" src="{% url 'email_simulation:email_request' email %}" id="ifrm"   height="300"></iframe>#}
+{#                            </div>#}
+{#                            {% else %}#}
+{#                                <p>No email inserted</p>#}
+{#                        {% endif %}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+            <div class="card-body preview text-danger">
+                {% if mode == 'submitted' %}
+                    <div class="videoWrapper" style="--aspect-ratio: 16/9;">
+                        <iframe class="" src="{% url 'email_simulation:email_request' email %}" id="ifrm"   height="300"></iframe>
+                    </div>
+                    {% else %}
+                        <p>No email inserted</p>
+                {% endif %}
             </div>
         </div>
     </div>

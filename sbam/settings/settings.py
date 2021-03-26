@@ -66,6 +66,8 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+ENCRYPTED_ENDPOINT = env('ENCRYPTED_ENDPOINT')
+
 Q_CLUSTER = {
     'workers': 1,
     'orm': 'default',
