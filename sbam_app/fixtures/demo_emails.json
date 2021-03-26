@@ -51,7 +51,8 @@
     "is_phishing": true,
     "sender_email": "john@gmail.com",
     "sender_display_name": "John Papadopoulos",
-    "is_active": false
+    "is_active": false,
+    "title": "Test Title 1"
   }
 },
 {
@@ -62,7 +63,8 @@
     "is_phishing": true,
     "sender_email": "alan@paypal.com",
     "sender_display_name": "Alan Rick",
-    "is_active": true
+    "is_active": true,
+    "title": "Test Title 1"
   }
 },
 {
@@ -73,7 +75,8 @@
     "is_phishing": false,
     "sender_email": "no-reply@dropboxmail.com",
     "sender_display_name": "Dropbox",
-    "is_active": true
+    "is_active": true,
+    "title": "Test Title 2"
   }
 },
 {
@@ -84,7 +87,8 @@
     "is_phishing": false,
     "sender_email": "no-reply@google.support",
     "sender_display_name": "Google",
-    "is_active": true
+    "is_active": true,
+    "title": "Test Title 3"
   }
 },
 {
@@ -95,7 +99,8 @@
     "is_phishing": false,
     "sender_email": "no-reply@google.support",
     "sender_display_name": "Google",
-    "is_active": true
+    "is_active": true,
+    "title": "Test Title 4"
   }
 },
 {
@@ -106,7 +111,8 @@
     "is_phishing": true,
     "sender_email": "no-reply@ntua.com",
     "sender_display_name": "Ntua",
-    "is_active": true
+    "is_active": true,
+    "title": "Test Title 5"
   }
 }
 ]
