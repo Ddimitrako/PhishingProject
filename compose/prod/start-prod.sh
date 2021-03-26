@@ -73,7 +73,7 @@ echo "Importing the demo emails for Phishing Quiz"
 python manage.py loaddata demo_emails.json
 
 echo "Importing the demo emails for Phishing Simulation Quiz"
-python manage.py loaddata generate_sim_email
+python manage.py generate_sim_email
 
 echo "Starting service for scheduled tasks"
 python manage.py qcluster &

@@ -32,6 +32,18 @@ python manage.py generate_default_question_types
 echo "Importing the questionnaires"
 python manage.py import_questionnaire
 
+echo "Importing the Mitre Attack Model"
+python manage.py insert_mittre
+
+echo "Importing SBAM Tests"
+python manage.py loaddata tests.json
+
+echo "Importing the demo emails for Phishing Quiz"
+python manage.py loaddata demo_emails.json
+
+echo "Importing the demo emails for Phishing Simulation Quiz"
+python manage.py generate_sim_email
+
 echo "Starting service for scheduled tasks"
 python manage.py qcluster &
 
