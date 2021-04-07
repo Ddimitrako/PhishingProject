@@ -75,11 +75,12 @@ def email_creation(request):
         print(new_email_form.errors)
         print(new_email_form.is_valid())
         if new_email_form.is_valid():
+            msg, content = handle_uploaded_file(request.FILES['email_file'])
 
             new_email = PhishingEmail(sender_email=new_email_form.cleaned_data['sender_email'],
                                       is_phishing= new_email_form.cleaned_data['is_phishing'],
                                       sender_display_name=new_email_form.cleaned_data['sender_display_name'],
-                                      content=handle_uploaded_file(request.FILES['email_file']),
+                                      content=content,
                                       title=new_email_form.cleaned_data['email_title'],
                                       )
             new_email.save()
@@ -89,7 +90,6 @@ def email_creation(request):
                                                           'email_file': request.FILES['email_file']})
 
             disable_form(new_form)
-            print('edwwww')
             return render(request, 'email_creation.html', {
                 'mode': 'submitted',
                 'email': new_email.id,

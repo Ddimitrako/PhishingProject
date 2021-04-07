@@ -66,8 +66,8 @@ def email_preview(request):
     # print(request.POST['email_file'])
     # for a in request.POST['email_file']:
     #     print(a)
-    print(request.FILES)
-    print('edw')
+    # print(request.FILES)
+    # print('edw')
     success, content = handle_uploaded_file(request.FILES['email_file'])
     # https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
     return JsonResponse({'success': success, 'msg': content}, status=200)
@@ -102,6 +102,7 @@ def sim_endpoint(request):
 def handle_uploaded_file(f):
     email_content = ''
     success = ''
+
     try:
         for chunk in f.chunks():
             email_content += chunk.decode('utf-8')
