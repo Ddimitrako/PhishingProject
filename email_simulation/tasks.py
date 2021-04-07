@@ -55,8 +55,8 @@ def link_enriched(email, email_id, ass_id=-1):
 
 
 def simulation_test_pass(assignment, email):
-    sim_assignment = EmailAssignment.objects.filter(assignment_id=assignment, email_id=email).first()
-    if not sim_assignment.exists():
-        assignment_result = sbam_models.AssignmentResult(assignment_id=sim_assignment.assignment.id, score=1.0, answer_time=datetime.datetime.now())
+    sim_assignment = EmailAssignment.objects.filter(assignment=assignment).filter(email_id=email)
+    if sim_assignment.exists():
+        assignment_result = sbam_models.AssignmentResult(assignment_id=sim_assignment.first().assignment.id, score=1.0, answer_time=datetime.datetime.now())
         assignment_result.save()
     return True
