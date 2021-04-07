@@ -75,21 +75,17 @@ def email_preview(request):
 
 def sim_endpoint(request):
     if 'ass' in request.GET:
-        print(request.GET['ass'])
-        print(request.GET['em'])
-        email_ass = EmailAssignment.objects.filter(assignment_id=request.GET['ass'], email_id=request.GET['ass'])
-        if not email_ass.exists():
-            sim_assignment = EmailAssignment(assignment_id=request.GET['ass'], email_id=request.GET['em'])
-            sim_assignment.answer = True
-            sim_assignment.save()
+        email_ass = EmailAssignment.objects.filter(assignment=request.GET['ass']).filter(email_id=request.GET['em'])
+        if email_ass.exists():
+            # sim_assignment = EmailAssignment(assignment_id=request.GET['ass'], email_id=request.GET['em'])
+            # sim_assignment.answer = True
+            # sim_assignment.save()
             campaign = sbam_models.Campaign.objects.get(assignment=request.GET['ass'])
             assignee = sbam_models.User.objects.get(assignment=request.GET['ass'])
-            assignment_result = sbam_models.AssignmentResult(assignment=sim_assignment.assignment,
+            assignment_result = sbam_models.AssignmentResult(assignment=email_ass.first().assignment,
                                                              score=0, answer_time=datetime.now())
 
             assignment_result.save()
-            print(assignee)
-            print(assignment_result)
             return render(request, 'esim_answer.html', {'user': assignee,
                                                         'campaign': campaign})
         else:
