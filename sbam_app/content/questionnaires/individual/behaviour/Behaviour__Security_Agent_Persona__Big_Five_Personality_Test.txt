@@ -1,61 +1,61 @@
-id	type	text_en	options_en
-1	AGR5_P	I have a kind word for everyone.	 
-2	AGR5_P	I am always prepared.	 
-3	AGR5_P	I feel comfortable around people.	 
-4	AGR5_N	I often feel blue.	 
-5	AGR5_P	I believe in the importance of art.	 
-6	AGR5_N	I feel I am better than other people.	 
-7	AGR5_N	I avoid taking on a lot of responsibility.	 
-8	AGR5_P	I make friends easily.	 
-9	AGR5_N	There are many things that I do not like about myself.	 
-10	AGR5_P	I am interested in the meaning of things.	 
-11	AGR5_P	I treat everyone with kindness and sympathy.	 
-12	AGR5_P	I get chores done right away.	 
-13	AGR5_P	I am skilled in handling social situations.	 
-14	AGR5_N	I am often troubled by negative thoughts.	 
-15	AGR5_P	I enjoy going to art museums.	 
-16	AGR5_P	I accept people the way they are.	 
-17	AGR5_P	It's important to me that people are on time.
-18	AGR5_P	I am the life of the party.	 
-19	AGR5_N	My moods change easily.	 
-20	AGR5_P	I have a vivid imagination.	 
-21	AGR5_P	I take care of other people before taking care of myself.	 
-22	AGR5_P	I make plans and stick to them.	 
-23	AGR5_P	I don't like to draw attention to myself.	 
-24	AGR5_P	I often feel anxious about what could go wrong.	 
-25	AGR5_P	I enjoy hearing new ideas.	 
-26	AGR5_N	I start arguments just for the fun of it.	 
-27	AGR5_P	I always make good use of my time.	 
-28	AGR5_P	I have a lot to say.	 
-29	AGR5_P	I often worry that I am not good enough.	 
-30	AGR5_P	I am not interested in abstract ideas.	 
-31	AGR5_N	I criticize other people.	 
-32	AGR5_N	I find it difficult to get to work.	 
-33	AGR5_P	I stay in the background.	 
-34	AGR5_P	I seldom feel blue.	 
-35	AGR5_N	I do not like art.	 
-36	AGR5_P	I stop what I am doing to help other people.	 
-37	AGR5_N	I change my plans frequently.	 
-38	AGR5_P	I don't talk a lot.	 
-39	AGR5_P	I feel comfortable with myself.	 
-40	AGR5_P	I avoid philosophical discussions.	 
-41	AGR5_P	Original	 
-42	AGR5_P	Systematic	 
-43	AGR5_N	Shy	 
-44	AGR5_P	Soft-Hearted	 
-45	AGR5_N	Tense	 
-46	AGR5_P	Inquisitive	 
-47	AGR5_N	Forgetful	 
-48	AGR5_P	Reserved	 
-49	AGR5_P	Agreeable	 
-50	AGR5_N	Nervous	 
-51	AGR5_P	Creative	 
-52	AGR5_P	Self-Disciplined	
-53	AGR5_P	Outgoing	
-54	AGR5_P	Charitable	
-55	AGR5_N	Moody	
-56	AGR5_P	Imaginative	
-57	AGR5_P	Organized	
-58	AGR5_P	Talkative	
-59	AGR5_P	Humble	
-60	AGR5_N	Pessimistic	
+id	type	text_en	options_en	text_it	options_it
+1	AGR5_P	I have a kind word for everyone.	 	Ho una buona parola per tutti.
+2	AGR5_P	I am always prepared.	 	Sono sempre preparato.
+3	AGR5_P	I feel comfortable around people.	 	Sono a mio agio se circondato da persone.
+4	AGR5_N	I often feel blue.	 	Spesso vedo tutto nero.
+5	AGR5_P	I believe in the importance of art.	 	Credo nell'importanza dell'arte.
+6	AGR5_N	I feel I am better than other people.	 	Ritengo di essere migliore di altre persone.
+7	AGR5_N	I avoid taking on a lot of responsibility.	 	Evito di prendere troppe responsabilità.
+8	AGR5_P	I make friends easily.	 	Faccio facilmente amicizia.
+9	AGR5_N	There are many things that I do not like about myself.	 	Ci sono tante cose di me stesso che non apprezzo.
+10	AGR5_P	I am interested in the meaning of things.	 	Sono interessato al significato delle cose.
+11	AGR5_P	I treat everyone with kindness and sympathy.	 	Tratto tutti con gentilezza e simpatia.
+12	AGR5_P	I get chores done right away.	 	Finisco subito i miei compiti.
+13	AGR5_P	I am skilled in handling social situations.	 	Sono capace di affrontare questioni sociali.
+14	AGR5_N	I am often troubled by negative thoughts.	 	Sono spesso scosso da pensieri negativi.
+15	AGR5_P	I enjoy going to art museums.	 	Apprezzo i musei d'arte.
+16	AGR5_P	I accept people the way they are.	 	Accetto le persone per come sono.
+17	AGR5_P	It's important to me that people are on time.		Per me è importante che le persone siano puntuali.
+18	AGR5_P	I am the life of the party.	 	Sono al centro di ogni situazione.
+19	AGR5_N	My moods change easily.	 	Il mio umore cambia facilmente.
+20	AGR5_P	I have a vivid imagination.	 	Ho una vivida immaginazione.
+21	AGR5_P	I take care of other people before taking care of myself.	 	Mi prendo cura delle persone prima che di me stesso.
+22	AGR5_P	I make plans and stick to them.	 	Faccio piani e mi attengo ad essi.
+23	AGR5_P	I don't like to draw attention to myself.	 	Non mi piace attirare l'attenzione.
+24	AGR5_P	I often feel anxious about what could go wrong.	 	Mi sento spesso in ansia su cosa possa andare storto.
+25	AGR5_P	I enjoy hearing new ideas.	 	Apprezzo il sentire nuove idee.
+26	AGR5_N	I start arguments just for the fun of it.	 	Inizio delle discussioni per il gusto di litigare.
+27	AGR5_P	I always make good use of my time.	 	Uso sempre bene il mio tempo.
+28	AGR5_P	I have a lot to say.	 	Ho molto da dire.
+29	AGR5_P	I often worry that I am not good enough.	 	Sono spesso in ansia di non essere bravo abbastanza.
+30	AGR5_P	I am not interested in abstract ideas.	 	Non sono interessato nelle idee astratte.
+31	AGR5_N	I criticize other people.	 	Critico spesso altre persone.
+32	AGR5_N	I find it difficult to get to work.	 	Fatico a recarmi al lavoro.
+33	AGR5_P	I stay in the background.	 	Sto nello sfondo.
+34	AGR5_P	I seldom feel blue.	 	Raramente vedo tutto nero.
+35	AGR5_N	I do not like art.	 	Non mi piace l'arte.
+36	AGR5_P	I stop what I am doing to help other people.	 	Se devo aiutare gli altri, stoppo quello che sto facendo.
+37	AGR5_N	I change my plans frequently.	 	Cambio spesso i miei piani.
+38	AGR5_P	I don't talk a lot.	 	Non parlo molto.
+39	AGR5_P	I feel comfortable with myself.	 	Mi sento a mio agio con me stesso.
+40	AGR5_P	I avoid philosophical discussions.	 	Evito discussioni filosofiche.
+41	AGR5_P	Original	 	Originale	
+42	AGR5_P	Systematic	 	Sistematico	
+43	AGR5_N	Shy	 	Timido	
+44	AGR5_P	Soft-Hearted	 	Cuore tenero	
+45	AGR5_N	Tense	 	Nervoso	
+46	AGR5_P	Inquisitive	 	Inquisitivo	
+47	AGR5_N	Forgetful	 	Smemorato	
+48	AGR5_P	Reserved	 	Riservato	
+49	AGR5_P	Agreeable	 	Piacevole	
+50	AGR5_N	Nervous	 	Agitato	
+51	AGR5_P	Creative	 	Creativo	
+52	AGR5_P	Self-Disciplined		Auto disciplinato	
+53	AGR5_P	Outgoing		Estroverso	
+54	AGR5_P	Charitable		Caritatevole	
+55	AGR5_N	Moody		Umorale	
+56	AGR5_P	Imaginative		Immaginativo	
+57	AGR5_P	Organized		Organizzato	
+58	AGR5_P	Talkative		Loquace	
+59	AGR5_P	Humble		Umile/modesto	
+60	AGR5_N	Pessimistic		Pessimista	

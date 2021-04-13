@@ -1,17 +1,17 @@
-id	type	text_en	options_en
-1	FREQ5_P	I set my computer screen to automatically lock if I don't use it for a prolonged period of time.
-2	FREQ5_P	I use a password/passcode to unlock my laptop or tablet.	
-3	FREQ5_P	I manually lock my computer screen when I step away from it.	
-4	FREQ5_P	I use a PIN or passcode to unlock my mobile phone.	
-5	FREQ5_N	I do not change my passwords, unless I have to.	
-6	FREQ5_P	I use different passwords for different accounts that I have.	
-7	FREQ5_P	When I create a new online account, I try to use a password that goes beyond the site's minimum requirements.
-8	FREQ5_N	I do not include special characters in my password if it's not required.
-9	FREQ5_N	When someone sends me a link, I open it without first verifying where it goes.	
-10	FREQ5_N	I know what website I'm visiting based on its look and feel, rather than by looking at the URL bar.
-11	FREQ5_N	I submit information to websites without first verifying that it will be sent securely (e.g., SSL, 'https://', a lock icon).	
-12	FREQ5_P	When browsing websites, I mouseover links to see where they go, before clicking them.	
-13	FREQ5_N	If I discover a security problem, I continue what I was doing because I assume someone else will fix it.	
-14	FREQ5_P	When I'm prompted about a software update, I install it right away.
-15	FREQ5_P	I try to make sure that the programs I use are up-to-date.	
-16	FREQ5_P	I verify that my anti-virus software has been regularly updating itself.
+id	type	text_en	options_en	text_it	options_it
+1	FREQ5_P	I set my computer screen to automatically lock if I don't use it for a prolonged period of time.		Ho impostato il blocco automatico dello schermo del computer se non lo utilizzo per un periodo di tempo prolungato.	
+2	FREQ5_P	I use a password/passcode to unlock my laptop or tablet.		Utilizzo una password/un codice di accesso per sbloccare il mio laptop o tablet.	
+3	FREQ5_P	I manually lock my computer screen when I step away from it.		Blocco manualmente lo schermo del computer quando mi allontano da esso.	
+4	FREQ5_P	I use a PIN or passcode to unlock my mobile phone.		Uso un PIN o un codice di acceso per sbloccare il mio telefono cellulare.	
+5	FREQ5_N	I do not change my passwords, unless I have to.		Non cambio le mie password, a meno che non sia necessario.	
+6	FREQ5_P	I use different passwords for different accounts that I have.		Uso password diverse per ciascun account.	
+7	FREQ5_P	When I create a new online account, I try to use a password that goes beyond the site's minimum requirements.		Quando creo un nuovo account online, cerco di utilizzare una password che va oltre i requisiti minimi definiti dal sito. 	
+8	FREQ5_N	I do not include special characters in my password if it's not required.		Non includo caratteri speciali nella mia password se non è richiesto.	
+9	FREQ5_N	When someone sends me a link, I open it without first verifying where it goes.		Quando qualcuno mi spedisce un link, lo apro senza prima verifcare dove punti.	
+10	FREQ5_N	I know what website I'm visiting based on its look and feel, rather than by looking at the URL bar.		So quale sito web sto visitando in base al suo aspetto, piuttosto che guardando la barra con le URL.	
+11	FREQ5_N	I submit information to websites without first verifying that it will be sent securely (e.g., SSL, 'https://', a lock icon).		"Inserisco informazioni nei siti Web senza prima verificare che verranno inviate in modo sicuro (ad es. SSL, ""https: //"", presenza di un'icona a forma di lucchetto)."	
+12	FREQ5_P	When browsing websites, I mouseover links to see where they go, before clicking them.		Durante la navigazione nei siti Web, passo il mouse sui link per vederne il collegamento, prima di fare clic su di essi.	
+13	FREQ5_N	If I discover a security problem, I continue what I was doing because I assume someone else will fix it.		Se scopro un problema di sicurezza, continuo quello che stavo facendo perchè presumo che qualcun altro lo risolverà.	
+14	FREQ5_P	When I'm prompted about a software update, I install it right away.		Quando mi viene richiesto un aggiornamento software, lo installo subito.	
+15	FREQ5_P	I try to make sure that the programs I use are up-to-date.		Cerco di assicurarmi che i programmi che utilizzo siano aggiornati.	
+16	FREQ5_P	I verify that my anti-virus software has been regularly updating itself.		Verifico che il mio software antivirus si sia aggiornato regolarmente.

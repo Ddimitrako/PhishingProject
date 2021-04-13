@@ -1,0 +1,22 @@
+id	type	text_en	options_en	text_it	options_it
+1	AGR5_N	It's safe to use the same password for social media and work accounts.		È saggio usare la stessa password per account social e aziendali.	
+2	AGR5_P	It's a bad idea to share my work passwords, even if a colleague asks for it.		È una cattiva idea condividere le mie password aziendali, anche se è un collega a chiedermele.	
+3	AGR5_N	It's safe to have a work password with just letters.		È sicuro avere una password aziendale con sole lettere.	
+4	AGR5_N	It's always safe to click on links in emails from people I know.		È sempre sicuro cliccare su link in messaggi di psota da persone che conosco.	
+5	AGR5_N	Nothing bad can happen if I click on a link in an email from an unknown sender.		Non succede nulla di male se clicco su un link in una mail da un mittente sconosciuto.	
+6	AGR5_P	It's risky to open an email attachment from an unknown sender.		È rischioso aprire un allegato ad una mail da un mittente sconosciuto.	
+7	AGR5_P	It can be risky to download files on my work computer.		Può essere rischioso scaricare file sul mio computer aziendale.	
+8	AGR5_P	Just because I can access a website at work, doesn't mean that it's safe.		Un sito web non è sicuro per il solo fatto di riuscire ad accedervi mentre lavoro.	
+9	AGR5_N	If it helps me to do my job, it doesn't matter what information I put on a website.		Non importa quali informazioni inserisco in un sito web se ciò mi aiuta a svolgere il mio lavoro.	
+10	AGR5_P	It's a good idea to regularly review my social media privacy settings.		È una buona idea rivedere regolarmente le impostazioni della privacy sui miei account social.	
+11	AGR5_N	It doesn't matter if I post things on social media that I wouldn't normally say in public.		Non importa se pubblico sui social cose che normalmente non direi in pubblico.	
+12	AGR5_P	It's risky to post certain information about my work on social media.		È rischioso pubblicare sui social certe informazioni sul mio lavoro.	
+13	AGR5_N	When working in a cafe, it's safe to leave my laptop unattended for a minute.		Quando si lavora in un bar, è sicuro lasciare il mio laptop incustodito per un minuto.	
+14	AGR5_P	It's risky to send sensitive work files using a public Wi-Fi network.		È rischioso inviare file di lavoro sensibili usando una rete Wi-Fi pubblica.	
+15	AGR5_P	It's risky to access sensitive work files on a laptop if strangers can see my screen.		È rischioso accedere a file di lavoro sensibili su un laptop se degli sconosciuti riescono a vedere il mio schermo.	
+16	AGR5_N	Disposing of sensitive print-outs by putting them in the rubbish bin is safe.		Gettare documenti cartacei sensibili nel cestino della spazzatura è sicuro.	
+17	AGR5_N	If I find a USB stick in a public place, nothing bad can happen if I plug it into my work computer.		Se trovo una chiavetta USB in un luogo pubblico, non succede nulla di male se la inserisco nel mio computer aziendale.	
+18	AGR5_P	It's risky to leave print-outs that contain sensitive information on my desk overnight.		È rischioso lasciare delle stampe contenenti materiale sensibile sulla mia scrivania durante la notte.	
+19	AGR5_N	If I ignore someone acting suspiciously in my workplace, nothing bad can happen.		Non succede nulla di male ad ignorare qualcuno che si comporta in modo sospetto sul luogo di lavoro.	
+20	AGR5_N	Nothing bad can happen if I ignore poor security behaviour by a colleague.		Non succede nulla di grave se ignora i cattivi comportamenti di un collega in materia di sicurezza.	
+21	AGR5_P	It's risky to ignore security incidents, even if I think they're not significant.		È rischioso ignorare gli incidenti di sicurezza, anche se penso non siano significanti.

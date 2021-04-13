@@ -1,19 +1,19 @@
-id	type	text_en	options_en
-1	AGR9_P	I would prefer complex to simple problems.
-2	AGR9_P	I like to have the responsibility of handling a situation that requires a lot of thinking.
-3	AGR9_N	Thinking is not my idea of fun.
-4	AGR9_N	I would rather do something that requires little thought than something that is sure to challenge my thinking abilities.
-5	AGR9_N	I try to anticipate and avoid situations where there is likely chance I will have to think in depth about something.
-6	AGR9_P	I find satisfaction in deliberating hard and for long hours.
-7	AGR9_N	I only think as hard as I have to.
-8	AGR9_N	I prefer to think about small, daily projects to long-term ones.
-9	AGR9_N	I like tasks that require little thought once I've learned them.
-10	AGR9_P	The idea of relying on thought to make my way to the top appeals to me.
-11	AGR9_P	I really enjoy a task that involves coming up with new solutions to problems.
-12	AGR9_N	Learning new ways to think doesn't excite me very much.
-13	AGR9_P	I prefer my life to be with puzzles that I must solve.
-14	AGR9_P	The notion of thinking abstractly is appealing to me.
-15	AGR9_P	I would prefer a task that is intellectual, difficult, and important to one that is somewhat important but does not require much thought.
-16	AGR9_N	I feel relief rather than satisfaction after completing a task that required a lot of mental effort.
-17	AGR9_N	It's enough for me that something gets the job done; I don't care how or why it works.
-18	AGR9_P	I usually end up deliberating about issues even when they do not affect me personally.
+id	type	text_en	options_en	text_it	options_it
+1	AGR9_P	I would prefer complex to simple problems.		Preferisco i problemi complessi a quelli semplici.	
+2	AGR9_P	I like to have the responsibility of handling a situation that requires a lot of thinking.		Mi piace prendermi la responsabilità di gestire situazioni che richiedono riflessioni complesse.	
+3	AGR9_N	Thinking is not my idea of fun.		Pensare non è esattamente la mia idea di divertimento.	
+4	AGR9_N	I would rather do something that requires little thought than something that is sure to challenge my thinking abilities.		Preferisco fare attività che richiedono di pensare poco piuttosto che sfide che richiedono ragionamenti complessi.	
+5	AGR9_N	I try to anticipate and avoid situations where there is likely chance I will have to think in depth about something.		Preferisco anticipare ed evitare situazioni in cui potrei dover ragionare troppo.	
+6	AGR9_P	I find satisfaction in deliberating hard and for long hours.		Mi sento soddisfatto quando devo impegnarmi tanto e per molte ore.	
+7	AGR9_N	I only think as hard as I have to.		Ragiono solo quanto devo.	
+8	AGR9_N	I prefer to think about small, daily projects to long-term ones.		Preferisco ragionare su progetti piccoli e giornalieri piuttosto che progetti di lungo corso.	
+9	AGR9_N	I like tasks that require little thought once I've learned them.		Preferisco compiti che richiedono poco ragionamento una volta imparati.	
+10	AGR9_P	The idea of relying on thought to make my way to the top appeals to me.		L'idea di potermi realizzare grazie alla mia capacità di ragionare è una delle massime ambizioni per me.	
+11	AGR9_P	I really enjoy a task that involves coming up with new solutions to problems.		Amo i compiti che richiedono nuovi ragionamenti per risolvere problemi.	
+12	AGR9_N	Learning new ways to think doesn't excite me very much.		Non sono troppo interessato ad imparare nuovi approcci ai problemi.	
+13	AGR9_P	I prefer my life to be with puzzles that I must solve.		Vorrei una vita fatta di rompicapo da risolvere.	
+14	AGR9_P	The notion of thinking abstractly is appealing to me.		Trovo attraente dover ragionare in modo astratto.	
+15	AGR9_P	I would prefer a task that is intellectual, difficult, and important to one that is somewhat important but does not require much thought.		Preferisco svolgere mansioni che siano intellettuali, difficili ed importanti, piuttosto che compiti altrettanto importanti ma che non mi richiedono di impegnarmi nei ragionamenti.	
+16	AGR9_N	I feel relief rather than satisfaction after completing a task that required a lot of mental effort.		Mi sento sollevato quando ho finito un compito che mi richiedeva di ragionare un sacco.	
+17	AGR9_N	"It's enough for me that something gets the job done; I don't care how or why it works."		Per me l'importante è che il lavoro veng fatto, non mi interessa come funziona il processo.	
+18	AGR9_P	I usually end up deliberating about issues even when they do not affect me personally.		Faccio le cose anche se non mi importano direttamente.
