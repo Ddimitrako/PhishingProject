@@ -2,7 +2,7 @@ id	type	text_en	options_en
 1	BOOL_P	Do you make use of the communication protocol security extensions to ascertain the data integrity and origin integrity of smart meter data?	 
 2	BOOL_P	Have you decoupled "identifying" end user information (e.g. household address, GPS coordinates, etc.) from the smart meter?
 3	BOOL_P	Have you implemented physical security controls and detection mechanisms when tampering occurs?	 
-4	BOOL_P	Do you have procedures to ensure that data arriving to be stored in the MDM does not come from a compromised meter?	 
-5	BOOL_P	Do you have procedures to ensure that data arriving to be stored in the MDM is syntactically and semantically valid?	 
-6	BOOL_P	Does the system parsing the data arriving in the MDM make use of all the appropriate data validation and exception handling techniques?	 
+4	BOOL_P	Do you have procedures to ensure that data arriving to be stored in the MDM (Mobile Device Management) does not come from a compromised meter?
+5	BOOL_P	Do you have procedures to ensure that data arriving to be stored in the MDM (Mobile Device Management) is syntactically and semantically valid?
+6	BOOL_P	Does the system parsing the data arriving in the MDM (Mobile Device Management) make use of all the appropriate data validation and exception handling techniques?
 7	BOOL_P	Do you perform sufficient authentication and validation of all control data bound for voltage regulators and coming from voltage monitors?	 
