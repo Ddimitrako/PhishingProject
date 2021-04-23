@@ -11,7 +11,7 @@
 {% block breadcrumbs %}
     <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "assignments"|capfirst %}</a></li>
 
-    <li class="breadcrumb-item active"><a href="{% url 'sbam:dashboard' %}">Tests</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:dashboard' %}">{% trans "Tests" %}</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'phishing_quiz:phishing_quiz' assignment_id %}">{% trans "Phishing Quiz" %}</a></li>
 {% endblock %}
 
@@ -24,7 +24,7 @@
 
                 <div class="row ">
                     <div class="col-md-3 offset-4 text-center prog-indicator">
-                        Email 1 of {{ emails|length }}
+                        {% trans "Email 1 of " %} {{ emails|length }}
                     </div>
                 </div>
                 <div class="progress" style="height: 20px;">
@@ -47,23 +47,23 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <button type="button" class="btn btn-outline-info align-self-center prev-btn" style="display: none">Previous Email</button>
+                                    <button type="button" class="btn btn-outline-info align-self-center prev-btn" style="display: none">{% trans "Previous Email" %}</button>
                                     <div class="btn-toolbar align-self-center" role="toolbar" aria-label="Toolbar with button groups">
                                         <div class="btn-group mr-2" role="group" aria-label="First group">
-                                            <button type="button" class="btn btn-outline-info" data-value="Phishing_email" data-email="{{ email.id }}">Phishing Email</button>
+                                            <button type="button" class="btn btn-outline-info" data-value="Phishing_email" data-email="{{ email.id }}">{% trans "Phishing Email" %}</button>
                                         </div>
                                         <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                            <button type="button" class="btn btn-outline-info" data-value="Legit_email" data-email="{{ email.id }}">Legit Email</button>
+                                            <button type="button" class="btn btn-outline-info" data-value="Legit_email" data-email="{{ email.id }}">{% trans "Legit Email" %}</button>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-outline-info align-self-center next-btn">Next Email</button>
+                                    <button type="button" class="btn btn-outline-info align-self-center next-btn">{% trans "Next Email" %}</button>
                                </div>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
-                <button type="button" class="btn btn-light float-right submit-btn">Finish Game!</button>
+                <button type="button" class="btn btn-light float-right submit-btn">{% trans "Finish Game!" %}</button>
             </div>
 
 
@@ -76,14 +76,14 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="password_strength_modalLabel">Results</h5>
+                    <h5 class="modal-title" id="password_strength_modalLabel">{% trans "results"|capfirst %}</h5>
                 </div>
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-body">
                             <div class="row alert alert-info"  role="alert">
                                 <div class="col-md-3 align-self-center">
-                                    Total Score
+                                    {% trans "Total Score" %}
                                 </div>
                                 <div class="col-md-9 text-center total_score align-self-center"><span class="badge"></span></div>
                             </div>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="{% url 'sbam:dashboard' %}" class="btn btn-info" role="button">Finish</a>
+                    <a href="{% url 'sbam:dashboard' %}" class="btn btn-info" role="button">{% trans "Finish" %}</a>
                 </div>
             </div>
         </div>
