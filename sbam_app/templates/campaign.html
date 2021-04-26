@@ -52,7 +52,8 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div style="text-align: center; font-size: 1.1rem; color: #263c90;"><label>{% trans "questionnaires"|capfirst %}</label></div>
-                                        <table id="questionnaires"
+                                        <div class="container" style="height: 32vh; overflow: auto;">
+                                            <table id="questionnaires"
                                                class="table table-hover table-head-fixed table-striped ">
                                             <thead>
                                                 <tr>
@@ -95,6 +96,8 @@
                                                 {% endfor %}
                                             </tbody>
                                         </table>
+                                        </div>
+
                                     </div>
                                     <div class="col-lg-4">
                                         <div style="text-align: center; font-size: 1.1rem; color: #263c90;"><label>{% trans "Tests" %}</label></div>   
@@ -129,7 +132,8 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div style="text-align: center; font-size: 1.1rem; color: #263c90;"><label>{% trans "Users" %}</label></div>
-                                        <table id="users"
+                                        <div class="container" style="height: 32vh; overflow: auto;">
+                                            <table id="users"
                                                class="table table-hover table-head-fixed table-striped ">
                                             <thead>
                                                 <tr>
@@ -148,6 +152,7 @@
                                                 {% endfor %}
                                             </tbody>
                                         </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

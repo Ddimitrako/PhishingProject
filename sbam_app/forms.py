@@ -298,7 +298,7 @@ def get_campaign_form_trees(logged_user):
     dimensions_dict.append(indv_dict)
     dimensions_dict.append(org_dict)
 
-    users = models.User.objects.filter(is_active=True).exclude(is_superuser=True).order_by('first_name', 'last_name')
+    users = models.User.objects.filter(is_active=True).order_by('first_name', 'last_name')
     users_groups = Group.objects.filter(groupprofile__is_active=1).order_by('name')
     if logged_user > 0:
         users_groups = set([g for g in Group.objects.filter(groupprofile__is_active=True, groupprofile__creator_id=logged_user)] + [g for g in Group.objects.filter(groupprofile__is_active=True) if g.groupprofile.is_global])

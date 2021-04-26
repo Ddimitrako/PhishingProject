@@ -185,7 +185,7 @@ def get_questionnaire(questionnaire, render_inactive=False):
     questions_dict = {}
     quest_title = questionnaire.title
     questions = Question.objects.filter(questionnaire=questionnaire, is_active=Status.ACTIVE).values() if not render_inactive \
-        else Question.objects.filter(questionnaire=questionnaire).values()
+        else Question.objects.filter(questionnaire=questionnaire).values().order_by('order')
     # print(questions)
     for question in questions:
         question_type = QuestionType.objects.get(pk=question['question_type_id'])
@@ -227,7 +227,9 @@ def calculate_self_assessment_result(self_assessment):
         score = (answer_sum / calculate_questionnaire_total_score(question_type_weights)) if \
             calculate_questionnaire_total_score(question_type_weights) != 0.0 else \
             calculate_questionnaire_total_score(question_type_weights)
-    return SelfAssessmentResult(selfassessment=self_assessment, score=score, answer_time=datetime.now())
+
+        print(datetime.today().date())
+    return SelfAssessmentResult(selfassessment=self_assessment, score=score, answer_time=datetime.today().date())
 
 
 def calculate_assignment_result(assignment):
@@ -251,7 +253,7 @@ def calculate_assignment_result(assignment):
             calculate_questionnaire_total_score(question_type_weights) != 0.0 else \
             calculate_questionnaire_total_score(question_type_weights)
 
-    return AssignmentResult(assignment=assignment, score=score, answer_time=datetime.now())
+    return AssignmentResult(assignment=assignment, score=score, answer_time=datetime.today().date())
 
 
 def calculate_campaign_result(campaign, assignments):
@@ -505,9 +507,14 @@ class AssignmentsHistory(ListView):
                                           models.QuestionnaireAssignment.objects.filter(user_id=self.request.user)
                                               .order_by('-assignmentresult__answer_time')]
 
+        for ass in q_assignments:
+            if ass.status == 'CANCELLED' or ass.status == 'NOT_STARTED':
+                q_assignments.remove(ass)
+
         t_assignments = [self_quest for self_quest in
                                           models.TestAssignment.objects.filter(user_id=self.request.user)
-                                              .order_by('-assignmentresult__answer_time')]
+                                              .order_by('-assignmentresult__answer_time').exclude(test__title='Phishing Email Test')]
+
         assignments = sorted(
             chain(q_assignments, t_assignments),
             key=lambda instance:
@@ -519,7 +526,7 @@ class AssignmentsHistory(ListView):
 def questionnaires_list(request):
     template_name = 'questionnaires_list.html'
 
-    questionnaires = Questionnaire.objects.all()
+    questionnaires = Questionnaire.objects.all().order_by('title')
     dimensions = [d for d in Dimension.objects.filter(level=0).order_by('title')] + [d for d in Dimension.objects.filter(level=1).order_by('title')]
     return render(request, 'questionnaires_list.html', {'questionnaires':questionnaires,
                                                         'dimensions': dimensions})
@@ -922,7 +929,7 @@ def reports(request):
     if request.user.is_superuser:
 
         campaigns_finished = [c for c in Campaign.objects.all().order_by('-end_date') if c.status=='FINISHED']
-        campaigns_active =   [c for c in Campaign.objects.all().order_by('-end_date') if c.status=='ACTIVE']
+        campaigns_active = [c for c in Campaign.objects.all().order_by('-end_date') if c.status=='ACTIVE']
         groups = Group.objects.filter(groupprofile__is_active=True)
     else:
         campaigns_finished = [c for c in Campaign.objects.filter(owner=request.user).order_by('-end_date') if c.status=='FINISHED']
@@ -935,7 +942,7 @@ def reports(request):
 
 def get_user_metrics(request):
     months = int(request.GET.get('time_period'))
-    
+    # TODO here i must get the data for the whole group
     assignments = get_user_assignments(request.user, months)
 
     self_assessments = get_user_self_assessments(request.user, months)
@@ -956,7 +963,7 @@ def get_reports_data(request):
 
     include_organisational = True if request.GET.get('organisational_check') == 'true' else False
     include_individual = True if request.GET.get('individual_check') == 'true' else False
-    # print(include_organisational, include_individual)
+    print(include_organisational, include_individual)
     months = int(request.GET.get('time_period'))
 
 
@@ -1111,7 +1118,7 @@ def get_assignments(report_level, campaign_id, group_id, include_organisational,
         tests = tests.exclude(test__domain__dimension__level=0)
     if not include_individual:
         qas = qas.exclude(questionnaire__domain__dimension__level=1)
-        tests = tests.exclude(test__domain__dimension__level=0)
+        tests = tests.exclude(test__domain__dimension__level=1)
     
     return chain(qas.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
 

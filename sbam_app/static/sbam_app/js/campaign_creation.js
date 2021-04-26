@@ -245,8 +245,8 @@ $(document).ready(function(){
         e.relatedTarget // previous active tab
         // alert('edw');
         selected_email_id = $(e.target).data('id');
-        console.log($(e.target).data('id'));
-        console.log(selected_email_id);
+        // console.log($(e.target).data('id'));
+        // console.log(selected_email_id);
         loadIframe($(e.target).data('id'));
 
     })
@@ -330,7 +330,7 @@ $(document).ready(function(){
                     //console.log(response);
 
                     if(response['success'] === 'True'){
-                        console.log(response);
+                        // console.log(response);
                         // alert('edww');
                         toastr["success"]("Email sent successfully!")
 
@@ -413,7 +413,7 @@ $(document).ready(function(){
                     // alert('edw');
                     if(testsTree.selectedNodes[i].text === 'Phishing Email Quiz'){
                         $.each($(".phish_email:input:checkbox:checked"), function (){
-                            console.log($(this).val());
+                            // console.log($(this).val());
                             selected_phish_emails.push($(this).val());
                         })
                     }
@@ -432,7 +432,7 @@ $(document).ready(function(){
             ajax_data["phishing_emails"] =  JSON.stringify(selected_phish_emails);
 
             //console.log('Sto Ajax call');
-            console.log(ajax_data);
+            // console.log(ajax_data);
             $.ajax({
                 "type": "POST",
                 headers: { "X-CSRFToken": csrftoken },
