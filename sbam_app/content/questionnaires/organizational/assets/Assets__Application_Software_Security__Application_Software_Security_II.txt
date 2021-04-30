@@ -1,11 +1,11 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you use procedures for the identification, authentication and authorization for utility programs?
-2	BOOL_P	Are utility programs segregated from application software?	 
-3	BOOL_P	Do you limit the use of utility programs to the minimum practical number of trusted, authorized users?
-4	BOOL_P	Have you implemented authorization procedures for the ad hoc use of utility programs?	 
-5	BOOL_P	Do you remove or disable unnecessary utility programs in a timely manner?	 
-6	BOOL_P	Do you use program source libraries or similar controlled central storage for the storage of source code?	 
-7	BOOL_P	Do you avoid holding program source libraries in operational systems? 	 
-8	BOOL_P	Do you ensure that support personnel do not have unrestricted access to program source libraries? 	 
-9	BOOL_P	Do you ensure that the updating of program source libraries and associated items and the issuing of program sources to programmers are only performed after appropriate authorization has been received?	 
-10	BOOL_P	Are program listings held in a secure environment?	 
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Do you use procedures for the identification, authentication and authorization for utility programs?		Utilizzi procedure per l'identificazione, l'autenticazione e l'autorizzazione dei programmi di utilità?	
+2	BOOL_P	Are utility programs segregated from application software?	 	I programmi per la gestione di asset critici sono inclusi nel sistema operativo?	
+3	BOOL_P	Do you limit the use of utility programs to the minimum practical number of trusted, authorized users?		Limiti l'uso dei programmi per la gestione di asset critici al numero minimo necessario di utenti autorizzati e affidabili?	
+4	BOOL_P	Have you implemented authorization procedures for the ad hoc use of utility programs?	 	Hai implementato procedure definite per l'utilizzo di programmi per la gestione di asset critici?	
+5	BOOL_P	Do you remove or disable unnecessary utility programs in a timely manner?	 	Rimuovi o disabiliti i programmi non necessari in modo tempestivo?	
+6	BOOL_P	Do you use program source libraries or similar controlled central storage for the storage of source code?	 	Utilizzi librerie dei sorgenti dei programmi o simili archivi  controllati per l'archiviazione del codice sorgente?	
+7	BOOL_P	Do you avoid holding program source libraries in operational systems? 	 	Eviti di tenere le librerie dei sorgenti dei programmi nei sistemi opertativi?	
+8	BOOL_P	Do you ensure that support personnel do not have unrestricted access to program source libraries? 	 	Ti assicuri che il personale esterno non abbia accesso illimitato alle librerie dei sorgenti dei programmi?	
+9	BOOL_P	Do you ensure that the updating of program source libraries and associated items and the issuing of program sources to programmers are only performed after appropriate authorization has been received?	 	Ti assicuri che l'aggiornamento delle librerie dei sorgenti dei programmi e degli elementi associati e il rilascio ai programmatori dei sorgenti dei programmi vengano eseguiti solo dopo aver ricevuto l'appropriata autorizzazione?	
+10	BOOL_P	Are program listings held in a secure environment?	 	L'elenco dei programmi sono conservati in un ambiente sicuro?	

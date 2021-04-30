@@ -1,6 +1,6 @@
-id	type	text_en	options_en
-1	BOOL_P	Have you associated active ports, services, and protocols to the hardware assets in the asset inventory?	 
-2	BOOL_P	Have you ensured that only network ports, protocols, and services listening on a system with validated business needs are running on each system?	 
-3	BOOL_P	Do you perform automated port scans on a regular basis against all systems and alert if unauthorized ports are detected on a system?	 
-4	BOOL_P	Do you apply host-based firewalls or port-filtering tools on end systems, with a default-deny rule that drops all traffic except those services and ports that are explicitly allowed?	 
-5	BOOL_P	Have you placed application firewalls in front of any critical servers to verify and validate the traffic going to the server? 	 
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Have you associated active ports, services, and protocols to the hardware assets in the asset inventory?	 	Avete associato porte, servizi e protocolli attivi alle risorse hardware nell'inventario delle risorse?	
+2	BOOL_P	Have you ensured that only network ports, protocols, and services listening on a system with validated business needs are running on each system?	 	Vi siete assicurati che solo le porte di rete, i protocolli e i servizi in ascolto su un sistema con esigenze aziendali convalidate siano in esecuzione su ogni sistema?	
+3	BOOL_P	Do you perform automated port scans on a regular basis against all systems and alert if unauthorized ports are detected on a system?	 	Eseguite regolarmente scansioni automatiche delle porte su tutti i sistemi e avvisate se vengono rilevate porte non autorizzate su un sistema?	
+4	BOOL_P	Do you apply host-based firewalls or port-filtering tools on end systems, with a default-deny rule that drops all traffic except those services and ports that are explicitly allowed?	 	Sono utilizzati firewall basati su host o strumenti di filtraggio delle porte sui sistemi finali, con una regola di default-deny che elimina tutto il traffico tranne quei servizi e quelle porte che sono esplicitamente permessi?	
+5	BOOL_P	Have you placed application firewalls in front of any critical servers to verify and validate the traffic going to the server? 	 	Sono inmplementati dei firewall applicativi davanti a qualsiasi server critico per verificare e convalidare il traffico che va al server? 	

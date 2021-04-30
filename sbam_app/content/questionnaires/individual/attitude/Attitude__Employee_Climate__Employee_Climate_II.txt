@@ -1,12 +1,11 @@
-id	type	text_en	options_en
-1	AGR5_N	Policies lack the capacity to deal with cyber crime effectively.
-2	AGR5_N	I believe that cyber criminals are more advanced than the people who are supposed to be protecting us.	
-3	AGR5_N	I think that information provided by the Government and Police on cyber  crime is not relevant to businesses.	
-4	AGR5_N	I feel that the Police are far too busy to deal with cyber crime.	
-5	AGR5_N	I worry that if I report a cyber attack to the Police it might damage the reputation of the company.	
-6	AGR5_P	I think more could be done to communicate the risks from cyber crime to individuals in the organisation.	
-7	AGR5_P	I am aware of the company's IT use policy and attempt to follow it.	
-8	AGR5_N	I would not know how to report a cyber attack if one happened.	
-9	AGR5_N	I don't think that reporting a cyber attack on the company is my responsibility.	
-10	AGR5_N	I don't pay attention to company material about the threats from cyber crime.
-
+id	type	text_en	options_en	text_it	options_it
+1	AGR5_N	Policies lack the capacity to deal with cyber crime effectively.		Le politiche aziendali non hanno la capacità di fronteggiare efficacemente il cybercrimine.	
+2	AGR5_N	I believe that cyber criminals are more advanced than the people who are supposed to be protecting us.		Ritengo che i cybercriminali siano più avanti delle persone che dovrebbero proteggerci dai loro attacchi.	
+3	AGR5_N	I think that information provided by the Government and Police on cyber  crime is not relevant to businesses.		Ritengo che le informazioni governative e della polizia postale sul cybercrimine non siano rilevanti per il nostro business.	
+4	AGR5_N	I feel that the Police are far too busy to deal with cyber crime.		Credo che la polizia sia troppo impegnata su altre faccende per fronteggiare anche il cybercrimine.	
+5	AGR5_N	I worry that if I report a cyber attack to the Police it might damage the reputation of the company.		Sono preoccupato di riportare violazioni della sicurezza informatica aziendale alla polizia perché potrebbe danneggiare la reputazione aziendale.	
+6	AGR5_P	I think more could be done to communicate the risks from cyber crime to individuals in the organisation.		Penso che potrebbe essere fatto di più per comunicare i rischi del cybercrime ai dipendenti dell'azienda.	
+7	AGR5_P	I am aware of the company's IT use policy and attempt to follow it.		Conosco le politiche aziendali di sicurezza informatica e cerco di attenermi ad esse.	
+8	AGR5_N	I would not know how to report a cyber attack if one happened.		Non saprei come riportare un cyber attacco se succedesse.	
+9	AGR5_N	I don't think that reporting a cyber attack on the company is my responsibility.		Non ritengo mia responsabilità riportare un cyber attacco verso la mia azienda.	
+10	AGR5_N	I don't pay attention to company material about the threats from cyber crime.		Non spendo particolare attenzione al materiale aziendale riferito al cybercrimine.	

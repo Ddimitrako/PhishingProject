@@ -1,13 +1,13 @@
-id	type	text_en	options_en
-1	BOOL_P	Does your staff wear ID badges?	 
-2	BOOL_P	Is a current picture part of the ID badge?	 
-3	BOOL_P	Are authorized access levels and type (employee, contractor, visitor) identified on the Badge?
-4	BOOL_P	Do you have policies addressing background checks for employees and contractors?	 
-5	BOOL_P	Do you have a process for effectively cutting off access to facilities and information systems when an employee/contractor terminates employment?	 
-6	BOOL_P	Is personnel activity monitored to detect potential cybersecurity events?	 
-7	BOOL_P	Do you assure that personnel are only aware of the existence of, or activities within, a secure area on a need-to-know basis?
-8	BOOL_P	Have you established guidelines for eating, drinking and smoking in proximity to information processing facilities?
-9	BOOL_P	Do you identify the competency needed for each role and responsibility?	
-10	BOOL_P	Do you test the competency of each employee before employment?	
-11	BOOL_P	Do you keep the necessary proof of the competency of each employee?	
-12	BOOL_P	Do you use information sharing forums and sources when needed?
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Does your staff wear ID badges?	 	Il tuo staff indossa badge identificativi?	
+2	BOOL_P	Is a current picture part of the ID badge?	 	Fa parte del badge identificativo un'immagine recente?	
+3	BOOL_P	Are authorized access levels and type (employee, contractor, visitor) identified on the Badge?		I livelli di autorizzazione e il tipo (dipendente, consulente, visitatore) sono indicati  sul badge?	
+4	BOOL_P	Do you have policies addressing background checks for employees and contractors?	 	Disponi di politiche che affrontano i controlli dei precedenti penali  per i dipendenti e i consulenti?	
+5	BOOL_P	Do you have a process for effectively cutting off access to facilities and information systems when an employee/contractor terminates employment?	 	Esiste un processo per interrompere efficacemente l'accesso alle strutture e ai sistemi informativi quando un dipendente/esterno termina il rapporto di lavoro?	
+6	BOOL_P	Is personnel activity monitored to detect potential cybersecurity events?	 	Sono state definite le indicazioni per mangiare, bere e fumare in prossimità di strutture di elaborazione dati?	
+7	BOOL_P	Do you assure that personnel are only aware of the existence of, or activities within, a secure area on a need-to-know basis?		Ti assicuri che il personale sia a conoscenza delle informazioni necessarie dell'esistenza o delle attività all'interno di un'area sicura?	
+8	BOOL_P	Have you established guidelines for eating, drinking and smoking in proximity to information processing facilities?		Hai stabilito linee guida per mangiare, bere e fumare in prossimità delle strutture di lavoro strategiche?	
+9	BOOL_P	Do you identify the competency needed for each role and responsibility?		Identifichi le competenze necessaria per ogni ruolo e responsabilità?	
+10	BOOL_P	Do you test the competency of each employee before employment?		Verifichi le competenze di ogni dipendente prima dell'assunzione?	
+11	BOOL_P	Do you keep the necessary proof of the competency of each employee?		Conservi le verifiche della competenza di ciascun dipendente?	
+12	BOOL_P	Do you use information sharing forums and sources when needed?		Usi forum e sistemi di condivisione delle informazioni se necessario?	

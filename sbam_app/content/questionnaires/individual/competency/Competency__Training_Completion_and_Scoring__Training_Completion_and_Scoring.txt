@@ -1,8 +1,8 @@
-id	type	text_en	options_en
-1	PERC10_P	I have completed the last security training program I participated in by:	
-2	PERC10_P	My achievement score at the last security training program I participated in was around:	
-3	AGR5_P	I liked the last security training program i participated in.	
-4	AGR5_P	I am satisfied with the communication plan adopted by the security training programs.	
-5	AGR5_P	I am happy with the governance arrangements made during the last security training program.	
-6	AGR5_P	Security training programs organised within the company bear clear benefits.	
-7	CUSTOM_R	How many self-security assessments do you normally attempt per year?	"[[1, 1, ""0"", 0], [2, 2, ""1-4"", 0.25], [3, 3, ""5-10"", 0.50], [4, 4, ""11-15"", 0.75], [5, 5, ""more"", 1]] "
+id	type	text_en	options_en	text_it	options_it
+1	PERC10_P	I have completed the last security training program I participated in by:		Ho completato la mia ultima formazione sulla sicurezza (informatica, accessi) da:	
+2	PERC10_P	My achievement score at the last security training program I participated in was around:		Il voto ottenuto durante la mia ultima formazione riguardo la sicurezza (infromatica, accessi) è stato:	
+3	AGR5_P	I liked the last security training program i participated in.		Ho apprezzato l'ultima formazione riguardo la sicurezza informatica.	
+4	AGR5_P	I am satisfied with the communication plan adopted by the security training programs.		Sono contento del piano di comunicazione adottato all'interno dei programmi di formazione riguardo la sicurezza (informatica, accessi).	
+5	AGR5_P	I am happy with the governance arrangements made during the last security training program.		Sono contento della nuova gestione adottata per i programmi di formazione riguardo la sicurezza (informatica, accessi).	
+6	AGR5_P	Security training programs organised within the company bear clear benefits.		Sono evidenti i benefici apportati dai programmi di formazione riguardo la sicurezza (informatica, accessi) intrapresi dall'azienda.	
+7	CUSTOM_R	How many self-security assessments do you normally attempt per year?	"[[1, 1, ""0"", 0], [2, 2, ""1-4"", 0.25], [3, 3, ""5-10"", 0.50], [4, 4, ""11-15"", 0.75], [5, 5, ""more"", 1]] "	Quante autovalutazioni riguardo la sicurezza (informatica, accessi) fai ogni anno?	"[[1, 1, ""0"", 0], [2, 2, ""1-4"", 0.25], [3, 3, ""5-10"", 0.50], [4, 4, ""11-15"", 0.75], [5, 5, ""more"", 1]] "

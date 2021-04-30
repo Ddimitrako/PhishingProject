@@ -1,12 +1,12 @@
-id	type	text_en	options_en
-1	BOOL_P	Do your policies and procedures specify the methods used to protect buildings and premises against fire, voltage and flood?
-2	BOOL_P	Do your policies and procedures specify the methods used to protect buildings and premises against break-ins and wiretapping?	 
-3	BOOL_P	Do your policies and procedures specify the methods used to control physical access to your secure areas, such as door locks, access control systems, security officers, or video monitoring?
-4	BOOL_P	Does your plan identify areas and facilities that need to be sealed off immediately in case of an emergency?	 
-5	BOOL_P	Do you ensure that doors and windows are locked when unattended?	 
-6	BOOL_P	Do you have external protection for windows, especially for those on ground level?
-7	BOOL_P	Do you ensure that unoccupied areas are alarmed at all times?	 
-8	BOOL_P	Are processing facilities managed by the organization physically separated from those managed by external parties?	 
-9	BOOL_P	Do your buildings give the minimum possible indication of their purpose?	 
-10	BOOL_P	Are your facilities configured to prevent confidential information or activities from being visible or audible from the outside?
-11	BOOL_P	Are all fire doors on a security perimeter alarmed, monitored and tested in conjunction with the walls to establish the required level of resistance in accordance with suitable regional, national and international standards?
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Do your policies and procedures specify the methods used to protect buildings and premises against fire, voltage and flood?		Le tue politiche aziendali e procedure specificano i metodi utilizzati per proteggere gli edifici e i locali da incendi, problemi di tensione e inondazioni?	
+2	BOOL_P	Do your policies and procedures specify the methods used to protect buildings and premises against break-ins and wiretapping?	 	Le tue politiche e procedure specificano i metodi utilizzati per proteggere edifici e locali da effrazioni e intercettazioni?	
+3	BOOL_P	Do your policies and procedures specify the methods used to control physical access to your secure areas, such as door locks, access control systems, security officers, or video monitoring?		Le tue  politiche e procedure specificano i metodi utilizzati per controllare l'accesso fisico alle  aree protette, come serrature, sistemi di controllo degli accessi, uffici della sicurezza o monitoraggio video?	
+4	BOOL_P	Does your plan identify areas and facilities that need to be sealed off immediately in case of an emergency?	 	Il tuo piano di sicurezza identifica le aree e le strutture che devono essere isolate immediatamente in caso di emergenza?	
+5	BOOL_P	Do you ensure that doors and windows are locked when unattended?	 	Ti assicuri che le porte e le finestre siano bloccate quando non sono sorvegliate?	
+6	BOOL_P	Do you have external protection for windows, especially for those on ground level?		Hai protezioni esterne per le finestre, soprattutto per quelle al piano terreno?	
+7	BOOL_P	Do you ensure that unoccupied areas are alarmed at all times?	 	Verifichi che le aree non utilizzate siano sempre allarmate?	
+8	BOOL_P	Are processing facilities managed by the organization physically separated from those managed by external parties?	 	I sistemi di elaborazione gestite dalla tua organizzazione sono fisicamente separate da quelle gestite da soggetti esterni?	
+9	BOOL_P	Do your buildings give the minimum possible indication of their purpose?	 	I tuoi edifici hanno una  possibile indicazione del loro utilizzo?	
+10	BOOL_P	Are your facilities configured to prevent confidential information or activities from being visible or audible from the outside?		Le tue strutture sono organizzate per impedire che informazioni o attività riservate siano visibili o ascoltate dall'esterno?	
+11	BOOL_P	Are all fire doors on a security perimeter alarmed, monitored and tested in conjunction with the walls to establish the required level of resistance in accordance with suitable regional, national and international standards?		Tutte le porte tagliafuoco sono allarmate, monitorate e controllate insieme alle pareti per stabilire il livello di resistenza richiesto dagli standard regionali, nazionali e internazionali?	

@@ -1,9 +1,9 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you make sure your mobile devices are not left exposed?	
-2	BOOL_P	Do you efficiently protect mobile devices from physical hazards?	
-3	BOOL_P	Do people close to you (family or friends) have access to your corporative devices?	
-4	BOOL_P	Do you store information assets outside the organization in a sufficiently safe place?	
-5	BOOL_P	Do you avoid keeping a record of secret authentication information?	
-6	BOOL_P	Do you change your secret authentication information whenever there is an indication of compromise?	
-7	BOOL_P	Do you avoid sharing your secret authentication information?	
-8	BOOL_P	Do you avoid using the same secret authentication information for business and non-business purposes?	
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Do you make sure your mobile devices are not left exposed?		Ti assicuri che i tuoi dispositivi portatili non siano esposti a malintenzionati?	
+2	BOOL_P	Do you efficiently protect mobile devices from physical hazards?		Proteggi correttamente i tuoi dispositivi mobili dai rischi fisici?	
+3	BOOL_P	Do people close to you (family or friends) have access to your corporative devices?		Le persone a te vicine (famigliari o amici) hanno accesso diretto ai tuoi dispositivi aziendali?	
+4	BOOL_P	Do you store information assets outside the organization in a sufficiently safe place?		Quando sei fuori dall'azienda, ti assicuri di aver disposto le informazioni aziendali sensibili in un posto sufficientemente protetto?	
+5	BOOL_P	Do you avoid keeping a record of secret authentication information?		Eviti di scriverti le tue password o sistemi di autenticazione?	
+6	BOOL_P	Do you change your secret authentication information whenever there is an indication of compromise?		Cambi le tue password e sistemi di autenticazione ogni volta che percepisci che siano compromesse?	
+7	BOOL_P	Do you avoid sharing your secret authentication information?		Eviti di condividere le tue password o sistemi di autenticazione?	
+8	BOOL_P	Do you avoid using the same secret authentication information for business and non-business purposes?		Eviti di usare la stessa password per applicazioni private e aziendali?	

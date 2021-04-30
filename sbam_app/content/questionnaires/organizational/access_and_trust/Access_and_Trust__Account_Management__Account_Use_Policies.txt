@@ -1,6 +1,6 @@
-id	type	text_en	options_en
-1	BOOL_P	Have you set account lockout policies after a certain number of failed login attempts?
-2	BOOL_P	Have you configured specific login time windows depending on user privileges and roles?
-3	BOOL_P	Do you track failed logon attempts for suspicious incidents?
-4	BOOL_P	Have you enabled reset account lockout policies (related e.g. with duration)?
-5	BOOL_P	Do you enforce strict password policies related to strength and complexity?
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Have you set account lockout policies after a certain number of failed login attempts?		Hai impostato criteri di blocco dell'account dopo un certo numero di tentativi di accesso non riusciti?	
+2	BOOL_P	Have you configured specific login time windows depending on user privileges and roles?		Hai configurato finestre temporali di accesso specifiche a seconda dei privilegi e dei ruoli dell'utente?	
+3	BOOL_P	Do you track failed logon attempts for suspicious incidents?		Tieni traccia dei tentativi di accesso non riusciti per incidenti sospetti?	
+4	BOOL_P	Have you enabled reset account lockout policies (related e.g. with duration)?		Hai abilitato la reimpostazione dei criteri di blocco dell'account (ad esempio la durata)?	
+5	BOOL_P	Do you enforce strict password policies related to strength and complexity?		Applicate rigide politiche sulle password relative alla robustezza e alla complessità?	

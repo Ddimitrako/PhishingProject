@@ -1,7 +1,7 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you organize relevant trainings and seminars for the employees?	 
-2	BOOL_P	Do you keep documentation of all the trainings and seminars conducted by the organization?	 
-3	BOOL_P	Do you examine the efficiency of conducted trainings and seminars, through relevant tests and questionnaires?
-4	AGR5_P	Communication about the training program meets with employees' and management's satisfaction?
-5	AGR5_P	Governance arrangements meet with employees' and management's satisfaction?
-6	AGR5_P	Initiative benefits are well communicated?
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Do you organize relevant trainings and seminars for the employees?	 	Organizzi corsi di formazione e seminari pertinenti per i dipendenti?	
+2	BOOL_P	Do you keep documentation of all the trainings and seminars conducted by the organization?	 	Conservi la documentazione di tutti i corsi di formazione e seminari condotti dall'organizzazione? 	
+3	BOOL_P	Do you examine the efficiency of conducted trainings and seminars, through relevant tests and questionnaires?		Valuti l'efficienza dei corsi di formazione e dei seminari realizzati, mediante l'uso di test e questionari pertinenti?	
+4	AGR5_P	Communication about the training program meets with employees' and management's satisfaction?		La comunicazione sul programma di formazione incontra la soddisfazione dei dipendenti e dei dirigenti?	
+5	AGR5_P	Governance arrangements meet with employees' and management's satisfaction?		I meccanismi di governo societario incontrano la soddisfazione dei dipendenti e dei dirigenti?	
+6	AGR5_P	Initiative benefits are well communicated?		I vantaggio dell'iniziativa sono ben comunicati?	

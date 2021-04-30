@@ -1,2 +1,2 @@
-id	type	text_en	options_en
-1	BOOL_P	Are changes to electrical distribution feeders being reviewed and authorised by humans?	 
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Are changes to electrical distribution feeders being reviewed and authorised by humans?	 	Le modifiche agli alimentatori di distribuzione elettrica sono in fase di revisione e autorizzate dal personale?	

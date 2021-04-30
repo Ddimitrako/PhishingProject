@@ -1,13 +1,13 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you maintain an inventory of authorized wireless access points connected to the wired network?	 
-2	BOOL_P	Have you configured network vulnerability scanning tools to detect and alert on unauthorized wireless access points connected to the wired network?	 
-3	BOOL_P	Do you use a wireless intrusion detection system (WIDS) to detect and alert on unauthorized wireless access points connected to the network?	 
-4	BOOL_P	Have you disabled wireless access on devices that do not have a business purpose for wireless access?	 
-5	BOOL_P	Have you configured wireless access on client machines that do have an essential wireless business purpose, to allow access only to authorized wireless networks and to restrict access to other wireless networks?
-6	BOOL_P	Have you disabled peer-to-peer (ad hoc) wireless network capabilities on wireless clients?	 
-7	BOOL_P	Do you leverage the Advanced Encryption Standard (AES) to encrypt wireless data in transit?	 
-8	BOOL_P	Have you ensured that wireless networks use authentication protocols such as Extensible Authentication Protocol-Transport Layer Security (EAP/TLS), that requires mutual, multi-factor authentication?
-9	BOOL_P	Have you disabled wireless peripheral access of devices [such as Bluetooth and Near Field Communication (NFC)], unless such access is required for a business purpose?
-10	BOOL_P	Have you created a separate wireless network for personal or untrusted devices?	 
-11	BOOL_P	Is remote maintenance of organizational assets approved, logged, and performed in a manner that prevents unauthorized access?
-12	PERC20_N	What is the percentage of unidentified devices in the internal network?	 
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Do you maintain an inventory of authorized wireless access points connected to the wired network?	 	Mantieni un inventario degli access point autorizzati che sono connessi alla rete cablata?	
+2	BOOL_P	Have you configured network vulnerability scanning tools to detect and alert on unauthorized wireless access points connected to the wired network?	 	Hai configurato strumenti di scansione delle vulnerabilità di rete per rilevare e avvisare su access point non autorizzati connessi alla rete cablata?	
+3	BOOL_P	Do you use a wireless intrusion detection system (WIDS) to detect and alert on unauthorized wireless access points connected to the network?	 	Utilizzi un sistema di rilevamento per le intrusioni wireless (WIDS) per rilevare e segnalare gli accessi wireless non autorizzati collegati alla rete?	
+4	BOOL_P	Have you disabled wireless access on devices that do not have a business purpose for wireless access?	 	Hai disabilitato l'accesso wireless sui dispositivi che non hanno uno utilizzo aziendale?	
+5	BOOL_P	Have you configured wireless access on client machines that do have an essential wireless business purpose, to allow access only to authorized wireless networks and to restrict access to other wireless networks?		Hai configurato l'accesso wireless su dispositivi che hanno un utilizzo aziendale  essenziale, per consentire l'accesso solo alle reti wireless autorizzate e per limitare l'accesso ad altre reti wireless?	
+6	BOOL_P	Have you disabled peer-to-peer (ad hoc) wireless network capabilities on wireless clients?	 	Hai disabilitato le funzionalità di rete peer-to-peer (ad hoc) sui client wireless?	
+7	BOOL_P	Do you leverage the Advanced Encryption Standard (AES) to encrypt wireless data in transit?	 	Utilizzi l'Advanced Encryption Standard (AES) per crittografare i dati wireless?	
+8	BOOL_P	Have you ensured that wireless networks use authentication protocols such as Extensible Authentication Protocol-Transport Layer Security (EAP/TLS), that requires mutual, multi-factor authentication?		Hai verificato che le reti wireless utilizzino protocolli di autenticazione come Extensible Authentication Protocol-Transport Layer Security (EAP / TLS), che richiede un'autenticazione a più fattori?	
+9	BOOL_P	Have you disabled wireless peripheral access of devices [such as Bluetooth and Near Field Communication (NFC)], unless such access is required for a business purpose?		Hai disabilitato l'accesso alle periferiche wireless dei dispositivi [come Bluetooth e Near Field Communication (NFC)], a meno che tale accesso non sia richiesto per scopi aziendali?	
+10	BOOL_P	Have you created a separate wireless network for personal or untrusted devices?	 	Hai creato una rete wireless separata per dispositivi personali o che non vengono verificati?	
+11	BOOL_P	Is remote maintenance of organizational assets approved, logged, and performed in a manner that prevents unauthorized access?		La manutenzione da remoto è approvata, registrata ed eseguita in modo da impedire l'accesso non autorizzato?	
+12	PERC20_N	What is the percentage of unidentified devices in the internal network?	 	Qual è la percentuale di dispositivi non identificati nella rete interna?	

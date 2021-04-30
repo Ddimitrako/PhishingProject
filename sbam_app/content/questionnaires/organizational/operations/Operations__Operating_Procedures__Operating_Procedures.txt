@@ -1,4 +1,4 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you specify the operational instructions of the installation and configuration of systems?	 
-2	BOOL_P	Do you specify the operational instructions of the scheduling requirements, including interdependencies with other systems, earliest job start and latest job completion times?	 
-3	BOOL_P	Do you specify the instructions for handling errors or other exceptional conditions, which might arise during job execution, including restrictions on the use of system utilities?	 
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Do you specify the operational instructions of the installation and configuration of systems?	 	Specifichi le istruzioni operative per l'installazione e la configurazione dei sistemi?	
+2	BOOL_P	Do you specify the operational instructions of the scheduling requirements, including interdependencies with other systems, earliest job start and latest job completion times?	 	Specifichi le istruzioni operative delle esigenze di pianificazione, comprese le interdipendenze con altri sistemi, tempi di primo avvio e di completamento del lavoro?	
+3	BOOL_P	Do you specify the instructions for handling errors or other exceptional conditions, which might arise during job execution, including restrictions on the use of system utilities?	 	Specifichi le istruzioni per la gestione degli errori o altre condizioni eccezionali che potrebbero insorgere durante l'esecuzione del lavoro, comprese le restrizioni sull'uso delle utilità di sistema?	

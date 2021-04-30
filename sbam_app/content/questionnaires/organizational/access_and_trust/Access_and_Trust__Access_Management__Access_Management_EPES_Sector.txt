@@ -1,5 +1,5 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you enforce the principle of "least privilege" granting user access to SCADA resources?
-2	BOOL_P	Do you ensure that no critical control decision is being made without human confirmation?	 
-3	BOOL_P	Do you restrict read, manipulate, or execute privileges to only authenticated users?	
-4	BOOL_P	Do you use role-based access control (RBAC) schemes in your OT network?	
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	"Do you enforce the principle of ""least privilege"" granting user access to SCADA resources?"		"Il principio del ""minimo privilegio"" viene applicato nel garantire agli utenti l'accesso alle risorse SCADA?"	
+2	BOOL_P	Do you ensure that no critical control decision is being made without human confirmation?	 	Vi assicurate che nessuna decisione critica di controllo venga presa senza una conferma umana?	
+3	BOOL_P	Do you restrict read, manipulate, or execute privileges to only authenticated users?		I privilegi di lettura, scrittura, modifica o esecuzione sono limitati siltanto agli utenti autenticati?	
+4	BOOL_P	Do you use role-based access control (RBAC) schemes in your OT network?		Nella vostra rete OT sono utilizzati schemi di controllo dell'accesso basati sui ruoli (RBAC)?	

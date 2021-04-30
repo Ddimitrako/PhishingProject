@@ -1,11 +1,11 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you have a current business continuity plan?	 
-2	BOOL_P	Is there a process for creating retrievable backups and archival copies of critical information?	 
-3	BOOL_P	Have you ensured that all system data is automatically backed up on a regular basis?	 
-4	BOOL_P	Have you ensured that all of the organization's key systems are backed up as a complete system, through processes such as imaging, to enable the quick recovery of an entire system?
-5	BOOL_P	Do you test data integrity on backup media on a regular basis by performing a data restoration process to ensure that the backup is properly working?	 
-6	BOOL_P	Have you ensured that backups are properly protected via physical security or encryption when they are stored, as well as when they are moved across the network, including remote backups and cloud services?
-7	BOOL_P	Have you ensured that all backups have at least one offline (i.e., not accessible via a network connection) backup destination?
-8	BOOL_P	Do you have an emergency/incident management communications plan?	 
-9	BOOL_P	Does your emergency/incident management communication plan address the potential damage to public relations?	 
-10	BOOL_P	Does your emergency/incident management communications plan address the potential damage to the reputation of the organisation?	 
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Do you have a current business continuity plan?	 	Hai un Piano di Continuità Operativa in vigore?	
+2	BOOL_P	Is there a process for creating retrievable backups and archival copies of critical information?	 	Esiste un processo per creare backup recuperabili e copie di archivio di informazioni critiche?	
+3	BOOL_P	Have you ensured that all system data is automatically backed up on a regular basis?	 	Ti sei assicurato che il backup di tutti i dati di sistema venga eseguito automaticamente e regolarmente?	
+4	BOOL_P	Have you ensured that all of the organization's key systems are backed up as a complete system, through processes such as imaging, to enable the quick recovery of an entire system?		Ti sei assicurato che tutti i sistemi chiave dell'organizzazione siano sottoposti a backup in modo completo, attraverso processi quali l'imaging, utili a consentire il ripristino rapido di un intero sistema?	
+5	BOOL_P	Do you test data integrity on backup media on a regular basis by performing a data restoration process to ensure that the backup is properly working?	 	Verifichi regolarmente l'integrità dei dati sui supporti di backup eseguendo un processo di ripristino dei dati per assicurarti che il backup funzioni correttamente?	
+6	BOOL_P	Have you ensured that backups are properly protected via physical security or encryption when they are stored, as well as when they are moved across the network, including remote backups and cloud services?		Ti sei assicurato che i backup siano adeguatamente protetti tramite soluzioni di sicurezza fisica o crittografia quando vengono archiviati, nonché quando vengono spostati sulla rete, usufruendo di backup remoti e servizi cloud?	
+7	BOOL_P	Have you ensured that all backups have at least one offline (i.e., not accessible via a network connection) backup destination?		Ti sei assicurato che tutti i backup abbiano almeno una destinazione di backup offline (ovvero non accessibile tramite una connessione di rete)?	
+8	BOOL_P	Do you have an emergency/incident management communications plan?	 	Hai un piano di comunicazione per la gestione delle emergenze / incidenti?	
+9	BOOL_P	Does your emergency/incident management communication plan address the potential damage to public relations?	 	Il piano di comunicazione per la gestione delle emergenze/incidenti affronta i potenziali danni alle pubbliche relazioni?	
+10	BOOL_P	Does your emergency/incident management communications plan address the potential damage to the reputation of the organisation?	 	Il piano di comunicazione per la gestione delle emergenze/incidenti affronta i potenziali danni alla reputazione dell'organizzazione?	

@@ -1,13 +1,13 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you identify and document all the relevant to your organization's security authorities?
-2	BOOL_P	Do you document and distribute to all relevant parties all the necessary contact information with the identified authorities?	 
-3	BOOL_P	Do you identify and document all the relevant to your organization's security special groups?
-4	BOOL_P	Do you document and distribute to all relevant parties all the necessary contact information with the identified special groups?	 
-5	BOOL_P	Are there any multilateral agreements on cybersecurity cooperation?	 
-6	BOOL_P	Do you have procedures to ensure third party stakeholders understand their roles and responsibilities according to their contractual relationship?	 
-7	BOOL_P	Do you conduct response and recovery planning and testing with third party stakeholders?	 
-8	BOOL_P	Have you implemented procedures to verify the identification of couriers?	 
-9	CUSTOM_R	How often do you review third party accesses?	"[[1, 1, ""Once per month"", 1],[2, 2, ""Once per quarter"", 0.75], [3, 3, ""Once per semester"", 0.50], [4, 4, ""Once per year"", 0.25], [5, 5, ""Less"", 0]]"
-10	CUSTOM_R	How often do third parties access critical enterprise systems?	"[[1, 1, ""Regularly"", 0], [2, 2, ""Semi-regularly"", 0.33], [3, 3, ""Rarely"", 0.67], [4, 4, ""Never"", 1]] "
-11	PERC20_P	What is the percentage of your business partners that have established effective cybersecurity policies?	 
-12	PERC20_P	What is the percentage of your critical vendors who have completed a risk assessment?	 
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Do you identify and document all the relevant to your organization's security authorities?		Identifichi e documenti tutte le informazioni rilevanti con responsabili della sicurezza della tua organizzazione?	
+2	BOOL_P	Do you document and distribute to all relevant parties all the necessary contact information with the identified authorities?	 	Documenti e consegni a tutti gli interessati  le informazioni di contatto  necessarie con chiara identificazione dei responsabili?	
+3	BOOL_P	Do you identify and document all the relevant to your organization's security special groups?		Identifichi e documenti  tutti gli elementi rilevanti per i gruppi di sicurezza specialistici della tua organizzazione?	
+4	BOOL_P	Do you document and distribute to all relevant parties all the necessary contact information with the identified special groups?	 	Documentate e consegnate a tutti gli interessati  le informazioni di contatto  necessarie dei gruppi specialistici?	
+5	BOOL_P	Are there any multilateral agreements on cybersecurity cooperation?	 	Esistono accordi in materia di sicurezza informatica?	
+6	BOOL_P	Do you have procedures to ensure third party stakeholders understand their roles and responsibilities according to their contractual relationship?	 	Disponi di procedure per garantire che gli esterni comprendano i loro ruoli e responsabilità in base al loro rapporto contrattuale?	
+7	BOOL_P	Do you conduct response and recovery planning and testing with third party stakeholders?	 	Effettui la pianificazione e test di valutazione con le aziende esterne?	
+8	BOOL_P	Have you implemented procedures to verify the identification of couriers?	 	Hai definito procedure per verificare l'identità dei corrieri?	
+9	CUSTOM_R	How often do you review third party accesses?	"[[1, 1, ""Once per month"", 1],[2, 2, ""Once per quarter"", 0.75], [3, 3, ""Once per semester"", 0.50], [4, 4, ""Once per year"", 0.25], [5, 5, ""Less"", 0]]"	Con che frequenza controlli gli accessi degli esterni?	"[[1, 1, ""Una volta al mese"", 1], [2, 2, ""Una volta ogni tre mesi"", 0.75], [3, 3, ""Una volta ogni sei mesi"", 0.50], [4, 4, ""Una volta all'anno "", 0.25], [5, 5,"" Meno "", 0]]"
+10	CUSTOM_R	How often do third parties access critical enterprise systems?	"[[1, 1, ""Regularly"", 0], [2, 2, ""Semi-regularly"", 0.33], [3, 3, ""Rarely"", 0.67], [4, 4, ""Never"", 1]] "	Con che frequenza gli esterni accedono ai sistemi aziendali critici?	"[[1, 1, ""Regolarmente"", 0], [2, 2,""Quasi-regolare"", 0.33], [3, 3,"" Raramente "", 0.67], [4, 4,"" Mai "", 1]]"
+11	PERC20_P	What is the percentage of your business partners that have established effective cybersecurity policies?	 	Qual è la percentuale dei tuoi partner commerciali che hanno adottato politiche di sicurezza informatica efficaci?	
+12	PERC20_P	What is the percentage of your critical vendors who have completed a risk assessment?	 	Qual è la percentuale dei tuoi fornitori critici che hanno completato una valutazione del rischio?	

@@ -1,9 +1,9 @@
-id	type	text_en	options_en
-1	BOOL_P	Are the maintenance and copying of program source libraries subject to strict change control?	 
-2	BOOL_P	Do you identify and record significant changes?	 
-3	BOOL_P	Do you plan and test changes?	 
-4	BOOL_P	Do you contact and assess the potential impacts of changes?	 
-5	BOOL_P	Have you established a formal approval procedure for proposed changes?	 
-6	BOOL_P	Do you verify that information security requirements have been met during changes?	 
-7	BOOL_P	Do you communicate change details to all related people?	 
-8	BOOL_P	Do you establish fall-back procedures to any changes?	 
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Are the maintenance and copying of program source libraries subject to strict change control?	 	La manutenzione e la copia delle librerie dei sorgenti dei programmi sono soggette a un rigoroso controllo delle modifiche?	
+2	BOOL_P	Do you identify and record significant changes?	 	Identificate e registrate cambiamenti significativi?	
+3	BOOL_P	Do you plan and test changes?	 	Pianificate e testate le modifiche?	
+4	BOOL_P	Do you contact and assess the potential impacts of changes?	 	Contattate e valutate i potenziali impatti dei cambiamenti?	
+5	BOOL_P	Have you established a formal approval procedure for proposed changes?	 	Hai stabilito una procedura formale di approvazione per le modifiche proposte?	
+6	BOOL_P	Do you verify that information security requirements have been met during changes?	 	Verificate che i requisiti di sicurezza delle informazioni siano stati soddisfatti durante le modifiche?	
+7	BOOL_P	Do you communicate change details to all related people?	 	Comunichi i dettagli delle modifiche a tutte le persone necessarie?	
+8	BOOL_P	Do you establish fall-back procedures to any changes?	 	Stabilite procedure di ripiego per eventuali modifiche?	

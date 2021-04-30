@@ -1,10 +1,10 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you use at least three synchronized time sources from which all servers and network devices retrieve time information on a regular basis so that timestamps in logs are consistent?	 
-2	BOOL_P	Have you ensured that local logging has been enabled on all systems and networking devices?	 
-3	BOOL_P	Have you enabled system logging to include detailed information such as an event source, date, user, timestamp, source addresses, destination addresses, and other useful elements?
-4	BOOL_P	Have you ensured that all systems that store logs have adequate storage space for the logs generated?	 
-5	BOOL_P	Have you ensured that appropriate logs are being aggregated to a central log management system for analysis and review?	 
-6	BOOL_P	Have you deployed Security Information and Event Management (SIEM) or log analytic tools for log correlation and analysis?	 
-7	BOOL_P	Do you review logs, on a regular basis, to identify anomalies or abnormal events?	 
-8	BOOL_P	Do you tune your SIEM system, on a regular basis, to better identify actionable events and decrease event noise?	 
-9	BOOL_P	Do you protect logs from unauthorized alterations or deletion?	 
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Do you use at least three synchronized time sources from which all servers and network devices retrieve time information on a regular basis so that timestamps in logs are consistent?	 	Usate almeno tre fonti temporali sincronizzate da cui tutti i server e i dispositivi di rete recuperano regolarmente le informazioni temporali in modo che i timestamp nei log siano consistenti?	
+2	BOOL_P	Have you ensured that local logging has been enabled on all systems and networking devices?	 	Vi siete assicurati che la registrazione di log locale sia stata abilitata su tutti i sistemi e dispositivi di rete?	
+3	BOOL_P	Have you enabled system logging to include detailed information such as an event source, date, user, timestamp, source addresses, destination addresses, and other useful elements?		Avete abilitato la registrazione del sistema per includere informazioni dettagliate come fonte dell'evento, data, utente, timestamp, indirizzi di origine, indirizzi di destinazione e altri elementi utili?	
+4	BOOL_P	Have you ensured that all systems that store logs have adequate storage space for the logs generated?	 	Vi siete assicurati che tutti i sistemi che memorizzano i log abbiano uno spazio di archiviazione adeguato per i log generati?	
+5	BOOL_P	Have you ensured that appropriate logs are being aggregated to a central log management system for analysis and review?	 	Vi siete assicurati che i log appropriati vengano aggregati in un sistema centrale di gestione dei log per l'analisi e la revisione?	
+6	BOOL_P	Have you deployed Security Information and Event Management (SIEM) or log analytic tools for log correlation and analysis?	 	Avete implementato strumenti di Security Information and Event Management (SIEM) o di analisi dei log per la correlazione e l'analisi dei log?	
+7	BOOL_P	Do you review logs, on a regular basis, to identify anomalies or abnormal events?	 	Esaminate i log, su base regolare, per identificare anomalie o eventi anormali?	
+8	BOOL_P	Do you tune your SIEM system, on a regular basis, to better identify actionable events and decrease event noise?	 	Ottimizzate il vostro sistema SIEM, su base regolare, per identificare meglio gli eventi perseguibili e diminuire il rumore degli eventi?	
+9	BOOL_P	Do you protect logs from unauthorized alterations or deletion?	 	Proteggete i log da alterazioni o cancellazioni non autorizzate?	

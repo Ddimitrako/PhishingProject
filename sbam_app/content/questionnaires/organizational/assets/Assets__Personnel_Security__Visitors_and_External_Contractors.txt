@@ -1,9 +1,9 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you check the credentials of external contractors?	 
-2	BOOL_P	Do you provide temporary ID badges for visitors?	 
-3	BOOL_P	Do you have established processes to verify credentials?	 
-4	BOOL_P	Are external party support service personnel granted restricted access to secure areas or confidential information processing facilities only when required? Have you implemented authorization and monitoring procedures for this access?	 
-5	BOOL_P	Do you appropriately authenticate the identity of visitors?	 
-6	BOOL_P	Do you record the date and time of entry and departure of visitors?	 
-7	BOOL_P	Are all visitors supervised, unless their access has been previously approved?
-8	BOOL_P	Are visitors only granted access for specific, authorized purposes and are they issued with instructions on the security requirements of the area and on emergency procedures?
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Do you check the credentials of external contractors?	 	Controlli le credenziali dei consulenti esterni?	
+2	BOOL_P	Do you provide temporary ID badges for visitors?	 	Fornisci badge identificativi temporanei per i visitatori?	
+3	BOOL_P	Do you have established processes to verify credentials?	 	Hai stabilito processi per verificare le credenziali?	
+4	BOOL_P	Are external party support service personnel granted restricted access to secure areas or confidential information processing facilities only when required? Have you implemented authorization and monitoring procedures for this access?	 	Al personale esterno di supporto  è concesso un accesso limitato alle aree protette o strutture riservate solo quando richiesto? Hai implementato procedure di autorizzazione e monitoraggio per questi accessi?	
+5	BOOL_P	Do you appropriately authenticate the identity of visitors?	 	Verifichi adeguatamente l'identità dei visitatori?	
+6	BOOL_P	Do you record the date and time of entry and departure of visitors?	 	Registri la data e l'ora di entrata e di uscita dei visitatori?	
+7	BOOL_P	Are all visitors supervised, unless their access has been previously approved?		Tutti i visitatori sono controllati, a meno che il loro accesso non sia stato precedentemente approvato?	
+8	BOOL_P	Are visitors only granted access for specific, authorized purposes and are they issued with instructions on the security requirements of the area and on emergency procedures?		Le tue politiche e procedure specificano i metodi utilizzati per controllare l'accesso  alle  aree protette, come serrature, sistemi di controllo degli accessi, addetti alla sicurezza o monitoraggio video?	

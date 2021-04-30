@@ -1,11 +1,11 @@
-id	type	text_en	options_en
-1	BOOL_P	Are operations controlled and predictable, managed according to the same standards throughout the organization?	 
-2	BOOL_P	Are operations agile and adaptable, managed with minimal bureaucracy and capable of fast adaptation and flexible execution to respond to changes in the environment?	 
-3	BOOL_P	Do you maintain separate environments for production and non-production systems? 	 
-4	BOOL_P	Do you have defined rules for the transfer of software from development to operational status?	 
-5	BOOL_P	Does the development and operational software run on different systems or computer processors and in different domains or directories?	 
-6	BOOL_P	Do you test changes to operational systems and applications in a testing or staging environment prior to being applied to operational systems?	 
-7	BOOL_P	Do you avoid conducting testing on operation systems?	 
-8	BOOL_P	Do you make compilers, editors and other development tools inaccessible from operational systems?	 
-9	BOOL_P	Do users have different user profiles for operational and testing systems?	 
-10	BOOL_P	Do you avoid copying sensitive data into the testing system environment?	 
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Are operations controlled and predictable, managed according to the same standards throughout the organization?	 	Le operazioni sono controllate e prevedibili, gestite secondo gli stessi standard in tutta l'organizzazione?	
+2	BOOL_P	Are operations agile and adaptable, managed with minimal bureaucracy and capable of fast adaptation and flexible execution to respond to changes in the environment?	 	Le operazioni sono flessibili e adattabili, gestite con minima burocrazia e eseguibili in modo flessibile per rispondere rapidamente alle diverse condizioni al contorno?	
+3	BOOL_P	Do you maintain separate environments for production and non-production systems? 	 	Garantisci ambienti distinti per i sistemi di produzione e non di produzione?	
+4	BOOL_P	Do you have defined rules for the transfer of software from development to operational status?	 	Sono state definite regole per convertire il software dallo stato di sviluppo a quello operativo? 	
+5	BOOL_P	Does the development and operational software run on different systems or computer processors and in different domains or directories?	 	Il software di sviluppo e operativo viene eseguito su diversi sistemi o processori e in differenti domini o cartelle? 	
+6	BOOL_P	Do you test changes to operational systems and applications in a testing or staging environment prior to being applied to operational systems?	 	Testi le modifiche ai sistemi operativi e alle applicazioni in un ambiente di test o di prova prima che vengano applicate ai sistemi operativi?	
+7	BOOL_P	Do you avoid conducting testing on operation systems?	 	Eviti di fare test su sistemi operativi?	
+8	BOOL_P	Do you make compilers, editors and other development tools inaccessible from operational systems?	 	Rendi i compilatori, gli editor e altri strumenti di sviluppo inaccessibili dai sistemi operativi? 	
+9	BOOL_P	Do users have different user profiles for operational and testing systems?	 	Gli utenti hanno profili utente diversi per i sistemi operativi e di test?	
+10	BOOL_P	Do you avoid copying sensitive data into the testing system environment?	 	Eviti di copiare dati sensibili nell'ambiente di test?	

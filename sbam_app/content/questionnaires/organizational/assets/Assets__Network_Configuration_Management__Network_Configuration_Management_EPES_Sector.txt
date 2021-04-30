@@ -1,2 +1,2 @@
-id	type	text_en	options_en
-1	BOOL_P	Have you ensured proper network segmentation in the SCADA environment?	 
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Have you ensured proper network segmentation in the SCADA environment?	 	Avete assicurato un'adeguata segmentazione della rete nell'ambiente SCADA?	

@@ -1,10 +1,10 @@
-id	type	text_en	options_en
-1	BOOL_P	Do your policies and procedures identify critical services (e.g. power supply, cooling, communication, etc.) and specify methods for supporting the underlying systems?
-2	BOOL_P	Do all employees have emergency shelter-in-place kits for emergencies where they can't leave your facility? (canned food and a can opener, bottled water, a blanket, prescription medicines, sanitary wipes, a garbage bag with ties and toilet paper for personal sanitation)
-3	BOOL_P	Do you regularly inspect and test supporting utilities (e.g. electricity, telecommunications, water supply, ventilation, air conditioning, etc.)?
-4	BOOL_P	Have you established a way to be provided with emergency lighting and communications if necessary?	 
-5	BOOL_P	Do you have emergency switches and valves to cut off power, water, gas or other utilities located near emergency exits or equipment rooms?
-6	BOOL_P	Are power and telecommunication lines that go into your information processing facilities underground?	 
-7	BOOL_P	Are your power cables segregated from your communication cables?	 
-8	BOOL_P	Have you installed armored conduit and locked rooms or boxes at inspection and termination points?	 
-9	BOOL_P	Do you perform technical sweeps and physical inspections in order to detect unauthorized devices being attached to the cables?	 
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Do your policies and procedures identify critical services (e.g. power supply, cooling, communication, etc.) and specify methods for supporting the underlying systems?		Le tue politiche e procedure identificano servizi critici (ad es. alimentazione, raffreddamento, comunicazione, ecc.) e specificano metodi per supportare i sistemi?	
+2	BOOL_P	Do all employees have emergency shelter-in-place kits for emergencies where they can't leave your facility? (canned food and a can opener, bottled water, a blanket, prescription medicines, sanitary wipes, a garbage bag with ties and toilet paper for personal sanitation)		Tutti i dipendenti dispongono di kit per le emergenze nel caso non dovessero lasciare la tua struttura? (cibo in scatola e apriscatola, acqua in bottiglia, una coperta, medicinali soggetti a prescrizione, salviettine igieniche, un sacco della spazzatura con lacci e carta igienica )	
+3	BOOL_P	Do you regularly inspect and test supporting utilities (e.g. electricity, telecommunications, water supply, ventilation, air conditioning, etc.)?		Ispezioni e controlli regolarmente i servizi di supporto (ad es.elettricità, telecomunicazioni, approvvigionamento idrico, ventilazione, aria condizionata, ecc.)?	
+4	BOOL_P	Have you established a way to be provided with emergency lighting and communications if necessary?	 	Ci sono sistemi di l'illuminazione  e per le comunicazioni di emergenza, se necessarie?	
+5	BOOL_P	Do you have emergency switches and valves to cut off power, water, gas or other utilities located near emergency exits or equipment rooms?		Sono presenti interruttori e valvole di emergenza per l'interruzione di corrente, acqua, gas o altre  situate vicino alle uscite di emergenza o nei locali tecnici?	
+6	BOOL_P	Are power and telecommunication lines that go into your information processing facilities underground?	 	Le linee elettriche e di rete nelle tue strutture di elaborazione delle informazioni sono sotterranee?	
+7	BOOL_P	Are your power cables segregated from your communication cables?	 	I cavi di alimentazione sono separati dai cavi di comunicazione?	
+8	BOOL_P	Have you installed armored conduit and locked rooms or boxes at inspection and termination points?	 	Hai installato condotti blindati e stanze o scatole chiuse nei punti di ispezione e terminazione?	
+9	BOOL_P	Do you perform technical sweeps and physical inspections in order to detect unauthorized devices being attached to the cables?	 	Esegui controlli tecnici e ispezioni fisiche per rilevare dispositivi non autorizzati collegati ai cavi?	

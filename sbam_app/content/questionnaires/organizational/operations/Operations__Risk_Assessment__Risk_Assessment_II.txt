@@ -1,9 +1,9 @@
-id	type	text_en	options_en
-1	BOOL_P	Do governance and risk management processes address cybersecurity risks?	 
-2	BOOL_P	Do you receive threat and vulnerability information from information sharing forums and sources?	 
-3	BOOL_P	Is the organizational risk tolerance determined and clearly expressed?	 
-4	BOOL_P	Is the organisational risk tolerance informed by its role in critical infrastructure and sector specific analysis?	 
-5	BOOL_P	Are organization's determination of risk tolerance informed by its role in critical infrastructure and sector specific risk analysis?
-6	BOOL_P	Do you identify and document specific asset vulnerabilities?	
-7	CUSTOM_R	Do you identify both internal and external threats during the risk assessment?	"[[1, 1, ""Both"", 1], [2, 2, ""Only external"", 0.67], [3, 3, ""Only internal"", 0.33], [4, 4, ""None"", 0]] "
-8	CUSTOM_R	What is the number of security issues related to employees security behaviour identified by the risk department?	"[[1, 1, ""Few unimportant ones"", 1], [2, 2, ""Normal amount of unimportant ones"", 0.80], [3, 3, ""A lot of unimportant ones"", 0.60], [4, 4, ""Few important ones"", 0.40], [5, 5, ""Normal amount of important ones"", 0.20], [6, 6, ""A lot of important ones"", 0]] "
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Do governance and risk management processes address cybersecurity risks?	 	I processi di gestione del rischio considerano i rischi di sicurezza informatica?	
+2	BOOL_P	Do you receive threat and vulnerability information from information sharing forums and sources?	 	Ricevi informazioni su minacce e vulnerabilità da forum e fonti di condivisione delle informazioni?	
+3	BOOL_P	Is the organizational risk tolerance determined and clearly expressed?	 	La tolleranza al rischio a livello aziendale  è determinata e chiaramente espressa?	
+4	BOOL_P	Is the organisational risk tolerance informed by its role in critical infrastructure and sector specific analysis?	 	La tolleranza al rischio a livello aziendale è legata al suo ruolo nelle infrastrutture critiche e alla specifica analisi  di settore? 	
+5	BOOL_P	Are organization's determination of risk tolerance informed by its role in critical infrastructure and sector specific risk analysis?		La determinazione della tolleranza al rischio dell'organizzazione è legata al suo ruolo nelle infrastrutture critiche e all'analisi dei rischi specifici di settore?	
+6	BOOL_P	Do you identify and document specific asset vulnerabilities?		Identifichi e dumenti specifiche vulnerabilità delle risorse?	
+7	CUSTOM_R	Do you identify both internal and external threats during the risk assessment?	"[[1, 1, ""Both"", 1], [2, 2, ""Only external"", 0.67], [3, 3, ""Only internal"", 0.33], [4, 4, ""None"", 0]] "	In fase di valutazione del rischio identifichi sia le minacce interne che esterne?	"[[1, 1, ""Entrambe"", 1], [2, 2, ""Solo esterne"", 0.67], [3, 3, ""Solo interne"", 0.33], [4, 4, ""Nessuna"", 0] ]"
+8	CUSTOM_R	What is the number of security issues related to employees security behaviour identified by the risk department?	"[[1, 1, ""Few unimportant ones"", 1], [2, 2, ""Normal amount of unimportant ones"", 0.80], [3, 3, ""A lot of unimportant ones"", 0.60], [4, 4, ""Few important ones"", 0.40], [5, 5, ""Normal amount of important ones"", 0.20], [6, 6, ""A lot of important ones"", 0]] "	Qual è il numero di problemi di sicurezza relativi al comportamento di sicurezza dei dipendenti identificato dal reparto rischi?	"[[1, 1, ""Pochi e non importanti"", 1], [2, 2, ""Quantità normale di quelli non importanti"", 0.80], [3, 3, ""Molti di quelli non importanti"", 0.60], [4, 4, ""Pochi importanti"", 0.40], [5, 5, ""Quantità normale di quelli importanti"", 0.20], [6, 6, ""Molti importanti"", 0]]  "

@@ -1,13 +1,13 @@
-id	type	text_en	options_en
-1	BOOL_P	Can you remotely wipe computers, laptops, and mobile devices that are lost or stolen?
-2	BOOL_P	Do you have security policies in place for all of your computers, laptops, tablets, and smartphones?
-3	BOOL_P	Do you have a "Bring Your Own Device" policy in place for employee mobile devices?
-4	BOOL_P	Do you use electromagnetic shielding?	 
-5	BOOL_P	Do you assure that directories and internal telephone books identifying locations of confidential information processing facilities are not readily accessible to anyone unauthorized?	 
-6	BOOL_P	Do you prohibit the use of photographic, video, audio or other recording equipment in secure areas, unless properly authorized?
-7	BOOL_P	Is your delivery and loading area designed in such a way as to be able to load and unload supplies without delivery personnel gaining access to other parts of the building?	 
-8	BOOL_P	Do you examine and inspect incoming material for explosives, chemical or other hazardous materials, before it is moved from a delivery and loading area?
-9	BOOL_P	Do you inspect incoming material for evidence of tampering?	 
-10	BOOL_P	Do you physically segregate, where possible, incoming and outgoing shipments?
-11	BOOL_P	Do you monitor relevant environmental conditions, such as humidity and temperature, which could adversely affect the operation of information processing facilities?
-12	BOOL_P	Do you use special protection methods, such as keyboard membranes?
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Can you remotely wipe computers, laptops, and mobile devices that are lost or stolen?		Puoi disabilitare completamente e da remoto computer, laptop e dispositivi mobili smarriti o rubati?	
+2	BOOL_P	Do you have security policies in place for all of your computers, laptops, tablets, and smartphones?		Hai politiche di sicurezza in vigore per tutti i computer, laptop, tablet e smartphone?	
+3	BOOL_P	"Do you have a ""Bring Your Own Device"" policy in place for employee mobile devices?"		E' consentito ai dipendenti usare il proprio dispositivo mobile in azienda?	
+4	BOOL_P	Do you use electromagnetic shielding?	 	Utilizzi schermature elettromagnetiche?	
+5	BOOL_P	Do you assure that directories and internal telephone books identifying locations of confidential information processing facilities are not readily accessible to anyone unauthorized?	 	Ti assicuri che non siano facilmente accessibili elenchi e rubriche telefoniche interne dalle quali sia possibile risalire al sito in cui vengano elaborate informazioni riservate anche da opera di persone non autorizzate?	
+6	BOOL_P	Do you prohibit the use of photographic, video, audio or other recording equipment in secure areas, unless properly authorized?		Proibisci  l'uso di macchine fotografiche,  videocamere, registratori audio o simili in aree da tutelare da un punto di vista della sicurezza, a meno che non sia debitamente autorizzato?	
+7	BOOL_P	Is your delivery and loading area designed in such a way as to be able to load and unload supplies without delivery personnel gaining access to other parts of the building?	 	La zona di consegna e carico è progettata in modo tale da poter caricare e scaricare le forniture senza che il personale addetto alle consegne abbia accesso ad altre parti dell'edificio?	
+8	BOOL_P	Do you examine and inspect incoming material for explosives, chemical or other hazardous materials, before it is moved from a delivery and loading area?		E' prevista un'ispezione del materiale in entrata alla ricerca di esplosivi, sostanze chimiche o altri materiali pericolosi, prima che venga spostato dall'area di consegna e carico?	
+9	BOOL_P	Do you inspect incoming material for evidence of tampering?	 	Ispezioni il materiale in entrata per verificare presenza di manomissione?	
+10	BOOL_P	Do you physically segregate, where possible, incoming and outgoing shipments?		Separi  fisicamente, ove possibile, le spedizioni in ingresso e in uscita?	
+11	BOOL_P	Do you monitor relevant environmental conditions, such as humidity and temperature, which could adversely affect the operation of information processing facilities?		Monitori i parametri ambientali rilevanti, come umidità e temperatura, che potrebbero influire negativamente sul funzionamento dei sistemi di elaborazione e calcolo?	
+12	BOOL_P	Do you use special protection methods, such as keyboard membranes?		Utilizzi metodi di protezione speciali, come pellicole protettive per tastiera?	

@@ -1,9 +1,9 @@
-id	type	text_en	options_en
-1	BOOL_P	Are you aware of the information sharing forums and sources used by the company?
-2	BOOL_P	Are you aware of the risk response procedures of the organisation?
-3	BOOL_P	Are you aware of the credentials, and the relevant procedures and polices about them?
-4	BOOL_P	Are you aware of the policies regarding physical access to assets?
-5	BOOL_P	Are you aware of the polices regarding remote access to assets?
-6	BOOL_P	Are you aware of the implemented network segregation and network segmentation policies?
-7	BOOL_P	Are you aware of the policies regarding data destruction?
-8	BOOL_P	Are you aware of the policies regarding maintenance of assets?
+id	type	text_en	options_en	text_it	options_it
+1	BOOL_P	Are you aware of the information sharing forums and sources used by the company?		Ti sono chiari i forum e le risorse aziendali usati per condividere informazioni?	
+2	BOOL_P	Are you aware of the risk response procedures of the organisation?		TI sono chiare le politiche di risposta alle minaccie dell'azienda?	
+3	BOOL_P	Are you aware of the credentials, and the relevant procedures and polices about them?		Ti sono chiare le politiche aziendali di affidamento delle credenziali informatiche?	
+4	BOOL_P	Are you aware of the policies regarding physical access to assets?		Ti sono chiare le politiche aziendali per consentire l'accesso alle infrastrutture aziendali?	
+5	BOOL_P	Are you aware of the polices regarding remote access to assets?		Ti sono chiare le politiche aziendali per consentire l'accesso da remoto ai sistemi di monitoraggio e controllo delle infrastrutture?	
+6	BOOL_P	Are you aware of the implemented network segregation and network segmentation policies?		Ti sono chiare le politiche aziendali di suddivisione e segmentazione delle infrastrutture critiche e reti gestite?	
+7	BOOL_P	Are you aware of the policies regarding data destruction?		Ti sono chiare le politiche aziendali di eliminazione dei dati sensibili?	
+8	BOOL_P	Are you aware of the policies regarding maintenance of assets?		Ti sono chiare le politiche aziendali di manutenzione sulle infrastrutture?	
