@@ -51,14 +51,18 @@ def phishing_quiz(request, assignment_id):
                                  'score_badge': custom_tags.get_badge(str(correct_answers / len(labels) * 100)),
                              })
         else:
-
-            # na dialegeis 10 random emails otan ftiaxtei
-            # Na koitaei ti exei apanthsei kai se poia exei kanei lathos etsi wste na dinetai proteraiothta se auta
-            test_emails = PhishingEmail.objects.filter(is_active=True).filter(phishingemailassignmentanswer__assignment=assignment_id)
             assignment = sbam_models.TestAssignment.objects.get(pk=assignment_id)
-            return render(request, 'phishing_quiz.html', {'emails': test_emails,
-                                                          'assignment_id': assignment.id,
-                                                          'progress_bar': 1 / len(test_emails) * 100})
+            if assignment.status == 'OPEN':
+                test_emails = PhishingEmail.objects.filter(is_active=True).filter(phishingemailassignmentanswer__assignment=assignment_id)
+
+                return render(request, 'phishing_quiz.html', {'emails': test_emails,
+                                                              'assignment_id': assignment.id,
+                                                              'progress_bar': 1 / len(test_emails) * 100})
+            else:
+                messages.error(request, _('Assignment \"%(title)s\" is not active for completion! '
+                                          'Please select an active assignment from the ones presented in your dashboard...'
+                                          % {'title': assignment.test}))
+                return redirect('sbam:dashboard')
     else:
         messages.error(request, _('You do not have access to this assignment'))
         return redirect('/')

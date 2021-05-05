@@ -133,10 +133,16 @@ def password_strength(request, assignment_id):
                                  })
         else:
             assignment = TestAssignment.objects.get(pk=assignment_id)
-            return render(request, 'password_strength.html', {
-                'pass_check_form': MyPasswordStrengthForm(),
-                'ass_id': assignment.id
-            })
+            if assignment.status == 'OPEN':
+                return render(request, 'password_strength.html', {
+                    'pass_check_form': MyPasswordStrengthForm(),
+                    'ass_id': assignment.id
+                })
+            else:
+                messages.error(request, _('Assignment \"%(title)s\" is not active for completion! '
+                                          'Please select an active assignment from the ones presented in your dashboard...'
+                                          % {'title': assignment.test}))
+                return redirect('sbam:dashboard')
 
     else:
         messages.error(request, _('You do not have access to this assignment'))
