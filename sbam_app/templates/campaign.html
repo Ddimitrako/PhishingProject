@@ -196,7 +196,23 @@
                                     <div class="col col-md-6">
                                         <div style="text-align: center; font-size: 1.1rem; color: #263c90;"><label>{% trans "Insider Threats" %}</label></div>
                                         <div class="container" style="height: 32vh; overflow: auto;">
+                                            <table id="insider_threats"
+                                               class="table table-hover table-head-fixed table-striped ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{% trans "Threat" %}</th>
 
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for threat in insider_threats %}
+                                                        <tr>
+                                                            <td>{{ threat }}</td>
+
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>

@@ -809,6 +809,8 @@ def campaign(request, id):
     mitigations_set = set()
     attack_patterns_set = set()
     domains_scores = {}
+    insider_factors = set()
+    insider_threats = set()
 
     campaign_assignments = list(chain(q_ass, t_ass))
 
@@ -822,15 +824,19 @@ def campaign(request, id):
         if domain not in domains_scores:
             domains_scores[domain] = {}
             domains_scores[domain]['score'] = 0.0
-            domains_scores[domain]['mitigations'] = []
+            # domains_scores[domain]['mitigations'] = []
+            # domains_scores[domain]['insider_factors'] = []
             domains_scores[domain]['counter'] = 0
 
         if ass.status == 'COMPLETED':
             domains_scores[ass.questionnaire.domain]['score'] += ass.assignmentresult_set.get(assignment=ass).score
             domains_scores[ass.questionnaire.domain]['counter'] += 1
 
-            for mit in domain.mitigation_set.all():
-                domains_scores[ass.questionnaire.domain]['mitigations'].append(mit)
+            # for mit in domain.mitigation_set.all():
+            #     domains_scores[ass.questionnaire.domain]['mitigations'].append(mit)
+            #
+            # for factor in domain.insiderthreatsfactor_set.all():
+            #     domains_scores[ass.questionnaire.domain]['insider_factors'].append(factor)
 
     for domain in domains_scores:
         if domains_scores[domain]['counter'] > 0:
@@ -840,17 +846,27 @@ def campaign(request, id):
             for mit in domain.mitigation_set.all():
                 mitigations_set.add(mit)
 
+            for factor in domain.insiderthreatsfactor_set.all():
+                insider_factors.add(factor)
+
 
     # At this point the mitigations_set contains all mitigations that are related to the campaign
     for mit in mitigations_set:
         for pattern in mit.attack_patterns.all():
             attack_patterns_set.add(pattern)
 
+    for factor in insider_factors:
+        for threat in factor.insider_threat.all():
+            insider_threats.add(threat)
+
     # At this point the attack_patterns_set contains all attack_patterns that are related to the mitigations of the campaign
     print(len(attack_patterns_set))
 
-    for pattern in attack_patterns_set:
-        print(pattern, pattern.id, len(pattern.name))
+    # for pattern in attack_patterns_set:
+    #     print(pattern, pattern.id, len(pattern.name))
+
+    # for threat in insider_threats:
+    #     print(threat, threat.id, len(threat.name))
 
     assignments = q_ass.count() + t_ass.count()
     results = calculate_campaign_result(campaign, assignments)
@@ -870,7 +886,7 @@ def campaign(request, id):
         'results': results,
         'campaign_form': campaign_form,
         'attack_patterns': attack_patterns_set,
-        'insider_threats': []
+        'insider_threats': insider_threats
     })
 
 
