@@ -644,7 +644,6 @@ class AttackPattern(Model):
     def __str__(self):
         return self.name
 
-
 class Mitigation(Model):
     mittre_id = CharField(max_length=20, unique=True)
     mittre_json_id = CharField(max_length=100, unique=True)
@@ -657,6 +656,36 @@ class Mitigation(Model):
     def __str__(self):
         return self.name
 
-
 class ActiveAttackPatterns(Model):
     attack_pattern = ForeignKey(AttackPattern, on_delete=CASCADE)
+
+
+class InsiderThreat(Model):
+    name = CharField(max_length=200)
+    description = TextField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class InsiderThreatsFactor(Model):
+    name = CharField(max_length=200)
+    description = TextField(max_length=100)
+    domains = ManyToManyField(Domain)
+    insider_threat = ManyToManyField(InsiderThreat)
+
+    def __str__(self):
+        return self.name
+
+
+class InsiderThreatSubType(Model):
+    name = CharField(max_length=200)
+    description = TextField(max_length=100)
+    insider_threat = ForeignKey(InsiderThreat, on_delete=CASCADE, related_name='threat')
+
+    def __str__(self):
+        return self.name
+
+
+
+

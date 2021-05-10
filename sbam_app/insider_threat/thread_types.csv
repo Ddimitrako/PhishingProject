@@ -1,0 +1,36 @@
+Thread Type;Description;SubType;SubType Description;Factors
+Information Technology Sabotage;Use of IT to direct specific harm toward an organization or an individual.;;;"Dissatisfaction
+Personality predispositions
+Enterprise role
+Concerning behavior
+Employee profile
+Access Controls"
+Intellectual Property Theft;Purposely abuse one's credentials to steal confidential or proprietary information from the organization.;"Entitled Independent
+Ambitious Leader";"An insider acting primarily alone to steal information to take to a new job or to his/her own side business.
+A leader of an insider crime who recruits insiders to steal information for some larger purpose.";"Dissatisfaction
+Enterprise role
+Employee profile
+Sense of entitlement"
+Fraud;"Unauthorized modification, addition, or deletion of an organization's data for personal gain, or theft of information that leads to an identity crime (e.g., identity theft, credit card fraud).";;;"Enterprise role
+Employee profile
+Access Controls
+Policy violation
+Auditing"
+Espionage;"Obtaining, delivering, transmitting, communicating, or receiving information about the national defense with an intent, or reason to believe, that the information may be used to the injury of own's country or to the advantage of any foreign nation.";;;"Dissatisfaction
+Personality predispositions
+Concerning behavior
+Access Controls
+Policy violation
+Auditing"
+Unintentional Insider Threat;"Negatively affect the confidentiality, availability, or integrity of an organization's information or information systems, via action or inaction without malicious intent.";"Accidental Disclosure
+Phishing/Social
+Physical Records
+Portable Equipment";"Sensitive information posted publicly on a website, mishandled, or sent to the wrong party via email, fax, or mail.
+An outsider's electronic entry acquired through social engineering (e.g., phishing email attack) to acquire an insider's credentials or to plant malware to gain access.
+Lost, discarded, or stolen non-electronic records, such as paper documents.
+Lost, discarded, or stolen data storage devices, such as a lap-top, smart phone, portable memory device, CD, hard drive, or data tape.";"Dissatisfaction
+Personality predispositions
+Concerning behavior
+Employee profile
+Policies and roles awareness
+Situation awareness"

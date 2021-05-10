@@ -185,7 +185,7 @@ def get_questionnaire(questionnaire, render_inactive=False):
     questions_dict = {}
     quest_title = questionnaire.title
     questions = Question.objects.filter(questionnaire=questionnaire, is_active=Status.ACTIVE).values() if not render_inactive \
-        else Question.objects.filter(questionnaire=questionnaire).values().order_by('order')
+        else Question.objects.filter(questionnaire=questionnaire).values()
     # print(questions)
     for question in questions:
         question_type = QuestionType.objects.get(pk=question['question_type_id'])
@@ -453,8 +453,6 @@ def manager_dashboard(request):
     active_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('end_date') if c.status=='ACTIVE']
     finished_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('-end_date') if c.status=='FINISHED']
     future_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('start_date') if c.status=='NOT_STARTED']
-
-
  
     return render(request, 'manager_dashboard.html', {'active_assignments': active_assignments,
                                                       'completed_assignments': completed_assignments,
@@ -991,7 +989,7 @@ def reports(request):
 
 def get_user_metrics(request):
     months = int(request.GET.get('time_period'))
-    # TODO here i must get the data for the whole group
+    
     assignments = get_user_assignments(request.user, months)
 
     self_assessments = get_user_self_assessments(request.user, months)
@@ -1012,7 +1010,7 @@ def get_reports_data(request):
 
     include_organisational = True if request.GET.get('organisational_check') == 'true' else False
     include_individual = True if request.GET.get('individual_check') == 'true' else False
-    print(include_organisational, include_individual)
+    # print(include_organisational, include_individual)
     months = int(request.GET.get('time_period'))
 
 
