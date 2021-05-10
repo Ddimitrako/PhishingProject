@@ -1,3 +1,21 @@
 .clipboard{
     padding: 0rem 0.5rem 0rem;
 }
+
+
+.preview {
+  /*position: relative;*/
+  /*width: 100%;*/
+  /*overflow: scroll;*/
+}
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /*width: 100px;*/
+  /*height: 300px;*/
+  border: none;
+}

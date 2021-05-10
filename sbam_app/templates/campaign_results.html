@@ -7,8 +7,8 @@
           <div class="container">
             <h4 class="display-12">Campaign completion rate</h4>
                 <div class="progress" style="height: 25px;">
-                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{ campaign_compl_rate }}%"
-                       aria-valuenow="{{ campaign_compl_rate }}" aria-valuemin="0" aria-valuemax="100">{{ campaign_compl_rate }}%
+                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{ campaign_compl_rate|stringformat:".2f" }}%"
+                       aria-valuenow="{{ campaign_compl_rate|stringformat:".2f" }}" aria-valuemin="0" aria-valuemax="100">{{ campaign_compl_rate|stringformat:".2f" }}%
                   </div>
                 </div>
 {#            {{ campaign_compl_rate }}#}
@@ -34,7 +34,7 @@
                 {% for user, score, progress in results %}
                     <tr>
                         <td>
-                            <div class="progress progress-sm align-self-center" data-toggle="tooltip" title="{{ progress }}" style="border-radius: 20px;">
+                            <div class="progress progress-sm align-self-center" data-toggle="tooltip" title="{{ progress|stringformat:".2f" }}" style="border-radius: 20px;">
                                 <div class="progress-bar bg-success" style="width:{{ progress }}" >
                                 </div>
                             </div>

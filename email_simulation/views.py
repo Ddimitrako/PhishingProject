@@ -5,6 +5,7 @@ from email_simulation.models import *
 from sbam_app.views import disable_form
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.db.models import F
+from datetime import datetime
 
 
 def sim_email_creation(request):
@@ -13,24 +14,33 @@ def sim_email_creation(request):
         print(new_email_form.errors)
         print(new_email_form.is_valid())
         if new_email_form.is_valid():
+            msg, content = handle_uploaded_file(request.FILES['email_file'])
 
-            new_email = SimEmail(is_active=True,
-                                 title=new_email_form.cleaned_data['title'],
-                                 subject=new_email_form.cleaned_data['email_subject'],
-                                content=handle_uploaded_file(request.FILES['email_file'])
-                                )
-            new_email.save()
-            new_form = PhishingSimulationCreationForm(initial={'title': new_email.title,
-                                                               'email_subject': new_email.subject,
-                                                               'email_file': request.FILES['email_file']})
-            print(new_form)
-            disable_form(new_form)
-            return render(request, 'sim_email_creation.html', {
-                'mode': 'submitted',
-                'email': new_email.id,
-                'email_creation_form': new_form,
-                'message': 'success'
-            })
+            #TODO get the encrypted link from the environment variables
+            if content.find('https://rb.gy/92erwn') == -1:
+                return render(request, 'sim_email_creation.html', {
+                    'mode': 'error',
+                    'email_creation_form': PhishingSimulationCreationForm(),
+                    'message': 'Please insert the provided url somewhere inside your email'
+                })
+            else:
+                new_email = SimEmail(is_active=True,
+                                     title=new_email_form.cleaned_data['title'],
+                                     subject=new_email_form.cleaned_data['email_subject'],
+                                    content=content)
+
+                new_email.save()
+                new_form = PhishingSimulationCreationForm(initial={'title': new_email.title,
+                                                                   'email_subject': new_email.subject,
+                                                                   'email_file': request.FILES['email_file']})
+                print(new_form)
+                disable_form(new_form)
+                return render(request, 'sim_email_creation.html', {
+                    'mode': 'submitted',
+                    'email': new_email.id,
+                    'email_creation_form': new_form,
+                    'message': 'success'
+                })
         else:
             return render(request, 'sim_email_creation.html', {
                 'mode': 'error',
@@ -56,28 +66,44 @@ def email_preview(request):
     # print(request.POST['email_file'])
     # for a in request.POST['email_file']:
     #     print(a)
-    print(request.FILES)
-
+    # print(request.FILES)
+    # print('edw')
+    success, content = handle_uploaded_file(request.FILES['email_file'])
     # https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
-    return JsonResponse({'success': 'True', 'msg': handle_uploaded_file(request.FILES['email_file'])}, status=200)
+    return JsonResponse({'success': success, 'msg': content}, status=200)
 
 
 def sim_endpoint(request):
-    print(request.GET['ass'])
-    print(request.GET['em'])
+    if 'ass' in request.GET:
+        email_ass = EmailAssignment.objects.filter(assignment=request.GET['ass']).filter(email_id=request.GET['em'])
+        if email_ass.exists():
+            # sim_assignment = EmailAssignment(assignment_id=request.GET['ass'], email_id=request.GET['em'])
+            # sim_assignment.answer = True
+            # sim_assignment.save()
+            campaign = sbam_models.Campaign.objects.get(assignment=request.GET['ass'])
+            assignee = sbam_models.User.objects.get(assignment=request.GET['ass'])
+            assignment_result = sbam_models.AssignmentResult(assignment=email_ass.first().assignment,
+                                                             score=0, answer_time=datetime.now())
 
-    sim_assignment = EmailAssignment(assignment_id=request.GET['ass'], email_id=request.GET['em'])
-    sim_assignment.answer = True
-    sim_assignment.save()
-    campaign = sbam_models.Campaign.objects.get(assignment=request.GET['ass'])
-    assignee = sbam_models.User.objects.get(assignment=request.GET['ass'])
-    print(assignee)
-    return render(request, 'esim_answer.html', {'user': assignee,
-                                                'campaign': campaign})
+            assignment_result.save()
+            return render(request, 'esim_answer.html', {'user': assignee,
+                                                        'campaign': campaign})
+        else:
+            JsonResponse({'success': True, 'msg': 'content'}, status=200)
+    else:
+        email = SimEmail.objects.get(pk=request.GET['em'])
+        return render(request, 'sim_email_test_preview.html', {'email': email})
 
 
 def handle_uploaded_file(f):
     email_content = ''
-    for chunk in f.chunks():
-        email_content += chunk.decode('utf-8')
-    return email_content
+    success = ''
+
+    try:
+        for chunk in f.chunks():
+            email_content += chunk.decode('utf-8')
+        success = 'True'
+    except:
+        email_content += 'Could not load email'
+        success = 'False'
+    return success, email_content
