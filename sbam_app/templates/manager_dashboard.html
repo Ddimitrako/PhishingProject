@@ -28,10 +28,10 @@
 {% block content %}
     <div class="container assignmets">
         <div class="row">
-            <div class="col-xl-6">
+            <div class="col-xl-4">
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h5>Assignments</h5>
+                        <h5 class="text-center">{% trans  'Assignments' %}</h5>
                     </div>
                     <div class="card-body">
                         <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
@@ -40,21 +40,21 @@
                                    href="#active-ass" role="tab"
                                    aria-controls="active-ass"
                                    aria-selected="true"><i class="fas fa-hourglass-half"></i>
-                                    {% trans "Active Assignments" %}
+                                    {% trans "Active" %}
                                 </a>
                             </li>
                             <li class="nav-item col">
                                 <a class="nav-link" id="compl-ass-tab" data-toggle="pill"
                                    href="#compl-ass" role="tab"
                                    aria-controls="compl-ass"
-                                   aria-selected="false"><i class="fas fa-check"></i> {% trans "Finished Assignments" %}
+                                   aria-selected="false"><i class="fas fa-check"></i> {% trans "Finished" %}
                                 </a>
                             </li>
                             <li class="nav-item col">
                                 <a class="nav-link" id="expired-ass-tab" data-toggle="pill"
                                    href="#expired-ass" role="tab"
                                    aria-controls="expired-ass"
-                                   aria-selected="false"><i class="fas fa-calendar-times"></i> {% trans "Expired Assignments" %}
+                                   aria-selected="false"><i class="fas fa-calendar-times"></i> {% trans "Expired" %}
                                 </a>
                             </li>
                         </ul>
@@ -95,7 +95,7 @@
                                     {% endfor %}
                                 </ul>
                                 {% if active_assignments|length == 0 %}
-                                    <p>No active assignments.</p>
+                                    <p>{% trans 'No active assignments.' %}</p>
                                 {% endif %}
                             </div>
                             <div class="tab-pane fade" id="compl-ass" role="tabpanel"
@@ -125,7 +125,7 @@
                                     {% endfor %}
                                 </ul>
                             {% if completed_assignments|length == 0 %}
-                                <p>No completed assignments.</p>
+                                <p>{% trans 'No completed assignments.' %}</p>
                             {% endif %}
                             </div>
                             <div class="tab-pane fade" id="expired-ass" role="tabpanel"
@@ -147,7 +147,7 @@
                                     {% endfor %}
                                 </ul>
                                 {% if expired_assignments|length == 0 %}
-                                    <p>No expired assignments.</p>
+                                    <p>{% trans 'No expired assignments.' %}</p>
                                 {% endif %}
                             </div>
                         </div>
@@ -155,11 +155,10 @@
                 </div>
             </div>
 
-
-            <div class="col-xl-6">
+            <div class="col-xl-4">
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h5>Campaigns</h5>
+                        <h5 class="text-center">{% trans 'Campaigns' %}</h5>
                     </div>
                     <div class="card-body">
                         <div class="d-sm-inline-flex w-100 justify-content-between" style='border-bottom: 1px solid #dee2e6;'>
@@ -169,7 +168,7 @@
                                     href="#active-camp" role="tab"
                                     aria-controls="active-camp"
                                     aria-selected="true"><i class="fas fa-hourglass-half"></i>
-                                        {% trans "Active Campaigns" %}
+                                        {% trans "Active" %}
                                     </a>
                                 </li>
                                 <li class="nav-item col">
@@ -177,7 +176,7 @@
                                     href="#finished-camp" role="tab"
                                     aria-controls="finished-camp"
                                     aria-selected="true"><i class="fas fa-check"></i>
-                                        {% trans "Finished Campaigns" %}
+                                        {% trans "Finished" %}
                                     </a>
                                 </li>
                                 <li class="nav-item col">
@@ -185,7 +184,7 @@
                                     href="#future-camp" role="tab"
                                     aria-controls="future-camp"
                                     aria-selected="true"><i class="fas fa-calendar"></i>
-                                        {% trans "Future Campaigns" %}
+                                        {% trans "Future" %}
                                     </a>
                                 </li>
                             </ul>
@@ -202,7 +201,7 @@
                                             </div>
                                         </li>
                                     {% empty %}
-                                        <p>No active campaigns.</p>
+                                        <p>{% trans 'No active campaigns.' %}</p>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -217,7 +216,7 @@
                                             </div>
                                         </li>
                                     {% empty %}
-                                        <p>No finished campaigns.</p>
+                                        <p>{% trans 'No finished campaigns.' %}</p>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -232,12 +231,58 @@
                                             </div>
                                         </li>
                                     {% empty %}
-                                        <p>No future campaigns arranged.</p>
+                                        <p>{% trans 'No future campaigns arranged.' %}</p>
                                     {% endfor %}
                                 </ul>
                             </div>
                         </div>
                         
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h5 class="text-center">{% trans 'Threats' %}</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-sm-inline-flex w-100 justify-content-between" style='border-bottom: 1px solid #dee2e6;'>
+                            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist"  style='width: 100%; border-bottom: none;'>
+                                <li class="nav-item col">
+                                    <a class="nav-link active" id="active-ass-tab" data-toggle="pill"
+                                    href="#active-camp" role="tab"
+                                    aria-controls="active-camp"
+                                    aria-selected="true"><i class="fas fa-hourglass-half"></i>
+                                        {% trans "MitreAttack" %}
+                                    </a>
+                                </li>
+                                <li class="nav-item col">
+                                    <a class="nav-link" id="finished-ass-tab" data-toggle="pill"
+                                    href="#finished-camp" role="tab"
+                                    aria-controls="finished-camp"
+                                    aria-selected="true"><i class="fas fa-check"></i>
+                                        {% trans "Insider" %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="active-camp" role="tabpanel"
+                                 aria-labelledby="active-camp-tab">
+                                <ul class="list-group active-campaigns">
+
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade " id="finished-camp" role="tabpanel"
+                                 aria-labelledby="finished-camp-tab">
+                                <ul class="list-group finished-campaigns">
+
+                                </ul>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
             </div>

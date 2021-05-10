@@ -75,14 +75,15 @@
         overflow: auto;
         height: 30vh;
         border-style: none;
+        margin-top: .75rem;
     }
     .card{
         min-height: 97%;
         height: 45vh;
     }
     .card-body .nav{
-        height: 40px;
-        margin: 0;
+        /*height: 40px;*/
+        /*margin: 0;*/
     }
     #metrics-div{
         height: 45vh; 

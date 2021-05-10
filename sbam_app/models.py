@@ -361,7 +361,7 @@ class TestAssignment(Assignment):
     test = ForeignKey(Test, verbose_name=_('test'), on_delete=CASCADE, help_text=_('Test assigned'))
 
     def __str__(self):
-        return self.test + ' has been assigned to ' + self.user
+        return self.test.title + ' has been assigned to ' + self.user.username
 
     class Meta:
         verbose_name = _('test assignment')
@@ -641,6 +641,9 @@ class AttackPattern(Model):
     description = TextField(max_length=100)
     # type = CharField(max_length=20, choices=MITTRE_TYPES)
 
+    def __str__(self):
+        return self.name
+
 
 class Mitigation(Model):
     mittre_id = CharField(max_length=20, unique=True)
@@ -650,6 +653,9 @@ class Mitigation(Model):
     # type = CharField(max_length=20, choices=MITTRE_TYPES)
     attack_patterns = ManyToManyField(AttackPattern)
     domains = ManyToManyField(Domain)
+
+    def __str__(self):
+        return self.name
 
 
 class ActiveAttackPatterns(Model):

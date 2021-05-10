@@ -453,6 +453,8 @@ def manager_dashboard(request):
     active_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('end_date') if c.status=='ACTIVE']
     finished_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('-end_date') if c.status=='FINISHED']
     future_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('start_date') if c.status=='NOT_STARTED']
+
+
  
     return render(request, 'manager_dashboard.html', {'active_assignments': active_assignments,
                                                       'completed_assignments': completed_assignments,
@@ -798,32 +800,79 @@ def campaign(request, id):
         values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title', 'user__userprofile__department'). \
         distinct().order_by('user__last_name')
 
-    questionnaires = QuestionnaireAssignment.objects.filter(campaign=campaign).\
+    q_ass = QuestionnaireAssignment.objects.filter(campaign=campaign).\
         order_by('questionnaire__title').distinct('questionnaire__title')
 
-    tests = TestAssignment.objects.filter(campaign=campaign). \
-        values_list('test__title', 'test__domain__dimension__level'). \
+    t_ass = TestAssignment.objects.filter(campaign=campaign). \
         order_by('test__title').distinct('test__title')
 
-    print(tests, questionnaires)
+    # print(t_ass, q_ass)
 
-    assignments = questionnaires.count() + tests.count()
+    mitigations_set = set()
+    attack_patterns_set = set()
+    domains_scores = {}
+
+    campaign_assignments = list(chain(q_ass, t_ass))
+
+    for ass in campaign_assignments:
+        domain = None
+        if isinstance(ass, QuestionnaireAssignment):
+            domain = ass.questionnaire.domain
+        else:
+            domain = ass.test.domain
+
+        if domain not in domains_scores:
+            domains_scores[domain] = {}
+            domains_scores[domain]['score'] = 0.0
+            domains_scores[domain]['mitigations'] = []
+            domains_scores[domain]['counter'] = 0
+
+        if ass.status == 'COMPLETED':
+            domains_scores[ass.questionnaire.domain]['score'] += ass.assignmentresult_set.get(assignment=ass).score
+            domains_scores[ass.questionnaire.domain]['counter'] += 1
+
+            for mit in domain.mitigation_set.all():
+                domains_scores[ass.questionnaire.domain]['mitigations'].append(mit)
+
+    for domain in domains_scores:
+        if domains_scores[domain]['counter'] > 0:
+            domains_scores[domain]['score'] = domains_scores[domain]['score'] / domains_scores[domain]['counter']
+
+        if domains_scores[domain]['score'] < 0.5:
+            for mit in domain.mitigation_set.all():
+                mitigations_set.add(mit)
+
+
+    # At this point the mitigations_set contains all mitigations that are related to the campaign
+    for mit in mitigations_set:
+        for pattern in mit.attack_patterns.all():
+            attack_patterns_set.add(pattern)
+
+    # At this point the attack_patterns_set contains all attack_patterns that are related to the mitigations of the campaign
+    print(len(attack_patterns_set))
+
+    for pattern in attack_patterns_set:
+        print(pattern, pattern.id, len(pattern.name))
+
+    assignments = q_ass.count() + t_ass.count()
     results = calculate_campaign_result(campaign, assignments)
-
-    print( models.AssignmentResult.objects.filter(assignment__campaign=campaign).count(),  models.Assignment.objects.filter(campaign=campaign).count())
 
     compl_perc = models.AssignmentResult.objects.filter(assignment__campaign=campaign).count() / \
                  models.Assignment.objects.filter(campaign=campaign).count() * 100
+
+
 
     return render(request, 'campaign.html', {
         'campaign': campaign,
         'campaign_compl_rate': compl_perc,
         'assignees': assignees,
-        'questionnaires': questionnaires,
-        'tests': tests,
+        'questionnaires': q_ass,
+        'tests': t_ass,
         'assignments': assignments,
         'results': results,
-        'campaign_form': campaign_form
+        'campaign_form': campaign_form,
+        'attack_patterns': attack_patterns_set,
+        'insider_threats': []
     })
 
 
