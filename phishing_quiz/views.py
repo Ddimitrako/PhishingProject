@@ -10,49 +10,62 @@ from django.shortcuts import redirect
 from datetime import datetime
 from email_simulation.views import email_preview, handle_uploaded_file
 from sbam_app.views import disable_form
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from sbam_app.views import advanced_users_only
+from django.utils.translation import gettext_lazy as _
 
 
 # Create your views here.
+
+@login_required
 def phishing_quiz(request, assignment_id):
-    if request.method == 'POST':
-        print(request.POST['ass_id'])
+    if request.user.assignment_set.filter(pk=assignment_id):
+        if request.method == 'POST':
+            print(request.POST['ass_id'])
 
-        answers = json.loads(request.POST['data'])
-        emails_ids = []
-        for email in answers:
-            emails_ids.append(int(answers[email]['id']))
+            answers = json.loads(request.POST['data'])
+            emails_ids = []
+            for email in answers:
+                emails_ids.append(int(answers[email]['id']))
 
-        labels = PhishingEmail.objects.filter(pk__in=emails_ids)
-        test_assignment = sbam_models.TestAssignment.objects.get(pk=request.POST['ass_id'])
-        correct_answers = 0
-        for true_label, email in zip(labels, answers):
-            new_answer = PhishingEmailAssignmentAnswer.objects.filter(email=true_label, assignment=test_assignment).first()
-            print(new_answer)
-            new_answer.user_answer=answers[email]['answer']
-            new_answer.save()
-            if true_label.is_phishing == answers[email]['answer']:
-                correct_answers += 1
+            labels = PhishingEmail.objects.filter(pk__in=emails_ids)
+            test_assignment = sbam_models.TestAssignment.objects.get(pk=request.POST['ass_id'])
+            correct_answers = 0
+            for true_label, email in zip(labels, answers):
+                new_answer = PhishingEmailAssignmentAnswer.objects.filter(email=true_label, assignment=test_assignment).first()
+                print(new_answer)
+                new_answer.user_answer=answers[email]['answer']
+                new_answer.save()
+                if true_label.is_phishing == answers[email]['answer']:
+                    correct_answers += 1
 
-        quiz_score = PhishingEmailQuizScore(assignment=test_assignment, score=correct_answers / len(labels) * 100)
-        quiz_score.save()
-        assignment_result = sbam_models.AssignmentResult(assignment=test_assignment,
-                                                         score=correct_answers / len(labels), answer_time=datetime.now())
+            quiz_score = PhishingEmailQuizScore(assignment=test_assignment, score=correct_answers / len(labels) * 100)
+            quiz_score.save()
+            assignment_result = sbam_models.AssignmentResult(assignment=test_assignment,
+                                                             score=correct_answers / len(labels), answer_time=datetime.now())
 
-        assignment_result.save()
-        return JsonResponse({
-                             'score': correct_answers / len(labels) * 100,
-                             'score_badge': custom_tags.get_badge(str(correct_answers / len(labels) * 100)),
-                         })
+            assignment_result.save()
+            return JsonResponse({
+                                 'score': correct_answers / len(labels) * 100,
+                                 'score_badge': custom_tags.get_badge(str(correct_answers / len(labels) * 100)),
+                             })
+        else:
+            assignment = sbam_models.TestAssignment.objects.get(pk=assignment_id)
+            if assignment.status == 'OPEN':
+                test_emails = PhishingEmail.objects.filter(is_active=True).filter(phishingemailassignmentanswer__assignment=assignment_id)
 
+                return render(request, 'phishing_quiz.html', {'emails': test_emails,
+                                                              'assignment_id': assignment.id,
+                                                              'progress_bar': 1 / len(test_emails) * 100})
+            else:
+                messages.error(request, _('Assignment \"%(title)s\" is not active for completion! '
+                                          'Please select an active assignment from the ones presented in your dashboard...'
+                                          % {'title': assignment.test}))
+                return redirect('sbam:dashboard')
     else:
-
-        # na dialegeis 10 random emails otan ftiaxtei
-        # Na koitaei ti exei apanthsei kai se poia exei kanei lathos etsi wste na dinetai proteraiothta se auta
-        test_emails = PhishingEmail.objects.filter(is_active=True).filter(phishingemailassignmentanswer__assignment=assignment_id)
-        assignment = sbam_models.TestAssignment.objects.get(pk=assignment_id)
-        return render(request, 'phishing_quiz.html', {'emails': test_emails,
-                                                      'assignment_id': assignment.id,
-                                                      'progress_bar': 1 / len(test_emails) * 100})
+        messages.error(request, _('You do not have access to this assignment'))
+        return redirect('/')
 
 
 def phis_email_preview(request):
@@ -68,7 +81,7 @@ def email_request(request, email_id):
     return render(request, 'email_template.html', {'email': email,
                                                    'time': current_time})
 
-
+@advanced_users_only
 def email_creation(request):
     if request.method == 'POST':
         new_email_form = PhishingEmailCreationForm(request.POST, request.FILES)

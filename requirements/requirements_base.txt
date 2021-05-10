@@ -49,3 +49,6 @@ pydotplus
 
 #kafka-python
 kafka-python
+
+#kafka-python
+kafka-python
