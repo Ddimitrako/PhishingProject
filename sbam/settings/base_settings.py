@@ -174,7 +174,7 @@ LANGUAGES = [
     ('el', _('Greek')),
     ('en', _('English')),
     ('it', _('Italian')),
-    ('ro', _('Romanian')),
+    ('bg', _('Bulgarian')),
 ]
 
 
