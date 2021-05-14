@@ -705,7 +705,7 @@ def disable_user(request, username):
     return activate_user(request, username, False)
 
 
-@superuser_only
+@advanced_users_only
 def create_user(request):
     return create_or_update_user(request, 'new_user.html')
 
