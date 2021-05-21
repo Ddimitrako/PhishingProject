@@ -805,11 +805,9 @@ def campaign(request, id):
         values_list('test__title', 'test__domain__dimension__level'). \
         order_by('test__title').distinct('test__title')
 
-<<<<<<< HEAD
     print(tests, questionnaires)
 
     assignments = questionnaires.count() + tests.count()
-=======
     #TODO for now i am not taking into account the rest of the domains a mitigation is related
     mitigations_set = set()
     attack_patterns_set = set()
@@ -846,7 +844,6 @@ def campaign(request, id):
     print(score/count)
     # print(mitigations_set, len(mitigations_set))
     assignments = q_ass.count() + t_ass.count()
->>>>>>> insider_theat
     results = calculate_campaign_result(campaign, assignments)
 
     print( models.AssignmentResult.objects.filter(assignment__campaign=campaign).count(),  models.Assignment.objects.filter(campaign=campaign).count())
