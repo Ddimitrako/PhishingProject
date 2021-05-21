@@ -17,7 +17,7 @@ def sim_email_creation(request):
             msg, content = handle_uploaded_file(request.FILES['email_file'])
 
             #TODO get the encrypted link from the environment variables
-            if content.find('https://rb.gy/92erwn') == -1:
+            if content.find(settings.ENCRYPTED_ENDPOINT) == -1:
                 return render(request, 'sim_email_creation.html', {
                     'mode': 'error',
                     'email_creation_form': PhishingSimulationCreationForm(),
