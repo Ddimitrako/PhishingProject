@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.shortcuts import redirect
+from sbam_app.views import threats_calculation
 # Create your views here.
 
 @login_required
@@ -92,7 +93,6 @@ def password_strength(request, assignment_id):
                 result_dict['pass_3']['suggestions'].append('You should avoid using words found in your personal information')
                 pass2_has_pers_info = False
 
-
             if not pass1_has_pers_info:
                 if current_user.userprofile.birth_date:
                     if current_user.userprofile.birth_date.strftime('%Y') in pass_1\
@@ -114,8 +114,6 @@ def password_strength(request, assignment_id):
                         result_dict['pass_3']['suggestions'].append(
                             'You should avoid using words found in your personal information')
 
-
-
             mean_score = ((policy.password(pass_1).strength() +
                                                  policy.password(pass_2).strength() +
                                                  policy.password(pass_3).strength()) / 3)
@@ -126,6 +124,8 @@ def password_strength(request, assignment_id):
                                                  answer_time=datetime.now())
 
             assignment_result.save()
+
+            threats_calculation()
 
             return JsonResponse({'data': result_dict,
                                  'total_score': mean_score * 100,

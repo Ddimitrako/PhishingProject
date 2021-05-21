@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from email_simulation.forms import *
 from email_simulation.models import *
-from sbam_app.views import disable_form
+from sbam_app.views import disable_form, threats_calculation
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.db.models import F
 from datetime import datetime
@@ -17,7 +17,7 @@ def sim_email_creation(request):
             msg, content = handle_uploaded_file(request.FILES['email_file'])
 
             #TODO get the encrypted link from the environment variables
-            if content.find('https://rb.gy/92erwn') == -1:
+            if content.find(settings.ENCRYPTED_ENDPOINT) == -1:
                 return render(request, 'sim_email_creation.html', {
                     'mode': 'error',
                     'email_creation_form': PhishingSimulationCreationForm(),
@@ -86,6 +86,9 @@ def sim_endpoint(request):
                                                              score=0, answer_time=datetime.now())
 
             assignment_result.save()
+
+            threats_calculation()
+
             return render(request, 'esim_answer.html', {'user': assignee,
                                                         'campaign': campaign})
         else:

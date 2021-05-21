@@ -26,6 +26,7 @@ class Command(BaseCommand):
                     attack_patterns.append(obj)
 
             for m in mitigations:
+                # print('MITIGATION', m['external_references'][0]['url'])
                 mitigation, created = Mitigation.objects.get_or_create(
                     mittre_id=m['external_references'][0]['external_id'],
                     mittre_json_id=m['id'],
@@ -33,16 +34,19 @@ class Command(BaseCommand):
                 )
                 mitigation.name = m['name']
                 mitigation.description = m['description']
+                mitigation.url = m['external_references'][0]['url']
                 # print(mitigation.name)
                 mitigation.save()
 
             for ap in attack_patterns:
+                print('ATTACK', ap['external_references'][0]['url'])
                 attack_pattern, created = AttackPattern.objects.get_or_create(
                     mittre_id=ap['external_references'][0]['external_id'],
                     mittre_json_id=ap['id'],
                     # type=t,
                 )
                 attack_pattern.name = ap['name']
+                attack_pattern.url = ap['external_references'][0]['url']
                 try:
                     attack_pattern.description = ap['description']
                 except:

@@ -1,6 +1,6 @@
 {% extends "base_form.html" %}
 
-{% load i18n adminlte_helpers crispy_forms_tags crispy_forms_field widget_tweaks %}
+{% load i18n adminlte_helpers custom_tags crispy_forms_tags crispy_forms_field widget_tweaks %}
 
 {% block page_name %}
     <div class="row">
@@ -39,6 +39,14 @@
                                    aria-controls="campaign-results"
                                    aria-selected="false"><i class="far fa-chart-bar mr-2"></i>
                                     {% trans "results"|capfirst %}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="campaign-threats-tab" data-toggle="pill"
+                                   href="#campaign-threats" role="tab"
+                                   aria-controls="campaign-threats"
+                                   aria-selected="false"><i class="fas fa-chess-rook"></i>
+                                    {% trans "Threats"|capfirst %}
                                 </a>
                             </li>
                         </ul>
@@ -100,7 +108,7 @@
 
                                     </div>
                                     <div class="col-lg-4">
-                                        <div style="text-align: center; font-size: 1.1rem; color: #263c90;"><label>{% trans "Tests" %}</label></div>   
+                                        <div style="text-align: center; font-size: 1.1rem; color: #263c90;"><label>{% trans "Tests" %}</label></div>
                                         <table id="tests"
                                                class="table table-hover table-head-fixed table-striped">
                                             <thead>
@@ -110,9 +118,9 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {% for name, type in tests %}
+                                                {% for test in tests %}
                                                     <tr>
-                                                        <td>{{ name }}</td>
+                                                        <td>{{ test.test.title }}</td>
                                                         <td>
                                                             {% if type == 0 %}
                                                                 {% trans "Organisational" %}
@@ -159,6 +167,101 @@
                             <div class="tab-pane fade" id="campaign-results" role="tabpanel"
                                  aria-labelledby="campaign-results-tab">
                                 {% include "campaign_results.html" with results=results %}
+                            </div>
+
+                            <div class="tab-pane fade" id="campaign-threats" role="tabpanel" aria-labelledby="campaign-threats-tab">
+                                <div class="row">
+                                    <div class="col col-md-6">
+                                        <div style="text-align: center; font-size: 1.1rem; color: #263c90;"><label>{% trans "MITRE Attack Threats" %}</label></div>
+                                        <div class="container" style="height: 32vh; overflow: auto;">
+                                            <table id="attack_patterns"
+                                               class="table table-hover table-head-fixed table-striped ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{% trans "Threat" %}</th>
+                                                        <th>{% trans "Mitre Id" %}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for pattern, value in attack_patterns.items %}
+                                                        <tr>
+                                                            <td><span data-toggle="tooltip" data-placement="right" title="{{ pattern.description }}"><a href="{{ pattern.url }}">{{ pattern }}</a></span></td>
+                                                            <td>
+                                                                {% with score=value.score  %}
+                                                                    {% get_severity_badge score as badge_type %}
+                                                                    <span {% if badge_type != '' %}class="badge {{ badge_type }}"{% endif %}>
+                                                                        {% if value.score < 0.2 %}
+                                                                            {% trans 'informative' %}
+                                                                        {% elif value.score < 0.4 %}
+                                                                            {% trans 'warning' %}
+                                                                        {% elif value.score < 0.6 %}
+                                                                            {% trans 'minor' %}
+                                                                        {% elif value.score < 0.8 %}
+                                                                            {% trans 'major' %}
+                                                                        {% else %}
+                                                                            {% trans 'critical' %}
+                                                                        {% endif %}
+                                                                    </span>
+                                                                {% endwith %}
+                                                            </td>
+                                                        </tr>
+                                                        {% empty %}
+                                                            <tr>
+                                                                <td colspan="2"
+                                                                    class="text-muted">{% trans "No threats found" %}
+                                                                </td>
+                                                            </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-6">
+                                        <div style="text-align: center; font-size: 1.1rem; color: #263c90;"><label>{% trans "Insider Threats" %}</label></div>
+                                        <div class="container" style="height: 32vh; overflow: auto;">
+                                            <table id="insider_threats"
+                                               class="table table-hover table-head-fixed table-striped ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{% trans "Threat" %}</th>
+                                                        <th>{% trans "Severity" %}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for threat, value in insider_threats.items %}
+                                                        <tr>
+                                                            <td>{{ threat }}</td>
+                                                            <td>
+                                                                {% with score=value.score  %}
+                                                                    {% get_severity_badge score as badge_type %}
+                                                                    <span {% if badge_type != '' %}class="badge {{ badge_type }}"{% endif %}>
+                                                                        {% if value.score < 0.2 %}
+                                                                            {% trans 'informative' %}
+                                                                        {% elif value.score < 0.4 %}
+                                                                            {% trans 'warning' %}
+                                                                        {% elif value.score < 0.6 %}
+                                                                            {% trans 'minor' %}
+                                                                        {% elif value.score < 0.8 %}
+                                                                            {% trans 'major' %}
+                                                                        {% else %}
+                                                                            {% trans 'critical' %}
+                                                                        {% endif %}
+                                                                    </span>
+                                                                {% endwith %}
+                                                            </td>
+                                                        </tr>
+                                                        {% empty %}
+                                                            <tr>
+                                                                <td colspan="1"
+                                                                    class="text-muted">{% trans "No threats found" %}
+                                                                </td>
+                                                            </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

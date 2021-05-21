@@ -453,14 +453,18 @@ def manager_dashboard(request):
     active_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('end_date') if c.status=='ACTIVE']
     finished_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('-end_date') if c.status=='FINISHED']
     future_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('start_date') if c.status=='NOT_STARTED']
- 
+
+    attack_patterns = ActiveAttackPatterns.objects.all().order_by('-score')
+    threats = ActiveInsiderThreats.objects.all().order_by('-score')
+
     return render(request, 'manager_dashboard.html', {'active_assignments': active_assignments,
                                                       'completed_assignments': completed_assignments,
                                                       'expired_assignments': expired_assignments,
                                                       'active_campaigns': active_campaigns,
                                                       'finished_campaigns': finished_campaigns,
-                                                      'future_campaigns': future_campaigns})
-
+                                                      'future_campaigns': future_campaigns,
+                                                      'attack_patterns': attack_patterns,
+                                                      'threats': threats})
 
 
 def self_evaluation(request):
@@ -672,6 +676,8 @@ def surveySubmission(request):
         assignment_result.save()
         score = assignment_result.score
 
+    threats_calculation()
+
     return JsonResponse({'result': 'success',
                          'badge': custom_tags.get_badge(str(score * 100)),
                          'score': '{0:.0%}'.format(score)
@@ -802,51 +808,97 @@ def campaign(request, id):
         order_by('questionnaire__title').distinct('questionnaire__title')
 
     t_ass = TestAssignment.objects.filter(campaign=campaign). \
-        values_list('test__title', 'test__domain__dimension__level'). \
         order_by('test__title').distinct('test__title')
 
-    print(tests, questionnaires)
+    domains_scores = {}
+    mitigations_dict = {}
+    insider_factors_dict = {}
 
-    assignments = questionnaires.count() + tests.count()
-    #TODO for now i am not taking into account the rest of the domains a mitigation is related
-    mitigations_set = set()
-    attack_patterns_set = set()
-    for ass in q_ass:
-        for mit in ass.questionnaire.domain.mitigation_set.all():
-            mitigations_set.add(mit)
+    campaign_assignments = list(chain(q_ass, t_ass))
 
-    # At this point the mitigations_set contains all mitigations that are related to the campaign
+    for ass in campaign_assignments:
+        domain = None
+        if isinstance(ass, QuestionnaireAssignment):
+            domain = ass.questionnaire.domain
+        else:
+            domain = ass.test.domain
 
-    for mit in mitigations_set:
+        if domain not in domains_scores:
+            domains_scores[domain] = {}
+            domains_scores[domain]['score'] = 0.0
+            for mit in domain.mitigation_set.all():
+                mitigations_dict[mit] = {
+                    'score': 0.0,
+                    'counter': 0
+                }
+            for factor in domain.insiderthreatsfactor_set.all():
+                insider_factors_dict[factor] = {
+                    'score': 0.0,
+                    'counter': 0
+                }
+
+            domains_scores[domain]['counter'] = 0
+
+        if ass.status == 'COMPLETED':
+            print('edw')
+            domains_scores[domain]['score'] += ass.assignmentresult_set.get(assignment=ass).score
+            domains_scores[domain]['counter'] += 1
+
+    for domain in domains_scores:
+        if domains_scores[domain]['counter'] > 0:
+            domains_scores[domain]['score'] = domains_scores[domain]['score'] / domains_scores[domain]['counter']
+            for mit in domain.mitigation_set.all():
+                mitigations_dict[mit]['score'] += domains_scores[domain]['score']
+                mitigations_dict[mit]['counter'] += 1
+
+            for factor in domain.insiderthreatsfactor_set.all():
+                insider_factors_dict[factor]['score'] += domains_scores[domain]['score']
+                insider_factors_dict[factor]['counter'] += 1
+
+    print(mitigations_dict)
+
+    attack_patterns_dict = {}
+    insider_threats_dict = {}
+
+    for mit in mitigations_dict:
         for pattern in mit.attack_patterns.all():
-            attack_patterns_set.add(pattern)
+            if pattern not in attack_patterns_dict:
+                attack_patterns_dict[pattern] = {
+                    'score': 0.0,
+                    'counter': 0
+                }
 
-    # At this point the attack_patterns_set contains all attack_patterns that are related to the mitigations of the campaign
-    print(len(attack_patterns_set))
+            if mitigations_dict[mit]['counter'] > 0:
+                attack_patterns_dict[pattern]['score'] += mitigations_dict[mit]['score']
+                attack_patterns_dict[pattern]['counter'] += 1
 
-    score = 0.0
-    domains_set = set()
-    for pattern in attack_patterns_set:
-        for mit in pattern.mitigation_set.all():
-            for domain in mit.domains.all():
-                domains_set.add(domain)
+    for factor in insider_factors_dict:
+        for threat in factor.insider_threat.all():
+            if threat not in insider_threats_dict:
+                insider_threats_dict[threat] = {
+                    'score': 0.0,
+                    'counter': 0
+                }
 
-    count = 0
-    for domain in domains_set:
+            if insider_factors_dict[factor]['counter'] > 0:
+                insider_threats_dict[threat]['score'] += insider_factors_dict[factor]['score']
+                insider_threats_dict[threat]['counter'] += 1
 
-        quests = models.QuestionnaireAssignment.objects.filter(questionnaire__domain=domain).order_by('assignmentresult__answer_time')[0]
-        print(quests.status)
-        if quests.status == 'COMPLETED':
-            score += quests.assignmentresult_set.get(assignment=quests).score
-            count += 1
-        print(score)
+    recognized_threats = {}
+    recognized_patterns = {}
 
-    print(score/count)
-    # print(mitigations_set, len(mitigations_set))
+    for pattern in attack_patterns_dict:
+        if attack_patterns_dict[pattern]['counter'] > 0:
+            recognized_patterns[pattern] = {}
+            recognized_patterns[pattern]['score'] = attack_patterns_dict[pattern]['score'] / attack_patterns_dict[pattern]['counter']
+
+    for threat in insider_threats_dict:
+        if insider_threats_dict[threat]['counter'] > 0:
+            recognized_threats[threat] = {}
+            recognized_threats[threat]['score'] = insider_threats_dict[threat]['score'] / insider_threats_dict[threat]['counter']
+
     assignments = q_ass.count() + t_ass.count()
     results = calculate_campaign_result(campaign, assignments)
-
-    print( models.AssignmentResult.objects.filter(assignment__campaign=campaign).count(),  models.Assignment.objects.filter(campaign=campaign).count())
 
     compl_perc = models.AssignmentResult.objects.filter(assignment__campaign=campaign).count() / \
                  models.Assignment.objects.filter(campaign=campaign).count() * 100
@@ -859,7 +911,9 @@ def campaign(request, id):
         'tests': t_ass,
         'assignments': assignments,
         'results': results,
-        'campaign_form': campaign_form
+        'campaign_form': campaign_form,
+        'attack_patterns': recognized_patterns,
+        'insider_threats': recognized_threats
     })
 
 
@@ -978,7 +1032,7 @@ def reports(request):
 
 def get_user_metrics(request):
     months = int(request.GET.get('time_period'))
-    # TODO here i must get the data for the whole group
+    
     assignments = get_user_assignments(request.user, months)
 
     self_assessments = get_user_self_assessments(request.user, months)
@@ -999,7 +1053,7 @@ def get_reports_data(request):
 
     include_organisational = True if request.GET.get('organisational_check') == 'true' else False
     include_individual = True if request.GET.get('individual_check') == 'true' else False
-    print(include_organisational, include_individual)
+    # print(include_organisational, include_individual)
     months = int(request.GET.get('time_period'))
 
 
@@ -1351,19 +1405,115 @@ def kafka_producer(request):
     return JsonResponse({'success': 'True'}, status=200)
 
 
-def kafka_producer(request):
-    producer = KafkaProducer(bootstrap_servers='bdo-dev.epu.ntua.gr:9092',
-                             value_serializer=lambda x: json.dumps(x).encode('utf-8'))
-    data = {
-        'header': {
-            'topicName': 'TOP06_02_SIEM_DATA_PROCESSED',
-            'topicVerMajor': 1,
-            'topicVerMinor': 0,
-            'sender': 'SBA',
-            'sentUtc': timezone.now().strftime('%Y-%m-%d%I:%M%p'),
-            'msgType': 'info',
-        },
-        'body': {}
-    }
-    producer.send('chris_test', value=data)
-    return JsonResponse({'success': 'True'}, status=200)
+def IdentifiedThreats(request):
+        return render(request, 'threats.html',{
+            'attack_patterns': ActiveAttackPatterns.objects.all().order_by('-score'),
+           'insider': ActiveInsiderThreats.objects.all().order_by('-score')})
+
+
+def threats_calculation():
+
+    domains_scores = {}
+    mitigations_dict = {}
+    insider_factors_dict = {}
+    ActiveAttackPatterns.objects.all().delete()
+    ActiveInsiderThreats.objects.all().delete()
+
+    for user in User.objects.all():
+
+        q_ass = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, user=user).filter(user__is_active=True).order_by('-assignmentresult__answer_time')
+        t_ass = TestAssignment.objects.filter(test__is_active=1, user=user).filter(user__is_active=True).order_by('-assignmentresult__answer_time')
+
+        ass_dict = {}
+
+        user_assignments = list(chain(q_ass, t_ass))
+
+        for q in user_assignments:
+            if q.status == 'COMPLETED' and q not in ass_dict:
+                ass_dict[q] = q.assignmentresult_set.get(assignment=q).score
+
+        for ass in ass_dict:
+            if isinstance(ass, QuestionnaireAssignment):
+                domain = ass.questionnaire.domain
+            else:
+                domain = ass.test.domain
+
+            if domain not in domains_scores:
+                domains_scores[domain] = {}
+                domains_scores[domain]['score'] = 0.0
+                for mit in domain.mitigation_set.all():
+                    mitigations_dict[mit] = {
+                        'score': 0.0,
+                        'counter': 0
+                    }
+                for factor in domain.insiderthreatsfactor_set.all():
+                    insider_factors_dict[factor] = {
+                        'score': 0.0,
+                        'counter': 0
+                    }
+                domains_scores[domain]['counter'] = 0
+
+            domains_scores[domain]['score'] = ass_dict[ass]
+            domains_scores[domain]['counter'] += 1
+
+    for domain in domains_scores:
+        if domains_scores[domain]['counter'] > 0:
+            domains_scores[domain]['score'] = domains_scores[domain]['score'] / domains_scores[domain]['counter']
+            for mit in domain.mitigation_set.all():
+                mitigations_dict[mit]['score'] += domains_scores[domain]['score']
+                mitigations_dict[mit]['counter'] += 1
+
+            for factor in domain.insiderthreatsfactor_set.all():
+                insider_factors_dict[factor]['score'] += domains_scores[domain]['score']
+                insider_factors_dict[factor]['counter'] += 1
+
+    attack_patterns_dict = {}
+    insider_threats_dict = {}
+
+    for mit in mitigations_dict:
+        for pattern in mit.attack_patterns.all():
+            if pattern not in attack_patterns_dict:
+                attack_patterns_dict[pattern] = {
+                    'score': 0.0,
+                    'counter': 0
+                }
+
+            if mitigations_dict[mit]['counter'] > 0:
+                attack_patterns_dict[pattern]['score'] += mitigations_dict[mit]['score']
+                attack_patterns_dict[pattern]['counter'] += 1
+
+    for factor in insider_factors_dict:
+        for threat in factor.insider_threat.all():
+            if threat not in insider_threats_dict:
+                insider_threats_dict[threat] = {
+                    'score': 0.0,
+                    'counter': 0
+                }
+
+            if insider_factors_dict[factor]['counter'] > 0:
+                insider_threats_dict[threat]['score'] += insider_factors_dict[factor]['score']
+                insider_threats_dict[threat]['counter'] += 1
+
+    recognized_threats = {}
+    recognized_patterns = {}
+
+    for pattern in attack_patterns_dict:
+        if attack_patterns_dict[pattern]['counter'] > 0:
+            recognized_patterns[pattern] = {}
+            recognized_patterns[pattern]['score'] = attack_patterns_dict[pattern]['score'] / \
+                                                    attack_patterns_dict[pattern]['counter']
+
+    for threat in insider_threats_dict:
+        if insider_threats_dict[threat]['counter'] > 0:
+            recognized_threats[threat] = {}
+            recognized_threats[threat]['score'] = insider_threats_dict[threat]['score'] / \
+                                                  insider_threats_dict[threat]['counter']
+
+    for pattern in recognized_patterns:
+        active_pattern = ActiveAttackPatterns(attack_pattern=pattern, score=recognized_patterns[pattern]['score'])
+        active_pattern.save()
+
+    for threat in recognized_threats:
+        active_threat = ActiveInsiderThreats(threat=threat, score=recognized_threats[threat]['score'])
+        active_threat.save()
+

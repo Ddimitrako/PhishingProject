@@ -28,10 +28,10 @@
 {% block content %}
     <div class="container assignmets">
         <div class="row">
-            <div class="col-xl-6">
+            <div class="col-xl-4">
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h5>Assignments</h5>
+                        <h5 class="text-center">{% trans  'Assignments' %}</h5>
                     </div>
                     <div class="card-body">
                         <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
@@ -40,21 +40,21 @@
                                    href="#active-ass" role="tab"
                                    aria-controls="active-ass"
                                    aria-selected="true"><i class="fas fa-hourglass-half"></i>
-                                    {% trans "Active Assignments" %}
+                                    {% trans "Active" %}
                                 </a>
                             </li>
                             <li class="nav-item col">
-                                <a class="nav-link" id="compl-ass-tab" data-toggle="pill"
+                                <a class="nav-link" id="compl-ass-tab" data-toggle="pillδτυ"
                                    href="#compl-ass" role="tab"
                                    aria-controls="compl-ass"
-                                   aria-selected="false"><i class="fas fa-check"></i> {% trans "Finished Assignments" %}
+                                   aria-selected="false"><i class="fas fa-check"></i> {% trans "Finished" %}
                                 </a>
                             </li>
                             <li class="nav-item col">
                                 <a class="nav-link" id="expired-ass-tab" data-toggle="pill"
                                    href="#expired-ass" role="tab"
                                    aria-controls="expired-ass"
-                                   aria-selected="false"><i class="fas fa-calendar-times"></i> {% trans "Expired Assignments" %}
+                                   aria-selected="false"><i class="fas fa-calendar-times"></i> {% trans "Expired" %}
                                 </a>
                             </li>
                         </ul>
@@ -95,7 +95,7 @@
                                     {% endfor %}
                                 </ul>
                                 {% if active_assignments|length == 0 %}
-                                    <p>No active assignments.</p>
+                                    <p>{% trans 'No active assignments.' %}</p>
                                 {% endif %}
                             </div>
                             <div class="tab-pane fade" id="compl-ass" role="tabpanel"
@@ -116,7 +116,7 @@
                                                     {% with score=compl_ass.get_result %}
                                                         {% get_badge score as badge_type %}
                                                         <span {% if badge_type != 'Not Completed Yet' %} class="badge {{ badge_type }}"{% endif %}>
-                                                            {{ score }}
+{#                                                            {{ score }}#}
                                                         </span>
                                                     {% endwith %}
                                                 </div>
@@ -125,7 +125,7 @@
                                     {% endfor %}
                                 </ul>
                             {% if completed_assignments|length == 0 %}
-                                <p>No completed assignments.</p>
+                                <p>{% trans 'No completed assignments.' %}</p>
                             {% endif %}
                             </div>
                             <div class="tab-pane fade" id="expired-ass" role="tabpanel"
@@ -147,7 +147,7 @@
                                     {% endfor %}
                                 </ul>
                                 {% if expired_assignments|length == 0 %}
-                                    <p>No expired assignments.</p>
+                                    <p>{% trans 'No expired assignments.' %}</p>
                                 {% endif %}
                             </div>
                         </div>
@@ -155,11 +155,10 @@
                 </div>
             </div>
 
-
-            <div class="col-xl-6">
+            <div class="col-xl-4">
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h5>Campaigns</h5>
+                        <h5 class="text-center">{% trans 'Campaigns' %}</h5>
                     </div>
                     <div class="card-body">
                         <div class="d-sm-inline-flex w-100 justify-content-between" style='border-bottom: 1px solid #dee2e6;'>
@@ -169,7 +168,7 @@
                                     href="#active-camp" role="tab"
                                     aria-controls="active-camp"
                                     aria-selected="true"><i class="fas fa-hourglass-half"></i>
-                                        {% trans "Active Campaigns" %}
+                                        {% trans "Active" %}
                                     </a>
                                 </li>
                                 <li class="nav-item col">
@@ -177,7 +176,7 @@
                                     href="#finished-camp" role="tab"
                                     aria-controls="finished-camp"
                                     aria-selected="true"><i class="fas fa-check"></i>
-                                        {% trans "Finished Campaigns" %}
+                                        {% trans "Finished" %}
                                     </a>
                                 </li>
                                 <li class="nav-item col">
@@ -185,7 +184,7 @@
                                     href="#future-camp" role="tab"
                                     aria-controls="future-camp"
                                     aria-selected="true"><i class="fas fa-calendar"></i>
-                                        {% trans "Future Campaigns" %}
+                                        {% trans "Future" %}
                                     </a>
                                 </li>
                             </ul>
@@ -202,7 +201,7 @@
                                             </div>
                                         </li>
                                     {% empty %}
-                                        <p>No active campaigns.</p>
+                                        <p>{% trans 'No active campaigns.' %}</p>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -217,7 +216,7 @@
                                             </div>
                                         </li>
                                     {% empty %}
-                                        <p>No finished campaigns.</p>
+                                        <p>{% trans 'No finished campaigns.' %}</p>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -232,12 +231,110 @@
                                             </div>
                                         </li>
                                     {% empty %}
-                                        <p>No future campaigns arranged.</p>
+                                        <p>{% trans 'No future campaigns arranged.' %}</p>
                                     {% endfor %}
                                 </ul>
                             </div>
                         </div>
                         
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h5 class="text-center">{% trans 'Threats' %}</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-sm-inline-flex w-100 justify-content-between" style='border-bottom: 1px solid #dee2e6;'>
+                            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist"  style='width: 100%; border-bottom: none;'>
+                                <li class="nav-item col">
+                                    <a class="nav-link active" id="attack-patterns-tab" data-toggle="pill"
+                                    href="#attack-patterns" role="tab"
+                                    aria-controls="active-camp"
+                                    aria-selected="true"><i class="fas fa-chess-rook"></i>
+                                        {% trans "MitreAttack" %}
+                                    </a>
+                                </li>
+                                <li class="nav-item col">
+                                    <a class="nav-link" id="insider-threat-tab" data-toggle="pill"
+                                    href="#insider-threat" role="tab"
+                                    aria-controls="finished-camp"
+                                    aria-selected="true"><i class="fas fa-chess-knight"></i>
+                                        {% trans "Insider" %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="attack-patterns" role="tabpanel"
+                                 aria-labelledby="attack-patterns">
+                                <table class="table table-hover table-head-fixed table-striped ">
+                                    <thead>
+                                        <tr>
+                                            <th>{% trans "Threat" %}</th>
+                                            <th>{% trans "Severity" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for pattern in attack_patterns %}
+                                            <tr>
+                                                <td><span data-toggle="tooltip" data-placement="left" title="{{ pattern.attack_pattern.description }}"><a href="{{ pattern.attack_pattern.url }}">{{ pattern }}</a></span></td>
+                                                <td>
+                                                    {% with score=pattern.get_result  %}
+                                                        {% get_severity_badge score as badge_type %}
+                                                        <span {% if badge_type != '' %}class="badge {{ badge_type }}"{% endif %}>
+                                                            {{ pattern.get_severity }}
+                                                        </span>
+                                                    {% endwith %}
+                                                </td>
+                                            </tr>
+                                            {% empty %}
+                                                <tr>
+                                                    <td colspan="2"
+                                                        class="text-muted">{% trans "No threats found" %}
+                                                    </td>
+                                                </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade " id="insider-threat" role="tabpanel"
+                                 aria-labelledby="insider-threat-tab">
+                                <table class="table table-hover table-head-fixed table-striped ">
+                                    <thead>
+                                        <tr>
+                                            <th>{% trans "Threat" %}</th>
+                                            <th>{% trans "Severity" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for threat in threats %}
+                                            <tr>
+                                                <td>{{ threat }}</td>
+                                                <td>
+                                                    {% with score=threat.get_result %}
+                                                        {% get_severity_badge score as badge_type %}
+                                                        <span {% if badge_type != '' %}class="badge {{ badge_type }}"{% endif %}>
+                                                            {{ threat.get_severity }}
+                                                        </span>
+                                                    {% endwith %}
+                                                </td>
+                                            </tr>
+                                            {% empty %}
+                                                <tr>
+                                                    <td colspan="1"
+                                                        class="text-muted">{% trans "No threats found" %}
+                                                    </td>
+                                                </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -466,7 +563,7 @@
                     group_select: '',
                     organisational_check: 'true',
                     individual_check: 'true',
-                    time_period: 24
+                    time_period: 1
                 },
                 success: function(result) {
                     if (result) {
