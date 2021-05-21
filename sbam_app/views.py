@@ -1407,6 +1407,12 @@ def kafka_producer(request):
     return JsonResponse({'success': 'True'}, status=200)
 
 
+def IdentifiedThreats(request):
+        return render(request, 'threats.html',{
+            'attack_patterns': ActiveAttackPatterns.objects.all().order_by('-score'),
+           'insider': ActiveInsiderThreats.objects.all().order_by('-score')})
+
+
 def threats_calculation():
 
     domains_scores = {}
@@ -1462,8 +1468,6 @@ def threats_calculation():
             for factor in domain.insiderthreatsfactor_set.all():
                 insider_factors_dict[factor]['score'] += domains_scores[domain]['score']
                 insider_factors_dict[factor]['counter'] += 1
-
-    print(mitigations_dict)
 
     attack_patterns_dict = {}
     insider_threats_dict = {}

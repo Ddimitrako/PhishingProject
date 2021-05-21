@@ -86,35 +86,41 @@
                                         <p>{% trans "questionnaires"|capfirst %}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'sbam:threats' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-chess-knight"></i>
+                                        <p>{% trans "Threats"|capfirst %}</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item has-tree-view">
                                     <a href="{% url 'sbam:dashboard' %}" class="nav-link">
-                                        <i class="fas fa-chess-pawn"></i>
+                                        <i class="nav-icon fas fa-chess-pawn"></i>
                                         <p>{% trans "Tests/Quiz"|capfirst %}</p>
                                         <p><i class="right fas fa-angle-down"></i></p>
-                                </a>
+                                    </a>
 
-                                 <ul class="nav nav-treeview menu-open">
-                                    <li class="nav-item">
-                                        <a href="{% url 'phishing_quiz:email_creation' %}" class="nav-link">
-                                            <i class="fas fa-file-alt"></i>
-                                            <p>{% trans "Phishing Quiz creation form" %}</p>
-                                        </a>
-                                    </li>
-                                     <li class="nav-item">
-                                        <a href="{% url 'email_simulation:sim_email_creation' %}" class="nav-link">
-                                            <i class="fas fa-file-alt"></i>
-                                            <p>{% trans "Phishing Simulation creation form" %}</p>
-                                        </a>
-                                    </li>
+                                     <ul class="nav nav-treeview menu-open">
+                                        <li class="nav-item">
+                                            <a href="{% url 'phishing_quiz:email_creation' %}" class="nav-link">
+                                                <i class="fas fa-file-alt"></i>
+                                                <p>{% trans "Phishing Quiz creation form" %}</p>
+                                            </a>
+                                        </li>
+                                         <li class="nav-item">
+                                            <a href="{% url 'email_simulation:sim_email_creation' %}" class="nav-link">
+                                                <i class="fas fa-file-alt"></i>
+                                                <p>{% trans "Phishing Simulation creation form" %}</p>
+                                            </a>
+                                        </li>
 
-{#                                    <li class="nav-item">#}
-{#                                        <a href="#" class="nav-link">#}
-{#                                            <i class="nav-icon fas fa-user"></i>#}
-{#                                            <p>{% trans "Individual" %}</p>#}
-{#                                        </a>#}
-{#                                    </li>#}
-                                </ul>
-                            </li>
+    {#                                    <li class="nav-item">#}
+    {#                                        <a href="#" class="nav-link">#}
+    {#                                            <i class="nav-icon fas fa-user"></i>#}
+    {#                                            <p>{% trans "Individual" %}</p>#}
+    {#                                        </a>#}
+    {#                                    </li>#}
+                                    </ul>
+                                </li>
                             {% endif %}
                         {% endblock nav_links %}
                     {% endblock nav_links_outer %}

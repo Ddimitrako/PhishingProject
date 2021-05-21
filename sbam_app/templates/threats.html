@@ -1,0 +1,110 @@
+{% extends "base_form.html" %}
+
+{% load i18n static %}
+{% load i18n custom_tags %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:threats' %}">{% trans "Identified Threats" %}</a></li>
+{% endblock %}
+
+{% block page_name %}
+    <strong>{% trans "Idientified Threats" %}</strong>
+{% endblock %}
+
+{% block content %}
+    <div class="card card-primary card-outline " >
+        <div class="card-body">
+            <div class="d-sm-inline-flex w-100 justify-content-between" style='border-bottom: 1px solid #dee2e6;'>
+                            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist"  style='width: 100%; border-bottom: none;'>
+                                <li class="nav-item col">
+                                    <a class="nav-link active" id="attack-patterns-tab" data-toggle="pill"
+                                    href="#attack-patterns" role="tab"
+                                    aria-controls="active-camp"
+                                    aria-selected="true"><i class="fas fa-chess-rook"></i>
+                                        {% trans "MitreAttack" %}
+                                    </a>
+                                </li>
+                                <li class="nav-item col">
+                                    <a class="nav-link" id="insider-threat-tab" data-toggle="pill"
+                                    href="#insider-threat" role="tab"
+                                    aria-controls="finished-camp"
+                                    aria-selected="true"><i class="fas fa-chess-knight"></i>
+                                        {% trans "Insider" %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+            <div class="tab-content" style="overflow: auto; height: 64vh;">
+                <div class="tab-pane fade active show" id="attack-patterns" role="tabpanel" aria-labelledby="attack-patterns">
+                    <table class="table table-hover table-head-fixed table-striped ">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Threat" %}</th>
+                                <th>{% trans "Mitre Id" %}</th>
+                                <th>{% trans "Description" %}</th>
+                                <th>{% trans "Severity" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pattern in attack_patterns %}
+                                <tr>
+                                    <td><span data-toggle="tooltip" data-placement="left" title="{{ pattern.attack_pattern.description }}"><a href="{{ pattern.attack_pattern.url }}">{{ pattern }}</a></span></td>
+                                    <td>{{ pattern.attack_pattern.mittre_id }}</td>
+                                    <td>{{ pattern.attack_pattern.description }}</td>
+                                    <td>
+                                        {% with score=pattern.get_result  %}
+                                            {% get_severity_badge score as badge_type %}
+                                            <span {% if badge_type != '' %}class="badge {{ badge_type }}"{% endif %}>
+                                                {{ pattern.get_severity }}
+                                            </span>
+                                        {% endwith %}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="2"
+                                            class="text-muted">{% trans "No threats found" %}
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade " id="insider-threat" role="tabpanel" aria-labelledby="insider-threat-tab">
+                    <table class="table table-hover table-head-fixed table-striped ">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Threat" %}</th>
+                                <th>{% trans "Description" %}</th>
+                                <th>{% trans "Severity" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for threat in insider %}
+                                <tr>
+                                    <td>{{ threat }}</td>
+                                    <td>{{ threat.threat.description }}</td>
+                                    <td>
+                                        {% with score=threat.get_result %}
+                                            {% get_severity_badge score as badge_type %}
+                                            <span {% if badge_type != '' %}class="badge {{ badge_type }}"{% endif %}>
+                                                {{ threat.get_severity }}
+                                            </span>
+                                        {% endwith %}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="1"
+                                            class="text-muted">{% trans "No threats found" %}
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
