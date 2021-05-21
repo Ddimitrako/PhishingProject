@@ -12,7 +12,7 @@ from email_simulation.views import email_preview, handle_uploaded_file
 from sbam_app.views import disable_form
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from sbam_app.views import advanced_users_only
+from sbam_app.views import advanced_users_only, threats_calculation
 from django.utils.translation import gettext_lazy as _
 
 
@@ -46,6 +46,9 @@ def phishing_quiz(request, assignment_id):
                                                              score=correct_answers / len(labels), answer_time=datetime.now())
 
             assignment_result.save()
+
+            threats_calculation()
+
             return JsonResponse({
                                  'score': correct_answers / len(labels) * 100,
                                  'score_badge': custom_tags.get_badge(str(correct_answers / len(labels) * 100)),

@@ -639,16 +639,19 @@ class AttackPattern(Model):
     mittre_json_id = CharField(max_length=100, unique=True)
     name = CharField(max_length=200)
     description = TextField(max_length=100)
+    url = CharField(max_length=200)
     # type = CharField(max_length=20, choices=MITTRE_TYPES)
 
     def __str__(self):
         return self.name
+
 
 class Mitigation(Model):
     mittre_id = CharField(max_length=20, unique=True)
     mittre_json_id = CharField(max_length=100, unique=True)
     name = CharField(max_length=200)
     description = TextField(max_length=100)
+    url = CharField(max_length=200)
     # type = CharField(max_length=20, choices=MITTRE_TYPES)
     attack_patterns = ManyToManyField(AttackPattern)
     domains = ManyToManyField(Domain)
@@ -656,8 +659,28 @@ class Mitigation(Model):
     def __str__(self):
         return self.name
 
+
 class ActiveAttackPatterns(Model):
     attack_pattern = ForeignKey(AttackPattern, on_delete=CASCADE)
+    score = FloatField(_('score'), help_text=_('Severity of threat'))
+
+    def __str__(self):
+        return self.attack_pattern.name
+
+    def get_result(self):
+        return '{0:.0%}'.format(self.score)
+
+    def get_severity(self):
+        if self.score >= 0.8:
+            return 'critical'
+        elif self.score >= 0.6:
+            return 'major'
+        elif self.score >= 0.4:
+            return 'minor'
+        elif self.score >= 0.2:
+            return 'warning'
+        elif self.score >= 0:
+            return 'informative'
 
 
 class InsiderThreat(Model):
@@ -686,6 +709,28 @@ class InsiderThreatSubType(Model):
     def __str__(self):
         return self.name
 
+
+class ActiveInsiderThreats(Model):
+    threat = ForeignKey(InsiderThreat, on_delete=CASCADE)
+    score = FloatField(_('score'), help_text=_('Severity of threat'))
+
+    def __str__(self):
+        return self.threat.name
+
+    def get_result(self):
+        return '{0:.0%}'.format(self.score)
+
+    def get_severity(self):
+        if self.score >= 0.8:
+            return 'critical'
+        elif self.score >= 0.6:
+            return 'major'
+        elif self.score >= 0.4:
+            return 'minor'
+        elif self.score >= 0.2:
+            return 'warning'
+        elif self.score >= 0:
+            return 'informative'
 
 
 

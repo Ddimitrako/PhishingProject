@@ -44,7 +44,7 @@
                                 </a>
                             </li>
                             <li class="nav-item col">
-                                <a class="nav-link" id="compl-ass-tab" data-toggle="pill"
+                                <a class="nav-link" id="compl-ass-tab" data-toggle="pillδτυ"
                                    href="#compl-ass" role="tab"
                                    aria-controls="compl-ass"
                                    aria-selected="false"><i class="fas fa-check"></i> {% trans "Finished" %}
@@ -116,7 +116,7 @@
                                                     {% with score=compl_ass.get_result %}
                                                         {% get_badge score as badge_type %}
                                                         <span {% if badge_type != 'Not Completed Yet' %} class="badge {{ badge_type }}"{% endif %}>
-                                                            {{ score }}
+{#                                                            {{ score }}#}
                                                         </span>
                                                     {% endwith %}
                                                 </div>
@@ -250,35 +250,87 @@
                         <div class="d-sm-inline-flex w-100 justify-content-between" style='border-bottom: 1px solid #dee2e6;'>
                             <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist"  style='width: 100%; border-bottom: none;'>
                                 <li class="nav-item col">
-                                    <a class="nav-link active" id="active-ass-tab" data-toggle="pill"
-                                    href="#active-camp" role="tab"
+                                    <a class="nav-link active" id="attack-patterns-tab" data-toggle="pill"
+                                    href="#attack-patterns" role="tab"
                                     aria-controls="active-camp"
-                                    aria-selected="true"><i class="fas fa-hourglass-half"></i>
+                                    aria-selected="true"><i class="fas fa-chess-rook"></i>
                                         {% trans "MitreAttack" %}
                                     </a>
                                 </li>
                                 <li class="nav-item col">
-                                    <a class="nav-link" id="finished-ass-tab" data-toggle="pill"
-                                    href="#finished-camp" role="tab"
+                                    <a class="nav-link" id="insider-threat-tab" data-toggle="pill"
+                                    href="#insider-threat" role="tab"
                                     aria-controls="finished-camp"
-                                    aria-selected="true"><i class="fas fa-check"></i>
+                                    aria-selected="true"><i class="fas fa-chess-knight"></i>
                                         {% trans "Insider" %}
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="tab-content">
-                            <div class="tab-pane fade active show" id="active-camp" role="tabpanel"
-                                 aria-labelledby="active-camp-tab">
-                                <ul class="list-group active-campaigns">
-
-                                </ul>
+                            <div class="tab-pane fade active show" id="attack-patterns" role="tabpanel"
+                                 aria-labelledby="attack-patterns">
+                                <table class="table table-hover table-head-fixed table-striped ">
+                                    <thead>
+                                        <tr>
+                                            <th>{% trans "Threat" %}</th>
+                                            <th>{% trans "Severity" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for pattern in attack_patterns %}
+                                            <tr>
+                                                <td><span data-toggle="tooltip" data-placement="left" title="{{ pattern.attack_pattern.description }}"><a href="{{ pattern.attack_pattern.url }}">{{ pattern }}</a></span></td>
+                                                <td>
+                                                    {% with score=pattern.get_result  %}
+                                                        {% get_severity_badge score as badge_type %}
+                                                        <span {% if badge_type != '' %}class="badge {{ badge_type }}"{% endif %}>
+                                                            {{ pattern.get_severity }}
+                                                        </span>
+                                                    {% endwith %}
+                                                </td>
+                                            </tr>
+                                            {% empty %}
+                                                <tr>
+                                                    <td colspan="2"
+                                                        class="text-muted">{% trans "No threats found" %}
+                                                    </td>
+                                                </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="tab-pane fade " id="finished-camp" role="tabpanel"
-                                 aria-labelledby="finished-camp-tab">
-                                <ul class="list-group finished-campaigns">
-
-                                </ul>
+                            <div class="tab-pane fade " id="insider-threat" role="tabpanel"
+                                 aria-labelledby="insider-threat-tab">
+                                <table class="table table-hover table-head-fixed table-striped ">
+                                    <thead>
+                                        <tr>
+                                            <th>{% trans "Threat" %}</th>
+                                            <th>{% trans "Severity" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for threat in threats %}
+                                            <tr>
+                                                <td>{{ threat }}</td>
+                                                <td>
+                                                    {% with score=threat.get_result %}
+                                                        {% get_severity_badge score as badge_type %}
+                                                        <span {% if badge_type != '' %}class="badge {{ badge_type }}"{% endif %}>
+                                                            {{ threat.get_severity }}
+                                                        </span>
+                                                    {% endwith %}
+                                                </td>
+                                            </tr>
+                                            {% empty %}
+                                                <tr>
+                                                    <td colspan="1"
+                                                        class="text-muted">{% trans "No threats found" %}
+                                                    </td>
+                                                </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
 
                         </div>
@@ -511,7 +563,7 @@
                     group_select: '',
                     organisational_check: 'true',
                     individual_check: 'true',
-                    time_period: 24
+                    time_period: 1
                 },
                 success: function(result) {
                     if (result) {
