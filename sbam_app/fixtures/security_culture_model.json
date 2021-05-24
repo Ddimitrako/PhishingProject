@@ -3,8 +3,10 @@
     "model": "sbam_app.dimension",
     "pk": 1,
     "fields": {
-      "title": "Assets",
-      "description": "This dimension includes the designment, development, documentation and implementation of security policies and procedures that aim to protect an organisation’s assets (including people, buildings, machines, systems and information assets) by enforcing several levels of confidentiality, availability, and integrity controls.",
+      "title_en": "Assets",
+      "description_en": "This dimension includes the designment, development, documentation and implementation of security policies and procedures that aim to protect an organisation’s assets (including people, buildings, machines, systems and information assets) by enforcing several levels of confidentiality, availability, and integrity controls.",
+      "title_it": "Risorse",
+      "description_it": "Questa dimensione include la progettazione, lo sviluppo, la documentazione e l'implementazione di politiche e procedure di sicurezza che mirano a proteggere le risorse di un'organizzazione (comprese persone, edifici, macchine, sistemi e risorse informative) applicando diversi livelli di riservatezza, disponibilità e controlli di integrità.",
       "level": 0
     }
   },
@@ -12,8 +14,10 @@
     "model": "sbam_app.dimension",
     "pk": 2,
     "fields": {
-      "title": "Continuity",
-      "description": "This dimension includes the planning, development, documentation and implementation of security policies and procedures that aim to ensure operations, services and production continuity for an organisation at predefined levels while safeguarding the reputation and interests of key stakeholders in cases of disruptive incidents.",
+      "title_en": "Continuity",
+      "description_en": "This dimension includes the planning, development, documentation and implementation of security policies and procedures that aim to ensure operations, services and production continuity for an organisation at predefined levels while safeguarding the reputation and interests of key stakeholders in cases of disruptive incidents.",
+      "title_it": "Continuità",
+      "description_it": "Questa dimensione include la pianificazione, lo sviluppo, la documentazione e l'implementazione di politiche e procedure di sicurezza che mirano a garantire le operazioni, i servizi e la continuità della produzione per un'organizzazione a livelli predefiniti, salvaguardando la reputazione e gli interessi delle principali parti interessate in caso di eventi perturbatori che richiedano l'adozione di procedure di emergenza.",
       "level": 0
     }
   },
@@ -21,8 +25,10 @@
     "model": "sbam_app.dimension",
     "pk": 3,
     "fields": {
-      "title": "Access and Trust",
-      "description": "This dimension includes the designment, development, documentation and implementation of business processes, policies and procedures that aim to ensure appropriate access to resources across the organisation while clarifying different roles and permissions. In addition, it delimits any interactions the organisation has with third-party factors, such as suppliers, customers, authorities, etc.",
+      "title_en": "Access and Trust",
+      "description_en": "This dimension includes the designment, development, documentation and implementation of business processes, policies and procedures that aim to ensure appropriate access to resources across the organisation while clarifying different roles and permissions. In addition, it delimits any interactions the organisation has with third-party factors, such as suppliers, customers, authorities, etc.",
+      "title_it": "Accesso e Fiducia",
+      "description_it": "Questa dimensione include la progettazione, lo sviluppo, la documentazione e l'implementazione di processi, politiche e procedure aziendali che mirano a garantire un accesso appropriato alle risorse in tutta l'organizzazione, chiarendo al contempo i diversi ruoli e autorizzazioni. Inoltre, delimita qualsiasi interazione che l'organizzazione ha con terze parti, come fornitori, clienti, autorità, ecc.",
       "level": 0
     }
   },
@@ -30,8 +36,10 @@
     "model": "sbam_app.dimension",
     "pk": 4,
     "fields": {
-      "title": "Operations",
-      "description": "This dimension refers to the administration of business practices to create the highest level of efficiency possible within an organisation while taking into account the security aspects that safeguard its final results.",
+      "title_en": "Operations",
+      "description_en": "This dimension refers to the administration of business practices to create the highest level of efficiency possible within an organisation while taking into account the security aspects that safeguard its final results.",
+      "title_it": "Operazioni",
+      "description_it": "Questa dimensione si riferisce all'amministrazione delle pratiche aziendali per creare il massimo livello di efficienza possibile all'interno di un'organizzazione tenendo conto degli aspetti di sicurezza che ne salvaguardano i risultati finali.",
       "level": 0
     }
   },
@@ -39,8 +47,10 @@
     "model": "sbam_app.dimension",
     "pk": 5,
     "fields": {
-      "title": "Defense",
-      "description": "This dimension focuses on the foresight to have planned, acquired and properly configured all technical assets necessary for the improvement and efficient operation of its information security.",
+      "title_en": "Defense",
+      "description_en": "This dimension focuses on the foresight to have planned, acquired and properly configured all technical assets necessary for the improvement and efficient operation of its information security.",
+      "title_it": "Difesa",
+      "description_it": "Questa dimensione si concentra sulla lungimiranza di aver pianificato, acquisito e adeguatamente configurato tutte le risorse tecniche necessarie per il miglioramento e il funzionamento efficiente della propria sicurezza informatica.",
       "level": 0
     }
   },
@@ -48,8 +58,10 @@
     "model": "sbam_app.dimension",
     "pk": 6,
     "fields": {
-      "title": "Security Governance",
-      "description": "This dimension includes the designment, development, documentation and implementation of policies so as to effectively plan, manage and improve organisation’s information security.",
+      "title_en": "Security Governance",
+      "description_en": "This dimension includes the designment, development, documentation and implementation of policies so as to effectively plan, manage and improve organisation’s information security.",
+      "title_it": "Governance della sicurezza",
+      "description_it": "Questa dimensione include la progettazione, lo sviluppo, la documentazione e l'implementazione delle politiche in modo da pianificare, gestire e migliorare efficacemente la sicurezza delle informazioni dell'organizzazione.",
       "level": 0
     }
   },
@@ -57,8 +69,10 @@
     "model": "sbam_app.dimension",
     "pk": 7,
     "fields": {
-      "title": "Attitude",
-      "description": "This dimension refers to the feelings and beliefs employees have toward security protocols and issues.",
+      "title_en": "Attitude",
+      "description_en": "This dimension refers to the feelings and beliefs employees have toward security protocols and issues.",
+      "title_it": "Atteggiamento",
+      "description_it": "Questa dimensione si riferisce alle sensibilità e alle convinzioni che i dipendenti hanno nei confronti dei protocolli e dei problemi di sicurezza.",
       "level": 1
     }
   },
@@ -66,8 +80,10 @@
     "model": "sbam_app.dimension",
     "pk": 8,
     "fields": {
-      "title": "Awareness",
-      "description": "This dimension refers to the employees’ understanding, knowledge and awareness of security issues and activities.",
+      "title_en": "Awareness",
+      "description_en": "This dimension refers to the employees’ understanding, knowledge and awareness of security issues and activities.",
+      "title_it": "Consapevolezza",
+      "description_it": "Questa dimensione si riferisce alla comprensione, conoscenza e consapevolezza dei dipendenti delle questioni e delle attività di sicurezza.",
       "level": 1
     }
   },
@@ -75,8 +91,10 @@
     "model": "sbam_app.dimension",
     "pk": 9,
     "fields": {
-      "title": "Behaviour",
-      "description": "This dimension refers to the actions and activities of employees that have direct or indirect impact on the security of the organisation.",
+      "title_en": "Behaviour",
+      "description_en": "This dimension refers to the actions and activities of employees that have direct or indirect impact on the security of the organisation.",
+      "title_it": "Comportamento",
+      "description_it": "Questa dimensione si riferisce alle azioni e alle attività dei dipendenti che hanno un impatto diretto o indiretto sulla sicurezza dell'organizzazione.",
       "level": 1
     }
   },
@@ -84,8 +102,10 @@
     "model": "sbam_app.dimension",
     "pk": 10,
     "fields": {
-      "title": "Competency",
-      "description": "This dimension refers to the employees’ abilities, skills, knowledge and expertise that enable them to conform with the security policies and procedures of the organisation.",
+      "title_en": "Competency",
+      "description_en": "This dimension refers to the employees’ abilities, skills, knowledge and expertise that enable them to conform with the security policies and procedures of the organisation.",
+      "title_it": "Competenza",
+      "description_it": "Questa dimensione si riferisce alle capacità, abilità, conoscenze e competenze dei dipendenti che consentono loro di conformarsi alle politiche e alle procedure di sicurezza dell'organizzazione.",
       "level": 1
     }
   },
@@ -94,8 +114,10 @@
     "pk": 1,
     "fields": {
       "dimension": 1,
-      "title": "Application Software Security",
-      "description": "Management of the security life cycle of all in-house developed and acquired software in order to prevent, detect, and correct security weaknesses."
+      "title_en": "Application Software Security",
+      "description_en": "Management of the security life cycle of all in-house developed and acquired software in order to prevent, detect, and correct security weaknesses.",
+      "title_it": "Applicazioni di sicurezza software",
+      "description_it": "Gestione sull'intero ciclo vita di tutti i software sia sviluppati in casa che acquisiti al fine di prevenire, individuare e correggere i punti deboli della sicurezza."
     }
   },
   {
@@ -103,8 +125,10 @@
     "pk": 2,
     "fields": {
       "dimension": 1,
-      "title": "Data Security and Privacy",
-      "description": "The processes and tools used to prevent data exfiltration, mitigate the effects of exfiltrated data, and ensure the privacy and integrity of sensitive information."
+      "title_en": "Data Security and Privacy",
+      "description_en": "The processes and tools used to prevent data exfiltration, mitigate the effects of exfiltrated data, and ensure the privacy and integrity of sensitive information.",
+      "title_it": "Sicurezza dei dati e privacy",
+      "description_it": "Strumenti e processi usati per prevenire o mitigare gli effetti di fuoriuscite di dati sensibili, assicurare la privacy e l'integrità delle informazioni sensibili."
     }
   },
   {
@@ -112,8 +136,10 @@
     "pk": 3,
     "fields": {
       "dimension": 1,
-      "title": "Hardware Assets Management",
-      "description": "Active documentation, inventory and management of all hardware devices (laptops, removable media, datacenters, etc.) or physical assets (hard copies of documents such as policies, records, contracts, etc.) so that effective protection is assured."
+      "title_en": "Hardware Assets Management",
+      "description_en": "Active documentation, inventory and management of all hardware devices (laptops, removable media, datacenters, etc.) or physical assets (hard copies of documents such as policies, records, contracts, etc.) so that effective protection is assured.",
+      "title_it": "Gestione degli strumenti fisici",
+      "description_it": "Documentazione attiva, inventario e gestione al fine di garantire massima protezione di tutti gli strumenti hardware (computer portatili, cellulari, hardisk rimovibili, datacenter, ecc) o della documentazione cartacea (come documenti, contratti, gestionali)."
     }
   },
   {
@@ -121,8 +147,10 @@
     "pk": 4,
     "fields": {
       "dimension": 1,
-      "title": "Hardware Configuration Management",
-      "description": "Establishment, implementation, and active management of  the security configuration of mobile devices, laptops, servers, and workstations using a rigorous configuration management and change control process in order to prevent attackers from exploiting vulnerable services and settings."
+      "title_en": "Hardware Configuration Management",
+      "description_en": "Establishment, implementation, and active management of  the security configuration of mobile devices, laptops, servers, and workstations using a rigorous configuration management and change control process in order to prevent attackers from exploiting vulnerable services and settings.",
+      "title_it": "Gestione della configurazione hardware",
+      "description_it": "Implementazione e gestione attiva delle configurazioni di sicurezza dei dispositivi mobili, computer portatili, server e workstation usando una gestione rigorosa del meccanismo di configurazione e controllo per prevenire attacchi che sfruttino vulnerabilità."
     }
   },
   {
@@ -130,8 +158,10 @@
     "pk": 5,
     "fields": {
       "dimension": 1,
-      "title": "Information Resources Management",
-      "description": "Classification of all assets and information depending on their criticality, confidentiality and business value."
+      "title_en": "Information Resources Management",
+      "description_en": "Classification of all assets and information depending on their criticality, confidentiality and business value.",
+      "title_it": "Gestione delle informazioni",
+      "description_it": "Classificazione di tutti gli strumenti e delle informazioni sulla base della loro criticità, confidenzialità e valore per il business."
     }
   },
   {
@@ -139,8 +169,10 @@
     "pk": 6,
     "fields": {
       "dimension": 1,
-      "title": "Network Configuration Management",
-      "description": "Establishment, implementation, and active management of the security configuration of network infrastructure devices using a rigorous configuration management and change control process in order to prevent attackers from exploiting vulnerable services and settings."
+      "title_en": "Network Configuration Management",
+      "description_en": "Establishment, implementation, and active management of the security configuration of network infrastructure devices using a rigorous configuration management and change control process in order to prevent attackers from exploiting vulnerable services and settings.",
+      "title_it": "Gestione della configurazione di rete",
+      "description_it": "Implementazione e gestione attiva delle configurazioni di sicurezza dei dispositivi sull'infrastruttura di rete usando una gestione rigorosa del meccanismo di configurazione e controllo per prevenire attacchi che sfruttino vulnerabilità."
     }
   },
   {
@@ -148,8 +180,10 @@
     "pk": 7,
     "fields": {
       "dimension": 1,
-      "title": "Network Infrastructure Management",
-      "description": "Management of the ongoing operational use of ports, protocols, and services on networked devices in order to minimise windows of vulnerability available to attackers."
+      "title_en": "Network Infrastructure Management",
+      "description_en": "Management of the ongoing operational use of ports, protocols, and services on networked devices in order to minimise windows of vulnerability available to attackers.",
+      "title_it": "Gestione dell'infrastruttura di rete",
+      "description_it": "Gestione dell'uso operativo di porte, protocolli e servizi sui dispositivi di rete al fine di minimizzare le finestre di vulnerabilità disponibili a potenziali malintenzionati."
     }
   },
   {
@@ -157,8 +191,10 @@
     "pk": 8,
     "fields": {
       "dimension": 1,
-      "title": "Software Assets Management",
-      "description": "Active documentation, inventory and management of all corporate software so that effective protection of them is ensured."
+      "title_en": "Software Assets Management",
+      "description_en": "Active documentation, inventory and management of all corporate software so that effective protection of them is ensured.",
+      "title_it": "Gestione degli strumenti software",
+      "description_it": "Documentazione attiva, inventario e gestione degli strumenti software aziendali al fine di garantire una protezione efficace."
     }
   },
   {
@@ -166,8 +202,10 @@
     "pk": 9,
     "fields": {
       "dimension": 1,
-      "title": "Personnel Security",
-      "description": "Management of the proper authentication and authorisation level controlling personnel and/or visitors’ access in the physical facilities of the organisation."
+      "title_en": "Personnel Security",
+      "description_en": "Management of the proper authentication and authorisation level controlling personnel and/or visitors’ access in the physical facilities of the organisation.",
+      "title_it": "Sicurezza del personale",
+      "description_it": "Gestione dei livelli di autorizzazione e autenticazione per controllare il personale e/o i visitatori quando accedono alle strutture aziendali."
     }
   },
   {
@@ -175,8 +213,10 @@
     "pk": 10,
     "fields": {
       "dimension": 1,
-      "title": "Physical Safety and Security",
-      "description": "Establishment, implementation, and active management of facilities’ physical security."
+      "title_en": "Physical Safety and Security",
+      "description_en": "Establishment, implementation, and active management of facilities’ physical security.",
+      "title_it": "Sicurezza fisca",
+      "description_it": "Implementazione e gestione attiva della sicurezza fisica delle strutture aziendali."
     }
   },
   {
@@ -184,8 +224,10 @@
     "pk": 11,
     "fields": {
       "dimension": 2,
-      "title": "Backup Mechanisms",
-      "description": "The backup procedures that are in place in order to avoid loss of critical information and provide a level of acceptable business continuity in case of incidents."
+      "title_en": "Backup Mechanisms",
+      "description_en": "The backup procedures that are in place in order to avoid loss of critical information and provide a level of acceptable business continuity in case of incidents.",
+      "title_it": "Meccanismi di backup",
+      "description_it": "Procedure di backup che servono per evitare la perdita di informazioni critiche e garantiscono un livello accettabile di operatività anche in caso di incidenti."
     }
   },
   {
@@ -193,8 +235,10 @@
     "pk": 12,
     "fields": {
       "dimension": 2,
-      "title": "Business Continuity and Disaster Recovery",
-      "description": "The processes and tools used to properly back up critical information with a proven methodology for timely recovery of it."
+      "title_en": "Business Continuity and Disaster Recovery",
+      "description_en": "The processes and tools used to properly back up critical information with a proven methodology for timely recovery of it.",
+      "title_it": "Sistemi di continuità e recupero",
+      "description_it": "Processi e strumenti usati per avere un efficace backup delle informazioni critiche con una metodologia con comprovata capacità di ripristino."
     }
   },
   {
@@ -202,8 +246,10 @@
     "pk": 13,
     "fields": {
       "dimension": 2,
-      "title": "Capacity Management",
-      "description": "The procedures with which the organisation can ensure that information technology resources are right-sized to meet current and future business requirements in a cost-effective manner."
+      "title_en": "Capacity Management",
+      "description_en": "The procedures with which the organisation can ensure that information technology resources are right-sized to meet current and future business requirements in a cost-effective manner.",
+      "title_it": "Gestione della capacità",
+      "description_it": "Procedure con cui l'organizazzione può assicurare che gli strumenti IT siano correttamente dimensionati per rispondere ad esigenze operative attuali e future con un buon rapporto costi/benefici."
     }
   },
   {
@@ -211,8 +257,10 @@
     "pk": 14,
     "fields": {
       "dimension": 2,
-      "title": "Change Management",
-      "description": "The procedures used for the management of any changes in the organisation."
+      "title_en": "Change Management",
+      "description_en": "The procedures used for the management of any changes in the organisation.",
+      "title_it": "Gestione del cambiamento",
+      "description_it": "Procedure usate dal management per gestire ogni cambiamento dell'azienda o dell'organizzazione."
     }
   },
   {
@@ -220,8 +268,10 @@
     "pk": 15,
     "fields": {
       "dimension": 2,
-      "title": "Continuous Vulnerability Management",
-      "description": "Continuous acquisition, assessment, and elaboration on new information in order to identify vulnerabilities, remediate, and minimise the opportunity window for attackers."
+      "title_en": "Continuous Vulnerability Management",
+      "description_en": "Continuous acquisition, assessment, and elaboration on new information in order to identify vulnerabilities, remediate, and minimise the opportunity window for attackers.",
+      "title_it": "Gestione della vulnerabilità",
+      "description_it": "Acquisizione, valutazione ed elaborazione continua di nuove informazioni al fine di identificare le vulnerabilità e rimediare e minimizzare le opportunità di attacchi esterni."
     }
   },
   {
@@ -229,8 +279,10 @@
     "pk": 16,
     "fields": {
       "dimension": 3,
-      "title": "Access Management",
-      "description": "The processes and tools used to track/control/prevent/correct secure access to critical assets (e.g., information, resources, systems) according to the formal determination of which persons, computers, and applications have a need and right to access these critical assets based on an approved classification."
+      "title_en": "Access Management",
+      "description_en": "The processes and tools used to track/control/prevent/correct secure access to critical assets (e.g., information, resources, systems) according to the formal determination of which persons, computers, and applications have a need and right to access these critical assets based on an approved classification.",
+      "title_it": "Gestione accessi",
+      "description_it": "Processi e strumenti usati per monitorare/controllare/prevenire/correggere la sicurezza negli accessi a strumenti critici (quali informazioni, risorse o sistemi) in accordo con una determinazione formale di quali persone, computer ed applicazioni hanno necessità e diritto di accesso, basandosi su una classificazione approvata."
     }
   },
   {
@@ -238,8 +290,10 @@
     "pk": 17,
     "fields": {
       "dimension": 3,
-      "title": "Account Management",
-      "description": "Active management of the life cycle of system and application accounts – their creation, use, dormancy, deletion – in order to minimise opportunities for attackers to leverage them."
+      "title_en": "Account Management",
+      "description_en": "Active management of the life cycle of system and application accounts – their creation, use, dormancy, deletion – in order to minimise opportunities for attackers to leverage them.",
+      "title_it": "Gestione degli account",
+      "description_it": "Gestione attiva sull'intero ciclo vita (creazione, uso, cancellazione) degli account su sistemi ed applicazioni al fine di minimizzare le opportunità di sfruttarli da parte di malintenzionati."
     }
   },
   {
@@ -247,8 +301,10 @@
     "pk": 18,
     "fields": {
       "dimension": 3,
-      "title": "Communication",
-      "description": "Various controls aiming to protect data, information and systems during communication procedures."
+      "title_en": "Communication",
+      "description_en": "Various controls aiming to protect data, information and systems during communication procedures.",
+      "title_it": "Comunicazione",
+      "description_it": "Controlli con l'obiettivi di proteggere dati, informazioni e sistemi nei processi di comunicazione."
     }
   },
   {
@@ -256,8 +312,10 @@
     "pk": 19,
     "fields": {
       "dimension": 3,
-      "title": "External Environment Connections",
-      "description": "Establishment and active management of the external environment connections of the organisation."
+      "title_en": "External Environment Connections",
+      "description_en": "Establishment and active management of the external environment connections of the organisation.",
+      "title_it": "Connessioni con l'ambiente esterno",
+      "description_it": "Implmenteazione e gestione attiva delle connessioni con l'ambiente esterno all'organizzazione."
     }
   },
   {
@@ -265,8 +323,10 @@
     "pk": 20,
     "fields": {
       "dimension": 3,
-      "title": "Password Robustness and Exposure",
-      "description": "The measures taken by the organisation to ensure all passwords used are secure enough along with the policies developed to ensure the passwords confidentiality."
+      "title_en": "Password Robustness and Exposure",
+      "description_en": "The measures taken by the organisation to ensure all passwords used are secure enough along with the policies developed to ensure the passwords confidentiality.",
+      "title_it": "Livello di sicurezza ed esposizione delle password",
+      "description_it": "Misure prese dall'organizzazione al fine di assicurare un elevato livello di sicurezza delle password e dei processi che assicurano la loro confidenzialità."
     }
   },
   {
@@ -274,8 +334,10 @@
     "pk": 21,
     "fields": {
       "dimension": 3,
-      "title": "Privileged Account Management",
-      "description": "The processes and tools used to track/control/prevent/correct the use, assignment, and configuration of administrative privileges on computers, networks, and applications."
+      "title_en": "Privileged Account Management",
+      "description_en": "The processes and tools used to track/control/prevent/correct the use, assignment, and configuration of administrative privileges on computers, networks, and applications.",
+      "title_it": "Gestione degli account privilegiati",
+      "description_it": "Processi e strumenti usati per monitorare/controllare/prevenire/correggere l'uso, l'assegnazione e la configurazione dei privilegi di amministratore su computer, reti ed applicativi."
     }
   },
   {
@@ -283,8 +345,10 @@
     "pk": 22,
     "fields": {
       "dimension": 3,
-      "title": "Role Segregation",
-      "description": "The proper appointment of roles and responsibilities ensuring their segregation in various processes and procedures, so as to avoid possible issues such as conflict of interests."
+      "title_en": "Role Segregation",
+      "description_en": "The proper appointment of roles and responsibilities ensuring their segregation in various processes and procedures, so as to avoid possible issues such as conflict of interests.",
+      "title_it": "Divisione dei ruoli",
+      "description_it": "Corretta definizione di ruoli e responsabilità che assicurino una corretta suddivisione nei vari processi e procedure al fine di evitare possibili problemi e conflitti di interesse."
     }
   },
   {
@@ -292,8 +356,10 @@
     "pk": 23,
     "fields": {
       "dimension": 3,
-      "title": "Third-Party Relationships",
-      "description": "Determination of the necessary requirements a third party should have to be considered trusty, along with the implementation of the necessary procedures with which those requirements are fulfilled.\nAlso includes the procedures used by the organisation in order to get in contact with relevant authorities when needed and the contacts maintained with various special groups, that may help it improve its information security.\n"
+      "title_en": "Third-Party Relationships",
+      "description_en": "Determination of the necessary requirements a third party should have to be considered trusty, along with the implementation of the necessary procedures with which those requirements are fulfilled. Also includes the procedures used by the organisation in order to get in contact with relevant authorities when needed and the contacts maintained with various special groups, that may help it improve its information security.",
+      "title_it": "Rapporti con terze parti",
+      "description_it": "Determinazione dei requisiti necessari che devono avere le terze parti al fine di essere considerate affidabili, insieme all'implementazione delle procedure necessarie a monitorare il raggiungimento di tali prestazioni. Inoltre, vengono considerate anche le procedure organizzative al fine di entrare in contatto con le autorità competenti quando necessario e i contatti con i vari enti e gruppi che permettono di rafforzare i livelli di sicurezza di tali informazioni."
     }
   },
   {
@@ -301,8 +367,10 @@
     "pk": 24,
     "fields": {
       "dimension": 3,
-      "title": "Wireless Access Management",
-      "description": "The processes and tools used to track/control/prevent/correct the secure use of wireless local area networks (WLANs), access points, and wireless client systems."
+      "title_en": "Wireless Access Management",
+      "description_en": "The processes and tools used to track/control/prevent/correct the secure use of wireless local area networks (WLANs), access points, and wireless client systems.",
+      "title_it": "Accesso alle reti wireless",
+      "description_it": "I processi e gli strumenti usati per monitorare/controllare/prevenire/correggere l'uso sicuro di Wireless Local Area Networks (WLAN), access point e sistemi client wireless."
     }
   },
   {
@@ -310,8 +378,10 @@
     "pk": 25,
     "fields": {
       "dimension": 4,
-      "title": "Compliance Review",
-      "description": "Various controls determining the security level appointed by security audit results."
+      "title_en": "Compliance Review",
+      "description_en": "Various controls determining the security level appointed by security audit results.",
+      "title_it": "Revisione della conformità",
+      "description_it": "Vari controlli che determinano il livello di sicurezza stabilito dai risultati degli audit di sicurezza."
     }
   },
   {
@@ -319,8 +389,10 @@
     "pk": 26,
     "fields": {
       "dimension": 4,
-      "title": "Documentation Fulfilness",
-      "description": "A checklist with all the necessary documentation an organisation is advised to have in order to maintain an appropriate level of information security."
+      "title_en": "Documentation Fulfilness",
+      "description_en": "A checklist with all the necessary documentation an organisation is advised to have in order to maintain an appropriate level of information security.",
+      "title_it": "Completezza della documentazione",
+      "description_it": "Una lista di controllo con tutta la documentazione necessaria che un'organizzazione dovrebbe avere per mantenere un livello appropriato di sicurezza delle informazioni."
     }
   },
   {
@@ -328,8 +400,10 @@
     "pk": 27,
     "fields": {
       "dimension": 4,
-      "title": "Efficient Distinction of Development Testing and Operational Environments",
-      "description": "Proper segregation of the development, testing and operational environments."
+      "title_en": "Efficient Distinction of Development Testing and Operational Environments",
+      "description_en": "Proper segregation of the development, testing and operational environments.",
+      "title_it": "Distinzione efficiente tra test di sviluppo e ambienti operativi",
+      "description_it": "Una corretta separazione degli ambienti di sviluppo, test e operativi."
     }
   },
   {
@@ -337,8 +411,10 @@
     "pk": 28,
     "fields": {
       "dimension": 4,
-      "title": "Operating Procedures",
-      "description": "Definition of operating procedures with focus on minimising the possibility of errors and malpractices."
+      "title_en": "Operating Procedures",
+      "description_en": "Definition of operating procedures with focus on minimising the possibility of errors and malpractices.",
+      "title_it": "Procedure operative",
+      "description_it": "Definizione delle procedure operative con focus sulla minimizzazione della possibilità di errori e pratiche scorrette."
     }
   },
   {
@@ -346,8 +422,10 @@
     "pk": 29,
     "fields": {
       "dimension": 4,
-      "title": "Organizational Culture and Top Management Support",
-      "description": "Identification, establishment, and active management of the organisational culture and top management support influencing and formatting the overall security culture of the organisation."
+      "title_en": "Organizational Culture and Top Management Support",
+      "description_en": "Identification, establishment, and active management of the organisational culture and top management support influencing and formatting the overall security culture of the organisation.",
+      "title_it": "Cultura organizzativa e supporto del top management",
+      "description_it": "L'identificazione, la creazione e la gestione attiva della cultura organizzativa e del top management supportano l'influenza e la inizializzazione della cultura della sicurezza complessiva dell'organizzazione."
     }
   },
   {
@@ -355,8 +433,10 @@
     "pk": 30,
     "fields": {
       "dimension": 4,
-      "title": "Risk Assessment",
-      "description": "Conducting risk assessments in order to find any vulnerabilities in the organisation repeated at regular intervals or when significant changes occur."
+      "title_en": "Risk Assessment",
+      "description_en": "Conducting risk assessments in order to find any vulnerabilities in the organisation repeated at regular intervals or when significant changes occur.",
+      "title_it": "Valutazione del rischio",
+      "description_it": "Condurre valutazioni del rischio al fine di trovare eventuali vulnerabilità nell'organizzazione, ripetute a intervalli regolari o quando si verificano cambiamenti significativi."
     }
   },
   {
@@ -364,8 +444,10 @@
     "pk": 31,
     "fields": {
       "dimension": 5,
-      "title": "Boundary Defense",
-      "description": "Detection/prevention/correction of the information flow transferring across networks of different trust levels with a focus on security-damaging data."
+      "title_en": "Boundary Defense",
+      "description_en": "Detection/prevention/correction of the information flow transferring across networks of different trust levels with a focus on security-damaging data.",
+      "title_it": "Difesa dei confini di rete",
+      "description_it": "Rilevamento/prevenzione/correzione del flusso di informazioni che è trasferito attraverso reti di diversi livelli di fiducia con particolare attenzione ai dati dannosi per la sicurezza."
     }
   },
   {
@@ -373,8 +455,10 @@
     "pk": 32,
     "fields": {
       "dimension": 5,
-      "title": "Cryptography",
-      "description": "All of the cryptographic controls used by the organisation."
+      "title_en": "Cryptography",
+      "description_en": "All of the cryptographic controls used by the organisation.",
+      "title_it": "Crittografia",
+      "description_it": "Tutti i controlli crittografici utilizzati dall'organizzazione."
     }
   },
   {
@@ -382,8 +466,10 @@
     "pk": 33,
     "fields": {
       "dimension": 5,
-      "title": "Email and Web Browser Resilience",
-      "description": "Minimisation of the attack surface and the opportunities for attackers to manipulate human behavior through their interaction with web browsers and email systems."
+      "title_en": "Email and Web Browser Resilience",
+      "description_en": "Minimisation of the attack surface and the opportunities for attackers to manipulate human behavior through their interaction with web browsers and email systems.",
+      "title_it": "Resilienza di e-mail e browser web",
+      "description_it": "Minimizzazione della superficie di attacco e delle opportunità per gli aggressori di manipolare il comportamento umano attraverso la loro interazione con i browser Web e i sistemi di posta elettronica."
     }
   },
   {
@@ -391,8 +477,10 @@
     "pk": 34,
     "fields": {
       "dimension": 5,
-      "title": "Information Security Policy and Compliance",
-      "description": "Establishment, implementation, and active management of information security policies and the compliance against them."
+      "title_en": "Information Security Policy and Compliance",
+      "description_en": "Establishment, implementation, and active management of information security policies and the compliance against them.",
+      "title_it": "Politica e conformità sulla sicurezza delle informazioni",
+      "description_it": "Stabilire, implementare e gestire attivamente le politiche di sicurezza delle informazioni e la loro conformità."
     }
   },
   {
@@ -400,8 +488,10 @@
     "pk": 35,
     "fields": {
       "dimension": 5,
-      "title": "Malware Defense",
-      "description": "Controls over the installation, spread, and execution of malicious code at multiple points in the enterprise, while optimising the use of automation to enable rapid updating of defense, data gathering, and corrective action."
+      "title_en": "Malware Defense",
+      "description_en": "Controls over the installation, spread, and execution of malicious code at multiple points in the enterprise, while optimising the use of automation to enable rapid updating of defense, data gathering, and corrective action.",
+      "title_it": "Difesa da malware",
+      "description_it": "Controlli sull'installazione, la diffusione e l'esecuzione di codice dannoso in più punti nell'azienda, ottimizzando al contempo l'uso dell'automazione per consentire un rapido aggiornamento della difesa, della raccolta dei dati e delle azioni correttive."
     }
   },
   {
@@ -409,8 +499,10 @@
     "pk": 36,
     "fields": {
       "dimension": 5,
-      "title": "Security Awareness and Training Program",
-      "description": "Targeting all functional roles in the organisation (prioritising those mission-critical to the business and its security).  Identification of the specific knowledge, skills, and abilities needed to support defense of the enterprise; development and execution of an integrated plan to assess, identify gaps, and remediate through policy, organisational planning, training, and awareness programs."
+      "title_en": "Security Awareness and Training Program",
+      "description_en": "Targeting all functional roles in the organisation (prioritising those mission-critical to the business and its security).  Identification of the specific knowledge, skills, and abilities needed to support defense of the enterprise; development and execution of an integrated plan to assess, identify gaps, and remediate through policy, organisational planning, training, and awareness programs.",
+      "title_it": "Programma di sensibilizzazione e formazione sulla sicurezza",
+      "description_it": "Attenzione specifica a tutti i ruoli funzionali nell'organizzazione (dando la priorità a quelli mission-critical per l'azienda e la sua sicurezza). Identificazione delle conoscenze, abilità e capacità specifiche necessarie per supportare la difesa dell'impresa; sviluppo ed esecuzione di un piano integrato per valutare, identificare le lacune e rimediare attraverso politiche, pianificazione organizzativa, formazione e programmi di sensibilizzazione."
     }
   },
   {
@@ -418,8 +510,10 @@
     "pk": 37,
     "fields": {
       "dimension": 6,
-      "title": "Audit Logs Management",
-      "description": "Collection, management, and analysis of event logs that could assist in detecting, understanding, or recovering from attacks."
+      "title_en": "Audit Logs Management",
+      "description_en": "Collection, management, and analysis of event logs that could assist in detecting, understanding, or recovering from attacks.",
+      "title_it": "Gestione dei registri di controllo",
+      "description_it": "Raccolta, gestione e analisi dei registri degli eventi che potrebbero aiutare a rilevare, comprendere gli attacchi o ripristinare la situazione pre-attacco."
     }
   },
   {
@@ -427,8 +521,10 @@
     "pk": 38,
     "fields": {
       "dimension": 6,
-      "title": "Incident Response and Management",
-      "description": "Protection of the organisation’s information, as well as its reputation, by developing and implementing an incident response infrastructure (e.g., plans, defined roles, training, communications, management oversight)."
+      "title_en": "Incident Response and Management",
+      "description_en": "Protection of the organisation’s information, as well as its reputation, by developing and implementing an incident response infrastructure (e.g., plans, defined roles, training, communications, management oversight).",
+      "title_it": "Risposta e gestione degli incidenti",
+      "description_it": "Protezione delle informazioni dell'organizzazione, nonché della sua reputazione, sviluppando e implementando un'infrastruttura di risposta agli incidenti (ad esempio, piani, ruoli definiti, formazione, comunicazioni, supervisione della direzione)."
     }
   },
   {
@@ -436,8 +532,10 @@
     "pk": 39,
     "fields": {
       "dimension": 6,
-      "title": "Penetration Tests and Red Team Exercises",
-      "description": "Testing the overall strength of an organisation’s defense (the technology, the processes, and the people) by simulating the objectives and actions of an attacker."
+      "title_en": "Penetration Tests and Red Team Exercises",
+      "description_en": "Testing the overall strength of an organisation’s defense (the technology, the processes, and the people) by simulating the objectives and actions of an attacker.",
+      "title_it": "Test di penetrazione ed esercizi di Red Team",
+      "description_it": "Testare la forza complessiva in termini di difesa di un'organizzazione (la tecnologia, i processi e le persone) simulando gli obiettivi e le azioni di un aggressore."
     }
   },
   {
@@ -445,8 +543,10 @@
     "pk": 40,
     "fields": {
       "dimension": 6,
-      "title": "Reporting Mechanisms",
-      "description": "The channels used by the organisation in order for employees or other relevant parties to report vulnerabilities or incidents detected."
+      "title_en": "Reporting Mechanisms",
+      "description_en": "The channels used by the organisation in order for employees or other relevant parties to report vulnerabilities or incidents detected.",
+      "title_it": "Meccanismi di segnalazione",
+      "description_it": "I canali utilizzati dall'organizzazione per consentire ai dipendenti o ad altre parti interessate di segnalare vulnerabilità o incidenti rilevati."
     }
   },
   {
@@ -454,8 +554,10 @@
     "pk": 41,
     "fields": {
       "dimension": 6,
-      "title": "Security Management Maturity",
-      "description": "Evaluate the security management maturity of an organisation."
+      "title_en": "Security Management Maturity",
+      "description_en": "Evaluate the security management maturity of an organisation.",
+      "title_it": "Maturità nella gestione della sicurezza",
+      "description_it": "Valutare la maturità della gestione della sicurezza di un'organizzazione."
     }
   },
   {
@@ -463,8 +565,10 @@
     "pk": 42,
     "fields": {
       "dimension": 7,
-      "title": "Employee Climate",
-      "description": "The assessment of the satisfaction each employee has towards information security, directly affecting his/her security behavior."
+      "title_en": "Employee Climate",
+      "description_en": "The assessment of the satisfaction each employee has towards information security, directly affecting his/her security behavior.",
+      "title_it": "Clima lavorativo in termini di sicurezza",
+      "description_it": "La valutazione della soddisfazione che ciascun dipendente ha nei confronti della sicurezza delle informazioni, influenza direttamente il suo comportamento in materia di sicurezza."
     }
   },
   {
@@ -472,8 +576,10 @@
     "pk": 43,
     "fields": {
       "dimension": 7,
-      "title": "Employee Profiling",
-      "description": "A generic employee profile that shall assist in identifying possible security behavioral patterns."
+      "title_en": "Employee Profiling",
+      "description_en": "A generic employee profile that shall assist in identifying possible security behavioral patterns.",
+      "title_it": "Profilazione dei lavoratori",
+      "description_it": "Un profilo del dipendente generico che aiuterà a identificare i possibili modelli comportamentali di sicurezza."
     }
   },
   {
@@ -481,8 +587,10 @@
     "pk": 44,
     "fields": {
       "dimension": 7,
-      "title": "Employee Satisfaction",
-      "description": "The assessment of the satisfaction each employee has towards both the organisation and other colleagues directly affecting his/ her security behavior."
+      "title_en": "Employee Satisfaction",
+      "description_en": "The assessment of the satisfaction each employee has towards both the organisation and other colleagues directly affecting his/ her security behavior.",
+      "title_it": "Soddisfazione dei lavoratori",
+      "description_it": "La valutazione della soddisfazione che ciascun dipendente ha nei confronti dell'organizzazione e degli altri colleghi, incide direttamente sul suo comportamento in materia di sicurezza."
     }
   },
   {
@@ -490,8 +598,10 @@
     "pk": 45,
     "fields": {
       "dimension": 8,
-      "title": "Policies and Procedures Awareness",
-      "description": "Assessment of the cognition each employee has regarding the organisation’s security policies and procedures."
+      "title_en": "Policies and Procedures Awareness",
+      "description_en": "Assessment of the cognition each employee has regarding the organisation’s security policies and procedures.",
+      "title_it": "Consapevolezza delle politiche e delle procedure",
+      "description_it": "Valutazione della cognizione che ogni dipendente ha in merito alle politiche e procedure di sicurezza dell'organizzazione."
     }
   },
   {
@@ -499,8 +609,10 @@
     "pk": 46,
     "fields": {
       "dimension": 8,
-      "title": "Roles and Responsibilities Awareness",
-      "description": "Assessment of the cognition each employee has regarding his role and responsibilities related to information security."
+      "title_en": "Roles and Responsibilities Awareness",
+      "description_en": "Assessment of the cognition each employee has regarding his role and responsibilities related to information security.",
+      "title_it": "Consapevolezza di ruoli e responsabilità",
+      "description_it": "Valutazione delle cognizioni che ogni dipendente ha riguardo al proprio ruolo e alle responsabilità legate alla sicurezza delle informazioni."
     }
   },
   {
@@ -508,8 +620,10 @@
     "pk": 47,
     "fields": {
       "dimension": 9,
-      "title": "Policies and Procedures Compliance",
-      "description": "Controlling and logging any security policies and procedures incompliances or violations by employees or other affected parties."
+      "title_en": "Policies and Procedures Compliance",
+      "description_en": "Controlling and logging any security policies and procedures incompliances or violations by employees or other affected parties.",
+      "title_it": "Conformità alle politiche e alle procedure",
+      "description_it": "Controllo e registrazione di eventuali non conformità o violazioni di politiche e procedure di sicurezza da parte dei dipendenti o di altre parti interessate."
     }
   },
   {
@@ -517,8 +631,10 @@
     "pk": 48,
     "fields": {
       "dimension": 9,
-      "title": "Security Agent Persona",
-      "description": "Identification of the kind of security-conscious behaviour individuals tend to exhibit on a day-to-day basis in their workplace."
+      "title_en": "Security Agent Persona",
+      "description_en": "Identification of the kind of security-conscious behaviour individuals tend to exhibit on a day-to-day basis in their workplace.",
+      "title_it": "Persona addetta alla sicurezza",
+      "description_it": "Identificazione del tipo di comportamento attento alla sicurezza che gli individui tendono a mostrare quotidianamente sul posto di lavoro."
     }
   },
   {
@@ -526,8 +642,10 @@
     "pk": 49,
     "fields": {
       "dimension": 9,
-      "title": "Security Behaviour",
-      "description": "Security-conscious behaviour exhibited on a day-to-day basis in the workplace."
+      "title_en": "Security Behaviour",
+      "description_en": "Security-conscious behaviour exhibited on a day-to-day basis in the workplace.",
+      "title_it": "Comportamento in termini di sicurezza",
+      "description_it": "Comportamento attento alla sicurezza mostrato quotidianamente sul posto di lavoro."
     }
   },
   {
@@ -535,8 +653,10 @@
     "pk": 50,
     "fields": {
       "dimension": 10,
-      "title": "Employee Competency",
-      "description": "The identification and definition of the competency needed for each role and responsibility. Also, the documentation of the proof of competency of each employee."
+      "title_en": "Employee Competency",
+      "description_en": "The identification and definition of the competency needed for each role and responsibility. Also, the documentation of the proof of competency of each employee.",
+      "title_it": "Competenza del lavoratore",
+      "description_it": "L'identificazione e la definizione delle competenze necessarie per ogni ruolo e responsabilità. Inoltre, la documentazione della prova di competenza di ciascun dipendente."
     }
   },
   {
@@ -544,8 +664,10 @@
     "pk": 51,
     "fields": {
       "dimension": 10,
-      "title": "Security Skills Evaluation",
-      "description": "Measurement/Evaluation of the security skills, familiarity, awareness, etc."
+      "title_en": "Security Skills Evaluation",
+      "description_en": "Measurement/Evaluation of the security skills, familiarity, awareness, etc.",
+      "title_it": "Valutazione delle capacità in termini di sicurezza",
+      "description_it": "Misurazione/valutazione delle capacità di sicurezza, familiarità, consapevolezza, ecc."
     }
   },
   {
@@ -553,8 +675,10 @@
     "pk": 52,
     "fields": {
       "dimension": 10,
-      "title": "Training Completion and Scoring",
-      "description": "Record of any training programs attended by individuals along with scoring, completeness rate and assessment of their effectiveness."
+      "title_en": "Training Completion and Scoring",
+      "description_en": "Record of any training programs attended by individuals along with scoring, completeness rate and assessment of their effectiveness.",
+      "title_it": "Completezza della formazione e punteggio",
+      "description_it": "Registrazione di eventuali programmi di formazione frequentati da individui insieme a punteggio, tasso di completezza e valutazione della loro efficacia."
     }
   }
 ]
