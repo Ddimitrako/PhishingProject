@@ -63,11 +63,7 @@ def sim_email_request(request, email_id):
 
 
 def email_preview(request):
-    # print(request.POST['email_file'])
-    # for a in request.POST['email_file']:
-    #     print(a)
-    # print(request.FILES)
-    # print('edw')
+
     success, content = handle_uploaded_file(request.FILES['email_file'])
     # https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
     return JsonResponse({'success': success, 'msg': content}, status=200)

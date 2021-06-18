@@ -516,7 +516,7 @@ class AssignmentsHistory(ListView):
                 q_assignments.remove(ass)
 
         t_assignments = [self_quest for self_quest in
-                                          models.TestAssignment.objects.filter(user_id=self.request.user)
+                                          models.TestAssignment.objects.filter(user_id=self.request.user).exclude(test__title='Phishing Email Test')
                                               .order_by('-assignmentresult__answer_time').exclude(test__title='Phishing Email Test')]
 
         assignments = sorted(
@@ -818,6 +818,7 @@ def campaign(request, id):
 
     for ass in campaign_assignments:
         domain = None
+
         if isinstance(ass, QuestionnaireAssignment):
             domain = ass.questionnaire.domain
         else:
@@ -839,10 +840,11 @@ def campaign(request, id):
 
             domains_scores[domain]['counter'] = 0
 
-        if ass.status == 'COMPLETED':
-            print('edw')
-            domains_scores[domain]['score'] += ass.assignmentresult_set.get(assignment=ass).score
-            domains_scores[domain]['counter'] += 1
+        if ass.status in ['COMPLETED', 'CANCELLED']:
+            print('KSEKINAW NA UPOLOGIZWWWW')
+            if ass.assignmentresult_set.exists():
+                domains_scores[domain]['score'] += ass.assignmentresult_set.get(assignment=ass).score
+                domains_scores[domain]['counter'] += 1
 
     for domain in domains_scores:
         if domains_scores[domain]['counter'] > 0:
@@ -902,7 +904,7 @@ def campaign(request, id):
 
     compl_perc = models.AssignmentResult.objects.filter(assignment__campaign=campaign).count() / \
                  models.Assignment.objects.filter(campaign=campaign).count() * 100
-
+    print(recognized_threats, recognized_patterns)
     return render(request, 'campaign.html', {
         'campaign': campaign,
         'campaign_compl_rate': compl_perc,
@@ -1017,13 +1019,15 @@ def create_campaign(request):
 # @advanced_users_only
 def reports(request):
     if request.user.is_superuser:
-
+        print('edw')
         campaigns_finished = [c for c in Campaign.objects.all().order_by('-end_date') if c.status=='FINISHED']
         campaigns_active = [c for c in Campaign.objects.all().order_by('-end_date') if c.status=='ACTIVE']
         groups = Group.objects.filter(groupprofile__is_active=True)
     else:
-        campaigns_finished = [c for c in Campaign.objects.filter(owner=request.user).order_by('-end_date') if c.status=='FINISHED']
-        campaigns_active =   [c for c in Campaign.objects.filter(owner=request.user).order_by('-end_date') if c.status=='ACTIVE']
+        print('edw222')
+        campaigns = Campaign.objects.all().order_by('-start_date', '-end_date')
+        campaigns_finished = [c.id for c in campaigns if c.status=='FINISHED' and (c.is_global() or c.owner == request.user)]
+        campaigns_active =   [c.id for c in campaigns if c.status=='ACTIVE' and (c.is_global() or c.owner == request.user)]
         groups = set([g for g in Group.objects.filter(groupprofile__is_active=True, groupprofile__creator=request.user)] + [g for g in Group.objects.filter(groupprofile__is_active=True) if g.groupprofile.is_global])
     
     isManager = (request.user.is_superuser) or (request.user.userprofile.is_manager)

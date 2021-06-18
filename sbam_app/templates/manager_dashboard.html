@@ -44,7 +44,7 @@
                                 </a>
                             </li>
                             <li class="nav-item col">
-                                <a class="nav-link" id="compl-ass-tab" data-toggle="pillδτυ"
+                                <a class="nav-link" id="compl-ass-tab" data-toggle="pill"
                                    href="#compl-ass" role="tab"
                                    aria-controls="compl-ass"
                                    aria-selected="false"><i class="fas fa-check"></i> {% trans "Finished" %}
@@ -252,7 +252,7 @@
                                 <li class="nav-item col">
                                     <a class="nav-link active" id="attack-patterns-tab" data-toggle="pill"
                                     href="#attack-patterns" role="tab"
-                                    aria-controls="active-camp"
+                                    aria-controls="attack-patterns"
                                     aria-selected="true"><i class="fas fa-chess-rook"></i>
                                         {% trans "MitreAttack" %}
                                     </a>
@@ -260,7 +260,7 @@
                                 <li class="nav-item col">
                                     <a class="nav-link" id="insider-threat-tab" data-toggle="pill"
                                     href="#insider-threat" role="tab"
-                                    aria-controls="finished-camp"
+                                    aria-controls="insider-threats"
                                     aria-selected="true"><i class="fas fa-chess-knight"></i>
                                         {% trans "Insider" %}
                                     </a>
@@ -270,7 +270,7 @@
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="attack-patterns" role="tabpanel"
                                  aria-labelledby="attack-patterns">
-                                <table class="table table-hover table-head-fixed table-striped ">
+                                <table class="table table-hover table-head-fixed">
                                     <thead>
                                         <tr>
                                             <th>{% trans "Threat" %}</th>
@@ -342,7 +342,7 @@
 
         <div class="row" style='display: block; text-align: center; margin-top: 1rem;' >
             <h3>
-                Status of the Organisation
+                {% trans 'Status of the Organisation' %}
             </h3>
             <div><a href="{% url 'sbam:reports' %}" style=" font-weight: bold; text-decoration: underline; color: #23a5e1;">More details</a></div>
         </div>

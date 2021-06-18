@@ -5,10 +5,10 @@ from django import forms
 from django.contrib.auth.models import Group
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
-from tempus_dominus.widgets import DatePicker
+
 
 from sbam_app import models
-
+from email_simulation import models as sim_models
 
 class UserMultipleChoiceField(forms.ModelMultipleChoiceField):
     def label_from_instance(self, obj):
@@ -344,6 +344,10 @@ def get_campaign_form_trees(logged_user):
     tests_dict = list()
     tests = models.Test.objects.filter(is_active=1)
     for test in tests:
+        print(test)
+        if test == 'Phishing Email Quiz':
+            if len(sim_models.SimEmail.objects.all()) == 0:
+                continue;
         test_dict = {
             "id": 'test_' + str(test.pk),
             "text": test.title,

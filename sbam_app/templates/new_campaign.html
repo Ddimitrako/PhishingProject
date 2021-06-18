@@ -36,7 +36,7 @@
                             <div class="form-row row">
                                 <div class="form-group col-lg-4 questionnaiers">
                                     <div class="labels">
-                                        <label>Questionnaires</label>
+                                        <label>{% trans 'Questionnaires' %}</label>
                                     </div>
                                     <div class="tree_container" id="dim_tree_container"></div>
                                 </div>
@@ -44,7 +44,7 @@
                                     <div class="labels">
                                         <label>Tests</label>
                                     </div>
-                                    <p class="tests_avail">No tests available currently</p>
+                                    <p class="tests_avail">{% trans 'No tests available currently' %}</p>
                                     <div class="tree_container" id="tests_tree_container">
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                         <label>Users</label>
                                     </div>
                                     <div class="tree_container" id="user_tree_container">
-                                        <p class="users_avail">No users available currently</p>
+                                        <p class="users_avail">{% trans 'No users available currently' %}</p>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                 <div class="form-row container-fluid" style="height: 100%">
                                     <div class="form-group col-lg-4 sel_domains" style="height: 100%">
                                         <div class="labels">
-                                            <label>Selected Questionnaires</label>
+                                            <label>{% trans 'Selected Questionnaires' %}</label>
                                         </div>
                                         <div class="table-responsive-sm">
                                             <div class="container selected-items">
@@ -70,13 +70,13 @@
                                                        class="table table-striped table-responsive-sm">
                                                     <tbody></tbody>
                                                 </table>
-                                                <p class="sel-quest-par">No selected Questionnaires</p>
+                                                <p class="sel-quest-par">{% trans 'No selected Questionnaires' %}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-4 sel_tests " style="height: 100%">
                                         <div class="labels">
-                                            <label>Selected Tests</label>
+                                            <label>{% trans 'Selected Tests' %}</label>
                                         </div>
                                         <div class="table-responsive-sm">
                                             <div class="container selected-items">
@@ -84,13 +84,13 @@
                                                        class="table table-striped table-responsive-sm">
                                                     <tbody></tbody>
                                                 </table>
-                                                <p class="sel-tests-par">No selected Tests</p>
+                                                <p class="sel-tests-par">{% trans 'No selected Tests' %}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-4 sel_users" style="height: 100%">
                                         <div class="labels">
-                                            <label>Selected Users</label>
+                                            <label>{% trans 'Selected Users' %}</label>
                                         </div>
                                         <div class="table-responsive-sm">
                                             <div class="container selected-items">
@@ -98,7 +98,7 @@
                                                        class="table table-striped table-responsive-sm">
                                                     <tbody></tbody>
                                                 </table>
-                                                <p class="sel-usr-par">No selected Users or User Groups</p>
+                                                <p class="sel-usr-par">{% trans 'No selected Users or User Groups' %}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="card card-primary card-outline">
-                        <h4 class="legend">Campaign details</h4>
+                        <h4 class="legend">{% trans 'Campaign details' %}</h4>
                         <div class="card-body">
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item p-0 border-0 mb-3">
@@ -119,7 +119,7 @@
                                     <div class="row">
                                         <div class="col col-md-6">
                                             <button type="button" class="btn btn-success btn-sm" id="create_campaign_btn"
-                                                title="{% trans "Create new campaign" %}">Create Campaign
+                                                title="{% trans "Create new campaign" %}">{% trans 'Create Campaign' %}
                                             </button>
                                         </div>
                                         <div class="col col-md-6">
@@ -259,7 +259,7 @@
     </div>
 
     <div class="modal fade bd-example-modal-lg" id="campaignSuccessModal" tabindex="-1" role="dialog"
-         aria-labelledby="campaignSuccessModalLabel" aria-hidden="true">
+         aria-labelledby="campaignSuccessModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -325,7 +325,9 @@
         let questtreeData = {{ campaign_form_trees.dimensions_dict | safe }};
         let usertreeData = {{ campaign_form_trees.users_dict | safe }};
         let testTreeData = {{ campaign_form_trees.tests_dict | safe }};
-        let selected_email_id = {{ sim_emails.0.id }};
+        let selected_email_id = -1;
+        let sim_email_length = {{ sim_emails| length }};
+        console.log(sim_email_length);
         let selected_phish_emails = [];
 
         $("#id_title").attr("autocomplete", "off");

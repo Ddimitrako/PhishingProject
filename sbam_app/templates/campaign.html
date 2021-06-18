@@ -77,7 +77,7 @@
                                                             {{ quest.questionnaire.title }}
                                                         </td>
                                                         <td>
-                                                            {% if type == 0 %}
+                                                            {% if quest.questionnaire.domain.dimension.level == 0 %}
                                                                 {% trans "Organisational" %}
                                                             {% else %}
                                                                 {% trans "Individual" %}
@@ -180,12 +180,14 @@
                                                     <tr>
                                                         <th>{% trans "Threat" %}</th>
                                                         <th>{% trans "Mitre Id" %}</th>
+                                                        <th>{% trans "Severity" %}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {% for pattern, value in attack_patterns.items %}
                                                         <tr>
                                                             <td><span data-toggle="tooltip" data-placement="right" title="{{ pattern.description }}"><a href="{{ pattern.url }}">{{ pattern }}</a></span></td>
+                                                            <td>{{ pattern.mittre_id }}</td>
                                                             <td>
                                                                 {% with score=value.score  %}
                                                                     {% get_severity_badge score as badge_type %}
@@ -207,7 +209,7 @@
                                                         </tr>
                                                         {% empty %}
                                                             <tr>
-                                                                <td colspan="2"
+                                                                <td colspan="3"
                                                                     class="text-muted">{% trans "No threats found" %}
                                                                 </td>
                                                             </tr>
@@ -252,7 +254,7 @@
                                                         </tr>
                                                         {% empty %}
                                                             <tr>
-                                                                <td colspan="1"
+                                                                <td colspan="2"
                                                                     class="text-muted">{% trans "No threats found" %}
                                                                 </td>
                                                             </tr>

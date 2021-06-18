@@ -307,7 +307,19 @@ $(document).ready(function(){
         return 1;
     }
 
+    function check_sim_email_sel() {
+        selected_tests = testsTree.selectedNodes;
 
+        for (var i = 0; i < selected_tests.length; i++) {
+            if (selected_tests[i].text === 'Phishing Email Test') {
+                if (selected_email_id === -1) {
+                    alert('Please choose an email for the Phishing Email Test');
+                    return 0;
+                }
+            }
+        }
+        return 1;
+    }
 
     $('#edit_phishing_test').click(function (){
          $('#PhishingTestModal').modal('toggle');
@@ -381,7 +393,7 @@ $(document).ready(function(){
     //    campaign creation ajax
     $('#create_campaign_btn').click(function () {
 
-        if(check_campaign_dates() && check_selected_items() && check_campaign_title() && check_selected_emails()){
+        if(check_campaign_dates() && check_selected_items() && check_campaign_title() && check_selected_emails() && check_sim_email_sel()){
             const title = $('#id_title').val();
             const start_date = $('#id_start_date').val();
             const end_date = $('#id_end_date').val();

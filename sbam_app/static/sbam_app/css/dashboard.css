@@ -225,3 +225,8 @@ h5 {
 .loading img{
     height: 70%;
 }
+
+.assessment_history_btn {
+     margin-bottom: 15%;
+    margin-right: 5px;
+}

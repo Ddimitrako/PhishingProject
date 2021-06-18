@@ -43,7 +43,13 @@
                             </td>
                             <td>
                                 {% if assignment.status == 'OPEN' %}
-                                    <a href="{% url 'sbam:assignments' assignment.id %}">
+                                    {% if assignment.questionnaire %}
+                                        <a href="{% url 'sbam:assignments' assignment.id %}">
+                                    {% elif assignment.test.title == 'Password Strength Test' %}
+                                        <a href="{% url 'password_strength_app:password_strength' assignment.id %}">
+                                    {% elif assignment.test.title == 'Phishing Email Quiz' %}
+                                        <a href="{% url 'phishing_quiz:phishing_quiz' assignment.id %}">
+                                    {% endif %}
                                         {{ assignment.questionnaire.title }}
                                         {{ assignment.test.title }}
                                     </a>
