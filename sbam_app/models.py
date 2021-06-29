@@ -375,7 +375,7 @@ class AssignmentResult(Model):
         on_delete=CASCADE,
         help_text=_('Assignment this result refers to')
     )
-    answer_time = DateTimeField(_('answer time'), help_text=_('The date this assignment result was achieved'))
+    answer_time = DateField(_('answer time'), help_text=_('The date this assignment result was achieved'))
     score = FloatField(_('score'), help_text=_('Achieved assignment score'))
 
     class Meta:
@@ -429,7 +429,7 @@ class SelfAssessmentResult(Model):
         on_delete=CASCADE,
         help_text=_('self assessment survey this result refers to')
     )
-    answer_time = DateTimeField(_('answer time'), help_text=_('The date this self assessment survey result was achieved'))
+    answer_time = DateField(_('answer time'), help_text=_('The date this self assessment survey result was achieved'))
     score = FloatField(_('score'), help_text=_('Achieved self assessment survey score'))
 
 
@@ -691,20 +691,21 @@ class InsiderThreat(Model):
         return self.name
 
 
-class InsiderThreatsFactor(Model):
+class InsiderThreatSubType(Model):
     name = CharField(max_length=200)
     description = TextField(max_length=100)
-    domains = ManyToManyField(Domain)
-    insider_threat = ManyToManyField(InsiderThreat)
+    insider_threat = ForeignKey(InsiderThreat, on_delete=CASCADE, related_name='threat')
 
     def __str__(self):
         return self.name
 
 
-class InsiderThreatSubType(Model):
+class InsiderThreatsFactor(Model):
     name = CharField(max_length=200)
     description = TextField(max_length=100)
-    insider_threat = ForeignKey(InsiderThreat, on_delete=CASCADE, related_name='threat')
+    domains = ManyToManyField(Domain)
+    insider_threat = ManyToManyField(InsiderThreat)
+    insider_threat_subtype = ManyToManyField(InsiderThreatSubType)
 
     def __str__(self):
         return self.name

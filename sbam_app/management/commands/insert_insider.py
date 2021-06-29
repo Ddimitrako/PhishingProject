@@ -35,6 +35,7 @@ class Command(BaseCommand):
 				sub_types = row[2].split('\n')
 				sub_types_desc = row[3].split('\n')
 				factors = row[4].split('\n')
+				related_subtypes = row[5].split('\n')
 
 				related_factors = InsiderThreatsFactor.objects.filter(name__in=factors)
 
@@ -43,13 +44,26 @@ class Command(BaseCommand):
 				print('Sub_types', sub_types)
 				print('Desc', sub_types_desc)
 				print('Factors', factors)
+				print('Related Subtypes', related_subtypes)		# "-" means each factor is related to all subtypes
+				print('------------------')
 
 				thread = InsiderThreat(name=t_name, description=t_desc)
 				thread.save()
 
 				for factor in related_factors:
 					factor.insider_threat.add(thread)
-				for s_type, s_type_desc in zip(sub_types, sub_types_desc):
-					sb_type = InsiderThreatSubType(name=s_type, description=s_type_desc, insider_threat=thread)
-					sb_type.save()
+				if sub_types != ['']:
+					for s_type, s_type_desc in zip(sub_types, sub_types_desc):
+						sb_type = InsiderThreatSubType(name=s_type, description=s_type_desc, insider_threat=thread)
+						sb_type.save()
+
+						if related_subtypes == ['-']:
+							for factor in related_factors:
+								factor.insider_threat_subtype.add(sb_type)
+						else:
+							for r_type in related_subtypes:
+								for factor in related_factors:
+									if r_type == sb_type.name:
+										factor.insider_threat_subtype.add(sb_type)
+
 
