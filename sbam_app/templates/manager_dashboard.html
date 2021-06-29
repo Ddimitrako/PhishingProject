@@ -116,7 +116,7 @@
                                                     {% with score=compl_ass.get_result %}
                                                         {% get_badge score as badge_type %}
                                                         <span {% if badge_type != 'Not Completed Yet' %} class="badge {{ badge_type }}"{% endif %}>
-{#                                                            {{ score }}#}
+                                                            {{ score }}
                                                         </span>
                                                     {% endwith %}
                                                 </div>

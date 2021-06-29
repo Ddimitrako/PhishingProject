@@ -6,6 +6,7 @@ register = template.Library()
 @register.simple_tag()
 def get_badge(string):
     if string != '':
+        string = str(string)
         argf = float(string.strip('%')) / 100
         if argf >= 0.8:
             badge_type = 'bg-success'

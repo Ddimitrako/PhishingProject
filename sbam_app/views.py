@@ -1225,9 +1225,8 @@ def get_user_assignments(user, months):
 
 
 
-def get_user_self_assessments(user, months):    
-    midnight = timezone.now().replace(hour=0, minute=0)
-    qsass = [q for q in QuestionnaireSelfAssessment.objects.filter(questionnaire__is_active=1, user=user).order_by('questionnaire') if q.get_answer_time() > midnight - relativedelta(months=months)]
+def get_user_self_assessments(user, months):
+    qsass = [q for q in QuestionnaireSelfAssessment.objects.filter(questionnaire__is_active=1, user=user).order_by('questionnaire') if q.get_answer_time() > date.today() - relativedelta(months=months)]
     return qsass
 
 
