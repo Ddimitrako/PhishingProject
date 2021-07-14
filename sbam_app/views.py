@@ -1231,6 +1231,7 @@ def get_user_self_assessments(user, months):
 
 
 #REST API
+@login_required
 def get_organizational_report(request):
     months = 24
     if 'time_period' in request.GET:
@@ -1250,7 +1251,7 @@ def get_organizational_report(request):
     print(data)
     return JsonResponse({'metrics': data})
 
-
+@login_required
 def get_campaign_report(request, campaign_id):
     months = 24
 
@@ -1290,7 +1291,7 @@ def get_campaign_report(request, campaign_id):
 
     return JsonResponse({'metrics': data})
 
-
+@login_required
 def get_user_report(request, user_id):
     months = 24
     if 'time_period' in request.GET:
@@ -1311,7 +1312,7 @@ def get_user_report(request, user_id):
 
     return JsonResponse({'metrics': data})
 
-
+@login_required
 def get_group_report(request, group_id):
     months = 24
     if 'time_period' in request.GET:
@@ -1332,7 +1333,7 @@ def get_group_report(request, group_id):
 
     return JsonResponse({'metrics': data})
 
-
+@login_required
 def get_campaigns(request):
     months = 24
     campaigns_json = {
