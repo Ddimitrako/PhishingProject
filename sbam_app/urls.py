@@ -53,11 +53,12 @@ urlpatterns = [
     path('threats/', IdentifiedThreats, name='threats'),
 
     # results REST API
-    path('api/metrics/organization/', get_organizational_report, name='organization_report'),
-    path('api/metrics/campaigns/<campaign_id>/', get_campaign_report, name='campaign_report'),
-    path('api/metrics/user/<user_id>/', get_user_report, name='user_report'),
-    path('api/metrics/group/<group_id>/', get_group_report, name='group_report'),
-    path('api/metrics/campaigns/', get_campaigns, name='get_campaigns'),
+    path('api/token/',GetAccessToken.as_view(), name='get_token'),
+    path('api/metrics/organization/', GetOrganizationReport.as_view(), name='organization_report'),
+    path('api/metrics/campaigns/<campaign_id>/', GetCampaignReport.as_view(), name='campaign_report'),
+    path('api/metrics/user/<user_id>/', GetUserReport.as_view(), name='user_report'),
+    path('api/metrics/group/<group_id>/', GetGroupReport.as_view(), name='group_report'),
+    path('api/metrics/campaigns/', GetCampaigns.as_view(), name='get_campaigns'),
 
     path('comm/', kafka_producer, name='comm')
 
