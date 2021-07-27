@@ -329,7 +329,7 @@ class CampaignQuestionAnswer(Model):
         verbose_name_plural = _('campaign question answers')
 
 class UserService(Model):
-    user_id = ForeignKey(User, on_delete=CASCADE)
+    user = OneToOneField(User, verbose_name=_('user'), on_delete=CASCADE, help_text=_('User ID'))
     service_access = CharField(max_length=100,choices=[('all_services', 'Full Access'),
                                                        ('no_services', 'No Access'),
                                                        ('organization_report', 'organization report'),
@@ -337,6 +337,7 @@ class UserService(Model):
                                                        ('user_report', 'user report'),
                                                        ('group_report', 'group report'),
                                                        ('get_campaigns', 'get campaigns')])
+
 
 class Test(Model):
     domain = ForeignKey(
