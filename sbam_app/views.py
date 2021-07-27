@@ -34,7 +34,7 @@ from phishing_quiz import models as phish_models
 from django.core import serializers
 from kafka import KafkaProducer
 from django.contrib.auth.models import User
-
+from django.contrib.auth import authenticate
 #
 # Custom Decorator used to grant permission to superusers only
 #
@@ -1246,11 +1246,15 @@ class GetAccessToken(APIView):
         if 'username' in data and 'password' in data:
             username=data.get('username')
             password = data.get('password')
-            user=get_object_or_404(User,username=username)
-            token = Token.objects.get_or_create(user=user)
-            print(token[0].key)
-            response_data = {'token': token[0].key, 'id': token[0].user_id}
-            return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                token = Token.objects.get_or_create(user=user)
+                print(token[0].key)
+                response_data = {'token': token[0].key, 'id': token[0].user_id}
+                return HttpResponse(json.dumps(response_data), content_type="application/json")
+            else:
+                return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 def get_user_from_token(request):
