@@ -1391,7 +1391,7 @@ class GetUserReport(APIView):
 
 class GetGroupReport(APIView):
 # def get_group_report(request, group_id):
-    def Get(self,request,group_id):
+    def get(self,request,group_id):
         months = 24
         user = get_user_from_token(request)
         if find_user_service_access(user.username) in ["all_services","group_report"]:
@@ -1416,7 +1416,7 @@ class GetGroupReport(APIView):
             return Response(status=status.HTTP_403_FORBIDDEN)
 
 class GetCampaigns(APIView):
-    def Get(self,request):
+    def get(self,request):
         user = get_user_from_token(request)
         if find_user_service_access(user.username) in ["all_services", "get_campaigns"]:
             months = 24
