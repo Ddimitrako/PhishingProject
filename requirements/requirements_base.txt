@@ -52,3 +52,6 @@ kafka-python
 
 #kafka-python
 kafka-python
+
+#django Rest Framework
+djangorestframework==3.12.4
