@@ -1373,7 +1373,7 @@ class GetUserReport(APIView):
                 months = int(request.GET.get('time_period'))
 
             assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
-                 campaign__end_date__gte=date.today() - relativedelta(months=months), user_id=user_id, questionnaire__domain__dimension=1)\
+                 campaign__end_date__gte=date.today() - relativedelta(months=months), user_id=user_id, questionnaire__domain__dimension__level=1)\
                 .order_by('questionnaire', 'user')
             dimensions = Dimension.objects.filter(level=1).order_by('level', 'title')
             data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
