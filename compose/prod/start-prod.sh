@@ -4,6 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+echo "Starting scripts"
 
 
 

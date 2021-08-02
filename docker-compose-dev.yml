@@ -1,11 +1,15 @@
 version: '3.7'
+volumes:
+  sbam_db:
 
 services:
-  web:
+  sbam:
     build: 
       context: .
       dockerfile: ./compose/dev/Dockerfile_dev
     command: /start.sh
+    container_name: sbam
+    hostname: sbam
     volumes:
       - .:/usr/src/sbam/
     ports:
@@ -16,10 +20,12 @@ services:
       - db
   db:
     image: postgres:11
+    hostname: db
+    container_name: db
     volumes:
-      - ../sbam_dev_data:/var/lib/postgresql/data
+      - sbam_db:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 5434:5432
     env_file:
       - .env/dev/.env_db_dev
 

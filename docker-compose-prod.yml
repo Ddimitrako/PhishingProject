@@ -1,11 +1,15 @@
 version: '3.7'
+volumes:
+  sbam_prod_volume:
 
 services:
-  web:
-    build: 
+  sbam_prod:
+    build:
       context: .
       dockerfile: ./compose/prod/Dockerfile_prod
     command: /start.sh
+    container_name: sbam_prod
+    hostname: sbam_prod
     volumes:
       - .:/usr/src/sbam/
     ports:
@@ -13,13 +17,19 @@ services:
     env_file:
       - .env/prod/.env_app_prod
     depends_on:
-      - db
-  db:
+      - db_prod
+    restart: always
+
+  db_prod:
     image: postgres:11
+    container_name: db_prod
+    hostname: db_prod
     volumes:
-      - ../sbam_prod_data:/var/lib/postgresql/data
+      - sbam_prod_volume:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 5433:5433
+    restart: always
     env_file:
       - .env/prod/.env_db_prod
+
 
