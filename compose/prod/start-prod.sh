@@ -89,4 +89,4 @@ echo "Starting service for scheduled tasks"
 python manage.py qcluster &
 
 echo "Starting the server..."
-gunicorn sbam.wsgi:application --bind 0.0.0.0:80 --workers=${WEB_CONCURRENCY}
+gunicorn sbam.wsgi:application --bind 0.0.0.0:8080 --workers=${WEB_CONCURRENCY}
