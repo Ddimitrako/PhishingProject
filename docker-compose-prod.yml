@@ -27,7 +27,7 @@ services:
     volumes:
       - sbam_prod_volume:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 5555:5432
     restart: always
     env_file:
       - .env/prod/.env_db_prod
