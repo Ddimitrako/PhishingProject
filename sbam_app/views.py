@@ -350,7 +350,7 @@ def user_dashboard(request):
     #     if assignment.questionnaire.title not in distinct_active_questionnaires_titles:
     #         distinct_active_questionnaires.append(assignment)
     #         distinct_active_questionnaires_titles.append(assignment.questionnaire.title)
-    
+
     active_tests = [a_test for a_test in
                     models.TestAssignment.objects.filter(user_id=request.user).filter(
                         campaign__end_date__gte=date.today()
@@ -362,12 +362,12 @@ def user_dashboard(request):
     #     if assignment.test.title not in distinct_active_tests_titles:
     #         distinct_active_tests.append(assignment)
     #         distinct_active_tests_titles.append(assignment.test.title)
-    
+
     active_assignments = sorted(
         chain(active_questionnaires, active_tests),
         key=lambda instance:
         (instance.campaign.end_date, instance.questionnaire.title if hasattr(instance, 'questionnaire') else instance.test.title))
-    
+
     # fetching completed assignments
     completed_questionnaires = [c_quest for c_quest in
                                 models.QuestionnaireAssignment.objects.filter(user_id=request.user)
@@ -848,7 +848,7 @@ def campaign(request, id):
             domains_scores[domain]['counter'] = 0
 
         if ass.status in ['COMPLETED', 'CANCELLED']:
-            print('KSEKINAW NA UPOLOGIZWWWW')
+
             if ass.assignmentresult_set.exists():
                 domains_scores[domain]['score'] += ass.assignmentresult_set.get(assignment=ass).score
                 domains_scores[domain]['counter'] += 1
@@ -1027,23 +1027,25 @@ def create_campaign(request):
 def reports(request):
     if request.user.is_superuser:
         print('edw')
+
         campaigns_finished = [c for c in Campaign.objects.all().order_by('-end_date') if c.status=='FINISHED']
         campaigns_active = [c for c in Campaign.objects.all().order_by('-end_date') if c.status=='ACTIVE']
         groups = Group.objects.filter(groupprofile__is_active=True)
+
     else:
         print('edw222')
         campaigns = Campaign.objects.all().order_by('-start_date', '-end_date')
         campaigns_finished = [c.id for c in campaigns if c.status=='FINISHED' and (c.is_global() or c.owner == request.user)]
         campaigns_active =   [c.id for c in campaigns if c.status=='ACTIVE' and (c.is_global() or c.owner == request.user)]
         groups = set([g for g in Group.objects.filter(groupprofile__is_active=True, groupprofile__creator=request.user)] + [g for g in Group.objects.filter(groupprofile__is_active=True) if g.groupprofile.is_global])
-    
+
     isManager = (request.user.is_superuser) or (request.user.userprofile.is_manager)
-    return render(request, 'reports.html', {'campaigns_finished': campaigns_finished, 'campaigns_active': campaigns_active, 'groups': groups, 'isManager': isManager }) 
+    return render(request, 'reports.html', {'campaigns_finished': campaigns_finished, 'campaigns_active': campaigns_active, 'groups': groups, 'isManager': isManager })
 
 
 def get_user_metrics(request):
     months = int(request.GET.get('time_period'))
-    
+
     assignments = get_user_assignments(request.user, months)
 
     self_assessments = get_user_self_assessments(request.user, months)
@@ -1076,14 +1078,15 @@ def get_reports_data(request):
 
     assignments = get_assignments(report_level, campaign_id, group_id, include_organisational, include_individual, months)
     return get_graph_data(assignments, [], dimensions)
-    
-    
+
+
 def get_graph_data(assignments, self_assessments, dimensions):
     graph_data = dict()
-    graph_data['dimensions'] = list()   
+    graph_data['dimensions'] = list()
     info, results_dict = gather_results(assignments, self_assessments, dimensions)
-    # print(results_dict)
-    # print(info)
+
+    #print(results_dict)
+    #print(info)
 
     for dim in dimensions:
         dim_dict = dict()
@@ -1105,7 +1108,7 @@ def get_graph_data(assignments, self_assessments, dimensions):
             else:
                 dom_dict['value'] = 0
             dim_dict['domains'].append(dom_dict)
-            
+
         dim_dict['value'] = round(dim_dict['value'] / dom_num) if dom_num else 0
         graph_data['dimensions'].append(dim_dict)
 
@@ -1122,8 +1125,9 @@ def get_graph_data(assignments, self_assessments, dimensions):
 
 
     data = {'graph_data': graph_data, 'info': info}
+    #print("Debug Print Data-->" + str(data))
     return JsonResponse(data)
-    
+
 
 def gather_results(assignments, self_assessments, dimensions):
     results_dict = dict()
@@ -1163,7 +1167,7 @@ def gather_results(assignments, self_assessments, dimensions):
                         'answer_time': res.answer_time,  'campaign': ''}
                     #print('new answer time!!')
 
-    
+
     info = dict()
     for dim in dimensions:
         info[dim.title] = dict()
@@ -1220,7 +1224,7 @@ def get_assignments(report_level, campaign_id, group_id, include_organisational,
     if not include_individual:
         qas = qas.exclude(questionnaire__domain__dimension__level=1)
         tests = tests.exclude(test__domain__dimension__level=1)
-    
+
     return chain(qas.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
 
 
@@ -1299,14 +1303,25 @@ class GetOrganizationReport(APIView):
         user=get_user_from_token(request)
 
         if find_user_service_access(user.username) in ["all_services","organization_report"]:
-        # if user.username=='admin': #HERE I HAVE TO CHECK THE TYPE OF SERVICE ACCESS THE USERNAME HAS
             if 'time_period' in request.GET:
                 print(request.GET.get('time_period'))
                 months = int(request.GET.get('time_period'))
 
-            assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
-                         campaign__end_date__gte=date.today() - relativedelta(months=months)).order_by('questionnaire', 'user')
+            # assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
+            #              campaign__end_date__gte=date.today() - relativedelta(months=months)).order_by('questionnaire', 'user')
+            # print(include_organisational, include_individual)
+            # months = int(request.GET.get('time_period'))
+
             dimensions = Dimension.objects.order_by('level', 'title')
+            qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
+                                                         campaign__end_date__gte=date.today() - relativedelta(
+                                                             months=months))
+            tests = TestAssignment.objects.filter(test__is_active=1,
+                                                  campaign__end_date__gte=date.today() - relativedelta(months=months))
+            assignments = chain(qas.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
+
+
+            #dimensions = Dimension.objects.order_by('level', 'title')
             data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
             for dim in data['dimensions']:
                 dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
@@ -1314,9 +1329,10 @@ class GetOrganizationReport(APIView):
                 for domain in dim['domains']:
                     domain.pop('description', None)
 
-            # print(data)
-
-            return JsonResponse({'metrics': data})
+            if len(data) == 0:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            else:
+                return JsonResponse({'metrics': data})
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)
 
@@ -1324,11 +1340,15 @@ class GetCampaignReport(APIView):
     def get(self,request,campaign_id,*args):
         months = 24
         user = get_user_from_token(request)
+        if  not Campaign.objects.filter(pk=campaign_id).exists():  #check if campaign id doesnt exist
+            return Response(status=status.HTTP_404_NOT_FOUND)
         if find_user_service_access(user.username) in ["all_services","campaign_report"]:
+
             assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, campaign_id=campaign_id)\
                 .order_by('questionnaire', 'user')
             dimensions = Dimension.objects.order_by('level', 'title')
             data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
+            print("GetCampaignReport")
             print(data)
             for dim in data['dimensions']:
                 dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
@@ -1367,6 +1387,8 @@ class GetUserReport(APIView):
     def get(self, request, user_id, *args):
         months = 24
         user = get_user_from_token(request)
+        if  not User.objects.filter(pk=user_id).exists():
+            return Response(status=status.HTTP_404_NOT_FOUND)
         if find_user_service_access(user.username) in ["all_services","user_report"]:
             if 'time_period' in request.GET:
                 print(request.GET.get('time_period'))
@@ -1376,6 +1398,9 @@ class GetUserReport(APIView):
                  campaign__end_date__gte=date.today() - relativedelta(months=months), user_id=user_id, questionnaire__domain__dimension__level=1)\
                 .order_by('questionnaire', 'user')
             dimensions = Dimension.objects.filter(level=1).order_by('level', 'title')
+            tests = TestAssignment.objects.filter(test__is_active=1,
+                                                  campaign__end_date__gte=date.today() - relativedelta(months=months))
+            assignments = chain(assignments.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
             data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
             print(data)
             for dim in data['dimensions']:
@@ -1390,10 +1415,11 @@ class GetUserReport(APIView):
 
 
 class GetGroupReport(APIView):
-# def get_group_report(request, group_id):
     def get(self,request,group_id):
         months = 24
         user = get_user_from_token(request)
+        if  not Group.objects.filter(pk=group_id).exists():
+            return Response(status=status.HTTP_404_NOT_FOUND)
         if find_user_service_access(user.username) in ["all_services","group_report"]:
             if 'time_period' in request.GET:
                 print(request.GET.get('time_period'))
@@ -1402,7 +1428,11 @@ class GetGroupReport(APIView):
             assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
                  campaign__end_date__gte=date.today() - relativedelta(months=months), user__groups__in=[group_id])\
                 .order_by('questionnaire', 'user')
+
             dimensions = Dimension.objects.order_by('level', 'title')
+            tests = TestAssignment.objects.filter(test__is_active=1,
+                                                  campaign__end_date__gte=date.today() - relativedelta(months=months))
+            assignments = chain(assignments.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
             data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
             print(data)
             for dim in data['dimensions']:
