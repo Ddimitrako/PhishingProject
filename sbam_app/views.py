@@ -1347,6 +1347,9 @@ class GetCampaignReport(APIView):
             assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, campaign_id=campaign_id)\
                 .order_by('questionnaire', 'user')
             dimensions = Dimension.objects.order_by('level', 'title')
+            tests = TestAssignment.objects.filter(campaign=campaign_id,
+                                                  campaign__end_date__gte=date.today() - relativedelta(months=months))
+            assignments = chain(assignments.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
             data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
             print("GetCampaignReport")
             print(data)
@@ -1369,7 +1372,6 @@ class GetCampaignReport(APIView):
                     'last_name': assignee['user__last_name']
                 }))
 
-
             tests = list(TestAssignment.objects.filter(campaign=campaign_id).
                  order_by('test__title').distinct('test__title').values('test__title', 'assignmentresult__score'))
 
@@ -1382,6 +1384,7 @@ class GetCampaignReport(APIView):
             return JsonResponse({'metrics': data})
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)
+
 
 class GetUserReport(APIView):
     def get(self, request, user_id, *args):
