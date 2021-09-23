@@ -1,13 +1,13 @@
-id	type	text_en	options_en	text_it	options_it
-1	RISK7_N	Betting a day's income at the horse races.		Scommetttere il guadagno di un giorno alle corse dei cavalli.	
-2	RISK7_N	Investing 10% of your annual income in a moderate growth mutual fund.		Investire il 10% del reddito annuale in un fondo pensione a crescita moderata.	
-3	RISK7_N	Taking some questionable deductions on your income tax return.		Prendere qualche rischio sulla richiesta di deduzioni e detrazioni fiscali.	
-4	RISK7_N	Betting a day's income at a high-stake poker game.		Scommetttere il guadagno di un giorno in un torneo di poker di alto livello.	
-5	RISK7_N	Having an affair with a married man/woman.		Avere una relazione clandestina con un/una uomo/donna sposato/a.	
-6	RISK7_N	Passing off somebody else's work as your own.		Fingere proprio il lavoro svolto da altro.	
-7	RISK7_N	Investing 5% of your annual income in a very speculative stock.		Investire il 10% del reddito annuale in un fondo speculativo.	
-8	RISK7_N	Betting a day's income on the outcome of a sporting event.		Scommetttere il guadagno di un giorno in un futuro evento sportivo.	
-9	RISK7_N	Revealing a friend's secret to someone else.		Rivelare il segreto di un amico.	
-10	RISK7_N	Investing 10% of your annual income in a new business venture.		Investire il 10% del reddito annuale in una start-up.	
-11	RISK7_N	Leaving your young children alone at home while running an errand.		Lasciare il proprio figlio piccolo a casa per fare una commissione.	
-12	RISK7_N	Not returning a wallet you found that contains $200.		Non restituire un portafogli con all'interno 200�.
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	RISK7_N	Betting a day's income at the horse races.		Scommetttere il guadagno di un giorno alle corse dei cavalli.		Залагане на един дневен доход на конни надбягвания.	
+2	RISK7_N	Investing 10% of your annual income in a moderate growth mutual fund.		Investire il 10% del reddito annuale in un fondo pensione a crescita moderata.		Инвестиране на 10% от вашия годишен доход във взаимен фонд с умерен растеж.	
+3	RISK7_N	Taking some questionable deductions on your income tax return.		Prendere qualche rischio sulla richiesta di deduzioni e detrazioni fiscali.		Предприемане на някои съмнителни приспадания във вашата декларация за данък върху доходите.	
+4	RISK7_N	Betting a day's income at a high-stake poker game.		Scommetttere il guadagno di un giorno in un torneo di poker di alto livello.		Залагане на дневен доход в покер игра с висок залог.	
+5	RISK7_N	Having an affair with a married man/woman.		Avere una relazione clandestina con un/una uomo/donna sposato/a.		Афера с женен мъж / жена.	
+6	RISK7_N	Passing off somebody else's work as your own.		Fingere proprio il lavoro svolto da altro.		Предаване на чужда работа като ваша собствена.	
+7	RISK7_N	Investing 5% of your annual income in a very speculative stock.		Investire il 10% del reddito annuale in un fondo speculativo.		Инвестиране на 5% от годишния ви доход в много спекулативни акции.	
+8	RISK7_N	Betting a day's income on the outcome of a sporting event.		Scommetttere il guadagno di un giorno in un futuro evento sportivo.		Залагане на дневен доход върху резултата от спортно събитие.	
+9	RISK7_N	Revealing a friend's secret to someone else.		Rivelare il segreto di un amico.		Разкриване на тайната на приятел на някой друг.	
+10	RISK7_N	Investing 10% of your annual income in a new business venture.		Investire il 10% del reddito annuale in una start-up.		Инвестиране на 10% от годишния ви доход в ново бизнес начинание.	
+11	RISK7_N	Leaving your young children alone at home while running an errand.		Lasciare il proprio figlio piccolo a casa per fare una commissione.		Оставяте малките си деца сами у дома, докато изпълнявате поръчка.	
+12	RISK7_N	Not returning a wallet you found that contains $200.		Non restituire un portafogli con all'interno 200€.		Не връщате портфейл, който сте намерили, който съдържа $ 200.	

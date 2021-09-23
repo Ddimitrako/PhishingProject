@@ -1,2 +1,2 @@
-id	type	text_en	options_en	text_it	options_it
-1	BOOL_P	Have you ensured sufficient fault tolerance and redundancy in the SCADA environment?	 	Hai garantito una sufficiente tolleranza agli errori e ridondanza in ambiente SCADA?	
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	BOOL_P	Have you ensured sufficient fault tolerance and redundancy in the SCADA environment?	 	Hai garantito una sufficiente tolleranza agli errori e ridondanza in ambiente SCADA?		Осигурили ли сте достатъчна толерантност към грешки и излишък в SCADA среда?	

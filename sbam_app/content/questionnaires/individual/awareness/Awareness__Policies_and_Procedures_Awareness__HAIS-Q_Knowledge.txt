@@ -1,22 +1,22 @@
-id	type	text_en	options_en	text_it	options_it
-1	AGR5_N	It's acceptable to use my social media passwords on my work accounts.		Accetto di usare la password dei miei social network per il mio account aziendale.	
-2	AGR5_N	I am allowed to share my work passwords with colleagues.		Sono autorizzato a condividere le mie password lavorative con i colleghi.	
-3	AGR5_P	A mixture of letters, numbers and symbols is necessary for work passwords.		Una combinazione di lettere, numeri e simboli � necessaria per una password aziendale.	
-4	AGR5_N	I am allowed to click on any links in emails from people I know.		Posso cliccare su qualunque link in messaggi di posta ricevuti da persone che conosco.	
-5	AGR5_P	I am not permitted to click on a link in an email from an unknown sender.		Non sono autorizzato a cliccare su un link in un messaggio di posta ricevuto da un mittente sconosciuto.	
-6	AGR5_N	I am allowed to open email attachments from unknown senders.		Sono autorizzato ad aprire allegati in email da mittenti sconosciuti.	
-7	AGR5_N	I am allowed to download any files onto my work computer if they help me to do my job.		Posso scaricare qualsiasi file sul mio computer di lavoro se mi aiuta a svolgere il mio lavoro.	
-8	AGR5_P	While I am at work, I shouldnt't access certain websites.		Quando sto lavorando, non devo accedere a certi siti.	
-9	AGR5_N	I am allowed to enter my information on any website if it helps me do my job.		Posso inserire mie informazioni su qualunque sito se questo mi aiuta nel mio lavoro.	
-10	AGR5_P	I must periodically review the privacy settings on my social media accounts.		Devo rivedere periodicamente le impostazioni della privacy sui miei account social.	
-11	AGR5_N	I can't be fired for something I post on social media.		Non posso essere licenziato per qualcosa che pubblico sui social.	
-12	AGR5_N	I can post what I want about work on social media.		Non posso pubblicare sui social quello che voglio riguardo al lavoro.	
-13	AGR5_P	When working in a public place, I have to keep my laptop with me at all times.		Quando lavoro in un luogo pubblico, devo portare con me il mio laptop ogni volta.	
-14	AGR5_N	I am allowed to send sensitive work files via a public Wi-Fi network.		Posso inviare file di lavoro sensibili attraverso una rete Wi-Fi pubblica.	
-15	AGR5_P	When working on a sensitive document, I must ensure that strangers can't see my laptop screen.		Quando lavoro ad un documento sensibile, devo assicurarmi che nessun estraneo possa vedere il mio schermo.	
-16	AGR5_N	Sensitive print-outs can be disposed of in the same way as non-sensitive ones.		I documenti cartacei sensibili possono essere smaltiti allo stesso modo di quelli non sensibili.	
-17	AGR5_P	If I find a USB stick in a public place, I shouldn't plug it into my work computer.		Se trovo una chiavetta USB in un luogo pubblico, non devo inserirla nel mio computer aziendale.	
-18	AGR5_N	I am allowed to leave print-outs containing sensitive information on my desk overnight.		Sono autorizzato a lasciare stampe contenenti informazioni sensibili sulla mia scrivania durante la notte.	
-19	AGR5_P	If I see someone acting suspiciously in my workplace, I should report it.		Se vedo qualcuno comportarsi in modo sospetto sul mio posto di lavoro, devo segnalarlo.	
-20	AGR5_P	I must not ignore poor security behaviour by my colleagues.		Non devo ignorare il cattivo comportamento in termini di sicurezza da parte dei miei colleghi.	
-21	AGR5_N	It's optional to report security incidents.		E' facoltativo segnalare incidenti di sicurezza.
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	AGR5_N	It's acceptable to use my social media passwords on my work accounts.		Accetto di usare la password dei miei social network per il mio account aziendale.		Приемливо е да използвам паролите си за социални медии в работните си акаунти.	
+2	AGR5_N	I am allowed to share my work passwords with colleagues.		Sono autorizzato a condividere le mie password lavorative con i colleghi.		Имам право да споделям моите работни пароли с колеги.	
+3	AGR5_P	A mixture of letters, numbers and symbols is necessary for work passwords.		Una combinazione di lettere, numeri e simboli è necessaria per una password aziendale.		За работни пароли е необходима комбинация от букви, цифри и символи.	
+4	AGR5_N	I am allowed to click on any links in emails from people I know.		Posso cliccare su qualunque link in messaggi di posta ricevuti da persone che conosco.		Имам право да щраквам върху всякакви връзки в имейли от хора, които познавам.	
+5	AGR5_P	I am not permitted to click on a link in an email from an unknown sender.		Non sono autorizzato a cliccare su un link in un messaggio di posta ricevuto da un mittente sconosciuto.		Нямам право да щраквам върху връзка в имейл от неизвестен подател.	
+6	AGR5_N	I am allowed to open email attachments from unknown senders.		Sono autorizzato ad aprire allegati in email da mittenti sconosciuti.		Имам право да отварям прикачени файлове от неизвестни податели.	
+7	AGR5_N	I am allowed to download any files onto my work computer if they help me to do my job.		Posso scaricare qualsiasi file sul mio computer di lavoro se mi aiuta a svolgere il mio lavoro.		Имам право да изтегля всякакви файлове на работния си компютър, ако ми помагат да си върша работата.	
+8	AGR5_P	While I am at work, I shouldnt't access certain websites.		Quando sto lavorando, non devo accedere a certi siti.		Докато съм на работа, не бива да влизам в определени уебсайтове.	
+9	AGR5_N	I am allowed to enter my information on any website if it helps me do my job.		Posso inserire mie informazioni su qualunque sito se questo mi aiuta nel mio lavoro.		Имам право да въвеждам информацията си на който и да е уебсайт, ако това ми помага да си върша работата.	
+10	AGR5_P	I must periodically review the privacy settings on my social media accounts.		Devo rivedere periodicamente le impostazioni della privacy sui miei account social.		Трябва периодично да преглеждам настройките за поверителност в профилите си в социалните медии.	
+11	AGR5_N	I can't be fired for something I post on social media.		Non posso essere licenziato per qualcosa che pubblico sui social.		Не мога да бъда уволнен за нещо, което публикувам в социалните мрежи.	
+12	AGR5_N	I can post what I want about work on social media.		Non posso pubblicare sui social quello che voglio riguardo al lavoro.		Мога да публикувам това, което искам за работата в социалните медии.	
+13	AGR5_P	When working in a public place, I have to keep my laptop with me at all times.		Quando lavoro in un luogo pubblico, devo portare con me il mio laptop ogni volta.		Когато работя на обществено място, трябва непрекъснато да държа лаптопа си до себе си.	
+14	AGR5_N	I am allowed to send sensitive work files via a public Wi-Fi network.		Posso inviare file di lavoro sensibili attraverso una rete Wi-Fi pubblica.		Имам право да изпращам чувствителни работни файлове чрез обществена Wi-Fi мрежа.	
+15	AGR5_P	When working on a sensitive document, I must ensure that strangers can't see my laptop screen.		Quando lavoro ad un documento sensibile, devo assicurarmi che nessun estraneo possa vedere il mio schermo.		Когато работя върху чувствителен документ, трябва да се уверя, че непознатите не могат да видят екрана на моя лаптоп.	
+16	AGR5_N	Sensitive print-outs can be disposed of in the same way as non-sensitive ones.		I documenti cartacei sensibili possono essere smaltiti allo stesso modo di quelli non sensibili.		Чувствителните разпечатки могат да се изхвърлят по същия начин като нечувствителните.	
+17	AGR5_P	If I find a USB stick in a public place, I shouldn't plug it into my work computer.		Se trovo una chiavetta USB in un luogo pubblico, non devo inserirla nel mio computer aziendale.		Ако намеря USB памет на обществено място, не трябва да го включвам в работния си компютър.	
+18	AGR5_N	I am allowed to leave print-outs containing sensitive information on my desk overnight.		Sono autorizzato a lasciare stampe contenenti informazioni sensibili sulla mia scrivania durante la notte.		Имам право да оставя разпечатки, съдържащи чувствителна информация, на бюрото си през нощта.	
+19	AGR5_P	If I see someone acting suspiciously in my workplace, I should report it.		Se vedo qualcuno comportarsi in modo sospetto sul mio posto di lavoro, devo segnalarlo.		Ако видя някой да се държи подозрително на моето работно място, трябва да съобщя за това.	
+20	AGR5_P	I must not ignore poor security behaviour by my colleagues.		Non devo ignorare il cattivo comportamento in termini di sicurezza da parte dei miei colleghi.		Не трябва да пренебрегвам лошото поведение по отношение на сигурността от страна на моите колеги.	
+21	AGR5_N	It's optional to report security incidents.		E' facoltativo segnalare incidenti di sicurezza.		Не е задължително да съобщавате за инциденти със сигурността.	

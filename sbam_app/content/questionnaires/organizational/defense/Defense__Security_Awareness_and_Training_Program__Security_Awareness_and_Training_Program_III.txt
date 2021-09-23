@@ -1,7 +1,7 @@
-id	type	text_en	options_en	text_it	options_it
-1	BOOL_P	Do you organize relevant trainings and seminars for the employees?	 	Organizzi corsi di formazione e seminari pertinenti per i dipendenti?	
-2	BOOL_P	Do you keep documentation of all the trainings and seminars conducted by the organization?	 	Conservi la documentazione di tutti i corsi di formazione e seminari condotti dall'organizzazione? 	
-3	BOOL_P	Do you examine the efficiency of conducted trainings and seminars, through relevant tests and questionnaires?		Valuti l'efficienza dei corsi di formazione e dei seminari realizzati, mediante l'uso di test e questionari pertinenti?	
-4	AGR5_P	Communication about the training program meets with employees' and management's satisfaction?		La comunicazione sul programma di formazione incontra la soddisfazione dei dipendenti e dei dirigenti?	
-5	AGR5_P	Governance arrangements meet with employees' and management's satisfaction?		I meccanismi di governo societario incontrano la soddisfazione dei dipendenti e dei dirigenti?	
-6	AGR5_P	Initiative benefits are well communicated?		I vantaggio dell'iniziativa sono ben comunicati?	
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	BOOL_P	Do you organize relevant trainings and seminars for the employees?	 	Organizzi corsi di formazione e seminari pertinenti per i dipendenti?		Организирате ли подходящи обучения и семинари за служителите?	
+2	BOOL_P	Do you keep documentation of all the trainings and seminars conducted by the organization?	 	Conservi la documentazione di tutti i corsi di formazione e seminari condotti dall'organizzazione? 		Водите ли документация за всички обучения и семинари, проведени от организацията?	
+3	BOOL_P	Do you examine the efficiency of conducted trainings and seminars, through relevant tests and questionnaires?		Valuti l'efficienza dei corsi di formazione e dei seminari realizzati, mediante l'uso di test e questionari pertinenti?		Изследвате ли ефективността на проведените обучения и семинари чрез съответни тестове и въпросници?	
+4	AGR5_P	Communication about the training program meets with employees' and management's satisfaction?		La comunicazione sul programma di formazione incontra la soddisfazione dei dipendenti e dei dirigenti?		Комуникацията за програмата за обучение удовлетворява ли служителите и ръководството?	
+5	AGR5_P	Governance arrangements meet with employees' and management's satisfaction?		I meccanismi di governo societario incontrano la soddisfazione dei dipendenti e dei dirigenti?		Уредбите за управление удовлетворява ли на служителите и ръководството?	
+6	AGR5_P	Initiative benefits are well communicated?		I vantaggio dell'iniziativa sono ben comunicati?		Ползите от инициативата добре ли са съобщени?	

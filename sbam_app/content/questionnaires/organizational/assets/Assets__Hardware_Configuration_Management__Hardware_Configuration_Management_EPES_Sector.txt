@@ -1,2 +1,2 @@
-id	type	text_en	options_en	text_it	options_it
-1	BOOL_P	Have you established and do you maintain secure configuration management processes (e.g. when servicing field devices or updating their firmware)?	 	Hai stabilito e gestisci processi di gestione della configurazione sicuri (ad es. durante la manutenzione dei dispositivi di campo o l'aggiornamento del firmware)?	
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	BOOL_P	Have you established and do you maintain secure configuration management processes (e.g. when servicing field devices or updating their firmware)?	 	Hai stabilito e gestisci processi di gestione della configurazione sicuri (ad es. durante la manutenzione dei dispositivi di campo o l'aggiornamento del firmware)?		Създали ли сте и поддържате ли процеси за защитено управление на конфигурацията (например при обслужване на полеви устройства или актуализиране на техния фърмуер)?	

@@ -1,11 +1,11 @@
-id	type	text_en	options_en	text_it	options_it
-1	RISK7_N	Drinking heavily at a social function.		Bere molto  durante un'attivit� sociale.	
-2	RISK7_N	Disagreeing with an authority figure on a major issue.		Essere in disaccordo con un superiore su una questione importante.	
-3	RISK7_N	Driving a car without wearing a seat belt.		Guidare l'auto senza indossare la cintura di sicurezza.	
-4	RISK7_N	Riding a motorcycle without a helmet.		Andare in motocicletta senza casco.	
-5	RISK7_N	Choosing a career that you truly enjoy over a more secure one.		Scegliere una carriera che piace davvero piuttosto che una pi� sicura.	
-6	RISK7_N	Speaking your mind about an unpopular issue in a meeting at work.		Esprimere la propria opinione in una riunione di lavoro su un tema impopolare.	
-7	RISK7_N	Sunbathing without sunscreen.		Prendere il sole senza la crema solare.	
-8	RISK7_N	Walking home alone at night in an unsafe area of town.		Camminare verso casa da soli di notte, in una zona pericolosa della citt�.	
-9	RISK7_N	Moving to a city far away from your extended family.		Trasferirsi lontano dalla propria famiglia.	
-10	RISK7_N	Starting a new career in your mid-thirties.		Iniziare una nuova carriera lavorativa a trent'anni.
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	RISK7_N	Drinking heavily at a social function.		Bere molto  durante un'attività sociale.		Пиенето много на обществено събитие.	
+2	RISK7_N	Disagreeing with an authority figure on a major issue.		Essere in disaccordo con un superiore su una questione importante.		Несъгласие с човек на властта по основен въпрос.	
+3	RISK7_N	Driving a car without wearing a seat belt.		Guidare l'auto senza indossare la cintura di sicurezza.		Шофиране на кола, без да е сложен колан.	
+4	RISK7_N	Riding a motorcycle without a helmet.		Andare in motocicletta senza casco.		Каране на мотоциклет без каска.	
+5	RISK7_N	Choosing a career that you truly enjoy over a more secure one.		Scegliere una carriera che piace davvero piuttosto che una più sicura.		Избиране на кариера, която наистина ви харесва, пред по-сигурна.	
+6	RISK7_N	Speaking your mind about an unpopular issue in a meeting at work.		Esprimere la propria opinione in una riunione di lavoro su un tema impopolare.		Споделяте мислите си за непопулярен проблем на среща на работното място.	
+7	RISK7_N	Sunbathing without sunscreen.		Prendere il sole senza la crema solare.		Слънчеви бани без слънцезащитен крем.	
+8	RISK7_N	Walking home alone at night in an unsafe area of town.		Camminare verso casa da soli di notte, in una zona pericolosa della città.		Разхождайки се сам през нощта в небезопасен район на града.	
+9	RISK7_N	Moving to a city far away from your extended family.		Trasferirsi lontano dalla propria famiglia.		Преместване в град, далеч от вашето разширено семейство.	
+10	RISK7_N	Starting a new career in your mid-thirties.		Iniziare una nuova carriera lavorativa a trent'anni.		Започване на нова кариера в средата на тридесетте.	

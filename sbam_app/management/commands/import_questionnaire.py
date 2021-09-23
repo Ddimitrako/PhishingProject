@@ -62,7 +62,7 @@ class Command(BaseCommand):
             )
             questionnaire.save()
 
-        fd = open(filename)
+        fd = open(filename, encoding="utf-8")
         rd = csv.reader(fd, delimiter="\t", quotechar='"')
         headers = next(rd)
         # Check file as empty
