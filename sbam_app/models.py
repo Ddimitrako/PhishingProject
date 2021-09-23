@@ -67,6 +67,9 @@ class Campaign(Model):
         default=False,
         help_text=_('Designates whether this campaign has been cancelled.'))
 
+
+    kafkaStatus = CharField(_('kafka status'), max_length=10, help_text=_('Kafka status'), null=True)
+
     @property
     def status(self):
         if self.is_cancelled:

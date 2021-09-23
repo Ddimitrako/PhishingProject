@@ -55,3 +55,6 @@ kafka-python
 
 #django Rest Framework
 djangorestframework==3.12.4
+
+#celery
+celery==3.1.26.post2

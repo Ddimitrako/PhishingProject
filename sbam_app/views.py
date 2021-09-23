@@ -460,7 +460,10 @@ def manager_dashboard(request):
     active_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('end_date') if c.status=='ACTIVE']
     finished_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('-end_date') if c.status=='FINISHED']
     future_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('start_date') if c.status=='NOT_STARTED']
-
+    print(len(finished_campaigns))
+    # import pdb
+    # pdb.set_trace()
+    print("##############################")
     attack_patterns = ActiveAttackPatterns.objects.all().order_by('-score')
     threats = ActiveInsiderThreats.objects.all().order_by('-score')
 
@@ -1509,21 +1512,68 @@ class GetCampaigns(APIView):
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)
 
-def kafka_producer(request):
-    producer = KafkaProducer(bootstrap_servers='bdo-dev.epu.ntua.gr:9092',
+
+from sbam.settings.settings import *
+#call kafka_producer when a campaign finish
+#call kafka_producer when all users have completed their part for a specific campaign
+# A WAY
+# run sheduled task
+#query -->campaigns where campaign.is_cancelled==false &  campaing.finished==True kafka status!=send
+#   if query list not empty for every campaign
+#        call kafka_producer
+#       update kafkaSendStatus=true in campaign model
+# B WAY
+# when user finish campaign check if he is the final user to finish
+# if true call kafka_producer
+from celery.schedules import crontab
+from celery.task import periodic_task
+
+@periodic_task(run_every=crontab(hour=12, minute=00, day_of_week=[0,1,2,3,4,5,6]))
+def CheckFinishedCampaigns(request):
+    for c in Campaign.objects.all().filter(kafkaStatus__isnull=True):
+        if c.status == 'FINISHED':
+            kafka_producer(campaign_id=c.id)
+            # c.kafkaStatus = 'Send'
+            # c.save()
+
+    return JsonResponse({'success': 'True'}, status=200)
+
+def kafka_producer(campaign_id=None):
+    print("This function run every day at 12:00")
+    domainName =" "
+    bootstrapServer = BOOTSTRAP_SERVERS
+    topicName = TOPIC_NAME
+    topicVerMajor = TOPIC_VER_MAJOR
+    topicVerMinor = TOPIC_VER_MINOR
+
+    producer = KafkaProducer(bootstrap_servers=bootstrapServer,
                              value_serializer=lambda x: json.dumps(x).encode('utf-8'))
+
     data = {
         'header': {
-            'topicName': 'TOP06_02_SIEM_DATA_PROCESSED',
-            'topicVerMajor': 1,
-            'topicVerMinor': 0,
+            'topicName': topicName,
+            'topicVerMajor': topicVerMajor,
+            'topicVerMinor': topicVerMinor,
             'sender': 'SBA',
             'sentUtc': timezone.now().strftime('%Y-%m-%d%I:%M%p'),
             'msgType': 'info',
         },
-        'body': {}
+        'body': {
+            "msgDescription": "Campaign Completion",
+            "attachments": [{
+                "campaignID": campaign_id,
+                "type": "urls/data",
+                "urls": [{
+                        'Organization Report': str(domainName)+'/api/metrics/organization/',
+                        'Campaign Report': str(domainName)+'/api/metrics/campaigns/'+str(campaign_id)+'/',
+
+                }],
+            }],
+            "status": "completed",
+
+        }
     }
-    producer.send('chris_test', value=data)
+    producer.send(topicName, value=data)
     return JsonResponse({'success': 'True'}, status=200)
 
 

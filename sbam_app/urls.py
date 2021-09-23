@@ -60,6 +60,6 @@ urlpatterns = [
     path('api/metrics/group/<group_id>/', GetGroupReport.as_view(), name='group_report'),
     path('api/metrics/campaigns/', GetCampaigns.as_view(), name='get_campaigns'),
 
-    path('comm/', kafka_producer, name='comm')
+    path('kafka/', CheckFinishedCampaigns, name='kafka')
 
 ]
