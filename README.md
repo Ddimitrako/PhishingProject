@@ -79,3 +79,45 @@ you shall need to create a workplace with the below requirements:
 
 
 10. Enjoy developing!
+
+
+## Kafka Installation Guide and  Testing _(for developers)_
+STEP 1: Install JAVA 8 SDK
+
+STEP 2: 
+
+    Download Apache Kafka Binaries,   
+    Create "kafka" folder in C directory,
+	Paste all kafka binaries there
+
+STEP 3: 
+
+     Create Data folder for Zookeeper and Apache Kafka,	
+	 Then Create “data” folder inside kafka folder,
+	 and Kafka / Zookeeper directories inside data folder
+
+STEP 4:Change the default configuration value
+
+	A)Update zookeeper data directory path in “config/zookeeper.Properties” configuration file to -->	dataDir=C:\kafka\data\zookeeper
+	B)Update Apache Kafka log file path in “config/server.properties” configuration file to --> log.dirs=C:\kafka\data\kafka
+
+STEP 5:	Start Zookeeper Server
+	
+    open cmd - run as administrator
+	cd to C:\kafka\bin\windows>
+	type and run to start server--> zookeeper-server-start.bat  ../../config/zookeeper.properties
+
+STEP 6:Start Kafka Server
+
+    type and run to start server--> kafka-server-start.bat  ../../config/server.properties
+
+To examine KAFKA messages:
+
+    bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic KTOP04-0 --from-beginning
+    or  download kafkamagic https://www.kafkamagic.com/download/?v2
+    run on http://localhost:5000
+
+TroubleShooting 
+
+    Message -->Kafka - Broker fails because all log dirs have failed
+    delete folders kafkadatakafka & kafkadatazookeeper (they will reproduce itselfs)
