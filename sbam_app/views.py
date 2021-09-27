@@ -1525,21 +1525,30 @@ from sbam.settings.settings import *
 # B WAY
 # when user finish campaign check if he is the final user to finish
 # if true call kafka_producer
-from celery.schedules import crontab
-from celery.task import periodic_task
 
-@periodic_task(run_every=crontab(hour=12, minute=00, day_of_week=[0,1,2,3,4,5,6]))
-def CheckFinishedCampaigns(request):
-    for c in Campaign.objects.all().filter(kafkaStatus__isnull=True):
-        if c.status == 'FINISHED':
+
+from apscheduler.schedulers.background import BackgroundScheduler
+
+def StartRepeatTask():
+
+    scheduler = BackgroundScheduler()
+    print("Start sheduler")
+    kafkaJob = scheduler.add_job(CheckFinishedCampaigns, 'interval', minutes=1440)
+    scheduler.start()
+    #kafkaJob.remove() #to stop kafka job
+    # CheckFinishedCampaigns(repeat=10)
+    # return JsonResponse({'Kafka Sheduled job Starter $ repeat every 24hrs': 'True'}, status=200)
+
+
+def CheckFinishedCampaigns():
+    print("CheckFinishedCampaigns STARTED")
+    for c in Campaign.objects.all(): #.filter(kafkaStatus__isnull=True):
+        if c.status == 'FINISHED' and c.kafkaStatus != 'Send':
             kafka_producer(campaign_id=c.id)
-            # c.kafkaStatus = 'Send'
-            # c.save()
-
-    return JsonResponse({'success': 'True'}, status=200)
+            c.kafkaStatus = 'Send'
+            c.save()
 
 def kafka_producer(campaign_id=None):
-    print("This function run every day at 12:00")
     domainName =" "
     bootstrapServer = BOOTSTRAP_SERVERS
     topicName = TOPIC_NAME
@@ -1574,7 +1583,7 @@ def kafka_producer(campaign_id=None):
         }
     }
     producer.send(topicName, value=data)
-    return JsonResponse({'success': 'True'}, status=200)
+    # return JsonResponse({'success': 'True'}, status=200)
 
 
 def IdentifiedThreats(request):

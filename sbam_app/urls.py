@@ -60,6 +60,9 @@ urlpatterns = [
     path('api/metrics/group/<group_id>/', GetGroupReport.as_view(), name='group_report'),
     path('api/metrics/campaigns/', GetCampaigns.as_view(), name='get_campaigns'),
 
-    path('kafka/', CheckFinishedCampaigns, name='kafka')
+    path('kafkaStart/', StartRepeatTask, name='kafka')
 
 ]
+
+from sbam_app.views import StartRepeatTask
+StartRepeatTask()

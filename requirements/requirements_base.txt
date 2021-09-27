@@ -58,3 +58,6 @@ djangorestframework==3.12.4
 
 #celery
 celery==3.1.26.post2
+
+#APScheduler
+APScheduler==3.8.0
