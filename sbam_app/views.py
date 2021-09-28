@@ -1554,21 +1554,21 @@ def kafka_producer(campaign_id=None):
     topicName = TOPIC_NAME
     topicVerMajor = TOPIC_VER_MAJOR
     topicVerMinor = TOPIC_VER_MINOR
-    # messageName1='MSG04_SBA_MSG'
-    # messageName2='MSG04_01_SBA_DATA_GATHERED'
-    # messageName3='MSG04_02_SBA_DATA_PUBLISHED'
+    messageName1='MSG04_SBA_MSG'
+    messageName2='MSG04_01_SBA_DATA_GATHERED'
+    messageName3='MSG04_02_SBA_DATA_PUBLISHED'
 
     producer = KafkaProducer(bootstrap_servers=bootstrapServer,
                              value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
     data = {
         'header': {
-            # 'messageName': messageName3,
             'topicName': topicName,
             'topicVerMajor': topicVerMajor,
             'topicVerMinor': topicVerMinor,
+            'messageName': messageName2,
             'sender': 'SBA',
-            'sentUtc': timezone.now().strftime('%Y-%m-%d%I:%M%p'),
+            'sentUtc': timezone.now().strftime('%Y-%m-%d %H:%M:%S'),
             'msgType': 'info',
         },
         'body': {
@@ -1702,3 +1702,4 @@ def threats_calculation():
         active_threat = ActiveInsiderThreats(threat=threat, score=recognized_threats[threat]['score'])
         active_threat.save()
 
+    CheckFinishedCampaigns()
