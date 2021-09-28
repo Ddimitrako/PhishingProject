@@ -1566,7 +1566,6 @@ def kafka_producer(campaign_id=None):
             'topicName': topicName,
             'topicVerMajor': topicVerMajor,
             'topicVerMinor': topicVerMinor,
-            'messageName': messageName2,
             'sender': 'SBA',
             'sentUtc': timezone.now().strftime('%Y-%m-%d %H:%M:%S'),
             'msgType': 'info',
