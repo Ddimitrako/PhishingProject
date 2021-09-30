@@ -14,10 +14,10 @@ class DomainTranslationOptions(TranslationOptions):
 translator.register(Domain, DomainTranslationOptions)
 
 
-# class QuestionnaireTranslationOptions(TranslationOptions):
-#     fields = ['title']
-#
-# translator.register(Questionnaire, QuestionnaireTranslationOptions)
+class QuestionnaireTranslationOptions(TranslationOptions):
+     fields = ['title']
+
+translator.register(Questionnaire, QuestionnaireTranslationOptions)
 
 
 class QuestionTranslationOptions(TranslationOptions):

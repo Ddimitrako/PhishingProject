@@ -1,0 +1,109 @@
+No	title_en	title_it	title_bg
+1	Access Management EPES Sector	Controllo accessi e credenziali nel settore Elettrico ed Energetico (EPES)	Управление на достъпа в сектор електроенергийни системи (EPES)
+2	Access Management General	Controllo accessi e credenziali	Управление на достъпа - общи положения
+3	Access Rights	Diritto di accesso	Права за достъп
+4	Log-on Procedures	Procedure di registrazione	Процедури за влизане
+5	Account Management General	Gestione dei profili utente	Управление на достъпа - общи положения
+6	User Account Deactivation	Disattivazione dei profili utente	Деактивиране на потребителския акаунт
+7	Communication	Comunicazione	Комуникация
+8	External Environment Connections	Connessioni con l'ambiente esterno	Връзки с външна среда
+9	Password Exposure	Esposizione delle password	Излагане на парола
+10	Password Robustness	Sicurezza delle password	Устойчивост на паролата
+11	Privileged Account Management I	Gestione dei profili amministratore (o privilegiati) I	Управление на привилегировани акаунти I
+12	Privileged Account Management II	Gestione dei profili amministratore (o privilegiati) II	Управление на привилегировани акаунти II
+13	Role Segregation	Separazione dei ruoli	Разделяне на ролите
+14	Third-Party Relationships I	Relazioni con terze parti I	Връзки с трети страни I
+15	Third-Party Relationships II	Relazioni con terze parti II	Връзки с трети страни II
+16	Wireless Access Management EPES Sector	Controllo accessi e credenziali Wireless nel settore Elettrico ed Energetico (EPES)	Управление на безжичния достъп в сектор електроенергийни системи (EPES)
+17	Wireless Access Management General	Controllo accessi e credenziali Wireless	Управление на безжичния достъп - общи положения
+18	Audit Logs Management	Gestione dei registri di controllo	Управление на одитните дневници
+19	Incident Response and Management I	Risposta e gestione degli incidenti I	Реагиране на инциденти и управление I
+20	Incident Response and Management II	Risposta e gestione degli incidenti I	Реагиране на инциденти и управление II
+21	Penetration Tests EPES Sector	Test di penetrazione nel settore Elettrico ed Energetico (EPES)	Тестове за проникване сектор EPES
+22	Penetration Tests General	Test di penetrazione	Тестове за проникване общи положения
+23	Reporting Mechanisms	Meccanismi di reporting	Механизми за докладване
+24	Security Management Maturity	Maturità del sistema di gestione della sicurezza	Зрялост на управлението на сигурността
+25	Compliance Review	Revisione della compliance	Преглед на съответствието
+26	Documentation Fulfilness	Completezza della documentazione	Пълност на документацията
+27	Operating Procedures	Procedure operative	Оперативни процедури
+28	Organizational Culture and Top Management Support	Cultura organizzativa e supporto del top-management	Организационна култура и подкрепа на топ мениджмънта
+29	Risk Assessment I	Valutazione del rischio I	Оценка на риска I
+30	Risk Assessment II	Valutazione del rischio II	Оценка на риска II
+31	Backup Mechanisms	Meccanismi di ripristino e backup	Механизми за архивиране
+32	Capacity Management	Gestione delle capacità	Управление на промените
+33	Change Management	Change management	Управление на промените
+34	Continuous Vulnerability Management	Gestione continua della vulnerabilità	Непрекъснато управление на уязвимости
+35	Business Continuity and Disaster Recovery EPES Sector	Sistemi di continuità e recupero nel settore Elettrico ed Energetico (EPES)	Непрекъснатост на бизнеса и възстановяване при бедствия EPES сектор
+36	Business Continuity and Disaster Recovery General I	Sistemi di continuità e recupero I	Непрекъснатост на бизнеса и възстановяване при бедствия - общи положения I
+37	Business Continuity and Disaster Recovery General II	Sistemi di continuità e recupero II	Непрекъснатост на бизнеса и възстановяване при бедствия - общи положения II
+38	Boundary Defense	Perimetrazione dei confini informatici	Гранична защита
+39	Cryptography	Criptografia	Криптография
+40	Email and Web Browser Resilience	Resilienza dei sistemi mail e web-browser	Устойчивост на имейл и уеб браузър
+41	Information Security Policy and Compliance	Politiche e comformità dei sistemi di sicurezza informatica	Политика за информационна сигурност и съответствие
+42	Malware Defense	Difesa dai malware	Защита от зловреден софтуер
+43	Security Awareness and Training Program I	Programmi di conoscenza e formazione sulla sicurezza I 	Осведиоменост за сигурността и програма за обучение I
+44	Security Awareness and Training Program II	Programmi di conoscenza e formazione sulla sicurezza II	Осведиоменост за сигурността и програма за обучение II
+45	Security Awareness and Training Program III	Programmi di conoscenza e formazione sulla sicurezza III	Осведиоменост за сигурността и програма за обучение III
+46	Application Software Security EPES Sector	Applicazioni di sicurezza software nel settore Elettrico ed Energetico (EPES)	Сигурност на приложния софтуер в сектор електроенергийни системи (EPES)
+47	Application Software Security I	Applicazioni di sicurezza software I	Сигурност на приложния софтуер I
+48	Application Software Security II	Applicazioni di sicurezza software II	Сигурност на приложния софтуер II
+49	Data Security and Privacy EPES Sector	Data security e privacy nel settore Elettrico ed Energetico (EPES)	Сигурност на данните и поверителност  в сектор електроенергийни системи (EPES)
+50	Data Security and Privacy General I	Data security e privacy I	Сигурност на данните и поверителност - общи положения I
+51	Data Security and Privacy General II	Data security e privacy II	Сигурност на данните и поверителност - общи положения II
+52	Hardware Assets Management General I	Gestione degli hardware e degli asset I	Управление на хардуерните активи - общи положения I
+53	Hardware Assets Management General II	Gestione degli hardware e degli asset II	Управление на хардуерните активи - общи положения II
+54	Mobile Devices	Dispositivi mobili	Мобилни устройства
+55	Hardware Configuration Management EPES Sector	Configurazione degli hardware nel settore Elettrico ed Energetico (EPES)	Управление на хардуерната конфигурация  в сектор електроенергийни системи (EPES)
+56	Hardware Configuration Management General	Configurazione degli hardware	Управление на хардуерната конфигурация - общи положения
+57	Information Resources Management	Gestione delle risorse informative	Управление на информационните ресурси
+58	Network Configuration Management EPES Sector	Gestione della configurazione di rete nel settore Elettrico ed Energetico (EPES)	управление на мрежовата конфигурация в сектор електроенергийни системи (EPES)
+59	Network Configuration Management General	Gestione della configurazione di rete (generale)	Network Configuration Management 
+60	Network Infrastructure Management	Gestione della configurazione di rete	Управление на мрежовата инфраструктура
+61	Personnel Security	Sicurezza del personale	Сигурност на персонала
+62	Visitors and External Contractors	Visitatori esterni	Посетители и външни контрагенти
+63	Building Facilities Security	Sicurezza degli edifici aziendali	Сигурност на сградните съоръжения
+64	Critical and Supporting Utilities Security	Sicurezza e supporto critico delle utility	Физическа безопасност и сигурност EPES сектор
+65	Physical Safety and Security EPES Sector	Sicurezza fisica e virtuale nel settore Elettrico ed Energetico (EPES)	Физическа безопасност и сигурност EPES сектор
+66	Physical Safety and Security General I	Sicurezza fisica e virtuale I	Физическа безопасност и сигурност - общи положения I
+67	Physical Safety and Security General II	Sicurezza fisica e virtuale II	Физическа безопасност и сигурност - общи положения II
+68	Software Assets Management	Gestione dei software	Управление на софтуерни активи
+69	Roles and Responsibilities Awareness	Conaspevolezza di ruoli e responsabilità	Познаване на ролите и отговорностите
+70	Big Five Personality Test	Test di personalità "big five"	Личностен тест по Голямата Петорка
+71	Security Agent Survey	Questionario sugli agenti di sicurezza	Проучване на агента за сигурност
+72	Security Behaviour General	Comportamenti di sicurezza	Поведение на сигурността - общи положения
+73	Security Behaviour Survey	Questionario sui comportamenti di sicurezza	Проучване на поведението на сигурността
+74	Cybersecurity Awareness I	Consapevolezza della cybersecurity I	Информираност за киберсигурността I
+75	Cybersecurity Awareness II	Consapevolezza della cybersecurity II	Информираност за киберсигурността II
+76	General Security Quiz Advanced	Quiz sulla sicurezza generale avanzato	Тест за обща сигурност за напреднали
+77	General Security Quiz Starter	Quiz sulla sicurezza generale base	Тест за обща сигурност за начинаещи
+78	Privacy Quiz Advanced	Quiz sulla privacy avanza	Тест за поверителност за напреднали
+79	Privacy Quiz Starter	Quiz sulla privacy base	Тест за поверителност за начинаещи
+80	Employee Climate I	Clima tra i dipendenti I	Климат на служителите I
+81	Employee Climate II	Clima tra i dipendenti II	Климат на служителите II
+82	Employee Climate III	Clima tra i dipendenti III	Климат на служителите III
+83	Employee Satisfaction Survey	Questionario sulla soddisgazione dei dipendenti	Проучване на удовлетвореността на служителите
+84	Policies and Procedures Awareness I	Consapevolezza di procedure e politiche I	Съзнаване на политиките и процедурите I
+85	Policies and Procedures Awareness II	Consapevolezza di procedure e politiche II	Съзнаване на политиките и процедурите II
+86	Policies and Procedures Compliance Survey	Questionario sulla consapevolezza delle procedure e politiche	Проучване за спазване на политиките и процедурите
+87	Security Skills Evaluation Test I	Test di auto-valutazione delle competenze di sicurezza informatica I	Тест за оценка на уменията за сигурност I
+88	Security Skills Evaluation Test II	Test di auto-valutazione delle competenze di sicurezza informatica II	Тест за оценка на уменията за сигурност II
+89	Training Completion and Scoring	Compltetezza e autovalutazione della formazione	Завършване и оценяване на обучението
+90	Employee Profile	Profilazione dei dipendenti	Профил на служителя
+91	HAIS-Q Knowledge	Questionario sugli aspetti umani della sicurezza informatica	HAIS-Q Знания
+92	BIS	BIS	BIS
+93	CFC	CFC	CFC
+94	Dark Triad	Dark Triad	Тъмна триада
+95	DoSpeRT EF RP Scale	DoSpeRT EF RP Scale	DoSpeRT HS RT скала
+96	DoSpeRT EF RT Scale	DoSpeRT EF RT Scale	DoSpeRT HS RT скала
+97	DoSpeRT HS RP Scale	DoSpeRT HS RP Scale	DoSpeRT HS RT скала
+98	DoSpeRT HS RT Scale	DoSpeRT HS RT Scale	DoSpeRT HS RT скала
+99	DoSpeRT R RP Scale	DoSpeRT R RP Scale	DoSpeRT R RT скала
+100	DoSpeRT R RT Scale	DoSpeRT R RT Scale	DoSpeRT R RT скала
+101	GDMS	GDMS	GDMS
+102	HAIS-Q Attitude	HAIS-Q Attitude	HAIS-Q(Въпросник за човешките аспекти на информационната сигурност) Отношение
+103	NFC	NFC	NFC
+104	Security Behaviour Intentions Scale	Security Behaviour Intentions Scale	Скала за намерения за поведение на сигурността
+105	Account Use Policies	Politiche di utilizzo degli account	Правила за използване на акаунта
+106	HAIS-Q Behaviour	Comportamento HAIS-Q	HAIS-Q(Въпросник за човешките аспекти на информационната сигурност) Поведение
+107	Distinction of Dev Test and Op Envs	Distinzione tra ambienti di test/sviluppo ed ambienti operativi	Разграничение на Dev Test и Op Envs
+

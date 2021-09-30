@@ -10,8 +10,10 @@ from sbam_app.models import *
 
 if os.name == 'nt':
     DEFAUL_BASE_DIR = '.\sbam_app\content\questionnaires'
+    DEFAULT_QUEST_TITLES_FILE = '.\sbam_app\content\questionnaires.txt'
 else:
     DEFAUL_BASE_DIR = './sbam_app/content/questionnaires'
+    DEFAULT_QUEST_TITLES_FILE = './sbam_app/content/questionnaires.txt'
 
 
 class Command(BaseCommand):
@@ -20,31 +22,56 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('-f', '--file', type=str, help=_('The tab-separated file of the questionnaire'))
         parser.add_argument('-d', '--dir', type=str, help=_('The directory hosting questionnaires'))
+        parser.add_argument('-t', '--titles', type=str, help=_('The tab-separated file containing the questionnaire titles translations'))
 
     def handle(self, *args, **kwargs):
-        
         filename = kwargs['file']
         dir = kwargs['dir']
+        quest_titles_file = kwargs['titles']
 
         directory = dir if dir else DEFAUL_BASE_DIR
+        quest_titles_file = quest_titles_file if quest_titles_file else DEFAULT_QUEST_TITLES_FILE
+
+        title_lang = title_trans = ''
+        if os.path.exists(quest_titles_file):
+            title_lang, title_trans = self.get_quest_titles(quest_titles_file)
 
         if filename:
             with transaction.atomic():
-                self.import_quest(filename)
+                self.import_quest(filename, title_lang, title_trans)
             self.stdout.write(self.style.SUCCESS('Successfully imported questionnaire from file: ' + filename))
         elif directory:
             for root, directories, files in os.walk(directory):
                 for file in files:
                     with transaction.atomic():
                         filepath = os.path.join(root, file)
-                        self.import_quest(filepath)
+                        self.import_quest(filepath, title_lang, title_trans)
                         self.stdout.write(self.style.SUCCESS('Successfully imported: ' + file))
             self.stdout.write(self.style.SUCCESS('Successfully imported all questionnaires from root directory: ' + directory))
         else:
             self.stdout.write(self.style.ERROR('No filename specified or all flag used!'))
 
 
-    def import_quest(self, filename):
+    def get_quest_titles(self, quest_titles_file):
+        fd = open(quest_titles_file, encoding="utf-8")
+        rd = csv.reader(fd, delimiter="\t", quotechar='"')
+
+        headers = next(rd)
+        if headers == None:
+            raise Exception("The file is empty")
+
+        title_lang = headers[2:]
+        title_trans = dict();
+
+        for i, row in enumerate(rd):
+            if len([x for x in row if x.strip() != '']) == 0:
+                continue
+            title_trans[row[1]] = row[2:]
+
+        return title_lang, title_trans
+
+
+    def import_quest(self, filename, title_lang, title_trans):
         file_parts = filename.split('__')
         domain = file_parts[1].replace('_', ' ')
         questionnaire_title = file_parts[2].split('.')[0].replace('_', ' ')
@@ -60,7 +87,13 @@ class Command(BaseCommand):
                 title=questionnaire_title,
                 domain=Domain.objects.get(title__iexact=domain)
             )
-            questionnaire.save()
+
+        if title_lang != '':
+            quest_title_trans = title_trans[questionnaire_title]
+            for i in range(0, len(title_lang)):
+                setattr(questionnaire, title_lang[i], quest_title_trans[i])
+
+        questionnaire.save()
 
         fd = open(filename, encoding="utf-8")
         rd = csv.reader(fd, delimiter="\t", quotechar='"')
