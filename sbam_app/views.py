@@ -1514,26 +1514,14 @@ class GetCampaigns(APIView):
 
 
 from sbam.settings.settings import *
-#call kafka_producer when a campaign finish
-#call kafka_producer when all users have completed their part for a specific campaign
-# A WAY
-# run sheduled task
-#query -->campaigns where campaign.is_cancelled==false &  campaing.finished==True kafka status!=send
-#   if query list not empty for every campaign
-#        call kafka_producer
-#       update kafkaSendStatus=true in campaign model
-# B WAY
-# when user finish campaign check if he is the final user to finish
-# if true call kafka_producer
-
-
 from apscheduler.schedulers.background import BackgroundScheduler
+from django.contrib.sites.models import Site
+
 
 def StartRepeatTask():
-
     scheduler = BackgroundScheduler()
     print("Start sheduler")
-    kafkaJob = scheduler.add_job(CheckFinishedCampaigns, 'interval', minutes=1440)
+    kafkaJob = scheduler.add_job(CheckFinishedCampaigns, 'interval', minutes=int(FREQUENCY_IN_MINUTES) ,id='kafka_Job',max_instances = 2,replace_existing=True)
     scheduler.start()
     #kafkaJob.remove() #to stop kafka job
     # CheckFinishedCampaigns(repeat=10)
@@ -1542,28 +1530,28 @@ def StartRepeatTask():
 
 def CheckFinishedCampaigns():
     print("CheckFinishedCampaigns STARTED")
+    bootstrapServer = BOOTSTRAP_SERVERS
+    print(bootstrapServer)
+    producer = KafkaProducer(bootstrap_servers=[bootstrapServer],api_version=(0,11,5),
+                             value_serializer=lambda x: json.dumps(x).encode('utf-8'))
     for c in Campaign.objects.all(): #.filter(kafkaStatus__isnull=True):
         if c.status == 'FINISHED' and c.kafkaStatus != 'Send':
-            kafka_producer(campaign_id=c.id)
+            print("Campaign ID-->"+str(c.id))
+            kafka_producer(producer,campaign_id=c.id)
             c.kafkaStatus = 'Send'
             c.save()
+    # return JsonResponse({'Kafka Sheduled job Starter $ repeat every 24hrs': 'True'}, status=200)
 
-def kafka_producer(campaign_id=None):
-    domainName =" "
-    bootstrapServer = BOOTSTRAP_SERVERS
-    topicName = TOPIC_NAME
+def kafka_producer(producer,campaign_id=None):
+    current_site = Site.objects.get_current()
+    topicName = str(TOPIC_NAME)
     topicVerMajor = TOPIC_VER_MAJOR
     topicVerMinor = TOPIC_VER_MINOR
-    messageName1='MSG04_SBA_MSG'
-    messageName2='MSG04_01_SBA_DATA_GATHERED'
-    messageName3='MSG04_02_SBA_DATA_PUBLISHED'
-
-    producer = KafkaProducer(bootstrap_servers=bootstrapServer,
-                             value_serializer=lambda x: json.dumps(x).encode('utf-8'))
+    messageName='MSG04_01_SBA_DATA_GATHERED'
 
     data = {
         'header': {
-            'topicName': topicName,
+            'messageName': messageName,
             'topicVerMajor': topicVerMajor,
             'topicVerMinor': topicVerMinor,
             'sender': 'SBA',
@@ -1571,13 +1559,14 @@ def kafka_producer(campaign_id=None):
             'msgType': 'info',
         },
         'body': {
+            "msgType": "Message",
             "msgDescription": "Campaign Completion",
             "attachments": [{
                 "campaignID": campaign_id,
                 "type": "urls/data",
                 "urls": [{
-                        'Organization Report': str(domainName)+'/api/metrics/organization/',
-                        'Campaign Report': str(domainName)+'/api/metrics/campaigns/'+str(campaign_id)+'/',
+                        'Organization Report': str(current_site.domain)+'/api/metrics/organization/',
+                        'Campaign Report': str(current_site.domain)+'/api/metrics/campaigns/'+str(campaign_id)+'/',
 
                 }],
             }],
@@ -1586,6 +1575,7 @@ def kafka_producer(campaign_id=None):
         }
     }
     producer.send(topicName, value=data)
+    print("kafka send Data")
     # return JsonResponse({'success': 'True'}, status=200)
 
 
