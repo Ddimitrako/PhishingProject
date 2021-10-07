@@ -1515,8 +1515,6 @@ class GetCampaigns(APIView):
 
 from sbam.settings.settings import *
 from apscheduler.schedulers.background import BackgroundScheduler
-from django.contrib.sites.models import Site
-
 
 def StartRepeatTask():
     scheduler = BackgroundScheduler()
@@ -1529,29 +1527,30 @@ def StartRepeatTask():
 
 
 def CheckFinishedCampaigns():
-    print("CheckFinishedCampaigns STARTED")
+    #print("CheckFinishedCampaigns STARTED")
     bootstrapServer = BOOTSTRAP_SERVERS
-    print(bootstrapServer)
-    producer = KafkaProducer(bootstrap_servers=[bootstrapServer],api_version=(0,11,5),
-                             value_serializer=lambda x: json.dumps(x).encode('utf-8'))
-    for c in Campaign.objects.all(): #.filter(kafkaStatus__isnull=True):
-        if c.status == 'FINISHED' and c.kafkaStatus != 'Send':
-            print("Campaign ID-->"+str(c.id))
-            kafka_producer(producer,campaign_id=c.id)
-            c.kafkaStatus = 'Send'
-            c.save()
-    # return JsonResponse({'Kafka Sheduled job Starter $ repeat every 24hrs': 'True'}, status=200)
-
+    #print(bootstrapServer)
+    try:
+        producer = KafkaProducer(bootstrap_servers=[bootstrapServer],api_version=(0,11,5),
+                                 value_serializer=lambda x: json.dumps(x).encode('utf-8'))
+        for c in Campaign.objects.all(): #.filter(kafkaStatus__isnull=True):
+            if c.status == 'FINISHED' and c.kafkaStatus != 'Send':
+                print("Campaign ID-->"+str(c.id))
+                kafka_producer(producer,campaign_id=c.id)
+                c.kafkaStatus = 'Send'
+                c.save()
+        # return JsonResponse({'Kafka Sheduled job Starter $ repeat every 24hrs': 'True'}, status=200)
+    except Exception as e:
+        print(e)
 def kafka_producer(producer,campaign_id=None):
-    current_site = Site.objects.get_current()
+    domainName = str(SBA_DOMAIN_NAME)
     topicName = str(TOPIC_NAME)
     topicVerMajor = TOPIC_VER_MAJOR
     topicVerMinor = TOPIC_VER_MINOR
-    messageName='MSG04_01_SBA_DATA_GATHERED'
-
+    print(domainName)
     data = {
         'header': {
-            'messageName': messageName,
+            'messageName': 'Kafka Message',
             'topicVerMajor': topicVerMajor,
             'topicVerMinor': topicVerMinor,
             'sender': 'SBA',
@@ -1565,8 +1564,8 @@ def kafka_producer(producer,campaign_id=None):
                 "campaignID": campaign_id,
                 "type": "urls/data",
                 "urls": [{
-                        'Organization Report': str(current_site.domain)+'/api/metrics/organization/',
-                        'Campaign Report': str(current_site.domain)+'/api/metrics/campaigns/'+str(campaign_id)+'/',
+                        'Organization Report': domainName+'/api/metrics/organization/',
+                        'Campaign Report': domainName+'/api/metrics/campaigns/'+str(campaign_id)+'/',
 
                 }],
             }],
