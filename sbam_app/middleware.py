@@ -22,7 +22,7 @@ class LoginRequiredMiddleware(MiddlewareMixin):
     """
 
     def process_request(self, request):
-        response = self.get_response(request)
+        # response = self.get_response(request)
         assert hasattr(request, 'user'), (
             'The LoginRequiredMiddleware requires authentication middleware '
             'to be installed. Edit your MIDDLEWARE setting to insert before '
@@ -36,5 +36,5 @@ class LoginRequiredMiddleware(MiddlewareMixin):
             path = request.path_info.lstrip('/')
             if not any(m.match(path) for m in EXEMPT_URLS):
                 return redirect(settings.LOGIN_URL + "?next=" + str(request.path_info))
-        else:
-            return response
+        # else:
+        #     return response
