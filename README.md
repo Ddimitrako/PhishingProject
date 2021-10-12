@@ -121,3 +121,32 @@ TroubleShooting
 
     Message -->Kafka - Broker fails because all log dirs have failed
     delete folders kafkadatakafka & kafkadatazookeeper (they will reproduce itselfs)
+
+## How to generate encypted - shortened url links
+STEP 1: 
+
+    go to https://www.rebrandly.com/
+
+STEP 2: 
+
+    Create a free acount 
+    Select Rebrand a new link
+    Add the destination url
+    Generate the shortened url 
+
+STEP 3: 
+
+    Go to .env->dev->.env_app_prod and .env_app_dev
+    Replace encrypted_link from ENCRYPTED_ENDPOINT=encrypted_link
+    with the result url
+
+Note:
+
+    If the ip and/or port changes it needs a new shortened url
+    If "Stop! Deceptive page ahead!" when hitting url you need to 
+    generate link after logging to step 1.
+Example:
+   
+    for phishing email simulation in simavi vm 
+    converting http://195.82.131.51:8080/sim_endpoint/ 
+    generates --> https://rb.gy/mzomsd
