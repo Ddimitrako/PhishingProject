@@ -7,8 +7,8 @@
       "description_en": "This dimension includes the designment, development, documentation and implementation of security policies and procedures that aim to protect an organisation’s assets (including people, buildings, machines, systems and information assets) by enforcing several levels of confidentiality, availability, and integrity controls.",
       "title_it": "Risorse",
       "description_it": "Questa dimensione include la progettazione, lo sviluppo, la documentazione e l'implementazione di politiche e procedure di sicurezza che mirano a proteggere le risorse di un'organizzazione (comprese persone, edifici, macchine, sistemi e risorse informative) applicando diversi livelli di riservatezza, disponibilità e controlli di integrità.",
-      "title_bg": "",
-      "description_bg": "",
+      "title_bg": "Активи",
+      "description_bg": "Това измерение включва проектирането, разработването, документирането и прилагането на политики и процедури за сигурност, които имат за цел да защитят активите на организацията (включително хора, сгради, машини, системи и информационни активи) чрез прилагане на няколко нива на контрол на поверителността, наличността и целостта.",
       "level": 0
     }
   },
@@ -20,8 +20,8 @@
       "description_en": "This dimension includes the planning, development, documentation and implementation of security policies and procedures that aim to ensure operations, services and production continuity for an organisation at predefined levels while safeguarding the reputation and interests of key stakeholders in cases of disruptive incidents.",
       "title_it": "Continuità",
       "description_it": "Questa dimensione include la pianificazione, lo sviluppo, la documentazione e l'implementazione di politiche e procedure di sicurezza che mirano a garantire le operazioni, i servizi e la continuità della produzione per un'organizzazione a livelli predefiniti, salvaguardando la reputazione e gli interessi delle principali parti interessate in caso di eventi perturbatori che richiedano l'adozione di procedure di emergenza.",
-      "title_bg": "",
-      "description_bg": "",
+      "title_bg": "Непрекъснатост",
+      "description_bg": "Това измерение включва планирането, разработването, документирането и прилагането на политики и процедури за сигурност, които имат за цел да гарантират операции, услуги и непрекъснатост на производството на една организация на предварително определени нива, като същевременно защитават репутацията и интересите на ключовите заинтересовани страни в случаи на разрушителни инциденти.",
       "level": 0
     }
   },
@@ -33,8 +33,8 @@
       "description_en": "This dimension includes the designment, development, documentation and implementation of business processes, policies and procedures that aim to ensure appropriate access to resources across the organisation while clarifying different roles and permissions. In addition, it delimits any interactions the organisation has with third-party factors, such as suppliers, customers, authorities, etc.",
       "title_it": "Accesso e Fiducia",
       "description_it": "Questa dimensione include la progettazione, lo sviluppo, la documentazione e l'implementazione di processi, politiche e procedure aziendali che mirano a garantire un accesso appropriato alle risorse in tutta l'organizzazione, chiarendo al contempo i diversi ruoli e autorizzazioni. Inoltre, delimita qualsiasi interazione che l'organizzazione ha con terze parti, come fornitori, clienti, autorità, ecc.",
-      "title_bg": "",
-      "description_bg": "",
+      "title_bg": "Достъп и доверие",
+      "description_bg": "Това измерение включва проектирането, разработването, документирането и прилагането на бизнес процеси, политики и процедури, които имат за цел да осигурят подходящ достъп до ресурси в цялата организация, като същевременно изяснят различните роли и разрешения. В допълнение, той ограничава всяко взаимодействие, което организацията има с фактори на трети страни, като доставчици, клиенти, органи и т.н.",
       "level": 0
     }
   },
@@ -46,8 +46,8 @@
       "description_en": "This dimension refers to the administration of business practices to create the highest level of efficiency possible within an organisation while taking into account the security aspects that safeguard its final results.",
       "title_it": "Operazioni",
       "description_it": "Questa dimensione si riferisce all'amministrazione delle pratiche aziendali per creare il massimo livello di efficienza possibile all'interno di un'organizzazione tenendo conto degli aspetti di sicurezza che ne salvaguardano i risultati finali.",
-      "title_bg": "",
-      "description_bg": "",
+      "title_bg": "Операции",
+      "description_bg": "Това измерение се отнася до администрирането на бизнес практики за създаване на възможно най -високо ниво на ефективност в рамките на една организация, като същевременно се вземат предвид аспектите на сигурността, които гарантират нейните крайни резултати.",
       "level": 0
     }
   },
@@ -59,8 +59,8 @@
       "description_en": "This dimension focuses on the foresight to have planned, acquired and properly configured all technical assets necessary for the improvement and efficient operation of its information security.",
       "title_it": "Difesa",
       "description_it": "Questa dimensione si concentra sulla lungimiranza di aver pianificato, acquisito e adeguatamente configurato tutte le risorse tecniche necessarie per il miglioramento e il funzionamento efficiente della propria sicurezza informatica.",
-      "title_bg": "",
-      "description_bg": "",
+      "title_bg": "Защита",
+      "description_bg": "Това измерение се фокусира върху предвиждането на планиране, придобиване и правилно конфигуриране на всички технически активи, необходими за подобряване и ефективна работа на техната информационна сигурност.",
       "level": 0
     }
   },
@@ -72,8 +72,8 @@
       "description_en": "This dimension includes the designment, development, documentation and implementation of policies so as to effectively plan, manage and improve organisation’s information security.",
       "title_it": "Governance della sicurezza",
       "description_it": "Questa dimensione include la progettazione, lo sviluppo, la documentazione e l'implementazione delle politiche in modo da pianificare, gestire e migliorare efficacemente la sicurezza delle informazioni dell'organizzazione.",
-      "title_bg": "",
-      "description_bg": "",
+      "title_bg": "Управление на сигурността",
+      "description_bg": "Това измерение включва проектирането, разработването, документирането и прилагането на политики, така че ефективно да се планира, управлява и подобрява информационната сигурност на организацията.",
       "level": 0
     }
   },
@@ -85,8 +85,8 @@
       "description_en": "This dimension refers to the feelings and beliefs employees have toward security protocols and issues.",
       "title_it": "Atteggiamento",
       "description_it": "Questa dimensione si riferisce alle sensibilità e alle convinzioni che i dipendenti hanno nei confronti dei protocolli e dei problemi di sicurezza.",
-      "title_bg": "",
-      "description_bg": "",
+      "title_bg": "Отношение",
+      "description_bg": "Това измерение се отнася до чувствата и убежденията на служителите по отношение на протоколите за сигурност и проблемите по сигурността.",
       "level": 1
     }
   },
@@ -98,8 +98,8 @@
       "description_en": "This dimension refers to the employees’ understanding, knowledge and awareness of security issues and activities.",
       "title_it": "Consapevolezza",
       "description_it": "Questa dimensione si riferisce alla comprensione, conoscenza e consapevolezza dei dipendenti delle questioni e delle attività di sicurezza.",
-      "title_bg": "",
-      "description_bg": "",
+      "title_bg": "Осъзнаване",
+      "description_bg": "Това измерение се отнася до разбирането, знанията и осведомеността на служителите по въпросите и дейностите по сигурността.",
       "level": 1
     }
   },
@@ -111,8 +111,8 @@
       "description_en": "This dimension refers to the actions and activities of employees that have direct or indirect impact on the security of the organisation.",
       "title_it": "Comportamento",
       "description_it": "Questa dimensione si riferisce alle azioni e alle attività dei dipendenti che hanno un impatto diretto o indiretto sulla sicurezza dell'organizzazione.",
-      "title_bg": "",
-      "description_bg": "",
+      "title_bg": "Поведение",
+      "description_bg": "Това измерение се отнася до действията и дейностите на служителите, които имат пряко или косвено въздействие върху сигурността на организацията.",
       "level": 1
     }
   },
@@ -124,8 +124,8 @@
       "description_en": "This dimension refers to the employees’ abilities, skills, knowledge and expertise that enable them to conform with the security policies and procedures of the organisation.",
       "title_it": "Competenza",
       "description_it": "Questa dimensione si riferisce alle capacità, abilità, conoscenze e competenze dei dipendenti che consentono loro di conformarsi alle politiche e alle procedure di sicurezza dell'organizzazione.",
-      "title_bg": "",
-      "description_bg": "",
+      "title_bg": "Компетентност",
+      "description_bg": "Това измерение се отнася до способностите, уменията, знанията и опита на служителите, които им позволяват да се съобразят с политиките и процедурите за сигурност на организацията.",
       "level": 1
     }
   },
