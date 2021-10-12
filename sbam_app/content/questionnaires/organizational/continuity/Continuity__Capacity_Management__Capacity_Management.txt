@@ -1,9 +1,9 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you have enough capacity to ensure that data availability is maintained?	 
-2	BOOL_P	Do you have procedures in place to regularly assess data capacity in order to ensure that data availability is maintained?	 
-3	BOOL_P	Do you pay particular attention to any resources with long procurement lead times or high costs?	 
-4	BOOL_P	Do you delete obsolete data?	 
-5	BOOL_P	Do you decommission applications, systems, databases or environments?	 
-6	BOOL_P	Do you optimise batch processes and schedules?	 
-7	BOOL_P	Do you optimise application logic or database queries?	 
-8	BOOL_P	Do you either deny or restrict bandwidth for resource-hungry services if these are not business critical? 	 
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	BOOL_P	Do you have enough capacity to ensure that data availability is maintained?	 	Si dispone di capacità sufficiente per garantire che la disponibilità dei dati venga mantenuta?		Имате ли достатъчно капацитет, за да сте сигурни, че наличността на данните се поддържа?	
+2	BOOL_P	Do you have procedures in place to regularly assess data capacity in order to ensure that data availability is maintained?	 	Sono in atto procedure per valutare regolarmente la capacità dei dati al fine di garantire che la disponibilità dei dati sia mantenuta?		Имате ли въведени процедури за редовна оценка на капацитета на данните, за да се гарантира, че наличността на данните се поддържа?	
+3	BOOL_P	Do you pay particular attention to any resources with long procurement lead times or high costs?	 	Prestate particolare attenzione a risorse con lunghi tempi di approvvigionamento o costi elevati?		Обръщате ли специално внимание на ресурси с дълги срокове за изпълнение на поръчката или високи разходи?	
+4	BOOL_P	Do you delete obsolete data?	 	Elimini i dati obsoleti?		Изтривате ли остарели данни?	
+5	BOOL_P	Do you decommission applications, systems, databases or environments?	 	Disattivate applicazioni, sistemi, database o ambienti?		Извеждате ли от употреба приложения, системи, бази данни или среди?	
+6	BOOL_P	Do you optimise batch processes and schedules?	 	Ottimizzi i processi e le pianificazioni batch?		Оптимизирате ли пакетни процеси и графици?	
+7	BOOL_P	Do you optimise application logic or database queries?	 	Ottimizzi la logica dell'applicazione o le query del database?		Оптимизирате ли логиката на приложението или заявките към база данни?	
+8	BOOL_P	Do you either deny or restrict bandwidth for resource-hungry services if these are not business critical? 	 	Negate o limitate la larghezza di banda per i servizi che richiedono molte risorse se questi non sono critici per l'azienda?		Отричате ли или ограничавате честотната лента за услугите, нуждаещи се от ресурси, ако те не са от решаващо значение за бизнеса?	

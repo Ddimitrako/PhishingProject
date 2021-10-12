@@ -1,6 +1,6 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you have all the necessary policies and procedures properly documented?	 
-2	BOOL_P	Do you have all the necessary records properly documented?	 
-3	BOOL_P	Is each asset owner properly identified and documented in the inventory of assets?	 
-4	BOOL_P	Is all the documentation properly maintained and updated?	 
-5	BOOL_P	Is all the documentation properly communicated to all relevant parties?	 
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	BOOL_P	Do you have all the necessary policies and procedures properly documented?	 	Hai tutte le politiche e le procedure necessarie adeguatamente documentate?		Имате ли правилно документирани всички необходими политики и процедури?	
+2	BOOL_P	Do you have all the necessary records properly documented?	 	Hai tutte le registrazioni necessarie adeguatamente documentate?		Имате ли всички необходими записи правилно документирани?	
+3	BOOL_P	Is each asset owner properly identified and documented in the inventory of assets?	 	Ogni proprietario di asset è adeguatamente identificato e documentato nell'inventario degli asset?		Правилно ли е идентифициран и документиран ли е всеки собственик на актива в описа на активите?	
+4	BOOL_P	Is all the documentation properly maintained and updated?	 	Tutta la documentazione è adeguatamente mantenuta e aggiornata?		Цялата документация правилно ли се поддържа и актуализира?	
+5	BOOL_P	Is all the documentation properly communicated to all relevant parties?	 	Tutta la documentazione è adeguatamente comunicata a tutte le parti interessate?		Цялата документация правилно ли се съобщава на всички съответни страни?	

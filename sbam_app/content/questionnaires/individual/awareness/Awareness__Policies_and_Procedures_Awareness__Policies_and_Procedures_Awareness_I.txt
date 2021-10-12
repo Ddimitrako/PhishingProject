@@ -1,9 +1,9 @@
-id	type	text_en	options_en
-1	BOOL_P	Are you being properly informed about the relevant policies and procedures of the organisation?
-2	BOOL_P	Are you aware of the organisations' communication flows?
-3	BOOL_P	Are you aware of the organisations data flows?	 
-4	BOOL_P	Are you aware of the prioritization of resources based on their classification, criticality, and business value?
-5	BOOL_P	Are you aware of the organisations role in the supply chain?
-6	BOOL_P	Are you aware of the organisations place in critical infrastructure and its industry sector?	 
-7	BOOL_P	Are you aware of the organisations priorities, mission objective and activities?	 
-8	BOOL_P	Are you aware of the vulnerabilities of assets you are responsible for?
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	BOOL_P	Are you being properly informed about the relevant policies and procedures of the organisation?		Viene costantemente informato al riguardo delle politiche e delle prcedure interne all'azienda?		Информирани ли сте правилно за съответните политики и процедури на организацията?	
+2	BOOL_P	Are you aware of the organisations' communication flows?		Ti sono chiari i flussi comunicativi interni all'azienda?		Наясно ли сте с комуникационните потоци на организацията?	
+3	BOOL_P	Are you aware of the organisations data flows?	 	Ti sono chiari i flussi di data interni all'azienda?		Знаете ли за потоците от данни на организацията?	
+4	BOOL_P	Are you aware of the prioritization of resources based on their classification, criticality, and business value?		Ti è chiara la prioritizzazione delle risorse informatiche aziendale sulla base della sua classificazione, importanza e valore per i core-business aziendali?		Наясно ли сте с приоритизирането на ресурсите въз основа на тяхната класификация, критичност и бизнес стойност?	
+5	BOOL_P	Are you aware of the organisations role in the supply chain?		Ti è chiaro il ruolo dell'azienda verso i fornitori e i clienti?		Наясно ли сте с ролята на организациите във веригата на доставки?	
+6	BOOL_P	Are you aware of the organisations place in critical infrastructure and its industry sector?	 	Ti è chiaro il ruolo dell'azienda nelle infrastrutture e nell'industria di riferimento?		Наясно ли сте с мястото на организацията в критичната инфраструктура и нейния индустриален сектор?	
+7	BOOL_P	Are you aware of the organisations priorities, mission objective and activities?	 	Ti sono chiare le priorità, gli obiettivi, la missione e le attività aziendali?		Наясно ли сте с приоритетите на организацията, нейните цел на мисията и дейности?	
+8	BOOL_P	Are you aware of the vulnerabilities of assets you are responsible for?		Ti sono chiari i rischi cui sono sottoposte le infrastrutture di cui sei responsabile?		Знаете ли за уязвимостите на активите, за които отговаряте?	

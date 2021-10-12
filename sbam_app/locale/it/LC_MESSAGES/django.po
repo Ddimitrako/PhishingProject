@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 20:24+0300\n"
+"POT-Creation-Date: 2021-09-30 22:28+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -163,56 +163,8 @@ msgstr ""
 msgid "Achieved score in phishing quiz"
 msgstr ""
 
-#: .\phishing_quiz\templates\phishing_quiz.html:14
-#: .\sbam_app\templates\campaign.html:100
-msgid "Tests"
-msgstr ""
-
 #: .\phishing_quiz\templates\phishing_quiz.html:15
-#: .\phishing_quiz\templates\phishing_quiz.html:20
 msgid "Phishing Quiz"
-msgstr ""
-
-#: .\phishing_quiz\templates\phishing_quiz.html:21
-msgid "Decide whether a mail is a fraud or not"
-msgstr ""
-
-#: .\phishing_quiz\templates\phishing_quiz.html:27
-msgid "Email 1 of "
-msgstr ""
-
-#: .\phishing_quiz\templates\phishing_quiz.html:50
-msgid "Previous Email"
-msgstr ""
-
-#: .\phishing_quiz\templates\phishing_quiz.html:53
-msgid "Phishing Email"
-msgstr ""
-
-#: .\phishing_quiz\templates\phishing_quiz.html:56
-msgid "Legit Email"
-msgstr ""
-
-#: .\phishing_quiz\templates\phishing_quiz.html:59
-msgid "Next Email"
-msgstr ""
-
-#: .\phishing_quiz\templates\phishing_quiz.html:66
-msgid "Finish Game!"
-msgstr ""
-
-#: .\phishing_quiz\templates\phishing_quiz.html:79
-#: .\sbam_app\templates\campaign.html:41
-msgid "results"
-msgstr ""
-
-#: .\phishing_quiz\templates\phishing_quiz.html:86
-msgid "Total Score"
-msgstr ""
-
-#: .\phishing_quiz\templates\phishing_quiz.html:94
-#: .\templates\base_form.html:31
-msgid "Finish"
 msgstr ""
 
 #: .\sbam\settings\base_settings.py:174
@@ -228,7 +180,7 @@ msgid "Italian"
 msgstr ""
 
 #: .\sbam\settings\base_settings.py:177
-msgid "Romanian"
+msgid "Bulgarian"
 msgstr ""
 
 #: .\templates\account\account_inactive.html:5
@@ -543,6 +495,10 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
+#: .\templates\base_form.html:31
+msgid "Finish"
+msgstr ""
+
 #: .\templates\base_form.html:51 .\sbam_app\templates\new_campaign.html:341
 #: .\sbam_app\templates\new_campaign.html:376
 msgid "Su"
@@ -777,12 +733,16 @@ msgstr ""
 msgid "The user who created the campaign"
 msgstr ""
 
-#: .\sbam_app\management\commands\import_questionnaire.py:21
+#: .\sbam_app\management\commands\import_questionnaire.py:23
 msgid "The tab-separated file of the questionnaire"
 msgstr ""
 
-#: .\sbam_app\management\commands\import_questionnaire.py:22
+#: .\sbam_app\management\commands\import_questionnaire.py:24
 msgid "The directory hosting questionnaires"
+msgstr ""
+
+#: .\sbam_app\management\commands\import_questionnaire.py:25
+msgid "The tab-separated file containing the questionnaire titles translations"
 msgstr ""
 
 #: .\sbam_app\models.py:12
@@ -794,14 +754,14 @@ msgid "Active"
 msgstr ""
 
 #: .\sbam_app\models.py:20 .\sbam_app\templates\campaign.html:72
-#: .\sbam_app\templates\campaign.html:115
+#: .\sbam_app\templates\campaign.html:115 .\sbam_app\templates\reports.html:151
 msgid "Organisational"
-msgstr ""
+msgstr "Organizzativo"
 
 #: .\sbam_app\models.py:21 .\sbam_app\templates\campaign.html:74
-#: .\sbam_app\templates\campaign.html:117
+#: .\sbam_app\templates\campaign.html:117 .\sbam_app\templates\reports.html:157
 msgid "Individual"
-msgstr ""
+msgstr "Individuale"
 
 #: .\sbam_app\models.py:23
 msgid "Dimension title"
@@ -1412,6 +1372,10 @@ msgstr ""
 msgid "General Information"
 msgstr ""
 
+#: .\sbam_app\templates\campaign.html:41
+msgid "results"
+msgstr ""
+
 #: .\sbam_app\templates\campaign.html:59 .\sbam_app\templates\campaign.html:105
 #: .\sbam_app\templates\groups.html:19
 msgid "name"
@@ -1423,6 +1387,10 @@ msgstr ""
 
 #: .\sbam_app\templates\campaign.html:93
 msgid "No selected Questionnaires"
+msgstr ""
+
+#: .\sbam_app\templates\campaign.html:100
+msgid "Tests"
 msgstr ""
 
 #: .\sbam_app\templates\campaign.html:124
@@ -1859,7 +1827,7 @@ msgstr ""
 msgid "manager"
 msgstr ""
 
-#: .\sbam_app\views.py:37 .\sbam_app\views.py:51 .\sbam_app\views.py:700
+#: .\sbam_app\views.py:37 .\sbam_app\views.py:51 .\sbam_app\views.py:694
 msgid "You do not have enough privileges to perform this action"
 msgstr ""
 
@@ -1868,7 +1836,7 @@ msgstr ""
 msgid "User successfully %(action)s"
 msgstr ""
 
-#: .\sbam_app\views.py:98 .\sbam_app\views.py:148 .\sbam_app\views.py:788
+#: .\sbam_app\views.py:98 .\sbam_app\views.py:148 .\sbam_app\views.py:782
 msgid "Please correct the errors below"
 msgstr ""
 
@@ -1892,15 +1860,15 @@ msgid ""
 "active assignment from the ones presented in your dashboard..."
 msgstr ""
 
-#: .\sbam_app\views.py:785
+#: .\sbam_app\views.py:779
 msgid "Campaign successfully updated"
 msgstr ""
 
-#: .\sbam_app\views.py:836
+#: .\sbam_app\views.py:830
 msgid "Campaign successfully cancelled."
 msgstr ""
 
-#: .\sbam_app\views.py:838
+#: .\sbam_app\views.py:832
 msgid ""
 "Campaign has been created by another user. Therefore, you cannot cancel it."
 msgstr ""

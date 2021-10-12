@@ -1,9 +1,9 @@
-id	type	text_en	options_en
-1	AGR5_P	I  am  pleased with my organisation's approach towards information security.	
-2	AGR5_P	I feel comfortable with the current security controls.	
-3	AGR5_P	I feel confident with the backup mechanisms used by our IT department.	
-4	AGR5_P	I am happy to conform with the security guidance offered by our security experts.	
-5	AGR5_N	Cyber-security webinars are not available as often as required to keep me alert on current threat reality.	
-6	AGR5_N	Security policies and procedures delay me from performing my duties on time.	
-7	AGR5_P	Incidents I noticed and reported were addressed properly and feedback was provided to me.	
-8	AGR5_P	Security solutions used by our organisation facilitate our cyber-safety without introducing difficulties.	
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	AGR5_P	I  am  pleased with my organisation's approach towards information security.		Sono contento dell'approccio della mia azienda verso la sicurezza informatica.		Доволен съм от подхода на моята организация към информационната сигурност.	
+2	AGR5_P	I feel comfortable with the current security controls.		Ritengo che gli attuali controlli di sicurezza informatica siano adeguati.		Чувствам се комфортно с настоящия контрол на сигурността.	
+3	AGR5_P	I feel confident with the backup mechanisms used by our IT department.		Ritengo affidabile il meccanismo di backup strutturato dal dipartimento IT della mia azienda.		Чувствам се уверен в бекъп механизмите, използвани от нашия ИТ отдел.	
+4	AGR5_P	I am happy to conform with the security guidance offered by our security experts.		Sono felice di adeguarmi alle guide per la sicurezza informatica esposte dagli esperti aziendali sul tema.		Щастлив съм да се съобразявам с указанията за сигурност, предлагани от нашите експерти по сигурността.	
+5	AGR5_N	Cyber-security webinars are not available as often as required to keep me alert on current threat reality.		Webinars dedicati alla cybersicurezza non sono richiesti così spesso da permettermi di essere allineato sul rischio reale ad esso collegato.		Уеб семинарите за киберсигурност не се предлагат толкова често, колкото е необходимо, за да бъда нащрек за текущата реалност на заплахата.	
+6	AGR5_N	Security policies and procedures delay me from performing my duties on time.		Le politiche di sicurezza informatica aziendale mi rallentano e spesso causano ritardi.		Политиките и процедурите за сигурност ме забавят да изпълнявам задълженията си навреме.	
+7	AGR5_P	Incidents I noticed and reported were addressed properly and feedback was provided to me.		Quando riporto un incidente informatico viene risolto correttamente e mi viene fornito un feedback.		Инцидентите, които забелязах и докладвах, бяха адресирани правилно и ми беше предоставена обратна връзка.	
+8	AGR5_P	Security solutions used by our organisation facilitate our cyber-safety without introducing difficulties.		Le soluzioni di sicurezza informatica aziendale funzionano bene e non causano difficoltà o rallentamenti.		Решенията за сигурност, използвани от нашата организация, улесняват нашата кибер безопасност, без да създават трудности.	

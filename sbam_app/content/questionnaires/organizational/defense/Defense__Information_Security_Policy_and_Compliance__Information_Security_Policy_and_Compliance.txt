@@ -1,11 +1,11 @@
-id	type	text_en	options_en
-1	BOOL_P	Have you adopted a formal information security policy?	 
-2	BOOL_P	Have you properly broken-down information security policies into sub-areas and orderly documented them?	 
-3	BOOL_P	Do your policies and procedures monitor compliance during daily work within the organization?	 
-4	BOOL_P	Do your policies and procedures comply with international standards and recommendations?	 
-5	BOOL_P	Do your policies and procedures foresee their continuous development and upgrading?	 
-6	BOOL_P	Do your policies and procedures foresee regular management reviews and internal audits?	 
-7	BOOL_P	Do your policies and procedures comply with relevant regional legislation?	 
-8	BOOL_P	Do your policies and procedures guard the fulfillment of contractual security obligations?	 
-9	BOOL_P	Do you analyse examples of information security best practices benchmarking on a regular basis?
-10	BOOL_P	Do you comply with relevant legislation or any contractual obligations regarding the access to data or services
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	BOOL_P	Have you adopted a formal information security policy?	 	Hai adottato una politica formale di sicurezza delle informazioni?		Приели ли сте официална политика за информационна сигурност?	
+2	BOOL_P	Have you properly broken-down information security policies into sub-areas and orderly documented them?	 	Hai suddiviso in modo appropriato le politiche di sicurezza delle informazioni in sotto-aree e le hai documentate in modo ordinato?		Правилно ли сте разделили политиките за информационна сигурност на подзони и  документирали ли сте ги правилно?	
+3	BOOL_P	Do your policies and procedures monitor compliance during daily work within the organization?	 	Le politiche e le procedure monitorano la conformità durante il lavoro quotidiano all'interno dell'organizzazione?		Вашите политики и процедури следят ли спазването по време на ежедневната работа в организацията?	
+4	BOOL_P	Do your policies and procedures comply with international standards and recommendations?	 	Le politiche e le procedure in uso sono conformi agli standard e alle raccomandazioni internazionali?		Съответстват ли вашите политики и процедури на международните стандарти и препоръки?	
+5	BOOL_P	Do your policies and procedures foresee their continuous development and upgrading?	 	Le politiche e procedure in uso vengono continuamente sviluppate e aggiornate?		Вашите политики и процедури предвиждат ли тяхното непрекъснато развитие и надграждане?	
+6	BOOL_P	Do your policies and procedures foresee regular management reviews and internal audits?	 	Le politiche e procedure in uso prevedono revisioni periodiche da parte della direzione e audit interni?		Предвиждат ли вашите политики и процедури редовни прегледи от ръководството и вътрешни одити?	
+7	BOOL_P	Do your policies and procedures comply with relevant regional legislation?	 	Le politiche e procedure in uso sono conformi a quanto prevede la legislazione regionale/nazionale?		Съответстват ли вашите политики и процедури на съответното регионално законодателство?	
+8	BOOL_P	Do your policies and procedures guard the fulfillment of contractual security obligations?	 	Le politiche e procedure in uso tutelano l'adempimento degli obblighi contrattuali in termini di sicurezza?		Защитават ли вашите политики и процедури изпълнението на договорните задължения за сигурност?	
+9	BOOL_P	Do you analyse examples of information security best practices benchmarking on a regular basis?		Analizzi regolarmente esempi di buone pratiche per la sicurezza delle informazioni?		Анализирате ли редовно примери за сравнение на най-добрите практики за информационна сигурност?	
+10	BOOL_P	Do you comply with relevant legislation or any contractual obligations regarding the access to data or services		Rispetti la normativa in materia o eventuali obblighi contrattuali relativi all'accesso a dati o servizi?		Спазвате ли съответното законодателство или някакви договорни задължения по отношение на достъпа до данни или услуги	

@@ -1,7 +1,7 @@
-id	type	text_en	options_en
-1	RISK7_N	Going camping in the wilderness.
-2	RISK7_N	Going down a ski run that is beyond your ability.
-3	RISK7_N	Going whitewater rafting at high water in the spring.
-4	RISK7_N	Taking a skydiving class.
-5	RISK7_N	Bungee jumping off a tall bridge.
-6	RISK7_N	Piloting a small plane.
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	RISK7_N	Going camping in the wilderness.		Fare campeggio non autorizzato.		Отивате на къмпинг в пусто място.	
+2	RISK7_N	Going down a ski run that is beyond your ability.		Fare una discesa sugli sci oltre la propria abilità.		Слизане по ски писта, която е извън вашите възможности.	
+3	RISK7_N	Going whitewater rafting at high water in the spring.		Scendere le rapide di un fiume nella piena primaverile.		Отивате на рафтинг с бяла вода при високо ниво на водата през пролетта.	
+4	RISK7_N	Taking a skydiving class.		Prendere lezioni di paracadutismo.		Участие в парашутен клас.	
+5	RISK7_N	Bungee jumping off a tall bridge.		Fare bunjee jumping da un ponte.		Бънджи скачане от висок мост.	
+6	RISK7_N	Piloting a small plane.		Guidare un piccolo aereo.		Пилотиране на малък самолет.	

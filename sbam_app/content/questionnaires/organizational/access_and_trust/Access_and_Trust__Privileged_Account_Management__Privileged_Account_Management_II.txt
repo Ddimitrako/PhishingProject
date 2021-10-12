@@ -1,10 +1,10 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you identify the privileged access rights associated with each system or process and the users to whom they need to be allocated?	 
-2	BOOL_P	Do you ensure that the privileged access rights are allocated to users on a need-to-use basis and on an event-by-event basis in line with the access control policy?	 
-3	BOOL_P	Do you identify the requirements for expiry of privileged access rights?	 
-4	BOOL_P	Do you regularly review the competences of users with privileged access rights?	 
-5	BOOL_P	Do you check privilege allocations at regular intervals to ensure that unauthorized privileges have not been obtained?	 
-6	BOOL_P	Do you log changes to privileged accounts?	 
-7	PERC20_N	What is the percentage of users with "super user" access level?
-8	PERC20_N	What is the percentage of privileged accounts in relation with the total number of accounts?	 
-9	BOOL_P	Do administrators have separate accounts for network management?	 
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	BOOL_P	Do you identify the privileged access rights associated with each system or process and the users to whom they need to be allocated?	 	Identificate i diritti di accesso privilegiati associati a ciascun sistema o processo e gli utenti a cui devono essere assegnati?		Идентифицирате ли привилегированите права за достъп, свързани с всяка система или процес и потребителите, на които трябва да бъдат разпределени?	
+2	BOOL_P	Do you ensure that the privileged access rights are allocated to users on a need-to-use basis and on an event-by-event basis in line with the access control policy?	 	Ti assicuri che i diritti di accesso privilegiato siano assegnati agli utenti in base alla necessità di utilizzo e evento per evento in linea con la politica di controllo degli accessi?		Гарантирате ли, че привилегированите права за достъп се разпределят на потребителите на базата на "необходимост от използване" и  "събитие по събитие" в съответствие с политиката за контрол на достъпа?	
+3	BOOL_P	Do you identify the requirements for expiry of privileged access rights?	 	Identificate i requisiti per la scadenza dei diritti di accesso privilegiato?		Идентифицирате ли изискванията за изтичане на правата на привилегирован достъп?	
+4	BOOL_P	Do you regularly review the competences of users with privileged access rights?	 	Verificate regolarmente le competenze degli utenti con diritti di accesso privilegiati?		Преглеждате ли редовно компетенциите на потребители с привилегировани права за достъп?	
+5	BOOL_P	Do you check privilege allocations at regular intervals to ensure that unauthorized privileges have not been obtained?	 	Controlli le allocazioni dei privilegi a intervalli regolari per assicurarti che non siano stati ottenuti privilegi non autorizzati?		Проверявате ли редовно разпределението на привилегии, за да сте сигурни, че не са получени неоторизирани привилегии?	
+6	BOOL_P	Do you log changes to privileged accounts?	 	Registri le modifiche agli account privilegiati?		Регистрирате ли промените в привилегированите акаунти?	
+7	PERC20_N	"What is the percentage of users with ""super user"" access level?"		Qual è la percentuale di utenti con livello di accesso "super utente"?		Какъв е процентът на потребителите с ниво на достъп "супер потребител"?	
+8	PERC20_N	What is the percentage of privileged accounts in relation with the total number of accounts?	 	Qual è la percentuale di account privilegiati rispetto al numero totale di account?		Какъв е процентът на привилегированите акаунти спрямо общия брой акаунти?	
+9	BOOL_P	Do administrators have separate accounts for network management?	 	Gli amministratori hanno account separati per la gestione della rete?		Имат ли администраторите отделни акаунти за управление на мрежата?	

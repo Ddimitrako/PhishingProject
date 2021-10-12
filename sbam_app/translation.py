@@ -1,5 +1,24 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import Question, QuestionOption
+from .models import Dimension, Domain, Questionnaire, Question, QuestionOption
+
+
+class DimensionTranslationOptions(TranslationOptions):
+    fields = ['title', 'description']
+
+translator.register(Dimension, DimensionTranslationOptions)
+
+
+class DomainTranslationOptions(TranslationOptions):
+    fields = ['title', 'description']
+
+translator.register(Domain, DomainTranslationOptions)
+
+
+class QuestionnaireTranslationOptions(TranslationOptions):
+     fields = ['title']
+
+translator.register(Questionnaire, QuestionnaireTranslationOptions)
+
 
 class QuestionTranslationOptions(TranslationOptions):
     fields = ['text']

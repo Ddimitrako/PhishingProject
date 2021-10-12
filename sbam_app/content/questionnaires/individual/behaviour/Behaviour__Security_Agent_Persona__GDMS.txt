@@ -1,25 +1,25 @@
-id	type	text_en	options_en
-1	AGR5_P	I double-check my information resources to be sure i have the right facts before making decisions.
-2	AGR5_P	I make decisions in a logical and systematic way.
-3	AGR5_P	My decision making requires careful thought.
-4	AGR5_P	When making a decision, I consider various options in terms of a specific goal.
-5	AGR5_P	When making decisions, I rely upon my instincts.
-6	AGR5_P	When I make decisions, I tend to rely on my intuition.
-7	AGR5_P	I generally make decisions that feel right to me.
-8	AGR5_P	When I make a decision, it is more important for me to feel the decision is right than to have a rational reason for it.
-9	AGR5_P	When I make a decision, I trust my inner feelings and reactions.
-10	AGR5_N	I often need the assistance of other people when making important decisions.
-11	AGR5_N	I rarely make important decisions without consulting other people.
-12	AGR5_N	If I have the support of others, it is easier for me to make important decisions.
-13	AGR5_N	I use the advice of other people in making my important decisions.
-14	AGR5_N	I like to have someone to steer me in the right direction when i am faced with important decisions.
-15	AGR5_N	I avoid making important decisions until the pressure is on.
-16	AGR5_N	I postpone decision making whenever possible.
-17	AGR5_N	I often procrastinate when it comes to making important decisions.
-18	AGR5_N	I generally make important decisions at the last minute
-19	AGR5_N	I put off making many decisions because thinking about them makes me uneasy.
-20	AGR5_N	I generally make snap decisions.
-21	AGR5_N	I often make decisions on the spur of the moment.
-22	AGR5_N	I make quick decisions.
-23	AGR5_N	I often make impulsive decisions.
-24	AGR5_N	When making decisions, I do what seems natural at the moment.
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	AGR5_P	I double-check my information resources to be sure i have the right facts before making decisions.		Faccio una doppia verifica delle mie risorse informative per essere sicuro di avere conoscenza corretta dei fatti prima di prendere decisioni.		Проверявам два пъти информационните си ресурси, за да съм сигурен, че разполагам с правилните факти, преди да взема решения.	
+2	AGR5_P	I make decisions in a logical and systematic way.		Prendo le mie decisioni in modo logico e sistematico.		Взимам решения по логичен и систематичен начин.	
+3	AGR5_P	My decision making requires careful thought.		Il mio processo decisionale richiede un'attenta riflessione.		Вземането ми на решения изисква внимателно обмисляне.	
+4	AGR5_P	When making a decision, I consider various options in terms of a specific goal.		Quando prendo una decisione, considero varie opzioni utili al raggiungimento dell'obiettivo.		Когато вземам решение, обмислям различни варианти по отношение на конкретна цел.	
+5	AGR5_P	When making decisions, I rely upon my instincts.		Quando prendo decisioni, faccio affidamento sul mio istinto.		Когато вземам решения, разчитам на инстинктите си.	
+6	AGR5_P	When I make decisions, I tend to rely on my intuition.		Quando prendo decisioni, tendo ad affidarmi alla mia intuizione.		Когато взимам решения, съм склонен да разчитам на интуицията си.	
+7	AGR5_P	I generally make decisions that feel right to me.		Generalmente prendo decisioni che mi sembrano giuste.		По принцип взимам решения, които чувствам, че са правилни.	
+8	AGR5_P	When I make a decision, it is more important for me to feel the decision is right than to have a rational reason for it.		Quando prendo una decisione, è più importante per me sentire che la decisione è giusta che avere un motivo razionale per essa.		Когато взема решение, за мен е по-важно да чувствам, че решението е правилно, отколкото да имам рационална причина за това.	
+9	AGR5_P	When I make a decision, I trust my inner feelings and reactions.		Quando prendo una decisione, mi fido dei miei sentimenti e delle mie reazioni interiori.		Когато взема решение, се доверявам на вътрешните си чувства и реакции.	
+10	AGR5_N	I often need the assistance of other people when making important decisions.		Spesso ho bisogno dell'assistenza di altre persone quando prendo decisioni importanti.		Често се нуждая от помощта на други хора, когато взимам важни решения.	
+11	AGR5_N	I rarely make important decisions without consulting other people.		Raramente prendo decisioni importanti senza consultare altre persone.		Рядко взимам важни решения, без да се консултирам с други хора.	
+12	AGR5_N	If I have the support of others, it is easier for me to make important decisions.		Se ho il supporto di altre persone per me è più facile prendere importanti decisioni.		Ако имам подкрепата на другите, ми е по-лесно да взема важни решения.	
+13	AGR5_N	I use the advice of other people in making my important decisions.		Utilizzo il consiglio di altre persone per prendere decisioni importanti per me.		Използвам съветите на други хора при вземането на важните си решения.	
+14	AGR5_N	I like to have someone to steer me in the right direction when i am faced with important decisions.		Mi piace avere qualcuno che mi guidi nella giusta direzione quando devo prendere decisioni importanti.		Харесва ми да има някой, който да ме насочи в правилната посока, когато съм изправен пред важни решения.	
+15	AGR5_N	I avoid making important decisions until the pressure is on.		Evito di prendere decisioni importanti finché la pressione non aumenta.		Избягвам да взимам важни решения, докато не съм притиснат.	
+16	AGR5_N	I postpone decision making whenever possible.		Rimando il processo decisionale quando possibile.		Отлагам вземането на решения, когато е възможно.	
+17	AGR5_N	I often procrastinate when it comes to making important decisions.		Spesso procrastino quando si tratta di prendere decisioni importanti.		Често отлагам, когато става въпрос за вземане на важни решения.	
+18	AGR5_N	I generally make important decisions at the last minute		Di solito prendo decisioni importanti all'ultimo minuto.		Като цяло вземам важни решения в последния момент	
+19	AGR5_N	I put off making many decisions because thinking about them makes me uneasy.		Rimando molte decisioni perché pensarci mi crea disagio.		Отлагам вземането на много решения, защото мисълта за тях ме притеснява.	
+20	AGR5_N	I generally make snap decisions.		Di solito prendo decisioni affrettate.		По принцип взимам бързи решения.	
+21	AGR5_N	I often make decisions on the spur of the moment.		Spesso prendo decisioni sull'impulso del momento. 		Често взимам решения спонтанно.	
+22	AGR5_N	I make quick decisions.		Prendo decisioni in fretta.		Взимам бързи решения.	
+23	AGR5_N	I often make impulsive decisions.		Prendo spesso decisioni impulsive.		Често взимам импулсивни решения.	
+24	AGR5_N	When making decisions, I do what seems natural at the moment.		Quando prendo decisioni, faccio ciò che sembra naturale al momento.		Когато вземам решения, правя това, което изглежда естествено в момента.	

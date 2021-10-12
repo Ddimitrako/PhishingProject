@@ -1,12 +1,12 @@
-id	type	text_en	options_en
-1	BOOL_P	Is there a framework for the certification and accreditation of cybersecurity professionals?	 
-2	PERC20_P	What is the percentage of the total budget that is spent on awareness training?	 
-3	PERC20_P	What is the percentage of time spent on awareness training per FTE?	 
-4	PERC20_P	What is the percentage from the total number of users that are IT-security trained?	 
-5	PERC20_P	What is the percentage of the attendees that actually complete the course?	 
-6	PERC10_P	What is the percentage of senior management/executives; middle management/professionals; operational works/staff that received a security review?	 
-7	PERC20_P	What is the percentage of service delivery performance targets achieved?	 
-8	PERC20_P	What is the percentage of the total number of employees that participate in the awareness survey?
-9	CUSTOM_R	How many self security assessments are done per year?	"[[1, 1, ""0"", 0], [2, 2, ""1"", 0.33], [3, 3, ""2"", 0.67], [4, 4, ""More"", 1]] "
-10	PERC20_P	What is the percentage of the total number of employees that passed the exam or certification?
-11	PERC20_N	What is the percentage of security incidents that occur due to human behavior?	 
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	BOOL_P	Is there a framework for the certification and accreditation of cybersecurity professionals?	 	C'è una infrastruttura di certificazione e accreditamento dei professionisti della sicurezza informatica?		Има ли рамка за сертифициране и акредитация на професионалисти по киберсигурност?	
+2	PERC20_P	What is the percentage of the total budget that is spent on awareness training?	 	Qual è la percentuale del budget totale spesa per la formazione di sensibilizzazione alle problematiche di sicurezza? 		Какъв е процентът от общия бюджет, изразходван за обучение за повишаване на осведомеността?	
+3	PERC20_P	What is the percentage of time spent on awareness training per FTE?	 	Qual è la percentuale di tempo dedicata alla formazione di sensibilizzazione alle problematiche di sicurezza rispetto all'intera giornata lavorativa [FTE -Full Time Equivalent]?		Какъв е процентът време, прекарано в обучение за информираност от пълното работно време за ден?	
+4	PERC20_P	What is the percentage from the total number of users that are IT-security trained?	 	Qual è la percentuale di utenti formati sulla sicurezza IT rispetto all'intera forza lavoro?		Какъв е процентът от общия брой потребители, обучени за ИТ сигурност?	
+5	PERC20_P	What is the percentage of the attendees that actually complete the course?	 	Qual è la percentuale di partecipanti che effettivamente completano il corso?		Какъв е процентът на присъстващите, които всъщност завършват курса?	
+6	PERC10_P	"What is the percentage of senior management/executives; middle management/professionals; operational works/staff that received a security review?"	 	Qual è la percentuale di manager senior/dirigenti; quadri/professionisti; operativi/personale amministrativo che ha ricevuto un controllo sulla sicurezza? 		Какъв е процентът на висшето ръководство / ръководителите; среден мениджмънт / професионалисти; оперативни работи / персонал, получили преглед на сигурността?	
+7	PERC20_P	What is the percentage of service delivery performance targets achieved?	 	Qual è la percentuale degli obiettivi di prestazione dell'erogazione del servizio di formazione raggiunti?		Какъв е процентът на постигнатите цели за изпълнение на услугите?	
+8	PERC20_P	What is the percentage of the total number of employees that participate in the awareness survey?		Qual è la percentuale rispetto al numero totale di dipendenti di coloro che che partecipano all'indagine di sensibilizzazione?		Какъв е процентът от общия брой служители, които участват в проучването за осведоменост?	
+9	CUSTOM_R	How many self security assessments are done per year?	"[[1, 1, ""0"", 0], [2, 2, ""1"", 0.33], [3, 3, ""2"", 0.67], [4, 4, ""More"", 1]] "	Quante auto-valutazioni di sicurezza vengono fatte all'anno?	[[1, 1, "0", 0], [2, 2, "1", 0.33], [3, 3, "2", 0.67], [4, 4, "Di più", 1]]	Колко оценки на самосигурността се правят годишно?	[[1, 1, "0", 0], [2, 2, "1", 0.33], [3, 3, "2", 0.67], [4, 4, "Повече", 1]]
+10	PERC20_P	What is the percentage of the total number of employees that passed the exam or certification?		Qual è la percentuale, rispetto al numero totale di dipendenti, di coloro  che hanno superato l'esame o la certificazione?		Какъв е процентът от общия брой служители, издържали изпита или сертификацията?	
+11	PERC20_N	What is the percentage of security incidents that occur due to human behavior?	 	Qual è la percentuale di incidenti di sicurezza che si verificano a causa del comportamento umano?		Какъв е процентът на инцидентите със сигурността, които се случват поради човешкото поведение?	

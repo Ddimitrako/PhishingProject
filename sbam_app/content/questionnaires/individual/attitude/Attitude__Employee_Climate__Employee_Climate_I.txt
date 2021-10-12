@@ -1,11 +1,11 @@
-id	type	text_en	options_en
-1	AGR5_P	Security issues are regularly included in my team meetings and briefings.	 
-2	AGR5_N	I receive insufficient training on security, given where I work, e.g. what the threats are.	 
-3	AGR5_N	I think that management have the responsibility to ensure a company is protected from cyber crime
-4	AGR5_P	I am aware of my role in keeping the company protected from potential cyber criminals.	
-5	AGR5_P	I believe everyone in the company has a role to play in protecting against threats from cyber criminals.	
-6	AGR5_N	It is hard to know how I can help protect the organisation from cyber crime.	
-7	AGR5_N	I don't have the right skills to be able to protect the organisation from cyber crime.	
-8	AGR5_N	I do not feel that IT security is a priority within my organisation.	
-9	AGR5_N	Computer systems provide all the protection a company needs.	
-10	AGR5_N	I think that reporting cyber crime is a waste of time.	
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	AGR5_P	Security issues are regularly included in my team meetings and briefings.	 	I temi legati alla sicurezza (informatica, accessi) per l'azienda sono inclusi regolarmente nelle riunioni della mia business unity.		Въпросите за сигурността редовно се включват в срещите и брифингите на моя екип.	
+2	AGR5_N	I receive insufficient training on security, given where I work, e.g. what the threats are.	 	La formazione sulla sicurezza (informatica, accessi) per l'azienda è insufficiente visto il ruolo che ricopro (e.s. capire quali sono le minacce).		Получавам недостатъчно обучение по сигурността, като се има предвид къде работя, например какви са заплахите.	
+3	AGR5_N	I think that management have the responsibility to ensure a company is protected from cyber crime.		Penso che è il management che abbia la responsabilità di proteggere l'azienda dal cybercrimine.		Мисля, че ръководството носи отговорността да гарантира, че една компания е защитена от кибер престъпления	
+4	AGR5_P	I am aware of my role in keeping the company protected from potential cyber criminals.		Sono consapevole del mio ruolo attivo nel tenere l'azienda al sicuro dal cybercrimine.		Наясно съм с ролята си в опазването на компанията от потенциални кибер престъпници.	
+5	AGR5_P	I believe everyone in the company has a role to play in protecting against threats from cyber criminals.		Credo che tutti in azienda debbano fare la propria parte per evitare i rischi legati ai cybercriminali.		Вярвам, че всеки в компанията трябва да играе роля в защитата срещу заплахи от кибер престъпници.	
+6	AGR5_N	It is hard to know how I can help protect the organisation from cyber crime.		Risulta difficile capire come posso fare per aiutare a proteggere l'azienda dal cybercrimine.		Трудно е да разбера как мога да помогна за защитата на организацията от кибер престъпления.	
+7	AGR5_N	I don't have the right skills to be able to protect the organisation from cyber crime.		Non ho le capacità per proteggere l'azienda dal cybercrimine.		Нямам подходящите умения, за да мога да защитя организацията от кибер престъпления.	
+8	AGR5_N	I do not feel that IT security is a priority within my organisation.		Non credo che la sicurezza informatica sia tra le priorità della mia azienda.		Не смятам, че ИТ сигурността е приоритет в моята организация.	
+9	AGR5_N	Computer systems provide all the protection a company needs.		I computer e i sistemi informativi forniscono tutta la sicurezza informatica che necessità l'azienda.		Компютърните системи осигуряват цялата защита, от която се нуждае една компания.	
+10	AGR5_N	I think that reporting cyber crime is a waste of time.		Ritengo che segnalare reati di cybercrimine sia una perdita di tempo.		Мисля, че докладването за киберпрестъпления е загуба на време.	

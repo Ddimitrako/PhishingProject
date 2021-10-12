@@ -1,0 +1,28 @@
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	AGR5_N	It's not wise to tell your secrets.		Non è saggio raccontare i tuoi segreti.		Не е разумно да разказвате тайните си.	
+2	AGR5_N	People see me as a natural leader.		La gente mi considera un leader nato.		Хората ме възприемат като естествен лидер.	
+3	AGR5_N	I like to get revenge on authorities.		Mi piace vendicarmi sulle autorità.		Обичам да отмъщавам на властите.	
+4	AGR5_N	I like to use clever manipulation to get my way.		Mi piace usare astute manipolazioni per i miei obiettivi.		Обичам да използвам умна манипулация, за да си намеря пътя.	
+5	AGR5_P	I hate being the center of attention.		Odio essere al centro dell'attenzione.		Мразя да съм в центъра на вниманието.	
+6	AGR5_P	I avoid dangerous situations.		Evito situazioni pericolose.		Избягвам опасни ситуации.	
+7	AGR5_N	Whatever it takes, you must get the important people on your side.		Bisogna avere le persone importanti dalla propria parte a qualunque costo.		Каквото и да е необходимо, трябва да привлечете важните хора на ваша страна.	
+8	AGR5_N	Many group activities tend to be dull without me.		Molte attività di gruppo tendono ad essere noiose senza di me.		Много групови дейности са склонни да бъдат скучни без мен.	
+9	AGR5_N	Payback needs to be quick and nasty.		Il rimborso deve essere veloce e sgradevole.		Отмъщението трябва да бъде бързо и гадно.	
+10	AGR5_N	Avoid direct conflict with others because they may be useful in the future.		Evito scontri diretti con gli altri perché potrebbero essere utili in futuro.		Избягвате пряк конфликт с другите, защото те могат да бъдат полезни в бъдеще.	
+11	AGR5_N	I know that I am special because everyone keeps telling me so.		So di essere speciale perché me lo dicono tutti.		Знам, че съм специален, защото всички продължават да ми го казват.	
+12	AGR5_N	People often say I'm out of control.		Spesso la gente dice che sono fuori controllo.		Хората често казват, че съм извън контрол.	
+13	AGR5_N	It's wise to keep track of information that you can use against people later.		È saggio tener traccia di informazioni che puoi usare contro gli altri in altre occasioni.		Разумно е да следите информацията, която можете да използвате срещу хората по-късно.	
+14	AGR5_N	I like to get acquainted with important people.		Mi piace conoscere persone importanti.		Обичам да се запознавам с важни хора.	
+15	AGR5_N	It's true that I can be mean to others.		È vero che posso essere cattivo con gli altri.		Вярно е, че мога да бъда зъл към другите.	
+16	AGR5_N	You should wait for the right time to get back at people.		Dovresti aspettare il momento giusto per rispondere alle persone.		Трябва да изчакате подходящото време, за да се върнете към хората.	
+17	AGR5_P	I feel embarrassed if someone compliments me.		Ricevere complimenti mi imbarazza.		Чувствам се смутен, ако някой ми направи комплименти.	
+18	AGR5_N	People who mess with me always regret it.		Le persone che scherzano con me se ne pentono sempre.		Хората, които се забъркват с мен, винаги съжаляват.	
+19	AGR5_N	There are things you should hide from other people because they don't need to know.		Ci sono cose che dovresti nascondere ad altri perché non hanno bisogno di sapere.		Има неща, които трябва да криете от други хора, защото те не трябва да знаят.	
+20	AGR5_N	I have been compared to famous people.		Sono stato paragonato a persone famose.		Сравнявали са ме с известни хора.	
+21	AGR5_P	I have never gotten into trouble with the law.		Non ho mai avuto guai con la legge.		Никога не съм имал проблеми със закона.	
+22	AGR5_N	Make sure your plans benefit you, not others.		Assicurati che i tuoi piani giovino a te, non agli altri.		Уверете се, че плановете ви са от полза за вас, а не за другите.	
+23	AGR5_P	I am an average person.		Sono una persona media.		Аз съм средностатистически човек.	
+24	AGR5_N	I enjoy having sex with people I hardly know.		Mi piace fare sesso con persone che conosco poco.		Обичам да правя секс с хора, които почти не познавам.	
+25	AGR5_N	Most people can be manipulated.		La maggior parte delle persone può essere manipolata.		Повечето хора могат да бъдат манипулирани.	
+26	AGR5_N	I insist on getting the respect I deserve.		Insisto nel ricevere il rispetto che merito.		Настоявам да получа уважението, което заслужавам.	
+27	AGR5_N	I'll say anything to get what I want.		Dirò qualsiasi cosa per ottenere ciò che voglio.		Ще кажа всичко, за да получа това, което искам.	

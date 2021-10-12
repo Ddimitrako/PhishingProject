@@ -1,2 +1,2 @@
-id	type	text_en	options_en
-1	BOOL_P	Have you disabled remote disconnect feature that allows to shut down electricity remotely using a smart meter?	 
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	BOOL_P	Have you disabled remote disconnect feature that allows to shut down electricity remotely using a smart meter?	 	Hai disabilitato la funzione di disconnessione remota che consente di interrompere l'elettricità da remoto utilizzando un contatore intelligente?		Деактивирали ли сте функцията за дистанционно изключване, която позволява дистанционно изключване на електричеството с помощта на смарт електромер?	

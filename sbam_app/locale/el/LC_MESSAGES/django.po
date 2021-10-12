@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-26 16:50+0300\n"
+"POT-Creation-Date: 2021-09-30 22:28+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,8 +21,8 @@ msgstr ""
 #: .\email_simulation\models.py:9 .\phishing_quiz\models.py:11
 #: .\sbam_app\models.py:23 .\sbam_app\models.py:42 .\sbam_app\models.py:54
 #: .\sbam_app\models.py:164 .\sbam_app\models.py:339
-#: .\sbam_app\templates\campaigns.html:28
-#: .\sbam_app\templates\self_assessment_history.html:28
+#: .\sbam_app\templates\campaigns.html:27
+#: .\sbam_app\templates\self_assessment_history.html:27
 msgid "title"
 msgstr ""
 
@@ -117,11 +117,6 @@ msgstr ""
 msgid "Password Strength"
 msgstr ""
 
-#: .\password_strength_app\views.py:142 .\phishing_quiz\views.py:63
-#: .\sbam_app\views.py:580 .\sbam_app\views.py:605
-msgid "You do not have access to this assignment"
-msgstr ""
-
 #: .\phishing_quiz\models.py:9
 msgid "sender_email"
 msgstr ""
@@ -160,7 +155,7 @@ msgstr ""
 #: .\sbam_app\templates\assignments_history.html:24
 #: .\sbam_app\templates\campaign_results.html:30
 #: .\sbam_app\templates\dashboard.html:194
-#: .\sbam_app\templates\self_assessment_history.html:33
+#: .\sbam_app\templates\self_assessment_history.html:32
 msgid "score"
 msgstr ""
 
@@ -168,57 +163,9 @@ msgstr ""
 msgid "Achieved score in phishing quiz"
 msgstr ""
 
-#: .\phishing_quiz\templates\phishing_quiz.html:14
-#: .\sbam_app\templates\campaign.html:103
-msgid "Tests"
-msgstr ""
-
 #: .\phishing_quiz\templates\phishing_quiz.html:15
-#: .\phishing_quiz\templates\phishing_quiz.html:20
 msgid "Phishing Quiz"
 msgstr ""
-
-#: .\phishing_quiz\templates\phishing_quiz.html:21
-msgid "Decide whether a mail is a fraud or not"
-msgstr "Αποφάσισε εάν το ηλεκτρονικό μήνυμα είναι κακόβουλο ή όχι"
-
-#: .\phishing_quiz\templates\phishing_quiz.html:27
-msgid "Email 1 of "
-msgstr "Μήνυμα 1 από "
-
-#: .\phishing_quiz\templates\phishing_quiz.html:50
-msgid "Previous Email"
-msgstr "Προηγούμενο Μήνυμα"
-
-#: .\phishing_quiz\templates\phishing_quiz.html:53
-msgid "Phishing Email"
-msgstr "Κακόβουλο Μήνυμα"
-
-#: .\phishing_quiz\templates\phishing_quiz.html:56
-msgid "Legit Email"
-msgstr "Νόμιμο Μήνυμα"
-
-#: .\phishing_quiz\templates\phishing_quiz.html:59
-msgid "Next Email"
-msgstr "Επόμενο Μήνυμα"
-
-#: .\phishing_quiz\templates\phishing_quiz.html:66
-msgid "Finish Game!"
-msgstr "Τέλος!"
-
-#: .\phishing_quiz\templates\phishing_quiz.html:79
-#: .\sbam_app\templates\campaign.html:41
-msgid "results"
-msgstr "αποτελέσματα"
-
-#: .\phishing_quiz\templates\phishing_quiz.html:86
-msgid "Total Score"
-msgstr ""
-
-#: .\phishing_quiz\templates\phishing_quiz.html:94
-#: .\templates\base_form.html:31
-msgid "Finish"
-msgstr "Τέλος"
 
 #: .\sbam\settings\base_settings.py:174
 msgid "Greek"
@@ -233,7 +180,7 @@ msgid "Italian"
 msgstr ""
 
 #: .\sbam\settings\base_settings.py:177
-msgid "Romanian"
+msgid "Bulgarian"
 msgstr ""
 
 #: .\templates\account\account_inactive.html:5
@@ -347,8 +294,6 @@ msgid ""
 msgstr ""
 
 #: .\templates\account\login.html:24
-#: .\test_venv\Lib\site-packages\django\utils\text.py:235
-#: .\venv\Lib\site-packages\django\utils\text.py:235
 msgid "or"
 msgstr ""
 
@@ -362,8 +307,6 @@ msgstr ""
 
 #: .\templates\account\logout.html:4 .\templates\account\logout.html:7
 #: .\templates\account\logout.html:16 .\templates\main_header.html:91
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\lib\_main_header.html:40
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\lib\_main_header.html:40
 msgid "Sign Out"
 msgstr ""
 
@@ -379,8 +322,6 @@ msgstr ""
 #: .\templates\account\password_reset_from_key.html:17
 #: .\templates\account\password_reset_from_key_done.html:4
 #: .\templates\form-utils\form-fields.html:45 .\templates\main_header.html:87
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\lib\_main_header.html:39
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\lib\_main_header.html:39
 msgid "Change Password"
 msgstr ""
 
@@ -503,8 +444,6 @@ msgid ""
 msgstr ""
 
 #: .\templates\base_datatable.html:137
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:69
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:69
 msgid "Add"
 msgstr ""
 
@@ -556,6 +495,10 @@ msgstr "Πίσω"
 msgid "Next"
 msgstr "Επόμενο"
 
+#: .\templates\base_form.html:31
+msgid "Finish"
+msgstr "Τέλος"
+
 #: .\templates\base_form.html:51 .\sbam_app\templates\new_campaign.html:341
 #: .\sbam_app\templates\new_campaign.html:376
 msgid "Su"
@@ -591,98 +534,62 @@ msgstr "ΠΑ"
 msgid "Sa"
 msgstr "ΣΑ"
 
-#: .\templates\base_form.html:60
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:14
-#: .\venv\Lib\site-packages\django\utils\dates.py:14
-#: .\sbam_app\templates\new_campaign.html:350
+#: .\templates\base_form.html:60 .\sbam_app\templates\new_campaign.html:350
 #: .\sbam_app\templates\new_campaign.html:385
 msgid "January"
 msgstr "Ιανουάριος"
 
-#: .\templates\base_form.html:61
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:14
-#: .\venv\Lib\site-packages\django\utils\dates.py:14
-#: .\sbam_app\templates\new_campaign.html:351
+#: .\templates\base_form.html:61 .\sbam_app\templates\new_campaign.html:351
 #: .\sbam_app\templates\new_campaign.html:386
 msgid "February"
 msgstr "Φεβρουάριος"
 
-#: .\templates\base_form.html:62
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:14
-#: .\venv\Lib\site-packages\django\utils\dates.py:14
-#: .\sbam_app\templates\new_campaign.html:352
+#: .\templates\base_form.html:62 .\sbam_app\templates\new_campaign.html:352
 #: .\sbam_app\templates\new_campaign.html:387
 msgid "March"
 msgstr "Μάρτιος"
 
-#: .\templates\base_form.html:63
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:14
-#: .\venv\Lib\site-packages\django\utils\dates.py:14
-#: .\sbam_app\templates\new_campaign.html:353
+#: .\templates\base_form.html:63 .\sbam_app\templates\new_campaign.html:353
 #: .\sbam_app\templates\new_campaign.html:388
 msgid "April"
 msgstr "Απρίλιος"
 
-#: .\templates\base_form.html:64
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:14
-#: .\venv\Lib\site-packages\django\utils\dates.py:14
-#: .\sbam_app\templates\new_campaign.html:354
+#: .\templates\base_form.html:64 .\sbam_app\templates\new_campaign.html:354
 #: .\sbam_app\templates\new_campaign.html:389
 msgid "May"
 msgstr "Μάιος"
 
-#: .\templates\base_form.html:65
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:14
-#: .\venv\Lib\site-packages\django\utils\dates.py:14
-#: .\sbam_app\templates\new_campaign.html:355
+#: .\templates\base_form.html:65 .\sbam_app\templates\new_campaign.html:355
 #: .\sbam_app\templates\new_campaign.html:390
 msgid "June"
 msgstr "Ιούνιος"
 
-#: .\templates\base_form.html:66
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:15
-#: .\venv\Lib\site-packages\django\utils\dates.py:15
-#: .\sbam_app\templates\new_campaign.html:356
+#: .\templates\base_form.html:66 .\sbam_app\templates\new_campaign.html:356
 #: .\sbam_app\templates\new_campaign.html:391
 msgid "July"
 msgstr "Ιούλιος"
 
-#: .\templates\base_form.html:67
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:15
-#: .\venv\Lib\site-packages\django\utils\dates.py:15
-#: .\sbam_app\templates\new_campaign.html:357
+#: .\templates\base_form.html:67 .\sbam_app\templates\new_campaign.html:357
 #: .\sbam_app\templates\new_campaign.html:392
 msgid "August"
 msgstr "Αύγουστος"
 
-#: .\templates\base_form.html:68
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:15
-#: .\venv\Lib\site-packages\django\utils\dates.py:15
-#: .\sbam_app\templates\new_campaign.html:358
+#: .\templates\base_form.html:68 .\sbam_app\templates\new_campaign.html:358
 #: .\sbam_app\templates\new_campaign.html:393
 msgid "September"
 msgstr "Σεπτέμβριος"
 
-#: .\templates\base_form.html:69
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:15
-#: .\venv\Lib\site-packages\django\utils\dates.py:15
-#: .\sbam_app\templates\new_campaign.html:359
+#: .\templates\base_form.html:69 .\sbam_app\templates\new_campaign.html:359
 #: .\sbam_app\templates\new_campaign.html:394
 msgid "October"
 msgstr "Οκτώβριος"
 
-#: .\templates\base_form.html:70
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:15
-#: .\venv\Lib\site-packages\django\utils\dates.py:15
-#: .\sbam_app\templates\new_campaign.html:360
+#: .\templates\base_form.html:70 .\sbam_app\templates\new_campaign.html:360
 #: .\sbam_app\templates\new_campaign.html:395
 msgid "November"
 msgstr "Νοέμβριος"
 
-#: .\templates\base_form.html:71
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:16
-#: .\venv\Lib\site-packages\django\utils\dates.py:16
-#: .\sbam_app\templates\new_campaign.html:361
+#: .\templates\base_form.html:71 .\sbam_app\templates\new_campaign.html:361
 #: .\sbam_app\templates\new_campaign.html:396
 msgid "December"
 msgstr "Δεκέμβριος"
@@ -700,10 +607,6 @@ msgid "show all"
 msgstr ""
 
 #: .\templates\base_form.html:85
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\change_list.html:71
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\change_list.html:97
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\change_list.html:71
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\change_list.html:97
 msgid "Filter"
 msgstr ""
 
@@ -741,18 +644,6 @@ msgid "Forgot Password"
 msgstr ""
 
 #: .\templates\main_header.html:11
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\app_index.html:14
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\base.html:32
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\change_form.html:24
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\change_list.html:39
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:21
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\object_history.html:6
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\app_index.html:14
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\base.html:32
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\change_form.html:24
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\change_list.html:39
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:21
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\object_history.html:6
 #: .\sbam_app\templates\assignments_history.html:7
 #: .\sbam_app\templates\campaign.html:16 .\sbam_app\templates\campaigns.html:10
 #: .\sbam_app\templates\dashboard.html:8 .\sbam_app\templates\group.html:16
@@ -788,7 +679,7 @@ msgstr "Προφίλ"
 msgid "Dashboard"
 msgstr ""
 
-#: .\templates\main_sidebar.html:30 .\sbam_app\templates\campaign.html:134
+#: .\templates\main_sidebar.html:30 .\sbam_app\templates\campaign.html:131
 #: .\sbam_app\templates\new_user.html:11 .\sbam_app\templates\profile.html:17
 #: .\sbam_app\templates\users.html:6 .\sbam_app\templates\users.html:11
 msgid "Users"
@@ -838,1852 +729,20 @@ msgstr ""
 msgid "Phishing Simulation creation form"
 msgstr ""
 
-#: .\test_venv\Lib\site-packages\adminlte3\templates\adminlte\lib\_main_header.html:150
-#: .\venv\Lib\site-packages\adminlte3\templates\adminlte\lib\_main_header.html:150
-#, fuzzy
-#| msgid "Reset Password"
-msgid "Change password"
-msgstr "Αλλαγή Συνθηματικού"
-
-#: .\test_venv\Lib\site-packages\adminlte3\templates\adminlte\lib\_main_header.html:151
-#: .\venv\Lib\site-packages\adminlte3\templates\adminlte\lib\_main_header.html:151
-msgid "Sign out"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3\templates\adminlte\login.html:19
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\change_form.html:57
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\change_list.html:54
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\login.html:7
-#: .\venv\Lib\site-packages\adminlte3\templates\adminlte\login.html:19
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\change_form.html:57
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\change_list.html:54
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\login.html:7
-msgid "Please correct the error below."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3\templates\adminlte\login.html:20
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\change_form.html:57
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\change_list.html:55
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\login.html:8
-#: .\venv\Lib\site-packages\adminlte3\templates\adminlte\login.html:20
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\change_form.html:57
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\change_list.html:55
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\login.html:8
-msgid "Please correct the errors below."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\base_login.html:23
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\base_site.html:6
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\base_login.html:23
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\base_site.html:6
-msgid "Django administration"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\base_site.html:3
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\base_site.html:3
-msgid "Django site admin"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\change_form.html:29
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\change_list.html:82
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\change_form.html:29
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\change_list.html:82
-#, python-format
-msgid "Add %(name)s"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\change_form.html:43
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\object_history.html:10
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\change_form.html:43
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\object_history.html:10
-msgid "History"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\change_form.html:45
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\change_form.html:45
-msgid "View on site"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:41
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:137
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:41
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:137
-#, python-format
-msgid "Models in the %(name)s application"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:74
-#: .\test_venv\Lib\site-packages\django\forms\widgets.py:397
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:74
-#: .\venv\Lib\site-packages\django\forms\widgets.py:397
-msgid "Change"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:124
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:124
-msgid "You don't have permission to edit anything."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:134
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:134
-msgid "Recent actions"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:135
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:135
-msgid "My actions"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:152
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:152
-msgid "None available"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:176
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\index.html:176
-msgid "Unknown content"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\login.html:37
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\login.html:37
-msgid "Forgotten your password or username?"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\login.html:44
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\login.html:44
-msgid "Log In"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\login.html:53
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\login.html:53
-#, python-format
-msgid ""
-"You are authenticated as %(username)s, but are not authorized to access this "
-"page. Would you like to login to a different account?"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\object_history.html:22
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\object_history.html:22
-msgid "Date/time"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\object_history.html:23
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\object_history.html:23
-#, fuzzy
-#| msgid "Users"
-msgid "User"
-msgstr "Χρήστες"
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\object_history.html:24
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\object_history.html:24
-msgid "Action"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\object_history.html:38
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\object_history.html:38
-msgid ""
-"This object doesn't have a change history. It probably wasn't added via this "
-"admin site."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\search_form.html:16
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\search_form.html:16
-#, python-format
-msgid ""
-"%(counter)s\n"
-"        result"
-msgid_plural "%(counter)s results"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\search_form.html:18
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\search_form.html:18
-#, python-format
-msgid ""
-"%(full_result_count)s\n"
-"            total"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\adminlte3_theme\templates\admin\search_form.html:19
-#: .\venv\Lib\site-packages\adminlte3_theme\templates\admin\search_form.html:19
-msgid "Show all"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\forms.py:6
-#: .\venv\Lib\site-packages\ckeditor_uploader\forms.py:6
-msgid "Search files"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:5
-#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:5
-msgid "Select an image to embed"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:27
-#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:27
-msgid "Browse for the image you want, then click 'Embed Image' to continue..."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:29
-#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:29
-msgid ""
-"No images found. Upload images using the 'Image Button' dialog's 'Upload' "
-"tab."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:50
-#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:50
-msgid "Images in: "
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:62
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:80
-#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:62
-#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:80
-msgid "Embed Image"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:146
-#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:146
-msgid "Play Slideshow"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:147
-#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:147
-msgid "Pause Slideshow"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:148
-#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:148
-msgid "&lsaquo; Previous Photo"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:149
-#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:149
-msgid "Next Photo &rsaquo;"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:150
-#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:150
-msgid "Next &rsaquo;"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:151
-#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:151
-msgid "&lsaquo; Prev"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\crispy_forms\tests\test_form_helper.py:129
-#: .\test_venv\Lib\site-packages\crispy_forms\tests\test_form_helper.py:139
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:53
-#: .\venv\Lib\site-packages\crispy_forms\tests\test_form_helper.py:129
-#: .\venv\Lib\site-packages\crispy_forms\tests\test_form_helper.py:139
-#: .\venv\Lib\site-packages\django\forms\fields.py:53
-msgid "This field is required."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\crispy_forms\tests\test_layout.py:360
-#: .\venv\Lib\site-packages\crispy_forms\tests\test_layout.py:360
-msgid "i18n text"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\crispy_forms\tests\test_layout.py:360
-#: .\venv\Lib\site-packages\crispy_forms\tests\test_layout.py:360
-msgid "i18n legend"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\crispy_forms\tests\test_layout_objects.py:129
-#: .\test_venv\Lib\site-packages\django\core\validators.py:32
-#: .\venv\Lib\site-packages\crispy_forms\tests\test_layout_objects.py:129
-#: .\venv\Lib\site-packages\django\core\validators.py:32
-msgid "Enter a valid value."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\contrib\messages\apps.py:7
-#: .\venv\Lib\site-packages\django\contrib\messages\apps.py:7
-msgid "Messages"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\contrib\sitemaps\apps.py:7
-#: .\venv\Lib\site-packages\django\contrib\sitemaps\apps.py:7
-msgid "Site Maps"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
-#: .\venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
-msgid "Static Files"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\contrib\syndication\apps.py:7
-#: .\venv\Lib\site-packages\django\contrib\syndication\apps.py:7
-msgid "Syndication"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\paginator.py:45
-#: .\venv\Lib\site-packages\django\core\paginator.py:45
-msgid "That page number is not an integer"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\paginator.py:47
-#: .\venv\Lib\site-packages\django\core\paginator.py:47
-msgid "That page number is less than 1"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\paginator.py:52
-#: .\venv\Lib\site-packages\django\core\paginator.py:52
-msgid "That page contains no results"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:103
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:659
-#: .\venv\Lib\site-packages\django\core\validators.py:103
-#: .\venv\Lib\site-packages\django\forms\fields.py:659
-msgid "Enter a valid URL."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:155
-#: .\venv\Lib\site-packages\django\core\validators.py:155
-msgid "Enter a valid integer."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:166
-#: .\venv\Lib\site-packages\django\core\validators.py:166
-msgid "Enter a valid email address."
-msgstr ""
-
-#. Translators: "letters" means latin letters: a-z and A-Z.
-#: .\test_venv\Lib\site-packages\django\core\validators.py:240
-#: .\venv\Lib\site-packages\django\core\validators.py:240
-msgid ""
-"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:247
-#: .\venv\Lib\site-packages\django\core\validators.py:247
-msgid ""
-"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
-"hyphens."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:256
-#: .\test_venv\Lib\site-packages\django\core\validators.py:276
-#: .\venv\Lib\site-packages\django\core\validators.py:256
-#: .\venv\Lib\site-packages\django\core\validators.py:276
-msgid "Enter a valid IPv4 address."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:261
-#: .\test_venv\Lib\site-packages\django\core\validators.py:277
-#: .\venv\Lib\site-packages\django\core\validators.py:261
-#: .\venv\Lib\site-packages\django\core\validators.py:277
-msgid "Enter a valid IPv6 address."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:271
-#: .\test_venv\Lib\site-packages\django\core\validators.py:275
-#: .\venv\Lib\site-packages\django\core\validators.py:271
-#: .\venv\Lib\site-packages\django\core\validators.py:275
-msgid "Enter a valid IPv4 or IPv6 address."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:305
-#: .\venv\Lib\site-packages\django\core\validators.py:305
-msgid "Enter only digits separated by commas."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:311
-#: .\venv\Lib\site-packages\django\core\validators.py:311
-#, python-format
-msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:343
-#: .\venv\Lib\site-packages\django\core\validators.py:343
-#, python-format
-msgid "Ensure this value is less than or equal to %(limit_value)s."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:352
-#: .\venv\Lib\site-packages\django\core\validators.py:352
-#, python-format
-msgid "Ensure this value is greater than or equal to %(limit_value)s."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:362
-#: .\venv\Lib\site-packages\django\core\validators.py:362
-#, python-format
-msgid ""
-"Ensure this value has at least %(limit_value)d character (it has "
-"%(show_value)d)."
-msgid_plural ""
-"Ensure this value has at least %(limit_value)d characters (it has "
-"%(show_value)d)."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:377
-#: .\venv\Lib\site-packages\django\core\validators.py:377
-#, python-format
-msgid ""
-"Ensure this value has at most %(limit_value)d character (it has "
-"%(show_value)d)."
-msgid_plural ""
-"Ensure this value has at most %(limit_value)d characters (it has "
-"%(show_value)d)."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:396
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:291
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:326
-#: .\venv\Lib\site-packages\django\core\validators.py:396
-#: .\venv\Lib\site-packages\django\forms\fields.py:291
-#: .\venv\Lib\site-packages\django\forms\fields.py:326
-msgid "Enter a number."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:398
-#: .\venv\Lib\site-packages\django\core\validators.py:398
-#, python-format
-msgid "Ensure that there are no more than %(max)s digit in total."
-msgid_plural "Ensure that there are no more than %(max)s digits in total."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:403
-#: .\venv\Lib\site-packages\django\core\validators.py:403
-#, python-format
-msgid "Ensure that there are no more than %(max)s decimal place."
-msgid_plural "Ensure that there are no more than %(max)s decimal places."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:408
-#: .\venv\Lib\site-packages\django\core\validators.py:408
-#, python-format
-msgid ""
-"Ensure that there are no more than %(max)s digit before the decimal point."
-msgid_plural ""
-"Ensure that there are no more than %(max)s digits before the decimal point."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:470
-#: .\venv\Lib\site-packages\django\core\validators.py:470
-#, python-format
-msgid ""
-"File extension “%(extension)s” is not allowed. Allowed extensions are: "
-"%(allowed_extensions)s."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\core\validators.py:522
-#: .\venv\Lib\site-packages\django\core\validators.py:522
-msgid "Null characters are not allowed."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\base.py:1181
-#: .\test_venv\Lib\site-packages\django\forms\models.py:759
-#: .\venv\Lib\site-packages\django\db\models\base.py:1181
-#: .\venv\Lib\site-packages\django\forms\models.py:759
-msgid "and"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\base.py:1183
-#: .\venv\Lib\site-packages\django\db\models\base.py:1183
-#, python-format
-msgid "%(model_name)s with this %(field_labels)s already exists."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:104
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:104
-#, python-format
-msgid "Value %(value)r is not a valid choice."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:105
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:105
-msgid "This field cannot be null."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:106
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:106
-msgid "This field cannot be blank."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:107
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:107
-#, python-format
-msgid "%(model_name)s with this %(field_label)s already exists."
-msgstr ""
-
-#. Translators: The 'lookup_type' is one of 'date', 'year' or 'month'.
-#. Eg: "Title must be unique for pub_date year"
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:111
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:111
-#, python-format
-msgid ""
-"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:130
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:130
-#, python-format
-msgid "Field of type: %(field_type)s"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:937
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:937
-#, python-format
-msgid "“%(value)s” value must be either True or False."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:938
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:938
-#, python-format
-msgid "“%(value)s” value must be either True, False, or None."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:940
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:940
-msgid "Boolean (Either True or False)"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:981
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:981
-#, python-format
-msgid "String (up to %(max_length)s)"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1045
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1045
-msgid "Comma-separated integers"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1094
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1094
-#, python-format
-msgid ""
-"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
-"format."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1096
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1239
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1096
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1239
-#, python-format
-msgid ""
-"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
-"date."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1099
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1099
-msgid "Date (without time)"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1237
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1237
-#, python-format
-msgid ""
-"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
-"uuuuuu]][TZ] format."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1241
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1241
-#, python-format
-msgid ""
-"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
-"[TZ]) but it is an invalid date/time."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1245
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1245
-msgid "Date (with time)"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1393
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1393
-#, python-format
-msgid "“%(value)s” value must be a decimal number."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1395
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1395
-#, fuzzy
-#| msgid "December"
-msgid "Decimal number"
-msgstr "Δεκέμβριος"
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1534
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1534
-#, python-format
-msgid ""
-"“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
-"uuuuuu] format."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1537
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1537
-msgid "Duration"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1587
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1587
-#, fuzzy
-#| msgid "address"
-msgid "Email address"
-msgstr "διεύθυνση"
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1610
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1610
-msgid "File path"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1676
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1676
-#, python-format
-msgid "“%(value)s” value must be a float."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1678
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1678
-msgid "Floating point number"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1716
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1716
-#, python-format
-msgid "“%(value)s” value must be an integer."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1718
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1718
-msgid "Integer"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1801
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1801
-msgid "Big (8 byte) integer"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1817
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1817
-#, fuzzy
-#| msgid "address"
-msgid "IPv4 address"
-msgstr "διεύθυνση"
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1848
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1848
-#, fuzzy
-#| msgid "address"
-msgid "IP address"
-msgstr "διεύθυνση"
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1928
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1929
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1928
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1929
-#, python-format
-msgid "“%(value)s” value must be either None, True or False."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1931
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1931
-msgid "Boolean (Either True, False or None)"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1966
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1966
-msgid "Positive integer"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1979
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1979
-msgid "Positive small integer"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:1993
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1993
-#, python-format
-msgid "Slug (up to %(max_length)s)"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:2025
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2025
-msgid "Small integer"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:2032
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2032
-msgid "Text"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:2060
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2060
-#, python-format
-msgid ""
-"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
-"format."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:2062
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2062
-#, python-format
-msgid ""
-"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
-"invalid time."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:2065
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2065
-msgid "Time"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:2191
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2191
-msgid "URL"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:2213
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2213
-msgid "Raw binary data"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:2278
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2278
-#, python-format
-msgid "“%(value)s” is not a valid UUID."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\__init__.py:2280
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2280
-msgid "Universally unique identifier"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\files.py:221
-#: .\venv\Lib\site-packages\django\db\models\fields\files.py:221
-msgid "File"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\files.py:360
-#: .\venv\Lib\site-packages\django\db\models\fields\files.py:360
-msgid "Image"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\related.py:778
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:778
-#, python-format
-msgid "%(model)s instance with %(field)s %(value)r does not exist."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\related.py:780
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:780
-msgid "Foreign Key (type determined by related field)"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\related.py:1012
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1012
-msgid "One-to-one relationship"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\related.py:1066
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1066
-#, python-format
-msgid "%(from)s-%(to)s relationship"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\related.py:1067
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1067
-#, python-format
-msgid "%(from)s-%(to)s relationships"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\db\models\fields\related.py:1109
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1109
-msgid "Many-to-many relationship"
-msgstr ""
-
-#. Translators: If found as last label character, these punctuation
-#. characters will prevent the default label_suffix to be appended to the label
-#: .\test_venv\Lib\site-packages\django\forms\boundfield.py:149
-#: .\venv\Lib\site-packages\django\forms\boundfield.py:149
-msgid ":?.!"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:246
-#: .\venv\Lib\site-packages\django\forms\fields.py:246
-msgid "Enter a whole number."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:397
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:1127
-#: .\venv\Lib\site-packages\django\forms\fields.py:397
-#: .\venv\Lib\site-packages\django\forms\fields.py:1127
-msgid "Enter a valid date."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:421
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:1128
-#: .\venv\Lib\site-packages\django\forms\fields.py:421
-#: .\venv\Lib\site-packages\django\forms\fields.py:1128
-msgid "Enter a valid time."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:443
-#: .\venv\Lib\site-packages\django\forms\fields.py:443
-msgid "Enter a valid date/time."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:472
-#: .\venv\Lib\site-packages\django\forms\fields.py:472
-msgid "Enter a valid duration."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:473
-#: .\venv\Lib\site-packages\django\forms\fields.py:473
-#, python-brace-format
-msgid "The number of days must be between {min_days} and {max_days}."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:533
-#: .\venv\Lib\site-packages\django\forms\fields.py:533
-msgid "No file was submitted. Check the encoding type on the form."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:534
-#: .\venv\Lib\site-packages\django\forms\fields.py:534
-msgid "No file was submitted."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:535
-#: .\venv\Lib\site-packages\django\forms\fields.py:535
-msgid "The submitted file is empty."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:537
-#: .\venv\Lib\site-packages\django\forms\fields.py:537
-#, python-format
-msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
-msgid_plural ""
-"Ensure this filename has at most %(max)d characters (it has %(length)d)."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:540
-#: .\venv\Lib\site-packages\django\forms\fields.py:540
-msgid "Please either submit a file or check the clear checkbox, not both."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:601
-#: .\venv\Lib\site-packages\django\forms\fields.py:601
-msgid ""
-"Upload a valid image. The file you uploaded was either not an image or a "
-"corrupted image."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:763
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:853
-#: .\test_venv\Lib\site-packages\django\forms\models.py:1275
-#: .\venv\Lib\site-packages\django\forms\fields.py:763
-#: .\venv\Lib\site-packages\django\forms\fields.py:853
-#: .\venv\Lib\site-packages\django\forms\models.py:1275
-#, python-format
-msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:854
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:969
-#: .\test_venv\Lib\site-packages\django\forms\models.py:1274
-#: .\venv\Lib\site-packages\django\forms\fields.py:854
-#: .\venv\Lib\site-packages\django\forms\fields.py:969
-#: .\venv\Lib\site-packages\django\forms\models.py:1274
-msgid "Enter a list of values."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:970
-#: .\venv\Lib\site-packages\django\forms\fields.py:970
-msgid "Enter a complete value."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\fields.py:1186
-#: .\venv\Lib\site-packages\django\forms\fields.py:1186
-msgid "Enter a valid UUID."
-msgstr ""
-
-#. Translators: This is the default suffix added to form field labels
-#: .\test_venv\Lib\site-packages\django\forms\forms.py:81
-#: .\venv\Lib\site-packages\django\forms\forms.py:81
-msgid ":"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\forms.py:207
-#: .\venv\Lib\site-packages\django\forms\forms.py:207
-#, python-format
-msgid "(Hidden field %(name)s) %(error)s"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\formsets.py:93
-#: .\venv\Lib\site-packages\django\forms\formsets.py:93
-msgid "ManagementForm data is missing or has been tampered with"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\formsets.py:345
-#: .\venv\Lib\site-packages\django\forms\formsets.py:345
-#, python-format
-msgid "Please submit %d or fewer forms."
-msgid_plural "Please submit %d or fewer forms."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\forms\formsets.py:352
-#: .\venv\Lib\site-packages\django\forms\formsets.py:352
-#, python-format
-msgid "Please submit %d or more forms."
-msgid_plural "Please submit %d or more forms."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\forms\formsets.py:379
-#: .\test_venv\Lib\site-packages\django\forms\formsets.py:386
-#: .\venv\Lib\site-packages\django\forms\formsets.py:379
-#: .\venv\Lib\site-packages\django\forms\formsets.py:386
-msgid "Order"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\formsets.py:391
-#: .\venv\Lib\site-packages\django\forms\formsets.py:391
-msgid "Delete"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\models.py:754
-#: .\venv\Lib\site-packages\django\forms\models.py:754
-#, python-format
-msgid "Please correct the duplicate data for %(field)s."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\models.py:758
-#: .\venv\Lib\site-packages\django\forms\models.py:758
-#, python-format
-msgid "Please correct the duplicate data for %(field)s, which must be unique."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\models.py:764
-#: .\venv\Lib\site-packages\django\forms\models.py:764
-#, python-format
-msgid ""
-"Please correct the duplicate data for %(field_name)s which must be unique "
-"for the %(lookup)s in %(date_field)s."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\models.py:773
-#: .\venv\Lib\site-packages\django\forms\models.py:773
-msgid "Please correct the duplicate values below."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\models.py:1094
-#: .\venv\Lib\site-packages\django\forms\models.py:1094
-msgid "The inline value did not match the parent instance."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\models.py:1161
-#: .\venv\Lib\site-packages\django\forms\models.py:1161
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\models.py:1277
-#: .\venv\Lib\site-packages\django\forms\models.py:1277
-#, python-format
-msgid "“%(pk)s” is not a valid value."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\utils.py:162
-#: .\venv\Lib\site-packages\django\forms\utils.py:162
-#, python-format
-msgid ""
-"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
-"may be ambiguous or it may not exist."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\widgets.py:395
-#: .\venv\Lib\site-packages\django\forms\widgets.py:395
-msgid "Clear"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\widgets.py:396
-#: .\venv\Lib\site-packages\django\forms\widgets.py:396
-msgid "Currently"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\widgets.py:709
-#: .\venv\Lib\site-packages\django\forms\widgets.py:709
-msgid "Unknown"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\widgets.py:710
-#: .\venv\Lib\site-packages\django\forms\widgets.py:710
-msgid "Yes"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\forms\widgets.py:711
-#: .\venv\Lib\site-packages\django\forms\widgets.py:711
-msgid "No"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\template\defaultfilters.py:788
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:788
-msgid "yes,no,maybe"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\template\defaultfilters.py:817
-#: .\test_venv\Lib\site-packages\django\template\defaultfilters.py:834
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:817
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:834
-#, python-format
-msgid "%(size)d byte"
-msgid_plural "%(size)d bytes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\template\defaultfilters.py:836
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:836
-#, python-format
-msgid "%s KB"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\template\defaultfilters.py:838
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:838
-#, python-format
-msgid "%s MB"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\template\defaultfilters.py:840
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:840
-#, python-format
-msgid "%s GB"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\template\defaultfilters.py:842
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:842
-#, python-format
-msgid "%s TB"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\template\defaultfilters.py:844
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:844
-#, python-format
-msgid "%s PB"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dateformat.py:62
-#: .\venv\Lib\site-packages\django\utils\dateformat.py:62
-msgid "p.m."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dateformat.py:63
-#: .\venv\Lib\site-packages\django\utils\dateformat.py:63
-msgid "a.m."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dateformat.py:68
-#: .\venv\Lib\site-packages\django\utils\dateformat.py:68
-msgid "PM"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dateformat.py:69
-#: .\venv\Lib\site-packages\django\utils\dateformat.py:69
-msgid "AM"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dateformat.py:150
-#: .\venv\Lib\site-packages\django\utils\dateformat.py:150
-msgid "midnight"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dateformat.py:152
-#: .\venv\Lib\site-packages\django\utils\dateformat.py:152
-msgid "noon"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:6
-#: .\venv\Lib\site-packages\django\utils\dates.py:6
-msgid "Monday"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:6
-#: .\venv\Lib\site-packages\django\utils\dates.py:6
-msgid "Tuesday"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:6
-#: .\venv\Lib\site-packages\django\utils\dates.py:6
-msgid "Wednesday"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:6
-#: .\venv\Lib\site-packages\django\utils\dates.py:6
-msgid "Thursday"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:6
-#: .\venv\Lib\site-packages\django\utils\dates.py:6
-msgid "Friday"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:7
-#: .\venv\Lib\site-packages\django\utils\dates.py:7
-msgid "Saturday"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:7
-#: .\venv\Lib\site-packages\django\utils\dates.py:7
-msgid "Sunday"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:10
-#: .\venv\Lib\site-packages\django\utils\dates.py:10
-#, fuzzy
-#| msgid "Mo"
-msgid "Mon"
-msgstr "ΔΕ"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:10
-#: .\venv\Lib\site-packages\django\utils\dates.py:10
-#, fuzzy
-#| msgid "Tu"
-msgid "Tue"
-msgstr "ΤΡ"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:10
-#: .\venv\Lib\site-packages\django\utils\dates.py:10
-#, fuzzy
-#| msgid "We"
-msgid "Wed"
-msgstr "ΤΕ"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:10
-#: .\venv\Lib\site-packages\django\utils\dates.py:10
-#, fuzzy
-#| msgid "Tu"
-msgid "Thu"
-msgstr "ΤΡ"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:10
-#: .\venv\Lib\site-packages\django\utils\dates.py:10
-#, fuzzy
-#| msgid "Fr"
-msgid "Fri"
-msgstr "ΠΑ"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:11
-#: .\venv\Lib\site-packages\django\utils\dates.py:11
-#, fuzzy
-#| msgid "Sa"
-msgid "Sat"
-msgstr "ΣΑ"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:11
-#: .\venv\Lib\site-packages\django\utils\dates.py:11
-#, fuzzy
-#| msgid "Su"
-msgid "Sun"
-msgstr "ΚΥ"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:19
-#: .\venv\Lib\site-packages\django\utils\dates.py:19
-msgid "jan"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:19
-#: .\venv\Lib\site-packages\django\utils\dates.py:19
-msgid "feb"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:19
-#: .\venv\Lib\site-packages\django\utils\dates.py:19
-msgid "mar"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:19
-#: .\venv\Lib\site-packages\django\utils\dates.py:19
-msgid "apr"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:19
-#: .\venv\Lib\site-packages\django\utils\dates.py:19
-#, fuzzy
-#| msgid "May"
-msgid "may"
-msgstr "Μάιος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:19
-#: .\venv\Lib\site-packages\django\utils\dates.py:19
-msgid "jun"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:20
-#: .\venv\Lib\site-packages\django\utils\dates.py:20
-msgid "jul"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:20
-#: .\venv\Lib\site-packages\django\utils\dates.py:20
-msgid "aug"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:20
-#: .\venv\Lib\site-packages\django\utils\dates.py:20
-msgid "sep"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:20
-#: .\venv\Lib\site-packages\django\utils\dates.py:20
-msgid "oct"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:20
-#: .\venv\Lib\site-packages\django\utils\dates.py:20
-msgid "nov"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:20
-#: .\venv\Lib\site-packages\django\utils\dates.py:20
-msgid "dec"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:23
-#: .\venv\Lib\site-packages\django\utils\dates.py:23
-msgctxt "abbrev. month"
-msgid "Jan."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:24
-#: .\venv\Lib\site-packages\django\utils\dates.py:24
-msgctxt "abbrev. month"
-msgid "Feb."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:25
-#: .\venv\Lib\site-packages\django\utils\dates.py:25
-#, fuzzy
-#| msgid "March"
-msgctxt "abbrev. month"
-msgid "March"
-msgstr "Μάρτιος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:26
-#: .\venv\Lib\site-packages\django\utils\dates.py:26
-#, fuzzy
-#| msgid "April"
-msgctxt "abbrev. month"
-msgid "April"
-msgstr "Απρίλιος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:27
-#: .\venv\Lib\site-packages\django\utils\dates.py:27
-#, fuzzy
-#| msgid "May"
-msgctxt "abbrev. month"
-msgid "May"
-msgstr "Μάιος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:28
-#: .\venv\Lib\site-packages\django\utils\dates.py:28
-#, fuzzy
-#| msgid "June"
-msgctxt "abbrev. month"
-msgid "June"
-msgstr "Ιούνιος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:29
-#: .\venv\Lib\site-packages\django\utils\dates.py:29
-#, fuzzy
-#| msgid "July"
-msgctxt "abbrev. month"
-msgid "July"
-msgstr "Ιούλιος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:30
-#: .\venv\Lib\site-packages\django\utils\dates.py:30
-msgctxt "abbrev. month"
-msgid "Aug."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:31
-#: .\venv\Lib\site-packages\django\utils\dates.py:31
-msgctxt "abbrev. month"
-msgid "Sept."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:32
-#: .\venv\Lib\site-packages\django\utils\dates.py:32
-msgctxt "abbrev. month"
-msgid "Oct."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:33
-#: .\venv\Lib\site-packages\django\utils\dates.py:33
-msgctxt "abbrev. month"
-msgid "Nov."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:34
-#: .\venv\Lib\site-packages\django\utils\dates.py:34
-msgctxt "abbrev. month"
-msgid "Dec."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:37
-#: .\venv\Lib\site-packages\django\utils\dates.py:37
-#, fuzzy
-#| msgid "January"
-msgctxt "alt. month"
-msgid "January"
-msgstr "Ιανουάριος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:38
-#: .\venv\Lib\site-packages\django\utils\dates.py:38
-#, fuzzy
-#| msgid "February"
-msgctxt "alt. month"
-msgid "February"
-msgstr "Φεβρουάριος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:39
-#: .\venv\Lib\site-packages\django\utils\dates.py:39
-#, fuzzy
-#| msgid "March"
-msgctxt "alt. month"
-msgid "March"
-msgstr "Μάρτιος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:40
-#: .\venv\Lib\site-packages\django\utils\dates.py:40
-#, fuzzy
-#| msgid "April"
-msgctxt "alt. month"
-msgid "April"
-msgstr "Απρίλιος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:41
-#: .\venv\Lib\site-packages\django\utils\dates.py:41
-#, fuzzy
-#| msgid "May"
-msgctxt "alt. month"
-msgid "May"
-msgstr "Μάιος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:42
-#: .\venv\Lib\site-packages\django\utils\dates.py:42
-#, fuzzy
-#| msgid "June"
-msgctxt "alt. month"
-msgid "June"
-msgstr "Ιούνιος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:43
-#: .\venv\Lib\site-packages\django\utils\dates.py:43
-#, fuzzy
-#| msgid "July"
-msgctxt "alt. month"
-msgid "July"
-msgstr "Ιούλιος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:44
-#: .\venv\Lib\site-packages\django\utils\dates.py:44
-#, fuzzy
-#| msgid "August"
-msgctxt "alt. month"
-msgid "August"
-msgstr "Αύγουστος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:45
-#: .\venv\Lib\site-packages\django\utils\dates.py:45
-#, fuzzy
-#| msgid "September"
-msgctxt "alt. month"
-msgid "September"
-msgstr "Σεπτέμβριος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:46
-#: .\venv\Lib\site-packages\django\utils\dates.py:46
-#, fuzzy
-#| msgid "October"
-msgctxt "alt. month"
-msgid "October"
-msgstr "Οκτώβριος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:47
-#: .\venv\Lib\site-packages\django\utils\dates.py:47
-#, fuzzy
-#| msgid "November"
-msgctxt "alt. month"
-msgid "November"
-msgstr "Νοέμβριος"
-
-#: .\test_venv\Lib\site-packages\django\utils\dates.py:48
-#: .\venv\Lib\site-packages\django\utils\dates.py:48
-#, fuzzy
-#| msgid "December"
-msgctxt "alt. month"
-msgid "December"
-msgstr "Δεκέμβριος"
-
-#: .\test_venv\Lib\site-packages\django\utils\ipv6.py:8
-#: .\venv\Lib\site-packages\django\utils\ipv6.py:8
-msgid "This is not a valid IPv6 address."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\text.py:69
-#: .\venv\Lib\site-packages\django\utils\text.py:69
-#, python-format
-msgctxt "String to return when truncating text"
-msgid "%(truncated_text)s…"
-msgstr ""
-
-#. Translators: This string is used as a separator between list elements
-#: .\test_venv\Lib\site-packages\django\utils\text.py:254
-#: .\test_venv\Lib\site-packages\django\utils\timesince.py:83
-#: .\venv\Lib\site-packages\django\utils\text.py:254
-#: .\venv\Lib\site-packages\django\utils\timesince.py:83
-msgid ", "
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\utils\timesince.py:9
-#: .\venv\Lib\site-packages\django\utils\timesince.py:9
-#, python-format
-msgid "%d year"
-msgid_plural "%d years"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\utils\timesince.py:10
-#: .\venv\Lib\site-packages\django\utils\timesince.py:10
-#, python-format
-msgid "%d month"
-msgid_plural "%d months"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\utils\timesince.py:11
-#: .\venv\Lib\site-packages\django\utils\timesince.py:11
-#, python-format
-msgid "%d week"
-msgid_plural "%d weeks"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\utils\timesince.py:12
-#: .\venv\Lib\site-packages\django\utils\timesince.py:12
-#, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\utils\timesince.py:13
-#: .\venv\Lib\site-packages\django\utils\timesince.py:13
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\utils\timesince.py:14
-#: .\venv\Lib\site-packages\django\utils\timesince.py:14
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\test_venv\Lib\site-packages\django\utils\timesince.py:72
-#: .\venv\Lib\site-packages\django\utils\timesince.py:72
-msgid "0 minutes"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\csrf.py:110
-#: .\venv\Lib\site-packages\django\views\csrf.py:110
-msgid "Forbidden"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\csrf.py:111
-#: .\venv\Lib\site-packages\django\views\csrf.py:111
-msgid "CSRF verification failed. Request aborted."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\csrf.py:115
-#: .\venv\Lib\site-packages\django\views\csrf.py:115
-msgid ""
-"You are seeing this message because this HTTPS site requires a “Referer "
-"header” to be sent by your Web browser, but none was sent. This header is "
-"required for security reasons, to ensure that your browser is not being "
-"hijacked by third parties."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\csrf.py:120
-#: .\venv\Lib\site-packages\django\views\csrf.py:120
-msgid ""
-"If you have configured your browser to disable “Referer” headers, please re-"
-"enable them, at least for this site, or for HTTPS connections, or for “same-"
-"origin” requests."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\csrf.py:124
-#: .\venv\Lib\site-packages\django\views\csrf.py:124
-msgid ""
-"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
-"including the “Referrer-Policy: no-referrer” header, please remove them. The "
-"CSRF protection requires the “Referer” header to do strict referer checking. "
-"If you’re concerned about privacy, use alternatives like <a rel=\"noreferrer"
-"\" …> for links to third-party sites."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\csrf.py:132
-#: .\venv\Lib\site-packages\django\views\csrf.py:132
-msgid ""
-"You are seeing this message because this site requires a CSRF cookie when "
-"submitting forms. This cookie is required for security reasons, to ensure "
-"that your browser is not being hijacked by third parties."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\csrf.py:137
-#: .\venv\Lib\site-packages\django\views\csrf.py:137
-msgid ""
-"If you have configured your browser to disable cookies, please re-enable "
-"them, at least for this site, or for “same-origin” requests."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\csrf.py:142
-#: .\venv\Lib\site-packages\django\views\csrf.py:142
-msgid "More information is available with DEBUG=True."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\generic\dates.py:41
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:41
-msgid "No year specified"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\generic\dates.py:61
-#: .\test_venv\Lib\site-packages\django\views\generic\dates.py:111
-#: .\test_venv\Lib\site-packages\django\views\generic\dates.py:208
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:61
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:111
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:208
-msgid "Date out of range"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\generic\dates.py:90
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:90
-msgid "No month specified"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\generic\dates.py:142
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:142
-msgid "No day specified"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\generic\dates.py:188
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:188
-msgid "No week specified"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\generic\dates.py:338
-#: .\test_venv\Lib\site-packages\django\views\generic\dates.py:367
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:338
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:367
-#, python-format
-msgid "No %(verbose_name_plural)s available"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\generic\dates.py:589
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:589
-#, python-format
-msgid ""
-"Future %(verbose_name_plural)s not available because %(class_name)s."
-"allow_future is False."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\generic\dates.py:623
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:623
-#, python-format
-msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\generic\detail.py:54
-#: .\venv\Lib\site-packages\django\views\generic\detail.py:54
-#, python-format
-msgid "No %(verbose_name)s found matching the query"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\generic\list.py:67
-#: .\venv\Lib\site-packages\django\views\generic\list.py:67
-msgid "Page is not “last”, nor can it be converted to an int."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\generic\list.py:72
-#: .\venv\Lib\site-packages\django\views\generic\list.py:72
-#, python-format
-msgid "Invalid page (%(page_number)s): %(message)s"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\generic\list.py:154
-#: .\venv\Lib\site-packages\django\views\generic\list.py:154
-#, python-format
-msgid "Empty list and “%(class_name)s.allow_empty” is False."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\static.py:40
-#: .\venv\Lib\site-packages\django\views\static.py:40
-msgid "Directory indexes are not allowed here."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\static.py:42
-#: .\venv\Lib\site-packages\django\views\static.py:42
-#, python-format
-msgid "“%(path)s” does not exist"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\static.py:80
-#: .\venv\Lib\site-packages\django\views\static.py:80
-#, python-format
-msgid "Index of %(directory)s"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\templates\default_urlconf.html:7
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:7
-msgid "Django: the Web framework for perfectionists with deadlines."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\templates\default_urlconf.html:346
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:346
-#, python-format
-msgid ""
-"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
-"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\templates\default_urlconf.html:368
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:368
-msgid "The install worked successfully! Congratulations!"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\templates\default_urlconf.html:369
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:369
-#, python-format
-msgid ""
-"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
-"%(version)s/ref/settings/#debug\" target=\"_blank\" rel=\"noopener"
-"\">DEBUG=True</a> is in your settings file and you have not configured any "
-"URLs."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\templates\default_urlconf.html:384
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:384
-msgid "Django Documentation"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\templates\default_urlconf.html:385
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:385
-msgid "Topics, references, &amp; how-to’s"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\templates\default_urlconf.html:396
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:396
-msgid "Tutorial: A Polling App"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\templates\default_urlconf.html:397
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:397
-msgid "Get started with Django"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\templates\default_urlconf.html:408
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:408
-msgid "Django Community"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\django\views\templates\default_urlconf.html:409
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:409
-msgid "Connect, get help, or contribute"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\modeltranslation\widgets.py:25
-#: .\venv\Lib\site-packages\modeltranslation\widgets.py:25
-msgid "None"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:10
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:10
-msgid "Use a few words, avoid common phrases."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:11
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:11
-msgid "No need for symbols, digits, or uppercase letters."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:27
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:27
-msgid "Add another word or two. Uncommon words are better."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:46
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:46
-msgid "Straight rows of keys are easy to guess."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:48
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:48
-msgid "Short keyboard patterns are easy to guess."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:53
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:53
-msgid "Use a longer keyboard pattern with more turns."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:58
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:58
-msgid "Repeats like \"aaa\" are easy to guess."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:60
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:60
-msgid ""
-"Repeats like \"abcabcabc\" are only slightly harder to guess than \"abc\"."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:65
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:65
-msgid "Avoid repeated words and characters."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:70
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:70
-msgid "Sequences like \"abc\" or \"6543\" are easy to guess."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:72
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:72
-msgid "Avoid sequences."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:78
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:78
-msgid "Recent years are easy to guess."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:80
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:80
-msgid "Avoid recent years."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:81
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:81
-msgid "Avoid years that are associated with you."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:86
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:86
-msgid "Dates are often easy to guess."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:88
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:88
-msgid "Avoid dates and years that are associated with you."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:99
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:99
-msgid "This is a top-10 common password."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:101
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:101
-msgid "This is a top-100 common password."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:103
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:103
-msgid "This is a very common password."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:105
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:105
-msgid "This is similar to a commonly used password."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:108
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:108
-msgid "A word by itself is easy to guess."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:112
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:112
-msgid "Names and surnames by themselves are easy to guess."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:114
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:114
-msgid "Common names and surnames are easy to guess."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:121
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:121
-msgid "Capitalization doesn't help very much."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:123
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:123
-msgid "All-uppercase is almost as easy to guess as all-lowercase."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:127
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:127
-msgid "Reversed words aren't much harder to guess."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn\feedback.py:129
-#: .\venv\Lib\site-packages\zxcvbn\feedback.py:129
-msgid "Predictable substitutions like '@' instead of 'a' don't help very much."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn_password\validators.py:65
-#: .\venv\Lib\site-packages\zxcvbn_password\validators.py:65
-msgid "Your password can't contain repeated words or characters."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn_password\widgets.py:20
-#: .\test_venv\Lib\site-packages\zxcvbn_password\widgets.py:93
-#: .\venv\Lib\site-packages\zxcvbn_password\widgets.py:20
-#: .\venv\Lib\site-packages\zxcvbn_password\widgets.py:93
-msgid "Warning"
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn_password\widgets.py:22
-#: .\venv\Lib\site-packages\zxcvbn_password\widgets.py:22
-msgid ""
-"This password would take <em class=\"password_strength_time\"></em> to crack."
-msgstr ""
-
-#: .\test_venv\Lib\site-packages\zxcvbn_password\widgets.py:93
-#: .\venv\Lib\site-packages\zxcvbn_password\widgets.py:93
-msgid "Your passwords don't match."
-msgstr ""
-
 #: .\sbam_app\forms.py:173 .\sbam_app\models.py:63
 msgid "The user who created the campaign"
 msgstr ""
 
-#: .\sbam_app\management\commands\import_questionnaire.py:21
+#: .\sbam_app\management\commands\import_questionnaire.py:23
 msgid "The tab-separated file of the questionnaire"
 msgstr ""
 
-#: .\sbam_app\management\commands\import_questionnaire.py:22
+#: .\sbam_app\management\commands\import_questionnaire.py:24
 msgid "The directory hosting questionnaires"
+msgstr ""
+
+#: .\sbam_app\management\commands\import_questionnaire.py:25
+msgid "The tab-separated file containing the questionnaire titles translations"
 msgstr ""
 
 #: .\sbam_app\models.py:12
@@ -2694,13 +753,13 @@ msgstr ""
 msgid "Active"
 msgstr ""
 
-#: .\sbam_app\models.py:20 .\sbam_app\templates\campaign.html:73
-#: .\sbam_app\templates\campaign.html:118
+#: .\sbam_app\models.py:20 .\sbam_app\templates\campaign.html:72
+#: .\sbam_app\templates\campaign.html:115 .\sbam_app\templates\reports.html:151
 msgid "Organisational"
 msgstr "Επιχειρησιακά"
 
-#: .\sbam_app\models.py:21 .\sbam_app\templates\campaign.html:75
-#: .\sbam_app\templates\campaign.html:120
+#: .\sbam_app\models.py:21 .\sbam_app\templates\campaign.html:74
+#: .\sbam_app\templates\campaign.html:117 .\sbam_app\templates\reports.html:157
 msgid "Individual"
 msgstr "Ατομικά"
 
@@ -2727,7 +786,7 @@ msgstr ""
 
 #: .\sbam_app\models.py:31 .\sbam_app\models.py:38
 #: .\sbam_app\templates\questionnaire_info.html:34
-#: .\sbam_app\templates\self_assessment_history.html:29
+#: .\sbam_app\templates\self_assessment_history.html:28
 msgid "dimension"
 msgstr ""
 
@@ -2749,7 +808,7 @@ msgstr ""
 
 #: .\sbam_app\models.py:49 .\sbam_app\models.py:167 .\sbam_app\models.py:335
 #: .\sbam_app\templates\questionnaire_info.html:42
-#: .\sbam_app\templates\self_assessment_history.html:30
+#: .\sbam_app\templates\self_assessment_history.html:29
 msgid "domain"
 msgstr ""
 
@@ -2761,15 +820,17 @@ msgstr ""
 msgid "Campaign title"
 msgstr ""
 
-#: .\sbam_app\models.py:55 .\sbam_app\templates\campaigns.html:29
+#: .\sbam_app\models.py:55 .\sbam_app\templates\campaigns.html:28
+#, fuzzy
+#| msgid "birth date"
 msgid "creation date"
-msgstr "Ημερομηνία δημιουργίας"
+msgstr "Ημερομηνία γέννησης"
 
 #: .\sbam_app\models.py:55
 msgid "Campaign creation date"
 msgstr ""
 
-#: .\sbam_app\models.py:56 .\sbam_app\templates\campaigns.html:30
+#: .\sbam_app\models.py:56 .\sbam_app\templates\campaigns.html:29
 msgid "start date"
 msgstr ""
 
@@ -2793,7 +854,7 @@ msgstr ""
 msgid "owner"
 msgstr ""
 
-#: .\sbam_app\models.py:66 .\sbam_app\templates\campaigns.html:48
+#: .\sbam_app\models.py:66 .\sbam_app\templates\campaigns.html:47
 msgid "cancelled"
 msgstr ""
 
@@ -2900,8 +961,8 @@ msgstr ""
 msgid "custom_question"
 msgstr ""
 
-#: .\sbam_app\models.py:230 .\sbam_app\templates\campaign.html:61
-#: .\sbam_app\templates\campaign.html:109
+#: .\sbam_app\models.py:230 .\sbam_app\templates\campaign.html:60
+#: .\sbam_app\templates\campaign.html:106
 msgid "type"
 msgstr ""
 
@@ -3156,7 +1217,7 @@ msgstr ""
 msgid "User employee id"
 msgstr ""
 
-#: .\sbam_app\models.py:491 .\sbam_app\templates\campaign.html:141
+#: .\sbam_app\models.py:491 .\sbam_app\templates\campaign.html:137
 #: .\sbam_app\templates\users.html:27
 msgid "job title"
 msgstr "Τίτλος Εργασίας"
@@ -3165,7 +1226,7 @@ msgstr "Τίτλος Εργασίας"
 msgid "User job title"
 msgstr ""
 
-#: .\sbam_app\models.py:499 .\sbam_app\templates\campaign.html:142
+#: .\sbam_app\models.py:499 .\sbam_app\templates\campaign.html:138
 #: .\sbam_app\templates\profile.html:36 .\sbam_app\templates\users.html:28
 msgid "department"
 msgstr ""
@@ -3225,7 +1286,7 @@ msgstr "ομάδα"
 msgid "Group ID"
 msgstr ""
 
-#: .\sbam_app\models.py:571 .\sbam_app\templates\campaigns.html:33
+#: .\sbam_app\models.py:571 .\sbam_app\templates\campaigns.html:32
 #: .\sbam_app\templates\group.html:60 .\sbam_app\templates\groups.html:24
 msgid "creator"
 msgstr "δημιουργός"
@@ -3259,7 +1320,7 @@ msgstr ""
 
 #: .\sbam_app\templates\assignments.html:8
 #: .\sbam_app\templates\assignments_history.html:22
-#: .\sbam_app\templates\campaigns.html:27 .\sbam_app\templates\groups.html:18
+#: .\sbam_app\templates\campaigns.html:26 .\sbam_app\templates\groups.html:18
 #: .\sbam_app\templates\questionnaire_info.html:50
 #: .\sbam_app\templates\questionnaires_list.html:162
 msgid "Status"
@@ -3313,53 +1374,61 @@ msgstr ""
 msgid "General Information"
 msgstr "Γενικές Πληροφορίες"
 
-#: .\sbam_app\templates\campaign.html:60 .\sbam_app\templates\campaign.html:108
+#: .\sbam_app\templates\campaign.html:41
+msgid "results"
+msgstr ""
+
+#: .\sbam_app\templates\campaign.html:59 .\sbam_app\templates\campaign.html:105
 #: .\sbam_app\templates\groups.html:19
 msgid "name"
 msgstr "όνομα"
 
-#: .\sbam_app\templates\campaign.html:62
+#: .\sbam_app\templates\campaign.html:61
 msgid "info"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:94
+#: .\sbam_app\templates\campaign.html:93
 msgid "No selected Questionnaires"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:127
+#: .\sbam_app\templates\campaign.html:100
+msgid "Tests"
+msgstr ""
+
+#: .\sbam_app\templates\campaign.html:124
 msgid "No selected Tests"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:140
+#: .\sbam_app\templates\campaign.html:136
 #: .\sbam_app\templates\campaign_results.html:29
 #: .\sbam_app\templates\users.html:20
 msgid "Full Name"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:167 .\sbam_app\templates\group.html:97
+#: .\sbam_app\templates\campaign.html:162 .\sbam_app\templates\group.html:97
 #: .\sbam_app\templates\profile.html:57
 msgid "Save changes"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:168 .\sbam_app\templates\group.html:98
+#: .\sbam_app\templates\campaign.html:163 .\sbam_app\templates\group.html:98
 #: .\sbam_app\templates\profile.html:58
 msgid "Save"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:175
+#: .\sbam_app\templates\campaign.html:170
 msgid "Cancel campaign"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:176
+#: .\sbam_app\templates\campaign.html:171
 msgid "Cancel"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:182 .\sbam_app\templates\group.html:118
+#: .\sbam_app\templates\campaign.html:177 .\sbam_app\templates\group.html:118
 #: .\sbam_app\templates\profile.html:76
 msgid "Discard changes"
 msgstr ""
 
-#: .\sbam_app\templates\campaign.html:183 .\sbam_app\templates\group.html:119
+#: .\sbam_app\templates\campaign.html:178 .\sbam_app\templates\group.html:119
 #: .\sbam_app\templates\profile.html:77
 msgid "Reset"
 msgstr ""
@@ -3379,27 +1448,27 @@ msgstr ""
 msgid "Create new campaign"
 msgstr ""
 
-#: .\sbam_app\templates\campaigns.html:31
+#: .\sbam_app\templates\campaigns.html:30
 msgid "initial end date"
 msgstr ""
 
-#: .\sbam_app\templates\campaigns.html:32
+#: .\sbam_app\templates\campaigns.html:31
 msgid "actual finish date"
 msgstr ""
 
-#: .\sbam_app\templates\campaigns.html:42
+#: .\sbam_app\templates\campaigns.html:41
 msgid "Finished "
 msgstr ""
 
-#: .\sbam_app\templates\campaigns.html:45
+#: .\sbam_app\templates\campaigns.html:44
 msgid "In progress "
 msgstr ""
 
-#: .\sbam_app\templates\campaigns.html:51
+#: .\sbam_app\templates\campaigns.html:50
 msgid "Scheduled"
 msgstr ""
 
-#: .\sbam_app\templates\campaigns.html:67
+#: .\sbam_app\templates\campaigns.html:66
 msgid "No campaigns available!"
 msgstr ""
 
@@ -3653,7 +1722,7 @@ msgid "Questionnaire Details"
 msgstr ""
 
 #: .\sbam_app\templates\questionnaire_info.html:65
-#: .\sbam_app\templates\self_assessment_history.html:31
+#: .\sbam_app\templates\self_assessment_history.html:30
 msgid "No. Questions"
 msgstr ""
 
@@ -3724,15 +1793,15 @@ msgstr ""
 msgid "Execute a New Assessment"
 msgstr ""
 
-#: .\sbam_app\templates\self_assessment_history.html:32
+#: .\sbam_app\templates\self_assessment_history.html:31
 msgid "answer Date"
 msgstr ""
 
-#: .\sbam_app\templates\self_assessment_history.html:34
+#: .\sbam_app\templates\self_assessment_history.html:33
 msgid "Redo"
 msgstr ""
 
-#: .\sbam_app\templates\self_assessment_history.html:88
+#: .\sbam_app\templates\self_assessment_history.html:87
 msgid "No Self Assessment executed!"
 msgstr ""
 
@@ -3760,7 +1829,7 @@ msgstr ""
 msgid "manager"
 msgstr ""
 
-#: .\sbam_app\views.py:37 .\sbam_app\views.py:51 .\sbam_app\views.py:701
+#: .\sbam_app\views.py:37 .\sbam_app\views.py:51 .\sbam_app\views.py:694
 msgid "You do not have enough privileges to perform this action"
 msgstr ""
 
@@ -3769,7 +1838,7 @@ msgstr ""
 msgid "User successfully %(action)s"
 msgstr ""
 
-#: .\sbam_app\views.py:98 .\sbam_app\views.py:148 .\sbam_app\views.py:789
+#: .\sbam_app\views.py:98 .\sbam_app\views.py:148 .\sbam_app\views.py:782
 msgid "Please correct the errors below"
 msgstr ""
 
@@ -3782,22 +1851,26 @@ msgstr ""
 msgid "Please add at least one group member"
 msgstr ""
 
-#: .\sbam_app\views.py:600
+#: .\sbam_app\views.py:573 .\sbam_app\views.py:598
+msgid "You do not have access to this assignment"
+msgstr ""
+
+#: .\sbam_app\views.py:593
 #, python-format
 msgid ""
 "Assignment \"%(title)s\" is not active for completion! Please select an "
 "active assignment from the ones presented in your dashboard..."
 msgstr ""
 
-#: .\sbam_app\views.py:786
+#: .\sbam_app\views.py:779
 msgid "Campaign successfully updated"
 msgstr ""
 
-#: .\sbam_app\views.py:837
+#: .\sbam_app\views.py:830
 msgid "Campaign successfully cancelled."
 msgstr ""
 
-#: .\sbam_app\views.py:839
+#: .\sbam_app\views.py:832
 msgid ""
 "Campaign has been created by another user. Therefore, you cannot cancel it."
 msgstr ""

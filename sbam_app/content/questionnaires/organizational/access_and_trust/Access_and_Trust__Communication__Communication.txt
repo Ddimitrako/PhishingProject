@@ -1,5 +1,5 @@
-id	type	text_en	options_en
-1	BOOL_P	Do you have documentation of the mapping of organizational communication flows?	 
-2	BOOL_P	Have you implemented appropriate mechanisms for the communication of secret authentication between privileged users?	 
-3	BOOL_P	Are users given temporary secret authentication information in a secure manner?	 
-4	BOOL_P	Do users acknowledge receipt of secret authentication information?	 
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	BOOL_P	Do you have documentation of the mapping of organizational communication flows?	 	Hai a disposizione della documentazione che definisce i processi di comunicazione aziendale?		Имате ли документация за мапването на организационните комуникационни потоци?	
+2	BOOL_P	Have you implemented appropriate mechanisms for the communication of secret authentication between privileged users?	 	Avete implementato un meccanismo di comunicazione agli amministratori di sistema delle credenziali di accesso degli utenti?		Приложили ли сте подходящи механизми за комуникация на тайно удостоверяване между привилегировани потребители?	
+3	BOOL_P	Are users given temporary secret authentication information in a secure manner?	 	Le credenziali di accesso temporanee degli utenti sono date in modo sicuro?		Дава ли се на потребителите временна информация за тайно удостоверяване по сигурен начин?	
+4	BOOL_P	Do users acknowledge receipt of secret authentication information?	 	Gli utenti ricevono una comunicazione informativa delle credenziali di autenticazione?		Потребителите потвърждават ли получаването на тайна информация за удостоверяване?	

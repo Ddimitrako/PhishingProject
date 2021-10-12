@@ -1,31 +1,31 @@
-id	type	text_en	options_en
-1	FREQ4_P	I plan tasks carefully.
-2	FREQ4_N	I do things without thinking.
-3	FREQ4_N	I make-up my mind quickly.
-4	FREQ4_N	I am happy-go-lucky.
-5	FREQ4_N	I don't 'pay attention'.
-6	FREQ4_N	I have 'racing' thoughts.
-7	FREQ4_P	I plan trips well ahead of time.
-8	FREQ4_P	I am self-controlled.
-9	FREQ4_P	I concentrate easily.
-10	FREQ4_P	I save regularly.
-11	FREQ4_N	I 'squirm' at plays or lectures.
-12	FREQ4_P	I am a careful thinker.
-13	FREQ4_P	I plan for job security.
-14	FREQ4_N	I say things without thinking.
-15	FREQ4_P	I like to think about complex problems.
-16	FREQ4_N	I change jobs.
-17	FREQ4_N	I act 'on impulse'.
-18	FREQ4_N	I get easily bored when solving thought problems.
-19	FREQ4_N	I act on the spur of the moment.
-20	FREQ4_P	I am a steady thinker.
-21	FREQ4_N	I change residences.
-22	FREQ4_N	I buy things on impulse.
-23	FREQ4_N	I can only think about one problem at a time.
-24	FREQ4_N	I change hobbies.
-25	FREQ4_N	I spend or charge more than I earn.
-26	FREQ4_N	I often have extraneous thoughts when thinking.
-27	FREQ4_N	I am more interested in the present than the future.
-28	FREQ4_N	I am restless at the theater or lectures.
-29	FREQ4_P	I like puzzles.
-30	FREQ4_P	I am future oriented.
+id	type	text_en	options_en	text_it	options_it	text_bg	options_bg
+1	FREQ4_P	I plan tasks carefully.		Pianifico attentamente le attività.		Планирам задачи внимателно.	
+2	FREQ4_N	I do things without thinking.		Faccio le cose senza pensarci.		Правя нещата, без да се замислям.	
+3	FREQ4_N	I make-up my mind quickly.		Prendo una decisione in fretta.		Бързо се решавам.	
+4	FREQ4_N	I am happy-go-lucky.		Sono  felice e fortunato.		Аз съм безгрижен.	
+5	FREQ4_N	I don't 'pay attention'.		"Non ""faccio attenzione""".		Не „обръщам внимание“.	
+6	FREQ4_N	I have 'racing' thoughts.		"Ho pensieri ""affrettati""."		Имам „състезателни“ мисли.	
+7	FREQ4_P	I plan trips well ahead of time.		Pianifico i viaggi con molto anticipo.		Планирам пътувания доста време предварително.	
+8	FREQ4_P	I am self-controlled.		Ho autocontrollo.		Аз съм самоконтролиран.	
+9	FREQ4_P	I concentrate easily.		Mi concentro facilmente.		Концентрирам се лесно.	
+10	FREQ4_P	I save regularly.		Risparmio regolarmente.		Спестявам редовно.	
+11	FREQ4_N	I 'squirm' at plays or lectures.		"Mi ""agito"" durante gli spettacoli o le lezioni."		„Въртя се“ на представления или лекции.	
+12	FREQ4_P	I am a careful thinker.		Sono una persona riflessiva.		Аз съм внимателен мислител.	
+13	FREQ4_P	I plan for job security.		Pianifico la sicurezza del lavoro.		Планирам за сигурност на работното място.	
+14	FREQ4_N	I say things without thinking.		Parlo senza pensarci.		Казвам нещата, без да се замислям.	
+15	FREQ4_P	I like to think about complex problems.		Mi piace riflettere su problemi complessi.		Обичам да мисля за сложни проблеми.	
+16	FREQ4_N	I change jobs.		Cambio lavoro.		Сменям работите си.	
+17	FREQ4_N	I act 'on impulse'.		"Agisco ""d'impulso""".		Аз действам импулсивно.	
+18	FREQ4_N	I get easily bored when solving thought problems.		Mi annoio facilmente quando risolvo problemi.		Лесно се отегчавам, когато решавам мисловни проблеми.	
+19	FREQ4_N	I act on the spur of the moment.		Agisco seguendo il mio impulso.		Аз действам спонтанно.	
+20	FREQ4_P	I am a steady thinker.		Sono focalizzato.		Аз съм непрестанен мислител.	
+21	FREQ4_N	I change residences.		Cambio residenza.		Сменям местоживеения.	
+22	FREQ4_N	I buy things on impulse.		Compro d'impulso.		Купувам неща импулсивно.	
+23	FREQ4_N	I can only think about one problem at a time.		Riesco a pensare solo ad un problema alla volta.		Мога да мисля само за един проблем наведнъж.	
+24	FREQ4_N	I change hobbies.		Cambio hobby.		Сменям хобитата си.	
+25	FREQ4_N	I spend or charge more than I earn.		Spendo più di quanto guadagno.		Харча повече, отколкото печеля.	
+26	FREQ4_N	I often have extraneous thoughts when thinking.		Mi distraggo quando cerco di concentrarmi.		Често мисля за странични неща.	
+27	FREQ4_N	I am more interested in the present than the future.		Sono più interessato al presente che al futuro.		Интересувам се повече от настоящето, отколкото от бъдещето.	
+28	FREQ4_N	I am restless at the theater or lectures.		Sono irrequieto a teatro o a lezione.		Неспокоен съм в театъра или на лекции.	
+29	FREQ4_P	I like puzzles.		Mi piacciono i puzzle.		Харесвам загадки.	
+30	FREQ4_P	I am future oriented.		Sono teso al futuro.		Ориентиран съм към бъдещето.	
