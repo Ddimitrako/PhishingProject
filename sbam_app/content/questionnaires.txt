@@ -57,7 +57,7 @@ No	title_en	title_it	title_bg
 56	Hardware Configuration Management General	Configurazione degli hardware	Управление на хардуерната конфигурация - общи положения
 57	Information Resources Management	Gestione delle risorse informative	Управление на информационните ресурси
 58	Network Configuration Management EPES Sector	Gestione della configurazione di rete nel settore Elettrico ed Energetico (EPES)	управление на мрежовата конфигурация в сектор електроенергийни системи (EPES)
-59	Network Configuration Management General	Gestione della configurazione di rete (generale)	Network Configuration Management 
+59	Network Configuration Management General	Gestione della configurazione di rete (generale)	Управление на мрежовата конфигурация - общи положения 
 60	Network Infrastructure Management	Gestione della configurazione di rete	Управление на мрежовата инфраструктура
 61	Personnel Security	Sicurezza del personale	Сигурност на персонала
 62	Visitors and External Contractors	Visitatori esterni	Посетители и външни контрагенти
