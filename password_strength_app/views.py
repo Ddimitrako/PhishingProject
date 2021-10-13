@@ -125,7 +125,7 @@ def password_strength(request, assignment_id):
 
             assignment_result.save()
 
-            threats_calculation()
+            threats_calculation(test_assignment.campaign_id)
 
             return JsonResponse({'data': result_dict,
                                  'total_score': mean_score * 100,

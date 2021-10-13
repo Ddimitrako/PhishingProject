@@ -47,7 +47,7 @@ def phishing_quiz(request, assignment_id):
 
             assignment_result.save()
 
-            threats_calculation()
+            threats_calculation(test_assignment.campaign_id)
 
             return JsonResponse({
                                  'score': correct_answers / len(labels) * 100,

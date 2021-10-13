@@ -83,7 +83,7 @@ def sim_endpoint(request):
 
             assignment_result.save()
 
-            threats_calculation()
+            threats_calculation(campaign.id)
 
             return render(request, 'esim_answer.html', {'user': assignee,
                                                         'campaign': campaign})

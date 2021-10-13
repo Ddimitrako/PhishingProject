@@ -460,10 +460,7 @@ def manager_dashboard(request):
     active_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('end_date') if c.status=='ACTIVE']
     finished_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('-end_date') if c.status=='FINISHED']
     future_campaigns = [c for c in Campaign.objects.filter(owner=request.user).order_by('start_date') if c.status=='NOT_STARTED']
-    print(len(finished_campaigns))
-    # import pdb
-    # pdb.set_trace()
-    print("##############################")
+
     attack_patterns = ActiveAttackPatterns.objects.all().order_by('-score')
     threats = ActiveInsiderThreats.objects.all().order_by('-score')
 
@@ -685,8 +682,9 @@ def surveySubmission(request):
         assignment_result = calculate_assignment_result(assignment)
         assignment_result.save()
         score = assignment_result.score
+    print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 
-    threats_calculation()
+    threats_calculation(assignment_init.campaign_id)
 
     return JsonResponse({'result': 'success',
                          'badge': custom_tags.get_badge(str(score * 100)),
@@ -1526,22 +1524,33 @@ def StartRepeatTask():
     # return JsonResponse({'Kafka Sheduled job Starter $ repeat every 24hrs': 'True'}, status=200)
 
 
-def CheckFinishedCampaigns():
-    #print("CheckFinishedCampaigns STARTED")
-    bootstrapServer = BOOTSTRAP_SERVERS
-    #print(bootstrapServer)
+def CheckFinishedCampaigns(campaign_id=None):
     try:
-        producer = KafkaProducer(bootstrap_servers=[bootstrapServer],api_version=(0,11,5),
+        print("CheckFinishedCampaigns STARTED")
+        bootstrapServer = BOOTSTRAP_SERVERS
+        producer = KafkaProducer(bootstrap_servers=[bootstrapServer], api_version=(0, 11, 5),
                                  value_serializer=lambda x: json.dumps(x).encode('utf-8'))
-        for c in Campaign.objects.all(): #.filter(kafkaStatus__isnull=True):
-            if c.status == 'FINISHED' and c.kafkaStatus != 'Send':
-                print("Campaign ID-->"+str(c.id))
-                kafka_producer(producer,campaign_id=c.id)
+        if campaign_id!=None: #the call came from specif end of campaign
+            print("code running only for finished campaign")
+            print("camp_id -->" +str(campaign_id))
+            c = Campaign.objects.get(id=campaign_id)
+            if c.status == 'FINISHED' and c.kafkaStatus != 'Send' or (c.status == 'EXPIRED' and c.kafkaStatus != 'Send'):
+                print("Campaign ID-->" + str(c.id))
+                kafka_producer(producer, campaign_id=c.id)
                 c.kafkaStatus = 'Send'
                 c.save()
-        # return JsonResponse({'Kafka Sheduled job Starter $ repeat every 24hrs': 'True'}, status=200)
+        else:
+            for c in Campaign.objects.all(): #.filter(kafkaStatus__isnull=True):
+                if c.status == 'FINISHED' and c.kafkaStatus != 'Send' or (c.status == 'EXPIRED' and c.kafkaStatus != 'Send'):
+                    print("Campaign ID-->"+str(c.id))
+                    kafka_producer(producer,campaign_id=c.id)
+                    c.kafkaStatus = 'Send'
+                    c.save()
+            # return JsonResponse({'Kafka Sheduled job Starter $ repeat every 24hrs': 'True'}, status=200)
     except Exception as e:
         print(e)
+
+
 def kafka_producer(producer,campaign_id=None):
     domainName = str(SBA_DOMAIN_NAME)
     topicName = str(TOPIC_NAME)
@@ -1584,7 +1593,7 @@ def IdentifiedThreats(request):
            'insider': ActiveInsiderThreats.objects.all().order_by('-score')})
 
 
-def threats_calculation():
+def threats_calculation(campaign_id=None):
 
     domains_scores = {}
     mitigations_dict = {}
@@ -1690,4 +1699,4 @@ def threats_calculation():
         active_threat = ActiveInsiderThreats(threat=threat, score=recognized_threats[threat]['score'])
         active_threat.save()
 
-    CheckFinishedCampaigns()
+    CheckFinishedCampaigns(campaign_id)
