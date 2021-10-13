@@ -55,7 +55,7 @@ urlpatterns = [
     # results REST API
     path('api/token/',GetAccessToken.as_view(), name='get_token'),
     path('api/metrics/organization/', GetOrganizationReport.as_view(), name='organization_report'),
-    path('api/metrics/campaigns/<campaign_id>/', GetCampaignReport.as_view(), name='campaign_report'),
+    path('api/metrics/campaign/<campaign_id>/', GetCampaignReport.as_view(), name='campaign_report'),
     path('api/metrics/user/<user_id>/', GetUserReport.as_view(), name='user_report'),
     path('api/metrics/group/<group_id>/', GetGroupReport.as_view(), name='group_report'),
     path('api/metrics/campaigns/', GetCampaigns.as_view(), name='get_campaigns'),
