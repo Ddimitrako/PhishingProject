@@ -1256,7 +1256,8 @@ class GetAccessToken(APIView):
             if user is not None:
                 token = Token.objects.get_or_create(user=user)
                 print(token[0].key)
-                response_data = {'token': token[0].key, 'id': token[0].user_id}
+                # response_data = {'token': token[0].key, 'id': token[0].user_id}
+                response_data = {'token': token[0].key}
                 return HttpResponse(json.dumps(response_data), content_type="application/json")
             else:
                 return Response(status=status.HTTP_403_FORBIDDEN)
@@ -1282,11 +1283,12 @@ def find_user_service_access(username):
     filteredData = UserService.objects.filter(user_id__username=username)
     list = ['all_services','no_services', 'organization_report','campaign_report',
            'user_report', 'group_report', 'get_campaigns']
-
-    serviceAccess = filteredData.first().service_access
-    # if serviceAccess in list:
-
-    return serviceAccess
+    try:
+        serviceAccess = filteredData.first().service_access
+        # if serviceAccess in list:
+        return serviceAccess
+    except:
+        return None
     # service_access = usersServiceslist.service_access
 
     # userServiceList = UserService.objects.get()
@@ -1302,7 +1304,8 @@ class GetOrganizationReport(APIView):
     def get(self,request,*args):
         months = 24
         user=get_user_from_token(request)
-
+        if user == None:
+            return Response(status=status.HTTP_403_FORBIDDEN)
         if find_user_service_access(user.username) in ["all_services","organization_report"]:
             if 'time_period' in request.GET:
                 print(request.GET.get('time_period'))
@@ -1341,9 +1344,22 @@ class GetCampaignReport(APIView):
     def get(self,request,campaign_id,*args):
         months = 24
         user = get_user_from_token(request)
-        if  not Campaign.objects.filter(pk=campaign_id).exists():  #check if campaign id doesnt exist
+        if user == None:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        if not Campaign.objects.filter(pk=campaign_id).exists():  #check if campaign id doesnt exist
             return Response(status=status.HTTP_404_NOT_FOUND)
         if find_user_service_access(user.username) in ["all_services","campaign_report"]:
+            campaign = Campaign.objects.get(id=campaign_id)
+            campaign_dict = {
+                'id': campaign.pk,
+                'title': campaign.title,
+                'creation_date': campaign.creation_date,
+                'start_date': campaign.start_date,
+                'end_date': campaign.end_date,
+                'description': campaign.description,
+                'owner': campaign.owner.first_name + ' ' + campaign.owner.last_name,
+                'is_canceled': campaign.is_cancelled,
+            }
 
             assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, campaign_id=campaign_id)\
                 .order_by('questionnaire', 'user')
@@ -1352,7 +1368,7 @@ class GetCampaignReport(APIView):
                                                   campaign__end_date__gte=date.today() - relativedelta(months=months))
             assignments = chain(assignments.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
             data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
-            print("GetCampaignReport")
+
             print(data)
             for dim in data['dimensions']:
                 dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
@@ -1360,29 +1376,29 @@ class GetCampaignReport(APIView):
                 for domain in dim['domains']:
                     domain.pop('description', None)
 
-            data['assignees'] = []
-            data['tests'] = []
-            assignees = list(Assignment.objects.filter(campaign=campaign_id). \
-                             values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title',
-                                         'user__userprofile__department'). \
-                             distinct().order_by('user__last_name').values('user__first_name', 'user__last_name'))
+            # data['assignees'] = []
+            # data['tests'] = []
+            # assignees = list(Assignment.objects.filter(campaign=campaign_id). \
+            #                  values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title',
+            #                              'user__userprofile__department'). \
+            #                  distinct().order_by('user__last_name').values('user__first_name', 'user__last_name'))
+            # #
+            # for assignee in assignees:
+            #     data['assignees'].append(({
+            #         'first_name': assignee['user__first_name'],
+            #         'last_name': assignee['user__last_name']
+            #     }))
             #
-            for assignee in assignees:
-                data['assignees'].append(({
-                    'first_name': assignee['user__first_name'],
-                    'last_name': assignee['user__last_name']
-                }))
+            # tests = list(TestAssignment.objects.filter(campaign=campaign_id).
+            #      order_by('test__title').distinct('test__title').values('test__title', 'assignmentresult__score'))
+            #
+            # for test in tests:
+            #     data['tests'].append(({
+            #         'title': test['test__title'],
+            #         'score': test['assignmentresult__score']
+            #     }))
 
-            tests = list(TestAssignment.objects.filter(campaign=campaign_id).
-                 order_by('test__title').distinct('test__title').values('test__title', 'assignmentresult__score'))
-
-            for test in tests:
-                data['tests'].append(({
-                    'title': test['test__title'],
-                    'score': test['assignmentresult__score']
-                }))
-
-            return JsonResponse({'metrics': data})
+            return JsonResponse({'campaign_info': campaign_dict,'results': data})
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)
 
@@ -1391,7 +1407,9 @@ class GetUserReport(APIView):
     def get(self, request, user_id, *args):
         months = 24
         user = get_user_from_token(request)
-        if  not User.objects.filter(pk=user_id).exists():
+        if user == None:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        if not User.objects.filter(pk=user_id).exists():
             return Response(status=status.HTTP_404_NOT_FOUND)
         if find_user_service_access(user.username) in ["all_services","user_report"]:
             if 'time_period' in request.GET:
@@ -1422,7 +1440,9 @@ class GetGroupReport(APIView):
     def get(self,request,group_id):
         months = 24
         user = get_user_from_token(request)
-        if  not Group.objects.filter(pk=group_id).exists():
+        if user == None:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        if not Group.objects.filter(pk=group_id).exists():
             return Response(status=status.HTTP_404_NOT_FOUND)
         if find_user_service_access(user.username) in ["all_services","group_report"]:
             if 'time_period' in request.GET:
@@ -1452,6 +1472,8 @@ class GetGroupReport(APIView):
 class GetCampaigns(APIView):
     def get(self,request):
         user = get_user_from_token(request)
+        if user == None:
+            return Response(status=status.HTTP_403_FORBIDDEN)
         if find_user_service_access(user.username) in ["all_services", "get_campaigns"]:
             months = 24
             campaigns_json = {
