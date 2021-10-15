@@ -1350,6 +1350,23 @@ class GetCampaignReport(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
         if find_user_service_access(user.username) in ["all_services","campaign_report"]:
             campaign = Campaign.objects.get(id=campaign_id)
+            assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, campaign_id=campaign_id)\
+                .order_by('questionnaire', 'user')
+            dimensions = Dimension.objects.order_by('level', 'title')
+            tests = TestAssignment.objects.filter(campaign=campaign_id,
+                                                  campaign__end_date__gte=date.today() - relativedelta(months=months))
+            assignments = chain(assignments.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
+            data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
+
+
+            for dim in data['dimensions']:
+                dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
+                dim.pop('description', None)
+                for domain in dim['domains']:
+                    domain.pop('description', None)
+            assigneesList = []
+            testList = []
+            questionnairesList = []
             campaign_dict = {
                 'id': campaign.pk,
                 'title': campaign.title,
@@ -1359,44 +1376,39 @@ class GetCampaignReport(APIView):
                 'description': campaign.description,
                 'owner': campaign.owner.first_name + ' ' + campaign.owner.last_name,
                 'is_canceled': campaign.is_cancelled,
+                'assignees': assigneesList,
+                'assignments': {'questionnaires': questionnairesList,'tests': testList},
+
             }
 
-            assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, campaign_id=campaign_id)\
-                .order_by('questionnaire', 'user')
-            dimensions = Dimension.objects.order_by('level', 'title')
-            tests = TestAssignment.objects.filter(campaign=campaign_id,
-                                                  campaign__end_date__gte=date.today() - relativedelta(months=months))
-            assignments = chain(assignments.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
-            data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
-
-            print(data)
-            for dim in data['dimensions']:
-                dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
-                dim.pop('description', None)
-                for domain in dim['domains']:
-                    domain.pop('description', None)
-
-            # data['assignees'] = []
-            # data['tests'] = []
-            # assignees = list(Assignment.objects.filter(campaign=campaign_id). \
-            #                  values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title',
-            #                              'user__userprofile__department'). \
-            #                  distinct().order_by('user__last_name').values('user__first_name', 'user__last_name'))
-            # #
-            # for assignee in assignees:
-            #     data['assignees'].append(({
-            #         'first_name': assignee['user__first_name'],
-            #         'last_name': assignee['user__last_name']
-            #     }))
+            assignees = list(Assignment.objects.filter(campaign=campaign_id). \
+                             values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title',
+                                         'user__userprofile__department'). \
+                             distinct().order_by('user__last_name').values('user__first_name', 'user__last_name'))
             #
-            # tests = list(TestAssignment.objects.filter(campaign=campaign_id).
-            #      order_by('test__title').distinct('test__title').values('test__title', 'assignmentresult__score'))
-            #
-            # for test in tests:
-            #     data['tests'].append(({
-            #         'title': test['test__title'],
-            #         'score': test['assignmentresult__score']
-            #     }))
+            for assignee in assignees:
+                assigneesList.append(({
+                    'first_name': assignee['user__first_name'],
+                    'last_name': assignee['user__last_name']
+                }))
+
+
+            questionnaires = list(QuestionnaireAssignment.objects.filter(campaign=campaign). \
+                                  order_by('questionnaire__title').distinct('questionnaire__title').values(
+                'questionnaire__title'))
+
+            for quest in questionnaires:
+                questionnairesList.append(({
+                    'title': quest['questionnaire__title'],
+                }))
+
+            tests = list(TestAssignment.objects.filter(campaign=campaign_id).
+                 order_by('test__title').distinct('test__title').values('test__title', 'assignmentresult__score'))
+
+            for test in tests:
+                testList.append(({
+                    'title': test['test__title'],
+                }))
 
             return JsonResponse({'campaign_info': campaign_dict,'results': data})
         else:
