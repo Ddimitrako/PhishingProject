@@ -1588,23 +1588,24 @@ def CheckFinishedCampaigns(campaign_id=None):
 def kafka_producer(producer,campaign_id=None):
     domainName = str(SBA_DOMAIN_NAME)
     topicName = str(TOPIC_NAME)
-    topicVerMajor = TOPIC_VER_MAJOR
-    topicVerMinor = TOPIC_VER_MINOR
+    topicVerMajor = str(TOPIC_VER_MAJOR)
+    topicVerMinor = str(TOPIC_VER_MINOR)
     print(domainName)
     data = {
         'header': {
-            'messageName': 'Kafka Message',
-            'topicVerMajor': topicVerMajor,
-            'topicVerMinor': topicVerMinor,
+            'messageName': 'MSG04_01_SBA_DATA_GATHERED',
+            'messageVerMajor': topicVerMajor,
+            'messageVerMinor': topicVerMinor,
             'sender': 'SBA',
-            'sentUtc': timezone.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'sentUtc': str(timezone.now().strftime('%Y-%m-%d %H:%M:%S')),
             'msgType': 'info',
+            'msgId': str(campaign_id)
         },
         'body': {
             "msgType": "Message",
             "msgDescription": "Campaign Completion",
             "attachments": [{
-                "campaignID": campaign_id,
+                "campaignID": str(campaign_id),
                 "type": "urls/data",
                 "urls": [{
                         'Organization Report': domainName+'/api/metrics/organization/',
