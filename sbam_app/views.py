@@ -1244,10 +1244,8 @@ def get_user_self_assessments(user, months):
 
 #REST API
 class GetAccessToken(APIView):
-
     def post(self,request,*args):
         data=request.data
-        print(data)
         if 'username' in data and 'password' in data:
             username=data.get('username')
             password = data.get('password')
@@ -1261,6 +1259,7 @@ class GetAccessToken(APIView):
                 return HttpResponse(json.dumps(response_data), content_type="application/json")
             else:
                 return Response(status=status.HTTP_403_FORBIDDEN)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 def get_user_from_token(request):
@@ -1302,201 +1301,77 @@ def find_user_service_access(username):
 
 class GetOrganizationReport(APIView):
     def get(self,request,*args):
-        months = 24
-        user=get_user_from_token(request)
-        if user == None:
-            return Response(status=status.HTTP_403_FORBIDDEN)
-        if find_user_service_access(user.username) in ["all_services","organization_report"]:
-            if 'time_period' in request.GET:
-                print(request.GET.get('time_period'))
-                months = int(request.GET.get('time_period'))
+        try:
+            months = 24
+            user=get_user_from_token(request)
+            if user == None:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            if find_user_service_access(user.username) in ["all_services","organization_report"]:
+                if 'time_period' in request.GET:
+                    print(request.GET.get('time_period'))
+                    months = int(request.GET.get('time_period'))
 
-            # assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
-            #              campaign__end_date__gte=date.today() - relativedelta(months=months)).order_by('questionnaire', 'user')
-            # print(include_organisational, include_individual)
-            # months = int(request.GET.get('time_period'))
+                # assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
+                #              campaign__end_date__gte=date.today() - relativedelta(months=months)).order_by('questionnaire', 'user')
+                # print(include_organisational, include_individual)
+                # months = int(request.GET.get('time_period'))
 
-            dimensions = Dimension.objects.order_by('level', 'title')
-            qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
-                                                         campaign__end_date__gte=date.today() - relativedelta(
-                                                             months=months))
-            tests = TestAssignment.objects.filter(test__is_active=1,
-                                                  campaign__end_date__gte=date.today() - relativedelta(months=months))
-            assignments = chain(qas.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
+                dimensions = Dimension.objects.order_by('level', 'title')
+                qas = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
+                                                             campaign__end_date__gte=date.today() - relativedelta(
+                                                                 months=months))
+                tests = TestAssignment.objects.filter(test__is_active=1,
+                                                      campaign__end_date__gte=date.today() - relativedelta(months=months))
+                assignments = chain(qas.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
 
 
-            #dimensions = Dimension.objects.order_by('level', 'title')
-            data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
-            for dim in data['dimensions']:
-                dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
-                dim.pop('description', None)
-                for domain in dim['domains']:
-                    domain.pop('description', None)
+                #dimensions = Dimension.objects.order_by('level', 'title')
+                data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
+                for dim in data['dimensions']:
+                    dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
+                    dim.pop('description', None)
+                    for domain in dim['domains']:
+                        domain.pop('description', None)
 
-            if len(data) == 0:
-                return Response(status=status.HTTP_404_NOT_FOUND)
+                if len(data) == 0:
+                    return Response(status=status.HTTP_404_NOT_FOUND)
+                else:
+                    return JsonResponse({'metrics': data})
             else:
-                return JsonResponse({'metrics': data})
-        else:
-            return Response(status=status.HTTP_403_FORBIDDEN)
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 class GetCampaignReport(APIView):
     def get(self,request,campaign_id,*args):
-        months = 24
-        user = get_user_from_token(request)
-        if user == None:
-            return Response(status=status.HTTP_403_FORBIDDEN)
-        if not Campaign.objects.filter(pk=campaign_id).exists():  #check if campaign id doesnt exist
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        if find_user_service_access(user.username) in ["all_services","campaign_report"]:
-            campaign = Campaign.objects.get(id=campaign_id)
-            assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, campaign_id=campaign_id)\
-                .order_by('questionnaire', 'user')
-            dimensions = Dimension.objects.order_by('level', 'title')
-            tests = TestAssignment.objects.filter(campaign=campaign_id,
-                                                  campaign__end_date__gte=date.today() - relativedelta(months=months))
-            assignments = chain(assignments.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
-            data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
-
-
-            for dim in data['dimensions']:
-                dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
-                dim.pop('description', None)
-                for domain in dim['domains']:
-                    domain.pop('description', None)
-            assigneesList = []
-            testList = []
-            questionnairesList = []
-            campaign_dict = {
-                'id': campaign.pk,
-                'title': campaign.title,
-                'creation_date': campaign.creation_date,
-                'start_date': campaign.start_date,
-                'end_date': campaign.end_date,
-                'description': campaign.description,
-                'owner': campaign.owner.first_name + ' ' + campaign.owner.last_name,
-                'is_canceled': campaign.is_cancelled,
-                'assignees': assigneesList,
-                'assignments': {'questionnaires': questionnairesList,'tests': testList},
-
-            }
-
-            assignees = list(Assignment.objects.filter(campaign=campaign_id). \
-                             values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title',
-                                         'user__userprofile__department'). \
-                             distinct().order_by('user__last_name').values('user__first_name', 'user__last_name'))
-            #
-            for assignee in assignees:
-                assigneesList.append(({
-                    'first_name': assignee['user__first_name'],
-                    'last_name': assignee['user__last_name']
-                }))
-
-
-            questionnaires = list(QuestionnaireAssignment.objects.filter(campaign=campaign). \
-                                  order_by('questionnaire__title').distinct('questionnaire__title').values(
-                'questionnaire__title'))
-
-            for quest in questionnaires:
-                questionnairesList.append(({
-                    'title': quest['questionnaire__title'],
-                }))
-
-            tests = list(TestAssignment.objects.filter(campaign=campaign_id).
-                 order_by('test__title').distinct('test__title').values('test__title', 'assignmentresult__score'))
-
-            for test in tests:
-                testList.append(({
-                    'title': test['test__title'],
-                }))
-
-            return JsonResponse({'campaign_info': campaign_dict,'results': data})
-        else:
-            return Response(status=status.HTTP_403_FORBIDDEN)
-
-
-class GetUserReport(APIView):
-    def get(self, request, user_id, *args):
-        months = 24
-        user = get_user_from_token(request)
-        if user == None:
-            return Response(status=status.HTTP_403_FORBIDDEN)
-        if not User.objects.filter(pk=user_id).exists():
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        if find_user_service_access(user.username) in ["all_services","user_report"]:
-            if 'time_period' in request.GET:
-                print(request.GET.get('time_period'))
-                months = int(request.GET.get('time_period'))
-
-            assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
-                 campaign__end_date__gte=date.today() - relativedelta(months=months), user_id=user_id, questionnaire__domain__dimension__level=1)\
-                .order_by('questionnaire', 'user')
-            dimensions = Dimension.objects.filter(level=1).order_by('level', 'title')
-            tests = TestAssignment.objects.filter(test__is_active=1,
-                                                  campaign__end_date__gte=date.today() - relativedelta(months=months))
-            assignments = chain(assignments.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
-            data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
-            print(data)
-            for dim in data['dimensions']:
-                dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
-                dim.pop('description', None)
-                for domain in dim['domains']:
-                    domain.pop('description', None)
-
-            return JsonResponse({'metrics': data})
-        else:
-            return Response(status=status.HTTP_403_FORBIDDEN)
-
-
-class GetGroupReport(APIView):
-    def get(self,request,group_id):
-        months = 24
-        user = get_user_from_token(request)
-        if user == None:
-            return Response(status=status.HTTP_403_FORBIDDEN)
-        if not Group.objects.filter(pk=group_id).exists():
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        if find_user_service_access(user.username) in ["all_services","group_report"]:
-            if 'time_period' in request.GET:
-                print(request.GET.get('time_period'))
-                months = int(request.GET.get('time_period'))
-
-            assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
-                 campaign__end_date__gte=date.today() - relativedelta(months=months), user__groups__in=[group_id])\
-                .order_by('questionnaire', 'user')
-
-            dimensions = Dimension.objects.order_by('level', 'title')
-            tests = TestAssignment.objects.filter(test__is_active=1,
-                                                  campaign__end_date__gte=date.today() - relativedelta(months=months))
-            assignments = chain(assignments.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
-            data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
-            print(data)
-            for dim in data['dimensions']:
-                dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
-                dim.pop('description', None)
-                for domain in dim['domains']:
-                    domain.pop('description', None)
-
-            return JsonResponse({'metrics': data})
-        else:
-            return Response(status=status.HTTP_403_FORBIDDEN)
-
-class GetCampaigns(APIView):
-    def get(self,request):
-        user = get_user_from_token(request)
-        if user == None:
-            return Response(status=status.HTTP_403_FORBIDDEN)
-        if find_user_service_access(user.username) in ["all_services", "get_campaigns"]:
+        try:
             months = 24
-            campaigns_json = {
-                'data': []
-            }
-            if 'time_period' in request.GET:
-                print(request.GET.get('time_period'))
-                months = int(request.GET.get('time_period'))
-            campaigns = Campaign.objects.filter(end_date__gte=date.today() - relativedelta(months=months))
+            user = get_user_from_token(request)
+            if user == None:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            if not Campaign.objects.filter(pk=campaign_id).exists():  #check if campaign id doesnt exist
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            if find_user_service_access(user.username) in ["all_services","campaign_report"]:
+                campaign = Campaign.objects.get(id=campaign_id)
+                assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1, campaign_id=campaign_id)\
+                    .order_by('questionnaire', 'user')
+                dimensions = Dimension.objects.order_by('level', 'title')
+                tests = TestAssignment.objects.filter(campaign=campaign_id,
+                                                      campaign__end_date__gte=date.today() - relativedelta(months=months))
+                assignments = chain(assignments.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
+                data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
 
-            for campaign in campaigns:
+
+                for dim in data['dimensions']:
+                    dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
+                    dim.pop('description', None)
+                    for domain in dim['domains']:
+                        domain.pop('description', None)
+                assigneesList = []
+                testList = []
+                questionnairesList = []
                 campaign_dict = {
                     'id': campaign.pk,
                     'title': campaign.title,
@@ -1506,44 +1381,190 @@ class GetCampaigns(APIView):
                     'description': campaign.description,
                     'owner': campaign.owner.first_name + ' ' + campaign.owner.last_name,
                     'is_canceled': campaign.is_cancelled,
-                    'assignees': [],
-                    'questionnaires': [],
-                    'tests': []
-                }
-                assignees = list(Assignment.objects.filter(campaign=campaign). \
-                    values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title',
-                                'user__userprofile__department'). \
-                    distinct().order_by('user__last_name').values('user__first_name', 'user__last_name'))
+                    'assignees': assigneesList,
+                    'assignments': {'questionnaires': questionnairesList,'tests': testList},
 
+                }
+
+                assignees = list(Assignment.objects.filter(campaign=campaign_id). \
+                                 values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title',
+                                             'user__userprofile__department'). \
+                                 distinct().order_by('user__last_name').values('user__first_name', 'user__last_name'))
+                #
                 for assignee in assignees:
-                    campaign_dict['assignees'].append(({
+                    assigneesList.append(({
                         'first_name': assignee['user__first_name'],
                         'last_name': assignee['user__last_name']
                     }))
 
+
                 questionnaires = list(QuestionnaireAssignment.objects.filter(campaign=campaign). \
-                    order_by('questionnaire__title').distinct('questionnaire__title').values('questionnaire__title'))
+                                      order_by('questionnaire__title').distinct('questionnaire__title').values(
+                    'questionnaire__title'))
 
                 for quest in questionnaires:
-                    campaign_dict['questionnaires'].append(({
+                    questionnairesList.append(({
                         'title': quest['questionnaire__title'],
                     }))
 
-                tests = list(TestAssignment.objects.filter(campaign=campaign). \
-                    values_list('test__title', 'test__domain__dimension__level'). \
-                    order_by('test__title').distinct('test__title').values('test__title'))
+                tests = list(TestAssignment.objects.filter(campaign=campaign_id).
+                     order_by('test__title').distinct('test__title').values('test__title', 'assignmentresult__score'))
 
                 for test in tests:
-                    campaign_dict['tests'].append(({
+                    testList.append(({
                         'title': test['test__title'],
                     }))
 
-                campaigns_json['data'].append(campaign_dict)
+                return JsonResponse({'campaign_info': campaign_dict,'results': data})
+            else:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
-            return JsonResponse(campaigns_json)
-        else:
-            return Response(status=status.HTTP_403_FORBIDDEN)
+class GetUserReport(APIView):
+    def get(self, request, user_id, *args):
+        try:
+            months = 24
+            user = get_user_from_token(request)
+            if user == None:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            if not User.objects.filter(pk=user_id).exists():
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            if find_user_service_access(user.username) in ["all_services","user_report"]:
+                if 'time_period' in request.GET:
+                    print(request.GET.get('time_period'))
+                    months = int(request.GET.get('time_period'))
 
+                assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
+                     campaign__end_date__gte=date.today() - relativedelta(months=months), user_id=user_id, questionnaire__domain__dimension__level=1)\
+                    .order_by('questionnaire', 'user')
+                dimensions = Dimension.objects.filter(level=1).order_by('level', 'title')
+                tests = TestAssignment.objects.filter(test__is_active=1,
+                                                      campaign__end_date__gte=date.today() - relativedelta(months=months))
+                assignments = chain(assignments.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
+                data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
+                print(data)
+                for dim in data['dimensions']:
+                    dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
+                    dim.pop('description', None)
+                    for domain in dim['domains']:
+                        domain.pop('description', None)
+
+                return JsonResponse({'metrics': data})
+            else:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+class GetGroupReport(APIView):
+    def get(self,request,group_id):
+        try:
+            months = 24
+            user = get_user_from_token(request)
+            if user == None:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            if not Group.objects.filter(pk=group_id).exists():
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            if find_user_service_access(user.username) in ["all_services","group_report"]:
+                if 'time_period' in request.GET:
+                    print(request.GET.get('time_period'))
+                    months = int(request.GET.get('time_period'))
+
+                assignments = QuestionnaireAssignment.objects.filter(questionnaire__is_active=1,
+                     campaign__end_date__gte=date.today() - relativedelta(months=months), user__groups__in=[group_id])\
+                    .order_by('questionnaire', 'user')
+
+                dimensions = Dimension.objects.order_by('level', 'title')
+                tests = TestAssignment.objects.filter(test__is_active=1,
+                                                      campaign__end_date__gte=date.today() - relativedelta(months=months))
+                assignments = chain(assignments.order_by('questionnaire', 'user'), tests.order_by('test', 'user'))
+                data = json.loads(get_graph_data(assignments, [], dimensions).content)['graph_data']
+                print(data)
+                for dim in data['dimensions']:
+                    dim['level'] = 'organizational' if dim['level'] == 0 else 'individual'
+                    dim.pop('description', None)
+                    for domain in dim['domains']:
+                        domain.pop('description', None)
+
+                return JsonResponse({'metrics': data})
+            else:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+class GetCampaigns(APIView):
+    def get(self,request):
+        try:
+            user = get_user_from_token(request)
+            if user == None:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            if find_user_service_access(user.username) in ["all_services", "get_campaigns"]:
+                months = 24
+                campaigns_json = {
+                    'data': []
+                }
+                if 'time_period' in request.GET:
+                    print(request.GET.get('time_period'))
+                    months = int(request.GET.get('time_period'))
+                campaigns = Campaign.objects.filter(end_date__gte=date.today() - relativedelta(months=months))
+
+                for campaign in campaigns:
+                    campaign_dict = {
+                        'id': campaign.pk,
+                        'title': campaign.title,
+                        'creation_date': campaign.creation_date,
+                        'start_date': campaign.start_date,
+                        'end_date': campaign.end_date,
+                        'description': campaign.description,
+                        'owner': campaign.owner.first_name + ' ' + campaign.owner.last_name,
+                        'is_canceled': campaign.is_cancelled,
+                        'assignees': [],
+                        'questionnaires': [],
+                        'tests': []
+                    }
+                    assignees = list(Assignment.objects.filter(campaign=campaign). \
+                        values_list('user__last_name', 'user__first_name', 'user__userprofile__job_title',
+                                    'user__userprofile__department'). \
+                        distinct().order_by('user__last_name').values('user__first_name', 'user__last_name'))
+
+                    for assignee in assignees:
+                        campaign_dict['assignees'].append(({
+                            'first_name': assignee['user__first_name'],
+                            'last_name': assignee['user__last_name']
+                        }))
+
+                    questionnaires = list(QuestionnaireAssignment.objects.filter(campaign=campaign). \
+                        order_by('questionnaire__title').distinct('questionnaire__title').values('questionnaire__title'))
+
+                    for quest in questionnaires:
+                        campaign_dict['questionnaires'].append(({
+                            'title': quest['questionnaire__title'],
+                        }))
+
+                    tests = list(TestAssignment.objects.filter(campaign=campaign). \
+                        values_list('test__title', 'test__domain__dimension__level'). \
+                        order_by('test__title').distinct('test__title').values('test__title'))
+
+                    for test in tests:
+                        campaign_dict['tests'].append(({
+                            'title': test['test__title'],
+                        }))
+
+                    campaigns_json['data'].append(campaign_dict)
+
+                return JsonResponse(campaigns_json)
+            else:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 from sbam.settings.settings import *
 from apscheduler.schedulers.background import BackgroundScheduler
