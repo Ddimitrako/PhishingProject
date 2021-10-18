@@ -1630,7 +1630,7 @@ def kafka_producer(producer,campaign_id=None):
                 "type": "urls/data",
                 "urls": [{
                         'Organization Report': domainName+'/api/metrics/organization/',
-                        'Campaign Report': domainName+'/api/metrics/campaigns/'+str(campaign_id)+'/',
+                        'Campaign Report': domainName+'/api/metrics/campaign/'+str(campaign_id)+'/',
 
                 }],
             }],
