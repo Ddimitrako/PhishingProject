@@ -1251,7 +1251,8 @@ class GetAccessToken(APIView):
             password = data.get('password')
 
             user = authenticate(username=username, password=password)
-            if user is not None:
+            userService = find_user_service_access(username)
+            if user is not None and userService != None and userService != 'no_services':
                 token = Token.objects.get_or_create(user=user)
                 print(token[0].key)
                 # response_data = {'token': token[0].key, 'id': token[0].user_id}
