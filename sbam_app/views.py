@@ -1572,7 +1572,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 def StartRepeatTask():
     scheduler = BackgroundScheduler()
     print("Start sheduler")
-    kafkaJob = scheduler.add_job(CheckFinishedCampaigns, 'interval', minutes=int(FREQUENCY_IN_MINUTES) ,id='kafka_Job',max_instances = 2,replace_existing=True)
+    kafkaJob = scheduler.add_job(CheckFinishedCampaigns,'cron', day_of_week='0-6', hour=23, minute=59,id='kafka_Job',max_instances = 2,replace_existing=True)
     scheduler.start()
     #kafkaJob.remove() #to stop kafka job
     # CheckFinishedCampaigns(repeat=10)
