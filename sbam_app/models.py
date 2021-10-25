@@ -719,9 +719,6 @@ class ActiveInsiderRecommendation(Model):
     recommendation = ForeignKey(Recommendation, on_delete=CASCADE)
     score = FloatField(_('score'), help_text=_('Severity of recommendation'))
 
-    def __str__(self):
-        return self.threat.name
-
     def get_result(self):
         return '{0:.0%}'.format(self.score)
 

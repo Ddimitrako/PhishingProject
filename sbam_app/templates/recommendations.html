@@ -84,15 +84,15 @@
                                 <tr>
 
                                     <td>
-                                        {% with score=threat.get_result %}
+                                        {% with score=recomm.get_result %}
                                             {% get_severity_badge score as badge_type %}
                                             <span {% if badge_type != '' %}class="badge {{ badge_type }}"{% endif %}>
-                                                {{ recomm }}
+                                                {{ recomm.get_priority }}
                                             </span>
                                         {% endwith %}
                                     </td>
-                                    <td>{{ recomm.title }}</td>
-                                    <td><pre>{{ recomm.description }}</pre></td>
+                                    <td>{{ recomm.recommendation.title }}</td>
+                                    <td><pre>{{ recomm.recommendation.description }}</pre></td>
                                 </tr>
                                 {% empty %}
                                     <tr>
