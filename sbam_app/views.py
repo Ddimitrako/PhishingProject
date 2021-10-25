@@ -1649,6 +1649,31 @@ def IdentifiedThreats(request):
             'attack_patterns': ActiveAttackPatterns.objects.all().order_by('-score'),
            'insider': ActiveInsiderThreats.objects.all().order_by('-score')})
 
+def Recommendations(request):
+    threatIdResult = ActiveInsiderThreats.objects.values('threat_id').distinct()
+    threatScoreResult = ActiveInsiderThreats.objects.values('score').distinct()
+    # print(threatScoreResult)
+    threatIDList = []
+    threatScoreList = []
+    for element in threatIdResult:
+        threatIDList.append(element['threat_id'])
+        print("thread id-->", element['threat_id'])
+
+    for element in threatScoreResult:
+        threatScoreList.append(element['score'])
+        print("score-->", element['score'])
+
+    recommendationIds = Recommendation.insider_threat.through.objects.filter(insiderthreat_id__in=threatIDList).distinct('recommendation_id')
+    # recommendationIds = Recommendation.insider_threat.through.objects.filter(
+    #     insiderthreat_id__in=threatIDList)
+    # print(recommendationIds)
+    for element in recommendationIds:
+        print(element.recommendation_id)
+        test = Recommendation.objects.all().values('title','description').filter(pk=element.recommendation_id)
+        print(test)
+    return render(request,'recommendations.html',{
+            'recommendations': Recommendation.objects.filter(is_general=True),
+           'insider_recommendations': ActiveInsiderRecommendation.objects.all()})
 
 def threats_calculation(campaign_id=None):
 
@@ -1657,6 +1682,8 @@ def threats_calculation(campaign_id=None):
     insider_factors_dict = {}
     ActiveAttackPatterns.objects.all().delete()
     ActiveInsiderThreats.objects.all().delete()
+    ActiveInsiderRecommendation.objects.all().delete()
+
 
     for user in User.objects.all():
 
@@ -1756,4 +1783,13 @@ def threats_calculation(campaign_id=None):
         active_threat = ActiveInsiderThreats(threat=threat, score=recognized_threats[threat]['score'])
         active_threat.save()
 
+    # threatIdresult = ActiveInsiderThreats.objects.values('threat_id').distinct()
+    # threatIDList = []
+    # for element in threatIdresult:
+    #     threatIDList.append(element['threat_id'])
+    #     # print(element['threat_id'])
+    # test=Recommendation.objects.filter(insider_threat__recommendation__in=threatIDList)
+    # print(test)
+        # query --> fere ola ta recommendation ta opoia (is_globall=false)  && exoun foreign key sta distict threat.name
+        ## active_recomm = ActiveInsiderRecommendation()
     CheckFinishedCampaigns(campaign_id)

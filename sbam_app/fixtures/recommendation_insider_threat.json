@@ -1,0 +1,202 @@
+[
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 1,
+    "fields": {
+      "recommendation": 1,
+      "insiderthreat": 1
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 2,
+    "fields": {
+      "recommendation": 1,
+      "insiderthreat": 4
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 3,
+    "fields": {
+      "recommendation": 2,
+      "insiderthreat": 5
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 4,
+    "fields": {
+      "recommendation": 3,
+      "insiderthreat": 1
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 5,
+    "fields": {
+      "recommendation": 3,
+      "insiderthreat": 3
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 6,
+    "fields": {
+      "recommendation": 4,
+      "insiderthreat": 3
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 7,
+    "fields": {
+      "recommendation": 5,
+      "insiderthreat": 2
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 8,
+    "fields": {
+      "recommendation": 6,
+      "insiderthreat": 2
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 9,
+    "fields": {
+      "recommendation": 7,
+      "insiderthreat": 5
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 10,
+    "fields": {
+      "recommendation": 8,
+      "insiderthreat": 1
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 11,
+    "fields": {
+      "recommendation": 8,
+      "insiderthreat": 3
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 12,
+    "fields": {
+      "recommendation": 9,
+      "insiderthreat": 1
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 13,
+    "fields": {
+      "recommendation": 9,
+      "insiderthreat": 2
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 14,
+    "fields": {
+      "recommendation": 10,
+      "insiderthreat": 1
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 15,
+    "fields": {
+      "recommendation": 10,
+      "insiderthreat": 4
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 16,
+    "fields": {
+      "recommendation": 11,
+      "insiderthreat": 5
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 17,
+    "fields": {
+      "recommendation": 12,
+      "insiderthreat": 1
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 18,
+    "fields": {
+      "recommendation": 12,
+      "insiderthreat": 3
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 19,
+    "fields": {
+      "recommendation": 13,
+      "insiderthreat": 3
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 20,
+    "fields": {
+      "recommendation": 14,
+      "insiderthreat": 1
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 21,
+    "fields": {
+      "recommendation": 14,
+      "insiderthreat": 3
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 22,
+    "fields": {
+      "recommendation": 15,
+      "insiderthreat": 1
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 23,
+    "fields": {
+      "recommendation": 15,
+      "insiderthreat": 2
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 24,
+    "fields": {
+      "recommendation": 15,
+      "insiderthreat": 4
+    }
+  },
+  {
+    "model": "sbam_app.recommendation_insider_threat",
+    "pk": 25,
+    "fields": {
+      "recommendation": 16,
+      "insiderthreat": 2
+    }
+  }
+]

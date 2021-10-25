@@ -1,0 +1,313 @@
+[
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 1,
+    "fields": {
+      "is_general": false,
+      "title": "Management Training",
+      "description": "Management training should assist participants to:\n\u2022\trecognize evidence of personal predispositions in their employees that might make them inclined to respond to stressful events inappropriately\n\u2022\trecognize and respond to concerning behaviours and concerning technical actions in their employees\n\u2022\trecognize stressful events that were consequential in the cases studied and take mitigating actions\n\u2022\timpose sanctions appropriately\n\u2022\tmonitor sanctioned employees for inappropriate reactions\n\u2022\tunderstand when they may need to request assistance from qualified outsiders, including security and IT specialists, employee assistance officers, and mental health professionals, to fully evaluate risk\n\u2022\testablish advanced security policies related to system administrators and technical or privileged users\n",
+      "insider_threat": [
+        1,
+        4
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 2,
+    "fields": {
+      "is_general": false,
+      "title": "Management Training",
+      "description": "Management training should assist participants to:\n\u2022\treview and improve management practices to align resources with task\n\u2022\timprove data flow by enhancing communication and maintaining accurate procedures\n\u2022\tmaintain a productive work setting by minimizing distractions\n\u2022\timplement effective work planning and control to reduce job pressure and manage time factors\n\u2022\tmaintain employee readiness\n\u2022\tmaintain staff values and attitudes that align with organizational mission and ethics\n\u2022\timplement security best practices throughout the organization\n",
+      "insider_threat": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 3,
+    "fields": {
+      "is_general": false,
+      "title": "Management Training",
+      "description": "Management training should assist participants to:\n•\tenhance security awareness\n•\tdivide responsibility for critical functions among employees\n•\teffectively separate duties (least privilege policy)\n•\timplement strict password and account management policies and practices\n•\tconsider insider threats in the software development life cycle (SDLC)\n•\t4deal effectively with workplace issues, beginning with pre-employment (agreements, clearly communicate responsibilities, etc.) and continuing through employment (workplace disputes, inappropriate relationships, etc.)",
+      "insider_threat": [
+        1,
+        3
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 4,
+    "fields": {
+      "is_general": false,
+      "title": "Management Training",
+      "description": "Management training should assist participants to:\n•\traise awareness of the risks of insider threat\n•\thelp identify the factors influencing an insider’s decision to act\n•\thelp identify the indicators and precursors of malicious acts\n•\tidentify countermeasures that will improve the survivability and resiliency of the organization",
+      "insider_threat": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 5,
+    "fields": {
+      "is_general": false,
+      "title": "Management Training",
+      "description": "Management training should assist participants to:\n\u2022\tcomprehend the necessity of specific agreements being in place (IP ownership and consent to employee monitoring)\n\u2022\tidentify and properly label critical intellectual property (IP) assets\n\u2022\testablish the necessary communication among departments dealing with insider threat \n",
+      "insider_threat": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 6,
+    "fields": {
+      "is_general": false,
+      "title": "Human Resources Training",
+      "description": "Human Resources Training should assist participants to:\n\u2022\tdesign a targeted monitoring strategy for employees and contractors dealing with critical IP assets of the organization\n\u2022\testablish necessary nondisclosure agreements, IP ownership policies, and references to IP ownership in a network acceptable-use policy\n",
+      "insider_threat": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 7,
+    "fields": {
+      "is_general": false,
+      "title": "Human Resources Training",
+      "description": "Human Resources Training should assist participants to:\n\u2022\tprovide emotional health counselling and stress reduction through Employee Assistance Programs (EAPs) and workplace violence prevention programs \n\u2022\tprovide support for employee fatigue or sleepiness through EAP support and workplace stress load reduction \n\u2022\tuse positive framing rather than negative framing of problems to encourage less risky behaviour and more balanced decisions\n",
+      "insider_threat": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 8,
+    "fields": {
+      "is_general": false,
+      "title": "Human Resources Training",
+      "description": "Human Resources Training should assist participants to:\n\u2022\testablish policies related to observable signs of serious mental health disorders, personality problems, social skills and decision-making biases, and history of rule conflicts\n\u2022\tcomprehend sophisticated employee evaluation techniques \n\u2022\tfamiliarize with psychological assessments and their exploitation\n\u2022\thandle dismissal procedures following proper and creative termination policies\n",
+      "insider_threat": [
+        1,
+        3
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 9,
+    "fields": {
+      "is_general": false,
+      "title": "Human Resources Training",
+      "description": "Human Resources Training should assist participants to:\n\u2022\tclearly formulate employment agreements and conditions of employment\n\u2022\tcommunicate responsibilities and constraints of each employee and consequences for violations \n\u2022\teffectively handle workplace disputes or inappropriate relationships between co-workers not to undermine a healthy and productive working environment\n\u2022\tencourage discussion over work-related issues without fear of reprisal or negative consequences\n",
+      "insider_threat": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 10,
+    "fields": {
+      "is_general": false,
+      "title": "Security Awareness Training",
+      "description": "Security Awareness Training should assist employees to:\n\u2022\trecognize responsibility for reporting concerning behaviours and concerning technical actions to management\n\u2022\tcomprehend security policies and procedures tied to an organization\u2019s mission, values, and critical assets\n\u2022\tfamiliarize with separation of duties and remote access policies \n",
+      "insider_threat": [
+        1,
+        4
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 11,
+    "fields": {
+      "is_general": false,
+      "title": "Security Awareness Training",
+      "description": "Security Awareness Training should assist employees to:\n•\tenhance awareness of insider threat risks and impacts, including unintentional insider threat\n•\theighten motivation to be wary of insider threat risks\n•\ttrain employees to recognize phishing and other social media threat vectors\n•\tengender process discipline to encourage adherence to policies and guidelines\n•\ttrain continuously to maintain proper level of knowledge, skills, and ability\n•\tconduct training on and improve awareness of risk perception and cognitive biases that affect decision making\n•\timprove human factors and usability of security tools.\n•\timprove usability of software to reduce likelihood of system-induced human error\n•\tidentify potential actions or ways of thinking that could lead to an unintentional event, including:\n\t-\tlevel of risk tolerance – someone willing to take more risks than the norm\n\t-\tattempts at multi-tasking – individuals who multi-task may be more likely to make mistakes\n\t-\tlarge amounts of personal or proprietary information shared on social media\n\t-\tlack of attention to detail",
+      "insider_threat": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 12,
+    "fields": {
+      "is_general": false,
+      "title": "Security Awareness Training",
+      "description": "Security Awareness Training should assist participants toThe organisation should train its employees on:\n\u2022\tenhance security awareness \n\u2022\tfamiliarize with \n- Ggood password and account management recommendationspractices\n\u2022\t\n- Iidentifyingy malicious insiders by behaviour and not by stereotypical characteristics\n- Training programs that create a culture of security appropriate for them\n- Separation of duties and remote access monitoring\n- Identifying their personal responsibility, such as protection of their own passwords and work products\n",
+      "insider_threat": [
+        1,
+        3
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 13,
+    "fields": {
+      "is_general": false,
+      "title": "Security Awareness Training",
+      "description": "Security Awareness Training should assist employees to:\n\u2022\tunderstand the need for policies, procedures, and technical controls\n\u2022\tfamiliarize with the security policies and procedures within the organization\n\u2022\tbecome aware of consequences for security infractions \n\u2022\tunderstand that individuals, either inside or outside the organization, may try to co-opt them into activities that are counter to the organization\u2019s mission, including committing fraud\n\u2022\tunderstand the process for reporting policy violations\n",
+      "insider_threat": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 14,
+    "fields": {
+      "is_general": false,
+      "title": "Information Technology",
+      "description": "Information Technology Training should assist participants to:\n\u2022\timplement system change controls to prevent insertion of backdoors, keystroke loggers, logic bombs, and other malicious code or programs\n\u2022\tlog, monitor, and audit employee online actions so as to early discover and investigate suspicious insider actions\n\u2022\tbuild layered defence against remote attacks \n",
+      "insider_threat": [
+        1,
+        3
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 15,
+    "fields": {
+      "is_general": false,
+      "title": "Information Technology",
+      "description": "Information Technology Training should assist participants to:\n\u2022\tdeactivate computer access following termination\n\u2022\timplement secure backup and recovery processes\n",
+      "insider_threat": [
+        1,
+        2,
+        4
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 16,
+    "fields": {
+      "is_general": false,
+      "title": "Information Technology",
+      "description": "Information Technology Training should assist participants to:\n\u2022\tlog, monitor, and audit employee online actions for at least 30 days prior to employee termination\n",
+      "insider_threat": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 17,
+    "fields": {
+      "is_general": true,
+      "title": "Security Awareness Training",
+      "description": "Security Awareness Training should assist employees to:\n\u2022\tunderstand the need for policies, procedures, and technical controls, along with their justification, implementation, and enforcement within the organization\n\u2022\tbecome aware of individuals, either inside or outside the organization, who might try to co-opt them into activities counter to the organization\u2019s mission\n\u2022\tdetect and report disruptive behavior by employees\n\u2022\tmonitor adherence to organizational policies and controls\n\u2022\tmonitor and control changes to organizational systems (e.g., to prevent the installation of malicious code) \n\u2022\trequire separation of duties between employees who modify data and those who approve modifications\n\u2022\tdetect and report violations of the security of the organization\u2019s facilities and physical assets\n\u2022\tplan for potential incident response proactively\n",
+      "insider_threat": []
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 18,
+    "fields": {
+      "is_general": true,
+      "title": "Social Engineering Training",
+      "description": "Social Engineering Training could be part of an organization\u2019s security awareness training program. However, due to social media uprising trend, dedicated training program could assist in:\n\u2022\testablishing, monitoring, and enforcing proper and legit social media policies\n\u2022\tunderstanding data classification levels\n\u2022\toutlining ways in which information exposed in social media may be used (including for potential recruitment into a crime organization or extremist groups)\n\u2022\tcomprehending what type of data can be collected from a randomly selected profile\n",
+      "insider_threat": []
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 19,
+    "fields": {
+      "is_general": true,
+      "title": "Customer Service Training",
+      "description": "Training on reducing risks to customer service processes should focus on:\n\u2022\tprotecting computer accounts used in these processes\n\u2022\tauditing access to customer records \n\u2022\tensuring consistent enforcement of defined security policies and controls\n\u2022\timplementing proper system administration safeguards for critical servers \n\u2022\tusing secure backup and recovery methods to ensure availability of customer service data\n",
+      "insider_threat": []
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 20,
+    "fields": {
+      "is_general": true,
+      "title": "Refresher Training (annually)",
+      "description": "Refresher Training needs to cover all facets of an organization, not just information security. Training should encompass the following topics: \n\u2022\thuman resources\n\u2022\tlegal counsel\n\u2022\tphysical security, and \n\u2022\tany others of interest. \nTraining can include, but should not be limited to:\n\u2022\tchanges to policies\n\u2022\tissues that have emerged over the past year\n\u2022\tinformation security trends\n",
+      "insider_threat": []
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 21,
+    "fields": {
+      "is_general": true,
+      "title": "Management Training",
+      "description": "Management Training should assist participants to:\n•\trecognize and respond to inappropriate or concerning behavior in employees\n•\tconsistently investigate and respond to all rule violations\n•\tmonitor indications by employees of possible financial problems or unexplained financial gain. \n",
+      "insider_threat": []
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 22,
+    "fields": {
+      "is_general": true,
+      "title": "Human Resources Training",
+      "description": "Human Resources Training should focus on:\n•\tthe insider threat policies and the processes that address them across the organization\n•\tthe foundation, maintenance, and constant enhancement of an employee assistance program (EAP)\n",
+      "insider_threat": []
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 23,
+    "fields": {
+      "is_general": true,
+      "title": "Legal Counsel",
+      "description": "Legal Counsel Training should focus on: \n\u2022\treviewing insider threat policies \n\u2022\tanalyzing issues that arose in the past year \n\u2022\toutlining strategies to avoid similar incidents in the future\n",
+      "insider_threat": []
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 24,
+    "fields": {
+      "is_general": true,
+      "title": "Physical Security",
+      "description": "Physical Security Training should focus on:\n•\treviewing policies and procedures for access to company facilities by employees, contractors, and trusted business partners\n•\treviewing any policies on prohibited devices (USB devices, cameras, etc.)\n•\tproper handling of the organization’s physical assets as well as evacuation or emergency procedures that may arise in the event of an emergency\n",
+      "insider_threat": []
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 25,
+    "fields": {
+      "is_general": true,
+      "title": "Data owners",
+      "description": "Data Owners Training should focus on:\n\u2022\tdiscussing projects that may have heightened risk of insider threat, for example, strategic research projects that will involve creation of new trade secrets\n\u2022\tidentifying the value of an organization\u2019s IP (Intellectual Property) and the potential damage associated with an insider attack\n",
+      "insider_threat": []
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 26,
+    "fields": {
+      "is_general": true,
+      "title": "Information Technology",
+      "description": "Information Technology Training should focus on:\n\u2022\tefficiently educating employees on procedures for recognizing viruses and other malicious code\n\u2022\tidentifying which devices should be prohibited or permitted for authorized use on the various information systems within the organization\n",
+      "insider_threat": []
+    }
+  },
+  {
+    "model": "sbam_app.recommendation",
+    "pk": 27,
+    "fields": {
+      "is_general": true,
+      "title": "Software Engineering",
+      "description": "Software Engineering Training should focus on effective auditing of configuration management logs to detect insertion of malicious code",
+      "insider_threat": []
+    }
+  }
+]

@@ -52,6 +52,9 @@ urlpatterns = [
     # Threats
     path('threats/', IdentifiedThreats, name='threats'),
 
+    #Recommendations
+    path('recommendations/', Recommendations, name='recommendations'),
+
     # results REST API
     path('api/token/',GetAccessToken.as_view(), name='get_token'),
     path('api/metrics/organization/', GetOrganizationReport.as_view(), name='organization_report'),
@@ -60,7 +63,9 @@ urlpatterns = [
     path('api/metrics/group/<group_id>/', GetGroupReport.as_view(), name='group_report'),
     path('api/metrics/campaigns/', GetCampaigns.as_view(), name='get_campaigns'),
 
-    path('kafkaStart/', StartRepeatTask, name='kafka')
+    path('kafkaStart/', StartRepeatTask, name='kafka'),
+
+
 
 ]
 
