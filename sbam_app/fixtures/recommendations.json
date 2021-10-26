@@ -30,7 +30,7 @@
     "fields": {
       "is_general": false,
       "title": "Management Training",
-      "description": "Management training should assist participants to:\n•\tenhance security awareness\n•\tdivide responsibility for critical functions among employees\n•\teffectively separate duties (least privilege policy)\n•\timplement strict password and account management policies and practices\n•\tconsider insider threats in the software development life cycle (SDLC)\n•\t4deal effectively with workplace issues, beginning with pre-employment (agreements, clearly communicate responsibilities, etc.) and continuing through employment (workplace disputes, inappropriate relationships, etc.)",
+      "description": "Management training should assist participants to:\n•\tenhance security awareness\n•\tdivide responsibility for critical functions among employees\n•\teffectively separate duties (least privilege policy)\n•\timplement strict password and account management policies and practices\n•\tconsider insider threats in the software development life cycle (SDLC)\n•\tdeal effectively with workplace issues, beginning with pre-employment (agreements, clearly communicate responsibilities, etc.) and continuing through employment (workplace disputes, inappropriate relationships, etc.)",
       "insider_threat": [
         1,
         3
