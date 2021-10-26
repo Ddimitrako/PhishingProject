@@ -142,7 +142,7 @@
     "fields": {
       "is_general": false,
       "title": "Security Awareness Training",
-      "description": "Security Awareness Training should assist participants toThe organisation should train its employees on:\n\u2022\tenhance security awareness \n\u2022\tfamiliarize with \n- Ggood password and account management recommendationspractices\n\u2022\t\n- Iidentifyingy malicious insiders by behaviour and not by stereotypical characteristics\n- Training programs that create a culture of security appropriate for them\n- Separation of duties and remote access monitoring\n- Identifying their personal responsibility, such as protection of their own passwords and work products\n",
+      "description": "Security Awareness Training should assist participants to:\n•\tenhance security awareness \n•\tfamiliarize with good password and account management practices\n•\tidentify malicious insiders by behaviour and not by stereotypical characteristics\n",
       "insider_threat": [
         1,
         3

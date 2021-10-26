@@ -40,14 +40,14 @@
                     <table class="table table-hover table-head-fixed table-striped ">
                         <thead>
                             <tr>
-                                <th>{% trans "Title" %}</th>
+                                <th>{% trans "Recommendation" %}</th>
                                 <th>{% trans "Description" %}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for recomm in recommendations %}
                                 <tr>
-                                    <td><span data-toggle="tooltip" data-placement="left" title="{{ recomm.title }}"><a href="{{ recomm.title }}">{{ recomm.title }}</a></span></td>
+                                    <td><span data-toggle="tooltip" data-placement="left" title="{{ recomm.title }}"><a>{{ recomm.title }}</a></span></td>
                                     <td><pre>{{recomm.description}}</pre></td>
 
 {#                                    <td>#}
@@ -73,9 +73,10 @@
                     <table class="table table-hover table-head-fixed table-striped ">
                         <thead>
                             <tr>
-                                <th>{% trans "Priority" %}</th>
-                                <th>{% trans "Title" %}</th>
+
+                                <th>{% trans "Recommendation" %}</th>
                                 <th>{% trans "Description" %}</th>
+                                <th>{% trans "Priority" %}</th>
 
                             </tr>
                         </thead>
@@ -83,6 +84,9 @@
                             {% for recomm in insider_recommendations %}
                                 <tr>
 
+
+                                    <td >{{ recomm.recommendation.title }}</td>
+                                    <td ><pre>{{ recomm.recommendation.description }}</pre></td>
                                     <td>
                                         {% with score=recomm.get_result %}
                                             {% get_severity_badge score as badge_type %}
@@ -91,8 +95,6 @@
                                             </span>
                                         {% endwith %}
                                     </td>
-                                    <td>{{ recomm.recommendation.title }}</td>
-                                    <td><pre>{{ recomm.recommendation.description }}</pre></td>
                                 </tr>
                                 {% empty %}
                                     <tr>
