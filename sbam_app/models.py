@@ -724,15 +724,16 @@ class ActiveInsiderRecommendation(Model):
 
     def get_priority(self):
         if self.score >= 0.8:
-            return 'critical'
+            return 'Critical'
         elif self.score >= 0.6:
-            return 'major'
+            return 'High'
         elif self.score >= 0.4:
-            return 'minor'
+            return 'Medium'
         elif self.score >= 0.2:
-            return 'warning'
+            return 'low'
         elif self.score >= 0:
-            return 'informative'
+            return 'Ιnformative'
+
 
 
 
