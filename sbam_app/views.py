@@ -1618,10 +1618,10 @@ def kafka_producer(producer,campaign_id=None):
             'messageName': 'MSG04_01_SBA_DATA_GATHERED',
             'messageVerMajor': topicVerMajor,
             'messageVerMinor': topicVerMinor,
+            'msgId': 'SBA-'+str(campaign_id),
             'sender': 'SBA',
             'sentUtc': str(timezone.now().strftime('%Y-%m-%d %H:%M:%S')),
-            'msgType': 'info',
-            'msgId': str(campaign_id)
+
         },
         'body': {
             "msgType": "Message",
