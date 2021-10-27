@@ -1650,9 +1650,10 @@ def IdentifiedThreats(request):
            'insider': ActiveInsiderThreats.objects.all().order_by('-score')})
 
 def Recommendations(request):
+
     return render(request,'recommendations.html',{
             'recommendations': Recommendation.objects.filter(is_general=True),
-           'insider_recommendations': ActiveInsiderRecommendation.objects.all()})
+           'insider_recommendations': ActiveInsiderRecommendation.objects.all().order_by('-score')})
 
 def threats_calculation(campaign_id=None):
 
