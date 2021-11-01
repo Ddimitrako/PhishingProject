@@ -47,7 +47,7 @@
                         <tbody>
                             {% for recomm in recommendations %}
                                 <tr>
-                                    <td class="col-md-2"><span data-toggle="tooltip" data-placement="left" title="{{ recomm.title }}"><a>{{ recomm.title }}</a></span></td>
+                                    <td class="col-md-2"><span  title="{{ recomm.title }}"><a>{{ recomm.title }}</a></span></td>
                                     <td><pre>{{recomm.description}}</pre></td>
 
 {#                                    <td>#}
@@ -75,6 +75,7 @@
                             <tr>
 
                                 <th>{% trans "Recommendation" %}</th>
+                                <th>{% trans "Threat" %}</th>
                                 <th>{% trans "Description" %}</th>
                                 <th>{% trans "Priority" %}</th>
 
@@ -83,7 +84,9 @@
                         <tbody>
                             {% for recomm in insider_recommendations %}
                                 <tr>
-                                    <td class="col-md-2">{{ recomm.recommendation.title }}</td>
+                                    <td class="col-md-1">{{ recomm.recommendation.title }}</td>
+                                    <td class="col-md-1">{{ recomm.threatName }}</td>
+{#                                   <td class="col-md-2"> <button type="button" class="btn btn-default btn-org" data-trigger="hover" data-toggle="tooltip" data-placement="top"  title='{{recomm.recommendation.description}} '>{{"Description Info"}}</button></td>#}
                                     <td class="col-md-9"><pre><span  style="width:150px; word-wrap:break-word; display:inline-block;">{{ recomm.recommendation.description }}</span></pre></td>
                                     <td >
                                         {% with score=recomm.get_result %}
