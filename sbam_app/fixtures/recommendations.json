@@ -5,7 +5,7 @@
     "fields": {
       "is_general": false,
       "title": "Management Training",
-      "description": "Management training should assist participants to:\n\u2022\trecognize evidence of personal predispositions in their employees that might make them inclined to respond to stressful events inappropriately\n\u2022\trecognize and respond to concerning behaviours and concerning technical actions in their employees\n\u2022\trecognize stressful events that were consequential in the cases studied and take mitigating actions\n\u2022\timpose sanctions appropriately\n\u2022\tmonitor sanctioned employees for inappropriate reactions\n\u2022\tunderstand when they may need to request assistance from qualified outsiders, including security and IT specialists, employee assistance officers, and mental health professionals, to fully evaluate risk\n\u2022\testablish advanced security policies related to system administrators and technical or privileged users\n",
+      "description": "Management training should assist participants to:\n\u2022\trecognize evidence of personal predispositions in their employees that might make them inclined \n\tto respond to stressful events inappropriately\n\u2022\trecognize and respond to concerning behaviours and concerning technical actions in their employees\n\u2022\trecognize stressful events that were consequential in the cases studied and take mitigating actions\n\u2022\timpose sanctions appropriately\n\u2022\tmonitor sanctioned employees for inappropriate reactions\n\u2022\tunderstand when they may need to request assistance from qualified outsiders, including security and IT specialists, \n\temployee assistance officers, and mental health professionals, to fully evaluate risk\n\u2022\testablish advanced security policies related to system administrators and technical or privileged users\n",
       "insider_threat": [
         1,
         4
@@ -30,7 +30,7 @@
     "fields": {
       "is_general": false,
       "title": "Management Training",
-      "description": "Management training should assist participants to:\n•\tenhance security awareness\n•\tdivide responsibility for critical functions among employees\n•\teffectively separate duties (least privilege policy)\n•\timplement strict password and account management policies and practices\n•\tconsider insider threats in the software development life cycle (SDLC)\n•\tdeal effectively with workplace issues, beginning with pre-employment (agreements, clearly communicate responsibilities, etc.) and continuing through employment (workplace disputes, inappropriate relationships, etc.)",
+      "description": "Management training should assist participants to:\n•\tenhance security awareness\n•\tdivide responsibility for critical functions among employees\n•\teffectively separate duties (least privilege policy)\n•\timplement strict password and account management policies and practices\n•\tconsider insider threats in the software development life cycle (SDLC)\n•\tdeal effectively with workplace issues, beginning with pre-employment (agreements, clearly communicate responsibilities, etc.) \n\tand continuing through employment (workplace disputes, inappropriate relationships, etc.)",
       "insider_threat": [
         1,
         3
@@ -67,7 +67,7 @@
     "fields": {
       "is_general": false,
       "title": "Human Resources Training",
-      "description": "Human Resources Training should assist participants to:\n\u2022\tdesign a targeted monitoring strategy for employees and contractors dealing with critical IP assets of the organization\n\u2022\testablish necessary nondisclosure agreements, IP ownership policies, and references to IP ownership in a network acceptable-use policy\n",
+      "description": "Human Resources Training should assist participants to:\n\u2022\tdesign a targeted monitoring strategy for employees and contractors \n\tdealing with critical IP assets of the organization\n\u2022\testablish necessary nondisclosure agreements, IP ownership policies, \n\tand references to IP ownership in a network acceptable-use policy\n",
       "insider_threat": [
         2
       ]
@@ -79,7 +79,7 @@
     "fields": {
       "is_general": false,
       "title": "Human Resources Training",
-      "description": "Human Resources Training should assist participants to:\n\u2022\tprovide emotional health counselling and stress reduction through Employee Assistance Programs (EAPs) and workplace violence prevention programs \n\u2022\tprovide support for employee fatigue or sleepiness through EAP support and workplace stress load reduction \n\u2022\tuse positive framing rather than negative framing of problems to encourage less risky behaviour and more balanced decisions\n",
+      "description": "Human Resources Training should assist participants to:\n\u2022\tprovide emotional health counselling and stress reduction through Employee Assistance Programs (EAPs) \n\tand workplace violence prevention programs \n\u2022\tprovide support for employee fatigue or sleepiness through EAP support and workplace stress load reduction \n\u2022\tuse positive framing rather than negative framing of problems \n\tto encourage less risky behaviour and more balanced decisions\n",
       "insider_threat": [
         5
       ]
@@ -91,7 +91,7 @@
     "fields": {
       "is_general": false,
       "title": "Human Resources Training",
-      "description": "Human Resources Training should assist participants to:\n\u2022\testablish policies related to observable signs of serious mental health disorders, personality problems, social skills and decision-making biases, and history of rule conflicts\n\u2022\tcomprehend sophisticated employee evaluation techniques \n\u2022\tfamiliarize with psychological assessments and their exploitation\n\u2022\thandle dismissal procedures following proper and creative termination policies\n",
+      "description": "Human Resources Training should assist participants to:\n\u2022\testablish policies related to observable signs of serious mental health disorders, \n\tpersonality problems, social skills and decision-making biases, and history of rule conflicts\n\u2022\tcomprehend sophisticated employee evaluation techniques \n\u2022\tfamiliarize with psychological assessments and their exploitation\n\u2022\thandle dismissal procedures following proper and creative termination policies\n",
       "insider_threat": [
         1,
         3
@@ -104,7 +104,7 @@
     "fields": {
       "is_general": false,
       "title": "Human Resources Training",
-      "description": "Human Resources Training should assist participants to:\n\u2022\tclearly formulate employment agreements and conditions of employment\n\u2022\tcommunicate responsibilities and constraints of each employee and consequences for violations \n\u2022\teffectively handle workplace disputes or inappropriate relationships between co-workers not to undermine a healthy and productive working environment\n\u2022\tencourage discussion over work-related issues without fear of reprisal or negative consequences\n",
+      "description": "Human Resources Training should assist participants to:\n\u2022\tclearly formulate employment agreements and conditions of employment\n\u2022\tcommunicate responsibilities and constraints of each employee and consequences for violations \n\u2022\teffectively handle workplace disputes or inappropriate relationships between co-workers not to \n\tundermine a healthy and productive working environment\n\u2022\tencourage discussion over work-related issues without fear of reprisal or negative consequences\n",
       "insider_threat": [
         1,
         2
@@ -167,7 +167,7 @@
     "fields": {
       "is_general": false,
       "title": "Information Technology",
-      "description": "Information Technology Training should assist participants to:\n\u2022\timplement system change controls to prevent insertion of backdoors, keystroke loggers, logic bombs, and other malicious code or programs\n\u2022\tlog, monitor, and audit employee online actions so as to early discover and investigate suspicious insider actions\n\u2022\tbuild layered defence against remote attacks \n",
+      "description": "Information Technology Training should assist participants to:\n\u2022\timplement system change controls to prevent insertion of backdoors, keystroke loggers, \n\tlogic bombs, and other malicious code or programs\n\u2022\tlog, monitor, and audit employee online actions so as to early discover and investigate suspicious insider actions\n\u2022\tbuild layered defence against remote attacks \n",
       "insider_threat": [
         1,
         3
