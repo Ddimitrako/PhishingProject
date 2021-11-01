@@ -704,6 +704,39 @@ class InsiderThreat(Model):
         return self.name
 
 
+class Recommendation(Model):
+    insider_threat = ManyToManyField(
+        InsiderThreat,
+        verbose_name=_('recommendation'),
+    )
+    is_general = BooleanField(_('general'),
+                              help_text=_('Designates if a recommendation is general or insider'),
+    )
+    title = CharField(max_length=100)
+    description = TextField(max_length=10000)
+
+class ActiveInsiderRecommendation(Model):
+    recommendation = ForeignKey(Recommendation, on_delete=CASCADE)
+    score = FloatField(_('score'), help_text=_('Severity of recommendation'))
+    threatName = TextField(max_length=100,null=True)
+    def get_result(self):
+        return '{0:.0%}'.format(self.score)
+
+    def get_priority(self):
+        if self.score >= 0.8:
+            return 'Critical'
+        elif self.score >= 0.6:
+            return 'High'
+        elif self.score >= 0.4:
+            return 'Medium'
+        elif self.score >= 0.2:
+            return 'low'
+        elif self.score >= 0:
+            return 'Ιnformative'
+
+
+
+
 class InsiderThreatSubType(Model):
     name = CharField(max_length=200)
     description = TextField(max_length=100)

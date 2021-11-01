@@ -38,11 +38,11 @@ python manage.py insert_mittre
 echo "Importing Insider Threats Model"
 python manage.py insert_insider
 
-echo "Importing General Recommendations"
-python manage.py insert_general_recommendations
+echo "Importing all recommendations (general and insider)"
+python manage.py loaddata recommendations.json
 
-echo "Importing Insider Threats Recommendations"
-python manage.py insert_insider_recommendations
+echo "Importing the insider recommendations connection with insider threats"
+python manage.py loaddata recommendation_insider_threat.json
 
 echo "Importing SBAM Tests"
 python manage.py loaddata tests.json

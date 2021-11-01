@@ -1,0 +1,113 @@
+{% extends "base_form.html" %}
+
+{% load i18n static %}
+{% load i18n custom_tags %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="{% url 'sbam:dashboard' %}">{% trans "Home" %}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'sbam:recommendations' %}">{% trans "Recommendations" %}</a></li>
+{% endblock %}
+
+{% block page_name %}
+    <strong>{% trans "Recommendations" %}</strong>
+{% endblock %}
+
+{% block content %}
+    <div class="card card-primary card-outline " >
+        <div class="card-body">
+            <div class="d-sm-inline-flex w-100 justify-content-between" style='border-bottom: 1px solid #dee2e6;'>
+                            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist"  style='width: 100%; border-bottom: none;'>
+                                <li class="nav-item col">
+                                    <a class="nav-link active" id="attack-patterns-tab" data-toggle="pill"
+                                    href="#attack-patterns" role="tab"
+                                    aria-controls="active-camp"
+                                    aria-selected="true"><i class="fas fa-chess-rook"></i>
+                                        {% trans "General Recommendations" %}
+                                    </a>
+                                </li>
+                                <li class="nav-item col">
+                                    <a class="nav-link" id="insider-threat-tab" data-toggle="pill"
+                                    href="#insider-threat" role="tab"
+                                    aria-controls="finished-camp"
+                                    aria-selected="true"><i class="fas fa-chess-knight"></i>
+                                        {% trans "Specific Recommendations" %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+            <div class="tab-content" style="overflow: auto; height: 64vh;">
+                <div class="tab-pane fade active show" id="attack-patterns" role="tabpanel" aria-labelledby="attack-patterns">
+                    <table class="table table-hover table-head-fixed table-striped ">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Recommendation" %}</th>
+                                <th>{% trans "Description" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for recomm in recommendations %}
+                                <tr>
+                                    <td class="col-md-2"><span  title="{{ recomm.title }}"><a>{{ recomm.title }}</a></span></td>
+                                    <td><pre>{{recomm.description}}</pre></td>
+
+{#                                    <td>#}
+{#                                        {% with score=pattern.get_result  %}#}
+{#                                            {% get_severity_badge score as badge_type %}#}
+{#                                            <span {% if badge_type != '' %}class="badge {{ badge_type }}"{% endif %}>#}
+{#                                                {{ pattern.get_severity }}#}
+{#                                            </span>#}
+{#                                        {% endwith %}#}
+{#                                    </td>#}
+                                </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="4"
+                                            class="text-muted">{% trans "No recommendations found" %}
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade " id="insider-threat" role="tabpanel" aria-labelledby="insider-threat-tab">
+                    <table class="table table-hover table-head-fixed table-striped ">
+                        <thead>
+                            <tr>
+
+                                <th>{% trans "Recommendation" %}</th>
+                                <th>{% trans "Threat" %}</th>
+                                <th>{% trans "Description" %}</th>
+                                <th>{% trans "Priority" %}</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for recomm in insider_recommendations %}
+                                <tr>
+                                    <td class="col-md-1">{{ recomm.recommendation.title }}</td>
+                                    <td class="col-md-1">{{ recomm.threatName }}</td>
+{#                                   <td class="col-md-2"> <button type="button" class="btn btn-default btn-org" data-trigger="hover" data-toggle="tooltip" data-placement="top"  title='{{recomm.recommendation.description}} '>{{"Description Info"}}</button></td>#}
+                                    <td class="col-md-9"><pre><span  style="width:150px; word-wrap:break-word; display:inline-block;">{{ recomm.recommendation.description }}</span></pre></td>
+                                    <td >
+                                        {% with score=recomm.get_result %}
+                                            {% get_severity_badge score as badge_type %}
+                                            <span {% if badge_type != '' %}class="badge {{ badge_type }}"{% endif %}>
+                                                {{ recomm.get_priority }}
+                                            </span>
+                                        {% endwith %}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="4"
+                                            class="text-muted">{% trans "No recommendations found" %}
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
